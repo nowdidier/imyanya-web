@@ -1,8 +1,8 @@
-import 'moment/locale/ki';
+import 'moment/locale/vi';
 
 const locale = {
   lang: {
-    locale: 'ki',
+    locale: 'vi',
     placeholder: 'Hitamo italiki',
     rangePlaceholder: ['Italiki yo kubahiriza', 'Italiki yiherezo'],
     today: 'Uyu munsi',

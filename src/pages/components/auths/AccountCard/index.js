@@ -29,7 +29,7 @@ const AccountCard = ({ title }) => {
     dispatch(updateUserInfo(data))
       .unwrap()
       .then(() =>
-        toastMessages.success('Cập nhật thông tin tài khoản thành công.')
+        toastMessages.success('Amakuru y\'ikarita konti yavuguruwe neza.') // Translated to 'Account information updated successfully.'
       )
       .catch((error) => {
         errorHandling(error, setServerErrors);
@@ -43,15 +43,15 @@ const AccountCard = ({ title }) => {
         await authService.changePassword(data);
 
         setOpenPopup(false);
-        toastMessages.success('Đổi mật khẩu thành công.');
+        toastMessages.success('Ijambo ry\'ibanga ryahinduwe neza.'); // Translated to 'Password changed successfully.'
 
         let path = '';
         switch (currentUser.roleName) {
           case ROLES_NAME.EMPLOYER:
-            path = '/dang-nhap-nha-tuyen-dung';
+            path = '/dang-nhap-nha-tuyen-dung'; // Path kept unchanged
             break;
           case ROLES_NAME.JOB_SEEKER:
-            path = '/dang-nhap-ung-vien';
+            path = '/dang-nhap-ung-vien'; // Path kept unchanged
             break;
           default:
             path = '/';
@@ -64,7 +64,7 @@ const AccountCard = ({ title }) => {
             nav(path);
           })
           .catch((err) => {
-            toastMessages.error('Đã xảy ra lỗi!');
+            toastMessages.error('Habaye ikosa!'); // Translated to 'An error occurred!'
           });
       } catch (error) {
         errorHandling(error, setServerErrors);
@@ -113,7 +113,7 @@ const AccountCard = ({ title }) => {
                       style={{ cursor: 'pointer' }}
                       onClick={() => setOpenPopup(true)}
                     >
-                      Thay đổi mật khẩu
+                      Hindura ijambo ry'ibanga // Translated to 'Change password'
                     </span>
                   </Typography>
                 </Box>
@@ -125,7 +125,7 @@ const AccountCard = ({ title }) => {
                     type="submit"
                     form="account-form"
                   >
-                    Cập nhật
+                    Vugurura // Translated to 'Update'
                   </Button>
                 </Stack>
               </Grid>
@@ -136,7 +136,7 @@ const AccountCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Cập nhật mật khẩu"
+        title="Vugurura ijambo ry'ibanga" // Translated to 'Update password'
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

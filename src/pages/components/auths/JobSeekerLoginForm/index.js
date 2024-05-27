@@ -15,14 +15,14 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Email là bắt buộc!')
-      .email('Email không đúng định dạng'),
-    password: yup.string().required('Mật khẩu là bắt buộc!')
-    .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
-    .max(128, 'Mật khẩu vượt quá độ dài cho phép.')
+      .required('Email ni ngombwa!')
+      .email('Email ntifite uburyo bwiza'),
+    password: yup.string().required('Ijambo ryibanga ni ngombwa!')
+    .min(8, 'Ijambo ryibanga rigomba kuba nibura ibimenyetso 8.')
+    .max(128, 'Ijambo ryibanga rirenze uburebure bwemewe.')
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
+      'Rigomba kuba ririmo inyuguti nkuru, inyuguti nto, umubare n’ikimenyetso kidasanzwe'
     ),
   });
 
@@ -41,19 +41,19 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
           name="email"
           control={control}
           title="Email"
-          placeholder="Nhập email"
+          placeholder="Shyiramo email"
           showRequired={true}
         />
         <PasswordTextFieldCustom
           name="password"
           control={control}
-          title="Mật khẩu"
-          placeholder="Nhập mật khẩu"
+          title="Ijambo ryibanga"
+          placeholder="Shyiramo ijambo ryibanga"
           showRequired={true}
         />
       </Stack>
       <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} type="submit">
-        Đăng nhập
+        Injira
       </Button>
       <Divider>HOẶC</Divider>
 
@@ -76,7 +76,7 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
           sx={{ mt: 3, mb: 2, backgroundColor: '#3B66C4' }}
           startIcon={<FacebookIcon />}
         >
-          Đăng nhập với Facebook
+          Injira na Facebook
         </Button>
       </LoginSocialFacebook>
 
@@ -100,7 +100,7 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
           sx={{ mb: 2, backgroundColor: '#CF4332' }}
           startIcon={<GoogleIcon />}
         >
-          Đăng nhập với Google
+          Injira na Google
         </Button>
       </LoginSocialGoogle>
     </Box>

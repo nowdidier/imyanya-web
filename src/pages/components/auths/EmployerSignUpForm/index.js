@@ -35,76 +35,76 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
   const [districtOptions, setDistrictOptions] = React.useState([]);
   const [locationOptions, setLocationOptions] = React.useState([]);
 
-  // schema
-  const schema = yup.object().shape({
-    fullName: yup
+// schema
+const schema = yup.object().shape({
+  fullName: yup
+    .string()
+    .required('Izina ryuzuye ni ngombwa!')
+    .max(100, 'Izina ryuzuye rirenze uburebure bwemewe.'),
+  email: yup
+    .string()
+    .required('Email ni ngombwa!')
+    .email('Email ntiyubahirije uburyo bwemewe')
+    .max(100, 'Email irenze uburebure bwemewe.'),
+  password: yup
+    .string()
+    .required('Ijambo ryibanga ni ngombwa!')
+    .min(8, 'Ijambo ryibanga rigomba kuba nibura imibare 8.')
+    .max(128, 'Ijambo ryibanga rirenze uburebure bwemewe.')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      'Rigomba kuba ririmo inyuguti nkuru, inyuguti nto, umubare n’ikimenyetso kidasanzwe'
+    ),
+  confirmPassword: yup
+    .string()
+    .required('Kwemeza ijambo ryibanga ni ngombwa.')
+    .oneOf([yup.ref('password')], 'Kwemeza ijambo ryibanga ntibihuye.'),
+  company: yup.object().shape({
+    companyName: yup
       .string()
-      .required('Họ và tên là bắt buộc!')
-      .max(100, 'Họ và tên vượt quá độ dài cho phép.'),
-    email: yup
+      .required('Izina ryikigo ni ngombwa!')
+      .max(255, 'Izina ryikigo rirenze uburebure bwemewe.'),
+    companyEmail: yup
       .string()
-      .required('Email là bắt buộc!')
-      .email('Email không đúng định dạng')
-      .max(100, 'Email vượt quá độ dài cho phép.'),
-    password: yup
+      .required('Email yikigo ni ngombwa')
+      .email('Email yikigo ntiyubahirije uburyo bwemewe')
+      .max(100, 'Email yikigo irenze uburebure bwemewe.'),
+    companyPhone: yup
       .string()
-      .required('Mật khẩu là bắt buộc!')
-      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
-      .max(128, 'Mật khẩu vượt quá độ dài cho phép.')
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
-      ),
-    confirmPassword: yup
+      .required('Nomero ya telefone yikigo ni ngombwa')
+      .matches(REGEX_VATIDATE.phoneRegExp, 'Nomero ya telefone ntiyemewe.')
+      .max(15, 'Nomero ya telefone yikigo irenze uburebure bwemewe.'),
+    taxCode: yup
       .string()
-      .required('Mật khẩu xác nhận là bắt buộc.')
-      .oneOf([yup.ref('password')], 'Mật khẩu xác nhận không chính xác.'),
-    company: yup.object().shape({
-      companyName: yup
-        .string()
-        .required('Tên công ty là bắt buộc!')
-        .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
-      companyEmail: yup
-        .string()
-        .required('Email công ty là bắt buộc')
-        .email('Email công ty không đúng định dạng')
-        .max(100, 'Email công ty vượt quá độ dài cho phép.'),
-      companyPhone: yup
-        .string()
-        .required('Số điện thoại công ty là bắt buộc')
-        .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
-        .max(15, 'Số điện thoại công ty vượt quá độ dài cho phép.'),
-      taxCode: yup
-        .string()
-        .required('Mã số thuế công ty là bắt buộc')
-        .max(30, 'Mã số thuế công ty vượt quá độ dài cho phép.'),
-      since: yup.date().nullable().typeError(),
-      fieldOperation: yup
-        .string()
-        .max(255, 'Lĩnh vực hoạt động công ty vượt quá độ dài cho phép.'),
-      employeeSize: yup
+      .required('Ikodi y’imisoro yikigo ni ngombwa')
+      .max(30, 'Ikodi y’imisoro yikigo irenze uburebure bwemewe.'),
+    since: yup.date().nullable().typeError(),
+    fieldOperation: yup
+      .string()
+      .max(255, 'Urwego rwikorwa ryikigo rurenze uburebure bwemewe.'),
+    employeeSize: yup
+      .number()
+      .required('Umubare wabakozi ni ngombwa.')
+      .typeError('Umubare wabakozi ni ngombwa.'),
+    websiteUrl: yup
+      .string()
+      .max(300, 'Uruziga rwurubuga rwikigo rurenze uburebure bwemewe.'),
+    location: yup.object().shape({
+      city: yup
         .number()
-        .required('Số lượng nhân viên là bắt buộc.')
-        .typeError('Số lượng nhân viên là bắt buộc.'),
-      websiteUrl: yup
+        .required('Umujyi/Intara ni ngombwa.')
+        .typeError('Umujyi/Intara ni ngombwa.'),
+      district: yup
+        .number()
+        .required('Akarere/Ka komini ni ngombwa.')
+        .typeError('Akarere/Ka komini ni ngombwa.'),
+      address: yup
         .string()
-        .max(300, 'Đường dẫn website công ty vượt quá độ dài cho phép.'),
-      location: yup.object().shape({
-        city: yup
-          .number()
-          .required('Tỉnh/Thành phố là bắt buộc.')
-          .typeError('Tỉnh/Thành phố là bắt buộc.'),
-        district: yup
-          .number()
-          .required('Quận/Huyện là bắt buộc.')
-          .typeError('Quận/Huyện là bắt buộc.'),
-        address: yup
-          .string()
-          .required('Địa chỉ công ty là bắt buộc!')
-          .max(255, 'Địa chỉ công ty vượt quá độ dài cho phép.'),
-      }),
+        .required('Adiresi yikigo ni ngombwa!')
+        .max(255, 'Adiresi yikigo irenze uburebure bwemewe.'),
     }),
-  });
+  }),
+});
 
   // use form
   const { control, setError, clearErrors, setValue, getValues, handleSubmit } =
@@ -259,41 +259,41 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
         <TextFieldCustom
           name="fullName"
           control={control}
-          title="Họ và tên"
-          placeholder="Nhập họ và tên"
+          title="Izina ryuzuye"
+          placeholder="Shyiramo izina ryuzuye"
           showRequired={true}
         />
         <TextFieldCustom
           name="email"
           control={control}
           title="Email"
-          placeholder="Nhập email"
+          placeholder="Shyiramo email"
           showRequired={true}
         />
         <PasswordTextFieldCustom
           name="password"
           control={control}
-          title="Mật khẩu"
-          placeholder="Nhập mật khẩu"
+          title="Ijambo ryibanga"
+          placeholder="Shyiramo ijambo ryibanga"
           showRequired={true}
         />
         <PasswordTextFieldCustom
           name="confirmPassword"
           control={control}
-          title="Mật khẩu xác nhận"
-          placeholder="Nhập mật khẩu xác nhận"
+          title="Kwemeza ijambo ryibanga"
+          placeholder="Shyiramo kwemeza ijambo ryibanga"
           showRequired={true}
         />
       </Stack>
-
+  
       <Box sx={{ mb: 2, display: actStep !== 0 ? 'block' : 'none' }}>
         <Grid container spacing={1.5}>
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <TextFieldCustom
               name="company.companyName"
               control={control}
-              title="Tên công ty"
-              placeholder="Nhập tên công ty"
+              title="Izina ryikigo"
+              placeholder="Shyiramo izina ryikigo"
               showRequired={true}
             />
           </Grid>
@@ -301,8 +301,8 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
             <TextFieldCustom
               name="company.companyEmail"
               control={control}
-              title="Email công ty"
-              placeholder="Nhập email công ty"
+              title="Email yikigo"
+              placeholder="Shyiramo email yikigo"
               showRequired={true}
             />
           </Grid>
@@ -310,8 +310,8 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
             <TextFieldCustom
               name="company.companyPhone"
               control={control}
-              title="Số điện thoại"
-              placeholder="Nhập số điện thoại công ty"
+              title="Nomero ya telefone"
+              placeholder="Shyiramo nomero ya telefone yikigo"
               showRequired={true}
             />
           </Grid>
@@ -319,8 +319,8 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
             <TextFieldCustom
               name="company.taxCode"
               control={control}
-              title="Mã số thuế"
-              placeholder="Nhập mã số thuế công ty"
+              title="Ikodi y’imisoro"
+              placeholder="Shyiramo ikodi y’imisoro yikigo"
               showRequired={true}
             />
           </Grid>
@@ -328,15 +328,15 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
             <DatePickerCustom
               name="company.since"
               control={control}
-              title="Ngày thành lập"
+              title="Itariki yo gutangira"
             />
           </Grid>
           <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
             <TextFieldCustom
               name="company.fieldOperation"
               control={control}
-              title="Lĩnh vực hoạt động"
-              placeholder="Nhập lĩnh vực hoạt động của công ty"
+              title="Urwego rwikorwa"
+              placeholder="Shyiramo urwego rwikorwa ryikigo"
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
@@ -344,8 +344,8 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
               options={allConfig?.employeeSizeOptions || []}
               name="company.employeeSize"
               control={control}
-              title="Quy mô công ty"
-              placeholder="Nhập quy mô công ty"
+              title="Ingano yabakozi"
+              placeholder="Shyiramo ingano yabakozi"
               showRequired={true}
             />
           </Grid>
@@ -353,8 +353,8 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
             <TextFieldCustom
               name="company.websiteUrl"
               control={control}
-              title="Website"
-              placeholder="Nhập địa chỉ website công ty"
+              title="Urubuga"
+              placeholder="Shyiramo uruziga rwurubuga rwikigo"
             />
           </Grid>
           <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
@@ -362,8 +362,8 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
               options={allConfig?.cityOptions || []}
               name="company.location.city"
               control={control}
-              title="Tỉnh/Thành phố"
-              placeholder="Chọn tỉnh thành phố"
+              title="Umujyi/Intara"
+              placeholder="Hitamo umujyi/intara"
               showRequired={true}
             />
           </Grid>
@@ -372,29 +372,29 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
               options={districtOptions}
               name="company.location.district"
               control={control}
-              title="Quận/Huyện"
-              placeholder="Chọn Quận/Huyện"
+              title="Akarere/Ka komini"
+              placeholder="Hitamo akarere/ka komini"
               showRequired={true}
             />
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             <TextFieldAutoCompleteCustom
               name="company.location.address"
-              title="Địa chỉ"
+              title="Adiresi"
               showRequired={true}
-              placeholder="Nhập địa chỉ"
+              placeholder="Shyiramo adiresi"
               control={control}
               options={locationOptions}
               loading={true}
               handleSelect={handleSelectLocation}
-              helperText="Chọn địa chỉ chúng tôi gợi ý để giúp chúng tôi xác định chính xác vị trí công ty của bạn"
+              helperText="Hitamo adiresi twaguhitiyemo kugira ngo udushoboze kumenya neza aho ikigo cyawe giherereye"
             />
           </Grid>
         </Grid>
       </Box>
     </Box>
   );
-
+  
   return (
     <Box
       component="form"
@@ -421,7 +421,7 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
         >
           {activeStep !== 0 && (
             <Button variant="outlined" onClick={handleBack}>
-              Quay lại
+              Subira inyuma
             </Button>
           )}
           {activeStep === steps.length - 1 ? (
@@ -430,13 +430,12 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
             </Button>
           ) : (
             <Button variant="contained" type="submit">
-              Tiếp tục
+              Komeza
             </Button>
           )}
         </Stack>
       </>
     </Box>
   );
-};
-
+};  
 export default EmployerSignUpForm;

@@ -10,21 +10,21 @@ const UpdatePasswordForm = ({ handleUpdatePassword, serverErrors = {} }) => {
   const schema = yup.object().shape({
     oldPassword: yup
       .string()
-      .required('Mật khẩu hiện tại là bắt buộc!')
-      .max(128, 'Mật khẩu hiện tại vượt quá độ dài cho phép.'),
+      .required('Ijambo ryibanga rya kera ni ngombwa!')
+      .max(128, 'Ijambo ryibanga rya kera rirenze uburebure bwemewe.'),
     newPassword: yup
       .string()
-      .required('Mật khẩu mới là bắt buộc!')
-      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
-      .max(128, 'Mật khẩu mới vượt quá độ dài cho phép.')
+      .required('Ijambo ryibanga rishya ni ngombwa!')
+      .min(8, 'Ijambo ryibanga rigomba kuba nibura ibimenyetso 8.')
+      .max(128, 'Ijambo ryibanga rishya rirenze uburebure bwemewe.')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
+        'Rigomba kuba ririmo inyuguti nkuru, inyuguti nto, umubare n’ikimenyetso kidasanzwe'
       ),
     confirmPassword: yup
       .string()
-      .required('Mật khẩu xác nhận là bắt buộc.')
-      .oneOf([yup.ref('newPassword')], 'Mật khẩu xác nhận không chính xác.'),
+      .required('Kwemeza ijambo ryibanga ni ngombwa.')
+      .oneOf([yup.ref('newPassword')], 'Kwemeza ijambo ryibanga ntibihuye.'),
   });
 
   const { control, setError, handleSubmit } = useForm({
@@ -49,27 +49,27 @@ const UpdatePasswordForm = ({ handleUpdatePassword, serverErrors = {} }) => {
           <PasswordTextFieldCustom
             name="oldPassword"
             control={control}
-            title="Mật khẩu hiện tại"
+            title="Ijambo ryibanga rya kera"
             showRequired={true}
-            placeholder="Nhập mật khẩu hiện tại"
+            placeholder="Shyiramo ijambo ryibanga rya kera"
           />
         </Grid>
         <Grid item xs={12}>
           <PasswordTextFieldCustom
             name="newPassword"
             control={control}
-            title="Mật khẩu mới"
+            title="Ijambo ryibanga rishya"
             showRequired={true}
-            placeholder="Nhập mật khẩu mới"
+            placeholder="Shyiramo ijambo ryibanga rishya"
           />
         </Grid>
         <Grid item xs={12}>
           <PasswordTextFieldCustom
             name="confirmPassword"
             control={control}
-            title="Mật khẩu xác nhận"
+            title="Kwemeza ijambo ryibanga"
             showRequired={true}
-            placeholder="Nhập lại mật khẩu mới"
+            placeholder="Shyiramo ijambo ryibanga rishya"
           />
         </Grid>
       </Grid>

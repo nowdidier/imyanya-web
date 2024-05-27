@@ -28,10 +28,10 @@ const AvatarCard = () => {
     dispatch(updateAvatar(formData))
       .unwrap()
       .then(() => {
-        toastMessages.success('Cập nhật ảnh đại diện thành công.');
+        toastMessages.success('Gushyiraho ifoto y’umutwe byagenze neza.');
       })
       .catch(() => {
-        toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại.');
+        toastMessages.error('Habayeho ikosa, ongera ugerageze.');
       })
       .finally(() => setIsFullScreenLoading(false));
   };
@@ -43,7 +43,7 @@ const AvatarCard = () => {
       dispatch(deleteAvatar())
         .unwrap()
         .then(() => {
-          toastMessages.success('Xóa ảnh đại diện thành công.');
+          toastMessages.success('Gukuraho ifoto y’umutwe byagenze neza.');
         })
         .catch((err) => {
           toastMessages.error();
@@ -53,8 +53,8 @@ const AvatarCard = () => {
 
     confirmModal(
       () => del(),
-      'Xóa ảnh đại diện',
-      'Ảnh đại diện này sẽ được xóa và không thể khôi phục. Bạn có chắc chắn?',
+      'Gukuraho ifoto y’umutwe',
+      'Iyi foto y’umutwe izakurwaho kandi ntishobora kugarurwa. Uremeza?',
       'warning'
     );
   };
@@ -74,11 +74,11 @@ const AvatarCard = () => {
           <ImgCrop
             rotationSlider
             modalProps={{ zIndex: 2000 }}
-            modalTitle="Chỉnh sửa ảnh"
-            modalOk="Tải lên"
-            modalCancel="Hủy"
+            modalTitle="Guhindura ifoto"
+            modalOk="Shyiraho"
+            modalCancel="Hagarika"
             showReset={true}
-            resetText="Đặt lại"
+            resetText="Subizamo"
           >
             <Upload
               listType="picture"
@@ -101,7 +101,7 @@ const AvatarCard = () => {
           </IconButton>
         </Box>
         <Typography variant="subtitle2" gutterBottom sx={{ mt: 1 }}>
-          Ảnh đại diện
+          Ifoto y’umutwe
         </Typography>
       </Stack>
 

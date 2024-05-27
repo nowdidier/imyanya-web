@@ -8,25 +8,18 @@ import { ABOUT_IMAGES } from '../../../configs/constants';
 
 
 const AboutUsPage = () => {
-  TabTitle('Irinamiro - Uburyo bwo Gusobanura Akazi MyJob');
+  TabTitle('Twebwe - Sisitemu yo kumenyekanisha akazi MyJob');
 
   return (
     <>
       <Box sx={{ my: 3 }}>
         <Typography variant="h4" sx={{ mb: 2, color: '#441da0' }}>
-          Irinamiro
+          Twebwe
         </Typography>
         <Stack spacing={3}>
           <Box>
             <Typography>
-              MyJob - Inzira y'amakuru yo kwakira no gushyirwa mu kazi bigenewe
-              ibigo byose n'abashakisha akazi. Duhweze ko bizazana "IBYIRINGIRO"
-              ku Bigo bishaka impuguke n'Abashakisha akazi bashaka amahirwe yo
-              gushyirwa mu kazi. Bifite imikorere ibiri: Urubuga rw'Abakoresha
-              n'Ikoranabuhanga ryo kwakira Abashakisha akazi, MyJob bizazana
-              ibyikorwa bishya, byishimye; bizahuza indangagaciro yo gushyikirana
-              ku kazi kw'impuguke zose kandi bizafasha ibigo kubaka ikigo
-              cy'abakozi bikomeze.
+              MyJob - Urubuga rw'amakuru y'akazi n'uburyo bwo gushaka akazi ku bigo byose n'abashaka akazi. Twizeye ko tuzazana "ICYIZERE" ku bigo bishaka abakozi b'impano no ku bashaka akazi bashaka amahirwe y'umwuga. Dufite sisitemu ebyiri: Urubuga rwagenewe Abakoresha n'Ubusabe (Application) bwagenewe Abashaka Akazi, MyJob izatanga ubunararibonye bushya, bushimishije; ihuza inzozi zo gutsinda mu kazi kwa buri mpano yose kandi ifasha ibigo kubaka ikipe y'abakozi ikomeye.
             </Typography>
           </Box>
           <Box>
@@ -34,48 +27,40 @@ const AboutUsPage = () => {
               <Grid xs={12} sm={12} md={6} lg={3} xl={3} item>
                 <Stack spacing={1}>
                   <Typography variant="h6" sx={{ color: '#fca34d' }}>
-                    Urubuga rw'ikoranabuhanga
+                    Urubuga
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
-                    Urubuga rw'ikoranabuhanga rufasha Abakoresha gushaka abakozi,
-                    kugenzura imirimo, abashaka akazi, no kubaka imbonerahamwe
-                    y'amakuru ayibunda.
+                    Urubuga rufasha Abakoresha gushakisha abakozi, gucunga akazi, abashaka akazi, no kubaka ububiko bw'amakuru yagutse.
                   </Typography>
                 </Stack>
               </Grid>
               <Grid xs={12} sm={12} md={6} lg={3} xl={3} item>
                 <Stack spacing={1}>
                   <Typography variant="h6" sx={{ color: '#fca34d' }}>
-                    Ikoranabuhanga ya telefone igendanwa
+                    Mobile
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
-                    Ikoranabuhanga yo gushakisha akazi yita ku bashakisha akazi
-                    kugera ku mirimo yose ibahuye, ahantu hose no mu gihe icyo
-                    ari cyo cyose
+                    Ubusabe bwo gushakisha akazi bufasha Abashaka Akazi kubona akazi kabakwiye aho ari hose n'igihe cyose.
                   </Typography>
                 </Stack>
               </Grid>
               <Grid xs={12} sm={12} md={6} lg={3} xl={3} item>
                 <Stack spacing={1}>
                   <Typography variant="h6" sx={{ color: '#fca34d' }}>
-                    Ibyiciro by'ingenzi
+                    Icyerekezo cy'Inganda
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
-                    Kubera kwitanga mu kwakira no gushakisha akazi mu byiciro
-                    bitatu: Ikoranabuhanga ry'Amakuru, Gutangaza ku mbuga za
-                    Interineti, PR - Gucunga Amasoko, Abashakisha akazi Cyangwa
-                    Abakoresha bazahuza n'ibyabahuye, binyuze ku byifuzo byabo.
+                    Dufite ubumenyi bwimbitse mu bijyanye no gushakisha akazi n'akazi mu nzego eshatu: Ikoranabuhanga ry'amakuru, Kwamamaza kuri internet, PR - Marketing, Abashaka Akazi cyangwa Abakoresha bazahuza neza n'ababagana, bijyanye n'ibyo bakeneye.
                   </Typography>
                 </Stack>
               </Grid>
               <Grid xs={12} sm={12} md={6} lg={3} xl={3} item>
                 <Stack spacing={1}>
                   <Typography variant="h6" sx={{ color: '#fca34d' }}>
-                    Kugabanya amafaranga
+                    Kuzigama Amafaranga
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
-                    Kugabanya amafaranga, igihe, kugera ku musaruro, gushyikirana
-                    ku byifuzo byose byo gushakisha akazi no gushaka impuguke.
+                    Kuzigama amafaranga, igihe, kugera ku musaruro, no kuzuza ibyo buri wese akeneye mu gushaka akazi no gushakisha abakozi b'impano.
                   </Typography>
                 </Stack>
               </Grid>
@@ -85,7 +70,7 @@ const AboutUsPage = () => {
       </Box>
       <Box sx={{ my: 3 }}>
         <Typography variant="h4" sx={{ mb: 2, color: '#441da0' }}>
-          Porogaramu ya MyJob ku Telefoni Igendanwa
+          Porogaramu ya Mobile MyJob
         </Typography>
         <Box sx={{ mt: 5 }}>
           <Card sx={{ p: 5 }}>
@@ -101,6 +86,7 @@ const AboutUsPage = () => {
             >
               <Box width="100%">
                 <Box sx={{ height: 600 }}>
+                  {/* Assuming MuiImageCustom is a component that renders an image */}
                   <MuiImageCustom src={ABOUT_IMAGES.JOB_POST} />
                 </Box>
               </Box>
@@ -110,13 +96,10 @@ const AboutUsPage = () => {
                     variant="h4"
                     style={{ color: '#fca34d', fontSize: 30 }}
                   >
-                    Guhitamo akazi gahuje - Kugenda mu nzira yahuje
+                    Hitamo akazi k'ukuri - Ujye mu cyerekezo gikwiye
                   </Typography>
                   <Typography textAlign="justify" color="#6D7681">
-                    Gukoresha buri wese mu gushakisha akazi nk'uko byifuzwa
-                    n'umushakisha akazi, harimo ibyikorwa byo gutanga inama ku
-                    makazi ahuje, Gushakisha akazi, Gushakisha ibigo no gufatanya
-                    na Chatbot mu gushakisha akazi vuba.
+                    Guhuza ubunararibonye bwo gushakisha akazi n'ibyifuzo by'abashaka akazi birimo ibiranga Gushakisha akazi gukwiye, Gushakisha akazi, Gushakisha ibigo na Chatbot ifasha mu gushakisha akazi byihuse.
                   </Typography>
                 </Stack>
               </Box>
@@ -141,83 +124,99 @@ const AboutUsPage = () => {
                     variant="h4"
                     style={{ color: '#fca34d', fontSize: 30 }}
                   >
-                    Gushyiraho CV & Umwimerere
+                    Kora CV & Profile
                   </Typography>
                   <Typography textAlign="justify" color="#6D7681">
-                    CV ku mbuga y'interineti kandi ushobora kwoherereza CV
-                    yaguhuye. Byoroheye, byihuse, bya gahunda kandi bihambaye.
-                    Kongerera kuba 80% bigateza ubushobozi bwo kwemererwa akazi.
+                    CV kuri internet kandi ushobora gushyiraho CV y'inyongera. Byoroshye, byihuse, by'umwuga kandi bitandukanye. Byongera amahirwe yo gusaba akazi ku kigero cya 80%.
                   </Typography>
                 </Stack>
               </Box>
               <Box width="100%">
                 <Box sx={{ height: 600 }}>
+                  {/* Assuming MuiImageCustom is a component that renders an image */}
                   <MuiImageCustom src={ABOUT_IMAGES.PROFILE} />
                 </Box>
               </Box>
             </Stack>
           </Card>
         </Box>
-        <Box sx={{ mt: 5 }}>
-          <Card sx={{ p: 5 }}>
-            <Stack
-              direction={{
-                xs: 'column',
-                sm: 'column',
-                md: 'row',
-                lg: 'row',
-                xl: 'row',
-              }}
-              spacing={2}
-            >
-             Ingingo zikurikira zivannye mu cyongereza ca Kinyarvanda:
+        
+<Box sx={{ mt: 5 }}>
+  <Card sx={{ p: 5 }}>
+    <Stack
+      direction={{
+        xs: 'column',
+        sm: 'column',
+        md: 'row',
+        lg: 'row',
+        xl: 'row',
+      }}
+      spacing={2}
+    >
+      <Box width="100%">
+        <Box sx={{ height: 600 }}>
+          {/* Assuming MuiImageCustom is a component that renders an image */}
+          <MuiImageCustom src={ABOUT_IMAGES.AROUND_JOB_POST} />
+        </Box>
+      </Box>
+      <Box>
+        <Stack spacing={2}>
+          <Typography
+            variant="h4"
+            style={{ color: '#fca34d', fontSize: 30 }}
+          >
+            Akazi kari hafi yawe
+          </Typography>
+          <Typography textAlign="justify" color="#6D7681">
+            Ibiranga AKAZI KARI HAFI YAWE kuri app MyJob. Iki gice gifasha abashaka akazi kubona byoroshye akazi kabakwiye, kandi kikabaha amahirwe yo gukora hafi y'aho batuye, bikaborohereza mu ngendo zabo za buri munsi nta kintu kindi bisaba mu gushakisha mu matangazo y'akazi menshi.
+          </Typography>
+        </Stack>
+      </Box>
+    </Stack>
+  </Card>
+</Box>
+<Box sx={{ mt: 5 }}>
+  <Card sx={{ p: 5 }}>
+    <Stack
+      direction={{
+        xs: 'column-reverse',
+        sm: 'column-reverse',
+        md: 'row',
+        lg: 'row',
+        xl: 'row',
+      }}
+      spacing={2}
+    >
+      <Box>
+        <Stack spacing={2}>
+          <Typography
+            variant="h4"
+            style={{ color: '#fca34d', fontSize: 30 }}
+          >
+            Itangazo ry'akazi igihe cyose
+          </Typography>
+          <Typography textAlign="justify" color="#6D7681">
+            Tanga itangazo ry'akazi kugira ngo akazi kabashe kukugeraho. Akazi gashya kava mu bakoresha bakomeye kazajya koherezwa kuri email yawe buri cyumweru.
+          </Typography>
+        </Stack>
+      </Box>
+      <Box width="100%">
+        <Box sx={{ height: 600 }}>
+          {/* Assuming MuiImageCustom is a component that renders an image */}
+          <MuiImageCustom src={ABOUT_IMAGES.JOB_POST_NOTIFICATION} />
+        </Box>
+      </Box>
+    </Stack>
+  </Card>
+</Box>
+<Box sx={{ mt: 5 }}>
+  {/* Start: AppIntroductionCard */}
+  <AppIntroductionCard />
+  {/* End: AppIntroductionCard */}
+</Box>
+</Box>
+    </>
+  );
+};
 
-<Box width="100%"> 
-<Box sx={{ height: 600 }}>
-<MuiImageCustom src={ABOUT_IMAGES.AROUND_JOB_POST} />
-</Box>
-</Box>
-<Box>
-<Stack spacing={2}>
-<Typography variant="h4" style={{ color: '#fca34d', fontSize: 30 }}>
-Umwuga ukurikiranye nawe
-</Typography>
-<Typography textAlign="justify" color="#6D7681">
-Ibyiciro AROUND JOB IBIRI ku ruribo rwa MyJob. Ibi byiciro bituma abasaba ngo babone umurimo ushyizeho kuri iyo ngingo, kandi byiteze ko bakwiye kuburizwamo mu baturage babo, bikoresheje umurimo ukwiye.
-</Typography>
-</Stack>
-</Box>
-</Stack>
-</Card>
-</Box>
-<Box sx={{ mt: 5 }}>
-<Card sx={{ p: 5 }}>
-<Stack direction={{ xs: 'column-reverse', sm: 'column-reverse', md: 'row', lg: 'row', xl: 'row', }} spacing={2}>
-<Box>
-<Stack spacing={2}>
-<Typography variant="h4" style={{ color: '#fca34d', fontSize: 30 }}>
-Ibyiciro ku Kazi Igihe Cyose
-</Typography>
-<Typography textAlign="justify" color="#6D7681">
-Gushyiraho ibyiciro ku Kazi ngo iyo myuga ikubwire. Imirimo mishya ikomeye yabashyitsi bo muri ico gihe izohindurwa ku ikarita yawe ya e-mail.
-</Typography>
-</Stack>
-</Box>
-<Box width="100%">
-<Box sx={{ height: 600 }}>
-<MuiImageCustom src={ABOUT_IMAGES.JOB_POST_NOTIFICATION} />
-</Box>
-</Box>
-</Stack>
-</Card>
-</Box>
-<Box sx={{ mt: 5 }}>
-{/* Gutangira: AppIntroductionCard */}
-<AppIntroductionCard />
-{/* Guhera: AppIntroductionCard */}
-</Box>
-</Box>
-</>
-);
-}; 
 export default AboutUsPage;

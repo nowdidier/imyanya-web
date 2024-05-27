@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
+
 import { TabTitle } from '../../../utils/generalFunction';
 import JobPostSearch from '../../components/defaults/JobPostSearch';
 import SuggestedJobPostCard from '../../components/defaults/SuggestedJobPostCard';
@@ -8,30 +9,30 @@ import AppIntroductionCard from '../../../components/AppIntroductionCard';
 import MuiImageCustom from '../../../components/MuiImageCustom';
 
 const JobPage = () => {
-  TabTitle('Ibyavuye mu gushakisha umurimo');
-
+  TabTitle('Ibisubizo by’akazi katangajwe');
+  
   return (
     <>
       <Box sx={{ mt: 2 }}>
         <Box>
-          {/* Gutangira: JobPostSearch */}
+          {/* Start: JobPostSearch */}
           <JobPostSearch />
-          {/* Guhera: JobPostSearch */}
+          {/* End: JobPostSearch */}
         </Box>
         <Box sx={{ mt: 4 }}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
-              {/* Gutangira: MainJobPostCard */}
+              {/* Start: MainJobPostCard */}
               <MainJobPostCard />
-              {/* Guhera: MainJobPostCard */}
+              {/* End: MainJobPostCard */}
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
               <Box sx={{ pt: 2, pb: 3 }}>
-                <Typography variant="h5">Imirimo yatangajwe</Typography>
+                <Typography variant="h5">Imirimo yasabwe</Typography>
               </Box>
-              {/* Gutangira: SuggestedJobPostCard */}
+              {/* Start: SuggestedJobPostCard */}
               <SuggestedJobPostCard fullWidth={true} />
-              {/* Guhera: SuggestedJobPostCard */}
+              {/* End: SuggestedJobPostCard */}
               <Box px={4} mt={1}>
                 <MuiImageCustom
                   src={
@@ -39,7 +40,14 @@ const JobPage = () => {
                   }
                 />
               </Box>
-              <Box mt={4} px={4} style={{ position: 'sticky', top: 80 }}>
+              <Box
+                mt={4}
+                px={4}
+                style={{
+                  position: 'sticky',
+                  top: 80,
+                }}
+              >
                 <MuiImageCustom
                   src={
                     'https://vieclam24h.vn/_next/image?url=https%3A%2F%2Fcdn1.vieclam24h.vn%2Fimages%2Fseeker-banner%2F2023%2F04%2F27%2FWebsite-Banner_168250414419_168259071970.jpg&w=1920&q=75'
@@ -50,9 +58,9 @@ const JobPage = () => {
           </Grid>
         </Box>
         <Box sx={{ mt: 4 }}>
-          {/* Gutangira: AppIntroductionCard */}
+          {/* Start: AppIntroductionCard */}
           <AppIntroductionCard />
-          {/* Guhera: AppIntroductionCard */}
+          {/* End: AppIntroductionCard */}
         </Box>
       </Box>
     </>

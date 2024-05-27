@@ -193,7 +193,7 @@ const CompanyDetailPage = () => {
             : companyDetail.followNumber - 1,
         });
         toastMessages.success(
-          isFollowed ? 'Theo dõi thành công.' : 'Hủy theo dõi thành công.'
+          isFollowed ? 'Followed successfully.' : 'Unfollowed successfully.'
         );
       } catch (error) {
         errorHandling(error);
@@ -201,10 +201,10 @@ const CompanyDetailPage = () => {
         setIsLoadingFollow(false);
       }
     };
-
+  
     follow();
   };
-
+  
   return isLoading ? (
     <LoadingComponent />
   ) : companyDetail === null ? (
@@ -306,7 +306,7 @@ const CompanyDetailPage = () => {
                               fontSize: 13,
                             }}
                           >
-                            Chưa cập nhật
+                            Not updated
                           </span>
                         )}
                       </Typography>
@@ -345,8 +345,8 @@ const CompanyDetailPage = () => {
                       >
                         <span>
                           {companyDetail.isFollowed
-                            ? 'Đang theo dõi'
-                            : 'Theo dõi'}{' '}
+                            ? 'Following'
+                            : 'Follow'}{' '}
                           ({companyDetail.followNumber})
                         </span>
                       </LoadingButton>
@@ -358,258 +358,260 @@ const CompanyDetailPage = () => {
                     startIcon={<ShareIcon />}
                     onClick={() => setOpenSharePopup(true)}
                   >
-                    Chia sẻ
+                    Share
                   </Button>
                 </Stack>
               </Stack>
             </Box>
           </Card>
+  
           <Grid container spacing={2} sx={{ mt: 1 }}>
-            <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
-              <Card sx={{ p: { xs: 2, sm: 2, md: 3, lg: 3, xl: 3 } }}>
-                <Stack spacing={4}>
-                  {/* Start: mo ta cong ty */}
-                  <Box>
-                    <Typography
-                      variant="h6"
-                      gutterBottom
-                      sx={{ color: '#441da0' }}
-                    >
-                      Về công ty
-                    </Typography>
-                    <Box sx={{ mt: 2 }}>
-                      <Typography style={{ textAlign: 'justify' }}>
-                        {companyDetail?.description ? (
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: companyDetail?.description,
-                            }}
-                          ></div>
-                        ) : (
-                          <span
-                            style={{
-                              color: '#e0e0e0',
-                              fontStyle: 'italic',
-                              fontSize: 13,
-                            }}
-                          >
-                            Chưa cập nhật
-                          </span>
-                        )}
-                      </Typography>
-                    </Box>
-                  </Box>
-                  {/* End: mo ta cong ty */}
+  <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
+    <Card sx={{ p: { xs: 2, sm: 2, md: 3, lg: 3, xl: 3 } }}>
+      <Stack spacing={4}>
+        {/* Start: mo ta cong ty */}
+        <Box>
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{ color: '#441da0' }}
+          >
+            Ku kigo
+          </Typography>
+          <Box sx={{ mt: 2 }}>
+            <Typography style={{ textAlign: 'justify' }}>
+              {companyDetail?.description ? (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: companyDetail?.description,
+                  }}
+                ></div>
+              ) : (
+                <span
+                  style={{
+                    color: '#e0e0e0',
+                    fontStyle: 'italic',
+                    fontSize: 13,
+                  }}
+                >
+                  Ntibiravugururwa
+                </span>
+              )}
+            </Typography>
+          </Box>
+        </Box>
+        {/* End: mo ta cong ty */}
 
-                  {/* Start: viec lam */}
-                  <Box>
-                    <Typography
-                      variant="h6"
-                      gutterBottom
-                      sx={{ color: '#441da0' }}
-                    >
-                      Việc làm đang tuyển
-                    </Typography>
-                    <Box sx={{ mt: 2 }}>
-                      <FilterJobPostCard
-                        params={{
-                          companyId: companyDetail.id,
-                        }}
-                      />
-                    </Box>
-                  </Box>
-                  {/* End: viec lam */}
-                </Stack>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-              <Card sx={{ p: { xs: 2, sm: 2, md: 3, lg: 3, xl: 3 } }}>
-                <Stack spacing={2}>
-                  <Box>
-                    <Typography variant="h6" sx={{ color: '#441da0' }}>
-                      Website
-                    </Typography>
-                    <Box sx={{ mt: 1 }}>
-                      <Typography>
-                        <FontAwesomeIcon
-                          icon={faGlobe}
-                          style={{ marginRight: 6 }}
-                        />{' '}
-                        {
-                          companyDetail.websiteUrl ? 
-                           <Link target="_blank" href={companyDetail.websiteUrl}> {companyDetail.websiteUrl }</Link> : 
-                           <span
-                          style={{
-                            color: '#e0e0e0',
-                            fontStyle: 'italic',
-                            fontSize: 13,
-                          }}
-                        >
-                          Chưa cập nhật
-                        </span>
-                        }
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Box>
-                    <Typography variant="h6" sx={{ color: '#441da0' }}>
-                      Theo dõi tại
-                    </Typography>
-                    <Box sx={{ mt: 1 }}>
-                      {companyDetail?.facebookUrl ||
-                      companyDetail?.youtubeUrl ||
-                      companyDetail?.linkedinUrl ? (
-                        <>
-                          {companyDetail?.facebookUrl && (
-                            <Link
-                              target="_blank"
-                              href={companyDetail.facebookUrl}
-                            >
-                              <IconButton color="primary" aria-label="facebook">
-                                <img width="30" src={ICONS.FACEBOOK} alt="" />
-                              </IconButton>
-                            </Link>
-                          )}
-                          {companyDetail?.youtubeUrl && (
-                            <Link
-                              target="_blank"
-                              href={companyDetail.youtubeUrl}
-                            >
-                              <IconButton color="primary" aria-label="youtube">
-                                <img width="30" src={ICONS.YOUTUBE} alt="" />
-                              </IconButton>
-                            </Link>
-                          )}
-                          {companyDetail?.linkedinUrl && (
-                            <Link
-                              target="_blank"
-                              href={companyDetail.linkedinUrl}
-                            >
-                              <IconButton color="primary" aria-label="linked">
-                                <img width="30" src={ICONS.LINKEDIN} alt="" />
-                              </IconButton>
-                            </Link>
-                          )}
-                        </>
-                      ) : (
-                        <span
-                          style={{
-                            color: '#e0e0e0',
-                            fontStyle: 'italic',
-                            fontSize: 13,
-                          }}
-                        >
-                          Chưa cập nhật
-                        </span>
-                      )}
-                    </Box>
-                  </Box>
-                  <Box>
-                    <Typography variant="h6" sx={{ color: '#441da0' }}>
-                      Thông tin chung
-                    </Typography>
-                    <Box sx={{ mt: 1 }}>
-                      <Typography>
-                        <FontAwesomeIcon
-                          icon={faEnvelope}
-                          style={{ marginRight: 6 }}
-                        />{' '}
-                        {companyDetail.companyEmail}
-                      </Typography>
-                      <Typography sx={{ mt: 1 }}>
-                        <FontAwesomeIcon
-                          icon={faPhoneVolume}
-                          style={{ marginRight: 6 }}
-                        />{' '}
-                        {companyDetail.companyPhone}
-                      </Typography>
-                      <Typography sx={{ mt: 1 }}>
-                        <FontAwesomeIcon
-                          icon={faHashtag}
-                          style={{ marginRight: 6 }}
-                        />{' '}
-                        {companyDetail.taxCode}
-                      </Typography>
-                      <Typography sx={{ mt: 1 }}>
-                        <FontAwesomeIcon
-                          icon={faLocationDot}
-                          style={{ marginRight: 6 }}
-                        />{' '}
-                        {companyDetail.location?.address || (
-                          <span
-                            style={{
-                              color: '#e0e0e0',
-                              fontStyle: 'italic',
-                              fontSize: 13,
-                            }}
-                          >
-                            Chưa cập nhật
-                          </span>
-                        )}
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Box>
-                    <Typography variant="h6" sx={{ color: '#441da0' }}>
-                      Bản đồ
-                    </Typography>
-                    <Box sx={{ mt: 1 }}>
-                      <Map
-                        title={companyDetail?.companyName}
-                        subTitle={companyDetail?.location?.address}
-                        latitude={companyDetail?.location?.lat}
-                        longitude={companyDetail?.location?.lng}
-                      />
-                    </Box>
-                  </Box>
-                  {imageList.length > 0 && (
-                    <Box>
-                      <Typography variant="h6" sx={{ color: '#441da0' }}>
-                        Hình ảnh
-                      </Typography>
-                      <Box sx={{ mt: 1, borderRadius: 2, overflow: 'hidden' }}>
-                        <ImageGalleryCustom images={imageList} />
-                      </Box>
-                    </Box>
-                  )}
-                </Stack>
-              </Card>
-            </Grid>
-          </Grid>
-        </Stack>
-      </Box>
-      {/* Start: SocialNetworkSharingPopup */}
-      <SocialNetworkSharingPopup
-        open={openSharePopup}
-        setOpenPopup={setOpenSharePopup}
-        facebook={{
-          url: window.location.href,
-        }}
-        facebookMessenger={{
-          url: window.location.href,
-        }}
-        linkedin={{
-          url: window.location.href,
-          source: '',
-          title: '',
-          summary: '',
-        }}
-        twitter={{
-          url: window.location.href,
-          title: '',
-          via: '',
-          hashtags: [],
-          related: [],
-        }}
-        email={{
-          url: window.location.href,
-          subject: '',
-          body: '',
-        }}
-      />
-      {/* End: SocialNetworkSharingPopup */}
-    </>
-  );
+        {/* Start: viec lam */}
+        <Box>
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{ color: '#441da0' }}
+          >
+            Imirimo iri gupiganirwa
+          </Typography>
+          <Box sx={{ mt: 2 }}>
+            <FilterJobPostCard
+              params={{
+                companyId: companyDetail.id,
+              }}
+            />
+          </Box>
+        </Box>
+        {/* End: viec lam */}
+      </Stack>
+    </Card>
+  </Grid>
+  <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+    <Card sx={{ p: { xs: 2, sm: 2, md: 3, lg: 3, xl: 3 } }}>
+      <Stack spacing={2}>
+        <Box>
+          <Typography variant="h6" sx={{ color: '#441da0' }}>
+            Urubuga rwa internet
+          </Typography>
+          <Box sx={{ mt: 1 }}>
+            <Typography>
+              <FontAwesomeIcon
+                icon={faGlobe}
+                style={{ marginRight: 6 }}
+              />{' '}
+              {
+                companyDetail.websiteUrl ? 
+                 <Link target="_blank" href={companyDetail.websiteUrl}> {companyDetail.websiteUrl }</Link> : 
+                 <span
+                style={{
+                  color: '#e0e0e0',
+                  fontStyle: 'italic',
+                  fontSize: 13,
+                }}
+              >
+                Ntibiravugururwa
+              </span>
+              }
+            </Typography>
+          </Box>
+        </Box>
+        <Box>
+          <Typography variant="h6" sx={{ color: '#441da0' }}>
+            Kurikira kuri
+          </Typography>
+          <Box sx={{ mt: 1 }}>
+            {companyDetail?.facebookUrl ||
+            companyDetail?.youtubeUrl ||
+            companyDetail?.linkedinUrl ? (
+              <>
+                {companyDetail?.facebookUrl && (
+                  <Link
+                    target="_blank"
+                    href={companyDetail.facebookUrl}
+                  >
+                    <IconButton color="primary" aria-label="facebook">
+                      <img width="30" src={ICONS.FACEBOOK} alt="" />
+                    </IconButton>
+                  </Link>
+                )}
+                {companyDetail?.youtubeUrl && (
+                  <Link
+                    target="_blank"
+                    href={companyDetail.youtubeUrl}
+                  >
+                    <IconButton color="primary" aria-label="youtube">
+                      <img width="30" src={ICONS.YOUTUBE} alt="" />
+                    </IconButton>
+                  </Link>
+                )}
+                {companyDetail?.linkedinUrl && (
+                  <Link
+                    target="_blank"
+                    href={companyDetail.linkedinUrl}
+                  >
+                    <IconButton color="primary" aria-label="linked">
+                      <img width="30" src={ICONS.LINKEDIN} alt="" />
+                    </IconButton>
+                  </Link>
+                )}
+              </>
+            ) : (
+              <span
+                style={{
+                  color: '#e0e0e0',
+                  fontStyle: 'italic',
+                  fontSize: 13,
+                }}
+              >
+                Ntibiravugururwa
+              </span>
+            )}
+          </Box>
+        </Box>
+
+        <Box>
+  <Typography variant="h6" sx={{ color: '#441da0' }}>
+    Amakuru rusange
+  </Typography>
+  <Box sx={{ mt: 1 }}>
+    <Typography>
+      <FontAwesomeIcon
+        icon={faEnvelope}
+        style={{ marginRight: 6 }}
+      />{' '}
+      {companyDetail.companyEmail}
+    </Typography>
+    <Typography sx={{ mt: 1 }}>
+      <FontAwesomeIcon
+        icon={faPhoneVolume}
+        style={{ marginRight: 6 }}
+      />{' '}
+      {companyDetail.companyPhone}
+    </Typography>
+    <Typography sx={{ mt: 1 }}>
+      <FontAwesomeIcon
+        icon={faHashtag}
+        style={{ marginRight: 6 }}
+      />{' '}
+      {companyDetail.taxCode}
+    </Typography>
+    <Typography sx={{ mt: 1 }}>
+      <FontAwesomeIcon
+        icon={faLocationDot}
+        style={{ marginRight: 6 }}
+      />{' '}
+      {companyDetail.location?.address || (
+        <span
+          style={{
+            color: '#e0e0e0',
+            fontStyle: 'italic',
+            fontSize: 13,
+          }}
+        >
+          Ntibiravugururwa
+        </span>
+      )}
+    </Typography>
+  </Box>
+</Box>
+<Box>
+  <Typography variant="h6" sx={{ color: '#441da0' }}>
+    Ikarita
+  </Typography>
+  <Box sx={{ mt: 1 }}>
+    <Map
+      title={companyDetail?.companyName}
+      subTitle={companyDetail?.location?.address}
+      latitude={companyDetail?.location?.lat}
+      longitude={companyDetail?.location?.lng}
+    />
+  </Box>
+</Box>
+{imageList.length > 0 && (
+  <Box>
+    <Typography variant="h6" sx={{ color: '#441da0' }}>
+      Amafoto
+    </Typography>
+    <Box sx={{ mt: 1, borderRadius: 2, overflow: 'hidden' }}>
+      <ImageGalleryCustom images={imageList} />
+    </Box>
+  </Box>
+)}
+</Stack>
+</Card>
+</Grid>
+</Grid>
+</Stack>
+</Box>
+{/* Start: SocialNetworkSharingPopup */}
+<SocialNetworkSharingPopup
+  open={openSharePopup}
+  setOpenPopup={setOpenSharePopup}
+  facebook={{
+    url: window.location.href,
+  }}
+  facebookMessenger={{
+    url: window.location.href,
+  }}
+  linkedin={{
+    url: window.location.href,
+    source: '',
+    title: '',
+    summary: '',
+  }}
+  twitter={{
+    url: window.location.href,
+    title: '',
+    via: '',
+    hashtags: [],
+    related: [],
+  }}
+  email={{
+    url: window.location.href,
+    subject: '',
+    body: '',
+  }}
+/>
+{/* End: SocialNetworkSharingPopup */}
+</>
+);
 };
 
 export default CompanyDetailPage;

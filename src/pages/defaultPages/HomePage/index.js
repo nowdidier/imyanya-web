@@ -33,16 +33,16 @@ export default function HomePage() {
   return (
     <>
       <Box sx={{ mt: 6 }}>
-        {/*Start: Top cong ty */}
+        {/* Start: Top companies */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
           Ibigo bikomeye
         </Typography>
         <TopCompanyCarousel />
-        {/*End: Top cong ty */}
+        {/* End: Top companies */}
       </Box>
 
       <Box sx={{ mt: 10 }}>
-        {/*Start: Viec lam tuyen gap */}
+        {/* Start: Urgent job openings */}
         <Card variant="outlined">
           <CardHeader
             avatar={
@@ -70,21 +70,21 @@ export default function HomePage() {
             </Box>
           </CardContent>
         </Card>
-        {/*End: Viec lam tuyen gap */}
+        {/* End: Urgent job openings */}
       </Box>
 
       <Box sx={{ mt: 10 }}>
-        {/* Start: Cac nganh nghe */}
+        {/* Start: Job categories */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
           Shakisha imyanya y' akazi vuba
         </Typography>
         <CareerCarousel />
-        {/* End: Cac nganh nghe */}
+        {/* End: Job categories */}
       </Box>
 
       {isAuthenticated && currentUser?.roleName === ROLES_NAME.JOB_SEEKER && (
         <Box sx={{ mt: 10 }}>
-          {/* Start: Viec lam goi y */}
+          {/* Start: Recommended jobs */}
           <Card variant="outlined">
             <CardHeader
               avatar={
@@ -94,7 +94,7 @@ export default function HomePage() {
               }
               title={
                 <Typography variant="h5" sx={{ color: '#441da0' }}>
-                  Việc làm gợi ý
+                  Imirimo igushishikaje
                 </Typography>
               }
               sx={{
@@ -112,7 +112,7 @@ export default function HomePage() {
               </Box>
             </CardContent>
           </Card>
-          {/* End: Viec lam goi y */}
+          {/* End: Recommended jobs */}
         </Box>
       )}
 
@@ -157,7 +157,7 @@ export default function HomePage() {
       </Box>
 
       <Box sx={{ mt: 6 }}>
-        {/* Start: Viec lam nganh */}
+        {/* Start: Jobs by industry */}
         <Card variant="outlined">
           <CardHeader
             avatar={
@@ -185,11 +185,11 @@ export default function HomePage() {
             </Box>
           </CardContent>
         </Card>
-        {/* End: Viec lam nganh */}
+        {/* End: Jobs by industry */}
       </Box>
 
       <Box sx={{ mt: 10 }}>
-        {/* Start: Viec lam nganh */}
+        {/* Start: Jobs by industry */}
         <Card variant="outlined">
           <CardHeader
             avatar={
@@ -217,7 +217,7 @@ export default function HomePage() {
             </Box>
           </CardContent>
         </Card>
-        {/* End: Viec lam nganh */}
+        {/* End: Jobs by industry */}
       </Box>
 
       <Box sx={{ mt: 10 }}>

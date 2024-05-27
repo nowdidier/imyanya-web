@@ -6,12 +6,12 @@ import { TabTitle } from '../../../utils/generalFunction';
 import CategoryCard from '../../components/defaults/CategoryCard';
 
 const JobsByCityPage = () => {
-  TabTitle("Việc làm theo tỉnh thành")
+  TabTitle("Akazi hakurikijwe intara")
   const { allConfig } = useSelector((state) => state.config);
 
   return (
     <Container maxWidth="lg" sx={{ py: 2 }}>
-      <Typography variant="h4">Việc làm theo Tỉnh thành</Typography>
+      <Typography variant="h4">Akazi hakurikijwe Intara</Typography>
       <Divider sx={{ mt: 1, mb: 4 }} />
       <CategoryCard options={allConfig?.cityOptions || []}  type={"CITY"}/>
     </Container>

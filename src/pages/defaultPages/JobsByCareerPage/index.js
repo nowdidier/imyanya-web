@@ -5,12 +5,12 @@ import CategoryCard from '../../components/defaults/CategoryCard';
 import { TabTitle } from '../../../utils/generalFunction';
 
 const JobsByCareerPage = () => {
-  TabTitle('Việc làm theo ngành nghề');
+  TabTitle('Akazi ku rwego rw’umwuga');
   const { allConfig } = useSelector((state) => state.config);
 
   return (
     <Container maxWidth="lg" sx={{ py: 2 }}>
-      <Typography variant="h4">Việc làm theo Ngành nghề</Typography>
+      <Typography variant="h4">Akazi ku rwego rw’umwuga</Typography>
       <Divider sx={{ mt: 1, mb: 4 }} />
       <CategoryCard options={allConfig?.careerOptions || []} type={'CARRER'} />
     </Container>

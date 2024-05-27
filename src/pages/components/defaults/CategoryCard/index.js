@@ -65,7 +65,7 @@ const CategoryCard = ({ options, type }) => {
             sx={{ ml: 1, flex: 1 }}
             inputProps={{ 'aria-label': 'search' }}
             defaultValue=""
-            placeholder="Tìm kiếm nhanh"
+            placeholder="Gushakisha vuba"
             onChange={(event) => handleFilterChange(event.target.value)}
           />
         </Paper>

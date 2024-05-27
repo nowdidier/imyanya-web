@@ -23,7 +23,6 @@ import {
   searchJobPost,
 } from '../../../../redux/filterSlice';
 
-
 const JobPostSearch = () => {
   const dispatch = useDispatch();
   const { allConfig } = useSelector((state) => state.config);
@@ -43,10 +42,10 @@ const JobPostSearch = () => {
     setShowAdvanceFilter(!showAdvanceFilter);
   };
 
-  const handleSaveKeyworLocalStorage = (kw) => {
+  const handleSaveKeywordLocalStorage = (kw) => {
     try {
       if (kw) {
-        const keywordListStr = localStorage.getItem('myjob_search_history');
+        const keywordListStr = localStorage.getItem('amateka_y\'akazi');
 
         if (
           keywordListStr !== null &&
@@ -58,7 +57,7 @@ const JobPostSearch = () => {
           if (!keywordList.includes(kw)) {
             if (keywordList.length >= 5) {
               localStorage.setItem(
-                'myjob_search_history',
+                'amateka_y\'akazi',
                 JSON.stringify([
                   kw,
                   ...keywordList.slice(0, keywordList.length - 1),
@@ -66,22 +65,22 @@ const JobPostSearch = () => {
               );
             } else {
               localStorage.setItem(
-                'myjob_search_history',
+                'amateka_y\'akazi',
                 JSON.stringify([kw, ...keywordList])
               );
             }
           }
         } else {
-          localStorage.setItem('myjob_search_history', JSON.stringify([kw]));
+          localStorage.setItem('amateka_y\'akazi', JSON.stringify([kw]));
         }
       }
     } catch (error) {
-      console.error('Akamere ko kwandika kw mu cyikirizwa cyikora: ', error);
+      console.error('Ikosa ryo kubika kw muri local storage: ', error);
     }
   };
 
   const handleFilter = (data) => {
-    handleSaveKeyworLocalStorage(data?.kw);
+    handleSaveKeywordLocalStorage(data?.kw);
 
     dispatch(searchJobPost(data));
   };
@@ -97,14 +96,14 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
             <InputBaseSearchHomeCustom
               name="kw"
-              placeholder="Gushakisha umurimo"
+              placeholder="Shakisha amahirwe y'akazi"
               control={control}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
             <SingleSelectSearchCustom
               name="careerId"
-              placeholder="zose utanga"
+              placeholder="Imyuga yose"
               control={control}
               options={allConfig?.careerOptions || []}
             />
@@ -112,7 +111,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="cityId"
-              placeholder="zose intara"
+              placeholder="Intara zose"
               control={control}
               options={allConfig?.cityOptions || []}
             />
@@ -135,7 +134,7 @@ const JobPostSearch = () => {
                 sx={{ py: 1 }}
                 type="submit"
               >
-                Gushakisha
+                Shakisha
               </Button>
               <Button
                 variant="contained"
@@ -146,7 +145,7 @@ const JobPostSearch = () => {
                 color="secondary"
                 onClick={handleChangeShowFilter}
               >
-                Advanced Search
+                Hisha byinshi
               </Button>
             </Stack>
           </Grid>
@@ -167,13 +166,13 @@ const JobPostSearch = () => {
               sx={{ pt: 0.5, fontSize: 16 }}
               color="GrayText"
             >
-              Advanced Search
+              Hisha byinshi
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="positionId"
-              placeholder="Ibyanya zose"
+              placeholder="Imyanya yose"
               control={control}
               options={allConfig?.positionOptions || []}
             />
@@ -181,7 +180,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="experienceId"
-              placeholder="Ubunararibonye bwose"
+              placeholder="Uburambe bwose"
               control={control}
               options={allConfig?.experienceOptions || []}
             />
@@ -189,7 +188,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="jobTypeId"
-              placeholder="Ubwoko bwose bw'akazi"
+              placeholder="Ubukorikori bwose"
               control={control}
               options={allConfig?.jobTypeOptions || []}
             />
@@ -197,7 +196,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="typeOfWorkplaceId"
-              placeholder="Ubwoko bwose bw'akazi"
+              placeholder="Ubukorikori bwose"
               control={control}
               options={allConfig?.typeOfWorkplaceOptions || []}
             />
@@ -205,7 +204,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="genderId"
-              placeholder="Ubwoko bwose bw'ubwoko"
+              placeholder="Igitsina cyose"
               control={control}
               options={allConfig?.genderOptions || []}
             />

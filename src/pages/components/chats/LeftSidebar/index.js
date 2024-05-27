@@ -198,7 +198,7 @@ const LeftSidebar = () => {
           <ChatRoomSearch
             value={searchText}
             setValue={setSearchText}
-            placeholder="Tên công ty, tên nhà tuyển dụng, ..."
+            placeholder="Izina ry'ikigo, izina ry'umukoresha, ..."
           />
         </Box>
         <Box
@@ -214,7 +214,7 @@ const LeftSidebar = () => {
             </Stack>
           ) : chatRooms.length === 0 ? (
             <NoDataCard
-              title="Không tìm thấy cuộc trò chuyện nào..."
+              title="Nta kiganiro na kimwe cyabonetse..."
               imgComponentSgv={<ImageSvg15 />}
             />
           ) : (
@@ -277,7 +277,7 @@ const LeftSidebar = () => {
                       >
                         {`${value?.user?.name}`}
                       </span>
-
+  
                       <Typography
                         variant="caption"
                         sx={{
@@ -308,7 +308,9 @@ const LeftSidebar = () => {
       </Stack>
     </Box>
   );
-};
+  };
+
+  
 
 const EmployerSidebar = () => {
   const { currentUserChat, setSelectedRoomId } = React.useContext(ChatContext);
@@ -462,7 +464,7 @@ const EmployerSidebar = () => {
           <ChatRoomSearch
             value={searchText}
             setValue={setSearchText}
-            placeholder="Họ tên ứng viên ..."
+            placeholder="Amazina y'umukandida ..."
           />
         </Box>
         <Box sx={{ height: '75vh', overflowY: 'auto' }}>
@@ -474,7 +476,7 @@ const EmployerSidebar = () => {
             </Stack>
           ) : chatRooms.length === 0 ? (
             <NoDataCard
-              title="Không tìm thấy cuộc trò chuyện nào..."
+              title="Nta kiganiro na kimwe cyabonetse..."
               imgComponentSgv={<ImageSvg15 />}
             />
           ) : (
@@ -538,7 +540,7 @@ const EmployerSidebar = () => {
                         >
                           {`${value?.user?.name}` || '---'}
                         </span>
-
+  
                         <Typography
                           variant="caption"
                           sx={{
@@ -570,8 +572,9 @@ const EmployerSidebar = () => {
       </Stack>
     </Box>
   );
-};
-
-LeftSidebar.Employer = EmployerSidebar;
-
-export default LeftSidebar;
+  };
+  
+  LeftSidebar.Employer = EmployerSidebar;
+  
+  export default LeftSidebar;
+  

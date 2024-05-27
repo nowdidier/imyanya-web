@@ -243,7 +243,6 @@ const SendEmailComponent = ({ resumeSlug, email, fullName, isSentEmail }) => {
     </>
   );
 };
-
 const ProfileDetailCard = () => {
   const { slug: resumeSlug } = useParams();
   const { allConfig } = useSelector((state) => state.config);
@@ -260,7 +259,7 @@ const ProfileDetailCard = () => {
       try {
         await resumeService.viewResume(resumeSlug);
       } catch (error) {
-        console.error('Lỗi khi xem CV! ', error);
+        console.error('Amakuru gakozwe nta cyo kavuze! ', error);
       }
     };
 
@@ -293,7 +292,7 @@ const ProfileDetailCard = () => {
 
         setProfileDetail({ ...profileDetail, isSaved: isSaved });
         toastMessages.success(
-          isSaved ? 'Lưu thành công.' : 'Hủy lưu thành công.'
+          isSaved ? 'Byakujemo neza.' : 'Gukuraho byakujijwemo neza.'
         );
       } catch (error) {
         errorHandling(error);
@@ -304,13 +303,14 @@ const ProfileDetailCard = () => {
   };
 
   return isLoading ? (
+    // Igice cy'umuriho hano
     Loading
   ) : profileDetail === null ? (
     <NoDataCard
       title={
         <p>
-          Không tìm thấy thông tin hồ sơ.
-          <br /> Có thể hồ sơ này đã được đặt chế độ không cho phép tìm kiếm.
+          Nta makuru y'imuriho yabonetse.
+          <br /> Bishoboka ko iyi muriho yashyizwe mu buryo bwo kutagaragara mu gushakisha.
         </p>
       }
     />
@@ -342,12 +342,12 @@ const ProfileDetailCard = () => {
                           fontSize: 13,
                         }}
                       >
-                        Chưa cập nhật
+                        Ntaravugururwa
                       </span>
                     )}
                   </Typography>
                   <Typography>
-                    Thời gian cập nhật:{' '}
+                    Igihe cyo kuvugurura:{' '}
                     {dayjs(profileDetail?.updateAt).format('DD/MM/YYYY')}
                   </Typography>
                   <Typography>
@@ -355,7 +355,7 @@ const ProfileDetailCard = () => {
                       <Chip
                         sx={{ mt: 1 }}
                         icon={<CheckCircleRoundedIcon />}
-                        label={`Xem lần cuối: ${dayjs(
+                        label={`Reba ubwa nyuma: ${dayjs(
                           profileDetail?.lastViewedDate
                         ).format('DD/MM/YYYY HH:mm')}`}
                         color="success"
@@ -406,14 +406,14 @@ const ProfileDetailCard = () => {
                       <FavoriteBorderIcon />
                     )}
                   </Button>
-                  {/* Start: SendEmailComponent */}
+                  {/* Ibitangirwa: SendEmailComponent */}
                   <SendEmailComponent
                     resumeSlug={resumeSlug}
                     email={profileDetail?.user?.email}
                     fullName={profileDetail?.user?.fullName}
                     isSentEmail={profileDetail?.isSentEmail}
                   />
-                  {/* End: SendEmailComponent */}
+                  {/* Ibiherukira: SendEmailComponent */}
                 </Stack>
                 {profileDetail?.type &&
                   profileDetail.type === CV_TYPES.cvUpload && (
@@ -424,7 +424,7 @@ const ProfileDetailCard = () => {
                         alignItems="center"
                       >
                         <Typography sx={{ fontWeight: 'bold', color: 'Gray' }}>
-                          CV đính kèm
+                          CV yashyizwemo
                         </Typography>
                         <IconButton
                           onClick={() =>
@@ -464,151 +464,147 @@ const ProfileDetailCard = () => {
             <Divider sx={{ my: 2 }} />
             {/* Start: Personal Profile */}
             <Box>
-              <Typography variant="h6" sx={{ mb: 1.5 }}>
-                Thông tin cá nhân
-              </Typography>
-              <Grid container spacing={1}>
-                <Grid item xs={4}>
-                  {item(
-                    'Email',
-                    profileDetail?.user?.email || (
-                      <span
-                        style={{
-                          color: '#e0e0e0',
-                          fontStyle: 'italic',
-                          fontSize: 13,
-                        }}
-                      >
-                        Chưa cập nhật
-                      </span>
-                    )
-                  )}
-                </Grid>
-                <Grid item xs={4}>
-                  {item(
-                    'Số điện thoại',
-                    profileDetail?.jobSeekerProfile?.phone || (
-                      <span
-                        style={{
-                          color: '#e0e0e0',
-                          fontStyle: 'italic',
-                          fontSize: 13,
-                        }}
-                      >
-                        Chưa cập nhật
-                      </span>
-                    )
-                  )}
-                </Grid>
-                <Grid item xs={4}>
-                  {item(
-                    'Giới tính',
-                    allConfig?.genderDict[
-                      profileDetail?.jobSeekerProfile?.gender
-                    ] || (
-                      <span
-                        style={{
-                          color: '#e0e0e0',
-                          fontStyle: 'italic',
-                          fontSize: 13,
-                        }}
-                      >
-                        Chưa cập nhật
-                      </span>
-                    )
-                  )}
-                </Grid>
-                <Grid item xs={4}>
-                  {item(
-                    'Ngày sinh',
-                    dayjs(profileDetail?.jobSeekerProfile?.birthday).format(
-                      'DD/MM/YYYY'
-                    ) || (
-                      <span
-                        style={{
-                          color: '#e0e0e0',
-                          fontStyle: 'italic',
-                          fontSize: 13,
-                        }}
-                      >
-                        Chưa cập nhật
-                      </span>
-                    )
-                  )}
-                </Grid>
-                <Grid item xs={4}>
-                  {item(
-                    'Tình trạng hôn nhân',
-                    allConfig?.maritalStatusDict[
-                      profileDetail?.jobSeekerProfile?.maritalStatus
-                    ] || (
-                      <span
-                        style={{
-                          color: '#e0e0e0',
-                          fontStyle: 'italic',
-                          fontSize: 13,
-                        }}
-                      >
-                        Chưa cập nhật
-                      </span>
-                    )
-                  )}
-                </Grid>
-                <Grid item xs={4}>
-                  {item(
-                    'Tỉnh/Thành phố',
-                    allConfig?.cityDict[
-                      profileDetail?.jobSeekerProfile?.location?.city
-                    ] || (
-                      <span
-                        style={{
-                          color: '#e0e0e0',
-                          fontStyle: 'italic',
-                          fontSize: 13,
-                        }}
-                      >
-                        Chưa cập nhật
-                      </span>
-                    )
-                  )}
-                </Grid>
-                <Grid item xs={4}>
-                  {item(
-                    'Quận/Huyện',
-                    profileDetail?.jobSeekerProfile?.location?.districtDict
-                      ?.name || (
-                      <span
-                        style={{
-                          color: '#e0e0e0',
-                          fontStyle: 'italic',
-                          fontSize: 13,
-                        }}
-                      >
-                        Chưa cập nhật
-                      </span>
-                    )
-                  )}
-                </Grid>
-                <Grid item xs={4}>
-                  {item(
-                    'Địa chỉ',
-                    profileDetail?.jobSeekerProfile?.location?.address || (
-                      <span
-                        style={{
-                          color: '#e0e0e0',
-                          fontStyle: 'italic',
-                          fontSize: 13,
-                        }}
-                      >
-                        Chưa cập nhật
-                      </span>
-                    )
-                  )}
-                </Grid>
-              </Grid>
-            </Box>
-            {/* End: Personal Profile */}
-            <Divider sx={{ my: 2 }} />
+  <Typography variant="h6" sx={{ mb: 1.5 }}>
+    Amakuru ku muntu
+  </Typography>
+  <Grid container spacing={1}>
+    <Grid item xs={4}>
+      {item(
+        'Imeri',
+        profileDetail?.user?.email || (
+          <span
+            style={{
+              color: '#e0e0e0',
+              fontStyle: 'italic',
+              fontSize: 13,
+            }}
+          >
+            Ntaravugururwa
+          </span>
+        )
+      )}
+    </Grid>
+    <Grid item xs={4}>
+      {item(
+        'Nomero ya telefone',
+        profileDetail?.jobSeekerProfile?.phone || (
+          <span
+            style={{
+              color: '#e0e0e0',
+              fontStyle: 'italic',
+              fontSize: 13,
+            }}
+          >
+            Ntaravugururwa
+          </span>
+        )
+      )}
+    </Grid>
+    <Grid item xs={4}>
+      {item(
+        'Igitsina',
+        allConfig?.genderDict[profileDetail?.jobSeekerProfile?.gender] || (
+          <span
+            style={{
+              color: '#e0e0e0',
+              fontStyle: 'italic',
+              fontSize: 13,
+            }}
+          >
+            Ntaravugururwa
+          </span>
+        )
+      )}
+    </Grid>
+    <Grid item xs={4}>
+      {item(
+        'Itariki yavutse',
+        dayjs(profileDetail?.jobSeekerProfile?.birthday).format('DD/MM/YYYY') ||
+          (
+            <span
+              style={{
+                color: '#e0e0e0',
+                fontStyle: 'italic',
+                fontSize: 13,
+              }}
+            >
+              Ntaravugururwa
+            </span>
+          )
+      )}
+    </Grid>
+    <Grid item xs={4}>
+      {item(
+        'Imimerere y\'ubushyingikire',
+        allConfig?.maritalStatusDict[
+          profileDetail?.jobSeekerProfile?.maritalStatus
+        ] || (
+          <span
+            style={{
+              color: '#e0e0e0',
+              fontStyle: 'italic',
+              fontSize: 13,
+            }}
+          >
+            Ntaravugururwa
+          </span>
+        )
+      )}
+    </Grid>
+    <Grid item xs={4}>
+      {item(
+        'Intara/Umujyi',
+        allConfig?.cityDict[
+          profileDetail?.jobSeekerProfile?.location?.city
+        ] || (
+          <span
+            style={{
+              color: '#e0e0e0',
+              fontStyle: 'italic',
+              fontSize: 13,
+            }}
+          >
+            Ntaravugururwa
+          </span>
+        )
+      )}
+    </Grid>
+    <Grid item xs={4}>
+      {item(
+        'Akarere/Umurenge',
+        profileDetail?.jobSeekerProfile?.location?.districtDict?.name || (
+          <span
+            style={{
+              color: '#e0e0e0',
+              fontStyle: 'italic',
+              fontSize: 13,
+            }}
+          >
+            Ntaravugururwa
+          </span>
+        )
+      )}
+    </Grid>
+    <Grid item xs={4}>
+      {item(
+        'Aderesi',
+        profileDetail?.jobSeekerProfile?.location?.address || (
+          <span
+            style={{
+              color: '#e0e0e0',
+              fontStyle: 'italic',
+              fontSize: 13,
+            }}
+          >
+            Ntaravugururwa
+          </span>
+        )
+      )}
+    </Grid>
+  </Grid>
+</Box>
+{/* Ibiherukira: Amakuru ku muntu */}
+<Divider sx={{ my: 2 }} />
 
             {/* Start: General Profile */}
             <Box>

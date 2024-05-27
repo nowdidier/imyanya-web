@@ -92,7 +92,7 @@ const HiringAcademicChart = ({ title }) => {
             >
               <Typography fontWeight="bold">{title}</Typography>
               <MuiTooltip
-                title="Thống kê chỉ số ứng tuyển theo trình độ học vấn"
+                title="Imibare yerekana uko abasabye akazi bahagaze mu myigire"
                 arrow
               >
                 <InfoIcon color="disabled" />
@@ -120,7 +120,7 @@ const HiringAcademicChart = ({ title }) => {
               ) : data.length === 0 ? (
                 <Empty
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
-                  description="Không có dữ liệu để thống kê"
+                  description="Nta makuru ahari yo kubarura"
                 />
               ) : (
                 <Pie data={dataOptions} options={options} height={320} />

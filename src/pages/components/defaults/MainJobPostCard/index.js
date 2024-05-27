@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Pagination, Stack, Typography } from '@mui/material';
+
 import { ImageSvg3 } from '../../../../configs/constants';
 import JobPostLarge from '../../../../components/JobPostLarge';
 import NoDataCard from '../../../../components/NoDataCard';
@@ -18,8 +19,13 @@ const MainJobPostCard = () => {
     const getJobPosts = async () => {
       setIsLoading(true);
       try {
-        const resData = await jobService.getJobPosts({ ...jobPostFilter, page: page, });
+        const resData = await jobService.getJobPosts({
+          ...jobPostFilter,
+          page: page,
+        });
+
         const data = resData.data;
+
         setCount(data.count);
         setJobPosts(data?.results || []);
       } catch (error) {
@@ -28,6 +34,7 @@ const MainJobPostCard = () => {
         setIsLoading(false);
       }
     };
+
     getJobPosts();
   }, [jobPostFilter, page]);
 
@@ -39,7 +46,8 @@ const MainJobPostCard = () => {
     <>
       <Box sx={{ pt: 2, pb: 3 }}>
         <Typography variant="h5">
-          Ibyavuye mu gushakisha (<span style={{ color: 'red' }}>{count.toLocaleString()}</span> ibyatangiwe)
+          Ibisubizo by'ubushakashatsi (<span style={{ color: 'red' }}>{count.toLocaleString()}</span> ibintu
+          byatangajwe)
         </Typography>
       </Box>
       <Stack spacing={2}>
@@ -51,7 +59,7 @@ const MainJobPostCard = () => {
           ))
         ) : jobPosts.length === 0 ? (
           <NoDataCard
-            title="Ntibyagaragara ko hari umurimo kiri guhuza nibyo washatse nawe"
+            title="Nta kazi kaboneye gahari ku mahitamo yawe"
             imgComponentSgv={<ImageSvg3 />}
           />
         ) : (

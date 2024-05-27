@@ -3,16 +3,20 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar, Box, Card, Container, Grid, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
 import { TabTitle } from '../../../utils/generalFunction';
 import { PLATFORM, ROLES_NAME } from '../../../configs/constants';
 import errorHandling from '../../../utils/errorHandling';
 import BackdropLoading from '../../../components/loading/BackdropLoading';
+
 import { updateVerifyEmail } from '../../../redux/authSlice';
 import authService from '../../../services/authService';
+
 import EmployerSignUpForm from '../../components/auths/EmployerSignUpForm';
 
 const EmployerSignUp = () => {
-  TabTitle("Kwiyandikisha umwubatsi wa gahunda")
+  TabTitle("Iyandikishe kuri Konti y'Umukoresha")
+
   const dispatch = useDispatch();
   const nav = useNavigate();
   const [isFullScreenLoading, setIsFullScreenLoading] = React.useState(false);
@@ -21,8 +25,10 @@ const EmployerSignUp = () => {
   const handleRegister = (data) => {
     const register = async (data, roleName) => {
       setIsFullScreenLoading(true);
+
       try {
         await authService.employerRegister(data);
+
         dispatch(
           updateVerifyEmail({
             isAllowVerifyEmail: true,
@@ -37,8 +43,12 @@ const EmployerSignUp = () => {
         setIsFullScreenLoading(false);
       }
     };
+
     register(
-      { ...data, platform: PLATFORM },
+      {
+        ...data,
+        platform: PLATFORM,
+      },
       ROLES_NAME.EMPLOYER
     );
   };
@@ -46,12 +56,17 @@ const EmployerSignUp = () => {
   const checkCreds = async (email, roleName) => {
     try {
       const resData = await authService.checkCreds(email, roleName);
+
       const { exists } = resData.data;
       if (exists === true) {
         // set server errors here
-        setServerErrors({ email: ['Imeri ihari'] });
+        setServerErrors({
+          email: ['Imeri iriho muri sisitemu'],
+        });
+
         return false;
       }
+
       return true;
     } catch (error) {
       errorHandling(error);
@@ -83,7 +98,7 @@ const EmployerSignUp = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5" align="center">
-              Kwiyandikisha umwubatsi wa gahunda
+              Iyandikishe kuri Konti y'Umukoresha
             </Typography>
           </Box>
           <Box sx={{ mt: { xs: 3, sm: 4, md: 4, lg: 4, xl: 4 } }}>
@@ -103,12 +118,13 @@ const EmployerSignUp = () => {
                 variant="body2"
                 style={{ textDecoration: 'none', color: '#441da0' }}
               >
-                {'Ufite gahunda? Kwinjira'}
+                {'Ufite Konti? Injira'}
               </Link>
             </Grid>
           </Grid>
         </Card>
       </Container>
+
       {/* Start: full screen loading */}
       {isFullScreenLoading && <BackdropLoading />}
       {/* End: full screen loading */}

@@ -125,7 +125,7 @@ const ApplicationChart = ({ title }) => {
             >
               <Typography fontWeight="bold">{title}</Typography>
               <MuiTooltip
-                title="Thống kê chỉ số tương quan giữa nhu cầu tuyển dụng và lượt hồ sơ ứng tuyển"
+                title="Imibare yerekana uko ibyo abakoresha bakeneye bihura n'umubare w'abasabye akazi"
                 arrow
               >
                 <InfoIcon color="disabled" />
@@ -153,10 +153,10 @@ const ApplicationChart = ({ title }) => {
               ) : data.length === 0 ? (
                 <Empty
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
-                  description="Không có dữ liệu để thống kê"
+                  description="Nta makuru ahari yo kubarura"
                 />
               ) : (
-                <Bar data={dataOptions} options={options}  height={320}/>
+                <Bar data={dataOptions} options={options} height={320}/>
               )}
             </Stack>
           </Box>
@@ -167,3 +167,4 @@ const ApplicationChart = ({ title }) => {
 };
 
 export default ApplicationChart;
+  

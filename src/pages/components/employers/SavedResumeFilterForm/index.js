@@ -31,14 +31,14 @@ const SavedResumeFilterForm = ({ handleFilter }) => {
         <Grid item xs={12} sm={12} md={7} lg={3} xl={3}>
           <TextFieldCustom
             name="kw"
-            placeholder="Nhập tên tin đăng hoặc tên ứng viên"
+            placeholder="Injiza izina ry'itangazo cyangwa izina ry'umukandida"
             control={control}
           />
         </Grid>
         <Grid item xs={12} sm={12} md={5} lg={2} xl={2}>
           <TextFieldCustom
             name="salaryMax"
-            placeholder="Nhập mức lương tối đa"
+            placeholder="Injiza umushahara ntarengwa"
             control={control}
             type="number"
           />
@@ -48,7 +48,7 @@ const SavedResumeFilterForm = ({ handleFilter }) => {
             name="experienceId"
             control={control}
             options={allConfig?.experienceOptions || []}
-            placeholder="Chọn kinh nghiệm"
+            placeholder="Hitamo uburambe"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={4} lg={2} xl={2}>
@@ -56,12 +56,12 @@ const SavedResumeFilterForm = ({ handleFilter }) => {
             name="cityId"
             control={control}
             options={allConfig?.cityOptions || []}
-            placeholder="Chọn địa điểm"
+            placeholder="Hitamo aho uherereye"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
           <Stack direction="row" spacing={2}>
-            <Tooltip title="Đặt lại" arrow>
+            <Tooltip title="Subiramo" arrow>
               <IconButton
                 aria-label="refresh"
                 onClick={() => {
@@ -79,7 +79,7 @@ const SavedResumeFilterForm = ({ handleFilter }) => {
               type="submit"
               startIcon={<SearchIcon />}
             >
-              Tìm kiếm
+              Shakisha
             </Button>
           </Stack>
         </Grid>

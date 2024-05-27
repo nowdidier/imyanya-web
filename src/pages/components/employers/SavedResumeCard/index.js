@@ -25,49 +25,49 @@ const headCells = [
     showOrder: false,
     numeric: false,
     disablePadding: true,
-    label: 'Tên hồ sơ',
+    label: 'Izina rya CV',
   },
   {
     id: 'fullName',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Tên ứng viên',
+    label: 'Izina ry’umukandida',
   },
   {
     id: 'salary',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Mức lương',
+    label: 'Umushahara',
   },
   {
     id: 'experience',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Kinh nghiệm',
+    label: 'Uburambe',
   },
   {
     id: 'city',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Tỉnh/Thành phố',
+    label: 'Intara/Umujyi',
   },
   {
     id: 'createAt',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Ngày lưu',
+    label: 'Itariki yo kubika',
   },
   {
     id: 'action',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Hành động',
+    label: 'Ibikorwa',
   },
 ];
 
@@ -136,7 +136,7 @@ const SavedResumeCard = ({ title }) => {
         await resumeService.saveResume(slugResume);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Hủy lưu thành công.');
+        toastMessages.success('Guhagarika kubika byagenze neza.');
       } catch (error) {
         errorHandling(error);
       }
@@ -184,7 +184,7 @@ const SavedResumeCard = ({ title }) => {
             startIcon={<FileDownloadOutlinedIcon />}
             onClick={handleExport}
           >
-            Tải danh sách
+            Kuramo urutonde
           </Button>
         </Stack>
       </Box>
@@ -210,7 +210,7 @@ const SavedResumeCard = ({ title }) => {
         spacing={2}
       >
         <Box>
-          <Typography variant="subtitle2">Bộ lọc: </Typography>
+          <Typography variant="subtitle2">Icyiciro: </Typography>
         </Box>
         <Box flex={1}>
           {/* Start: SavedResumeFilterForm */}

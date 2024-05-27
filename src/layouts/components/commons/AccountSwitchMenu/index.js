@@ -20,7 +20,6 @@ import {
   resetSearchResume,
 } from '../../../../redux/filterSlice';
 
-
 const AccountSwitchMenu = ({ isShowButton = false }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -54,21 +53,21 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
   };
 
   const handleLogin = () => {
-    let path = '/dang-nhap-umwubatsi-wa-gahunda';
+    let path = '/dang-nhap-nha-tuyen-dung';
 
     if (isAuthenticated) {
       let title = '';
       let text =
-        'Gahunda isanzwe yinjiye izasohokanywa. Urashaka gukomeza?';
+        'Konti iri gukoreshwa izasohoka. Urashaka koko?';
       let path = '';
       switch (currentUser?.roleName) {
         case ROLES_NAME.JOB_SEEKER:
-          title = 'Kwinjira umwubatsi wa gahunda';
-          path = '/dang-nhap-umwubatsi-wa-gahunda';
+          title = 'Injira nk’Umukoresha';
+          path = '/dang-nhap-nha-tuyen-dung';
           break;
         case ROLES_NAME.EMPLOYER:
-          title = 'Kwinjira uwushakamwuga';
-          path = '/dang-nhap-uwushakamwuga';
+          title = 'Injira nk’Umukozi';
+          path = '/dang-nhap-ung-vien';
           break;
         default:
           break;
@@ -83,21 +82,21 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
   };
 
   const handleSignUp = () => {
-    let path = '/dang-ky-gahunda-umwubatsi-wa-gahunda';
+    let path = '/dang-ky-tai-khoan-nha-tuyen-dung';
 
     if (isAuthenticated) {
       let title = '';
       let text =
-        'Gahunda isanzwe yinjiye izasohokanywa. Urashaka gukomeza?';
+        'Konti iri gukoreshwa izasohoka. Urashaka koko?';
       let path = '';
       switch (currentUser?.roleName) {
         case ROLES_NAME.JOB_SEEKER:
-          title = 'Kwiyandikisha umwubatsi wa gahunda';
-          path = '/dang-ky-gahunda-umwubatsi-wa-gahunda';
+          title = 'Iyandikishe nka Umukoresha';
+          path = '/dang-ky-tai-khoan-nha-tuyen-dung';
           break;
         case ROLES_NAME.EMPLOYER:
-          title = 'Kwiyandikisha uwushakamwuga';
-          path = '/dang-ky-gahunda-uwushakamwuga';
+          title = 'Iyandikishe nka Umukozi';
+          path = '/dang-ky-tai-khoan-ung-vien';
           break;
         default:
           break;
@@ -121,9 +120,9 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Umwubatsi wa gahunda</Typography>
+          <Typography>Umukoresha</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            Kwandika inzira ku buntu
+            Shyiraho itangazo kubuntu
           </Typography>
         </Stack>
       </Stack>
@@ -136,9 +135,9 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Uwushakamwuga</Typography>
+          <Typography>Umukozi</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            <FontAwesomeIcon icon={faArrowRight} /> Guhindura
+            <FontAwesomeIcon icon={faArrowRight} /> Hindura
           </Typography>
         </Stack>
       </Stack>
@@ -151,9 +150,9 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Umwubatsi wa gahunda</Typography>
+          <Typography>Umukoresha</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            Kwandika inzira ku buntu
+            Shyiraho itangazo kubuntu
           </Typography>
         </Stack>
       </Stack>
@@ -173,8 +172,8 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             sx={{ textTransform: 'inherit' }}
           >
             {currentUser?.roleName === ROLES_NAME.EMPLOYER
-              ? 'Kwinjira uwushakamwuga'
-              : 'Kwinjira umwubatsi wa gahunda'}
+              ? 'Injira nk’Umukozi'
+              : 'Injira nk’Umukoresha'}
           </Button>
           <Button
             variant="outlined"
@@ -185,8 +184,8 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             onClick={handleSignUp}
           >
             {currentUser?.roleName === ROLES_NAME.EMPLOYER
-              ? 'Kwiyandikisha uwushakamwuga'
-              : 'Kwiyandikisha umwubatsi wa gahunda'}
+              ? 'Iyandikishe nka Umukozi'
+              : 'Iyandikishe nka Umukoresha'}
           </Button>
         </Stack>
       ) : (
@@ -235,7 +234,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
                 onClick={handleLogin}
                 sx={{ color: 'white' }}
               >
-                Kwinjira
+                Injira
               </Button>
               <Button
                 variant="contained"

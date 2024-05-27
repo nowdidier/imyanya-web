@@ -19,20 +19,20 @@ const SendMailCard = ({
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Email người nhận là bắt buộc.')
-      .email('Email người nhận không hợp lệ.')
-      .max(100, 'Email người nhận vượt quá độ dài cho phép.'),
+      .required('Email y’umukiriya ni ngombwa.')
+      .email('Email y’umukiriya siyo.')
+      .max(100, 'Email y’umukiriya irenze uburebure bwemewe.'),
     fullName: yup
       .string()
-      .required('Tên người nhận.')
-      .max(100, 'Tên người nhận vượt quá độ dài cho phép.'),
+      .required('Izina ry’umukiriya.')
+      .max(100, 'Izina ry’umukiriya irenze uburebure bwemewe.'),
     title: yup
       .string()
-      .required('Tiêu đề email là bắt buộc.')
-      .max(200, 'Tiêu đề email vượt quá độ dài cho phép.'),
+      .required('Umutwe w’email ni ngombwa.')
+      .max(200, 'Umutwe w’email urenze uburebure bwemewe.'),
     content: yup
       .mixed()
-      .test('content', 'Nội dung email là bắt buộc.', (value) =>
+      .test('content', 'Ibikubiye mu email ni ngombwa.', (value) =>
         value.getCurrentContent().hasText()
       ),
     isSendMe: yup.boolean().default(false),
@@ -64,10 +64,10 @@ const SendMailCard = ({
   return (
     <>
       <FormPopup
-        title="Gửi mail"
+        title="Ohereza email"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
-        buttonText="Gửi"
+        buttonText="Ohereza"
         buttonIcon={<SendIcon />}
       >
         <form id="modal-form" onSubmit={handleSubmit(handleSendEmail)}>
@@ -75,9 +75,9 @@ const SendMailCard = ({
             <Grid item xs={12}>
               <TextFieldCustom
                 name="fullName"
-                title="Tên người nhận"
+                title="Izina ry’umukiriya"
                 showRequired={true}
-                placeholder="Nhập tên người nhận"
+                placeholder="Andika izina ry’umukiriya"
                 control={control}
                 disabled={true}
               />
@@ -85,9 +85,9 @@ const SendMailCard = ({
             <Grid item xs={12}>
               <TextFieldCustom
                 name="email"
-                title="Email người nhận"
+                title="Email y’umukiriya"
                 showRequired={true}
-                placeholder="Nhập email người nhận"
+                placeholder="Andika email y’umukiriya"
                 control={control}
                 disabled={true}
               />
@@ -95,9 +95,9 @@ const SendMailCard = ({
             <Grid item xs={12}>
               <TextFieldCustom
                 name="title"
-                title="Tiêu đề"
+                title="Umutwe"
                 showRequired={true}
-                placeholder="Nhập tiêu đề email"
+                placeholder="Andika umutwe w’email"
                 control={control}
               />
             </Grid>
@@ -105,7 +105,7 @@ const SendMailCard = ({
               <RichTextEditorCustom
                 name="content"
                 control={control}
-                title="Nội dung email"
+                title="Ibikubiye mu email"
                 showRequired={true}
               />
             </Grid>
@@ -113,7 +113,7 @@ const SendMailCard = ({
               <CheckboxCustom
                 name="isSendMe"
                 control={control}
-                title="Gửi một bản sao đến địa chỉ email nhà tuyển dụng của tôi."
+                title="Ohereza kopi ku email yanjye."
               />
             </Grid>
           </Grid>

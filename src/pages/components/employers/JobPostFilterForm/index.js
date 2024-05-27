@@ -29,7 +29,7 @@ const JobPostFilterForm = ({ handleFilter }) => {
         <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
           <TextFieldCustom
             name="kw"
-            placeholder="Nhập tên tin đăng"
+            placeholder="Andika izina ry'itangazo"
             control={control}
           />
         </Grid>
@@ -38,11 +38,11 @@ const JobPostFilterForm = ({ handleFilter }) => {
             name="isUrgent"
             control={control}
             options={[
-              { id: 1, name: 'Tuyển gấp' },
-              { id: 2, name: 'Không tuyển gấp' },
+              { id: 1, name: 'Akazi kihutirwa' },
+              { id: 2, name: 'Akazi katihutirwa' },
             ]}
             showRequired={true}
-            placeholder="Trạng thái tuyển dụng"
+            placeholder="Imimerere y'akazi"
           />
         </Grid>
         <Grid item flex={1}>
@@ -51,7 +51,7 @@ const JobPostFilterForm = ({ handleFilter }) => {
             control={control}
             options={allConfig?.jobPostStatusOptions || []}
             showRequired={true}
-            placeholder="Trạng thái duyệt"
+            placeholder="Imimerere yo gusuzuma"
           />
         </Grid>
         <Grid item>
@@ -66,7 +66,7 @@ const JobPostFilterForm = ({ handleFilter }) => {
               xl: 'center',
             }}
           >
-            <Tooltip title="Đặt lại" arrow>
+            <Tooltip title="Subiza uko byari" arrow>
               <IconButton
                 aria-label="refresh"
                 onClick={() => {
@@ -84,7 +84,7 @@ const JobPostFilterForm = ({ handleFilter }) => {
               type="submit"
               startIcon={<SearchIcon />}
             >
-              Tìm kiếm
+              Shaka
             </Button>
           </Stack>
         </Grid>

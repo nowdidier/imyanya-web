@@ -3,7 +3,7 @@ import { Box, Button, IconButton } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 
 import { DatePicker } from 'antd';
-import locale from '../../../locales/ki_RW';
+import locale from '../../../locales/vi_VN';
 
 import dayjs from 'dayjs';
 const { RangePicker } = DatePicker;

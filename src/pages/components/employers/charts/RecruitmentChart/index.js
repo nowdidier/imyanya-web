@@ -129,7 +129,7 @@ const RecruitmentChart = ({ title }) => {
             >
               <Typography fontWeight="bold">{title}</Typography>
               <MuiTooltip
-                title="Thống kê chỉ số tuyển dụng trong vòng 1 tháng gần nhất"
+                title="Imibare yerekana uko ibikorwa byo gushaka abakozi byagenze mu kwezi gushize"
                 arrow
               >
                 <InfoIcon color="disabled" />
@@ -157,7 +157,7 @@ const RecruitmentChart = ({ title }) => {
               ) : data.length === 0 ? (
                 <Empty
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
-                  description="Không có dữ liệu để thống kê"
+                  description="Nta makuru ahari yo kubarura"
                 />
               ) : (
                 <Bar options={options} data={dataOptions}  height={320}/>

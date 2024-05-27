@@ -40,7 +40,7 @@ const AppliedResumeFilterForm = ({ handleFilter, filterData }) => {
                     icon={faLocationDot}
                     style={{ marginRight: 3 }}
                   />{' '}
-                  Tỉnh/Thành phố
+                  Intara/Umujyi
                 </Typography>
               </Box>
               <SingleSelectCustom
@@ -48,7 +48,7 @@ const AppliedResumeFilterForm = ({ handleFilter, filterData }) => {
                 control={control}
                 options={allConfig?.cityOptions || []}
                 showRequired={true}
-                placeholder="Chọn Tỉnh/Thành phố"
+                placeholder="Hitamo Intara/Umujyi"
               />
             </Stack>
             <Stack spacing={1}>
@@ -58,14 +58,14 @@ const AppliedResumeFilterForm = ({ handleFilter, filterData }) => {
                     icon={faBriefcase}
                     style={{ marginRight: 3 }}
                   />{' '}
-                  Ngành nghề
+                  Umurimo
                 </Typography>
               </Box>
               <SingleSelectCustom
                 name="careerId"
                 control={control}
                 options={allConfig?.careerOptions || []}
-                placeholder="Tất cả ngành nghề"
+                placeholder="Umurimo wose"
               />
             </Stack>
             <Stack spacing={1}>
@@ -75,28 +75,28 @@ const AppliedResumeFilterForm = ({ handleFilter, filterData }) => {
                     icon={faMagicWandSparkles}
                     style={{ marginRight: 3 }}
                   />{' '}
-                  Kinh nghiệm
+                  Ubunararibonye
                 </Typography>
               </Box>
               <SingleSelectCustom
                 name="experienceId"
                 control={control}
                 options={allConfig?.experienceOptions || []}
-                placeholder="Tất cả kinh nghiệm"
+                placeholder="Ubunararibonye bwose"
               />
             </Stack>
             <Stack spacing={1}>
               <Box>
                 <Typography variant="subtitle2">
                   <FontAwesomeIcon icon={faUsers} style={{ marginRight: 3 }} />{' '}
-                  Cấp bậc
+                  Urwego rw'akazi
                 </Typography>
               </Box>
               <SingleSelectCustom
                 name="positionId"
                 control={control}
                 options={allConfig?.positionOptions || []}
-                placeholder="Tất cả cấp bậc"
+                placeholder="Urwego rw'akazi rwose"
               />
             </Stack>
             <Stack spacing={1}>
@@ -106,14 +106,14 @@ const AppliedResumeFilterForm = ({ handleFilter, filterData }) => {
                     icon={faGraduationCap}
                     style={{ marginRight: 3 }}
                   />{' '}
-                  Học vấn
+                  Amashuri
                 </Typography>
               </Box>
               <SingleSelectCustom
                 name="academicLevelId"
                 control={control}
                 options={allConfig?.academicLevelOptions || []}
-                placeholder="Tất cả học vấn"
+                placeholder="Amashuri yose"
               />
             </Stack>
             <Stack spacing={1}>
@@ -123,14 +123,14 @@ const AppliedResumeFilterForm = ({ handleFilter, filterData }) => {
                     icon={faBuilding}
                     style={{ marginRight: 3 }}
                   />{' '}
-                  Nơi làm việc
+                  Aho akazi gakorerwa
                 </Typography>
               </Box>
               <SingleSelectCustom
                 name="typeOfWorkplaceId"
                 control={control}
                 options={allConfig?.typeOfWorkplaceOptions || []}
-                placeholder="Tất cả nơi làm việc"
+                placeholder="Aho akazi gakorerwa hose"
               />
             </Stack>
             <Stack spacing={1}>
@@ -140,14 +140,14 @@ const AppliedResumeFilterForm = ({ handleFilter, filterData }) => {
                     icon={faPersonDigging}
                     style={{ marginRight: 3 }}
                   />{' '}
-                  Hình thức làm việc
+                  Ubwoko bw'akazi
                 </Typography>
               </Box>
               <SingleSelectCustom
                 name="jobTypeId"
                 control={control}
                 options={allConfig?.jobTypeOptions || []}
-                placeholder="Tất cả hình thức làm việc"
+                placeholder="Ubwoko bw'akazi bwose"
               />
             </Stack>
             <Stack spacing={1}>
@@ -157,14 +157,14 @@ const AppliedResumeFilterForm = ({ handleFilter, filterData }) => {
                     icon={faVenusMars}
                     style={{ marginRight: 3 }}
                   />{' '}
-                  Giới tính
+                  Ibitsina
                 </Typography>
               </Box>
               <SingleSelectCustom
                 name="genderId"
                 control={control}
                 options={allConfig?.genderOptions || []}
-                placeholder="Tất cả giới tính"
+                placeholder="Ibitsina byose"
               />
             </Stack>
             <Stack spacing={1}>
@@ -174,14 +174,14 @@ const AppliedResumeFilterForm = ({ handleFilter, filterData }) => {
                     icon={faPeopleRoof}
                     style={{ marginRight: 3 }}
                   />{' '}
-                  Tình trạng hôn nhân
+                  Ubumenyi bw'isezerano
                 </Typography>
               </Box>
               <SingleSelectCustom
                 name="maritalStatusId"
                 control={control}
                 options={allConfig?.maritalStatusOptions || []}
-                placeholder="Tất cả tình trạng hôn nhân"
+                placeholder="Ubumenyi bw'isezerano bwose"
               />
             </Stack>
           </Stack>

@@ -101,7 +101,6 @@ const CandidateChart = ({ title }) => {
 
     return d;
   }, [data]);
-
   return (
     <>
       <Card sx={{ p: 2 }}>
@@ -114,7 +113,7 @@ const CandidateChart = ({ title }) => {
             >
               <Typography fontWeight="bold">{title}</Typography>
               <MuiTooltip
-                title="Thống kê số hồ sơ ứng tuyển nhận được theo ngày"
+                title="Imibare yerekana umubare w'abasabye akazi bahawe buri munsi"
                 arrow
               >
                 <InfoIcon color="disabled" />
@@ -142,7 +141,7 @@ const CandidateChart = ({ title }) => {
               ) : data.length === 0 ? (
                 <Empty
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
-                  description="Không có dữ liệu để thống kê"
+                  description="Nta makuru ahari yo kubarura"
                 />
               ) : (
                 <Line options={options} data={dataOptions} height={320}/>
@@ -154,5 +153,5 @@ const CandidateChart = ({ title }) => {
     </>
   );
 };
-
 export default CandidateChart;
+  

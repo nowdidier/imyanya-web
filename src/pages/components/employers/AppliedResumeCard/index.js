@@ -36,42 +36,42 @@ const headCells = [
     showOrder: false,
     numeric: false,
     disablePadding: true,
-    label: 'Tên hồ sơ',
+    label: 'Izina ry’inyandiko',
   },
   {
     id: 'jobName',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Vị trí ứng tuyển',
+    label: 'Umwanya umuntu yasabye',
   },
   {
     id: 'appliedDate',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Thời gian nộp',
+    label: 'Igihe cyo gusaba',
   },
   {
     id: 'type',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Loại hồ sơ',
+    label: 'Ubwoko bw’inyandiko',
   },
   {
     id: 'city',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Trạng thái tuyển dụng',
+    label: 'Uko igikorwa cyo gutoranya kiri kugenda',
   },
   {
     id: 'action',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Hành động',
+    label: 'Ibikorwa',
   },
 ];
 
@@ -214,7 +214,7 @@ const AppliedResumeCard = ({ title }) => {
       try {
         await jobPostActivityService.changeApplicationStatus(id, data);
 
-        toastMessages.success('Cập nhật thành công.');
+        toastMessages.success('Byavuguruwe neza.');
 
         // success
         callback(true);
@@ -234,7 +234,7 @@ const AppliedResumeCard = ({ title }) => {
       try {
         await jobPostActivityService.deleteJobPostActivity(id);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Xóa hồ sơ ứng tuyển thành công.');
+        toastMessages.success('Dosiye yo gusaba yasibwe neza.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -244,8 +244,8 @@ const AppliedResumeCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Xóa hồ sơ ứng tuyển',
-      'Hồ sơ ứng tuyển này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
+      'Siba dosiye yo gusaba',
+      'Iyi dosiye yo gusaba izasibwa burundu kandi ntishobora kugarurwa. Wizeye neza?',
       'warning'
     );
   };
@@ -280,7 +280,7 @@ const AppliedResumeCard = ({ title }) => {
             startIcon={<FileDownloadOutlinedIcon />}
             onClick={handleExport}
           >
-            Tải danh sách
+            Vanaho urutonde
           </Button>
         </Stack>
       </Box>
@@ -290,7 +290,7 @@ const AppliedResumeCard = ({ title }) => {
       <Grid container sx={{ mb: 3 }} spacing={2}>
         <Grid item xs={12}>
           <Stack justifyContent="center">
-            <Typography variant="subtitle2">Bộ lọc: </Typography>
+            <Typography variant="subtitle2">Igikoresho cyo gushungura: </Typography>
           </Stack>
         </Grid>
         <Grid item xs={12} sm={6} md={4} xl={5}>
@@ -303,7 +303,7 @@ const AppliedResumeCard = ({ title }) => {
             size="small"
             options={jobPostOptions}
             renderInput={(params) => (
-              <TextField {...params} placeholder="Tất cả tin đăng" />
+              <TextField {...params} placeholder="Ibyatangajwe byose" />
             )}
           />
         </Grid>
@@ -323,7 +323,7 @@ const AppliedResumeCard = ({ title }) => {
             renderInput={(params) => (
               <TextField
                 {...params}
-                placeholder="Tất cả trạng thái tuyển dụng"
+                placeholder="Imimerere yose yo gutoranya"
               />
             )}
           />
@@ -339,7 +339,7 @@ const AppliedResumeCard = ({ title }) => {
               xl: 'flex-start',
             }}
           >
-            <Tooltip title="Đặt lại" arrow sx={{ mr: 1 }}>
+            <Tooltip title="Subiza uko byari bimeze" arrow sx={{ mr: 1 }}>
               <IconButton aria-label="refresh" onClick={handleResetFilterData}>
                 <RefreshIcon />
               </IconButton>
@@ -351,7 +351,7 @@ const AppliedResumeCard = ({ title }) => {
               endIcon={<ExpandMoreIcon />}
               onClick={() => setOpenPopup(true)}
             >
-              Lọc nâng cao ({numbersFilter})
+              Shungura byimbitse ({numbersFilter})
             </Button>
           </Stack>
         </Grid>
@@ -372,8 +372,8 @@ const AppliedResumeCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Lọc nâng cao"
-        buttonText="Lọc"
+        title="Shungura byimbitse"
+        buttonText="Shungura"
         buttonIcon={<FilterListIcon />}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}

@@ -40,7 +40,8 @@ const items = [
 ];
 
 const OnlineProfilePage = () => {
-  TabTitle("Cập nhật hồ sơ Online")
+  TabTitle("Hindura umwirondoro kuri interineti") // Translated to 'Update Online Profile'
+
   const refs = React.useRef([]);
 
   const handleClickScroll = (index) => {
@@ -54,37 +55,37 @@ const OnlineProfilePage = () => {
           <Stack spacing={2}>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[0] = el)}>
               {/* Start: Personal info */}
-              <PersonalInfoCard title="Thông tin cá nhân" />
+              <PersonalInfoCard title="Amakuru bwite" /> // Translated to 'Personal Information'
               {/* End: Personal info  */}
             </Card>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[1] = el)}>
               {/* Start: General info */}
-              <GeneralInfoCard title="Thông tin chung" />
+              <GeneralInfoCard title="Amakuru rusange" /> // Translated to 'General Information'
               {/* End: General info */}
             </Card>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[2] = el)}>
               {/* Start: Experience detail */}
-              <ExperienceDetailCard title="Kinh nghiệm làm việc" />
+              <ExperienceDetailCard title="Uburambe mu kazi" /> // Translated to 'Work Experience'
               {/* End: Experience detail */}
             </Card>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[3] = el)}>
               {/* Start: Education detail */}
-              <EducationDetailCard title="Thông tin học vấn" />
+              <EducationDetailCard title="Amakuru y'uburezi" /> // Translated to 'Educational Information'
               {/* End: Education detail */}
             </Card>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[4] = el)}>
               {/* Start: Appreciation */}
-              <CertificateCard title="Chứng chỉ" />
+              <CertificateCard title="Impamyabumenyi" /> // Translated to 'Certificates'
               {/* End: Appreciation */}
             </Card>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[5] = el)}>
               {/* Start: Language Skills */}
-              <LanguageSkillCard title="Kỹ năng ngôn ngữ" />
+              <LanguageSkillCard title="Ubuhanga mu ndimi" /> // Translated to 'Language Skills'
               {/* End: Language Skills */}
             </Card>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[6] = el)}>
               {/* Start: Advanced Skills */}
-              <AdvancedSkillCard title="Kỹ năng chuyên môn" />
+              <AdvancedSkillCard title="Ubuhanga bwihariye" /> // Translated to 'Advanced Skills'
               {/* End: Advanced Skills */}
             </Card>
           </Stack>
@@ -116,7 +117,7 @@ const OnlineProfilePage = () => {
             <Card sx={{ p: 2 }}>
               <Stack>
                 <Box>
-                  <Typography variant="h6">Hồ sơ trực tuyến của bạn</Typography>
+                  <Typography variant="h6">Umwirondoro wawe kuri interineti</Typography> // Translated to 'Your Online Profile'
                 </Box>
                 <Box>
                   <List

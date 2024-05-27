@@ -7,27 +7,27 @@ import PersonalInfoCard from '../../components/jobSeekers/PersonalInfoCard';
 import SettingCard from '../../components/settings/SettingCard';
 
 const AccountPage = () => {
-  TabTitle('Quản lý tài khoản Người tìm việc');
+  TabTitle('Gucunga konti y\'Umushakisha akazi');
 
   return (
     <Grid spacing={3} container>
       <Grid item xs={12} sm={12} md={5} lg={6} xl={6}>
         <Card sx={{ p: 2 }}>
           {/* Start: Account card */}
-          <AccountCard title="Thông tin tài khoản" />
+          <AccountCard title="Amakuru kuri konti" />
           {/* End: Account card */}
         </Card>
       </Grid>
       <Grid item xs={12} sm={12} md={7} lg={6} xl={6}>
         <Card sx={{ p: 2 }}>
           {/* Start: Personal info */}
-          <PersonalInfoCard title="Thông tin cá nhân" />
+          <PersonalInfoCard title="Amakuru yihariye" />
           {/* End: Personal info  */}
         </Card>
 
         <Card sx={{ p: 2, marginTop: 3 }}>
           {/* Start: SettingCard info */}
-          <SettingCard title="Setting" />
+          <SettingCard title="Igenamiterere" />
           {/* End: SettingCard info  */}
         </Card>
       </Grid>

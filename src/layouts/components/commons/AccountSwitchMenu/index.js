@@ -58,15 +58,15 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
     if (isAuthenticated) {
       let title = '';
       let text =
-        'Konti iri gukoreshwa izasohoka. Urashaka koko?';
+        'Konti iri kwinjira ubu izasohoka. Urabikomeye?';
       let path = '';
       switch (currentUser?.roleName) {
         case ROLES_NAME.JOB_SEEKER:
-          title = 'Injira nk’Umukoresha';
+          title = 'Injira nk’umukoresha';
           path = '/dang-nhap-nha-tuyen-dung';
           break;
         case ROLES_NAME.EMPLOYER:
-          title = 'Injira nk’Umukozi';
+          title = 'Injira nk’umushakisha akazi';
           path = '/dang-nhap-ung-vien';
           break;
         default:
@@ -87,15 +87,15 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
     if (isAuthenticated) {
       let title = '';
       let text =
-        'Konti iri gukoreshwa izasohoka. Urashaka koko?';
+        'Konti iri kwinjira ubu izasohoka. Urabikomeye?';
       let path = '';
       switch (currentUser?.roleName) {
         case ROLES_NAME.JOB_SEEKER:
-          title = 'Iyandikishe nka Umukoresha';
+          title = 'Iyandikishe nk’umukoresha';
           path = '/dang-ky-tai-khoan-nha-tuyen-dung';
           break;
         case ROLES_NAME.EMPLOYER:
-          title = 'Iyandikishe nka Umukozi';
+          title = 'Iyandikishe nk’umushakisha akazi';
           path = '/dang-ky-tai-khoan-ung-vien';
           break;
         default:
@@ -122,7 +122,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
         <Stack direction="column">
           <Typography>Umukoresha</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            Shyiraho itangazo kubuntu
+            Tangaza ku buntu
           </Typography>
         </Stack>
       </Stack>
@@ -135,7 +135,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Umukozi</Typography>
+          <Typography>Umushakisha akazi</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
             <FontAwesomeIcon icon={faArrowRight} /> Hindura
           </Typography>
@@ -152,7 +152,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
         <Stack direction="column">
           <Typography>Umukoresha</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            Shyiraho itangazo kubuntu
+            Tangaza ku buntu
           </Typography>
         </Stack>
       </Stack>
@@ -172,8 +172,8 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             sx={{ textTransform: 'inherit' }}
           >
             {currentUser?.roleName === ROLES_NAME.EMPLOYER
-              ? 'Injira nk’Umukozi'
-              : 'Injira nk’Umukoresha'}
+              ? 'Injira nk’umushakisha akazi'
+              : 'Injira nk’umukoresha'}
           </Button>
           <Button
             variant="outlined"
@@ -184,8 +184,8 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             onClick={handleSignUp}
           >
             {currentUser?.roleName === ROLES_NAME.EMPLOYER
-              ? 'Iyandikishe nka Umukozi'
-              : 'Iyandikishe nka Umukoresha'}
+              ? 'Iyandikishe nk’umushakisha akazi'
+              : 'Iyandikishe nk’umukoresha'}
           </Button>
         </Stack>
       ) : (

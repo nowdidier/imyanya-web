@@ -5,7 +5,7 @@ import { TabTitle } from '../../../utils/generalFunction';
 import AccountCard from '../../components/auths/AccountCard';
 
 const AccountPage = () => {
-  TabTitle('Quản lý tài khoản Nhà tuyển dụng');
+  TabTitle('Gucunga konti y’Umukoresha');
 
   return (
     <Stack spacing={3}>
@@ -13,7 +13,7 @@ const AccountPage = () => {
         <Grid container>
           <Grid item xs={12} sm={12} md={6} lg={5} xl={5}>
             {/* Start: Account card */}
-            <AccountCard title="Thông tin tài khoản" />
+            <AccountCard title="Amakuru ya konti" />
             {/* End: Account card */}
           </Grid>
         </Grid>

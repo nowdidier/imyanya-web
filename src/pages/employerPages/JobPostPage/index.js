@@ -5,7 +5,7 @@ import { TabTitle } from '../../../utils/generalFunction';
 import JobPostCard from '../../components/employers/JobPostCard';
 
 const JobPostPage = () => {
-  TabTitle("Quản lý tin tuyển dụng")
+  TabTitle("Gucunga amakuru yo gushaka abakozi")
 
   return (
     <Card sx={{ p: 3 }}>

@@ -9,7 +9,7 @@ import ApplicationChart from '../../components/employers/charts/ApplicationChart
 import HiringAcademicChart from '../../components/employers/charts/HiringAcademicChart';
 
 const DashboardPage = () => {
-  TabTitle("Trang quản trị Nhà tuyển dụng")
+  TabTitle("Ipaji y'ibaruramari - Umukoresha")
 
   return (
     <>
@@ -21,22 +21,22 @@ const DashboardPage = () => {
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={6}>
           {/* Start: RecruitmentChart */}
-          <RecruitmentChart title="BIỂU ĐỒ TUYỂN DỤNG" />
+          <RecruitmentChart title="IGISHUSHANYO MBONERA CY'AKAZI" />
           {/* End: RecruitmentChart */}
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={6}>
           {/* Start: CandidateChart */}
-          <CandidateChart title="BIỂU ĐỒ ỨNG VIÊN" />
+          <CandidateChart title="IGISHUSHANYO MBONERA CY'ABAKANDIDA" />
           {/* End: CandidateChart */}
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={6}>
           {/* Start: ApplicationChart */}
-          <ApplicationChart title="BIỂU ĐỒ TUYỂN DỤNG & ỨNG TUYỂN" />
+          <ApplicationChart title="IGISHUSHANYO MBONERA CY'AKAZI & GUSABA" />
           {/* End: ApplicationChart */}
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={6}>
           {/* Start: HiringAcademicChart */}
-          <HiringAcademicChart title="BIỂU ĐỒ TUYỂN DỤNG THEO CẤP BẬC" />
+          <HiringAcademicChart title="IGISHUSHANYO MBONERA CY'AKAZI KU RWEGO RW'AMASHURI" />
           {/* End: HiringAcademicChart */}
         </Grid>
       </Grid>

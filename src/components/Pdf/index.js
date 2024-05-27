@@ -95,8 +95,7 @@ const Pdf = ({ fileUrl, title = '' }) => {
                       onClick={props.onClick}
                       startIcon={<FileDownloadIcon />}
                     >
-                      Tải xuống
-                    </Button>
+Download                    </Button>
                   )}
                 </Download>
               </Stack>

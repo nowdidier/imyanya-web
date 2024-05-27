@@ -145,7 +145,7 @@ const JobPostSearch = () => {
                 color="secondary"
                 onClick={handleChangeShowFilter}
               >
-                Hisha byinshi
+                hishura byinshi
               </Button>
             </Stack>
           </Grid>
@@ -166,7 +166,7 @@ const JobPostSearch = () => {
               sx={{ pt: 0.5, fontSize: 16 }}
               color="GrayText"
             >
-              Hisha byinshi
+              hishura byinshi
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>

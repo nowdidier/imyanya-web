@@ -34,8 +34,7 @@ const Map = ({ title, subTitle, latitude, longitude }) => {
     </Box>
   ) : (
     <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-      Chưa thể xác định vị trí trên bản đồ
-    </span>
+Ntushobora kumenya ahantu ku ikarita    </span>
   );
 };
 

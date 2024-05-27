@@ -24,7 +24,7 @@ const ApplyCard = ({
       try {
         await jobPostActivityService.applyJob(data);
 
-        toastMessages.success('Ứng tuyển thành công.');
+        toastMessages.success('Application successful.');
         setIsApplySuccess(true);
         setOpenPopup(false);
       } catch (error) {
@@ -42,11 +42,11 @@ const ApplyCard = ({
       <FormPopup
         title={
           <>
-            <Typography color="gray">Ứng tuyển vị trí </Typography>
+            <Typography color="gray">Apply for position </Typography>
             <span>{title}</span>
           </>
         }
-        buttonText="Ứng tuyển"
+        buttonText="Apply"
         buttonIcon={<SendIcon />}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}

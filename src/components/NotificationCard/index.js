@@ -309,8 +309,7 @@ const NotificationCard = () => {
             <Stack spacing={2} sx={{ p: 1 }}>
               {notifications.length === 0 ? (
                 <Typography textAlign="center" variant="body2" color="gray">
-                  Chưa có thông báo nào
-                </Typography>
+There are no announcements yet                </Typography>
               ) : (
                 notifications.map((value, idx) => (
                   <Stack
@@ -416,8 +415,7 @@ const NotificationCard = () => {
                       color="GrayText"
                     >
                       <span style={{ cursor: 'pointer' }} onClick={loadMore}>
-                        Xem thêm
-                      </span>
+                      see more                      </span>
                     </Typography>
                   </Stack>
                 )}
@@ -434,8 +432,7 @@ const NotificationCard = () => {
                         style={{ cursor: 'pointer' }}
                         onClick={handleRemoveAll}
                       >
-                        Xóa tất cả
-                      </span>
+Delete all                      </span>
                     </Typography>
                   </Stack>
                 )}

@@ -131,7 +131,7 @@ const Header = (props) => {
           sx={{ color: "white" }}
           onClick={handleLogin}
         >
-          Đăng nhập
+         Injira
         </Button>
         <Button
           variant="outlined"

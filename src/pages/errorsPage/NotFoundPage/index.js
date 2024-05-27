@@ -6,7 +6,7 @@ import { Result } from 'antd';
 import { TabTitle } from '../../../utils/generalFunction';
 
 const NotFoundPage = () => {
-  TabTitle("Không tìm thấy trang")
+  TabTitle("Ntibyabonetse")
   const nav = useNavigate();
 
   return (
@@ -20,10 +20,10 @@ const NotFoundPage = () => {
         style={{ marginTop: '15vh' }}
         status="404"
         title="404"
-        subTitle="Xin lỗi, trang bạn truy cập không tồn tại."
+        subTitle="Mbabarira, urupapuro ushaka ntirubaho."
         extra={
           <Button type="primary" variant="contained" onClick={() => nav('/')}>
-            Về trang chủ
+            Gusubira ku rupapuro rw'itangiriro
           </Button>
         }
       />

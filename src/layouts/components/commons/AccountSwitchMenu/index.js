@@ -114,7 +114,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
     return currentUser?.roleName === ROLES_NAME.JOB_SEEKER ? (
       <Stack direction="row" alignItems="center">
         <FontAwesomeIcon
-          color="#2c95ff"
+          color="#F3A92C"
           icon={faBriefcase}
           fontSize={25}
           style={{ marginRight: 8 }}
@@ -129,7 +129,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
     ) : currentUser?.roleName === ROLES_NAME.EMPLOYER ? (
       <Stack direction="row" alignItems="center">
         <FontAwesomeIcon
-          color="#2c95ff"
+          color="#F3A92C"
           icon={faUsers}
           fontSize={25}
           style={{ marginRight: 8 }}
@@ -144,7 +144,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
     ) : (
       <Stack direction="row" alignItems="center">
         <FontAwesomeIcon
-          color="#2c95ff"
+          color="#F3A92C"
           icon={faBriefcase}
           fontSize={25}
           style={{ marginRight: 8 }}

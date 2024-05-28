@@ -127,7 +127,7 @@ const InputBaseSearchHomeCustom = ({
           >
             <Stack>
               <Box>
-                <Typography fontWeight="bold" fontSize={17} color="#2C95FF">
+                <Typography fontWeight="bold" fontSize={17} color="#F3A92C">
                   Ibyibutso byo gushakisha
                 </Typography>
                 <Stack>
@@ -175,7 +175,7 @@ const InputBaseSearchHomeCustom = ({
               </Box>
               {(recentSearch || [])?.length > 0 && (
                 <Box>
-                  <Typography fontWeight="bold" fontSize={17} color="#2C95FF">
+                  <Typography fontWeight="bold" fontSize={17} color="#F3A92C">
                     Gushakisha vubaganza
                   </Typography>
                   <Stack>
@@ -199,7 +199,7 @@ const InputBaseSearchHomeCustom = ({
                               mr: 1,
                             }}
                           >
-                            <QueryBuilderIcon sx={{ color: '#2C95FF' }} />
+                            <QueryBuilderIcon sx={{ color: '#F3A92C' }} />
                           </ListItemIcon>
                           <ListItemText primary={`${value}`} secondary={null} />
                         </ListItem>

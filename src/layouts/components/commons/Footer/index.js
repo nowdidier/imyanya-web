@@ -212,7 +212,7 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Hura na MyJob
+                Hura na IMYANYA
               </Typography>
             </ListItem>
             <ListItem>

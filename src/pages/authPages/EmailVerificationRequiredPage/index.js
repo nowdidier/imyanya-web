@@ -24,7 +24,7 @@ const EmailVerificationRequiredPage = () => {
           Emeza Email
         </Typography>
         <Typography variant="subtitle2 ">
-          Murakoze kwiyandikisha kuri MyJob
+          Murakoze kwiyandikisha kuri IMYANYA
         </Typography>
       </Stack>
       <Card sx={{ p: 6, pt: 2, boxShadow: 0 }}>

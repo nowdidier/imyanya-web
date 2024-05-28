@@ -8,7 +8,7 @@ import { ABOUT_IMAGES } from '../../../configs/constants';
 
 
 const AboutUsPage = () => {
-  TabTitle('Twebwe - Sisitemu yo kumenyekanisha akazi MyJob');
+  TabTitle('Twebwe - Sisitemu yo kumenyekanisha akazi IMYANYA');
 
   return (
     <>
@@ -19,7 +19,7 @@ const AboutUsPage = () => {
         <Stack spacing={3}>
           <Box>
             <Typography>
-              MyJob - Urubuga rw'amakuru y'akazi n'uburyo bwo gushaka akazi ku bigo byose n'abashaka akazi. Twizeye ko tuzazana "ICYIZERE" ku bigo bishaka abakozi b'impano no ku bashaka akazi bashaka amahirwe y'umwuga. Dufite sisitemu ebyiri: Urubuga rwagenewe Abakoresha n'Ubusabe (Application) bwagenewe Abashaka Akazi, MyJob izatanga ubunararibonye bushya, bushimishije; ihuza inzozi zo gutsinda mu kazi kwa buri mpano yose kandi ifasha ibigo kubaka ikipe y'abakozi ikomeye.
+              IMYANYA- Urubuga rw'amakuru y'akazi n'uburyo bwo gushaka akazi ku bigo byose n'abashaka akazi. Twizeye ko tuzazana "ICYIZERE" ku bigo bishaka abakozi b'impano no ku bashaka akazi bashaka amahirwe y'umwuga. Dufite sisitemu ebyiri: Urubuga rwagenewe Abakoresha n'Ubusabe (Application) bwagenewe Abashaka Akazi, IMYANYAizatanga ubunararibonye bushya, bushimishije; ihuza inzozi zo gutsinda mu kazi kwa buri mpano yose kandi ifasha ibigo kubaka ikipe y'abakozi ikomeye.
             </Typography>
           </Box>
           <Box>
@@ -70,7 +70,7 @@ const AboutUsPage = () => {
       </Box>
       <Box sx={{ my: 3 }}>
         <Typography variant="h4" sx={{ mb: 2, color: '#441da0' }}>
-          Porogaramu ya Mobile MyJob
+          Porogaramu ya Mobile IMYANYA
         </Typography>
         <Box sx={{ mt: 5 }}>
           <Card sx={{ p: 5 }}>
@@ -168,7 +168,7 @@ const AboutUsPage = () => {
             Akazi kari hafi yawe
           </Typography>
           <Typography textAlign="justify" color="#6D7681">
-            Ibiranga AKAZI KARI HAFI YAWE kuri app MyJob. Iki gice gifasha abashaka akazi kubona byoroshye akazi kabakwiye, kandi kikabaha amahirwe yo gukora hafi y'aho batuye, bikaborohereza mu ngendo zabo za buri munsi nta kintu kindi bisaba mu gushakisha mu matangazo y'akazi menshi.
+            Ibiranga AKAZI KARI HAFI YAWE kuri app IMYANYA. Iki gice gifasha abashaka akazi kubona byoroshye akazi kabakwiye, kandi kikabaha amahirwe yo gukora hafi y'aho batuye, bikaborohereza mu ngendo zabo za buri munsi nta kintu kindi bisaba mu gushakisha mu matangazo y'akazi menshi.
           </Typography>
         </Stack>
       </Box>

@@ -25,7 +25,7 @@ const ProfilePage = () => {
           <Stack spacing={2}>
             <Card sx={{ p: { xs: 2, sm: 2, md: 2, lg: 3, xl: 3 } }}>
               {/* Start: Box profile */}
-              <BoxProfile title="MyJob Profile" /> // Title kept in English
+              <BoxProfile title="IMYANYAProfile" /> // Title kept in English
               {/* End: Box profile  */}
             </Card>
             <Card sx={{ p: { xs: 2, sm: 2, md: 2, lg: 3, xl: 3 } }}>

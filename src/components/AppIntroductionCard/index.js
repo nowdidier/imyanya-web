@@ -58,7 +58,7 @@ const AppIntroductionCard = () => {
           </Box>
           <Box>
             <Typography>
-              Shaka akazi neza unyuze mu gukuramo IMYANYAkuri telefone yawe kandi witegure guhabwa akazi uyu munsi!
+              Shaka akazi neza unyuze mu kumanura IMYANYA muri telefone yawe kandi witegure guhabwa akazi uyu munsi!
             </Typography>
           </Box>
           <Box component="form" onSubmit={handleSendSMS}>

@@ -12,7 +12,7 @@ const CompanyPage = () => {
     <Box sx={{ mt: 2 }}>
       <Box sx={{ mt: 4 }}>
         <Typography variant="h4" gutterBottom>
-          Menya Umuco w'Ikigo
+          Menya ibiranga Ikigo
         </Typography>
         <Typography>
           Menya umuco w'ikigo kandi uhitemo ahantu heza ho gukorera hakubereye

@@ -32,35 +32,35 @@ const Footer = () => {
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/ve-chung-toi')}
-                primary="Ku byerekeye  IMYANYA"
+                primary="About MyJob"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/lien-he')}
-                primary="Vugana Natwe"
+                primary="Contact"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/hoi-dap')}
-                primary="Ibibazo"
+                primary="FAQ"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/thoa-thuan-su-dung')}
-                primary="Amasezerano yo gukoresha"
+                primary="Terms of Use"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/quy-dinh-bao-mat')}
-                primary="Amabwiriza y'ubuzima bwite"
+                primary="Privacy Policy"
               />
             </ListItem>
           </List>
@@ -74,42 +74,42 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Ku bakoresha
+                For Employers
               </Typography>
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/nha-tuyen-dung/tin-tuyen-dung')}
-                primary="Ishyiraho Ibyifuzo"
+                primary="Post a Job"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/nha-tuyen-dung/danh-sach-ung-vien')}
-                primary="Shakisha Abarangiza"
+                primary="Search Resumes"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/nha-tuyen-dung')}
-                primary="Guhagarika Umukoresha"
+                primary="Employer Management"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/tro-chuyen')}
-                primary="Ubutumwa"
+                primary="Messages"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/thong-bao')}
-                primary="Amakuru"
+                primary="Notifications"
               />
             </ListItem>
           </List>
@@ -123,42 +123,42 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                KU BAKORESHWA
+                For Job Seekers
               </Typography>
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/viec-lam')}
-                primary="Akazi"
+                primary="Jobs"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/cong-ty')}
-                primary="Sosiyete"
+                primary="Companies"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/ung-vien')}
-                primary="Gukora Abatoza"
+                primary="Candidate Management"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/ung-vien/tin-nhan')}
-                primary="Ubutumwa"
+                primary="Messages"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/ung-vien/thong-bao')}
-                primary="Amakuru"
+                primary="Notifications"
               />
             </ListItem>
           </List>
@@ -172,7 +172,7 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Porogaramu za telefoni
+                Mobile App
               </Typography>
             </ListItem>
             <ListItem>
@@ -192,7 +192,7 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Byemejwe na
+                Certified by
               </Typography>
             </ListItem>
             <ListItem>
@@ -212,7 +212,7 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Hura na IMYANYA
+                Connect with MyJob
               </Typography>
             </ListItem>
             <ListItem>

@@ -154,7 +154,7 @@ const Company = ({
                     style={{ marginRight: 2 }}
                     color="#bdbdbd"
                   />{' '}
-                  {followNumber} lượt theo dõi
+                  {followNumber} abantu bakurikiye
                 </Typography>
               </Box>
             </Stack>
@@ -183,7 +183,7 @@ const Company = ({
               />{' '}
               {fieldOperation || (
                   <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-                  Chưa cập nhật
+                  Ntaramenyekana
                 </span>
               )}
             </Typography>
@@ -195,7 +195,7 @@ const Company = ({
               />{' '}
               {allConfig?.cityDict[city] || (
                 <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-                Chưa cập nhật
+                Ntaramenyekana
               </span>
               )}
             </Typography>
@@ -207,7 +207,7 @@ const Company = ({
               />{' '}
               {allConfig?.employeeSizeDict[employeeSize] || (
                  <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-                 Chưa cập nhật
+                 Ntaramenyekana
                </span>
               )}
             </Typography>
@@ -217,7 +217,7 @@ const Company = ({
                 style={{ marginRight: 2 }}
                 color="#bdbdbd"
               />{' '}
-              {jobPostNumber} việc làm
+              {jobPostNumber} imirimo
             </Typography>
           </Box>
         </Box>
@@ -228,6 +228,7 @@ const Company = ({
     </Card>
   );
 };
+
 
 const Loading = () => (
   <>

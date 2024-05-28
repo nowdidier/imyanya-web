@@ -42,7 +42,7 @@ const ApplyCard = ({
       <FormPopup
         title={
           <>
-            <Typography color="gray">Apply for position </Typography>
+            <Typography color="gray">phoneiganira kuruyu Mwanya </Typography>
             <span>{title}</span>
           </>
         }

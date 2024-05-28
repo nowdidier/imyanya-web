@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
 });
 
 const CVDoc = () => {
- 
   return (
     <Document>
       <Page size="A4" style={styles.body}>
@@ -60,31 +59,31 @@ const CVDoc = () => {
             </Text>
           </View>
           <View>
-            <Text style={{ marginTop: 5, fontSize: 20 }}>Product Manager</Text>
+            <Text style={{ marginTop: 5, fontSize: 20 }}>Umuyobozi w'ibicuruzwa</Text>
           </View>
         </View>
         <View style={{ flexDirection: 'row', marginTop: 20 }}>
           <View style={{ flex: 1 }}>
-            <Text>Ngày sinh: 27-02-2001</Text>
+            <Text>Itariki y'amavuko: 27-02-2001</Text>
           </View>
           <View style={{ flex: 1 }}>
             <Text>Email: Khuy220@gmail.com</Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Text>Số điện thoại: 0888425094</Text>
+            <Text>Telefone: 0888425094</Text>
           </View>
         </View>
         <View style={{ flexDirection: 'column' }}>
           <View style={{ marginTop: 20 }}>
             <View style={{ marginBottom: 10 }}>
               <Text style={{ fontSize: 18, color: '#140861' }}>
-                THÔNG TIN CHUNG
+                AMAKURU RUSANGE
               </Text>
             </View>
             <View style={{ flexDirection: 'column' }}>
               <View style={{ flexDirection: 'row' }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Nghề nghiệp: </Text>
+                  <Text>Umwuga: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
                   <Text>IT</Text>
@@ -92,7 +91,7 @@ const CVDoc = () => {
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Địa điểm làm việc: </Text>
+                  <Text>Aho ukorera: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
                   <Text>TP. HCM</Text>
@@ -100,15 +99,15 @@ const CVDoc = () => {
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Cấp bậc mong muốn: </Text>
+                  <Text>Urwego rushakwa: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
-                  <Text>Nhan vien</Text>
+                  <Text>Umukozi</Text>
                 </View>
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Mức lương mong muốn: </Text>
+                  <Text>Umushahara ushakwa: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
                   <Text>10.000.000 ₫ - 15.000.000 ₫</Text>
@@ -116,34 +115,34 @@ const CVDoc = () => {
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Trình độ học vấn: </Text>
+                  <Text>Impamyabumenyi: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
-                  <Text>Dai hoc</Text>
+                  <Text>Yunivesite</Text>
                 </View>
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Kinh nghiệm làm việc: </Text>
+                  <Text>Ubumenyi bw'akazi: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
-                  <Text>Duoi 1 nam kinh nghiem</Text>
+                  <Text>Munsi y'umwaka w'uburambe</Text>
                 </View>
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Nơi làm việc mong muốn: </Text>
+                  <Text>Aho ukorera ushaka: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
-                  <Text>Van phong</Text>
+                  <Text>Ibiro</Text>
                 </View>
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Hình thức làm việc mong muốn: </Text>
+                  <Text>Ubwoko bw'akazi ushaka: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
-                  <Text>Nhan vien chinh thuc</Text>
+                  <Text>Umukozi wa nyirizina</Text>
                 </View>
               </View>
             </View>
@@ -151,7 +150,7 @@ const CVDoc = () => {
 
           <View style={{ marginTop: 20 }}>
             <View style={{ marginBottom: 10 }}>
-              <Text style={{ fontSize: 18, color: '#140861' }}>Mục tiêu nghề nghiệp</Text>
+              <Text style={{ fontSize: 18, color: '#140861' }}>Intego z'umwuga</Text>
             </View>
             <View>
               <Text>
@@ -169,7 +168,7 @@ const CVDoc = () => {
 
           <View style={{ marginTop: 20 }}>
             <View>
-              <Text style={{ fontSize: 18, color: '#140861' }}>KINH NGHIỆM LÀM VIỆC</Text>
+              <Text style={{ fontSize: 18, color: '#140861' }}>UBURAMBE BW'AKAZI</Text>
             </View>
             <View style={{ marginTop: 10 }}>
               <View>
@@ -178,10 +177,10 @@ const CVDoc = () => {
                 </Text>
               </View>
               <View>
-                <Text>Lap trình viên Python</Text>
+                <Text>Umukozi wa Python</Text>
               </View>
               <View>
-                <Text>Cong ty TNHH MTV DV Vien Thong Phuong Nam</Text>
+                <Text>Kampani TNHH MTV DV Vien Thong Phuong Nam</Text>
               </View>
               <View style={{ marginTop: 5 }}>
                 <Text>
@@ -200,10 +199,10 @@ const CVDoc = () => {
                 </Text>
               </View>
               <View>
-                <Text>Lap trình viên Python</Text>
+                <Text>Umukozi wa Python</Text>
               </View>
               <View>
-                <Text>Cong ty TNHH MTV DV Vien Thong Phuong Nam</Text>
+                <Text>Kampani TNHH MTV DV Vien Thong Phuong Nam</Text>
               </View>
               <View style={{ marginTop: 5 }}>
                 <Text>
@@ -219,17 +218,17 @@ const CVDoc = () => {
 
           <View style={{ marginTop: 20 }}>
             <View>
-              <Text style={{ fontSize: 18, color: '#140861' }}>HỌC VẤN</Text>
+              <Text style={{ fontSize: 18, color: '#140861' }}>AMASHURI</Text>
             </View>
             <View style={{ marginTop: 10 }}>
               <View>
                 <Text>09/2022 - 03/2023</Text>
               </View>
               <View>
-                <Text>Cong nghe thong tin</Text>
+                <Text>Ikoranabuhanga</Text>
               </View>
               <View>
-                <Text>Cử nhân - Đại học Mở Thành phố Hồ Chí Minh</Text>
+                <Text>Impamyabumenyi - Yuniversite yigenga ya Ho Chi Minh</Text>
               </View>
               <View style={{ marginTop: 5 }}>
                 <Text>
@@ -240,53 +239,6 @@ const CVDoc = () => {
                   avino fue la del Puerto Lápice, otros dicen que la de los
                 </Text>
               </View>
-            </View>
-          </View>
-
-          <View style={{ marginTop: 20 }}>
-            <View>
-              <Text style={{ fontSize: 18, color: '#140861' }}>CHỨNG CHỈ</Text>
-            </View>
-            <View style={{ marginTop: 10 }}>
-              <View>
-                <Text style={{ fontStyle: 'italic' }}>09/2022 - 03/2023</Text>
-              </View>
-              <View>
-                <Text>Cong nghe thong tin</Text>
-              </View>
-              <View>
-                <Text>Cử nhân - Đại học Mở Thành phố Hồ Chí Minh</Text>
-              </View>
-            </View>
-          </View>
-
-          <View style={{ marginTop: 20 }}>
-            <View style={{ marginBottom: 5 }}>
-              <Text style={{ fontSize: 18, color: '#140861' }}>KỸ NĂNG NGÔN NGỮ</Text>
-            </View>
-            <View style={{ marginTop: 5 }}>
-              <Text>Anh (5/5)</Text>
-            </View>
-            <View style={{ marginTop: 5 }}>
-              <Text>Anh (5/5)</Text>
-            </View>
-            <View style={{ marginTop: 5 }}>
-              <Text>Anh (5/5)</Text>
-            </View>
-            <View style={{ marginTop: 5 }}>
-              <Text>Anh (5/5)</Text>
-            </View>
-          </View>
-
-          <View style={{ marginTop: 20 }}>
-            <View style={{ marginBottom: 5 }}>
-              <Text style={{ fontSize: 18, color: '#140861' }}>KỸ NĂNG CHUYÊN MÔN</Text>
-            </View>
-            <View style={{ marginTop: 5 }}>
-              <Text>JAVASCRIPT (5/5)</Text>
-            </View>
-            <View style={{ marginTop: 5 }}>
-              <Text>Python (5/5)</Text>
             </View>
           </View>
         </View>

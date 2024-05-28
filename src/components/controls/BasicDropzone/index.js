@@ -8,7 +8,6 @@ import {
   faCircleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 
-
 const FileDropzone = ({ accept, onDrop, values }) => {
   const { getRootProps, getInputProps } = useDropzone({
     accept,
@@ -38,17 +37,17 @@ const FileDropzone = ({ accept, onDrop, values }) => {
             <Box>
               <FontAwesomeIcon icon={faArrowUpFromBracket} fontSize={50} />
             </Box>
-            <Typography variant="h5">Kéo hồ sơ của bạn vào đây</Typography>
-            <Typography>Hoặc bạn có thể</Typography>
+            <Typography variant="h5">Kura dosiye yawe hano</Typography>
+            <Typography>Cyangwa ushobora</Typography>
             <Button
               variant="contained"
               size="small"
               color="warning"
               sx={{ color: 'white' }}
             >
-              Chọn hồ sơ từ máy bạn
+              Hitamo dosiye ku gikoresho cyawe
             </Button>
-            <Typography variant="caption">Hỗ trợ định dạng .pdf</Typography>
+            <Typography variant="caption">Ishyigikira ubwoko bwa .pdf</Typography>
           </>
         ) : (
           <>
@@ -59,7 +58,7 @@ const FileDropzone = ({ accept, onDrop, values }) => {
               color="warning"
               sx={{ color: 'white' }}
             >
-              Đổi tập tin
+              Hindura dosiye
             </Button>
           </>
         )}

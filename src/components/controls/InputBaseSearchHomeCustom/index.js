@@ -277,8 +277,7 @@ const InputBaseSearchHomeCustom = ({
           />
           {showSubmitButton && (
             <Button variant="contained" type="submit" color="primary">
-              Tìm kiếm
-            </Button>
+Shakisha            </Button>
           )}
         </Box>
       </Tippy>

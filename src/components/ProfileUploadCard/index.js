@@ -72,7 +72,7 @@ const ProfileUploadCard = ({
               size="small"
               icon={<StarIcon color="warning" />}
               color="success"
-              label="Cho phép tìm kiếm"
+              label="Emeza gushakisha"
               onClick={() => handleActive(slug)}
             />
           ) : (
@@ -82,12 +82,12 @@ const ProfileUploadCard = ({
               size="small"
               icon={<StarOutlineIcon color="warning" />}
               color="default"
-              label="Cho phép tìm kiếm"
+              label="Emeza gushakisha"
               onClick={() => handleActive(slug)}
             />
           )}
           <Tooltip
-           title={`Bật "Cho phép tìm kiếm" sẽ giúp nhà tuyển dụng tìm thấy hồ sơ của bạn và họ có thể liên hệ với bạn về công việc mới. Chỉ có duy nhất một hồ được bật trạng thái "cho phép tìm kiếm" trong tất cả hồ sơ của bạn.`}
+           title={`Gufungura "Emeza gushakisha" bizafasha abakoresha kubona CV yawe kandi bashobora kuguhamagara ku kazi gashya. Gusa CV imwe niyo yemerewe gufungura ubu buryo muri CV zose ufite.`}
             arrow
           >
             <HelpIcon color="disabled" />
@@ -120,7 +120,7 @@ const ProfileUploadCard = ({
             </Stack>
             <Box>
               <Typography variant="caption">
-                Cập nhật lần cuối:{' '}
+                Byavuguruwe bwa nyuma:{' '}
                 {dayjs(updateAt).format('DD/MM/YYYY HH:mm:ss')}
               </Typography>
             </Box>
@@ -131,7 +131,7 @@ const ProfileUploadCard = ({
                   size="small"
                   icon={<DownloadIcon />}
                   color="secondary"
-                  label="Tải xuống"
+                  label="Vanaho"
                   onClick={() => downloadPdf(fileUrl, title)}
                 />
               </Stack>

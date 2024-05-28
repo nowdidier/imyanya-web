@@ -137,8 +137,7 @@ const JobPostLarge = ({
                 color: 'orange',
               }}
             >
-              Tuyển gấp
-            </span>
+              Gutoranya byihutirwa            </span>
           )}
         </Box>
       </Stack>

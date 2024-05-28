@@ -32,19 +32,20 @@ const ApplyForm = ({ handleApplyJob }) => {
   const schema = yup.object().shape({
     fullName: yup
       .string()
-      .required('Họ và tên là bắt buộc.')
-      .max(100, 'Họ và tên vượt quá độ dài cho phép.'),
+      .required('Izina ryawe ni ryiza.')
+      .max(100, 'Izina ryawe rirangiye ibyerekeye uburyo bwo kubika.'),
     email: yup
       .string()
-      .required('Email là bắt buộc.')
-      .email('Email không hợp lệ.')
-      .max(100, 'Email vượt quá độ dài cho phép.'),
+      .required('Email ni cyiza.')
+      .email('Email nticyiza.')
+      .max(100, 'Email rirangiye ibyerekeye uburyo bwo kubika.'),
     phone: yup
       .string()
-      .required('Số điện thoại là bắt buộc.')
-      .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
-      .max(15, 'Số điện thoại vượt quá độ dài cho phép.'),
+      .required('Telefoni ni cyiza.')
+      .matches(REGEX_VATIDATE.phoneRegExp, 'Telefoni nticyiza.')
+      .max(15, 'Telefoni rirangiye ibyerekeye uburyo bwo kubika.'),
   });
+  
 
   const { control, setValue, handleSubmit } = useForm({
     defaultValues: {
@@ -173,42 +174,41 @@ const ApplyForm = ({ handleApplyJob }) => {
             </Stack>
           </Grid>
           <Grid item xs={12}>
-            <TextFieldCustom
-              name="fullName"
-              title="Họ và tên"
-              showRequired={true}
-              placeholder="Nhập họ và tên"
-              control={control}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextFieldCustom
-              name="email"
-              title="Email"
-              showRequired={true}
-              placeholder="Nhập email"
-              control={control}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextFieldCustom
-              name="phone"
-              title="Số điện thoại"
-              showRequired={true}
-              placeholder="Nhập số điện thoại"
-              control={control}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Typography color="GrayText" variant="caption">
-              Lưu ý: Họ tên, email, số điện thoại cần chính xác để nhà tuyển
-              dụng liên hệ với bạn.
-            </Typography>
-          </Grid>
-        </Grid>
-      </form>
-    </>
-  );
+  <TextFieldCustom
+    name="fullName"
+    title="Izina ryose"
+    showRequired={true}
+    placeholder="Shyiramo izina ryose"
+    control={control}
+  />
+</Grid>
+<Grid item xs={12}>
+  <TextFieldCustom
+    name="email"
+    title="Email"
+    showRequired={true}
+    placeholder="Shyiramo email"
+    control={control}
+  />
+</Grid>
+<Grid item xs={12}>
+  <TextFieldCustom
+    name="phone"
+    title="Nomero ya telefoni"
+    showRequired={true}
+    placeholder="Shyiramo nomero ya telefoni"
+    control={control}
+  />
+</Grid>
+<Grid item xs={12}>
+  <Typography color="GrayText" variant="caption">
+    Uwibuke: Izina ryose, email, na nomero ya telefoni bigomba kuba bizwi neza kugira ngo umukoresha abashe kubahuza nawe.
+  </Typography>
+</Grid>
+</Grid>
+</form>
+</>
+);
 };
 
 export default ApplyForm;

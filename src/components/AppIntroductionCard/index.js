@@ -45,7 +45,7 @@ const AppIntroductionCard = () => {
       ) {
         sendSMS({ phone: value });
       } else {
-        toastMessages.error('Nimero ya telefone ntibaho!');
+        toastMessages.error('Nomero ya telefoni ntibaho!');
       }
   };
 
@@ -58,7 +58,7 @@ const AppIntroductionCard = () => {
           </Box>
           <Box>
             <Typography>
-              Shaka akazi neza ushyire MyJob muri telefone yawe kandi witegure guhabwa akazi uyu munsi!
+              Shaka akazi neza unyuze mu gukuramo MyJob kuri telefone yawe kandi witegure guhabwa akazi uyu munsi!
             </Typography>
           </Box>
           <Box component="form" onSubmit={handleSendSMS}>
@@ -79,7 +79,7 @@ const AppIntroductionCard = () => {
                 inputProps={{ 'aria-label': 'search' }}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                placeholder="Shyiramo nimero ya telefone"
+                placeholder="Shyiramo nomero ya telefoni"
               />
               <Button
                 variant="contained"

@@ -120,8 +120,7 @@ const JobPost = ({
                     color: 'orange',
                   }}
                 >
-                  Tuyển gấp
-                </span>
+                  Gutoranya byihutirwa                </span>
               )}
             </Stack>
           </Stack>

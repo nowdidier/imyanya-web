@@ -1,22 +1,178 @@
-import React from 'react';
-import { Box, Card, Typography } from '@mui/material';
+import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
+import {
+  Box,
+  IconButton,
+  Typography,
+  Stack,
+  Chip,
+  Skeleton,
+  Tooltip,
+} from '@mui/material';
 
-const NumberCard = ({ color, backgroundColor }) => {
+import HelpIcon from '@mui/icons-material/Help';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import StarIcon from '@mui/icons-material/Star';
+import EditIcon from '@mui/icons-material/Edit';
+import DownloadIcon from '@mui/icons-material/Download';
+import DeleteForever from '@mui/icons-material/DeleteForever';
+import downloadPdf from '../../utils/funcUtils';
+
+const ProfileUploadCard = ({
+  resumeImage,
+  fileUrl,
+  title,
+  updateAt,
+  slug,
+  id,
+  isActive,
+  handleDelete,
+  handleActive,
+}) => {
+  const nav = useNavigate();
+
   return (
-    <Card
-      sx={{ p: 1.5, borderColor: color, backgroundColor: backgroundColor }}
-      variant="outlined"
+    <Box
+      sx={{
+        height: 310,
+        bgcolor: 'lightblue',
+        position: 'relative',
+        overflow: 'hidden',
+        borderRadius: 1,
+      }}
     >
-      <Box sx={{ p: 1 }}>
-        <Typography variant="h3" sx={{ fontWeight: 'bold', color: color }}>
-          2
-        </Typography>
+      <img
+        src={resumeImage}
+        style={{
+          objectFit: 'cover',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          zIndex: 1,
+          width: '100%',
+        }}
+        alt="BG"
+      />
+      <Box
+        sx={{
+          height: '100%',
+          width: '100%',
+          bottom: 0,
+          left: 0,
+          zIndex: 2,
+          position: 'absolute',
+          background: 'linear-gradient(180deg,hsla(0,0%,100%,0),#212f3f)',
+        }}
+      >
+        <Stack direction="row" justifyContent="flex-end" sx={{ marginTop: 1 }}>
+          {isActive ? (
+            <Chip
+              sx={{ ml: 1 }}
+              size="small"
+              icon={<StarIcon color="warning" />}
+              color="success"
+              label="Emeza gushakisha"
+              onClick={() => handleActive(slug)}
+            />
+          ) : (
+            <Chip
+              variant="filled"
+              sx={{ ml: 1 }}
+              size="small"
+              icon={<StarOutlineIcon color="warning" />}
+              color="default"
+              label="Emeza gushakisha"
+              onClick={() => handleActive(slug)}
+            />
+          )}
+          <Tooltip
+           title={`Gufungura "Emeza gushakisha" bizafasha abakoresha kubona CV yawe kandi bashobora kuguhamagara ku kazi gashya. Gusa CV imwe niyo yemerewe gufungura ubu buryo muri CV zose ufite.`}
+            arrow
+          >
+            <HelpIcon color="disabled" />
+          </Tooltip>
+        </Stack>
+        <Box
+          sx={{
+            position: 'absolute',
+            zIndex: 3,
+            bottom: 16,
+            left: 16,
+            color: 'white',
+          }}
+        >
+          <Stack spacing={1}>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography>{title}</Typography>
+              <IconButton
+                aria-label="delete"
+                color="warning"
+                size="small"
+                onClick={() => nav(`/ung-vien/ho-so-dinh-kem/${slug}`)}
+              >
+                <EditIcon />
+              </IconButton>
+            </Stack>
+            <Box>
+              <Typography variant="caption">
+                Byavuguruwe bwa nyuma:{' '}
+                {dayjs(updateAt).format('DD/MM/YYYY HH:mm:ss')}
+              </Typography>
+            </Box>
+            <Stack direction="row" justifyContent="space-between">
+              <Stack direction="row" spacing={1} alignItems="center">
+                <Chip
+                  sx={{ ml: 1, color: 'white' }}
+                  size="small"
+                  icon={<DownloadIcon />}
+                  color="secondary"
+                  label="Vanaho"
+                  onClick={() => downloadPdf(fileUrl, title)}
+                />
+              </Stack>
+              <IconButton
+                aria-label="delete"
+                color="error"
+                size="small"
+                onClick={() => handleDelete(slug)}
+              >
+                <DeleteForever />
+              </IconButton>
+            </Stack>
+          </Stack>
+        </Box>
       </Box>
-      <Box>
-        <Typography variant="button">Nhà tuyển dụng xem hồ sơ</Typography>
-      </Box>
-    </Card>
+    </Box>
   );
 };
 
-export default NumberCard;
+const Loading = () => (
+  <Box
+    sx={{
+      position: 'relative',
+      overflow: 'hidden',
+    }}
+  >
+    <Stack spacing={1}>
+      <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+      <Stack direction="row" spacing={2} alignItems="center">
+        <Skeleton variant="circular" width={50} height={50} />
+        <Typography flex={1}>
+          <Skeleton />
+        </Typography>
+      </Stack>
+      <Skeleton variant="rectangular" height={80} />
+      <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+      <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+    </Stack>
+  </Box>
+);
+
+ProfileUploadCard.Loading = Loading;
+
+export default ProfileUploadCard;

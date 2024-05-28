@@ -144,8 +144,7 @@ const JobPostAction = ({
                         fontSize: 13,
                       }}
                     >
-                      Chưa cập nhật
-                    </span>
+Ntabwo ari update                    </span>
                   )}
                 </Typography>
                 <Typography

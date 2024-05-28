@@ -26,23 +26,23 @@ import FilterJobPostCard from '../../components/defaults/FilterJobPostCard';
 import SuggestedJobPostCard from '../../components/defaults/SuggestedJobPostCard';
 
 export default function HomePage() {
-  TabTitle("Shakisha akazi vuba, tombora abakozi bakora neza ku IMYANYA")
+  TabTitle("Shakisha akazi vuba, gutoranya neza kuri MyJob")
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
   const nav = useNavigate()
 
   return (
     <>
       <Box sx={{ mt: 6 }}>
-        {/* Start: Top companies */}
+        {/*Start: Top cong ty */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          Ibigo bikomeye
+          Ibigo by'ingenzi
         </Typography>
         <TopCompanyCarousel />
-        {/* End: Top companies */}
+        {/*End: Top cong ty */}
       </Box>
 
       <Box sx={{ mt: 10 }}>
-        {/* Start: Urgent job openings */}
+        {/*Start: Viec lam tuyen gap */}
         <Card variant="outlined">
           <CardHeader
             avatar={
@@ -52,11 +52,11 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: 'white' }}>
-                Imyanya y'akazi yihutirwa vuba vuba 
+                Akazi k'ingenzi
               </Typography>
             }
             sx={{
-              backgroundColor: '#182642',
+              backgroundColor: '#441da0',
               p: { xs: 0.75, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
             }}
           />
@@ -70,21 +70,21 @@ export default function HomePage() {
             </Box>
           </CardContent>
         </Card>
-        {/* End: Urgent job openings */}
+        {/*End: Viec lam tuyen gap */}
       </Box>
 
       <Box sx={{ mt: 10 }}>
-        {/* Start: Job categories */}
+        {/* Start: Cac nganh nghe */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          Shakisha imyanya y' akazi vuba
+          Imirimo y'ingenzi
         </Typography>
         <CareerCarousel />
-        {/* End: Job categories */}
+        {/* End: Cac nganh nghe */}
       </Box>
 
       {isAuthenticated && currentUser?.roleName === ROLES_NAME.JOB_SEEKER && (
         <Box sx={{ mt: 10 }}>
-          {/* Start: Recommended jobs */}
+          {/* Start: Viec lam goi y */}
           <Card variant="outlined">
             <CardHeader
               avatar={
@@ -93,8 +93,8 @@ export default function HomePage() {
                 </Avatar>
               }
               title={
-                <Typography variant="h5" sx={{ color: '#182642' }}>
-                  Imirimo igushishikaje
+                <Typography variant="h5" sx={{ color: '#441da0' }}>
+                  Akazi gashishikaje
                 </Typography>
               }
               sx={{
@@ -112,7 +112,7 @@ export default function HomePage() {
               </Box>
             </CardContent>
           </Card>
-          {/* End: Recommended jobs */}
+          {/* End: Viec lam goi y */}
         </Box>
       )}
 
@@ -139,7 +139,7 @@ export default function HomePage() {
         >
           <Box>
             <Typography fontSize={32} fontWeight="bold" color="white">
-              Wifuza kubona akazi kaguhwanye?
+              Ukeneye akazi kagukwiriye?
             </Typography>
           </Box>
           <Box>
@@ -150,14 +150,14 @@ export default function HomePage() {
               startIcon={<SearchIcon />}
               onClick={() => nav('/viec-lam')}
             >
-              Tangira gushakashaka
+              Tangira gusuzuma
             </Button>
           </Box>
         </Stack>
       </Box>
 
       <Box sx={{ mt: 6 }}>
-        {/* Start: Jobs by industry */}
+        {/* Start: Viec lam nganh */}
         <Card variant="outlined">
           <CardHeader
             avatar={
@@ -167,11 +167,11 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: 'white' }}>
-                {`Akazi k' ingandah ${HOME_FILTER_CAREER[0].name}`}
+                {`Akazi muri ${HOME_FILTER_CAREER[0].name}`}
               </Typography>
             }
             sx={{
-              backgroundColor: '#182642',
+              backgroundColor: '#441da0',
               p: { xs: 0.75, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
             }}
           />
@@ -185,11 +185,11 @@ export default function HomePage() {
             </Box>
           </CardContent>
         </Card>
-        {/* End: Jobs by industry */}
+        {/* End: Viec lam nganh */}
       </Box>
 
       <Box sx={{ mt: 10 }}>
-        {/* Start: Jobs by industry */}
+        {/* Start: Viec lam nganh */}
         <Card variant="outlined">
           <CardHeader
             avatar={
@@ -199,11 +199,11 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: 'white' }}>
-                {`Akazi k' ingandah ${HOME_FILTER_CAREER[1].name}`}
+                {`Akazi muri ${HOME_FILTER_CAREER[1].name}`}
               </Typography>
             }
             sx={{
-              backgroundColor: '#182642',
+              backgroundColor: '#441da0',
               p: { xs: 0.75, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
             }}
           />
@@ -217,13 +217,13 @@ export default function HomePage() {
             </Box>
           </CardContent>
         </Card>
-        {/* End: Jobs by industry */}
+        {/* End: Viec lam nganh */}
       </Box>
 
       <Box sx={{ mt: 10 }}>
         {/* Start: Feedback */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          User reviews
+          Abakoresha batanga ibitekerezo
         </Typography>
         <FeedbackCarousel />
         {/* End: Feedback */}

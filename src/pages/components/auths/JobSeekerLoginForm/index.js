@@ -55,7 +55,7 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
       <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} type="submit">
         Injira
       </Button>
-      <Divider>HOẶC</Divider>
+      <Divider>CYANGWA</Divider>
 
       <LoginSocialFacebook
         appId={AUTH_CONFIG.FACEBOOK_CLIENT_ID}

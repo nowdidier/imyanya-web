@@ -91,7 +91,7 @@ const JobSeekerSignUpForm = ({
       <Button fullWidth variant="contained" type="submit" sx={{ mt: 3, mb: 2 }}>
         Iyandikishe
       </Button>
-      <Divider>HOẶC</Divider>
+      <Divider>CYANGWA</Divider>
       <LoginSocialFacebook
         appId={AUTH_CONFIG.FACEBOOK_CLIENT_ID}
         fieldsProfile={'id'}

@@ -32,7 +32,7 @@ const Footer = () => {
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/ve-chung-toi')}
-                primary="About MyJob"
+                primary="About IMYANYA"
               />
             </ListItem>
             <ListItem>
@@ -212,7 +212,7 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Connect with MyJob
+                Connect with IMYANYA
               </Typography>
             </ListItem>
             <ListItem>

@@ -54,7 +54,7 @@ const AppIntroductionCard = () => {
       <Card sx={{ p: 3 }}>
         <Stack spacing={3} alignItems="center">
           <Box>
-            <Typography variant="h5">Kuramo porogaramu ku buntu</Typography>
+            <Typography variant="h5">Kumanura porogaramu ku buntu</Typography>
           </Box>
           <Box>
             <Typography>

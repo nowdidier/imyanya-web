@@ -13,7 +13,7 @@ const AboutUsPage = () => {
   return (
     <>
       <Box sx={{ my: 3 }}>
-        <Typography variant="h4" sx={{ mb: 2, color: '#441da0' }}>
+        <Typography variant="h4" sx={{ mb: 2, color: '#182642' }}>
           Twebwe
         </Typography>
         <Stack spacing={3}>
@@ -26,7 +26,7 @@ const AboutUsPage = () => {
             <Grid container spacing={3}>
               <Grid xs={12} sm={12} md={6} lg={3} xl={3} item>
                 <Stack spacing={1}>
-                  <Typography variant="h6" sx={{ color: '#fca34d' }}>
+                  <Typography variant="h6" sx={{ color: '#00B2A3' }}>
                     Urubuga
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
@@ -36,7 +36,7 @@ const AboutUsPage = () => {
               </Grid>
               <Grid xs={12} sm={12} md={6} lg={3} xl={3} item>
                 <Stack spacing={1}>
-                  <Typography variant="h6" sx={{ color: '#fca34d' }}>
+                  <Typography variant="h6" sx={{ color: '#00B2A3' }}>
                     Mobile
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
@@ -46,7 +46,7 @@ const AboutUsPage = () => {
               </Grid>
               <Grid xs={12} sm={12} md={6} lg={3} xl={3} item>
                 <Stack spacing={1}>
-                  <Typography variant="h6" sx={{ color: '#fca34d' }}>
+                  <Typography variant="h6" sx={{ color: '#00B2A3' }}>
                     Icyerekezo cy'Inganda
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
@@ -56,7 +56,7 @@ const AboutUsPage = () => {
               </Grid>
               <Grid xs={12} sm={12} md={6} lg={3} xl={3} item>
                 <Stack spacing={1}>
-                  <Typography variant="h6" sx={{ color: '#fca34d' }}>
+                  <Typography variant="h6" sx={{ color: '#00B2A3' }}>
                     Kuzigama Amafaranga
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
@@ -69,7 +69,7 @@ const AboutUsPage = () => {
         </Stack>
       </Box>
       <Box sx={{ my: 3 }}>
-        <Typography variant="h4" sx={{ mb: 2, color: '#441da0' }}>
+        <Typography variant="h4" sx={{ mb: 2, color: '#182642' }}>
           Porogaramu ya Mobile IMYANYA
         </Typography>
         <Box sx={{ mt: 5 }}>
@@ -94,7 +94,7 @@ const AboutUsPage = () => {
                 <Stack spacing={2}>
                   <Typography
                     variant="h4"
-                    style={{ color: '#fca34d', fontSize: 30 }}
+                    style={{ color: '#00B2A3', fontSize: 30 }}
                   >
                     Hitamo akazi k'ukuri - Ujye mu cyerekezo gikwiye
                   </Typography>
@@ -122,7 +122,7 @@ const AboutUsPage = () => {
                 <Stack spacing={2}>
                   <Typography
                     variant="h4"
-                    style={{ color: '#fca34d', fontSize: 30 }}
+                    style={{ color: '#00B2A3', fontSize: 30 }}
                   >
                     Kora CV & Profile
                   </Typography>
@@ -163,7 +163,7 @@ const AboutUsPage = () => {
         <Stack spacing={2}>
           <Typography
             variant="h4"
-            style={{ color: '#fca34d', fontSize: 30 }}
+            style={{ color: '#00B2A3', fontSize: 30 }}
           >
             Akazi kari hafi yawe
           </Typography>
@@ -191,7 +191,7 @@ const AboutUsPage = () => {
         <Stack spacing={2}>
           <Typography
             variant="h4"
-            style={{ color: '#fca34d', fontSize: 30 }}
+            style={{ color: '#00B2A3', fontSize: 30 }}
           >
             Itangazo ry'akazi igihe cyose
           </Typography>

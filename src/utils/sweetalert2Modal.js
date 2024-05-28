@@ -13,7 +13,7 @@ const confirmModal = (
     title: title,
     html: text,
     icon: icon,
-    confirmButtonColor: '#441da0',
+    confirmButtonColor: '#182642',
     showCancelButton: showCancelButton,
     confirmButtonText: confirmButtonText,
     cancelButtonText: cancelButtonText,
@@ -29,7 +29,7 @@ const errorModal = (title = '', text = '') => {
     icon: 'error',
     title: title,
     html: text,
-    confirmButtonColor: '#441da0',
+    confirmButtonColor: '#182642',
   });
 };
 

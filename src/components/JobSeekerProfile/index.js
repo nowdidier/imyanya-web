@@ -51,7 +51,7 @@ const JobSeekerProfile = ({
       sx={{
         p: 1.5,
         '&:hover': {
-          borderColor: '#441da0',
+          borderColor: '#182642',
         },
       }}
       variant="outlined"

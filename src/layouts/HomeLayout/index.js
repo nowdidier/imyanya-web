@@ -53,7 +53,7 @@ const HomeLayout = () => {
             xl: 5
           },
           color: 'white',
-          bgcolor: '#441da0',
+          bgcolor: '#182642',
         }}
       >
         <Footer />

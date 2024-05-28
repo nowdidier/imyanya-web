@@ -192,7 +192,7 @@ const JobSeekerSignUp = () => {
               <Link
                 to="/dang-nhap-ung-vien"
                 variant="body2"
-                style={{ textDecoration: 'none', color: '#441da0' }}
+                style={{ textDecoration: 'none', color: '#182642' }}
               >
                 {'Usanzwe ufite konti? Injira'}
               </Link>

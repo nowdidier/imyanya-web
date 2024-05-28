@@ -751,7 +751,7 @@ const JobDetailPage = () => {
     <Stack spacing={2}>
       <Typography variant="h5">Akazi gafitanye isano</Typography>
       <Box
-        sx={{ width: 120, height: 5, backgroundColor: '#441da0' }}
+        sx={{ width: 120, height: 5, backgroundColor: '#182642' }}
       ></Box>
       <Box>
         {/* Start: FilterJobPostCard */}

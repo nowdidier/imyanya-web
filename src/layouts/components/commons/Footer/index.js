@@ -32,14 +32,14 @@ const Footer = () => {
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/ve-chung-toi')}
-                primary="Ku byerekeye MyJob"
+                primary="Ku byerekeye  IMYANYA"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/lien-he')}
-                primary="Vugana Nnatwe"
+                primary="Vugana Natwe"
               />
             </ListItem>
             <ListItem>
@@ -123,7 +123,7 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Ku Bitoza
+                KU BAKORESHWA
               </Typography>
             </ListItem>
             <ListItem>

@@ -59,7 +59,7 @@ const JobPostAction = ({
         sx={{
           p: 1,
           '&:hover': {
-            borderColor: '#441da0',
+            borderColor: '#182642',
           },
         }}
       >

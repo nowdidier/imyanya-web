@@ -184,7 +184,7 @@ const EmployerLogin = () => {
               <Link
                 to="/quen-mat-khau"
                 variant="body2"
-                style={{ textDecoration: 'none', color: '#441da0' }}
+                style={{ textDecoration: 'none', color: '#182642' }}
               >
                 Wibagiwe ijambobanga?
               </Link>
@@ -193,7 +193,7 @@ const EmployerLogin = () => {
               <Link
                 to="/dang-ky-tai-khoan-nha-tuyen-dung"
                 variant="body2"
-                style={{ textDecoration: 'none', color: '#441da0' }}
+                style={{ textDecoration: 'none', color: '#182642' }}
               >
                 {'Nturabasha kwinjira? Kwiyandikisha'}
               </Link>

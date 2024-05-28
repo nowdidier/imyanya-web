@@ -102,7 +102,7 @@ const Company = ({
       sx={{
         p: 2,
         '&:hover': {
-          borderColor: '#441da0',
+          borderColor: '#182642',
         },
       }}
       variant="outlined"

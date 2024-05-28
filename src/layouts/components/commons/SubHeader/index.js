@@ -76,7 +76,7 @@ const SubHeader = () => {
             boxShadow: 0,
             borderBottom: 0.8,
             borderColor: (theme) =>
-              theme.palette.mode === 'light' ? '#e0e0e0' : '#441da0',
+              theme.palette.mode === 'light' ? '#e0e0e0' : '#182642',
           }}
         >
           <Container maxWidth="xl">
@@ -94,7 +94,7 @@ const SubHeader = () => {
                 <FontAwesomeIcon
                   icon={faListUl}
                   fontSize={24}
-                  color="#441da0"
+                  color="#182642"
                 />
               </Box>
               {listItems(topCareers, handleFilter)}

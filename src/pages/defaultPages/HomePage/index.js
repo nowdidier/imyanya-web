@@ -56,7 +56,7 @@ export default function HomePage() {
               </Typography>
             }
             sx={{
-              backgroundColor: '#441da0',
+              backgroundColor: '#182642',
               p: { xs: 0.75, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
             }}
           />
@@ -93,7 +93,7 @@ export default function HomePage() {
                 </Avatar>
               }
               title={
-                <Typography variant="h5" sx={{ color: '#441da0' }}>
+                <Typography variant="h5" sx={{ color: '#182642' }}>
                   Imirimo igushishikaje
                 </Typography>
               }
@@ -171,7 +171,7 @@ export default function HomePage() {
               </Typography>
             }
             sx={{
-              backgroundColor: '#441da0',
+              backgroundColor: '#182642',
               p: { xs: 0.75, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
             }}
           />
@@ -203,7 +203,7 @@ export default function HomePage() {
               </Typography>
             }
             sx={{
-              backgroundColor: '#441da0',
+              backgroundColor: '#182642',
               p: { xs: 0.75, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
             }}
           />

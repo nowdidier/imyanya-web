@@ -48,7 +48,7 @@ const JobByCategory = () => {
                 sx={{
                   cursor: 'pointer',
                   '&:hover': {
-                    color: '#fca34d',
+                    color: '#00B2A3',
                     fontWeight: 'bold',
                   },
                 }}
@@ -62,7 +62,7 @@ const JobByCategory = () => {
             {careerOptions.length > maxItem && (
               <Typography
                 variant="caption"
-                color="#441da0"
+                color="#182642"
                 sx={{ mt: 1, fontWeight: 'bold', textDecoration: 'none' }}
                 component={Link}
                 to="/viec-lam-theo-nganh-nghe"
@@ -83,7 +83,7 @@ const JobByCategory = () => {
                 sx={{
                   cursor: 'pointer',
                   '&:hover': {
-                    color: '#fca34d',
+                    color: '#00B2A3',
                     fontWeight: 'bold',
                   },
                 }}
@@ -97,7 +97,7 @@ const JobByCategory = () => {
             {cityOptions.length > maxItem && (
               <Typography
                 variant="caption"
-                color="#441da0"
+                color="#182642"
                 sx={{ mt: 1, fontWeight: 'bold', textDecoration: 'none' }}
                 component={Link}
                 to="/viec-lam-theo-tinh-thanh"
@@ -118,7 +118,7 @@ const JobByCategory = () => {
                 sx={{
                   cursor: 'pointer',
                   '&:hover': {
-                    color: '#fca34d',
+                    color: '#00B2A3',
                     fontWeight: 'bold',
                   },
                 }}
@@ -132,7 +132,7 @@ const JobByCategory = () => {
             {jobTypeOptions.length > maxItem && (
               <Typography
                 variant="caption"
-                color="#441da0"
+                color="#182642"
                 
                 sx={{ mt: 1, fontWeight: 'bold', textDecoration: 'none' }}
                 component={Link}

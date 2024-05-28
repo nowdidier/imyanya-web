@@ -374,7 +374,7 @@ const CompanyDetailPage = () => {
           <Typography
             variant="h6"
             gutterBottom
-            sx={{ color: '#441da0' }}
+            sx={{ color: '#182642' }}
           >
             Ku kigo
           </Typography>
@@ -407,7 +407,7 @@ const CompanyDetailPage = () => {
           <Typography
             variant="h6"
             gutterBottom
-            sx={{ color: '#441da0' }}
+            sx={{ color: '#182642' }}
           >
             Imirimo iri gupiganirwa
           </Typography>
@@ -427,7 +427,7 @@ const CompanyDetailPage = () => {
     <Card sx={{ p: { xs: 2, sm: 2, md: 3, lg: 3, xl: 3 } }}>
       <Stack spacing={2}>
         <Box>
-          <Typography variant="h6" sx={{ color: '#441da0' }}>
+          <Typography variant="h6" sx={{ color: '#182642' }}>
             Urubuga rwa internet
           </Typography>
           <Box sx={{ mt: 1 }}>
@@ -453,7 +453,7 @@ const CompanyDetailPage = () => {
           </Box>
         </Box>
         <Box>
-          <Typography variant="h6" sx={{ color: '#441da0' }}>
+          <Typography variant="h6" sx={{ color: '#182642' }}>
             Kurikira kuri
           </Typography>
           <Box sx={{ mt: 1 }}>
@@ -507,7 +507,7 @@ const CompanyDetailPage = () => {
         </Box>
 
         <Box>
-  <Typography variant="h6" sx={{ color: '#441da0' }}>
+  <Typography variant="h6" sx={{ color: '#182642' }}>
     Amakuru rusange
   </Typography>
   <Box sx={{ mt: 1 }}>
@@ -552,7 +552,7 @@ const CompanyDetailPage = () => {
   </Box>
 </Box>
 <Box>
-  <Typography variant="h6" sx={{ color: '#441da0' }}>
+  <Typography variant="h6" sx={{ color: '#182642' }}>
     Ikarita
   </Typography>
   <Box sx={{ mt: 1 }}>
@@ -566,7 +566,7 @@ const CompanyDetailPage = () => {
 </Box>
 {imageList.length > 0 && (
   <Box>
-    <Typography variant="h6" sx={{ color: '#441da0' }}>
+    <Typography variant="h6" sx={{ color: '#182642' }}>
       Amafoto
     </Typography>
     <Box sx={{ mt: 1, borderRadius: 2, overflow: 'hidden' }}>

@@ -116,7 +116,7 @@ const EmployerSignUp = () => {
               <Link
                 to="/dang-nhap-nha-tuyen-dung"
                 variant="body2"
-                style={{ textDecoration: 'none', color: '#441da0' }}
+                style={{ textDecoration: 'none', color: '#182642' }}
               >
                 {'Ufite Konti? Injira'}
               </Link>

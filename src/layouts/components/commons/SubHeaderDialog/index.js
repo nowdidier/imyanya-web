@@ -65,7 +65,7 @@ const DesktopContent = (setOpen, careers, handleFilter) => {
                           sx={{
                             cursor: 'pointer',
                             '&:hover': {
-                              color: '#fca34d',
+                              color: '#00B2A3',
                               fontWeight: 'bold',
                             },
                           }}
@@ -100,7 +100,7 @@ const DesktopContent = (setOpen, careers, handleFilter) => {
                         sx={{
                           cursor: 'pointer',
                           '&:hover': {
-                            color: '#fca34d',
+                            color: '#00B2A3',
                             fontWeight: 'bold',
                           },
                         }}
@@ -146,7 +146,7 @@ const MobileContent = (setOpen, careers, handleFilter) => {
                 sx={{
                   cursor: 'pointer',
                   '&:hover': {
-                    color: '#fca34d',
+                    color: '#00B2A3',
                     fontWeight: 'bold',
                   },
                 }}

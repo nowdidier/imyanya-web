@@ -191,7 +191,7 @@ const AppliedResumeTable = (props) => {
                     <FontAwesomeIcon
                       icon={faFile}
                       style={{ marginRight: 1 }}
-                      color="#441da0"
+                      color="#182642"
                     />
                   </Tooltip>
                 ) : (

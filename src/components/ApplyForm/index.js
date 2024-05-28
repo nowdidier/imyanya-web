@@ -127,7 +127,7 @@ const ApplyForm = ({ handleApplyJob }) => {
                                   <FontAwesomeIcon
                                     icon={faFile}
                                     style={{ marginRight: 1 }}
-                                    color="#441da0"
+                                    color="#182642"
                                   />{' '}
                                   Hồ sơ trực tuyến
                                 </>
@@ -159,7 +159,7 @@ const ApplyForm = ({ handleApplyJob }) => {
                             >
                               <Typography
                                 sx={{ fontWeight: 'bold', cursor: 'pointer' }}
-                                color="#441da0"
+                                color="#182642"
                               >
                                 <FontAwesomeIcon icon={faEye} /> Xem hồ sơ
                               </Typography>

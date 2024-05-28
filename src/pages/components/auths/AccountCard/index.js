@@ -105,7 +105,7 @@ const AccountCard = ({ title }) => {
                 </Box>
                 <Box>
                   <Typography
-                    sx={{ color: '#441da0', mt: 1.5, textAlign: 'right' }}
+                    sx={{ color: '#182642', mt: 1.5, textAlign: 'right' }}
                     variant="subtitle2"
                     gutterBottom
                   >

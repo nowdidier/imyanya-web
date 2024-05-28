@@ -46,7 +46,7 @@ const SidebarViewTotal = () => {
       <Box sx={{ pt: 2 }}>
         <Stack direction="row" spacing={2}>
           <Box>
-            <Avatar sx={{ width: 80, height: 80, bgcolor: '#441da0' }}>
+            <Avatar sx={{ width: 80, height: 80, bgcolor: '#182642' }}>
               {isLoading ? (
                 <CircularProgress color="secondary" />
               ) : data === null ? (

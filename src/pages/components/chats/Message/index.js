@@ -18,7 +18,7 @@ const Message = ({ userId, text, avatarUrl, createdAt }) => {
             <p
               className="small p-2 me-3 mb-1 text-white"
               style={{
-                backgroundColor: '#441da0',
+                backgroundColor: '#182642',
                 borderTopLeftRadius: 6,
                 borderTopRightRadius: 6,
                 borderBottomLeftRadius: 6,

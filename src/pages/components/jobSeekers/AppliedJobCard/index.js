@@ -112,7 +112,7 @@ const AppliedJobCard = () => {
                         <FontAwesomeIcon
                           icon={faFile}
                           style={{ marginRight: 1 }}
-                          color="#441da0"
+                          color="#182642"
                         />{' '}
                         Ifishi yawe yo kuri interineti
                       </>

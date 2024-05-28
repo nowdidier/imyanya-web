@@ -73,7 +73,7 @@ const ForgotPasswordPage = () => {
                 <FontAwesomeIcon
                   icon={faEnvelopeCircleCheck}
                   size="7x"
-                  color="#fca34d"
+                  color="#00B2A3"
                 />
               </Stack>
               <Stack>

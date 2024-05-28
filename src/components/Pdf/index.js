@@ -35,7 +35,7 @@ const Pdf = ({ fileUrl, title = '' }) => {
           justifyContent="space-between"
           alignItems="center"
           sx={{
-            bgcolor: '#441da0',
+            bgcolor: '#182642',
             p: 2,
             borderTopLeftRadius: 3,
             borderTopRightRadius: 3,

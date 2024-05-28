@@ -44,7 +44,7 @@ const JobPost = ({
         cursor: 'pointer',
         p: 1,
         '&:hover': {
-          borderColor: '#441da0',
+          borderColor: '#182642',
           boxShadow: 5,
         },
       }}

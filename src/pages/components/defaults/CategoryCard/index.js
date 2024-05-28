@@ -49,7 +49,7 @@ const CategoryCard = ({ options, type }) => {
             width: '100%',
             backgroundColor: 'white',
             border: 1,
-            borderColor: '#441da0',
+            borderColor: '#182642',
             maxWidth: {
               xs: '100%',
               sm: '60%',
@@ -76,7 +76,7 @@ const CategoryCard = ({ options, type }) => {
             sx={{
               cursor: 'pointer',
               '&:hover': {
-                color: '#fca34d',
+                color: '#00B2A3',
                 fontWeight: 'bold',
               },
             }}

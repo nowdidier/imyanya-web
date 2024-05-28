@@ -58,7 +58,7 @@ const JobApplicationCard = () => {
                 avatar={
                   item?.type === CV_TYPES.cvWebsite ? (
                     <Tooltip title="Inyandiko yo kuri interineti">
-                      <AntAvatar style={{ backgroundColor: '#441da0' }} icon={<FileOutlined />} />
+                      <AntAvatar style={{ backgroundColor: '#182642' }} icon={<FileOutlined />} />
                     </Tooltip>
                   ) : item?.type === CV_TYPES.cvUpload ? (
                     <Tooltip title="Inyandiko y'inyongera">

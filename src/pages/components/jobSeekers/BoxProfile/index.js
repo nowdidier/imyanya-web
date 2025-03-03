@@ -207,7 +207,7 @@ const BoxProfile = ({ title }) => {
                 </Stack>
                 <PDFDownloadLink
                   document={<CVDoc />}
-                  fileName={`MyJob_CV-${toSlug(resume?.title || 'title')}.pdf`}
+                  fileName={`Imyanya_CV-${toSlug(resume?.title || 'title')}.pdf`}
                   style={{ textDecoration: 'none' }}
                 >
                   {() => (

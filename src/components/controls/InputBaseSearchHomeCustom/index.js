@@ -47,7 +47,7 @@ const InputBaseSearchHomeCustom = ({
 
   React.useEffect(() => {
     try {
-      const keywordListStr = localStorage.getItem('myjob_search_history');
+      const keywordListStr = localStorage.getItem('imyanya_search_history');
       if (
         keywordListStr !== null ||
         keywordListStr !== undefined ||

@@ -31,7 +31,7 @@ import ChatLayout from './layouts/ChatLayout';
 
 // errors pages
 import NotFoundPage from './pages/errorsPage/NotFoundPage';
-import ForbiddenPage from './pages/errorsPage/ForbiddenPage/index.';
+import ForbiddenPage from './pages/errorsPage/ForbiddenPage/index';
 
 // common pages
 import HomePage from './pages/defaultPages/HomePage';
@@ -62,7 +62,7 @@ import { default as JobSeekerDashboardPage } from './pages/jobSeekerPages/Dashbo
 import { default as JobSeekerProfilePage } from './pages/jobSeekerPages/ProfilePage';
 import { default as OnlineProfilePage } from './pages/jobSeekerPages/OnlineProfilePage';
 import { default as JobSeekerAttachedProfilePage } from './pages/jobSeekerPages/AttachedProfilePage';
-import { default as JobSeekerMyJobPage } from './pages/jobSeekerPages/MyJobPage';
+import { default as JobSeekerImyanyaPage } from './pages/jobSeekerPages/ImyanyaPage';
 import { default as JobSeekerMyCompanyPage } from './pages/jobSeekerPages/MyCompanyPage';
 import { default as JobSeekerAccountPage } from './pages/jobSeekerPages/AccountPage';
 
@@ -78,7 +78,7 @@ import { default as EmployerAccountPage } from './pages/employerPages/AccountPag
 import { default as EmployerSettingPage } from './pages/employerPages/SettingPage';
 
 // chatbot
-import { MyJobChatBot } from './chatbot';
+import { imyanyaChatBot } from './chatbot';
 import Feedback from './components/Feedback';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -321,7 +321,7 @@ function App() {
                   />
                   <Route
                     path="viec-lam-cua-toi"
-                    element={<JobSeekerMyJobPage />}
+                    element={<JobSeekerImyanyaPage />}
                   />
                   <Route
                     path="cong-ty-cua-toi"
@@ -479,7 +479,7 @@ function App() {
           {isAuthenticated && <Feedback />}
           {/* End: Feedback */}
 
-          <MyJobChatBot />
+          <imyanyaChatBot />
         </ThemeProvider>
       </ConfigProvider>
       {/* Start: ScrollToTop */}

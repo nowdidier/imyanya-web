@@ -26,7 +26,7 @@ import FilterJobPostCard from '../../components/defaults/FilterJobPostCard';
 import SuggestedJobPostCard from '../../components/defaults/SuggestedJobPostCard';
 
 export default function HomePage() {
-  TabTitle("Find jobs quickly, recruit effectively at MyJob")
+  TabTitle("Find jobs quickly, recruit effectively at imyanya")
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
   const nav = useNavigate()
 

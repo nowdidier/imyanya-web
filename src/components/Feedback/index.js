@@ -21,7 +21,7 @@ import toastMessages from '../../utils/toastMessages';
 import BackdropLoading from '../loading/BackdropLoading';
 import RatingCustom from '../controls/RatingCustom';
 import MultilineTextFieldCustom from '../controls/MultilineTextFieldCustom';
-import myjobService from '../../services/myjobService';
+import imyanyaService from '../../services/imyanyaService';
 
 const Feedback = () => {
   const [open, setOpen] = React.useState(false);
@@ -55,7 +55,7 @@ const Feedback = () => {
     const sendFeedback = async (data) => {
       setIsFullScreenLoading(true);
       try {
-        await myjobService.createFeedback(data);
+        await imyanyaService.createFeedback(data);
         handleClose();
         toastMessages.success('Feedback sent successfully.');
       } catch (error) {

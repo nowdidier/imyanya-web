@@ -7,7 +7,7 @@ import MuiImageCustom from '../../../components/MuiImageCustom';
 import { ABOUT_IMAGES } from '../../../configs/constants';
 
 const AboutUsPage = () => {
-  TabTitle('About Us - MyJob Employment System');
+  TabTitle('About Us - imyanya Employment System');
 
   return (
     <>
@@ -18,10 +18,10 @@ const AboutUsPage = () => {
         <Stack spacing={3}>
           <Box>
             <Typography>
-              MyJob - Job and recruitment information channel for all Businesses and 
+              imyanya - Job and recruitment information channel for all Businesses and 
               Candidates. We believe in bringing "HOPE" to Businesses seeking talent
               and Candidates seeking career opportunities. With 2 systems: Website for
-              Recruiters and Application for Job Seekers, MyJob will deliver fresh,
+              Recruiters and Application for Job Seekers, imyanya will deliver fresh,
               exciting experiences; connecting the dream of conquering jobs of all
               talents and helping businesses build strong human resources.
             </Typography>
@@ -79,7 +79,7 @@ const AboutUsPage = () => {
       </Box>
       <Box sx={{ my: 3 }}>
         <Typography variant="h4" sx={{ mb: 2, color: '#441da0' }}>
-          Mobile App MyJob
+          Mobile App imyanya
         </Typography>
         <Box sx={{ mt: 5 }}>
           <Card sx={{ p: 5 }}>
@@ -176,7 +176,7 @@ const AboutUsPage = () => {
                     Jobs Around You
                   </Typography>
                   <Typography textAlign="justify" color="#6D7681">
-                    JOBS NEAR YOU feature on MyJob app. This feature helps candidates
+                    JOBS NEAR YOU feature on imyanya app. This feature helps candidates
                     easily choose a suitable job while ensuring close to home,
                     convenient travel without having to search through hundreds of job posts.
                   </Typography>

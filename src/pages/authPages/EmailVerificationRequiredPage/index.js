@@ -24,7 +24,7 @@ const EmailVerificationRequiredPage = () => {
           Email Verification
         </Typography>
         <Typography variant="subtitle2 ">
-          Thank you for registering with MyJob
+          Thank you for registering with imyanya
         </Typography>
       </Stack>
       <Card sx={{ p: 6, pt: 2, boxShadow: 0 }}>

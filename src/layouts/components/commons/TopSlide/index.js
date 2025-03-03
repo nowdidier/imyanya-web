@@ -9,7 +9,7 @@ import { Box, Link } from '@mui/material';
 
 import HomeSearch from '../../../../pages/components/defaults/HomeSearch';
 import MuiImageCustom from '../../../../components/MuiImageCustom';
-import myjobService from '../../../../services/myjobService';
+import imyanyaService from '../../../../services/imyanyaService';
 
 const RenderItem = ({ item }) => {
   const [location, setLocation] = React.useState({
@@ -82,7 +82,7 @@ const TopSlide = () => {
   React.useEffect(() => {
     const getBanners = async () => {
       try {
-        const resData = await myjobService.getBanners();
+        const resData = await imyanyaService.getBanners();
 
         const data = resData?.data || [];
 

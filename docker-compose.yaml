@@ -2,8 +2,8 @@ version: 'version'
 
 services:
   frontend_nginx:
-    image: myjob-frontend-nginx
-    container_name: myjob-frontend-nginx-container
+    image: imyanya-frontend-nginx
+    container_name: imyanya-frontend-nginx-container
     build: 
       context: .
       dockerfile: Dockerfile
@@ -11,8 +11,8 @@ services:
     environment:
       - REACT_APP_NODE_ENV=${REACT_APP_NODE_ENV}
       - REACT_APP_BASE_URL=${REACT_APP_BASE_URL}
-      - REACT_APP_MYJOB_SERVER_CLIENT_ID=${REACT_APP_MYJOB_SERVER_CLIENT_ID}
-      - REACT_APP_MYJOB_SERVER_CLIENT_SECRECT=${REACT_APP_MYJOB_SERVER_CLIENT_SECRECT}
+       - REACT_APP_IMYANYA_SERVER_CLIENT_ID=${REACT_APP_IMYANYA_SERVER_CLIENT_ID}
+      - REACT_APP_IMYANYA_SERVER_CLIENT_SECRECT=${REACT_APP_IMYANYA_SERVER_CLIENT_SECRECT}
       - REACT_APP_FACEBOOK_CLIENT_ID=${REACT_APP_FACEBOOK_CLIENT_ID}
       - REACT_APP_FACEBOOK_CLIENT_SECRET=${REACT_APP_FACEBOOK_CLIENT_SECRET}
       - REACT_APP_GOOGLE_CLIENT_ID=${REACT_APP_GOOGLE_CLIENT_ID}
@@ -31,12 +31,12 @@ services:
       - REACT_APP_FIREBASE_APP_ID=${REACT_APP_FIREBASE_APP_ID}
       - REACT_APP_FIREBASE_DATABASE_URL=${REACT_APP_FIREBASE_DATABASE_URL}
     networks:
-      - myjob-frontend-network
+      - imyanya-frontend-network
     ports:
       - "80:80"
     expose:
       - 80
 
 networks:
-  myjob-frontend-network:
-    name: myjob-frontend-network
+  imyanya-frontend-network:
+    name: imyanya-frontend-network

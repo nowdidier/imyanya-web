@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { IMAGES, LINKS } from '../../configs/constants';
 import toastMessages from '../../utils/toastMessages';
-import myjobService from '../../services/myjobService';
+import imyanyaService from '../../services/imyanyaService';
 import BackdropLoading from '../loading/BackdropLoading';
 
 const AppIntroductionCard = () => {
@@ -26,7 +26,7 @@ const AppIntroductionCard = () => {
       setIsFullScreenLoading(true);
 
       try {
-        await myjobService.sendSMSDownloadApp(data);
+        await imyanyaService.sendSMSDownloadApp(data);
 
         toastMessages.success('Sent successfully. Please check your messages');
         setValue('');
@@ -58,7 +58,7 @@ const AppIntroductionCard = () => {
           </Box>
           <Box>
             <Typography>
-              Find jobs effectively by downloading MyJob to your mobile device and be
+              Find jobs effectively by downloading imyanya to your mobile device and be
               ready to get hired today!
             </Typography>
           </Box>

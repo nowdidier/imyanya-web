@@ -26,8 +26,8 @@ const AUTH_PROVIDER = {
 
 const AUTH_CONFIG = {
   // BACKEND
-  CLIENT_ID: process.env.REACT_APP_MYJOB_SERVER_CLIENT_ID,
-  CLIENT_SECRECT: process.env.REACT_APP_MYJOB_SERVER_CLIENT_SECRECT,
+  CLIENT_ID: process.env.REACT_APP_imyanya_SERVER_CLIENT_ID, // changed key
+  CLIENT_SECRECT: process.env.REACT_APP_imyanya_SERVER_CLIENT_SECRECT, // changed key
   BACKEND_KEY: 'backend',
   ACCESS_TOKEN_KEY: 'access_token',
   REFRESH_TOKEN_KEY: 'refresh_token',
@@ -54,13 +54,12 @@ const AUTH_CONFIG = {
     AGENT_ID:
       process.env.JOB_SEEKER_BOT_AGENT_ID ||
       '1a0c784b-fda8-4ed7-94c9-7877fc79ec88',
-    CHAT_TITLE: 'MyJob AI',
+    CHAT_TITLE: 'imyanya AI', // changed text
     CHAT_ICON: 'https://res.cloudinary.com/dtnpj540t/image/upload/v1705727937/my-job/system-images/job-seeker-chatbot-icon.png',
   },
   EMPLOYER_BOT: {
-    AGENT_ID: process.env.EMPLOYER_BOT_AGENT_ID ||
-    '',
-    CHAT_TITLE: 'MyJob AI',
+    AGENT_ID: process.env.EMPLOYER_BOT_AGENT_ID || '',
+    CHAT_TITLE: 'imyanya AI', // changed text
     CHAT_ICON: 'https://res.cloudinary.com/dtnpj540t/image/upload/v1705747491/my-job/system-images/employer-chatbot-icon.png',
   },
 };

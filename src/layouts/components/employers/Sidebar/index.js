@@ -12,7 +12,7 @@ import {
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import TreeView from '@mui/lab/TreeView';
-import TreeItem, { treeItemClasses } from '@mui/lab/TreeItem';
+import TreeItem from '@mui/lab/TreeItem';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import GridViewIcon from '@mui/icons-material/GridView';
@@ -32,7 +32,7 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
   '& .css-6ubf1z-MuiTreeItem-content.Mui-selected': {
     backgroundColor: 'rgba(0,0,0,0)',
   },
-  [`& .${treeItemClasses.content}`]: {
+  '& .MuiTreeItem-content': {
     color: theme.palette.text.secondary,
     borderTopRightRadius: theme.spacing(0.5),
     borderBottomRightRadius: theme.spacing(0.5),
@@ -44,14 +44,14 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
     },
-    [`& .${treeItemClasses.label}`]: {
+    '& .MuiTreeItem-label': {
       fontWeight: 'inherit',
       color: 'inherit',
     },
   },
-  [`& .${treeItemClasses.group}`]: {
+  '& .MuiTreeItem-group': {
     marginLeft: 0,
-    [`& .${treeItemClasses.content}`]: {
+    '& .MuiTreeItem-content': {
       paddingLeft: theme.spacing(2),
     },
   },
@@ -218,7 +218,7 @@ const drawer = (location, theme) => (
           >
             <StyledTreeItem
               nodeId="11"
-              labelText="MyJob Notifications"
+              labelText="imyanya Notifications"
               labelIcon={NotificationsNoneOutlinedIcon}
             />
           </NavLink>

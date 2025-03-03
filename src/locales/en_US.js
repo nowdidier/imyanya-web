@@ -1,5 +1,3 @@
-import 'moment/locale/en';
-
 const locale = {
   lang: {
     locale: 'en',

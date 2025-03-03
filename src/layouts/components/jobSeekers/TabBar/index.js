@@ -13,7 +13,7 @@ import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
 
 const tabItems = [
-  { id: 1, label: "My MyJob", icon: <DashboardIcon />, path: "/job-seeker" },
+  { id: 1, label: "My imyanya", icon: <DashboardIcon />, path: "/job-seeker" },
   {
     id: 2,
     label: "Job Resume",
@@ -34,7 +34,7 @@ const tabItems = [
   },
   {
     id: 5,
-    label: "MyJob Notifications",
+    label: "imyanya Notifications",
     icon: <CircleNotificationsIcon />,
     path: "/job-seeker/notifications",
   },

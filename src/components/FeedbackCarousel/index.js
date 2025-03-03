@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Box } from '@mui/material';
 
 import FeedbackCard from '../FeedbackCard';
-import myjobService from '../../services/myjobService';
+import imyanyaService from '../../services/imyanyaService';
 import NoDataCard from '../NoDataCard';
 
 const FeedbackCarousel = () => {
@@ -44,7 +44,7 @@ const FeedbackCarousel = () => {
   React.useEffect(() => {
     const getFeedbacks = async () => {
       setIsLoading(true);
-      const resData = await myjobService.getFeedbacks();
+      const resData = await imyanyaService.getFeedbacks();
 
       setFeedbacks(resData.data);
       try {

@@ -15,7 +15,7 @@ import authService from '../../../services/authService';
 import EmployerSignUpForm from '../../components/auths/EmployerSignUpForm';
 
 const EmployerSignUp = () => {
-  TabTitle("Đăng ký tài khoản Nhà tuyển dụng")
+  TabTitle("Create Employer Account")
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -98,7 +98,7 @@ const EmployerSignUp = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5" align="center">
-              Đăng ký tài khoản nhà tuyển dụng
+              Create Employer Account
             </Typography>
           </Box>
           <Box sx={{ mt: { xs: 3, sm: 4, md: 4, lg: 4, xl: 4 } }}>
@@ -118,7 +118,7 @@ const EmployerSignUp = () => {
                 variant="body2"
                 style={{ textDecoration: 'none', color: '#441da0' }}
               >
-                {'Đã có tài khoản? Đăng nhập'}
+                {'Already have an account? Login'}
               </Link>
             </Grid>
           </Grid>

@@ -19,25 +19,25 @@ const JobSeekerSignUpForm = ({
   serverErrors = {},
 }) => {
   const schema = yup.object().shape({
-    fullName: yup.string().required('Họ và tên là bắt buộc.'),
+    fullName: yup.string().required('Full name is required.'),
     email: yup
       .string()
-      .required('Email là bắt buộc!')
-      .email('Email không đúng định dạng')
-      .max(100, 'Email vượt quá độ dài cho phép.'),
+      .required('Email is required!')
+      .email('Invalid email format')
+      .max(100, 'Email exceeds allowed length.'),
     password: yup
       .string()
-      .required('Mật khẩu là bắt buộc!')
-      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
-      .max(128, 'Mật khẩu vượt quá độ dài cho phép.')
+      .required('Password is required!')
+      .min(8, 'Password must be at least 8 characters.')
+      .max(128, 'Password exceeds allowed length.')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
+        'Must contain uppercase, lowercase, number and special character'
       ),
     confirmPassword: yup
       .string()
-      .required('Mật khẩu xác nhận là bắt buộc.')
-      .oneOf([yup.ref('password')], 'Mật khẩu xác nhận không chính xác.'),
+      .required('Confirm password is required.')
+      .oneOf([yup.ref('password')], 'Confirm password does not match.'),
   });
 
   const { control, setError, handleSubmit } = useForm({
@@ -62,36 +62,36 @@ const JobSeekerSignUpForm = ({
         <TextFieldCustom
           name="fullName"
           control={control}
-          title="Họ và tên"
-          placeholder="Nhập họ và tên"
+          title="Full Name"
+          placeholder="Enter full name"
           showRequired={true}
         />
         <TextFieldCustom
           name="email"
           control={control}
           title="Email"
-          placeholder="Nhập email"
+          placeholder="Enter email"
           showRequired={true}
         />
         <PasswordTextFieldCustom
           name="password"
           control={control}
-          title="Mật khẩu"
-          placeholder="Nhập mật khẩu"
+          title="Password"
+          placeholder="Enter password"
           showRequired={true}
         />
         <PasswordTextFieldCustom
           name="confirmPassword"
           control={control}
-          title="Mật khẩu xác nhận"
-          placeholder="Nhập mật khẩu xác nhận"
+          title="Confirm Password"
+          placeholder="Re-enter password"
           showRequired={true}
         />
       </Stack>
       <Button fullWidth variant="contained" type="submit" sx={{ mt: 3, mb: 2 }}>
-        Đăng ký
+        Sign Up
       </Button>
-      <Divider>HOẶC</Divider>
+      <Divider>OR</Divider>
       <LoginSocialFacebook
         appId={AUTH_CONFIG.FACEBOOK_CLIENT_ID}
         fieldsProfile={'id'}
@@ -111,7 +111,7 @@ const JobSeekerSignUpForm = ({
           sx={{ mt: 3, mb: 2, backgroundColor: '#3B66C4' }}
           startIcon={<FacebookIcon />}
         >
-          Đăng ký với Facebook
+          Sign up with Facebook
         </Button>
       </LoginSocialFacebook>
 
@@ -135,7 +135,7 @@ const JobSeekerSignUpForm = ({
           sx={{ mb: 2, backgroundColor: '#CF4332' }}
           startIcon={<GoogleIcon />}
         >
-          Đăng ký với Google
+          Sign up with Google
         </Button>
       </LoginSocialGoogle>
     </Box>

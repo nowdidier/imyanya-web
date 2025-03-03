@@ -65,26 +65,26 @@ const CVDoc = () => {
         </View>
         <View style={{ flexDirection: 'row', marginTop: 20 }}>
           <View style={{ flex: 1 }}>
-            <Text>Ngày sinh: 27-02-2001</Text>
+            <Text>Date of birth: 27-02-2001</Text>
           </View>
           <View style={{ flex: 1 }}>
             <Text>Email: Khuy220@gmail.com</Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Text>Số điện thoại: 0888425094</Text>
+            <Text>Phone: 0888425094</Text>
           </View>
         </View>
         <View style={{ flexDirection: 'column' }}>
           <View style={{ marginTop: 20 }}>
             <View style={{ marginBottom: 10 }}>
               <Text style={{ fontSize: 18, color: '#140861' }}>
-                THÔNG TIN CHUNG
+                GENERAL INFORMATION
               </Text>
             </View>
             <View style={{ flexDirection: 'column' }}>
               <View style={{ flexDirection: 'row' }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Nghề nghiệp: </Text>
+                  <Text>Occupation: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
                   <Text>IT</Text>
@@ -92,7 +92,7 @@ const CVDoc = () => {
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Địa điểm làm việc: </Text>
+                  <Text>Work location: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
                   <Text>TP. HCM</Text>
@@ -100,15 +100,15 @@ const CVDoc = () => {
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Cấp bậc mong muốn: </Text>
+                  <Text>Desired position level: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
-                  <Text>Nhan vien</Text>
+                  <Text>Employee</Text>
                 </View>
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Mức lương mong muốn: </Text>
+                  <Text>Expected salary: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
                   <Text>10.000.000 ₫ - 15.000.000 ₫</Text>
@@ -116,34 +116,34 @@ const CVDoc = () => {
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Trình độ học vấn: </Text>
+                  <Text>Education level: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
-                  <Text>Dai hoc</Text>
+                  <Text>Bachelor degree</Text>
                 </View>
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Kinh nghiệm làm việc: </Text>
+                  <Text>Work experience: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
-                  <Text>Duoi 1 nam kinh nghiem</Text>
+                  <Text>Less than 1 year experience</Text>
                 </View>
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Nơi làm việc mong muốn: </Text>
+                  <Text>Desired workplace: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
-                  <Text>Van phong</Text>
+                  <Text>Office</Text>
                 </View>
               </View>
               <View style={{ flexDirection: 'row', marginTop: 5 }}>
                 <View style={{ flex: 5 }}>
-                  <Text>Hình thức làm việc mong muốn: </Text>
+                  <Text>Desired employment type: </Text>
                 </View>
                 <View style={{ flex: 8 }}>
-                  <Text>Nhan vien chinh thuc</Text>
+                  <Text>Full-time employee</Text>
                 </View>
               </View>
             </View>
@@ -151,7 +151,7 @@ const CVDoc = () => {
 
           <View style={{ marginTop: 20 }}>
             <View style={{ marginBottom: 10 }}>
-              <Text style={{ fontSize: 18, color: '#140861' }}>Mục tiêu nghề nghiệp</Text>
+              <Text style={{ fontSize: 18, color: '#140861' }}>Career Objectives</Text>
             </View>
             <View>
               <Text>
@@ -169,7 +169,7 @@ const CVDoc = () => {
 
           <View style={{ marginTop: 20 }}>
             <View>
-              <Text style={{ fontSize: 18, color: '#140861' }}>KINH NGHIỆM LÀM VIỆC</Text>
+              <Text style={{ fontSize: 18, color: '#140861' }}>WORK EXPERIENCE</Text>
             </View>
             <View style={{ marginTop: 10 }}>
               <View>
@@ -178,10 +178,10 @@ const CVDoc = () => {
                 </Text>
               </View>
               <View>
-                <Text>Lap trình viên Python</Text>
+                <Text>Python Developer</Text>
               </View>
               <View>
-                <Text>Cong ty TNHH MTV DV Vien Thong Phuong Nam</Text>
+                <Text>Phuong Nam Telecom Services Company Limited</Text>
               </View>
               <View style={{ marginTop: 5 }}>
                 <Text>
@@ -200,10 +200,10 @@ const CVDoc = () => {
                 </Text>
               </View>
               <View>
-                <Text>Lap trình viên Python</Text>
+                <Text>Python Developer</Text>
               </View>
               <View>
-                <Text>Cong ty TNHH MTV DV Vien Thong Phuong Nam</Text>
+                <Text>Phuong Nam Telecom Services Company Limited</Text>
               </View>
               <View style={{ marginTop: 5 }}>
                 <Text>
@@ -219,17 +219,17 @@ const CVDoc = () => {
 
           <View style={{ marginTop: 20 }}>
             <View>
-              <Text style={{ fontSize: 18, color: '#140861' }}>HỌC VẤN</Text>
+              <Text style={{ fontSize: 18, color: '#140861' }}>EDUCATION</Text>
             </View>
             <View style={{ marginTop: 10 }}>
               <View>
                 <Text>09/2022 - 03/2023</Text>
               </View>
               <View>
-                <Text>Cong nghe thong tin</Text>
+                <Text>Information Technology</Text>
               </View>
               <View>
-                <Text>Cử nhân - Đại học Mở Thành phố Hồ Chí Minh</Text>
+                <Text>Bachelor - Ho Chi Minh City Open University</Text>
               </View>
               <View style={{ marginTop: 5 }}>
                 <Text>
@@ -245,7 +245,7 @@ const CVDoc = () => {
 
           <View style={{ marginTop: 20 }}>
             <View>
-              <Text style={{ fontSize: 18, color: '#140861' }}>CHỨNG CHỈ</Text>
+              <Text style={{ fontSize: 18, color: '#140861' }}>CERTIFICATES</Text>
             </View>
             <View style={{ marginTop: 10 }}>
               <View>
@@ -262,25 +262,25 @@ const CVDoc = () => {
 
           <View style={{ marginTop: 20 }}>
             <View style={{ marginBottom: 5 }}>
-              <Text style={{ fontSize: 18, color: '#140861' }}>KỸ NĂNG NGÔN NGỮ</Text>
+              <Text style={{ fontSize: 18, color: '#140861' }}>LANGUAGE SKILLS</Text>
             </View>
             <View style={{ marginTop: 5 }}>
-              <Text>Anh (5/5)</Text>
+              <Text>English (5/5)</Text>
             </View>
             <View style={{ marginTop: 5 }}>
-              <Text>Anh (5/5)</Text>
+              <Text>English (5/5)</Text>
             </View>
             <View style={{ marginTop: 5 }}>
-              <Text>Anh (5/5)</Text>
+              <Text>English (5/5)</Text>
             </View>
             <View style={{ marginTop: 5 }}>
-              <Text>Anh (5/5)</Text>
+              <Text>English (5/5)</Text>
             </View>
           </View>
 
           <View style={{ marginTop: 20 }}>
             <View style={{ marginBottom: 5 }}>
-              <Text style={{ fontSize: 18, color: '#140861' }}>KỸ NĂNG CHUYÊN MÔN</Text>
+              <Text style={{ fontSize: 18, color: '#140861' }}>PROFESSIONAL SKILLS</Text>
             </View>
             <View style={{ marginTop: 5 }}>
               <Text>JAVASCRIPT (5/5)</Text>

@@ -37,7 +37,7 @@ const SidebarHeader = () => {
         <Box>
           <Chip
             icon={!isEmployer ? <HomeIcon /> : <GridViewIcon />}
-            label={!isEmployer ? 'Về trang chủ' : 'Về trang quản trị'}
+            label={!isEmployer ? 'Back to Home' : 'Back to Dashboard'}
             onClick={handleRedirect}
           />
         </Box>

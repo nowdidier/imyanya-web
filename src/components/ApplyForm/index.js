@@ -32,16 +32,16 @@ const ApplyForm = ({ handleApplyJob }) => {
   const schema = yup.object().shape({
     fullName: yup
       .string()
-      .required('Họ và tên là bắt buộc.')
-      .max(100, 'Họ và tên vượt quá độ dài cho phép.'),
+      .required('Full name is required.')
+      .max(100, 'Full name exceeds allowed length.'),
     email: yup
       .string()
-      .required('Email là bắt buộc.')
-      .email('Email không hợp lệ.')
-      .max(100, 'Email vượt quá độ dài cho phép.'),
+      .required('Email is required.')
+      .email('Invalid email.')
+      .max(100, 'Email exceeds allowed length.'),
     phone: yup
       .string()
-      .required('Số điện thoại là bắt buộc.')
+      .required('Phone number is required.')
       .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
       .max(15, 'Số điện thoại vượt quá độ dài cho phép.'),
   });
@@ -128,7 +128,7 @@ const ApplyForm = ({ handleApplyJob }) => {
                                     style={{ marginRight: 1 }}
                                     color="#441da0"
                                   />{' '}
-                                  Hồ sơ trực tuyến
+                                  Online Resume
                                 </>
                               ) : value.type === CV_TYPES.cvUpload ? (
                                 <>
@@ -137,7 +137,7 @@ const ApplyForm = ({ handleApplyJob }) => {
                                     style={{ marginRight: 1 }}
                                     color="red"
                                   />{' '}
-                                  Hồ sơ đính kèm
+                                  Attached Resume
                                 </>
                               ) : (
                                 ''
@@ -160,7 +160,7 @@ const ApplyForm = ({ handleApplyJob }) => {
                                 sx={{ fontWeight: 'bold', cursor: 'pointer' }}
                                 color="#441da0"
                               >
-                                <FontAwesomeIcon icon={faEye} /> Xem hồ sơ
+                                <FontAwesomeIcon icon={faEye} /> View Resume
                               </Typography>
                             </Link>
                           </Stack>
@@ -175,9 +175,9 @@ const ApplyForm = ({ handleApplyJob }) => {
           <Grid item xs={12}>
             <TextFieldCustom
               name="fullName"
-              title="Họ và tên"
+              title="Full Name"
               showRequired={true}
-              placeholder="Nhập họ và tên"
+              placeholder="Enter full name"
               control={control}
             />
           </Grid>
@@ -186,23 +186,22 @@ const ApplyForm = ({ handleApplyJob }) => {
               name="email"
               title="Email"
               showRequired={true}
-              placeholder="Nhập email"
+              placeholder="Enter email"
               control={control}
             />
           </Grid>
           <Grid item xs={12}>
             <TextFieldCustom
               name="phone"
-              title="Số điện thoại"
+              title="Phone Number"
               showRequired={true}
-              placeholder="Nhập số điện thoại"
+              placeholder="Enter phone number"
               control={control}
             />
           </Grid>
           <Grid item xs={12}>
             <Typography color="GrayText" variant="caption">
-              Lưu ý: Họ tên, email, số điện thoại cần chính xác để nhà tuyển
-              dụng liên hệ với bạn.
+              Note: Full name, email, phone number must be accurate for employers to contact you.
             </Typography>
           </Grid>
         </Grid>

@@ -103,7 +103,7 @@ const JobPostLarge = ({
               variant="body1"
             >
               <FontAwesomeIcon icon={faLocationDot} color="#bdbdbd" />{' '}
-              {allConfig?.cityDict[cityId] || 'Chưa cập nhật'}
+              {allConfig?.cityDict[cityId] || 'Not updated'}
             </Typography>
             <Typography
               sx={{ fontWeight: 'bold', fontSize: 15 }}
@@ -137,7 +137,7 @@ const JobPostLarge = ({
                 color: 'orange',
               }}
             >
-              Tuyển gấp
+              Urgent
             </span>
           )}
         </Box>

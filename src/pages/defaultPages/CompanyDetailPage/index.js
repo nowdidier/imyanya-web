@@ -193,7 +193,7 @@ const CompanyDetailPage = () => {
             : companyDetail.followNumber - 1,
         });
         toastMessages.success(
-          isFollowed ? 'Theo dõi thành công.' : 'Hủy theo dõi thành công.'
+          isFollowed ? 'Following' : 'Unfollowed successfully.'
         );
       } catch (error) {
         errorHandling(error);
@@ -306,7 +306,7 @@ const CompanyDetailPage = () => {
                               fontSize: 13,
                             }}
                           >
-                            Chưa cập nhật
+                            Not updated
                           </span>
                         )}
                       </Typography>
@@ -345,8 +345,8 @@ const CompanyDetailPage = () => {
                       >
                         <span>
                           {companyDetail.isFollowed
-                            ? 'Đang theo dõi'
-                            : 'Theo dõi'}{' '}
+                            ? 'Following'
+                            : 'Follow'}{' '}
                           ({companyDetail.followNumber})
                         </span>
                       </LoadingButton>
@@ -358,7 +358,7 @@ const CompanyDetailPage = () => {
                     startIcon={<ShareIcon />}
                     onClick={() => setOpenSharePopup(true)}
                   >
-                    Chia sẻ
+                    Share
                   </Button>
                 </Stack>
               </Stack>
@@ -375,7 +375,7 @@ const CompanyDetailPage = () => {
                       gutterBottom
                       sx={{ color: '#441da0' }}
                     >
-                      Về công ty
+                      About Company
                     </Typography>
                     <Box sx={{ mt: 2 }}>
                       <Typography style={{ textAlign: 'justify' }}>
@@ -393,7 +393,7 @@ const CompanyDetailPage = () => {
                               fontSize: 13,
                             }}
                           >
-                            Chưa cập nhật
+                            Not updated
                           </span>
                         )}
                       </Typography>
@@ -408,7 +408,7 @@ const CompanyDetailPage = () => {
                       gutterBottom
                       sx={{ color: '#441da0' }}
                     >
-                      Việc làm đang tuyển
+                      Current Jobs
                     </Typography>
                     <Box sx={{ mt: 2 }}>
                       <FilterJobPostCard
@@ -445,7 +445,7 @@ const CompanyDetailPage = () => {
                             fontSize: 13,
                           }}
                         >
-                          Chưa cập nhật
+                          Not updated
                         </span>
                         }
                       </Typography>
@@ -453,7 +453,7 @@ const CompanyDetailPage = () => {
                   </Box>
                   <Box>
                     <Typography variant="h6" sx={{ color: '#441da0' }}>
-                      Theo dõi tại
+                      Follow us at
                     </Typography>
                     <Box sx={{ mt: 1 }}>
                       {companyDetail?.facebookUrl ||
@@ -499,14 +499,14 @@ const CompanyDetailPage = () => {
                             fontSize: 13,
                           }}
                         >
-                          Chưa cập nhật
+                          Not updated
                         </span>
                       )}
                     </Box>
                   </Box>
                   <Box>
                     <Typography variant="h6" sx={{ color: '#441da0' }}>
-                      Thông tin chung
+                      Contact Info
                     </Typography>
                     <Box sx={{ mt: 1 }}>
                       <Typography>
@@ -543,7 +543,7 @@ const CompanyDetailPage = () => {
                               fontSize: 13,
                             }}
                           >
-                            Chưa cập nhật
+                            Not updated
                           </span>
                         )}
                       </Typography>
@@ -551,7 +551,7 @@ const CompanyDetailPage = () => {
                   </Box>
                   <Box>
                     <Typography variant="h6" sx={{ color: '#441da0' }}>
-                      Bản đồ
+                      Map
                     </Typography>
                     <Box sx={{ mt: 1 }}>
                       <Map
@@ -565,7 +565,7 @@ const CompanyDetailPage = () => {
                   {imageList.length > 0 && (
                     <Box>
                       <Typography variant="h6" sx={{ color: '#441da0' }}>
-                        Hình ảnh
+                        Images
                       </Typography>
                       <Box sx={{ mt: 1, borderRadius: 2, overflow: 'hidden' }}>
                         <ImageGalleryCustom images={imageList} />

@@ -13,36 +13,36 @@ import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
 
 const tabItems = [
-  { id: 1, label: "My MyJob", icon: <DashboardIcon />, path: "/ung-vien" },
+  { id: 1, label: "My MyJob", icon: <DashboardIcon />, path: "/job-seeker" },
   {
     id: 2,
-    label: "Hồ sơ xin việc",
+    label: "Job Resume",
     icon: <AssignmentIndIcon />,
-    path: "/ung-vien/ho-so",
+    path: "/job-seeker/resume",
   },
   {
     id: 3,
-    label: "Việc làm của tôi",
+    label: "My Jobs",
     icon: <WorkIcon />,
-    path: "/ung-vien/viec-lam-cua-toi",
+    path: "/job-seeker/my-jobs",
   },
   {
     id: 4,
-    label: "Công ty của tôi",
+    label: "My Companies",
     icon: <ApartmentIcon />,
-    path: "/ung-vien/cong-ty-cua-toi",
+    path: "/job-seeker/my-companies",
   },
   {
     id: 5,
-    label: "MyJob thông báo",
+    label: "MyJob Notifications",
     icon: <CircleNotificationsIcon />,
-    path: "/ung-vien/thong-bao",
+    path: "/job-seeker/notifications",
   },
   {
     id: 6,
-    label: "Tài khoản & cài đặt",
+    label: "Account & Settings",
     icon: <ManageAccountsOutlinedIcon />,
-    path: "/ung-vien/tai-khoan",
+    path: "/job-seeker/account",
   },
 ];
 

@@ -17,7 +17,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import toastMessages from '../../../utils/toastMessages';
 
 const ResetPasswordPage = () => {
-  TabTitle("Cập nhật mật khẩu")
+  TabTitle("Reset Password")
 
   const { token } = useParams();
   const nav = useNavigate();
@@ -80,7 +80,7 @@ const ResetPasswordPage = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              Đặt lại mật khẩu của bạn
+              Reset your password
             </Typography>
           </Box>
 
@@ -88,7 +88,7 @@ const ResetPasswordPage = () => {
           {errorMessage && (
             <Box>
               <Alert severity="error">
-                <AlertTitle>Thất bại</AlertTitle>
+                <AlertTitle>Failed</AlertTitle>
                 {errorMessage}
               </Alert>
             </Box>

@@ -22,13 +22,13 @@ import GeneralInfoCard from '../../components/jobSeekers/GeneralInfoCard';
 import CVCard from '../../components/jobSeekers/CVCard';
 
 const items = [
-  { id: 0, value: 'Thông tin cá nhân', icon: <PersonPinOutlinedIcon /> },
-  { id: 1, value: 'Thông tin chung', icon: <WorkOutlineOutlinedIcon /> },
-  { id: 2, value: 'Tải CV đính kèm', icon: <UploadFileOutlinedIcon /> },
+  { id: 0, value: 'Personal Information', icon: <PersonPinOutlinedIcon /> },
+  { id: 1, value: 'General Information', icon: <WorkOutlineOutlinedIcon /> },
+  { id: 2, value: 'Upload Attached CV', icon: <UploadFileOutlinedIcon /> },
 ];
 
 const AttachedProfilePage = () => {
-  TabTitle("Cập nhật hồ sơ Đính kèm")
+  TabTitle("Update Attached Profile")
   const refs = React.useRef([]);
 
   const handleClickScroll = (index) => {
@@ -42,17 +42,17 @@ const AttachedProfilePage = () => {
           <Stack spacing={2}>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[0] = el)}>
               {/* Start: Personal info */}
-              <PersonalInfoCard title="Thông tin cá nhân" />
+              <PersonalInfoCard title="Personal Information" />
               {/* End: Personal info  */}
             </Card>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[1] = el)}>
               {/* Start: General info */}
-              <GeneralInfoCard title="Thông tin chung" />
+              <GeneralInfoCard title="General Information" />
               {/* End: General info */}
             </Card> 
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[1] = el)}>
               {/* Start: Cv card */}
-              <CVCard title="Tải CV đính kèm" />
+              <CVCard title="Upload Attached CV" />
               {/* End: Cv card */}
             </Card>
           </Stack>
@@ -78,7 +78,7 @@ const AttachedProfilePage = () => {
             <Card sx={{ p: 2 }}>
               <Stack>
                 <Box>
-                  <Typography variant="h6">Hồ sơ đính kèm của bạn</Typography>
+                  <Typography variant="h6">Your Attached Profile</Typography>
                 </Box>
                 <Box>
                   <List

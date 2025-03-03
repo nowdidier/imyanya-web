@@ -35,7 +35,7 @@ const FollowComponent = ({ slug, isFollowed }) => {
 
         setFollowed(isFollowed);
         toastMessages.success(
-          isFollowed ? 'Theo dõi thành công.' : 'Hủy theo dõi thành công.'
+          isFollowed ? 'Followed successfully.' : 'Unfollowed successfully.'
         );
       } catch (error) {
         errorHandling(error);
@@ -69,9 +69,9 @@ const FollowComponent = ({ slug, isFollowed }) => {
           >
             <span>
               {followed ? (
-                <span style={{ color: 'white' }}>Đang theo dõi</span>
+                <span style={{ color: 'white' }}>Following</span>
               ) : (
-                'Theo dõi'
+                'Follow'
               )}
             </span>
           </LoadingButton>
@@ -154,7 +154,7 @@ const Company = ({
                     style={{ marginRight: 2 }}
                     color="#bdbdbd"
                   />{' '}
-                  {followNumber} lượt theo dõi
+                  {followNumber} followers
                 </Typography>
               </Box>
             </Stack>
@@ -183,7 +183,7 @@ const Company = ({
               />{' '}
               {fieldOperation || (
                   <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-                  Chưa cập nhật
+                  Not updated
                 </span>
               )}
             </Typography>
@@ -195,7 +195,7 @@ const Company = ({
               />{' '}
               {allConfig?.cityDict[city] || (
                 <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-                Chưa cập nhật
+                Not updated
               </span>
               )}
             </Typography>
@@ -207,7 +207,7 @@ const Company = ({
               />{' '}
               {allConfig?.employeeSizeDict[employeeSize] || (
                  <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-                 Chưa cập nhật
+                 Not updated
                </span>
               )}
             </Typography>
@@ -217,7 +217,7 @@ const Company = ({
                 style={{ marginRight: 2 }}
                 color="#bdbdbd"
               />{' '}
-              {jobPostNumber} việc làm
+              {jobPostNumber} jobs
             </Typography>
           </Box>
         </Box>

@@ -49,7 +49,7 @@ const FileUploadCustom = ({
             component="label"
             onClick={handleInputClick}
           >
-            Tải file
+            Upload file
           </Button>
         </Box>
       </Stack>

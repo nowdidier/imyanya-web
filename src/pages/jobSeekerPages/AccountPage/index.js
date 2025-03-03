@@ -7,27 +7,27 @@ import PersonalInfoCard from '../../components/jobSeekers/PersonalInfoCard';
 import SettingCard from '../../components/settings/SettingCard';
 
 const AccountPage = () => {
-  TabTitle('Quản lý tài khoản Người tìm việc');
+  TabTitle('Job Seeker Account Management');
 
   return (
     <Grid spacing={3} container>
       <Grid item xs={12} sm={12} md={5} lg={6} xl={6}>
         <Card sx={{ p: 2 }}>
           {/* Start: Account card */}
-          <AccountCard title="Thông tin tài khoản" />
+          <AccountCard title="Account Information" />
           {/* End: Account card */}
         </Card>
       </Grid>
       <Grid item xs={12} sm={12} md={7} lg={6} xl={6}>
         <Card sx={{ p: 2 }}>
           {/* Start: Personal info */}
-          <PersonalInfoCard title="Thông tin cá nhân" />
+          <PersonalInfoCard title="Personal Information" />
           {/* End: Personal info  */}
         </Card>
 
         <Card sx={{ p: 2, marginTop: 3 }}>
           {/* Start: SettingCard info */}
-          <SettingCard title="Cài đặt" />
+          <SettingCard title="Settings" />
           {/* End: SettingCard info  */}
         </Card>
       </Grid>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Moment from 'react-moment';
-import 'moment/locale/vi';
+import 'moment/locale/en';
 import {
   Box,
   Button,
@@ -141,7 +141,7 @@ const NotificationCard = ({ title }) => {
     })
       .then(() => {})
       .catch((error) => {
-        console.log('read noti failed: ', error);
+        console.log('read notification failed: ', error);
       });
   };
 
@@ -153,28 +153,28 @@ const NotificationCard = ({ title }) => {
         break;
       case 'EMPLOYER_VIEWED_RESUME':
         handleRead(item.key);
-        nav('/ung-vien/cong-ty-cua-toi');
+        nav('/candidate/my-company');
         break;
       case 'EMPLOYER_SAVED_RESUME':
         handleRead(item.key);
-        nav('/ung-vien/cong-ty-cua-toi');
+        nav('/candidate/my-company');
         break;
       case 'APPLY_STATUS':
         handleRead(item.key);
-        nav('/ung-vien/viec-lam-cua-toi');
+        nav('/candidate/my-jobs');
         break;
       case 'COMPANY_FOLLOWED':
         handleRead(item.key);
-        nav('/nha-tuyen-dung/danh-sach-ung-vien');
+        nav('/employer/candidate-list');
         break;
       case 'POST_VERIFY_RESULT':
         handleRead(item.key);
-        nav('/nha-tuyen-dung/tin-tuyen-dung');
+        nav('/employer/job-posts');
         break;
       case 'APPLY_JOB':
         handleRead(item.key);
         nav(
-          `/nha-tuyen-dung/chi-tiet-ung-vien/${item['APPLY_JOB']?.resume_slug}`
+          `/employer/candidate-detail/${item['APPLY_JOB']?.resume_slug}`
         );
         break;
       default:
@@ -195,7 +195,7 @@ const NotificationCard = ({ title }) => {
         }
       })
       .catch((error) => {
-        console.log('deleted noti failed: ', error);
+        console.log('delete notification failed: ', error);
       });
   };
 
@@ -282,7 +282,7 @@ const NotificationCard = ({ title }) => {
                     sx={{ textTransform: 'inherit' }}
                     onClick={handleMakeAllRead}
                   >
-                    Đánh dấu tất cả đã đọc
+                    Mark all as read
                   </Button>
 
                   <Button
@@ -291,7 +291,7 @@ const NotificationCard = ({ title }) => {
                     sx={{ textTransform: 'inherit' }}
                     onClick={handleRemoveAll}
                   >
-                    Xóa tất cả
+                    Delete all
                   </Button>
                 </>
               )}
@@ -309,7 +309,7 @@ const NotificationCard = ({ title }) => {
                   </Stack>
                 ) : notifications.length === 0 ? (
                   <NoDataCard
-                    title="Chưa có thông báo nào."
+                    title="No notifications yet."
                     imgComponentSgv={<ImageSvg9 />}
                   />
                 ) : (
@@ -321,7 +321,7 @@ const NotificationCard = ({ title }) => {
                             key={value?.key}
                             alignItems="center"
                             secondaryAction={
-                              <Tooltip title="Xóa thông báo" arrow>
+                              <Tooltip title="Delete notification" arrow>
                                 <IconButton
                                   aria-label="delete"
                                   color="error"
@@ -400,7 +400,7 @@ const NotificationCard = ({ title }) => {
                           onClick={loadMore}
                           variant="contained"
                         >
-                          Xem thêm
+                          Load more
                         </Button>
                       </Stack>
                     )}

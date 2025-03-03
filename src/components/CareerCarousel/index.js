@@ -175,7 +175,7 @@ const CareerCarousel = () => {
                       gutterBottom
                       sx={{ textAlign: 'center', color: '#9e9e9e' }}
                     >
-                      {value.jobPostTotal} Việc Làm
+                      {value.jobPostTotal} Jobs
                     </Typography>
                   </Card>
                 </SwiperSlide>

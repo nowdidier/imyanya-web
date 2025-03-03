@@ -28,10 +28,10 @@ const AvatarCard = () => {
     dispatch(updateAvatar(formData))
       .unwrap()
       .then(() => {
-        toastMessages.success('Cập nhật ảnh đại diện thành công.');
+        toastMessages.success('Avatar updated successfully.');
       })
       .catch(() => {
-        toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại.');
+        toastMessages.error('An error occurred, please try again.');
       })
       .finally(() => setIsFullScreenLoading(false));
   };
@@ -53,8 +53,8 @@ const AvatarCard = () => {
 
     confirmModal(
       () => del(),
-      'Xóa ảnh đại diện',
-      'Ảnh đại diện này sẽ được xóa và không thể khôi phục. Bạn có chắc chắn?',
+      'Delete Avatar',
+      'This avatar will be deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -74,11 +74,11 @@ const AvatarCard = () => {
           <ImgCrop
             rotationSlider
             modalProps={{ zIndex: 2000 }}
-            modalTitle="Chỉnh sửa ảnh"
-            modalOk="Tải lên"
-            modalCancel="Hủy"
+            modalTitle="Edit Image"
+            modalOk="Upload"
+            modalCancel="Cancel"
             showReset={true}
-            resetText="Đặt lại"
+            resetText="Reset"
           >
             <Upload
               listType="picture"
@@ -101,7 +101,7 @@ const AvatarCard = () => {
           </IconButton>
         </Box>
         <Typography variant="subtitle2" gutterBottom sx={{ mt: 1 }}>
-          Ảnh đại diện
+          Avatar
         </Typography>
       </Stack>
 

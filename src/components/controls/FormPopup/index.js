@@ -20,7 +20,7 @@ const Popup = ({
   openPopup,
   setOpenPopup,
   showDialogAction = true,
-  buttonText = 'Lưu',
+  buttonText = 'Save',
   buttonIcon = <SaveIcon />,
   children,
 }) => {

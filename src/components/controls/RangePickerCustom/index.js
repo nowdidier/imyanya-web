@@ -3,18 +3,18 @@ import { Box, Button, IconButton } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 
 import { DatePicker } from 'antd';
-import locale from '../../../locales/vi_VN';
+import locale from '../../../locales/en_US';
 
 import dayjs from 'dayjs';
 const { RangePicker } = DatePicker;
 
 function getMonthDiff(dateA, dateB) {
-  const msPerDay = 86400000; // số milisecond trong một ngày
+  const msPerDay = 86400000; // milliseconds in one day
 
-  // tính số ngày giữa hai ngày
+  // calculate days between two dates
   const daysDiff = Math.round((dateB - dateA) / msPerDay);
 
-  // tính số tháng và ngày còn lại
+  // calculate months and remaining days
   const monthDiff = Math.floor(daysDiff / 30);
   const daysRemaining = daysDiff % 30;
 
@@ -110,7 +110,7 @@ const RangePickerCustom = ({
           disabled={!selectedDateRange}
           onClick={() => setAllowSubmit(!allowSubmit)}
         >
-          Áp dụng
+          Apply
         </Button>
       </Box>
     </>

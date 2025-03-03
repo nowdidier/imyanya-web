@@ -5,12 +5,12 @@ import { TabTitle } from '../../../utils/generalFunction';
 import AppliedResumeCard from '../../components/employers/AppliedResumeCard';
 
 const ProfileAppliedPage = () => {
-  TabTitle("Quản lý hồ sơ đã ứng tuyển")
+  TabTitle("Applied Resumes Management")
 
   return (
     <Card sx={{ p: 3 }}>
       {/* Start: Applied Resume Card */}
-      <AppliedResumeCard title="Hồ sơ đã ứng tuyển"/>
+      <AppliedResumeCard title="Applied Resumes"/>
       {/* End: Applied Resume Card */}
     </Card>
   );

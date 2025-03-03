@@ -32,7 +32,7 @@ const DesktopContent = (setOpen, careers, handleFilter) => {
           <CloseIcon />
         </IconButton>
         <Typography variant="h6" component="div">
-          Danh sách tất cả nghề nghiệp
+          All Career Categories
         </Typography>
       </Stack>
       <Box>
@@ -53,7 +53,7 @@ const DesktopContent = (setOpen, careers, handleFilter) => {
               }}
             >
               <Stack>
-                <Typography variant="h6">Top 10 nghề nghiệp</Typography>
+                <Typography variant="h6">Top 10 Careers</Typography>
                 <Divider sx={{ my: 2 }} />
                 <Grid container spacing={2}>
                   {careers
@@ -80,7 +80,7 @@ const DesktopContent = (setOpen, careers, handleFilter) => {
           </Grid>
           <Grid item sm={7} md={9}>
             <Stack sx={{ p: 2 }}>
-              <Typography variant="h6">Ngành nghề khác</Typography>
+              <Typography variant="h6">Other Careers</Typography>
               <Divider sx={{ my: 2 }} />
               <Grid container spacing={2}>
                 {careers
@@ -132,7 +132,7 @@ const MobileContent = (setOpen, careers, handleFilter) => {
           <CloseIcon />
         </IconButton>
         <Typography variant="h6" component="div">
-          Danh sách tất cả nghề nghiệp
+          All Career Categories
         </Typography>
       </Stack>
 

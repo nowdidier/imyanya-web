@@ -30,7 +30,7 @@ import authService from '../../../services/authService';
 import tokenService from '../../../services/tokenService';
 
 const JobSeekerLogin = () => {
-  TabTitle('Đăng nhập tài khoản Người tìm việc');
+  TabTitle('Job Seeker Login');
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -76,10 +76,10 @@ const JobSeekerLogin = () => {
               nav('/');
             })
             .catch(() => {
-              toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
+              toastMessages.error('An error occurred, please try again!');
             });
         } else {
-          toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
+          toastMessages.error('An error occurred, please try again!');
         }
       } catch (error) {
         // 400 bad request
@@ -89,7 +89,7 @@ const JobSeekerLogin = () => {
           if ('errorMessage' in errors) {
             setErrorMessage(errors.errorMessage.join(' '));
           } else {
-            toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
+            toastMessages.error('An error occurred, please try again!');
           }
         }
       } finally {
@@ -117,7 +117,7 @@ const JobSeekerLogin = () => {
           return;
         } else if (exists === false) {
           setErrorMessage(
-            'Không tồn tại tài khoản ứng viên nào với email này!'
+            'No job seeker account exists with this email!'
           );
 
           return;
@@ -125,7 +125,7 @@ const JobSeekerLogin = () => {
 
         getAccesToken(resEmail, password, roleName);
       } catch (error) {
-        toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
+        toastMessages.error('An error occurred, please try again!');
       } finally {
         setIsFullScreenLoading(false);
       }
@@ -169,10 +169,10 @@ const JobSeekerLogin = () => {
             nav('/');
           })
           .catch(() => {
-            toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
+            toastMessages.error('An error occurred, please try again!');
           });
       } else {
-        toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
+        toastMessages.error('An error occurred, please try again!');
       }
     } catch (error) {
       // 400 bad request
@@ -182,7 +182,7 @@ const JobSeekerLogin = () => {
         if ('errorMessage' in errors) {
           setErrorMessage(errors.errorMessage.join(' '));
         } else {
-          toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
+          toastMessages.error('An error occurred, please try again!');
         }
       }
     } finally {
@@ -237,7 +237,7 @@ const JobSeekerLogin = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5" align="center">
-              Đăng nhập tài khoản ứng viên
+              Job Seeker Login
             </Typography>
           </Box>
           {/* <Box>
@@ -254,14 +254,14 @@ const JobSeekerLogin = () => {
           {errorMessage ? (
             <Box>
               <Alert severity="error">
-                <AlertTitle>Thất bại</AlertTitle>
+                <AlertTitle>Failed</AlertTitle>
                 {errorMessage}
               </Alert>
             </Box>
           ) : successMessage ? (
             <Box>
               <Alert severity="success">
-                <AlertTitle>Thành công</AlertTitle>
+                <AlertTitle>Success</AlertTitle>
                 {successMessage}
               </Alert>
             </Box>
@@ -285,7 +285,7 @@ const JobSeekerLogin = () => {
                 variant="body2"
                 style={{ textDecoration: 'none', color: '#441da0' }}
               >
-                Quên mật khẩu?
+                Forgot password?
               </Link>
             </Grid>
             <Grid item>
@@ -294,7 +294,7 @@ const JobSeekerLogin = () => {
                 variant="body2"
                 style={{ textDecoration: 'none', color: '#441da0' }}
               >
-                {'Chưa có tài khoản? Đăng ký'}
+                {'Don\'t have an account? Sign up'}
               </Link>
             </Grid>
           </Grid>

@@ -38,17 +38,17 @@ const FileDropzone = ({ accept, onDrop, values }) => {
             <Box>
               <FontAwesomeIcon icon={faArrowUpFromBracket} fontSize={50} />
             </Box>
-            <Typography variant="h5">Kéo hồ sơ của bạn vào đây</Typography>
-            <Typography>Hoặc bạn có thể</Typography>
+            <Typography variant="h5">Drag your resume here</Typography>
+            <Typography>Or you can</Typography>
             <Button
               variant="contained"
               size="small"
               color="warning"
               sx={{ color: 'white' }}
             >
-              Chọn hồ sơ từ máy bạn
+              Choose file from computer
             </Button>
-            <Typography variant="caption">Hỗ trợ định dạng .pdf</Typography>
+            <Typography variant="caption">Supports .pdf format</Typography>
           </>
         ) : (
           <>
@@ -59,7 +59,7 @@ const FileDropzone = ({ accept, onDrop, values }) => {
               color="warning"
               sx={{ color: 'white' }}
             >
-              Đổi tập tin
+              Change file
             </Button>
           </>
         )}

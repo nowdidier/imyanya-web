@@ -7,25 +7,23 @@ import MuiImageCustom from '../../../components/MuiImageCustom';
 import { ABOUT_IMAGES } from '../../../configs/constants';
 
 const AboutUsPage = () => {
-  TabTitle('Về chúng tôi - Hệ thống giới thiệu việc làm MyJob');
+  TabTitle('About Us - MyJob Employment System');
 
   return (
     <>
       <Box sx={{ my: 3 }}>
         <Typography variant="h4" sx={{ mb: 2, color: '#441da0' }}>
-          Về chúng tôi
+          About Us
         </Typography>
         <Stack spacing={3}>
           <Box>
             <Typography>
-              MyJob - Kênh thông tin tuyển dụng và việc làm dành cho mọi Doanh
-              nghiệp và Ứng viên. Chúng tôi tin tưởng sẽ đem lại “HY VỌNG” cho
-              Doanh nghiệp tìm kiếm nhân tài và cho Ứng viên tìm kiếm cơ hội
-              nghề nghiệp.Với 2 hệ thống: Website dành cho Nhà Tuyển Dụng và Ứng
-              dụng (Application) dành cho Người Tìm Việc, MyJob sẽ mang lại
-              những trải nghiệm mới mẻ, thú vị; kết nối ước mơ chinh phục công
-              việc của mọi nhân tài và giúp doanh nghiệp xây dựng đội ngũ nhân
-              sự vững mạnh.
+              MyJob - Job and recruitment information channel for all Businesses and 
+              Candidates. We believe in bringing "HOPE" to Businesses seeking talent
+              and Candidates seeking career opportunities. With 2 systems: Website for
+              Recruiters and Application for Job Seekers, MyJob will deliver fresh,
+              exciting experiences; connecting the dream of conquering jobs of all
+              talents and helping businesses build strong human resources.
             </Typography>
           </Box>
           <Box>
@@ -36,8 +34,8 @@ const AboutUsPage = () => {
                     Website
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
-                    Website hỗ trợ Nhà Tuyển Dụng tìm kiếm nhân sự, quản lý công
-                    việc, ứng viên, xây dựng nguồn dữ liệu phong phú.
+                    Website supports Recruiters in finding personnel, managing jobs,
+                    candidates, building rich data sources.
                   </Typography>
                 </Stack>
               </Grid>
@@ -47,32 +45,31 @@ const AboutUsPage = () => {
                     Mobile
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
-                    Ứng dụng tìm kiếm việc làm giúp Người Tìm Việc tiếp cận được
-                    công việc phù hợp nhất ở mọi nơi và mọi thời điểm
+                    Job search app helps Job Seekers access the most suitable jobs
+                    anywhere, anytime.
                   </Typography>
                 </Stack>
               </Grid>
               <Grid xs={12} sm={12} md={6} lg={3} xl={3} item>
                 <Stack spacing={1}>
                   <Typography variant="h6" sx={{ color: '#fca34d' }}>
-                    Ngành tập trung
+                    Focus Areas
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
-                    Với việc chuyên sâu vào mảng tuyển dụng và tìm kiếm việc làm
-                    của 3 lĩnh vực: Công nghệ thông tin, Quảng cáo trực tuyến,
-                    PR - Marketing, Người Tìm việc hay Nhà Tuyển dụng sẽ kết nối
-                    được đúng với đối tượng, phù hợp với nhu cầu.
+                    Specializing in recruitment and job search in 3 fields: Information
+                    Technology, Online Advertising, PR - Marketing. Job Seekers and
+                    Recruiters will connect with the right audience, matching their needs.
                   </Typography>
                 </Stack>
               </Grid>
               <Grid xs={12} sm={12} md={6} lg={3} xl={3} item>
                 <Stack spacing={1}>
                   <Typography variant="h6" sx={{ color: '#fca34d' }}>
-                    Tiết kiệm chi phí
+                    Cost Effective
                   </Typography>
                   <Typography sx={{ textAlign: 'justify' }}>
-                    Tiết kiệm chi phí, thời gian, đạt được hiệu quả, đáp ứng
-                    được mọi nhu cầu tìm việc và tìm nhân tài.
+                    Save costs, time, achieve efficiency, meet all job search and 
+                    talent search needs.
                   </Typography>
                 </Stack>
               </Grid>
@@ -107,13 +104,12 @@ const AboutUsPage = () => {
                     variant="h4"
                     style={{ color: '#fca34d', fontSize: 30 }}
                   >
-                    Chọn đúng việc - Đi đúng hướng
+                    Choose the right job - Go in the right direction
                   </Typography>
                   <Typography textAlign="justify" color="#6D7681">
-                    Cá nhân hoá trải nghiệm tìm việc theo nhu cầu ứng viên gồm
-                    các tính năng Gợi ý việc làm phù hợp, Tìm kiếm việc làm, Tìm
-                    kiếm công ty và Chatbot hỗ trợ tìm việc làm một cách nhanh
-                    chóng.
+                    Personalize job search experience according to candidate needs
+                    including features like Job Suggestions, Job Search, Company Search
+                    and Chatbot support to quickly find jobs.
                   </Typography>
                 </Stack>
               </Box>
@@ -138,12 +134,11 @@ const AboutUsPage = () => {
                     variant="h4"
                     style={{ color: '#fca34d', fontSize: 30 }}
                   >
-                    Tạo CV & Profile
+                    Create CV & Profile
                   </Typography>
                   <Typography textAlign="justify" color="#6D7681">
-                    CV online và có thể tải lên cv đính kèm. Thuận tiện, nhanh
-                    chóng, chuyên nghiệp và khác biệt. Tăng 80% tỉ lệ ứng tuyển
-                    thành công.
+                    Online CV and ability to upload attached CV. Convenient, fast,
+                    professional and different. Increase application success rate by 80%.
                   </Typography>
                 </Stack>
               </Box>
@@ -178,14 +173,12 @@ const AboutUsPage = () => {
                     variant="h4"
                     style={{ color: '#fca34d', fontSize: 30 }}
                   >
-                    Việc làm xung quanh bạn
+                    Jobs Around You
                   </Typography>
                   <Typography textAlign="justify" color="#6D7681">
-                    Tính năng VIỆC LÀM GẦN BẠN trên app MyJob. Tính năng này
-                    giúp ứng viên có thể dễ dàng lựa chọn được một công việc phù
-                    hợp, đồng thời đảm bảo được tiêu chí gần nhà, thuận tiện đi
-                    lại mà không cần mất công tìm kiếm giữa hàng trăm tin tuyển
-                    dụng.
+                    JOBS NEAR YOU feature on MyJob app. This feature helps candidates
+                    easily choose a suitable job while ensuring close to home,
+                    convenient travel without having to search through hundreds of job posts.
                   </Typography>
                 </Stack>
               </Box>
@@ -210,12 +203,11 @@ const AboutUsPage = () => {
                     variant="h4"
                     style={{ color: '#fca34d', fontSize: 30 }}
                   >
-                    Thông báo việc làm mọi lúc
+                    Job Notifications Anytime
                   </Typography>
                   <Typography textAlign="justify" color="#6D7681">
-                    Tạo thông báo việc làm để việc làm tìm đến bạn. Việc làm mới
-                    nhất từ các nhà tuyển dụng hàng đầu sẽ được gửi đến email
-                    của bạn hàng tuần.
+                    Create job alerts to let jobs find you. Latest jobs from top
+                    employers will be sent to your email weekly.
                   </Typography>
                 </Stack>
               </Box>

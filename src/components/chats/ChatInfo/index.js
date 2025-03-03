@@ -34,7 +34,7 @@ const ChatInfo = ({ avatarUrl, title, subTitle, description }) => {
           <FontAwesomeIcon icon={faCheckCircle} /> {description}
         </Typography>
         <Typography textAlign="center" variant="caption">
-          Hãy bắt đầu cuộc trò chuyện bằng một lời chào 😍
+          Start the conversation with a greeting 😍
         </Typography>
       </Stack>
     </Stack>

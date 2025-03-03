@@ -4,7 +4,7 @@ import { ImageSvg1 } from '../../configs/constants';
 
 const NoDataCard = ({
   children,
-  title = 'Không có dữ liệu',
+  title = 'No data',
   imgComponentSgv = <ImageSvg1 />,
   childrend,
 }) => {

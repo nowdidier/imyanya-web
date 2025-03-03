@@ -19,14 +19,14 @@ import {
 
 const jobSeekerUserMenu = [
   {
-    label: "Quản lý tài khoản",
+    label: "Account Management",
     path: "/ung-vien",
   },
 ];
 
 const employerUserMenu = [
   {
-    label: "Trang quản lý NTD",
+    label: "Employer Dashboard",
     path: "/nha-tuyen-dung",
   },
 ];
@@ -115,7 +115,7 @@ const UserMenu = ({ anchorElUser, open, handleCloseUserMenu }) => {
               sx={{ textTransform: "inherit" }}
               fullWidth
             >
-              <Typography marginRight="auto"> {item.label}</Typography>
+              <Typography marginRight="auto">{item.label}</Typography>
             </Button>
           </Link>
         ))}
@@ -135,7 +135,7 @@ const UserMenu = ({ anchorElUser, open, handleCloseUserMenu }) => {
             );
           }}
         >
-          <Typography marginRight="auto">Đăng xuất</Typography>
+          <Typography marginRight="auto">Sign Out</Typography>
         </Button>
       </Stack>
     </Menu>

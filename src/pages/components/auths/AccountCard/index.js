@@ -29,7 +29,7 @@ const AccountCard = ({ title }) => {
     dispatch(updateUserInfo(data))
       .unwrap()
       .then(() =>
-        toastMessages.success('Cập nhật thông tin tài khoản thành công.')
+        toastMessages.success('Account information updated successfully.')
       )
       .catch((error) => {
         errorHandling(error, setServerErrors);
@@ -43,15 +43,15 @@ const AccountCard = ({ title }) => {
         await authService.changePassword(data);
 
         setOpenPopup(false);
-        toastMessages.success('Đổi mật khẩu thành công.');
+        toastMessages.success('Password changed successfully.');
 
         let path = '';
         switch (currentUser.roleName) {
           case ROLES_NAME.EMPLOYER:
-            path = '/dang-nhap-nha-tuyen-dung';
+            path = '/employer-login';
             break;
           case ROLES_NAME.JOB_SEEKER:
-            path = '/dang-nhap-ung-vien';
+            path = '/job-seeker-login';
             break;
           default:
             path = '/';
@@ -64,7 +64,7 @@ const AccountCard = ({ title }) => {
             nav(path);
           })
           .catch((err) => {
-            toastMessages.error('Đã xảy ra lỗi!');
+            toastMessages.error('An error occurred!');
           });
       } catch (error) {
         errorHandling(error, setServerErrors);
@@ -113,7 +113,7 @@ const AccountCard = ({ title }) => {
                       style={{ cursor: 'pointer' }}
                       onClick={() => setOpenPopup(true)}
                     >
-                      Thay đổi mật khẩu
+                      Change Password
                     </span>
                   </Typography>
                 </Box>
@@ -125,7 +125,7 @@ const AccountCard = ({ title }) => {
                     type="submit"
                     form="account-form"
                   >
-                    Cập nhật
+                    Update
                   </Button>
                 </Stack>
               </Grid>
@@ -136,7 +136,7 @@ const AccountCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Cập nhật mật khẩu"
+        title="Update Password"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

@@ -66,7 +66,7 @@ const Pdf = ({ fileUrl, title = '' }) => {
                       sx={{ color: 'white' }}
                       size="small"
                       onClick={() => props.onZoom(SpecialZoomLevel.ActualSize)}
-                      label="Kích thước chuẩn của tệp"
+                      label="Standard file size"
                       color="warning"
                     />
                   )}
@@ -95,7 +95,7 @@ const Pdf = ({ fileUrl, title = '' }) => {
                       onClick={props.onClick}
                       startIcon={<FileDownloadIcon />}
                     >
-                      Tải xuống
+                      Download
                     </Button>
                   )}
                 </Download>

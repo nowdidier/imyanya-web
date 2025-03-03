@@ -41,7 +41,7 @@ const JobByCategory = () => {
     <Grid container spacing={3}>
       <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
         <Stack spacing={2}>
-          <Typography variant="h6">Việc làm theo nghề nghiệp</Typography>
+          <Typography variant="h6">Jobs by Career</Typography>
           <Stack>
             {careerOptions?.slice(0, maxItem).map((item) => (
               <Typography
@@ -67,7 +67,7 @@ const JobByCategory = () => {
                 component={Link}
                 to="/viec-lam-theo-nganh-nghe"
               >
-                Xem tất cả nghề nghiệp <FontAwesomeIcon icon={faChevronRight} />
+                View all careers <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}
           </Stack>
@@ -76,7 +76,7 @@ const JobByCategory = () => {
 
       <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
         <Stack spacing={2}>
-          <Typography variant="h6">Việc làm theo theo khu vực</Typography>
+          <Typography variant="h6">Jobs by Location</Typography>
           <Stack>
             {cityOptions?.slice(0, maxItem).map((item) => (
               <Typography
@@ -102,7 +102,7 @@ const JobByCategory = () => {
                 component={Link}
                 to="/viec-lam-theo-tinh-thanh"
               >
-                Xem tất cả khu vực <FontAwesomeIcon icon={faChevronRight} />
+                View all locations <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}
           </Stack>
@@ -111,7 +111,7 @@ const JobByCategory = () => {
 
       <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
         <Stack spacing={2}>
-          <Typography variant="h6">Việc làm theo hình thức làm việc</Typography>
+          <Typography variant="h6">Jobs by Work Type</Typography>
           <Stack>
             {jobTypeOptions?.slice(0, maxItem).map((item) => (
               <Typography
@@ -137,7 +137,7 @@ const JobByCategory = () => {
                 component={Link}
                 to="/viec-lam-theo-hinh-thuc-lam-viec"
               >
-                Xem tất cả hình thức làm việc{' '}
+                View all work types{' '}
                 <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}

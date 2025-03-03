@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Moment from 'react-moment';
-import 'moment/locale/vi';
+import 'moment/locale/en';
 import {
   Badge,
   Box,
@@ -309,7 +309,7 @@ const NotificationCard = () => {
             <Stack spacing={2} sx={{ p: 1 }}>
               {notifications.length === 0 ? (
                 <Typography textAlign="center" variant="body2" color="gray">
-                  Chưa có thông báo nào
+                  No notifications yet
                 </Typography>
               ) : (
                 notifications.map((value, idx) => (
@@ -377,9 +377,9 @@ const NotificationCard = () => {
                           </Typography>
                           <Typography variant="caption" fontSize={12}>
                             {value?.is_read === true ? (
-                              <span style={{ color: '#bdbdbd' }}>Đã đọc</span>
+                              <span style={{ color: '#bdbdbd' }}>Read</span>
                             ) : (
-                              <span style={{ color: 'red' }}>Mới</span>
+                              <span style={{ color: 'red' }}>New</span>
                             )}
                           </Typography>
                         </Stack>
@@ -416,7 +416,7 @@ const NotificationCard = () => {
                       color="GrayText"
                     >
                       <span style={{ cursor: 'pointer' }} onClick={loadMore}>
-                        Xem thêm
+                        See more
                       </span>
                     </Typography>
                   </Stack>
@@ -434,7 +434,7 @@ const NotificationCard = () => {
                         style={{ cursor: 'pointer' }}
                         onClick={handleRemoveAll}
                       >
-                        Xóa tất cả
+                        Delete all
                       </span>
                     </Typography>
                   </Stack>

@@ -56,7 +56,7 @@ const InputBaseSearchHomeCustom = ({
         setRecentSearch(JSON.parse(keywordListStr));
       }
     } catch (error) {
-      console.error('Loi khi lay tu khoa tu local storage: ', error);
+      console.error('Error getting keywords from local storage: ', error);
     }
   }, []);
 
@@ -128,7 +128,7 @@ const InputBaseSearchHomeCustom = ({
             <Stack>
               <Box>
                 <Typography fontWeight="bold" fontSize={17} color="#2C95FF">
-                  Gợi ý tìm kiếm
+                  Search suggestions
                 </Typography>
                 <Stack>
                   {isLoading ? (
@@ -142,7 +142,7 @@ const InputBaseSearchHomeCustom = ({
                       color={'#bdbdbd'}
                       variant="caption"
                     >
-                      Không có dữ liệu
+                      No data
                     </Typography>
                   ) : (
                     <List>
@@ -176,7 +176,7 @@ const InputBaseSearchHomeCustom = ({
               {(recentSearch || [])?.length > 0 && (
                 <Box>
                   <Typography fontWeight="bold" fontSize={17} color="#2C95FF">
-                    Tìm kiếm gần đây
+                    Recent searches
                   </Typography>
                   <Stack>
                     <List>
@@ -277,7 +277,7 @@ const InputBaseSearchHomeCustom = ({
           />
           {showSubmitButton && (
             <Button variant="contained" type="submit" color="primary">
-              Tìm kiếm
+              Search
             </Button>
           )}
         </Box>

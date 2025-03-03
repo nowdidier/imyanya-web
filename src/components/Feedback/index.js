@@ -28,11 +28,11 @@ const Feedback = () => {
   const [isFullScreenLoading, setIsFullScreenLoading] = React.useState(false);
 
   const schema = yup.object().shape({
-    rating: yup.number().required('Đánh giá là bắt buộc.'),
+    rating: yup.number().required('Rating is required.'),
     content: yup
       .string()
-      .required('Nội dung đánh giá là bắt buộc.')
-      .max(500, 'Nội dung đánh giá vượt quá độ dài cho phép.'),
+      .required('Feedback content is required.')
+      .max(500, 'Feedback content exceeds maximum length.'),
   });
 
   const { control, handleSubmit } = useForm({
@@ -57,7 +57,7 @@ const Feedback = () => {
       try {
         await myjobService.createFeedback(data);
         handleClose();
-        toastMessages.success('Gửi phản hồi thành công.');
+        toastMessages.success('Feedback sent successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -85,7 +85,7 @@ const Feedback = () => {
         }}
         startIcon={<SentimentVerySatisfiedIcon />}
       >
-        Phản hồi
+        Feedback
       </Button>
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
         <DialogTitle>
@@ -94,7 +94,7 @@ const Feedback = () => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography variant="h5">Phản hồi</Typography>
+            <Typography variant="h5">Feedback</Typography>
             <IconButton color="error" onClick={handleClose}>
               <CloseIcon />
             </IconButton>
@@ -108,7 +108,7 @@ const Feedback = () => {
             <Grid item xs={12}>
               <MultilineTextFieldCustom
                 name="content"
-                placeholder="Nhập nội dung đánh giá tại đây"
+                placeholder="Enter your feedback here"
                 control={control}
                 minRows={7}
                 maxRows={30}
@@ -123,7 +123,7 @@ const Feedback = () => {
             color="primary"
             sx={{ margin: '0 auto' }}
           >
-            Gửi
+            Send
           </Button>
         </DialogActions>
       </Dialog>

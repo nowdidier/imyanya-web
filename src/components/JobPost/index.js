@@ -120,7 +120,7 @@ const JobPost = ({
                     color: 'orange',
                   }}
                 >
-                  Tuyển gấp
+                  Urgent
                 </span>
               )}
             </Stack>
@@ -159,7 +159,7 @@ const JobPost = ({
               <span
                 style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}
               >
-                Chưa cập nhật
+                Not updated
               </span>
             )}
           </Typography>

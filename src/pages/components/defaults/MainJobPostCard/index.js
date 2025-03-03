@@ -46,8 +46,7 @@ const MainJobPostCard = () => {
     <>
       <Box sx={{ pt: 2, pb: 3 }}>
         <Typography variant="h5">
-          Kết quả tìm kiếm (<span style={{ color: 'red' }}>{count.toLocaleString()}</span> tin
-          đăng)
+          Search results (<span style={{ color: 'red' }}>{count.toLocaleString()}</span> job posts)
         </Typography>
       </Box>
       <Stack spacing={2}>
@@ -59,7 +58,7 @@ const MainJobPostCard = () => {
           ))
         ) : jobPosts.length === 0 ? (
           <NoDataCard
-            title="Hiện chưa tìm thấy việc làm phù hợp với tiêu chí của bạn"
+            title="No jobs found matching your criteria"
             imgComponentSgv={<ImageSvg3 />}
           />
         ) : (

@@ -31,7 +31,7 @@ import { getUserInfo } from '../../../redux/userSlice';
 import { updateVerifyEmail } from '../../../redux/authSlice';
 
 const JobSeekerSignUp = () => {
-  TabTitle("Đăng ký tài khoản Người tìm việc")
+  TabTitle("Create Job Seeker Account")
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -163,14 +163,14 @@ const JobSeekerSignUp = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5" align='center'>
-              Đăng ký tài khoản ứng viên
+              Create Job Seeker Account
             </Typography>
           </Box>
 
           {errorMessage && (
             <Box>
               <Alert severity="error">
-                <AlertTitle>Thất bại</AlertTitle>
+                <AlertTitle>Failed</AlertTitle>
                 {errorMessage}
               </Alert>
             </Box>
@@ -194,7 +194,7 @@ const JobSeekerSignUp = () => {
                 variant="body2"
                 style={{ textDecoration: 'none', color: '#441da0' }}
               >
-                {'Đã có tài khoản? Đăng nhập'}
+                {'Already have an account? Login'}
               </Link>
             </Grid>
           </Grid>

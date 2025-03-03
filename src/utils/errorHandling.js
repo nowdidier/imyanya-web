@@ -13,10 +13,10 @@ const errorHandling = (error, setError = null) => {
       }
       break;
     case 403:
-      toastMessages.error('Bạn không có quyền, vui lòng quay lại!');
+      toastMessages.error('You do not have permission, please go back!');
       break;
     default:
-      toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
+      toastMessages.error('An error occurred, please try again!');
   }
 };
 

@@ -9,7 +9,7 @@ const SettingPage = () => {
         <Grid container>
           <Grid item xs={12} sm={12} md={6} lg={5} xl={5}>
             {/* Start: Setting card */}
-            <SettingCard title="Cài đặt" />
+            <SettingCard title="Settings" />
             {/* End: Setting card */}
           </Grid>
         </Grid>

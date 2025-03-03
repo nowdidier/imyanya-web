@@ -144,7 +144,7 @@ const JobPostAction = ({
                         fontSize: 13,
                       }}
                     >
-                      Chưa cập nhật
+                      Not updated
                     </span>
                   )}
                 </Typography>

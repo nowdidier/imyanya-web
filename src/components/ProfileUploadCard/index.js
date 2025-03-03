@@ -72,7 +72,7 @@ const ProfileUploadCard = ({
               size="small"
               icon={<StarIcon color="warning" />}
               color="success"
-              label="Cho phép tìm kiếm"
+              label="Allow search"
               onClick={() => handleActive(slug)}
             />
           ) : (
@@ -82,12 +82,12 @@ const ProfileUploadCard = ({
               size="small"
               icon={<StarOutlineIcon color="warning" />}
               color="default"
-              label="Cho phép tìm kiếm"
+              label="Allow search"
               onClick={() => handleActive(slug)}
             />
           )}
           <Tooltip
-           title={`Bật "Cho phép tìm kiếm" sẽ giúp nhà tuyển dụng tìm thấy hồ sơ của bạn và họ có thể liên hệ với bạn về công việc mới. Chỉ có duy nhất một hồ được bật trạng thái "cho phép tìm kiếm" trong tất cả hồ sơ của bạn.`}
+           title={`Enabling "Allow search" will help employers find your profile and they can contact you about new jobs. Only one profile can have "allow search" status enabled among all your profiles.`}
             arrow
           >
             <HelpIcon color="disabled" />
@@ -120,8 +120,7 @@ const ProfileUploadCard = ({
             </Stack>
             <Box>
               <Typography variant="caption">
-                Cập nhật lần cuối:{' '}
-                {dayjs(updateAt).format('DD/MM/YYYY HH:mm:ss')}
+                Last updated: {dayjs(updateAt).format('DD/MM/YYYY HH:mm:ss')}
               </Typography>
             </Box>
             <Stack direction="row" justifyContent="space-between">
@@ -131,7 +130,7 @@ const ProfileUploadCard = ({
                   size="small"
                   icon={<DownloadIcon />}
                   color="secondary"
-                  label="Tải xuống"
+                  label="Download"
                   onClick={() => downloadPdf(fileUrl, title)}
                 />
               </Stack>

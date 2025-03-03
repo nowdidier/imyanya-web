@@ -81,7 +81,7 @@ const JobSeekerProfile = ({
                     fontSize: 13,
                   }}
                 >
-                  Chưa cập nhật
+                  Not updated
                 </span>
               )}
               <span style={{ color: 'gray' }}>
@@ -94,17 +94,17 @@ const JobSeekerProfile = ({
                       fontSize: 13,
                     }}
                   >
-                    Chưa cập nhật
+                    Not updated
                   </span>
                 )}{' '}
-                tuổi)
+                years old)
               </span>
             </span>
             {lastViewedDate && (
               <Chip
                 icon={<CheckCircleRoundedIcon />}
                 sx={{ marginLeft: 1 }}
-                label={`Xem lần cuối: ${dayjs(lastViewedDate).format(
+                label={`Last viewed: ${dayjs(lastViewedDate).format(
                   'DD/MM/YYYY HH:mm'
                 )}`}
                 color="success"

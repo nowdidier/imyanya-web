@@ -89,7 +89,7 @@ const CompanyAction = ({ id, views, createAt, resume, company, children }) => {
                     textOverflow: 'ellipsis',
                   }}
                 >
-                  Đã xem hồ sơ {resume?.title} {views} lần
+                  Viewed resume {resume?.title} {views} times
                 </Typography>
                 <Typography
                   variant="subtitle2"
@@ -101,7 +101,7 @@ const CompanyAction = ({ id, views, createAt, resume, company, children }) => {
                     textOverflow: 'ellipsis',
                   }}
                 >
-                  Lần xem cuối {dayjs(createAt).format('DD/MM/YYYY HH:mm')}
+                  Last viewed {dayjs(createAt).format('DD/MM/YYYY HH:mm')}
                 </Typography>
               </Box>
             </Stack>

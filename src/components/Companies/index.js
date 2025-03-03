@@ -57,7 +57,7 @@ const Companies = () => {
       >
         <Box>
           <Typography variant="h5" gutterBottom>
-            Công Ty Nổi Bật (
+            Featured Companies (
             <span style={{ color: 'red', fontWeight: 'bold' }}>{count}</span>)
           </Typography>
         </Box>
@@ -74,7 +74,7 @@ const Companies = () => {
           </Grid>
         ) : companies.length === 0 ? (
           <NoDataCard
-            title="Hiện chưa tìm công ty phù hợp với tiêu chí của bạn"
+            title="No companies match your criteria yet"
             imgComponentSgv={<ImageSvg4 />}
           />
         ) : (

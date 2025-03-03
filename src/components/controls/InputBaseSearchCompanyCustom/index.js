@@ -72,7 +72,7 @@ const InputBaseSearchCompanyCustom = ({
         />
         {showSubmitButton && (
           <Button variant="contained" type="submit" color="primary">
-            Tìm kiếm
+            Search
           </Button>
         )}
       </Box>

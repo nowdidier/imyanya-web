@@ -26,9 +26,9 @@ const createEditorStateFromHTMLString = (htmlString) => {
 
 const convertMoney = n => {
   if (n >= 1000000000) {
-    return `${Math.trunc(n / 1000000000)} tỉ`;
+    return `${Math.trunc(n / 1000000000)} billion`;
   } else if (n >= 1000000) {
-    return `${Math.trunc(n / 1000000)} triệu`;
+    return `${Math.trunc(n / 1000000)} million`;
   } else {
     return `${Math.trunc(n)}`;
   }

@@ -115,7 +115,7 @@ const RightSidebar = () => {
   return (
     <Box>
       <Typography sx={{ fontSize: 14, fontWeight: 700 }}>
-        TIN TUYỂN DỤNG ĐÃ ỨNG TUYỂN
+        APPLIED JOB POSTS
       </Typography>
       <Box p={2} sx={{ maxHeight: '85vh', overflowY: 'auto' }}>
         {isLoading ? (
@@ -126,7 +126,7 @@ const RightSidebar = () => {
           </Stack>
         ) : jobPostsApplied.length === 0 ? (
           <Box py={5}>
-            <Empty description="Bạn chưa ứng tuyển vị trí nào" />
+            <Empty description="You haven't applied to any positions" />
           </Box>
         ) : (
           <Stack spacing={2}>
@@ -302,7 +302,7 @@ const EmployerSidebar = () => {
   return (
     <Box>
       <Typography sx={{ fontSize: 14, fontWeight: 700 }}>
-        ỨNG VIÊN ỨNG TUYỂN
+        APPLIED CANDIDATES
       </Typography>
       <Box p={2} sx={{ height: '85vh', overflowY: 'auto' }}>
         {isLoading ? (
@@ -313,7 +313,7 @@ const EmployerSidebar = () => {
           </Stack>
         ) : jobPostsApplied.length === 0 ? (
           <Box py={5}>
-            <Empty description="Chưa có ứng viên nào ứng tuyển" />
+            <Empty description="No candidates have applied yet" />
           </Box>
         ) : (
           <Stack spacing={2}>

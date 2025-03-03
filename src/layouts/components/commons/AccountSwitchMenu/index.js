@@ -120,9 +120,9 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Nhà tuyển dụng</Typography>
+          <Typography>Employers</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            Đăng tin miễn phí
+            Post jobs for free
           </Typography>
         </Stack>
       </Stack>
@@ -135,9 +135,9 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Người tìm việc</Typography>
+          <Typography>Job Seekers</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            <FontAwesomeIcon icon={faArrowRight} /> Chuyển
+            <FontAwesomeIcon icon={faArrowRight} /> Switch
           </Typography>
         </Stack>
       </Stack>
@@ -150,9 +150,9 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Nhà tuyển dụng</Typography>
+          <Typography>Employers</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            Đăng tin miễn phí
+            Post jobs for free
           </Typography>
         </Stack>
       </Stack>
@@ -172,8 +172,8 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             sx={{ textTransform: 'inherit' }}
           >
             {currentUser?.roleName === ROLES_NAME.EMPLOYER
-              ? 'Đăng nhập ứng viên'
-              : 'Đăng nhập NTD'}
+              ? 'Login as Job Seeker'
+              : 'Login as Employer'}
           </Button>
           <Button
             variant="outlined"
@@ -184,8 +184,8 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             onClick={handleSignUp}
           >
             {currentUser?.roleName === ROLES_NAME.EMPLOYER
-              ? 'Đăng ký ứng viên'
-              : 'Đăng ký NTD'}
+              ? 'Register as Job Seeker'
+              : 'Register as Employer'}
           </Button>
         </Stack>
       ) : (
@@ -234,7 +234,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
                 onClick={handleLogin}
                 sx={{ color: 'white' }}
               >
-                Đăng nhập
+                Sign In
               </Button>
               <Button
                 variant="contained"
@@ -243,7 +243,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
                 sx={{ color: 'white' }}
                 onClick={handleSignUp}
               >
-                Đăng ký
+                Sign Up
               </Button>
             </Stack>
           </Menu>{' '}

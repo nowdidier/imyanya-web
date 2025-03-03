@@ -113,165 +113,165 @@ const drawer = (location, theme) => (
         defaultEndIcon={<div style={{ width: 24 }} />}
         sx={{ flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
       >
-        <StyledTreeItem nodeId="1" labelText="Tổng quan">
+        <StyledTreeItem nodeId="1" labelText="Overview">
           <NavLink
-            to="/nha-tuyen-dung"
+            to="/employer"
             style={{
               textDecoration: 'none',
               display: 'block',
               backgroundColor:
-                location.pathname === '/nha-tuyen-dung'
+                location.pathname === '/employer'
                   ? 'rgba(68, 29, 160, 0.08)'
                   : 'inherit',
             }}
           >
             <StyledTreeItem
               nodeId="6"
-              labelText="Bản điều khiển"
+              labelText="Dashboard"
               labelIcon={GridViewIcon}
             />
           </NavLink>
         </StyledTreeItem>
-        <StyledTreeItem nodeId="2" labelText="Quản lý đăng tuyển">
+        <StyledTreeItem nodeId="2" labelText="Job Posting Management">
           <NavLink
-            to="/nha-tuyen-dung/tin-tuyen-dung"
+            to="/employer/job-posts"
             style={{
               textDecoration: 'none',
               display: 'block',
               backgroundColor:
-                location.pathname === '/nha-tuyen-dung/tin-tuyen-dung'
+                location.pathname === '/employer/job-posts'
                   ? 'rgba(68, 29, 160, 0.08)'
                   : 'inherit',
             }}
           >
             <StyledTreeItem
               nodeId="7"
-              labelText="Danh sách tin đăng"
+              labelText="Job Posts List"
               labelIcon={ListAltOutlinedIcon}
             />
           </NavLink>
         </StyledTreeItem>
-        <StyledTreeItem nodeId="3" labelText="Quản lý ứng viên">
+        <StyledTreeItem nodeId="3" labelText="Candidate Management">
           <NavLink
-            to="/nha-tuyen-dung/ho-so-ung-tuyen"
+            to="/employer/applications"
             style={{
               textDecoration: 'none',
               display: 'block',
               backgroundColor:
-                location.pathname === '/nha-tuyen-dung/ho-so-ung-tuyen'
+                location.pathname === '/employer/applications'
                   ? 'rgba(68, 29, 160, 0.08)'
                   : 'inherit',
             }}
           >
             <StyledTreeItem
               nodeId="8"
-              labelText="Hồ sơ ứng tuyển"
+              labelText="Job Applications"
               labelIcon={FactCheckOutlinedIcon}
             />
           </NavLink>
           <NavLink
-            to="/nha-tuyen-dung/ho-so-da-luu"
+            to="/employer/saved-resumes"
             style={{
               textDecoration: 'none',
               display: 'block',
               backgroundColor:
-                location.pathname === '/nha-tuyen-dung/ho-so-da-luu'
+                location.pathname === '/employer/saved-resumes'
                   ? 'rgba(68, 29, 160, 0.08)'
                   : 'inherit',
             }}
           >
             <StyledTreeItem
               nodeId="9"
-              labelText="Hồ sơ đã lưu"
+              labelText="Saved Resumes"
               labelIcon={BookmarkAddedOutlinedIcon}
             />
           </NavLink>
           <NavLink
-            to="/nha-tuyen-dung/danh-sach-ung-vien"
+            to="/employer/candidates"
             style={{
               textDecoration: 'none',
               display: 'block',
               backgroundColor:
-                location.pathname === '/nha-tuyen-dung/danh-sach-ung-vien'
+                location.pathname === '/employer/candidates'
                   ? 'rgba(68, 29, 160, 0.08)'
                   : 'inherit',
             }}
           >
             <StyledTreeItem
               nodeId="10"
-              labelText="Tìm ứng viên mới"
+              labelText="Find New Candidates"
               labelIcon={ContentPasteSearchOutlinedIcon}
             />
           </NavLink>
         </StyledTreeItem>
-        <StyledTreeItem nodeId="4" labelText="Quản lý thông báo">
+        <StyledTreeItem nodeId="4" labelText="Notification Management">
           <NavLink
-            to="/nha-tuyen-dung/thong-bao"
+            to="/employer/notifications"
             style={{
               textDecoration: 'none',
               display: 'block',
               backgroundColor:
-                location.pathname === '/nha-tuyen-dung/thong-bao'
+                location.pathname === '/employer/notifications'
                   ? 'rgba(68, 29, 160, 0.08)'
                   : 'inherit',
             }}
           >
             <StyledTreeItem
               nodeId="11"
-              labelText="MyJob thông báo"
+              labelText="MyJob Notifications"
               labelIcon={NotificationsNoneOutlinedIcon}
             />
           </NavLink>
         </StyledTreeItem>
-        <StyledTreeItem nodeId="5" labelText="Quản lý tài khoản">
+        <StyledTreeItem nodeId="5" labelText="Account Management">
           <NavLink
-            to="/nha-tuyen-dung/cong-ty"
+            to="/employer/company"
             style={{
               textDecoration: 'none',
               display: 'block',
               backgroundColor:
-                location.pathname === '/nha-tuyen-dung/cong-ty'
+                location.pathname === '/employer/company'
                   ? 'rgba(68, 29, 160, 0.08)'
                   : 'inherit',
             }}
           >
             <StyledTreeItem
               nodeId="12"
-              labelText="Thông tin công ty"
+              labelText="Company Information"
               labelIcon={BusinessOutlinedIcon}
             />
           </NavLink>
           <NavLink
-            to="/nha-tuyen-dung/tai-khoan"
+            to="/employer/account"
             style={{
               textDecoration: 'none',
               display: 'block',
               backgroundColor:
-                location.pathname === '/nha-tuyen-dung/tai-khoan'
+                location.pathname === '/employer/account'
                   ? 'rgba(68, 29, 160, 0.08)'
                   : 'inherit',
             }}
           >
             <StyledTreeItem
               nodeId="13"
-              labelText="Tài khoản"
+              labelText="Account"
               labelIcon={AccountCircleOutlinedIcon}
             />
           </NavLink>
           <NavLink
-            to="/nha-tuyen-dung/cai-dat"
+            to="/employer/settings"
             style={{
               textDecoration: 'none',
               display: 'block',
               backgroundColor:
-                location.pathname === '/nha-tuyen-dung/cai-dat'
+                location.pathname === '/employer/settings'
                   ? 'rgba(68, 29, 160, 0.08)'
                   : 'inherit',
             }}
           >
             <StyledTreeItem
               nodeId="14"
-              labelText="Cài đặt"
+              labelText="Settings"
               labelIcon={SettingsOutlinedIcon}
             />
           </NavLink>

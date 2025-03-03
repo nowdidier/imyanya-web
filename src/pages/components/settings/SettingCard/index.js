@@ -61,9 +61,9 @@ const SettingCard = ({ title }) => {
         const resData = await authService.updateUserSettings(data);
         
         setEditData(resData.data);
-        toastMessages.success('Cập nhật setting thành công.');
+        toastMessages.success('Settings updated successfully.');
       } catch (error) {
-        toastMessages.error('Cập nhật setting thất bại.');
+        toastMessages.error('Failed to update settings.');
       }
     };
 
@@ -106,7 +106,7 @@ const SettingCard = ({ title }) => {
                       type="submit"
                       form="setting-form"
                     >
-                      Cập nhật
+                      Update
                     </Button>
                   </Stack>
                 </Grid>

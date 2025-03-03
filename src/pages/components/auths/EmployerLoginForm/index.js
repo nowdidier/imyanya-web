@@ -11,16 +11,16 @@ const EmployerLoginForm = ({ onLogin }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Email là bắt buộc!')
-      .email('Email không đúng định dạng'),
+      .required('Email is required!')
+      .email('Invalid email format'),
     password: yup
       .string()
-      .required('Mật khẩu là bắt buộc!')
-      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
-      .max(128, 'Mật khẩu vượt quá độ dài cho phép.')
+      .required('Password is required!')
+      .min(8, 'Password must be at least 8 characters.')
+      .max(128, 'Password exceeds maximum length.')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
+        'Must contain uppercase, lowercase, number and special character'
       ),
   });
 
@@ -39,19 +39,19 @@ const EmployerLoginForm = ({ onLogin }) => {
           name="email"
           control={control}
           title="Email"
-          placeholder="Nhập email"
+          placeholder="Enter email"
           showRequired={true}
         />
         <PasswordTextFieldCustom
           name="password"
           control={control}
-          title="Mật khẩu"
-          placeholder="Nhập mật khẩu"
+          title="Password"
+          placeholder="Enter password"
           showRequired={true}
         />
       </Stack>
       <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} type="submit">
-        Đăng nhập
+        Login
       </Button>
     </Box>
   );

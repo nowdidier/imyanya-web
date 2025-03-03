@@ -13,7 +13,7 @@ const NumberCard = ({ color, backgroundColor }) => {
         </Typography>
       </Box>
       <Box>
-        <Typography variant="button">Nhà tuyển dụng xem hồ sơ</Typography>
+        <Typography variant="button">Employers viewed profile</Typography>
       </Box>
     </Card>
   );

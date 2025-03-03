@@ -16,7 +16,7 @@ import ProfileUpload from '../../components/jobSeekers/ProfileUpload';
 import CompanyViewedCard from '../../components/jobSeekers/CompanyViewedCard';
 
 const ProfilePage = () => {
-  TabTitle("Quản lý hồ sơ tìm việc")
+  TabTitle("Job Search Profile Management")
 
   return (
     <Box>
@@ -30,7 +30,7 @@ const ProfilePage = () => {
             </Card>
             <Card sx={{ p: { xs: 2, sm: 2, md: 2, lg: 3, xl: 3 } }}>
               {/* Start: Profile upload */}
-              <ProfileUpload title="Hồ sơ đính kèm" />
+              <ProfileUpload title="Attached Resume" />
               {/* End: Profile upload */}
             </Card>
           </Stack>
@@ -40,7 +40,7 @@ const ProfilePage = () => {
             <Card sx={{ p: { xs: 1, sm: 1, md: 2, lg: 2, xl: 2 } }}>
               <Stack>
                 <Box>
-                  <Typography variant="h6">Ai đã xem hồ sơ của bạn</Typography>
+                  <Typography variant="h6">Who viewed your profile</Typography>
                 </Box>
                 <Divider sx={{ mt: 2, mb: 3 }} />
                 <Box>
@@ -56,7 +56,7 @@ const ProfilePage = () => {
                     component={Link}
                     to="/ung-vien/cong-ty-cua-toi"
                   >
-                    Xem chi tiết
+                    View details
                   </Button>
                 </Stack>
               </Stack>

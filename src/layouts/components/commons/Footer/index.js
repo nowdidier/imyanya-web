@@ -74,42 +74,36 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Dành cho nhà tuyển dụng
+                For Employers
               </Typography>
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/nha-tuyen-dung/tin-tuyen-dung')}
-                primary="Đăng Tin Tuyển Dụng"
+                primary="Post Jobs"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/nha-tuyen-dung/danh-sach-ung-vien')}
-                primary="Tìm Kiếm Hồ Sơ"
+                primary="Search Resumes"
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                sx={{ cursor: 'pointer' }}
-                onClick={() => nav('/nha-tuyen-dung')}
-                primary="Quản Lý Nhà Tuyển Dụng"
+                primary="Employer Dashboard"
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                sx={{ cursor: 'pointer' }}
-                onClick={() => nav('/tro-chuyen')}
-                primary="Tin Nhắn"
+                primary="Messages"
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                sx={{ cursor: 'pointer' }}
-                onClick={() => nav('/thong-bao')}
-                primary="Thông Báo"
+                primary="Notifications"
               />
             </ListItem>
           </List>
@@ -123,42 +117,42 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Dành cho ứng viên
+                For Job Seekers
               </Typography>
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/viec-lam')}
-                primary="Việc Làm"
+                primary="Jobs"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/cong-ty')}
-                primary="Công ty"
+                primary="Companies"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/ung-vien')}
-                primary="Quản Lý Ứng Viên"
+                primary="Candidate Dashboard"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/ung-vien/tin-nhan')}
-                primary="Tin Nhắn"
+                primary="Messages"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
                 onClick={() => nav('/ung-vien/thong-bao')}
-                primary="Thông Báo"
+                primary="Notifications"
               />
             </ListItem>
           </List>
@@ -172,7 +166,7 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Ứng dụng di động
+                Mobile Apps
               </Typography>
             </ListItem>
             <ListItem>
@@ -212,7 +206,7 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Kết nối với MyJob
+                Connect with MyJob
               </Typography>
             </ListItem>
             <ListItem>

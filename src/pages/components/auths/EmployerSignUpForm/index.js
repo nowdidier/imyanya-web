@@ -27,7 +27,7 @@ import TextFieldAutoCompleteCustom from '../../../../components/controls/TextFie
 import commonService from '../../../../services/commonService';
 import goongService from '../../../../services/goongService';
 
-const steps = ['Thông tin đăng nhập', 'Thông tin công ty'];
+const steps = ['Login Information', 'Company Information'];
 
 const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -39,11 +39,11 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
   const schema = yup.object().shape({
     fullName: yup
       .string()
-      .required('Họ và tên là bắt buộc!')
-      .max(100, 'Họ và tên vượt quá độ dài cho phép.'),
+      .required('Full name is required!')
+      .max(100, 'Full name exceeds allowed length.'),
     email: yup
       .string()
-      .required('Email là bắt buộc!')
+      .required('Email is required!')
       .email('Email không đúng định dạng')
       .max(100, 'Email vượt quá độ dài cho phép.'),
     password: yup
@@ -62,46 +62,46 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
     company: yup.object().shape({
       companyName: yup
         .string()
-        .required('Tên công ty là bắt buộc!')
-        .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
+        .required('Company name is required!')
+        .max(255, 'Company name exceeds allowed length.'),
       companyEmail: yup
         .string()
-        .required('Email công ty là bắt buộc')
-        .email('Email công ty không đúng định dạng')
-        .max(100, 'Email công ty vượt quá độ dài cho phép.'),
+        .required('Company email is required!')
+        .email('Invalid company email format')
+        .max(100, 'Company email exceeds allowed length.'),
       companyPhone: yup
         .string()
-        .required('Số điện thoại công ty là bắt buộc')
-        .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
-        .max(15, 'Số điện thoại công ty vượt quá độ dài cho phép.'),
+        .required('Company phone is required!')
+        .matches(REGEX_VATIDATE.phoneRegExp, 'Invalid phone number.')
+        .max(15, 'Company phone exceeds allowed length.'),
       taxCode: yup
         .string()
-        .required('Mã số thuế công ty là bắt buộc')
-        .max(30, 'Mã số thuế công ty vượt quá độ dài cho phép.'),
+        .required('Tax code is required!')
+        .max(30, 'Tax code exceeds allowed length.'),
       since: yup.date().nullable().typeError(),
       fieldOperation: yup
         .string()
-        .max(255, 'Lĩnh vực hoạt động công ty vượt quá độ dài cho phép.'),
+        .max(255, 'Field of operation exceeds allowed length.'),
       employeeSize: yup
         .number()
-        .required('Số lượng nhân viên là bắt buộc.')
-        .typeError('Số lượng nhân viên là bắt buộc.'),
+        .required('Employee size is required.')
+        .typeError('Employee size is required.'),
       websiteUrl: yup
         .string()
-        .max(300, 'Đường dẫn website công ty vượt quá độ dài cho phép.'),
+        .max(300, 'Website URL exceeds allowed length.'),
       location: yup.object().shape({
         city: yup
           .number()
-          .required('Tỉnh/Thành phố là bắt buộc.')
-          .typeError('Tỉnh/Thành phố là bắt buộc.'),
+          .required('City is required.')
+          .typeError('City is required.'),
         district: yup
           .number()
-          .required('Quận/Huyện là bắt buộc.')
-          .typeError('Quận/Huyện là bắt buộc.'),
+          .required('District is required.')
+          .typeError('District is required.'),
         address: yup
           .string()
-          .required('Địa chỉ công ty là bắt buộc!')
-          .max(255, 'Địa chỉ công ty vượt quá độ dài cho phép.'),
+          .required('Address is required!')
+          .max(255, 'Address exceeds allowed length.'),
       }),
     }),
   });
@@ -421,16 +421,16 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
         >
           {activeStep !== 0 && (
             <Button variant="outlined" onClick={handleBack}>
-              Quay lại
+              Back
             </Button>
           )}
           {activeStep === steps.length - 1 ? (
             <Button variant="contained" type="submit">
-              Đăng ký
+              Sign Up
             </Button>
           ) : (
             <Button variant="contained" type="submit">
-              Tiếp tục
+              Continue
             </Button>
           )}
         </Stack>

@@ -15,9 +15,9 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Email là bắt buộc!')
-      .email('Email không đúng định dạng'),
-    password: yup.string().required('Mật khẩu là bắt buộc!')
+      .required('Email is required!')
+      .email('Invalid email format'),
+    password: yup.string().required('Password is required!')
     .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
     .max(128, 'Mật khẩu vượt quá độ dài cho phép.')
     .matches(
@@ -41,21 +41,21 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
           name="email"
           control={control}
           title="Email"
-          placeholder="Nhập email"
+          placeholder="Enter email"
           showRequired={true}
         />
         <PasswordTextFieldCustom
           name="password"
           control={control}
-          title="Mật khẩu"
-          placeholder="Nhập mật khẩu"
+          title="Password"
+          placeholder="Enter password"
           showRequired={true}
         />
       </Stack>
       <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} type="submit">
-        Đăng nhập
+        Login
       </Button>
-      <Divider>HOẶC</Divider>
+      <Divider>OR</Divider>
 
       <LoginSocialFacebook
         appId={AUTH_CONFIG.FACEBOOK_CLIENT_ID}
@@ -76,7 +76,7 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
           sx={{ mt: 3, mb: 2, backgroundColor: '#3B66C4' }}
           startIcon={<FacebookIcon />}
         >
-          Đăng nhập với Facebook
+          Login with Facebook
         </Button>
       </LoginSocialFacebook>
 
@@ -100,7 +100,7 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
           sx={{ mb: 2, backgroundColor: '#CF4332' }}
           startIcon={<GoogleIcon />}
         >
-          Đăng nhập với Google
+          Login with Google
         </Button>
       </LoginSocialGoogle>
     </Box>

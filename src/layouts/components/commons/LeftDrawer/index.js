@@ -142,13 +142,13 @@ const LeftDrawer = ({ window, pages, mobileOpen, handleDrawerToggle }) => {
             onClick={() =>
               confirmModal(
                 handleLogout,
-                'Đăng xuất tài khoản',
-                'Bạn có chắc chắn muốn đăng xuất?',
+                'Logout Account',
+                'Are you sure you want to logout?',
                 'question'
               )
             }
           >
-            Đăng xuất
+            Logout
           </Button>
         ) : (
           <>
@@ -165,9 +165,9 @@ const LeftDrawer = ({ window, pages, mobileOpen, handleDrawerToggle }) => {
                   xl: 'none',
                 },
               }}
-              onClick={() => nav('/dang-ky-tai-khoan-ung-vien')}
+              onClick={() => nav('/register-job-seeker')}
             >
-              Đăng ký
+              Register
             </Button>
           </>
         )}

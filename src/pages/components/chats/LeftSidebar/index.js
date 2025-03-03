@@ -198,7 +198,7 @@ const LeftSidebar = () => {
           <ChatRoomSearch
             value={searchText}
             setValue={setSearchText}
-            placeholder="Tên công ty, tên nhà tuyển dụng, ..."
+            placeholder="Company name, recruiter name, ..."
           />
         </Box>
         <Box
@@ -214,7 +214,7 @@ const LeftSidebar = () => {
             </Stack>
           ) : chatRooms.length === 0 ? (
             <NoDataCard
-              title="Không tìm thấy cuộc trò chuyện nào..."
+              title="No conversations found..."
               imgComponentSgv={<ImageSvg15 />}
             />
           ) : (
@@ -462,7 +462,7 @@ const EmployerSidebar = () => {
           <ChatRoomSearch
             value={searchText}
             setValue={setSearchText}
-            placeholder="Họ tên ứng viên ..."
+            placeholder="Candidate name ..."
           />
         </Box>
         <Box sx={{ height: '75vh', overflowY: 'auto' }}>
@@ -474,7 +474,7 @@ const EmployerSidebar = () => {
             </Stack>
           ) : chatRooms.length === 0 ? (
             <NoDataCard
-              title="Không tìm thấy cuộc trò chuyện nào..."
+              title="No conversations found..."
               imgComponentSgv={<ImageSvg15 />}
             />
           ) : (

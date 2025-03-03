@@ -221,7 +221,7 @@ const item = (title, value) => {
           <span style={{ fontWeight: 'bold' }}>{value}</span>
         ) : (
           <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-            Chưa cập nhật
+            Not updated
           </span>
         )}
       </Typography>
@@ -249,7 +249,7 @@ const ActionComponent = ({
           disabled={isApplied}
           onClick={handleShowApplyForm}
         >
-          {isApplied ? 'Đã ứng tuyển' : 'Nộp hồ sơ'}
+          {isApplied ? 'Applied' : 'Apply Now'}
         </Button>
         <LoadingButton
           onClick={handleSave}
@@ -259,7 +259,7 @@ const ActionComponent = ({
           variant="outlined"
           sx={{ textTransform: 'inherit' }}
         >
-          <span>{isSaved ? 'Đã lưu' : 'Lưu'}</span>
+          <span>{isSaved ? 'Saved' : 'Save'}</span>
         </LoadingButton>
       </>
     )}
@@ -270,7 +270,7 @@ const ActionComponent = ({
       sx={{ textTransform: 'inherit' }}
       onClick={() => setOpenSharePopup(true)}
     >
-      Chia sẻ
+      Share
     </Button>
   </Stack>
 );
@@ -389,7 +389,7 @@ const JobDetailPage = () => {
                                 fontSize: 13,
                               }}
                             >
-                              Chưa cập nhật
+                              Not updated
                             </span>
                           )}
                         </Typography>
@@ -430,7 +430,7 @@ const JobDetailPage = () => {
                             color: '#bdbdbd',
                           }}
                         />{' '}
-                        Hạn nộp hồ sơ:{' '}
+                        Application Deadline:{' '}
                         {dayjs(jobPostDetail?.deadline).format('DD/MM/YYYY')}
                       </Typography>
                       <Typography variant="subtitle2">
@@ -442,7 +442,7 @@ const JobDetailPage = () => {
                             color: '#bdbdbd',
                           }}
                         />{' '}
-                        Lượt xem: {jobPostDetail?.views}
+                        Views: {jobPostDetail?.views}
                       </Typography>
                       <Typography variant="subtitle2">
                         <FontAwesomeIcon
@@ -453,7 +453,7 @@ const JobDetailPage = () => {
                             color: '#bdbdbd',
                           }}
                         />{' '}
-                        Đăng ngày:{' '}
+                        Posted on:{' '}
                         {dayjs(jobPostDetail?.createAt).format('DD/MM/YYYY')}
                       </Typography>
                     </Stack>
@@ -479,7 +479,7 @@ const JobDetailPage = () => {
                           gutterBottom
                           color="#bdbdbd"
                         >
-                          Yêu cầu kinh nghiệm
+                          Experience Required
                         </Typography>
                         <Typography
                           variant="body1"
@@ -496,7 +496,7 @@ const JobDetailPage = () => {
                                 fontSize: 13,
                               }}
                             >
-                              Chưa cập nhật
+                              Not updated
                             </span>
                           )}
                         </Typography>
@@ -507,7 +507,7 @@ const JobDetailPage = () => {
                           gutterBottom
                           color="#bdbdbd"
                         >
-                          Mức lương
+                          Salary
                         </Typography>
                         <Typography
                           variant="body1"
@@ -526,7 +526,7 @@ const JobDetailPage = () => {
                           gutterBottom
                           color="#bdbdbd"
                         >
-                          Cấp bậc
+                          Position Level
                         </Typography>
                         <Typography
                           variant="body1"
@@ -541,7 +541,7 @@ const JobDetailPage = () => {
                                 fontSize: 13,
                               }}
                             >
-                              Chưa cập nhật
+                              Not updated
                             </span>
                           )}
                         </Typography>
@@ -552,7 +552,7 @@ const JobDetailPage = () => {
                           gutterBottom
                           color="#bdbdbd"
                         >
-                          Hình thức làm việc
+                          Work Type
                         </Typography>
                         <Typography
                           variant="body1"
@@ -567,7 +567,7 @@ const JobDetailPage = () => {
                                 fontSize: 13,
                               }}
                             >
-                              Chưa cập nhật
+                              Not updated
                             </span>
                           )}
                         </Typography>
@@ -578,19 +578,19 @@ const JobDetailPage = () => {
                   <Box>
                     <Stack>
                       <Typography variant="h5" gutterBottom>
-                        Thông tin
+                        Information
                       </Typography>
                       <Box>
                         <Grid container spacing={2}>
                           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             {item(
-                              'Nghề nghiệp',
+                              'Career Field',
                               allConfig.careerDict[jobPostDetail?.career]
                             )}
                           </Grid>
                           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             {item(
-                              'Nơi làm việc',
+                              'Workplace',
                               allConfig.typeOfWorkplaceDict[
                                 jobPostDetail?.typeOfWorkplace
                               ]
@@ -598,24 +598,24 @@ const JobDetailPage = () => {
                           </Grid>
                           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             {item(
-                              'Học vấn',
+                              'Education Level',
                               allConfig.academicLevelDict[
                                 jobPostDetail?.academicLevel
                               ]
                             )}
                           </Grid>
                           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                            {item('Số lượng tuyển', jobPostDetail?.quantity)}
+                            {item('Number of Openings', jobPostDetail?.quantity)}
                           </Grid>
                           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             {item(
-                              'Khu vực tuyển',
+                              'Location',
                               allConfig.cityDict[jobPostDetail?.location?.city]
                             )}
                           </Grid>
                           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             {item(
-                              'Yêu cầu giới tính',
+                              'Gender Requirement',
                               allConfig.genderDict[
                                 jobPostDetail?.genderRequired
                               ]
@@ -640,7 +640,7 @@ const JobDetailPage = () => {
               >
                 <Stack spacing={4}>
                   <Box>
-                    <Typography variant="h5">Mô tả công việc</Typography>
+                    <Typography variant="h5">Job Description</Typography>
                     <Box sx={{ pt: 1 }}>
                       <div
                         dangerouslySetInnerHTML={{
@@ -650,7 +650,7 @@ const JobDetailPage = () => {
                     </Box>
                   </Box>
                   <Box>
-                    <Typography variant="h5">Yêu cầu công việc</Typography>
+                    <Typography variant="h5">Job Requirements</Typography>
                     <Box sx={{ pt: 1 }}>
                       <div
                         dangerouslySetInnerHTML={{
@@ -660,7 +660,7 @@ const JobDetailPage = () => {
                     </Box>
                   </Box>
                   <Box>
-                    <Typography variant="h5">Quyền lợi</Typography>
+                    <Typography variant="h5">Benefits</Typography>
                     <Box sx={{ pt: 1 }}>
                       <div
                         dangerouslySetInnerHTML={{
@@ -697,7 +697,7 @@ const JobDetailPage = () => {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Box>
-                      <Typography variant="h5">Thông tin liên hệ</Typography>
+                      <Typography variant="h5">Contact Information</Typography>
                       <Stack sx={{ pt: 1 }} spacing={2}>
                         <Box>
                           {item(
@@ -748,7 +748,7 @@ const JobDetailPage = () => {
             <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
               <Card sx={{ p: { xs: 1.5, sm: 1.5, md: 2, lg: 2, xl: 2 } }}>
                 <Stack spacing={2}>
-                  <Typography variant="h5">Việc làm tương tự</Typography>
+                  <Typography variant="h5">Current Openings</Typography>
                   <Box
                     sx={{ width: 120, height: 5, backgroundColor: '#441da0' }}
                   ></Box>

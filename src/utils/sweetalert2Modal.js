@@ -6,8 +6,8 @@ const confirmModal = (
   text = '',
   icon = 'success',
   showCancelButton = true,
-  confirmButtonText = 'Đồng ý',
-  cancelButtonText = 'Hủy'
+  confirmButtonText = 'Confirm',
+  cancelButtonText = 'Cancel'
 ) => {
   return Swal.fire({
     title: title,

@@ -28,7 +28,7 @@ const AppIntroductionCard = () => {
       try {
         await myjobService.sendSMSDownloadApp(data);
 
-        toastMessages.success('Gửi thành công. Vui lòng kiểm tra tin nhắn');
+        toastMessages.success('Sent successfully. Please check your messages');
         setValue('');
       } catch (error) {
         console.log(error);
@@ -45,7 +45,7 @@ const AppIntroductionCard = () => {
       ) {
         sendSMS({ phone: value });
       } else {
-        toastMessages.error('Số điện thoại không hợp lệ!');
+        toastMessages.error('Invalid phone number!');
       }
   };
 
@@ -54,12 +54,12 @@ const AppIntroductionCard = () => {
       <Card sx={{ p: 3 }}>
         <Stack spacing={3} alignItems="center">
           <Box>
-            <Typography variant="h5">Tải ứng dụng miễn phí</Typography>
+            <Typography variant="h5">Download Free App</Typography>
           </Box>
           <Box>
             <Typography>
-              Tìm việc hiệu quả bằng cách tải MyJob về di động của bạn và sẵn
-              sàng nhận việc làm ngay hôm nay!
+              Find jobs effectively by downloading MyJob to your mobile device and be
+              ready to get hired today!
             </Typography>
           </Box>
           <Box component="form" onSubmit={handleSendSMS}>
@@ -80,7 +80,7 @@ const AppIntroductionCard = () => {
                 inputProps={{ 'aria-label': 'search' }}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                placeholder="Nhập số điện thoại"
+                placeholder="Enter phone number"
               />
               <Button
                 variant="contained"
@@ -88,7 +88,7 @@ const AppIntroductionCard = () => {
                 style={{ borderRadius: 20, color: 'white' }}
                 type="submit"
               >
-                gửi đi
+                send
               </Button>
             </Paper>
           </Box>

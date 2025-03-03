@@ -6,16 +6,16 @@ import CompanySearch from '../../components/defaults/CompanySearch';
 import Companies from '../../../components/Companies';
 
 const CompanyPage = () => {
-  TabTitle('Kết quả tìm kiếm nhà tuyển dụng')
+  TabTitle('Company Search Results')
 
   return (
     <Box sx={{ mt: 2 }}>
       <Box sx={{ mt: 4 }}>
         <Typography variant="h4" gutterBottom>
-          Khám Phá Văn Hóa Công ty
+          Explore Company Culture
         </Typography>
         <Typography>
-          Tìm hiểu văn hóa công ty và chọn cho bạn nơi làm việc phù hợp nhất
+          Learn about company culture and choose your ideal workplace
         </Typography>
       </Box>
       <Box sx={{ mt: 4 }}>

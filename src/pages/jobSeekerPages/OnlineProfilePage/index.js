@@ -30,17 +30,17 @@ import LanguageSkillCard from '../../components/jobSeekers/LanguageSkillCard';
 import AdvancedSkillCard from '../../components/jobSeekers/AdvancedSkillCard';
 
 const items = [
-  { id: 0, value: 'Thông tin cá nhân', icon: <PersonPinOutlinedIcon /> },
-  { id: 1, value: 'Thông tin chung', icon: <WorkOutlineOutlinedIcon /> },
-  { id: 2, value: 'Kinh nghiệm làm việc', icon: <ReceiptLongOutlinedIcon /> },
-  { id: 3, value: 'Thông tin học vấn', icon: <SchoolOutlinedIcon /> },
-  { id: 4, value: 'Chứng chỉ', icon: <ThumbsUpDownOutlinedIcon /> },
-  { id: 5, value: 'Kỹ năng ngôn ngữ', icon: <TranslateOutlinedIcon /> },
-  { id: 6, value: 'Kỹ năng chuyên môn', icon: <AutoFixHighOutlinedIcon /> },
+  { id: 0, value: 'Personal Information', icon: <PersonPinOutlinedIcon /> },
+  { id: 1, value: 'General Information', icon: <WorkOutlineOutlinedIcon /> },
+  { id: 2, value: 'Work Experience', icon: <ReceiptLongOutlinedIcon /> },
+  { id: 3, value: 'Education Information', icon: <SchoolOutlinedIcon /> },
+  { id: 4, value: 'Certificates', icon: <ThumbsUpDownOutlinedIcon /> },
+  { id: 5, value: 'Language Skills', icon: <TranslateOutlinedIcon /> },
+  { id: 6, value: 'Professional Skills', icon: <AutoFixHighOutlinedIcon /> },
 ];
 
 const OnlineProfilePage = () => {
-  TabTitle("Cập nhật hồ sơ Online")
+  TabTitle("Update Online Profile")
   const refs = React.useRef([]);
 
   const handleClickScroll = (index) => {
@@ -116,7 +116,7 @@ const OnlineProfilePage = () => {
             <Card sx={{ p: 2 }}>
               <Stack>
                 <Box>
-                  <Typography variant="h6">Hồ sơ trực tuyến của bạn</Typography>
+                  <Typography variant="h6">Your Online Profile</Typography>
                 </Box>
                 <Box>
                   <List

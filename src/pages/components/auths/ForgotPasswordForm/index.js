@@ -10,8 +10,8 @@ const ForgotPasswordForm = ({ handleRequestResetPassword }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Email là bắt buộc!')
-      .email('Email không đúng định dạng'),
+      .required('Email is required!')
+      .email('Invalid email format'),
   });
 
   const { control, handleSubmit } = useForm({
@@ -29,12 +29,12 @@ const ForgotPasswordForm = ({ handleRequestResetPassword }) => {
           control={control}
           title="Email"
           showRequired={true}
-          placeholder="Nhập email"
+          placeholder="Enter email"
         />
       </Stack>
 
       <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} type="submit">
-        Đặt lại mật khẩu
+        Reset Password
       </Button>
     </Box>
   );

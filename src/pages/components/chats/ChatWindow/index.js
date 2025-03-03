@@ -265,8 +265,8 @@ const ChatWindow = () => {
                     subTitle={selectedRoom?.user?.company?.companyName}
                     description={
                       selectedRoom?.createdBy !== `${currentUserChat?.userId}`
-                        ? `${selectedRoom?.user?.company?.companyName} đã kết nối với bạn.`
-                        : `Bạn đã kết nối đến ${selectedRoom?.user?.company?.companyName}`
+                        ? `${selectedRoom?.user?.company?.companyName} has connected with you.`
+                        : `You have connected to ${selectedRoom?.user?.company?.companyName}`
                     }
                   />
                 ) : (
@@ -276,8 +276,8 @@ const ChatWindow = () => {
                     subTitle={selectedRoom?.user?.email}
                     description={
                       selectedRoom?.createdBy !== `${currentUserChat?.userId}`
-                        ? `${selectedRoom?.user?.name} đã kết nối với bạn.`
-                        : `Bạn đã kết nối đến ${selectedRoom?.user?.name}`
+                        ? `${selectedRoom?.user?.name} has connected with you.`
+                        : `You have connected to ${selectedRoom?.user?.name}`
                     }
                   />
                 )
@@ -341,7 +341,7 @@ const ChatWindow = () => {
                   <TextField
                     inputRef={inputRef}
                     fullWidth
-                    placeholder={'Nhập nội dung tại đây ...'}
+                    placeholder={'Enter content here ...'}
                     defaultValue=""
                     value={inputValue}
                     onChange={handleInputChange}
@@ -358,7 +358,7 @@ const ChatWindow = () => {
                     endIcon={<SendIcon />}
                     type="submit"
                   >
-                    Gửi
+                    Send
                   </Button>
                 </Box>
               </Stack>
@@ -368,7 +368,7 @@ const ChatWindow = () => {
           <Stack justifyContent="center" alignItems="center">
             <Empty
               style={{ marginTop: 150 }}
-              description="Bạn chưa chọn cuộc trò chuyện nào ..."
+              description="You haven't selected any conversations ..."
             />
           </Stack>
         )}

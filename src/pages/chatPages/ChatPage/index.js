@@ -45,7 +45,7 @@ const ChatPage = () => {
           <Stack direction="column">
             <Box sx={{ borderBottom: 1, borderBottomColor: '#e0e0e0', p: 2 }}>
               <Typography variant="subtitle1" fontWeight={600}>
-                New way to follow your your chance.{' '}
+                New way to follow your chance.{' '}
                 <span style={{ color: '#fca34d' }}>
                   {' '}
                   More engage, more success

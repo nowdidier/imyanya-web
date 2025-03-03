@@ -11,7 +11,7 @@ import ActivityChart from '../../components/jobSeekers/charts';
 import JobApplicationCard from '../../components/jobSeekers/JobApplicationCard';
 
 const DashboardPage = () => {
-  TabTitle("Paji y'ubuyobozi bw'Umushakisha akazi")
+  TabTitle("Trang quản trị Người tìm việc")
 
   return (
     <Box>
@@ -45,7 +45,7 @@ const DashboardPage = () => {
             <Card sx={{ p: 2 }}>
               <Stack>
                 <Box sx={{ mb: 2 }}>
-                  <Typography variant="h6">Ibikorwa byawe</Typography>
+                  <Typography variant="h6">Hoạt động của bạn</Typography>
                 </Box>
                 <Box>
                   {/* Start: ActivityChart */}
@@ -57,7 +57,7 @@ const DashboardPage = () => {
             <Card sx={{p: { xs: 1, sm: 1, md: 2, lg: 2, xl: 2 }  }}>
               <Stack>
                 <Box sx={{ mb: 2 }}>
-                  <Typography variant="h6">Imirimo igushishikaje</Typography>
+                  <Typography variant="h6">Việc làm gợi ý</Typography>
                 </Box>
                 <Box>
                   {/* Start: SuggestedJobPostCard */}

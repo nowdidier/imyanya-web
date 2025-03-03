@@ -25,55 +25,54 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
   const schema = yup.object().shape({
     companyName: yup
       .string()
-      .required('Izina ry\'ikigo ni ryiza.')
-      .max(255, 'Izina ry\'ikigo ririmo amabara y\'ibihumbi magana atanu.'),
+      .required('Tên công ty là bắt buộc.')
+      .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
     taxCode: yup
       .string()
-      .required('Kode y\'imisoro ni ryiza.')
-      .max(30, 'Kode y\'imisoro ririmo amabara abiri n\'icumi.'),
+      .required('Mã số thuế là bắt buộc.')
+      .max(30, 'Mã số thuế vượt quá độ dài cho phép.'),
     employeeSize: yup
       .number()
-      .required('Ingano y\'abakozi ni ryiza.')
-      .typeError('Ingano y\'abakozi ni ryiza.'),
+      .required('Quy mô nhân sự là bắt buộc.')
+      .typeError('Quy mô nhân sự là bắt buộc.'),
     fieldOperation: yup
       .string()
-      .required('Urwego rw\'imirimo ni ryiza.')
-      .max(255, 'Urwego rw\'imirimo ririmo amabara y\'ibihumbi magana atanu.'),
+      .required('Lĩnh vực hoạt động là bắt buộc.')
+      .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
     location: yup.object().shape({
       city: yup
         .number()
-        .required('Umujyi/Intara ni ryiza.')
-        .typeError('Umujyi/Intara ni ryiza.'),
+        .required('Tỉnh/Thành phố là bắt buộc.')
+        .typeError('Tỉnh/Thành phố là bắt buộc.'),
       district: yup
         .number()
-        .required('Akarere/Ka ni ryiza.')
-        .typeError('Akarere/Ka ni ryiza.'),
+        .required('Quận/Huyện là bắt buộc.')
+        .typeError('Quận/Huyện là bắt buộc.'),
       address: yup
         .string()
-        .required('Adiresi ni ryiza.')
-        .max(255, 'Adiresi ririmo amabara y\'ibihumbi magana atanu.'),
+        .required('Địa chỉ là bắt buộc.')
+        .max(255, 'Địa chỉ vượt quá độ dài cho phép.'),
       lat: yup
         .number()
-        .required('Vĩ độ ku ikarita ni ryiza.')
-        .typeError('Vĩ độ ku ikarita ntibaho.'),
+        .required('Vĩ độ trên bản đồ của công ty là bắt buộc.')
+        .typeError('Vĩ độ trên bản đồ của công ty không hợp lệ.'),
       lng: yup
         .number()
-        .required('Kinh độ ku ikarita ni ryiza.')
-        .typeError('Kinh độ ku ikarita ntibaho.'),
+        .required('Kinh độ trên bản đồ của công ty là bắt buộc.')
+        .typeError('Kinh độ trên bản đồ của công ty không hợp lệ.'),
     }),
     since: yup.date().nullable(),
     companyEmail: yup
       .string()
-      .required('Imeli y\'ikigo ni ryiza.')
-      .email('Imeli ntibaho.')
-      .max(100, 'Imeli y\'ikigo ririmo amabara y\'ibihumbi.'),
+      .required('Email công ty là bắt buộc.')
+      .email('Email không hợp lệ.')
+      .max(100, 'Email công ty vượt quá độ dài cho phép.'),
     companyPhone: yup
       .string()
-      .required('Nomero ya telefone y\'ikigo ni ryiza.')
-      .matches(REGEX_VATIDATE.phoneRegExp, 'Nomero ya telefone ntibaho.')
-      .max(15, 'Nomero ya telefone y\'ikigo ririmo amabara abiri n\'icumi.'),
+      .required('Số điện thoại công ty là bắt buộc.')
+      .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
+      .max(15, 'Số điện thoại công ty vượt quá độ dài cho phép.'),
   });
-  
 
   const { control, reset, setValue, setError, handleSubmit } = useForm({
     resolver: yupResolver(schema),
@@ -167,18 +166,18 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
               <TextFieldCustom
                 name="companyName"
-                title="Izina ry'ikigo"
+                title="Tên công ty"
                 showRequired={true}
-                placeholder="Shyiramo izina ry'ikigo"
+                placeholder="Nhập tên công ty"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="taxCode"
-                title="Kode y'imisoro"
+                title="Mã số thuế"
                 showRequired={true}
-                placeholder="Shyiramo kode y'imisoro y'ikigo"
+                placeholder="Nhập mã số thuế công ty"
                 control={control}
               />
             </Grid>
@@ -187,17 +186,17 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 name="employeeSize"
                 control={control}
                 options={allConfig?.employeeSizeOptions || []}
-                title="Ingano y'abakozi"
+                title="Quy mô công ty"
                 showRequired={true}
-                placeholder="Hitamo ingano y'ikigo"
+                placeholder="Chọn quy mô công ty"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="fieldOperation"
-                title="Urwego rw'imirimo"
+                title="Lĩnh vực hoạt động"
                 showRequired={true}
-                placeholder="Shyiramo urwego rw'imirimo y'ikigo"
+                placeholder="Nhập lĩnh vực hoạt động của công ty"
                 control={control}
               />
             </Grid>
@@ -205,56 +204,56 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
               <DatePickerCustom
                 name="since"
                 control={control}
-                title="Itariki ryashingwa ry'ikigo"
+                title="Ngày thành lập công ty"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="websiteUrl"
-                title="Uruzinduko rw'urubuga"
-                placeholder="Shyiramo URL y'urubuga rw'ikigo"
+                title="Đường dẫn website"
+                placeholder="Nhập URL website của công ty"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="facebookUrl"
-                title="Uruzinduko rwa Facebook"
-                placeholder="Shyiramo URL ya Facebook"
+                title="Đường dẫn Facebook"
+                placeholder="Nhập URL Facebook"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="youtubeUrl"
-                title="Uruzinduko rwa Youtube"
-                placeholder="Shyiramo URL ya Youtube"
+                title="Đường dẫn Youtube"
+                placeholder="Nhập URL Youtube"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="linkedinUrl"
-                title="Uruzinduko rwa Linkedin"
-                placeholder="Shyiramo URL ya Linkedin"
+                title="Đường dẫn Linkedin"
+                placeholder="Nhập URL Linkedin"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="companyEmail"
-                title="Imeli y'ikigo"
+                title="Email công ty"
                 showRequired={true}
-                placeholder="Shyiramo imeli y'ikigo"
+                placeholder="Nhập email của công ty"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="companyPhone"
-                title="Nomero ya telefone"
+                title="Số điện thoại"
                 showRequired={true}
-                placeholder="Shyiramo nomero ya telefone y'ikigo"
+                placeholder="Nhập số điện thoại của công ty"
                 control={control}
               />
             </Grid>
@@ -263,9 +262,9 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 name="location.city"
                 control={control}
                 options={allConfig?.cityOptions || []}
-                title="Umujyi/Intara"
+                title="Tỉnh/Thành phố"
                 showRequired={true}
-                placeholder="Hitamo umujyi cyangwa intara"
+                placeholder="Chọn tỉnh thành phố"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -273,17 +272,17 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 options={districtOptions}
                 name="location.district"
                 control={control}
-                title="Akarere/Ka"
+                title="Quận/Huyện"
                 showRequired={true}
-                placeholder="Hitamo akarere"
+                placeholder="Chọn Quận/Huyện"
               />
             </Grid>
             <Grid item xs={12}>
               <TextFieldAutoCompleteCustom
                 name="location.address"
-                title="Adiresi"
+                title="Địa chỉ"
                 showRequired={true}
-                placeholder="Shyiramo adiresi"
+                placeholder="Nhập địa chỉ"
                 control={control}
                 options={locationOptions}
                 loading={true}
@@ -293,20 +292,20 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="location.lat"
-                title="Latitude"
+                title="Vĩ độ"
                 showRequired={true}
-                placeholder="Shyiramo latitude y'ikigo ku ikarita."
-                helperText="Izuzuzwa mu buryo bwikora niba uhise uhitemo adiresi."
+                placeholder="Nhập vĩ độ tọa độ trên bản đồ của công ty."
+                helperText="Tự động điền nếu bạn chọn địa chỉ được gợi ý."
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="location.lng"
-                title="Longitude"
+                title="Kinh độ"
                 showRequired={true}
-                placeholder="Shyiramo longitude y'ikigo ku ikarita."
-                helperText="Izuzuzwa mu buryo bwikora niba uhise uhitemo adiresi."
+                placeholder="Nhập kinh độ tọa độ trên bản đồ của công ty."
+                helperText="Tự động điền nếu bạn chọn địa chỉ được gợi ý."
                 control={control}
               />
             </Grid>
@@ -314,12 +313,12 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
               <RichTextEditorCustom
                 name="description"
                 control={control}
-                title="Ibisobanuro birambuye"
+                title="Mô tả thêm"
               />
               {/* <MultilineTextFieldCustom
                 name="description"
-                title="Ibisobanuro birambuye (shyiramo <br/> kugira ngo umanuke)"
-                placeholder="Shyiramo ibisobanuro hano"
+                title="Mô tả thêm (thêm <br/> để xuống dòng)"
+                placeholder="Nhập nội dung mô tả tại đây"
                 control={control}
               /> */}
             </Grid>
@@ -328,7 +327,7 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
       </Grid>
     </form>
   );
-};  
+};
 
 const Loading = () => {
   return (

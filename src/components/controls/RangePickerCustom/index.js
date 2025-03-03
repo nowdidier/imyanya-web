@@ -110,7 +110,8 @@ const RangePickerCustom = ({
           disabled={!selectedDateRange}
           onClick={() => setAllowSubmit(!allowSubmit)}
         >
-Koresha        </Button>
+          Áp dụng
+        </Button>
       </Box>
     </>
   );

@@ -15,7 +15,7 @@ import authService from '../../../services/authService';
 import EmployerSignUpForm from '../../components/auths/EmployerSignUpForm';
 
 const EmployerSignUp = () => {
-  TabTitle("Iyandikishe kuri Konti y'Umukoresha")
+  TabTitle("Đăng ký tài khoản Nhà tuyển dụng")
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -61,7 +61,7 @@ const EmployerSignUp = () => {
       if (exists === true) {
         // set server errors here
         setServerErrors({
-          email: ['Imeri iriho muri sisitemu'],
+          email: ['Email đã tồn tại'],
         });
 
         return false;
@@ -98,7 +98,7 @@ const EmployerSignUp = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5" align="center">
-              Iyandikishe kuri Konti y'Umukoresha
+              Đăng ký tài khoản nhà tuyển dụng
             </Typography>
           </Box>
           <Box sx={{ mt: { xs: 3, sm: 4, md: 4, lg: 4, xl: 4 } }}>
@@ -116,9 +116,9 @@ const EmployerSignUp = () => {
               <Link
                 to="/dang-nhap-nha-tuyen-dung"
                 variant="body2"
-                style={{ textDecoration: 'none', color: '#182642' }}
+                style={{ textDecoration: 'none', color: '#441da0' }}
               >
-                {'Ufite Konti? Injira'}
+                {'Đã có tài khoản? Đăng nhập'}
               </Link>
             </Grid>
           </Grid>

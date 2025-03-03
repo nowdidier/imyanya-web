@@ -50,7 +50,7 @@ const CompanyFollowedCard = () => {
       try {
         await companyService.followCompany(slugCompany);
 
-        toastMessages.success('Gukurikirana byagenze neza.');
+        toastMessages.success('Hủy theo dõi thành công.');
         setIsSuccess(!isSuccess);
       } catch (error) {
         errorHandling(error);
@@ -71,7 +71,7 @@ const CompanyFollowedCard = () => {
           </Stack>
         ) : resumesViewed.length === 0 ? (
           <NoDataCard
-            title="Nta mukoresha numwe wakurikiranye"
+            title="Bạn chưa theo dõi bất kỳ nhà tuyển dụng nào"
             imgComponentSgv={<ImageSvg7 />}
           >
             <Button
@@ -80,7 +80,7 @@ const CompanyFollowedCard = () => {
               component={Link}
               to="/cong-ty"
             >
-              Shaka kompanyi
+              Tìm công ty
             </Button>
           </NoDataCard>
         ) : (
@@ -98,7 +98,7 @@ const CompanyFollowedCard = () => {
                   size="small"
                   onClick={() => handleFollow(value.company?.slug)}
                 >
-                  Kureka gukurikirana
+                  Hủy theo dõi
                 </Button>
               </CompanyAction.CompanyActionFollow>
             ))}

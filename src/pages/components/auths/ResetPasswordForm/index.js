@@ -10,17 +10,17 @@ const ResetPasswordForm = ({ handleResetPassword, serverErrors = {} }) => {
   const schema = yup.object().shape({
     newPassword: yup
       .string()
-      .required('Ijambo ryibanga rishya ni ngombwa!')
-      .min(8, 'Ijambo ryibanga rigomba kuba nibura ibimenyetso 8.')
-      .max(128, 'Ijambo ryibanga rishya rirenze uburebure bwemewe.')
+      .required('Mật khẩu mới là bắt buộc!')
+      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
+      .max(128, 'Mật khẩu mới vượt quá độ dài cho phép.')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Rigomba kuba ririmo inyuguti nkuru, inyuguti nto, umubare n’ikimenyetso kidasanzwe'
+        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
       ),
     confirmPassword: yup
       .string()
-      .required('Kwemeza ijambo ryibanga ni ngombwa.')
-      .oneOf([yup.ref('newPassword')], 'Kwemeza ijambo ryibanga ntibihuye.'),
+      .required('Mật khẩu xác nhận là bắt buộc.')
+      .oneOf([yup.ref('newPassword')], 'Mật khẩu xác nhận không chính xác.'),
   });
 
   const { control, setError, handleSubmit } = useForm({
@@ -43,16 +43,16 @@ const ResetPasswordForm = ({ handleResetPassword, serverErrors = {} }) => {
         <PasswordTextFieldCustom
           name="newPassword"
           control={control}
-          title="Ijambo ryibanga rishya"
+          title="Mật khẩu mới"
           showRequired={true}
-          placeholder="Shyiramo ijambo ryibanga rishya"
+          placeholder="Nhập mật khẩu mới"
         />
         <PasswordTextFieldCustom
           name="confirmPassword"
           control={control}
-          title="Kwemeza ijambo ryibanga"
+          title="Mật khẩu xác nhận"
           showRequired={true}
-          placeholder="Shyiramo ijambo ryibanga rishya"
+          placeholder="Nhập lại mật khẩu mới"
         />
       </Stack>
 
@@ -62,7 +62,7 @@ const ResetPasswordForm = ({ handleResetPassword, serverErrors = {} }) => {
         sx={{ mt: 3, mb: 2 }}
         onClick={handleSubmit(handleResetPassword)}
       >
-        Seta ijambo ryibanga
+        Đặt lại mật khẩu
       </Button>
     </Box>
   );

@@ -16,16 +16,16 @@ const CertificateForm = ({
   const schema = yup.object().shape({
     name: yup
       .string()
-      .required('Izina ry\'icyemezo ni ngombwa.')
-      .max(200, 'Izina ry\'icyemezo rirarenze uburebure bwemewe.'),
+      .required('Tên chứng chỉ là bắt buộc.')
+      .max(200, 'Tên chứng chỉ vượt quá độ dài cho phép.'),
     trainingPlace: yup
       .string()
-      .required('Izina ry\'ishuri/Ikigo cy\'amahugurwa ni ngombwa.')
-      .max(255, 'Izina ry\'ishuri/Ikigo cy\'amahugurwa rirarenze uburebure bwemewe.'),
+      .required('Tên trường/Trung tâm đào tạo là bắt buộc.')
+      .max(255, 'Tên trường/Trung tâm đào tạo vượt quá độ dài cho phép.'),
     startDate: yup
       .date()
-      .required('Itariki y\'itangiriro ni ngombwa.')
-      .typeError('Itariki y\'itangiriro ni ngombwa.'),
+      .required('Ngày bắt đầu là bắt buộc.')
+      .typeError('Ngày bắt đầu là bắt buộc.'),
     expirationDate: yup.date().nullable(),
   });
 
@@ -67,18 +67,18 @@ const CertificateForm = ({
         <Grid item xs={12}>
           <TextFieldCustom
             name="name"
-            title="Izina ry'icyemezo"
+            title="Tên chứng chỉ"
             showRequired={true}
-            placeholder="Injiza izina ry'icyemezo"
+            placeholder="Nhập tên chứng chỉ"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="trainingPlace"
-            title="Ishuri/Ikigo cy'amahugurwa"
+            title="Trường/Trung tâm đào tạo"
             showRequired={true}
-            placeholder="Injiza izina ry'ishuri/Ikigo cy'amahugurwa"
+            placeholder="Nhập tên trường/Trung tâm đào tạo"
             control={control}
           />
         </Grid>
@@ -86,7 +86,7 @@ const CertificateForm = ({
           <DatePickerCustom
             name="startDate"
             control={control}
-            title="Itariki y'itangiriro"
+            title="Ngày bắt đầu"
             showRequired={true}
             maxDate={DATE_OPTIONS.yesterday}
           />
@@ -95,7 +95,7 @@ const CertificateForm = ({
           <DatePickerCustom
             name="expirationDate"
             control={control}
-            title="Itariki izarangiriraho (Reka ubusa niba icyemezo kidasaza)"
+            title="Ngày hết hạn (Để trống nếu chứng chỉ vô thời hạn)"
             maxDate={DATE_OPTIONS.today}
           />
         </Grid>

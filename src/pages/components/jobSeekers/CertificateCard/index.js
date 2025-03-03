@@ -132,7 +132,7 @@ const CertificateCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Kongeramo amakuru y\'icyemezo byagenze neza.');
+        toastMessages.success('Thêm thông tin chứng chỉ thành công.');
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -147,7 +147,7 @@ const CertificateCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Guhindura amakuru y\'icyemezo byagenze neza.');
+        toastMessages.success('Cập nhật thông tin chứng chỉ thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -174,7 +174,7 @@ const CertificateCard = ({ title }) => {
         await certificateService.deleteCertificateById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Gusiba amakuru y\'icyemezo byagenze neza.');
+        toastMessages.success('Xóa thông tin chứng chỉ thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -184,8 +184,8 @@ const CertificateCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Gusiba amakuru y\'icyemezo',
-      'Amakuru y\'iki cyemezo azasibwa burundu kandi ntibizashoboka kuyagarura. Urabyizeye?',
+      'Xóa thông tin chứng chỉ',
+      'Thông tin chứng chỉ này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
       'warning'
     );
   };
@@ -218,7 +218,7 @@ const CertificateCard = ({ title }) => {
             <Box sx={{ px: 1 }}>
               {certificates.length === 0 ? (
                 <EmptyCard
-                  content="Ongeramo icyemezo cyawe kugira ngo abakozi bashinzwe gutoranya bazabone."
+                  content="Bạn hãy thêm chứng chỉ của mình để nhà tuyển dụng tham khảo"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -249,7 +249,7 @@ const CertificateCard = ({ title }) => {
                               </Moment>
                             </>
                           ) : (
-                            'Igihe kitazwi'
+                            'Không thời hạn'
                           )}
                         </Typography>
                         <Typography
@@ -291,7 +291,7 @@ const CertificateCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Icyemezo"
+        title="Chứng chỉ"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

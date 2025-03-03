@@ -16,7 +16,7 @@ import ProfileUpload from '../../components/jobSeekers/ProfileUpload';
 import CompanyViewedCard from '../../components/jobSeekers/CompanyViewedCard';
 
 const ProfilePage = () => {
-  TabTitle("Kubika umwirondoro w'akazi") // Translated to 'Manage job profile'
+  TabTitle("Quản lý hồ sơ tìm việc")
 
   return (
     <Box>
@@ -25,12 +25,12 @@ const ProfilePage = () => {
           <Stack spacing={2}>
             <Card sx={{ p: { xs: 2, sm: 2, md: 2, lg: 3, xl: 3 } }}>
               {/* Start: Box profile */}
-              <BoxProfile title="IMYANYAProfile" /> // Title kept in English
+              <BoxProfile title="MyJob Profile" />
               {/* End: Box profile  */}
             </Card>
             <Card sx={{ p: { xs: 2, sm: 2, md: 2, lg: 3, xl: 3 } }}>
               {/* Start: Profile upload */}
-              <ProfileUpload title="Umwirondoro wifatanye" /> // Translated to 'Attached profile'
+              <ProfileUpload title="Hồ sơ đính kèm" />
               {/* End: Profile upload */}
             </Card>
           </Stack>
@@ -40,7 +40,7 @@ const ProfilePage = () => {
             <Card sx={{ p: { xs: 1, sm: 1, md: 2, lg: 2, xl: 2 } }}>
               <Stack>
                 <Box>
-                  <Typography variant="h6">Abarebye umwirondoro wawe</Typography> // Translated to 'Who viewed your profile'
+                  <Typography variant="h6">Ai đã xem hồ sơ của bạn</Typography>
                 </Box>
                 <Divider sx={{ mt: 2, mb: 3 }} />
                 <Box>
@@ -54,9 +54,9 @@ const ProfilePage = () => {
                     variant="text"
                     color="primary"
                     component={Link}
-                    to="/ung-vien/cong-ty-cua-toi" // Path kept unchanged
+                    to="/ung-vien/cong-ty-cua-toi"
                   >
-                    Reba ibisobanuro // Translated to 'View details'
+                    Xem chi tiết
                   </Button>
                 </Stack>
               </Stack>

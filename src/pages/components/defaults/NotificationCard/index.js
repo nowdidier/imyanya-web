@@ -282,7 +282,8 @@ const NotificationCard = ({ title }) => {
                     sx={{ textTransform: 'inherit' }}
                     onClick={handleMakeAllRead}
                   >
-Shyira akamenyetso nkuko wasomwe                  </Button>
+                    Đánh dấu tất cả đã đọc
+                  </Button>
 
                   <Button
                     color="error"
@@ -290,7 +291,8 @@ Shyira akamenyetso nkuko wasomwe                  </Button>
                     sx={{ textTransform: 'inherit' }}
                     onClick={handleRemoveAll}
                   >
-Siba byose                  </Button>
+                    Xóa tất cả
+                  </Button>
                 </>
               )}
             </Stack>
@@ -307,7 +309,7 @@ Siba byose                  </Button>
                   </Stack>
                 ) : notifications.length === 0 ? (
                   <NoDataCard
-                    title="Nta tangazo ryatangajwe."
+                    title="Chưa có thông báo nào."
                     imgComponentSgv={<ImageSvg9 />}
                   />
                 ) : (
@@ -319,7 +321,7 @@ Siba byose                  </Button>
                             key={value?.key}
                             alignItems="center"
                             secondaryAction={
-                              <Tooltip title="Siba imenyesha" arrow>
+                              <Tooltip title="Xóa thông báo" arrow>
                                 <IconButton
                                   aria-label="delete"
                                   color="error"
@@ -398,7 +400,7 @@ Siba byose                  </Button>
                           onClick={loadMore}
                           variant="contained"
                         >
-                          see more
+                          Xem thêm
                         </Button>
                       </Stack>
                     )}

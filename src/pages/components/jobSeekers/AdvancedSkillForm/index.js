@@ -15,9 +15,9 @@ const AdvancedSkillForm = ({
   const schema = yup.object().shape({
     name: yup
       .string()
-      .required('Izina ry’ubumenyi rirakenewe.')
-      .max(200, 'Izina ry’ubumenyi rirarenze uburebure bwemewe.'),
-    level: yup.number().required('Urwego rurakenewe.'),
+      .required('Tên kỹ năng là bắt buộc.')
+      .max(200, 'Tên kỹ năng vượt quá độ dài cho phép.'),
+    level: yup.number().required('Trình độ là bắt buộc.'),
   });
 
   const { control, reset, setError, handleSubmit } = useForm({
@@ -55,14 +55,14 @@ const AdvancedSkillForm = ({
         <Grid item xs={12} lg={12} md={12}>
           <TextFieldCustom
             name="name"
-            title="Izina ry’ubumenyi"
+            title="Tên kỹ năng"
             showRequired={true}
-            placeholder="Andika izina ry’ubumenyi"
+            placeholder="Nhập tên kỹ năng"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
-          <RatingCustom name="level" control={control} title="Urwego" />
+          <RatingCustom name="level" control={control} title="Trình độ" />
         </Grid>
       </Grid>
     </form>

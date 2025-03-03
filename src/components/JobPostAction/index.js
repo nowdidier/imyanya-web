@@ -59,7 +59,7 @@ const JobPostAction = ({
         sx={{
           p: 1,
           '&:hover': {
-            borderColor: '#182642',
+            borderColor: '#441da0',
           },
         }}
       >
@@ -144,7 +144,8 @@ const JobPostAction = ({
                         fontSize: 13,
                       }}
                     >
-Ntabwo ari update                    </span>
+                      Chưa cập nhật
+                    </span>
                   )}
                 </Typography>
                 <Typography

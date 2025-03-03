@@ -9,7 +9,7 @@ import AppIntroductionCard from '../../../components/AppIntroductionCard';
 import MuiImageCustom from '../../../components/MuiImageCustom';
 
 const JobPage = () => {
-  TabTitle('Ibisubizo by’akazi katangajwe');
+  TabTitle('Kết quả tìm kiếm tin tuyển dụng');
   
   return (
     <>
@@ -28,7 +28,7 @@ const JobPage = () => {
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
               <Box sx={{ pt: 2, pb: 3 }}>
-                <Typography variant="h5">Imirimo yasabwe</Typography>
+                <Typography variant="h5">Việc làm đề xuất</Typography>
               </Box>
               {/* Start: SuggestedJobPostCard */}
               <SuggestedJobPostCard fullWidth={true} />

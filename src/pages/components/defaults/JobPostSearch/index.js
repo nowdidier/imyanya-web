@@ -42,10 +42,10 @@ const JobPostSearch = () => {
     setShowAdvanceFilter(!showAdvanceFilter);
   };
 
-  const handleSaveKeywordLocalStorage = (kw) => {
+  const handleSaveKeyworLocalStorage = (kw) => {
     try {
       if (kw) {
-        const keywordListStr = localStorage.getItem('amateka_y\'akazi');
+        const keywordListStr = localStorage.getItem('myjob_search_history');
 
         if (
           keywordListStr !== null &&
@@ -57,7 +57,7 @@ const JobPostSearch = () => {
           if (!keywordList.includes(kw)) {
             if (keywordList.length >= 5) {
               localStorage.setItem(
-                'amateka_y\'akazi',
+                'myjob_search_history',
                 JSON.stringify([
                   kw,
                   ...keywordList.slice(0, keywordList.length - 1),
@@ -65,22 +65,22 @@ const JobPostSearch = () => {
               );
             } else {
               localStorage.setItem(
-                'amateka_y\'akazi',
+                'myjob_search_history',
                 JSON.stringify([kw, ...keywordList])
               );
             }
           }
         } else {
-          localStorage.setItem('amateka_y\'akazi', JSON.stringify([kw]));
+          localStorage.setItem('myjob_search_history', JSON.stringify([kw]));
         }
       }
     } catch (error) {
-      console.error('Ikosa ryo kubika kw muri local storage: ', error);
+      console.error('Loi khi set kw vao local storage: ', error);
     }
   };
 
   const handleFilter = (data) => {
-    handleSaveKeywordLocalStorage(data?.kw);
+    handleSaveKeyworLocalStorage(data?.kw);
 
     dispatch(searchJobPost(data));
   };
@@ -91,19 +91,19 @@ const JobPostSearch = () => {
 
   return (
     <Box component="form" onSubmit={handleSubmit(handleFilter)}>
-      <Card sx={{ p: 3, boxShadow: 0, backgroundColor: '#182642' }}>
+      <Card sx={{ p: 3, boxShadow: 0, backgroundColor: '#441da0' }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
             <InputBaseSearchHomeCustom
               name="kw"
-              placeholder="Shakisha amahirwe y'akazi"
+              placeholder="Tìm kiếm cơ hội việc làm"
               control={control}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
             <SingleSelectSearchCustom
               name="careerId"
-              placeholder="Imyuga yose"
+              placeholder="Tất cả ngành nghề"
               control={control}
               options={allConfig?.careerOptions || []}
             />
@@ -111,7 +111,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="cityId"
-              placeholder="Intara zose"
+              placeholder="Tất cả tỉnh thành"
               control={control}
               options={allConfig?.cityOptions || []}
             />
@@ -134,7 +134,7 @@ const JobPostSearch = () => {
                 sx={{ py: 1 }}
                 type="submit"
               >
-                Shakisha
+                Tìm kiếm
               </Button>
               <Button
                 variant="contained"
@@ -145,7 +145,7 @@ const JobPostSearch = () => {
                 color="secondary"
                 onClick={handleChangeShowFilter}
               >
-                hishura byinshi
+                Lọc nâng cao
               </Button>
             </Stack>
           </Grid>
@@ -166,13 +166,13 @@ const JobPostSearch = () => {
               sx={{ pt: 0.5, fontSize: 16 }}
               color="GrayText"
             >
-              hishura byinshi
+              Lọc nâng cao
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="positionId"
-              placeholder="Imyanya yose"
+              placeholder="Tất cả vị trí"
               control={control}
               options={allConfig?.positionOptions || []}
             />
@@ -180,7 +180,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="experienceId"
-              placeholder="Uburambe bwose"
+              placeholder="Tất cả kinh nghiệm"
               control={control}
               options={allConfig?.experienceOptions || []}
             />
@@ -188,7 +188,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="jobTypeId"
-              placeholder="Ubukorikori bwose"
+              placeholder="Tất cả hình thức làm việc"
               control={control}
               options={allConfig?.jobTypeOptions || []}
             />
@@ -196,7 +196,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="typeOfWorkplaceId"
-              placeholder="Ubukorikori bwose"
+              placeholder="Tất cả loại hình làm việc"
               control={control}
               options={allConfig?.typeOfWorkplaceOptions || []}
             />
@@ -204,7 +204,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="genderId"
-              placeholder="Igitsina cyose"
+              placeholder="Tất cả giới tính"
               control={control}
               options={allConfig?.genderOptions || []}
             />

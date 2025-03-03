@@ -64,7 +64,7 @@ const CompanyCard = () => {
 
         setIsSuccess(!isSuccess);
         if (serverErrors !== null) setServerErrors(null);
-        toastMessages.success('Amakuru y\'isosiyete yavuguruwe neza.');
+        toastMessages.success('Cập nhật thông tin công ty thành công.');
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -88,7 +88,7 @@ const CompanyCard = () => {
         const resData = await companyService.updateCompanyImageUrl(formData);
         const data = resData.data;
 
-        toastMessages.success('Logo y\'isosiyete yavuguruwe neza.');
+        toastMessages.success('Cập nhật logo công ty thành công.');
         setCompanyImageUrl(data?.companyImageUrl);
       } catch (error) {
         errorHandling(error);
@@ -113,7 +113,7 @@ const CompanyCard = () => {
         );
         const data = resData.data;
 
-        toastMessages.success('Ifoto y\'ikuburiro y\'isosiyete yavuguruwe neza.');
+        toastMessages.success('Cập nhật ảnh bìa công ty thành công.');
         setCompanyCoverImageUrl(data?.companyCoverImageUrl);
       } catch (error) {
         errorHandling(error);
@@ -132,7 +132,7 @@ const CompanyCard = () => {
       <Stack spacing={3}>
         <Box>
           <Typography variant="subtitle2" gutterBottom>
-            Logo y'isosiyete
+            Logo công ty
           </Typography>
           <MuiImageCustom
             src={companyImageUrl}
@@ -144,11 +144,11 @@ const CompanyCard = () => {
             <ImgCrop
               rotationSlider
               modalProps={{ zIndex: 2000 }}
-              modalTitle="Guhindura ifoto"
-              modalOk="Shyiraho"
-              modalCancel="Hagarika"
+              modalTitle="Chỉnh sửa ảnh"
+              modalOk="Tải lên"
+              modalCancel="Hủy"
               showReset={true}
-              resetText="Subiza uko byari"
+              resetText="Đặt lại"
             >
               <Upload
                 listType="picture"
@@ -162,7 +162,7 @@ const CompanyCard = () => {
                   color="primary"
                   sx={{ textTransform: 'inherit' }}
                 >
-                  Hindura logo
+                  Thay logo
                 </Button>
               </Upload>
             </ImgCrop>
@@ -170,7 +170,7 @@ const CompanyCard = () => {
         </Box>
         <Box>
           <Typography variant="subtitle2" gutterBottom>
-            Ifoto y'ikuburiro iriho ubu
+            Ảnh bìa hiện tại
           </Typography>
           <MuiImageCustom
             src={companyCoverImageUrl}
@@ -192,7 +192,7 @@ const CompanyCard = () => {
                 color="primary"
                 sx={{ textTransform: 'inherit' }}
               >
-                Hindura ifoto y'ikuburiro
+                Thay ảnh bìa
               </Button>
             </Upload>
           </Box>
@@ -217,7 +217,7 @@ const CompanyCard = () => {
                   type="submit"
                   form="company-form"
                 >
-                  Vugurura
+                  Cập nhật
                 </Button>
               </Box>
             </>

@@ -43,7 +43,7 @@ const CompanyAction = ({ id, views, createAt, resume, company, children }) => {
         sx={{
           p: 1,
           '&:hover': {
-            borderColor: '#182642',
+            borderColor: '#441da0',
           },
         }}
       >
@@ -155,7 +155,7 @@ const CompanyActionFollow = ({ id, company, children }) => {
         sx={{
           p: 1,
           '&:hover': {
-            borderColor: '#182642',
+            borderColor: '#441da0',
           },
         }}
       >

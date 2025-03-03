@@ -35,7 +35,7 @@ const Pdf = ({ fileUrl, title = '' }) => {
           justifyContent="space-between"
           alignItems="center"
           sx={{
-            bgcolor: '#182642',
+            bgcolor: '#441da0',
             p: 2,
             borderTopLeftRadius: 3,
             borderTopRightRadius: 3,
@@ -95,7 +95,8 @@ const Pdf = ({ fileUrl, title = '' }) => {
                       onClick={props.onClick}
                       startIcon={<FileDownloadIcon />}
                     >
-Download                    </Button>
+                      Tải xuống
+                    </Button>
                   )}
                 </Download>
               </Stack>

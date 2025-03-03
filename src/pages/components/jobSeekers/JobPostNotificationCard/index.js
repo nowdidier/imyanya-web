@@ -215,7 +215,7 @@ const ItemComponent = ({
                           fontSize: 13,
                         }}
                       >
-                        Ntarasurwa
+                        Chưa cập nhật
                       </span>
                     )}
                   </Typography>
@@ -238,7 +238,7 @@ const ItemComponent = ({
                           fontSize: 13,
                         }}
                       >
-                        Ntarasurwa
+                        Chưa cập nhật
                       </span>
                     )}
                   </Typography>
@@ -261,7 +261,7 @@ const ItemComponent = ({
                           fontSize: 13,
                         }}
                       >
-                        Ntarasurwa
+                        Chưa cập nhật
                       </span>
                     )}
                   </Typography>
@@ -284,7 +284,7 @@ const ItemComponent = ({
                           fontSize: 13,
                         }}
                       >
-                        Ntarasurwa
+                        Chưa cập nhật
                       </span>
                     )}
                   </Typography>
@@ -323,146 +323,255 @@ const ItemComponent = ({
   );
 };
 
-const JobPostNotificationList = () => {
-  const { allConfig } = useSelector((state) => state.config);
+const pageSize = 12;
+
+const JobPostNotificationCard = () => {
+  const { currentUser } = useSelector((state) => state.user);
   const [page, setPage] = React.useState(1);
-  const [list, setList] = React.useState([]);
-  const [totalPages, setTotalPages] = React.useState(1);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [isLoadingUpdate, setIsLoadingUpdate] = React.useState(false);
+  const [count, setCount] = React.useState(0);
   const [openPopup, setOpenPopup] = React.useState(false);
-  const [updateId, setUpdateId] = React.useState(null);
+  const [isSuccess, setIsSuccess] = React.useState(false);
+  const [isLoadingJobPostNotifications, setIsLoadingJobPostNotifications] =
+    React.useState(true);
+  const [isFullScreenLoading, setIsFullScreenLoading] = React.useState(false);
+  const [jobPostNotifications, setJobPostNotifications] = React.useState([]);
+  const [editData, setEditData] = React.useState(null);
 
   React.useEffect(() => {
-    const fetchJobPostNotifications = async () => {
-      setIsLoading(true);
+    const loadJobPostNotification = async (params) => {
+      setIsLoadingJobPostNotifications(true);
+
       try {
-        const resData = await jobPostNotificationService.getAll(page);
+        const resData =
+          await jobPostNotificationService.getJobPostNotifications(params);
         const data = resData.data;
-        setList(data.items);
-        setTotalPages(data.totalPages);
+        setCount(data.count);
+        setJobPostNotifications(data.results);
       } catch (error) {
         errorHandling(error);
       } finally {
-        setIsLoading(false);
+        setIsLoadingJobPostNotifications(false);
       }
     };
 
-    fetchJobPostNotifications();
-  }, [page]);
+    loadJobPostNotification({
+      page: page,
+      pageSize: pageSize,
+    });
+  }, [isSuccess, page]);
 
-  const handleChangePage = (event, value) => {
-    setPage(value);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
   };
 
   const handleShowUpdate = (id) => {
-    setUpdateId(id);
+    const loadJobPostNotificationDetailById = async (id) => {
+      setIsFullScreenLoading(true);
+      try {
+        const resData =
+          await jobPostNotificationService.getJobPostNotificationDetailById(id);
+        var data = resData.data;
+        setEditData(data);
+        setOpenPopup(true);
+      } catch (error) {
+        errorHandling(error);
+      } finally {
+        setIsFullScreenLoading(false);
+      }
+    };
+
+    loadJobPostNotificationDetailById(id);
+  };
+
+  const handleShowAdd = () => {
+    setEditData(null);
     setOpenPopup(true);
   };
 
-  const handleDelete = async (id) => {
-    const confirm = await confirmModal(
-      'Delete Job Post Notification',
-      'Are you sure you want to delete this job post notification?'
-    );
-    if (!confirm.isConfirmed) return;
+  const handleAddOrUpdate = (data) => {
+    const create = async (data) => {
+      setIsFullScreenLoading(true);
+      try {
+        await jobPostNotificationService.addJobPostNotification(data);
+        setOpenPopup(false);
+        setIsSuccess(!isSuccess);
+        toastMessages.success('Thêm thông báo việc làm thành công.');
+      } catch (error) {
+        errorHandling(error);
+      } finally {
+        setIsFullScreenLoading(false);
+      }
+    };
 
-    setIsLoadingUpdate(true);
+    const update = async (data) => {
+      setIsFullScreenLoading(true);
+      try {
+        await jobPostNotificationService.updateJobPostNotificationById(
+          data.id,
+          data
+        );
+        setOpenPopup(false);
+        setIsSuccess(!isSuccess);
+        toastMessages.success('Cập nhật thông báo việc làm thành công.');
+      } catch (error) {
+        errorHandling(error);
+      } finally {
+        setIsFullScreenLoading(false);
+      }
+    };
 
-    try {
-      await jobPostNotificationService.delete(id);
-      setList((prevList) => prevList.filter((item) => item.id !== id));
-      toastMessages.success('Deleted successfully');
-    } catch (error) {
-      errorHandling(error);
-    } finally {
-      setIsLoadingUpdate(false);
+    if ('id' in data) {
+      // update
+      update(data);
+    } else {
+      // create
+      create(data);
     }
   };
 
-  const handlePopupClose = () => {
-    setOpenPopup(false);
-    setUpdateId(null);
-  };
+  const handleDeleteJobPostNotification = (id) => {
+    const del = async (id) => {
+      try {
+        await jobPostNotificationService.deleteJobPostNotificationDetailById(
+          id
+        );
+        setIsSuccess(!isSuccess);
+        toastMessages.success('Xóa thông báo việc làm thành công.');
+      } catch (error) {
+        errorHandling(error);
+      } finally {
+        setIsFullScreenLoading(false);
+      }
+    };
 
-  const handlePopupSave = () => {
-    setOpenPopup(false);
-    setUpdateId(null);
-    setPage(1);
+    confirmModal(
+      () => del(id),
+      'Xóa thông báo việc làm',
+      'Thông báo việc làm này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
+      'warning'
+    );
   };
 
   return (
-    <Box>
-      <Stack direction="row" spacing={1} alignItems="center" mb={3}>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<AddIcon />}
-          onClick={() => setOpenPopup(true)}
-        >
-          Add New Notification
-        </Button>
-      </Stack>
-      <Divider />
-      <Stack spacing={3} mt={3}>
-        {isLoading ? (
-          <>
-            <ItemLoading />
-            <ItemLoading />
-            <ItemLoading />
-          </>
-        ) : list.length === 0 ? (
-          <NoDataCard
-            title="No Job Post Notifications Found"
-            imgComponentSgv={<ImageSvg10 width="100%" height={300} />}
-          />
-        ) : (
-          list.map((item) => (
-            <ItemComponent
-              key={item.id}
-              id={item.id}
-              jobName={item.jobName}
-              salary={item.salary}
-              frequency={item.frequency}
-              isActive={item.isActive}
-              career={item.career}
-              city={item.city}
-              handleShowUpdate={handleShowUpdate}
-              handleDelete={handleDelete}
-            />
-          ))
-        )}
-      </Stack>
-      {totalPages > 1 && (
-        <Box mt={3} display="flex" justifyContent="center">
-          <Pagination
-            count={totalPages}
-            page={page}
-            onChange={handleChangePage}
-            color="primary"
-          />
+    <>
+      <Box>
+        <Box>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <Stack flex={1}>
+              <Box>
+                <Typography variant="h6">Thông báo việc làm</Typography>
+              </Box>
+              <Box>
+                <Typography variant="body2" color="#757575">
+                  Tối đa 3 thông báo việc làm được bật
+                </Typography>
+              </Box>
+            </Stack>
+            <Box>
+              <Button
+                variant="contained"
+                startIcon={<AddIcon />}
+                onClick={handleShowAdd}
+              >
+                Tạo thông báo
+              </Button>
+            </Box>
+          </Stack>
         </Box>
-      )}
-      {/* Start: FormPopup */}
+        <Divider sx={{ mt: 2, mb: 2 }} />
+        <Box>
+          {isLoadingJobPostNotifications ? (
+            <Stack spacing={4}>
+              {Array.from(Array(5).keys()).map((value) => (
+                <ItemLoading key={value} />
+              ))}
+            </Stack>
+          ) : jobPostNotifications.length === 0 ? (
+            <NoDataCard
+              title="Bạn chưa có thông báo việc làm nào"
+              imgComponentSgv={<ImageSvg10 />}
+            >
+              <Button variant="contained" color="primary">
+                Tạo thông báo bây giờ
+              </Button>
+            </NoDataCard>
+          ) : (
+            <Box>
+              <Stack spacing={4}>
+                {jobPostNotifications.map((value) => (
+                  <ItemComponent
+                    key={value.id}
+                    id={value.id}
+                    jobName={value.jobName}
+                    salary={value.salary}
+                    frequency={value.frequency}
+                    isActive={value.isActive}
+                    career={value.career}
+                    city={value.city}
+                    handleShowUpdate={handleShowUpdate}
+                    handleDelete={handleDeleteJobPostNotification}
+                  />
+                ))}
+              </Stack>
+              <Box>
+                <Stack>
+                  {Math.ceil(count / pageSize) > 1 && (
+                    <Pagination
+                      siblingCount={0}
+                      color="primary"
+                      size="medium"
+                      variant="text"
+                      sx={{ margin: '0 auto', mt: 5 }}
+                      count={Math.ceil(count / pageSize)}
+                      page={page}
+                      onChange={handleChangePage}
+                    />
+                  )}
+                </Stack>
+              </Box>
+            </Box>
+          )}
+        </Box>
+      </Box>
+      {/* Start: form  */}
       <FormPopup
-        open={openPopup}
-        onClose={handlePopupClose}
         title={
-          updateId ? 'Update Job Post Notification' : 'Add Job Post Notification'
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Box>
+              <MuiImageCustom
+                width={100}
+                height={100}
+                src={'https://vieclam24h.vn/img/mail-bro%202.png'}
+                shiftDuration={0}
+              />
+            </Box>
+            <Stack>
+              <Box>
+                <Typography variant="h5">Tạo thông báo việc làm</Typography>
+              </Box>
+              <Box>
+                <Typography color="#757575">{currentUser?.email}</Typography>
+              </Box>
+            </Stack>
+          </Stack>
         }
+        buttonText={editData ? 'Lưu' : 'Tạo thông báo'}
+        buttonIcon={null}
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
       >
         <JobPostNotificationForm
-          id={updateId}
-          onClose={handlePopupClose}
-          onSave={handlePopupSave}
+          handleAddOrUpdate={handleAddOrUpdate}
+          editData={editData}
         />
       </FormPopup>
-      {/* End: FormPopup */}
+      {/* End: form */}
+
       {/* Start: full screen loading */}
-      {isLoadingUpdate && <BackdropLoading />}
+      {isFullScreenLoading && <BackdropLoading />}
       {/* End: full screen loading */}
-    </Box>
+    </>
   );
 };
 
-export default JobPostNotificationList;
+export default JobPostNotificationCard;

@@ -29,9 +29,9 @@ import NotificationCard from "../../../../components/NotificationCard";
 import ChatCard from "../../../../components/ChatCard";
 
 const pages = [
-  { id: 1, label: "Imirimo", path: "/viec-lam" },
-  { id: 2, label: "Ibigo", path: "/cong-ty" },
-  { id: 3, label: "twe", path: "/ve-chung-toi" },
+  { id: 1, label: "Việc làm", path: "/viec-lam" },
+  { id: 2, label: "Công ty", path: "/cong-ty" },
+  { id: 3, label: "Về chúng tôi", path: "/ve-chung-toi" },
 ];
 
 const Header = (props) => {
@@ -131,7 +131,7 @@ const Header = (props) => {
           sx={{ color: "white" }}
           onClick={handleLogin}
         >
-         Injira
+          Đăng nhập
         </Button>
         <Button
           variant="outlined"
@@ -148,7 +148,7 @@ const Header = (props) => {
           }}
           onClick={handleSignUp}
         >
-          Iyandikishe
+          Đăng ký
         </Button>
       </Stack>
     </Box>

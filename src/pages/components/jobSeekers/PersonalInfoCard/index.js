@@ -73,9 +73,9 @@ const item = (title, value) => {
       <Typography sx={{ fontWeight: 'bold' }}>{title}</Typography>
       <Typography>
         {value || (
-          <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-            Ntarandikwa
-          </span>
+           <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
+           Chưa cập nhật
+         </span>
         )}
       </Typography>
     </Box>
@@ -83,7 +83,7 @@ const item = (title, value) => {
 };
 
 const PersonalInfoCard = ({ title }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { allConfig } = useSelector((state) => state.config);
   const [openPopup, setOpenPopup] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
@@ -115,10 +115,10 @@ const PersonalInfoCard = ({ title }) => {
       try {
         await jobSeekerProfileService.updateProfile(data);
 
-        dispatch(getUserInfo());
+        dispatch(getUserInfo())
         setIsSuccess(!isSuccess);
         setOpenPopup(false);
-        toastMessages.success('Guhindura amakuru yihariye byagenze neza.');
+        toastMessages.success('Cập nhật thông tin cá nhân thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -163,17 +163,17 @@ const PersonalInfoCard = ({ title }) => {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                     <Stack spacing={2}>
-                      {item('Amazina Yombi', profile?.user?.fullName)}
-                      {item('Numero ya Telefone', profile?.phone)}
-                      {item('Igitsina', allConfig.genderDict[profile?.gender])}
+                      {item('Họ và tên', profile?.user?.fullName)}
+                      {item('Số điện thoại', profile?.phone)}
+                      {item('Giới tính', allConfig.genderDict[profile?.gender])}
                       {item(
-                        'Itariki y’Amavuko',
+                        'Ngày sinh',
                         profile?.birthday
                           ? dayjs(profile.birthday).format('DD/MM/YYYY')
                           : profile?.birthday
                       )}
                       {item(
-                        'Imiterere y’Isezerano',
+                        'Tình trạng hôn nhân',
                         allConfig.maritalStatusDict[profile?.maritalStatus]
                       )}
                     </Stack>
@@ -181,14 +181,14 @@ const PersonalInfoCard = ({ title }) => {
                   <Grid item xs={12} sm={6} md={8} lg={8} xl={8}>
                     <Stack spacing={2}>
                       {item(
-                        'Intara/Umutwe w’Umujyi',
+                        'Tỉnh/Thành phố',
                         allConfig.cityDict[profile?.location?.city]
                       )}
                       {item(
-                        'Akarere',
+                        'Quận/Huyện',
                         profile?.location?.districtDict?.name
                       )}
-                      {item('Aderesi', profile?.location?.address)}
+                      {item('Địa chỉ', profile?.location?.address)}
                     </Stack>
                   </Grid>
                 </Grid>
@@ -200,7 +200,7 @@ const PersonalInfoCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Amakuru Yihariye"
+        title="Thông tin cá nhân"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

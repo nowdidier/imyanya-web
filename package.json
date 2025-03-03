@@ -1,5 +1,5 @@
 {
-  "name": "imyanya-web",
+  "name": "my-job-web-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -73,7 +73,7 @@
     "swiper": "^9.1.0",
     "web-vitals": "^2.1.4",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.2/xlsx-0.19.2.tgz",
-    "yup": "^1.4.0"
+    "yup": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

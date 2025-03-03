@@ -31,7 +31,7 @@ import { getUserInfo } from '../../../redux/userSlice';
 import { updateVerifyEmail } from '../../../redux/authSlice';
 
 const JobSeekerSignUp = () => {
-  TabTitle("Iyandikishe nk'ushaka akazi")
+  TabTitle("Đăng ký tài khoản Người tìm việc")
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -94,10 +94,10 @@ const JobSeekerSignUp = () => {
             nav('/');
           })
           .catch(() => {
-            toastMessages.error('Habaye ikosa, mwongere mwinjire!');
+            toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
           });
       } else {
-        toastMessages.error('Habaye ikosa, mwongere mwinjire!');
+        toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
       }
     } catch (error) {
       // 400 bad request
@@ -107,7 +107,7 @@ const JobSeekerSignUp = () => {
         if ('errorMessage' in errors) {
           setErrorMessage(errors.errorMessage.join(' '));
         } else {
-          toastMessages.error('Habaye ikosa, mwongere mugerageze!');
+          toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
         }
       }
     } finally {
@@ -163,14 +163,14 @@ const JobSeekerSignUp = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5" align='center'>
-              Iyandikishe nk'ushaka akazi
+              Đăng ký tài khoản ứng viên
             </Typography>
           </Box>
 
           {errorMessage && (
             <Box>
               <Alert severity="error">
-                <AlertTitle>Byanze</AlertTitle>
+                <AlertTitle>Thất bại</AlertTitle>
                 {errorMessage}
               </Alert>
             </Box>
@@ -192,9 +192,9 @@ const JobSeekerSignUp = () => {
               <Link
                 to="/dang-nhap-ung-vien"
                 variant="body2"
-                style={{ textDecoration: 'none', color: '#182642' }}
+                style={{ textDecoration: 'none', color: '#441da0' }}
               >
-                {'Usanzwe ufite konti? Injira'}
+                {'Đã có tài khoản? Đăng nhập'}
               </Link>
             </Grid>
           </Grid>

@@ -27,7 +27,7 @@ import tokenService from '../../../services/tokenService';
 import EmployerLoginForm from '../../components/auths/EmployerLoginForm';
 
 const EmployerLogin = () => {
-  TabTitle('Kwinjira umukoresha wa gahunda');
+  TabTitle('Đăng nhập tài khoản Nhà tuyển dụng');
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -72,10 +72,10 @@ const EmployerLogin = () => {
               nav('/nha-tuyen-dung');
             })
             .catch(() => {
-              toastMessages.error('Ikibazo cyageze, ihangane wongere winjire');
+              toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
             });
         } else {
-          toastMessages.error('Ikibazo cyageze, ihangane wongere winjire');
+          toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
         }
       } catch (error) {
         // 400 bad request
@@ -85,7 +85,7 @@ const EmployerLogin = () => {
           if ('errorMessage' in errors) {
             setErrorMessage(errors.errorMessage.join(' '));
           } else {
-            toastMessages.error('Ikibazo cyageze, gerageza bundi bushya!');
+            toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
           }
         }
       } finally {
@@ -112,7 +112,7 @@ const EmployerLogin = () => {
           return;
         } else if (exists === false) {
           setErrorMessage(
-            'Nta gahunda y\'umukoresha ihari ifitanye n\'iyi imeri!'
+            'Không tồn tại tài khoản nhà tuyển dụng nào với email này!'
           );
 
           return;
@@ -120,7 +120,7 @@ const EmployerLogin = () => {
 
         getAccesToken(resEmail, password, roleName);
       } catch (error) {
-        toastMessages.error('Ikibazo cyageze, ihangane wongere winjire');
+        toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
       } finally {
         setIsFullScreenLoading(false);
       }
@@ -153,20 +153,31 @@ const EmployerLogin = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5" align="center">
-              kwinjira muri gahunda y'umukoresha
+              Đăng nhập tài khoản nhà tuyển dụng
             </Typography>
           </Box>
+          {/* <Box>
+            <Alert severity="info">
+              <AlertTitle>Thông tin đăng nhập</AlertTitle>
+              <Typography>
+                Email: <strong>employer[1-4900]@gmail.com</strong>
+              </Typography>
+              <Typography>
+                Password: <strong>123</strong>
+              </Typography>
+            </Alert>
+          </Box> */}
           {errorMessage ? (
             <Box>
               <Alert severity="error">
-                <AlertTitle>Kumanuka</AlertTitle>
+                <AlertTitle>Thất bại</AlertTitle>
                 {errorMessage}
               </Alert>
             </Box>
           ) : successMessage ? (
             <Box>
               <Alert severity="success">
-                <AlertTitle>Ikigero</AlertTitle>
+                <AlertTitle>Thành công</AlertTitle>
                 {successMessage}
               </Alert>
             </Box>
@@ -184,18 +195,18 @@ const EmployerLogin = () => {
               <Link
                 to="/quen-mat-khau"
                 variant="body2"
-                style={{ textDecoration: 'none', color: '#182642' }}
+                style={{ textDecoration: 'none', color: '#441da0' }}
               >
-                Wibagiwe ijambobanga?
+                Quên mật khẩu?
               </Link>
             </Grid>
             <Grid item>
               <Link
                 to="/dang-ky-tai-khoan-nha-tuyen-dung"
                 variant="body2"
-                style={{ textDecoration: 'none', color: '#182642' }}
+                style={{ textDecoration: 'none', color: '#441da0' }}
               >
-                {'Nturabasha kwinjira? Kwiyandikisha'}
+                {'Chưa có tài khoản? Đăng ký'}
               </Link>
             </Grid>
           </Grid>

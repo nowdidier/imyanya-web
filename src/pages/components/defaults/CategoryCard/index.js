@@ -49,7 +49,7 @@ const CategoryCard = ({ options, type }) => {
             width: '100%',
             backgroundColor: 'white',
             border: 1,
-            borderColor: '#182642',
+            borderColor: '#441da0',
             maxWidth: {
               xs: '100%',
               sm: '60%',
@@ -65,7 +65,7 @@ const CategoryCard = ({ options, type }) => {
             sx={{ ml: 1, flex: 1 }}
             inputProps={{ 'aria-label': 'search' }}
             defaultValue=""
-            placeholder="Gushakisha vuba"
+            placeholder="Tìm kiếm nhanh"
             onChange={(event) => handleFilterChange(event.target.value)}
           />
         </Paper>
@@ -76,7 +76,7 @@ const CategoryCard = ({ options, type }) => {
             sx={{
               cursor: 'pointer',
               '&:hover': {
-                color: '#00B2A3',
+                color: '#fca34d',
                 fontWeight: 'bold',
               },
             }}

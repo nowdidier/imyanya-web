@@ -20,7 +20,7 @@ const SavedJobCard = () => {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
-    const getJobPosts = async () => {
+    const getJobPosts = async (params) => {
       setIsLoading(true);
       try {
         const resData = await jobService.getJobPostsSaved({
@@ -32,13 +32,13 @@ const SavedJobCard = () => {
         setCount(data.count);
         setJobPosts(data.results);
       } catch (error) {
-        errorHandling(error);
       } finally {
         setIsLoading(false);
       }
     };
 
     getJobPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, isSuccess]);
 
   const handleChangePage = (event, newPage) => {
@@ -52,7 +52,7 @@ const SavedJobCard = () => {
         const isSaved = resData.data.isSaved;
 
         toastMessages.success(
-          isSaved ? 'Koherezwa neza.' : 'Kuvanwaho neza.'
+          isSaved ? 'Lưu thành công.' : 'Hủy lưu thành công.'
         );
         setIsSuccess(!isSuccess);
       } catch (error) {
@@ -64,70 +64,72 @@ const SavedJobCard = () => {
   };
 
   return (
-    <Box>
-      {isLoading ? (
-        <Stack spacing={2}>
-          {Array.from(Array(5).keys()).map((value) => (
-            <JobPostAction.Loading key={value} />
-          ))}
-        </Stack>
-      ) : jobPosts.length === 0 ? (
-        <NoDataCard title="Nta kazi washyize ku rutonde ukunda" imgComponentSgv={<ImageSvg5 />}>
-          <Button
-            component={Link}
-            to="/viec-lam"
-            variant="contained"
-            color="primary"
-            sx={{ textTransform: 'inherit' }}
-          >
-            Shakisha akazi
-          </Button>
-        </NoDataCard>
-      ) : (
-        <Stack spacing={2}>
-          {jobPosts.map((value) => (
-            <JobPostAction
-              key={value.id}
-              id={value.id}
-              slug={value.slug}
-              companyImageUrl={value?.companyDict?.companyImageUrl}
-              companyName={value?.companyDict?.companyName}
-              jobName={value?.jobName}
-              cityId={value?.locationDict?.city}
-              deadline={value?.deadline}
-              isUrgent={value?.isUrgent}
-              isHot={value?.isHot}
-              salaryMin={value.salaryMin}
-              salaryMax={value.salaryMax}
-            >
-              <Button
-                size="small"
-                variant="outlined"
-                color="error"
-                sx={{ textTransform: 'inherit' }}
-                startIcon={<FavoriteIcon />}
-                onClick={() => handleSave(value.slug)}
-              >
-                Kuraho
-              </Button>
-            </JobPostAction>
-          ))}
-          <Stack sx={{ pt: 2 }} alignItems="center">
-            {Math.ceil(count / pageSize) > 1 && (
-              <Pagination
-                color="primary"
-                size="medium"
-                variant="text"
-                sx={{ margin: '0 auto' }}
-                count={Math.ceil(count / pageSize)}
-                page={page}
-                onChange={handleChangePage}
-              />
-            )}
+    <>
+      <Box>
+        {isLoading ? (
+          <Stack spacing={2}>
+            {Array.from(Array(5).keys()).map((value) => (
+              <JobPostAction.Loading key={value} />
+            ))}
           </Stack>
-        </Stack>
-      )}
-    </Box>
+        ) : jobPosts.length === 0 ? (
+          <NoDataCard title="Bạn chưa lưu công việc nào" imgComponentSgv={<ImageSvg5 />}>
+            <Button
+              component={Link}
+              to="/viec-lam"
+              variant="contained"
+              color="primary"
+              sx={{ textTransform: 'inherit' }}
+            >
+              Tìm việc làm
+            </Button>
+          </NoDataCard>
+        ) : (
+          <Stack spacing={2}>
+            {jobPosts.map((value) => (
+              <JobPostAction
+                key={value.id}
+                id={value.id}
+                slug={value.slug}
+                companyImageUrl={value?.companyDict?.companyImageUrl}
+                companyName={value?.companyDict?.companyName}
+                jobName={value?.jobName}
+                cityId={value?.locationDict?.city}
+                deadline={value?.deadline}
+                isUrgent={value?.isUrgent}
+                isHot={value?.isHot}
+                salaryMin={value.salaryMin}
+                salaryMax={value.salaryMax}
+              >
+                <Button
+                  size="small"
+                  variant="outlined"
+                  color="error"
+                  sx={{ textTransform: 'inherit' }}
+                  startIcon={<FavoriteIcon />}
+                  onClick={() => handleSave(value.slug)}
+                >
+                  Hủy lưu
+                </Button>
+              </JobPostAction>
+            ))}
+            <Stack sx={{ pt: 2 }} alignItems="center">
+              {Math.ceil(count / pageSize) > 1 && (
+                <Pagination
+                  color="primary"
+                  size="medium"
+                  variant="text"
+                  sx={{ margin: '0 auto' }}
+                  count={Math.ceil(count / pageSize)}
+                  page={page}
+                  onChange={handleChangePage}
+                />
+              )}
+            </Stack>
+          </Stack>
+        )}
+      </Box>
+    </>
   );
 };
 

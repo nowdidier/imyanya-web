@@ -5,12 +5,12 @@ import { TabTitle } from '../../../utils/generalFunction';
 import SavedResumeCard from '../../components/employers/SavedResumeCard';
 
 const SavedProfilePage = () => {
-  TabTitle("Gucunga inyandiko zabitswe")
+  TabTitle("Quản lý hồ sơ đã lưu")
 
   return (
     <Card sx={{ p: 3 }}>
       {/* Start: Saved Resume Card */}
-      <SavedResumeCard title="Imyirondoro yabitswe"/>
+      <SavedResumeCard title="Hồ sơ đã lưu"/>
       {/* End: Saved Resume Card */}
     </Card>
   );

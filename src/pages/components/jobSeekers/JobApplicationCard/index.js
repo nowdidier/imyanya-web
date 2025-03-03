@@ -21,24 +21,26 @@ const JobApplicationCard = () => {
     const getOnlineProfile = async (jobSeekerProfileId, params) => {
       setIsLoading(true);
       try {
-        const resData = await jobSeekerProfileService.getResumes(jobSeekerProfileId, params);
+        const resData = await jobSeekerProfileService.getResumes(
+          jobSeekerProfileId,
+          params
+        );
+
         setData(resData.data);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       } finally {
         setIsLoading(false);
       }
     };
 
-    if (currentUser?.jobSeekerProfileId) {
-      getOnlineProfile(currentUser.jobSeekerProfileId);
-    }
+    getOnlineProfile(currentUser?.jobSeekerProfileId);
   }, [currentUser]);
 
   return (
     <Box>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Typography variant="h6">Inyandiko y'akazi</Typography>
+        <Typography variant="h6">Hồ sơ xin việc</Typography>
         <IconButton
           aria-label="ArrowForward"
           size="medium"
@@ -53,16 +55,22 @@ const JobApplicationCard = () => {
           dataSource={data}
           loading={isLoading}
           renderItem={(item, index) => (
-            <List.Item key={index}>
+            <List.Item>
               <List.Item.Meta
                 avatar={
                   item?.type === CV_TYPES.cvWebsite ? (
-                    <Tooltip title="Inyandiko yo kuri interineti">
-                      <AntAvatar style={{ backgroundColor: '#182642' }} icon={<FileOutlined />} />
+                    <Tooltip title="Hồ sơ Online">
+                      <AntAvatar
+                        style={{ backgroundColor: '#441da0' }}
+                        icon={<FileOutlined />}
+                      />
                     </Tooltip>
                   ) : item?.type === CV_TYPES.cvUpload ? (
-                    <Tooltip title="Inyandiko y'inyongera">
-                      <AntAvatar style={{ backgroundColor: '#ff3d00' }} icon={<FilePdfOutlined />} />
+                    <Tooltip title="Hồ sơ đính kèm">
+                      <AntAvatar
+                        style={{ backgroundColor: '#ff3d00' }}
+                        icon={<FilePdfOutlined />}
+                      />
                     </Tooltip>
                   ) : (
                     '---'
@@ -72,13 +80,17 @@ const JobApplicationCard = () => {
                 description={
                   <>
                     <Typography variant="caption">
-                      Guhindurwa bwa nyuma {dayjs(item?.updateAt).format('DD/MM/YYYY')}
+                      Sửa lần cuối {dayjs(item?.updateAt).format('DD/MM/YYYY')}
                     </Typography>
                     <Typography>
                       {item?.isActive ? (
-                        <span style={{ color: '#4caf50' }}>Kwemerera gushakisha</span>
+                        <span style={{ color: '#4caf50' }}>
+                          Đang cho phép tìm kiếm
+                        </span>
                       ) : (
-                        <span style={{ color: '#ff3d00' }}>Ntiwemerera gushakisha</span>
+                        <span style={{ color: '#ff3d00' }}>
+                          Không cho phép tìm kiếm
+                        </span>
                       )}
                     </Typography>
                   </>

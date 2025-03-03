@@ -17,7 +17,7 @@ const ProfileUploadForm = ({ handleAdd }) => {
       .mixed()
       .test(
         'files empty',
-        'Ifayile irakenewe.',
+        'Tập tin là bắt buộc.',
         (value) =>
           !(
             value === undefined ||
@@ -28,64 +28,64 @@ const ProfileUploadForm = ({ handleAdd }) => {
       ),
     title: yup
       .string()
-      .required('Icyifuzo ni ngombwa.')
-      .max(200, 'Icyifuzo kirenze uburebure bwemewe.'),
+      .required('Vị trí mong muốn là bắt buộc.')
+      .max(200, 'Vị trí mong muốn vượt quá độ dài cho phép.'),
     position: yup
       .number()
-      .required('Urwego rurakenewe.')
-      .typeError('Urwego rurakenewe.'),
+      .required('Cấp bậc mong muốn là bắt buộc.')
+      .typeError('Cấp bậc mong muốn là bắt buộc.'),
     academicLevel: yup
       .number()
-      .required('Urwego rw\'amashuri rurakenewe.')
-      .typeError('Urwego rw\'amashuri rurakenewe.'),
+      .required('Trình độ học vấn là bắt buộc.')
+      .typeError('Trình độ học vấn là bắt buộc.'),
     experience: yup
       .number()
-      .required('Ubunararibonye mu kazi burakenewe.')
-      .typeError('Ubunararibonye mu kazi burakenewe.'),
+      .required('Kinh nghiệm làm việc là bắt buộc.')
+      .typeError('Kinh nghiệm làm việc là bắt buộc.'),
     career: yup
       .number()
-      .required('Umwuga urakenewe.')
-      .typeError('Umwuga urakenewe.'),
+      .required('Ngành nghề là bắt buộc.')
+      .typeError('Ngành nghề là bắt buộc.'),
     city: yup
       .number()
-      .required('Intara/Umujyi urakenewe.')
-      .typeError('Intara/Umujyi urakenewe.'),
+      .required('Tỉnh/Thành phố là bắt buộc.')
+      .typeError('Tỉnh/Thành phố là bắt buộc.'),
     salaryMin: yup
       .number()
-      .required('Umushahara ntarengwa uri hasi urakenewe.')
-      .typeError('Umushahara uri hasi nturakenewe.')
-      .min(0, 'Umushahara uri hasi nturakenewe.')
+      .required('Mức lương mong muốn tối thiểu là bắt buộc.')
+      .typeError('Lương tối thiểu không hợp lệ.')
+      .min(0, 'Lương tối thiểu không hợp lệ.')
       .test(
         'minimum-wage-comparison',
-        'Umushahara uri hasi ugomba kuba muto kuruta uri hejuru.',
+        'Lương tối thiểu phải nhỏ hơn lương tối đa.',
         function (value) {
           return !(value >= this.parent.salaryMax);
         }
       ),
     salaryMax: yup
       .number()
-      .required('Umushahara ntarengwa uri hejuru urakenewe.')
-      .typeError('Umushahara uri hejuru nturakenewe.')
-      .min(0, 'Umushahara uri hejuru nturakenewe.')
+      .required('Mức lương mong muốn tối đa là bắt buộc.')
+      .typeError('Lương tối đa không hợp lệ.')
+      .min(0, 'Lương tối đa không hợp lệ.')
       .test(
         'maximum-wage-comparison',
-        'Umushahara uri hejuru ugomba kuba munini kuruta uri hasi.',
+        'Lương tối đa phải lớn hơn lương tối thiểu.',
         function (value) {
           return !(value <= this.parent.salaryMin);
         }
       ),
     typeOfWorkplace: yup
       .number()
-      .required('Aho gukorera harakenewe.')
-      .typeError('Aho gukorera harakenewe.'),
+      .required('Nơi làm việc là bắt buộc.')
+      .typeError('Nơi làm việc là bắt buộc.'),
     jobType: yup
       .number()
-      .required('Ubwoko bw\'akazi burakenewe.')
-      .typeError('Ubwoko bw\'akazi burakenewe.'),
+      .required('Hình thức làm việc là bắt buộc.')
+      .typeError('Hình thức làm việc là bắt buộc.'),
     description: yup
       .string()
-      .required('Intego z\'umwuga zirakenewe.')
-      .max(800, 'Intego z\'umwuga zirarenze uburebure bwemewe.'),
+      .required('Mục tiêu nghề nghiệp là bắt buộc.')
+      .max(800, 'Mục tiêu nghề nghiệp vượt quá độ dài cho phép.'),
   });
 
   const { control, handleSubmit } = useForm({
@@ -99,7 +99,7 @@ const ProfileUploadForm = ({ handleAdd }) => {
           <FileUploadCustom
             control={control}
             name="file"
-            title="Hitamo ifayile ya CV yawe"
+            title="Chọn tệp CV của bạn"
             showRequired={true}
           />
         </Grid>
@@ -107,8 +107,8 @@ const ProfileUploadForm = ({ handleAdd }) => {
           <TextFieldCustom
             name="title"
             showRequired={true}
-            title="Icyifuzo"
-            placeholder="Urugero: Umutekinisiye wa Backend"
+            title="Vị trí mong muốn"
+            placeholder="VD: Lập trình viên Backend"
             control={control}
           />
         </Grid>
@@ -117,9 +117,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="position"
             control={control}
             options={allConfig?.positionOptions || []}
-            title="Urwego"
+            title="Cấp bậc mong muốn"
             showRequired={true}
-            placeholder="Hitamo urwego"
+            placeholder="Chọn cấp bậc"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -127,9 +127,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="academicLevel"
             control={control}
             options={allConfig?.academicLevelOptions || []}
-            title="Urwego rw'amashuri"
+            title="Trình độ học vấn"
             showRequired={true}
-            placeholder="Hitamo urwego rw'amashuri"
+            placeholder="Chọn trình độ học vấn"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -137,9 +137,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="experience"
             control={control}
             options={allConfig?.experienceOptions || []}
-            title="Ubunararibonye mu kazi"
+            title="Kinh nghiệm làm việc"
             showRequired={true}
-            placeholder="Hitamo ubunararibonye mu kazi"
+            placeholder="Chọn kinh nghiệm làm việc"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -147,9 +147,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="career"
             control={control}
             options={allConfig?.careerOptions || []}
-            title="Umwuga"
+            title="Nghề nghiệp"
             showRequired={true}
-            placeholder="Hitamo umwuga"
+            placeholder="Chọn nghề nghiệp"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -157,30 +157,30 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="city"
             control={control}
             options={allConfig?.cityOptions || []}
-            title="Intara/Umujyi"
+            title="Tỉnh/Thành phố"
             showRequired={true}
-            placeholder="Hitamo intara/umujyi"
+            placeholder="Chọn tỉnh thành phố"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextFieldCustom
             name="salaryMin"
-            title="Umushahara uri hasi"
+            title="Mức lương mong muốn tối thiểu"
             showRequired={true}
-            placeholder="Injiza umushahara uri hasi wifuzwa"
+            placeholder="Nhập mức lương mong muốn tối thiểu"
             control={control}
-            icon={'FRW'}
+            icon={'VND'}
             type='number'
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextFieldCustom
             name="salaryMax"
-            title="Umushahara uri hejuru"
+            title="Mức lương mong muốn tối đa"
             showRequired={true}
-            placeholder="Injiza umushahara uri hejuru wifuzwa"
+            placeholder="Nhập mức lương mong muốn tối đa"
             control={control}
-            icon={'FRW'}
+            icon={'VND'}
             type='number'
           />
         </Grid>
@@ -189,9 +189,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="typeOfWorkplace"
             control={control}
             options={allConfig?.typeOfWorkplaceOptions || []}
-            title="Aho gukorera"
+            title="Nơi làm việc"
             showRequired={true}
-            placeholder="Hitamo aho gukorera"
+            placeholder="Chọn nơi làm việc"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -199,17 +199,17 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="jobType"
             control={control}
             options={allConfig?.jobTypeOptions || []}
-            title="Ubwoko bw'akazi"
+            title="Hình thức làm việc"
             showRequired={true}
-            placeholder="Hitamo ubwoko bw'akazi"
+            placeholder="Chọn hình thức làm việc"
           />
         </Grid>
         <Grid item xs={12}>
           <MultilineTextFieldCustom
             name="description"
-            title="Intego z'umwuga"
+            title="Mục tiêu nghề nghiệp"
             showRequired={true}
-            placeholder="Andika intego zawe hano"
+            placeholder="Nhập nội dung tại đây"
             control={control}
           />
         </Grid>

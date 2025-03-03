@@ -62,7 +62,7 @@ const ProfileUpload = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Gushyira CV byagenze neza.');
+        toastMessages.success('Tải CV thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -83,7 +83,7 @@ const ProfileUpload = ({ title }) => {
         await resumeService.deleteResume(slug);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Gusiba byagenze neza.');
+        toastMessages.success('Xóa thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -93,8 +93,8 @@ const ProfileUpload = ({ title }) => {
 
     confirmModal(
       () => del(slug),
-      'Gusiba CV yashyizweho',
-      'Iyi CV izahanagurwa burundu kandi ntikizagarurwa. Urabizi neza?',
+      'Xóa CV đính kém',
+      'CV này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
       'warning'
     );
   };
@@ -106,7 +106,7 @@ const ProfileUpload = ({ title }) => {
         await resumeService.activeResume(resumeSlug);
 
         dispatch(reloadResume());
-        toastMessages.success('Guhindura status y\'ubuhanga byagenze neza.');
+        toastMessages.success('Thay đổi trạng thái hồ sơ thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -139,7 +139,7 @@ const ProfileUpload = ({ title }) => {
                 </Grid>
               ) : resumes.length === 0 ? (
                 <NoDataCard
-                  title="Ntabwo urashyira CV ku rubuga"
+                  title="Bạn chưa tải lên CV nào"
                   imgComponentSgv={<ImageSvg2 />}
                 />
               ) : (
@@ -184,7 +184,7 @@ const ProfileUpload = ({ title }) => {
       </Stack>
       {/* Start: form  */}
       <FormPopup
-        title="Amakuru ya CV"
+        title="Thông tin hồ sơ"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

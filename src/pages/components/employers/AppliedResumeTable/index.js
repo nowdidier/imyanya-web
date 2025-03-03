@@ -60,7 +60,7 @@ const SendEmailComponent = ({
           setSentEmail(true);
         }
         setOpenSendMailPopup(false);
-        toastMessages.success('Email yoherejwe neza.');
+        toastMessages.success('Gửi email thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -88,7 +88,7 @@ const SendEmailComponent = ({
         }
         onClick={() => handleOpenSendMail(email, fullName)}
       >
-        {sentEmail ? 'Ohereza bundi' : 'Ohereza email'}
+        {sentEmail ? 'Gửi lại' : 'Gửi email'}
       </Button>
       {/* Start: send mail */}
       <SendMailCard
@@ -119,10 +119,10 @@ const AppliedStatusComponent = ({
 
     if (chooseValue < applyStatus) {
       errorModal(
-        'Habaye ikosa',
-        `Ntibyemewe guhindura imiterere y'ibisabwa kuva kuri <strong style="color:red;">"${
+        'Đã có lỗi',
+        `Bạn không được phép chuyển trạng thái hồ sơ từ <strong style="color:red;">"${
           allConfig?.applicationStatusDict[applyStatus] || '---'
-        }"</strong> ujya kuri <strong style="color:red;">"${
+        }"</strong> sang <strong style="color:red;">"${
           allConfig?.applicationStatusDict[e.target.value] || '---'
         }"</strong>`
       );
@@ -134,10 +134,10 @@ const AppliedStatusComponent = ({
               setApplyStatus(chooseValue);
             }
           }),
-        'Guhindura imiterere y\'ibisabwa',
-        `Ibisabwa bizahindurwa bijye kuri <strong style="color:red;">"${
+        'Cập nhật trạng thái hồ sơ',
+        `Hồ sơ sẽ được cập nhật sang trạng thái <strong style="color:red;">"${
           allConfig?.applicationStatusDict[e.target.value] || '---'
-        }"</strong>. Wemeza ibyo?`,
+        }"</strong>. Bạn có chắc chắn?`,
         'question'
       );
     }
@@ -173,7 +173,7 @@ const AppliedResumeTable = (props) => {
         <TableBody>
           <TableCell colSpan={7}>
             <NoDataCard
-              title="Nta bakandida barasaba akazi"
+              title="Chưa có ứng viên ứng tuyển"
               imgComponentSgv={<ImageSvg13 />}
             />
           </TableCell>
@@ -187,15 +187,15 @@ const AppliedResumeTable = (props) => {
                   {row?.fullName}
                 </Typography>
                 {row?.type === CV_TYPES.cvWebsite ? (
-                  <Tooltip title="Dosiye kuri murandasi" arrow>
+                  <Tooltip title="Hồ sơ Online" arrow>
                     <FontAwesomeIcon
                       icon={faFile}
                       style={{ marginRight: 1 }}
-                      color="#182642"
+                      color="#441da0"
                     />
                   </Tooltip>
                 ) : (
-                  <Tooltip title="Dosiye iriho" arrow>
+                  <Tooltip title="Hồ sơ Đính kèm" arrow>
                     <FontAwesomeIcon
                       icon={faFilePdf}
                       style={{ marginRight: 1 }}
@@ -211,7 +211,7 @@ const AppliedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Ntibiravugururwa
+                    Chưa cập nhật
                   </span>
                 )}{' '}
               </TableCell>
@@ -221,8 +221,8 @@ const AppliedResumeTable = (props) => {
               </TableCell>
               <TableCell align="left">
                 {row?.type === CV_TYPES.cvWebsite
-                  ? 'Dosiye kuri murandasi'
-                  : 'Dosiye iriho'}
+                  ? 'Hồ sơ Online'
+                  : 'Hồ sơ đính kèm'}
               </TableCell>
               <TableCell align="right">
                 <AppliedStatusComponent
@@ -234,7 +234,7 @@ const AppliedResumeTable = (props) => {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} justifyContent="flex-end">
-                  <Tooltip title="Reba dosiye" arrow>
+                  <Tooltip title="Xem hồ sơ" arrow>
                     <IconButton
                       color="primary"
                       aria-label="view"
@@ -248,7 +248,7 @@ const AppliedResumeTable = (props) => {
                       <RemoveRedEyeOutlinedIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Siba dosiye" arrow>
+                  <Tooltip title="Xóa hồ sơ" arrow>
                     <IconButton
                       size="small"
                       color="error"

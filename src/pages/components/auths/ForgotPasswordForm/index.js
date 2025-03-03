@@ -10,8 +10,8 @@ const ForgotPasswordForm = ({ handleRequestResetPassword }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Email irakenewe!')
-      .email('Imiterere ya imeri ntabwo aribyo'),
+      .required('Email là bắt buộc!')
+      .email('Email không đúng định dạng'),
   });
 
   const { control, handleSubmit } = useForm({
@@ -29,12 +29,13 @@ const ForgotPasswordForm = ({ handleRequestResetPassword }) => {
           control={control}
           title="Email"
           showRequired={true}
-          placeholder="Enter email"
+          placeholder="Nhập email"
         />
       </Stack>
 
       <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} type="submit">
-      Ongera usubize ijambo ryibanga uko ryari riri      </Button>
+        Đặt lại mật khẩu
+      </Button>
     </Box>
   );
 };

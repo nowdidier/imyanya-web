@@ -51,7 +51,7 @@ const JobSeekerProfile = ({
       sx={{
         p: 1.5,
         '&:hover': {
-          borderColor: '#182642',
+          borderColor: '#441da0',
         },
       }}
       variant="outlined"
@@ -81,7 +81,7 @@ const JobSeekerProfile = ({
                     fontSize: 13,
                   }}
                 >
-                  Ntaravugururwa
+                  Chưa cập nhật
                 </span>
               )}
               <span style={{ color: 'gray' }}>
@@ -94,17 +94,17 @@ const JobSeekerProfile = ({
                       fontSize: 13,
                     }}
                   >
-                    Ntaravugururwa
+                    Chưa cập nhật
                   </span>
                 )}{' '}
-                imyaka)
+                tuổi)
               </span>
             </span>
             {lastViewedDate && (
               <Chip
                 icon={<CheckCircleRoundedIcon />}
                 sx={{ marginLeft: 1 }}
-                label={`Reba ubwa nyuma: ${dayjs(lastViewedDate).format(
+                label={`Xem lần cuối: ${dayjs(lastViewedDate).format(
                   'DD/MM/YYYY HH:mm'
                 )}`}
                 color="success"
@@ -133,7 +133,7 @@ const JobSeekerProfile = ({
                     fontSize: 13,
                   }}
                 >
-                  Ntaravugururwa
+                  Chưa cập nhật
                 </span>
               )}
             </span>
@@ -153,7 +153,7 @@ const JobSeekerProfile = ({
                         fontSize: 13,
                       }}
                     >
-                      Ntaravugururwa
+                      Chưa cập nhật
                     </span>
                   )
                 }
@@ -171,7 +171,7 @@ const JobSeekerProfile = ({
                         fontSize: 13,
                       }}
                     >
-                      Ntaravugururwa
+                      Chưa cập nhật
                     </span>
                   )
                 }
@@ -188,7 +188,7 @@ const JobSeekerProfile = ({
                         fontSize: 13,
                       }}
                     >
-                      Ntaravugururwa
+                      Chưa cập nhật
                     </span>
                   )
                 }
@@ -206,7 +206,7 @@ const JobSeekerProfile = ({
           }}
         >
           <Box>
-            <Tooltip title="Kubika CV" arrow>
+            <Tooltip title="Lưu hồ sơ" arrow>
               <IconButton
                 aria-label="save"
                 size="small"
@@ -219,7 +219,7 @@ const JobSeekerProfile = ({
                 )}
               </IconButton>
             </Tooltip>
-            <Tooltip title="Reba CV" arrow>
+            <Tooltip title="Xem hồ sơ" arrow>
               <IconButton aria-label="view" size="small">
                 <RemoveRedEyeOutlinedIcon
                   fontSize="small"
@@ -233,12 +233,12 @@ const JobSeekerProfile = ({
           </Box>
           <Box>
             <Typography variant="caption">
-              Igihe cyo kuvugurura: {dayjs(updateAt).format('DD/MM/YYYY')}
+              Thời gian cập nhật: {dayjs(updateAt).format('DD/MM/YYYY')}
             </Typography>
           </Box>
           <Box>
             <Typography variant="caption">
-              Abakoresha bafite inyungu: {viewEmployerNumber}
+              NTD quan tâm: {viewEmployerNumber}
             </Typography>
           </Box>
         </Stack>

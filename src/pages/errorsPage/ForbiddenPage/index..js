@@ -3,7 +3,7 @@ import React from 'react'
 import { TabTitle } from '../../../utils/generalFunction'
 
 const ForbiddenPage = () => {
-  TabTitle("Ntushobora kubona")
+  TabTitle("Không có quyền truy cập")
 
   return (
     <div>ForbiddenPage</div>

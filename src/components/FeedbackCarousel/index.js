@@ -80,7 +80,7 @@ const FeedbackCarousel = () => {
             ))}
           </Swiper>
         ) : feedbacks.length === 0 ? (
-          <NoDataCard title="Nta mukoresha n'umwe uratanga amanota" />
+          <NoDataCard title="Chưa có người dùng nào đánh giá" />
         ) : (
           <Swiper
             slidesPerView={col}

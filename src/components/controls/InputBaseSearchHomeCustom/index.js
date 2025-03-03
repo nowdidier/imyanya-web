@@ -56,7 +56,7 @@ const InputBaseSearchHomeCustom = ({
         setRecentSearch(JSON.parse(keywordListStr));
       }
     } catch (error) {
-      console.error('Error when setting up local storage file: ', error);
+      console.error('Loi khi lay tu khoa tu local storage: ', error);
     }
   }, []);
 
@@ -127,8 +127,8 @@ const InputBaseSearchHomeCustom = ({
           >
             <Stack>
               <Box>
-                <Typography fontWeight="bold" fontSize={17} color="#F3A92C">
-                  Ibyibutso byo gushakisha
+                <Typography fontWeight="bold" fontSize={17} color="#2C95FF">
+                  Gợi ý tìm kiếm
                 </Typography>
                 <Stack>
                   {isLoading ? (
@@ -142,7 +142,7 @@ const InputBaseSearchHomeCustom = ({
                       color={'#bdbdbd'}
                       variant="caption"
                     >
-                      Nta makuru ari ho
+                      Không có dữ liệu
                     </Typography>
                   ) : (
                     <List>
@@ -175,8 +175,8 @@ const InputBaseSearchHomeCustom = ({
               </Box>
               {(recentSearch || [])?.length > 0 && (
                 <Box>
-                  <Typography fontWeight="bold" fontSize={17} color="#F3A92C">
-                    Gushakisha vubaganza
+                  <Typography fontWeight="bold" fontSize={17} color="#2C95FF">
+                    Tìm kiếm gần đây
                   </Typography>
                   <Stack>
                     <List>
@@ -199,7 +199,7 @@ const InputBaseSearchHomeCustom = ({
                               mr: 1,
                             }}
                           >
-                            <QueryBuilderIcon sx={{ color: '#F3A92C' }} />
+                            <QueryBuilderIcon sx={{ color: '#2C95FF' }} />
                           </ListItemIcon>
                           <ListItemText primary={`${value}`} secondary={null} />
                         </ListItem>
@@ -277,7 +277,8 @@ const InputBaseSearchHomeCustom = ({
           />
           {showSubmitButton && (
             <Button variant="contained" type="submit" color="primary">
-Shakisha            </Button>
+              Tìm kiếm
+            </Button>
           )}
         </Box>
       </Tippy>

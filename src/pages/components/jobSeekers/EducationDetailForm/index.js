@@ -13,20 +13,20 @@ const EducationDetaiForm = ({ handleAddOrUpdate, editData }) => {
   const schema = yup.object().shape({
     degreeName: yup
       .string()
-      .required('Izina rya dipolome/Impamyabumenyi ni ngombwa.')
-      .max(200, 'Izina rya dipolome/Impamyabumenyi rirarenze uburebure bwemewe.'),
+      .required('Tên bằng cấp/Chứng chỉ là bắt buộc.')
+      .max(200, 'Tên bằng cấp/Chứng chỉ vượt quá độ dài cho phép.'),
     major: yup
       .string()
-      .required('Icyiciro cy\'amasomo ni ngombwa.')
-      .max(255, 'Icyiciro cy\'amasomo kirarenze uburebure bwemewe.'),
+      .required('Chuyên ngành đào tạo là bắt buộc.')
+      .max(255, 'Chuyên ngành đào tạo vượt quá độ dài cho phép.'),
     trainingPlaceName: yup
       .string()
-      .required('Ishuri/Ikigo cy\'amasomo ni ngombwa.')
-      .max(255, 'Ishuri/Ikigo cy\'amasomo kirarenze uburebure bwemewe.'),
+      .required('Trường/Trung tâm đào tạo là bắt buộc.')
+      .max(255, 'Trường/Trung tâm đào tạo vượt quá độ dài cho phép.'),
     startDate: yup
       .date()
-      .required('Itariki itangirirwaho ni ngombwa.')
-      .typeError('Itariki itangirirwaho ni ngombwa.'),
+      .required('Ngày bắt đầu là bắt buộc.')
+      .typeError('Ngày bắt đầu là bắt buộc.'),
     completedDate: yup.date().nullable(),
   });
 
@@ -51,27 +51,27 @@ const EducationDetaiForm = ({ handleAddOrUpdate, editData }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="degreeName"
-            title="Izina rya dipolome/Impamyabumenyi"
+            title="Tên bằng cấp/Chứng chỉ"
             showRequired={true}
-            placeholder="Urugero: Impamyabumenyi ya kaminuza mu ikoranabuhanga, Impamyabumenyi y'ubumenyi ngiro"
+            placeholder="VD: Bằng Cao Đẳng CNTT, Chứng chỉ nghề điện công nghiệp"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="major"
-            title="Icyiciro cy'amasomo"
+            title="Chuyên ngành đào tạo"
             showRequired={true}
-            placeholder="Injiza icyiciro cy'amasomo"
+            placeholder="Nhập chuyên ngành đào tạo"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="trainingPlaceName"
-            title="Ishuri/Ikigo cy'amasomo"
+            title="Trường/Trung tâm đào tạo"
             showRequired={true}
-            placeholder="Injiza izina ry'ishuri/Ikigo cy'amasomo"
+            placeholder="Nhập tên trường/Trung tâm đào tạo"
             control={control}
           />
         </Grid>
@@ -79,7 +79,7 @@ const EducationDetaiForm = ({ handleAddOrUpdate, editData }) => {
           <DatePickerCustom
             name="startDate"
             control={control}
-            title="Itariki itangirirwaho"
+            title="Ngày bắt đầu"
             showRequired={true}
             maxDate={DATE_OPTIONS.yesterday}
           />
@@ -88,15 +88,15 @@ const EducationDetaiForm = ({ handleAddOrUpdate, editData }) => {
           <DatePickerCustom
             name="completedDate"
             control={control}
-            title="Itariki isozwa (Siga ubusa niba ukiga hano)"
+            title="Ngày hoàn thành (Để trống nếu đang học tại đây)"
             maxDate={DATE_OPTIONS.today}
           />
         </Grid>
         <Grid item xs={12}>
           <MultilineTextFieldCustom
             name="description"
-            title="Ibisobanuro birambuye"
-            placeholder="Injiza ibisobanuro hano"
+            title="Mô tả thêm"
+            placeholder="Nhập nội dung mô tả tại đây"
             control={control}
           />
         </Grid>

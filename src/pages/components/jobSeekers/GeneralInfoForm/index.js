@@ -14,64 +14,64 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
   const schema = yup.object().shape({
     title: yup
       .string()
-      .required('Umwanya wifuzwa urakenewe.')
-      .max(200, 'Umwanya wifuzwa urenze uburebure bwemewe.'),
+      .required('Vị trí mong muốn là bắt buộc.')
+      .max(200, 'Vị trí mong muốn vượt quá độ dài cho phép.'),
     position: yup
       .number()
-      .required('Urwego rwifuzwa rurakenewe.')
-      .typeError('Urwego rwifuzwa rurakenewe.'),
+      .required('Cấp bậc mong muốn là bắt buộc.')
+      .typeError('Cấp bậc mong muốn là bắt buộc.'),
     academicLevel: yup
       .number()
-      .required('Urwego rw\'amashuri rurakenewe.')
-      .typeError('Urwego rw\'amashuri rurakenewe.'),
+      .required('Trình độ học vấn là bắt buộc.')
+      .typeError('Trình độ học vấn là bắt buộc.'),
     experience: yup
       .number()
-      .required('Ubunararibonye mu kazi burakenewe.')
-      .typeError('Ubunararibonye mu kazi burakenewe.'),
+      .required('Kinh nghiệm làm việc là bắt buộc.')
+      .typeError('Kinh nghiệm làm việc là bắt buộc.'),
     career: yup
       .number()
-      .required('Uburyo bw\'umwuga burakenewe.')
-      .typeError('Uburyo bw\'umwuga burakenewe.'),
+      .required('Ngành nghề là bắt buộc.')
+      .typeError('Ngành nghề là bắt buộc.'),
     city: yup
       .number()
-      .required('Intara/Umujyi birakenewe.')
-      .typeError('Intara/Umujyi birakenewe.'),
+      .required('Tỉnh/Thành phố là bắt buộc.')
+      .typeError('Tỉnh/Thành phố là bắt buộc.'),
     salaryMin: yup
       .number()
-      .required('Umushahara w\'ibanze wifuzwa urakenewe.')
-      .typeError('Umushahara w\'ibanze ntabwo ari wo.')
-      .min(0, 'Umushahara w\'ibanze ntabwo ari wo.')
+      .required('Mức lương mong muốn tối thiểu là bắt buộc.')
+      .typeError('Lương tối thiểu không hợp lệ.')
+      .min(0, 'Lương tối thiểu không hợp lệ.')
       .test(
         'minimum-wage-comparison',
-        'Umushahara w\'ibanze ugomba kuba muto kurenza umushahara ntarengwa.',
+        'Lương tối thiểu phải nhỏ hơn lương tối đa.',
         function (value) {
           return !(value >= this.parent.salaryMax);
         }
       ),
     salaryMax: yup
       .number()
-      .required('Umushahara ntarengwa wifuzwa urakenewe.')
-      .typeError('Umushahara ntarengwa ntabwo ari wo.')
-      .min(0, 'Umushahara ntarengwa ntabwo ari wo.')
+      .required('Mức lương mong muốn tối đa là bắt buộc.')
+      .typeError('Lương tối đa không hợp lệ.')
+      .min(0, 'Lương tối đa không hợp lệ.')
       .test(
         'maximum-wage-comparison',
-        'Umushahara ntarengwa ugomba kuba munini kurenza umushahara w\'ibanze.',
+        'Lương tối đa phải lớn hơn lương tối thiểu.',
         function (value) {
           return !(value <= this.parent.salaryMin);
         }
       ),
     typeOfWorkplace: yup
       .number()
-      .required('Aho ukorera birakenewe.')
-      .typeError('Aho ukorera birakenewe.'),
+      .required('Nơi làm việc là bắt buộc.')
+      .typeError('Nơi làm việc là bắt buộc.'),
     jobType: yup
       .number()
-      .required('Ubwoko bw\'akazi burakenewe.')
-      .typeError('Ubwoko bw\'akazi burakenewe.'),
+      .required('Hình thức làm việc là bắt buộc.')
+      .typeError('Hình thức làm việc là bắt buộc.'),
     description: yup
       .string()
-      .required('Intego z\'umwuga zirakenewe.')
-      .max(800, 'Intego z\'umwuga zirenze uburebure bwemewe.'),
+      .required('Mục tiêu nghề nghiệp là bắt buộc.')
+      .max(800, 'Mục tiêu nghề nghiệp vượt quá độ dài cho phép.'),
   });
 
   const { control, reset, handleSubmit } = useForm({
@@ -102,8 +102,8 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
           <TextFieldCustom
             name="title"
             showRequired={true}
-            title="Umwanya wifuzwa"
-            placeholder="Urugero: Umuhanga mu gukoresha mudasobwa mu bijyanye na Backend"
+            title="Vị trí mong muốn"
+            placeholder="VD: Lập trình viên Backend"
             control={control}
           />
         </Grid>
@@ -112,9 +112,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="position"
             control={control}
             options={allConfig?.positionOptions || []}
-            title="Urwego rwifuzwa"
+            title="Cấp bậc mong muốn"
             showRequired={true}
-            placeholder="Hitamo urwego"
+            placeholder="Chọn cấp bậc"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -122,9 +122,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="academicLevel"
             control={control}
             options={allConfig?.academicLevelOptions || []}
-            title="Urwego rw'amashuri"
+            title="Trình độ học vấn"
             showRequired={true}
-            placeholder="Hitamo urwego rw'amashuri"
+            placeholder="Chọn trình độ học vấn"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -132,9 +132,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="experience"
             control={control}
             options={allConfig?.experienceOptions || []}
-            title="Ubunararibonye mu kazi"
+            title="Kinh nghiệm làm việc"
             showRequired={true}
-            placeholder="Hitamo ubunararibonye mu kazi"
+            placeholder="Chọn kinh nghiệm làm việc"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -142,9 +142,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="career"
             control={control}
             options={allConfig?.careerOptions || []}
-            title="Uburyo bw'umwuga"
+            title="Nghề nghiệp"
             showRequired={true}
-            placeholder="Hitamo uburyo bw'umwuga"
+            placeholder="Chọn nghề nghiệp"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -152,17 +152,17 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="city"
             control={control}
             options={allConfig?.cityOptions || []}
-            title="Intara/Umujyi"
+            title="Tỉnh/Thành phố"
             showRequired={true}
-            placeholder="Hitamo intara/umujyi"
+            placeholder="Chọn tỉnh thành phố"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextFieldCustom
             name="salaryMin"
-            title="Umushahara w'ibanze wifuzwa"
+            title="Mức lương mong muốn tối thiểu"
             showRequired={true}
-            placeholder="Andika umushahara w'ibanze wifuzwa"
+            placeholder="Nhập mức lương mong muốn tối thiểu"
             control={control}
             icon={'VND'}
           />
@@ -170,9 +170,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
         <Grid item xs={12} sm={6}>
           <TextFieldCustom
             name="salaryMax"
-            title="Umushahara ntarengwa wifuzwa"
+            title="Mức lương mong muốn tối đa"
             showRequired={true}
-            placeholder="Andika umushahara ntarengwa wifuzwa"
+            placeholder="Nhập mức lương mong muốn tối đa"
             control={control}
             icon={'VND'}
           />
@@ -182,9 +182,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="typeOfWorkplace"
             control={control}
             options={allConfig?.typeOfWorkplaceOptions || []}
-            title="Aho ukorera"
+            title="Nơi làm việc"
             showRequired={true}
-            placeholder="Hitamo aho ukorera"
+            placeholder="Chọn nơi làm việc"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -192,17 +192,17 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="jobType"
             control={control}
             options={allConfig?.jobTypeOptions || []}
-            title="Ubwoko bw'akazi"
+            title="Hình thức làm việc"
             showRequired={true}
-            placeholder="Hitamo ubwoko bw'akazi"
+            placeholder="Chọn hình thức làm việc"
           />
         </Grid>
         <Grid item xs={12}>
           <MultilineTextFieldCustom
             name="description"
-            title="Intego z'umwuga"
+            title="Mục tiêu nghề nghiệp"
             showRequired={true}
-            placeholder="Andika intego z'umwuga hano"
+            placeholder="Nhập nội dung tại đây"
             control={control}
           />
         </Grid>

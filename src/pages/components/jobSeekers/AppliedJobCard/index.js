@@ -65,7 +65,7 @@ const AppliedJobCard = () => {
           </Stack>
         ) : jobPostsApplied.length === 0 ? (
           <NoDataCard
-            title="Ntabwo wigeze usaba akazi na kamwe"
+            title="Bạn chưa ứng tuyển công việc nào"
             imgComponentSgv={<ImageSvg5 />}
           >
             <Button
@@ -75,7 +75,7 @@ const AppliedJobCard = () => {
               color="primary"
               sx={{ textTransform: 'inherit' }}
             >
-              Shakisha akazi
+              Tìm việc làm
             </Button>
           </NoDataCard>
         ) : (
@@ -99,7 +99,7 @@ const AppliedJobCard = () => {
               >
                 <Stack spacing={1}>
                   <Chip
-                    label={`Gusaba akazi ku itariki: ${dayjs(value?.createAt).format(
+                    label={`Ứng tuyển ngày: ${dayjs(value?.createAt).format(
                       'DD/MM/YYYY'
                     )}`}
                     size="small"
@@ -112,9 +112,9 @@ const AppliedJobCard = () => {
                         <FontAwesomeIcon
                           icon={faFile}
                           style={{ marginRight: 1 }}
-                          color="#182642"
+                          color="#441da0"
                         />{' '}
-                        Ifishi yawe yo kuri interineti
+                        Hồ sơ trực tuyến
                       </>
                     ) : value?.resumeDict?.type === CV_TYPES.cvUpload ? (
                       <>
@@ -123,7 +123,7 @@ const AppliedJobCard = () => {
                           style={{ marginRight: 1 }}
                           color="red"
                         />{' '}
-                        Ifishi ikozwe muri PDF
+                        Hồ sơ đính kèm
                       </>
                     ) : (
                       ''

@@ -17,9 +17,9 @@ const LanguageSkillForm = ({
   const schema = yup.object().shape({
     language: yup
       .number()
-      .required('Ururimi rurakenewe.')
-      .typeError('Ururimi rurakenewe.'),
-    level: yup.number().required('Urwego rurakenewe.'),
+      .required('Ngôn ngữ là bắt buộc.')
+      .typeError('Ngôn ngữ là bắt buộc.'),
+    level: yup.number().required('Trình độ là bắt buộc.'),
   });
 
   const { control, reset, setError, handleSubmit } = useForm({
@@ -59,13 +59,13 @@ const LanguageSkillForm = ({
             name="language"
             control={control}
             options={allConfig?.languageOptions || []}
-            title="Ururimi"
+            title="Ngôn ngữ"
             showRequired={true}
-            placeholder="Hitamo ururimi"
+            placeholder="Chọn ngôn ngữ"
           />
         </Grid>
         <Grid item xs={12}>
-          <RatingCustom name="level" control={control} title="Urwego" />
+          <RatingCustom name="level" control={control} title="Trình độ" />
         </Grid>
       </Grid>
     </form>

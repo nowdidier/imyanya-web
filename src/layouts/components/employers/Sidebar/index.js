@@ -113,7 +113,7 @@ const drawer = (location, theme) => (
         defaultEndIcon={<div style={{ width: 24 }} />}
         sx={{ flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
       >
-        <StyledTreeItem nodeId="1" labelText="Incamake">
+        <StyledTreeItem nodeId="1" labelText="Tổng quan">
           <NavLink
             to="/nha-tuyen-dung"
             style={{
@@ -127,13 +127,12 @@ const drawer = (location, theme) => (
           >
             <StyledTreeItem
               nodeId="6"
-              labelText="Ikibaho cy'ubuyobozi
-"
+              labelText="Bản điều khiển"
               labelIcon={GridViewIcon}
             />
           </NavLink>
         </StyledTreeItem>
-        <StyledTreeItem nodeId="2" labelText="Gucunga itangazo ry'akazi">
+        <StyledTreeItem nodeId="2" labelText="Quản lý đăng tuyển">
           <NavLink
             to="/nha-tuyen-dung/tin-tuyen-dung"
             style={{
@@ -147,12 +146,12 @@ const drawer = (location, theme) => (
           >
             <StyledTreeItem
               nodeId="7"
-              labelText="Urutonde rw'amatangazo y'akazi"
+              labelText="Danh sách tin đăng"
               labelIcon={ListAltOutlinedIcon}
             />
           </NavLink>
         </StyledTreeItem>
-        <StyledTreeItem nodeId="3" labelText="Kugenzura Umushakisha w'Akazi">
+        <StyledTreeItem nodeId="3" labelText="Quản lý ứng viên">
           <NavLink
             to="/nha-tuyen-dung/ho-so-ung-tuyen"
             style={{
@@ -166,7 +165,7 @@ const drawer = (location, theme) => (
           >
             <StyledTreeItem
               nodeId="8"
-              labelText="Imyirondoro y'abasaba akazi"
+              labelText="Hồ sơ ứng tuyển"
               labelIcon={FactCheckOutlinedIcon}
             />
           </NavLink>
@@ -183,7 +182,7 @@ const drawer = (location, theme) => (
           >
             <StyledTreeItem
               nodeId="9"
-              labelText="Imyirondoro yabitswe"
+              labelText="Hồ sơ đã lưu"
               labelIcon={BookmarkAddedOutlinedIcon}
             />
           </NavLink>
@@ -200,12 +199,12 @@ const drawer = (location, theme) => (
           >
             <StyledTreeItem
               nodeId="10"
-              labelText="Shakisha abakandida bashya"
+              labelText="Tìm ứng viên mới"
               labelIcon={ContentPasteSearchOutlinedIcon}
             />
           </NavLink>
         </StyledTreeItem>
-        <StyledTreeItem nodeId="4" labelText="Gucunga itangazo">
+        <StyledTreeItem nodeId="4" labelText="Quản lý thông báo">
           <NavLink
             to="/nha-tuyen-dung/thong-bao"
             style={{
@@ -219,12 +218,12 @@ const drawer = (location, theme) => (
           >
             <StyledTreeItem
               nodeId="11"
-              labelText="Itangazo ry' imyanya"
+              labelText="MyJob thông báo"
               labelIcon={NotificationsNoneOutlinedIcon}
             />
           </NavLink>
         </StyledTreeItem>
-        <StyledTreeItem nodeId="5" labelText="Gucunga konti">
+        <StyledTreeItem nodeId="5" labelText="Quản lý tài khoản">
           <NavLink
             to="/nha-tuyen-dung/cong-ty"
             style={{
@@ -238,7 +237,7 @@ const drawer = (location, theme) => (
           >
             <StyledTreeItem
               nodeId="12"
-              labelText="Amakuru y'ikigo"
+              labelText="Thông tin công ty"
               labelIcon={BusinessOutlinedIcon}
             />
           </NavLink>
@@ -255,7 +254,7 @@ const drawer = (location, theme) => (
           >
             <StyledTreeItem
               nodeId="13"
-              labelText="Konti"
+              labelText="Tài khoản"
               labelIcon={AccountCircleOutlinedIcon}
             />
           </NavLink>
@@ -272,7 +271,7 @@ const drawer = (location, theme) => (
           >
             <StyledTreeItem
               nodeId="14"
-              labelText="Setting"
+              labelText="Cài đặt"
               labelIcon={SettingsOutlinedIcon}
             />
           </NavLink>

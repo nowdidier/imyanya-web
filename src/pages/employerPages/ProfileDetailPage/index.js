@@ -5,7 +5,7 @@ import { TabTitle } from '../../../utils/generalFunction';
 import ProfileDetailCard from '../../components/employers/ProfileDetailCard';
 
 const ProfileDetailPage = () => {
-  TabTitle("Ibisobanuro by'abakandida birambuye")
+  TabTitle("Chi tiết hồ sơ ứng viên")
 
   return (
     <Card sx={{ p: 3 }}>

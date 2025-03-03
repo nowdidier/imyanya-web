@@ -7,7 +7,7 @@ import { faEnvelopeCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { TabTitle } from '../../../utils/generalFunction';
 
 const EmailVerificationRequiredPage = () => {
-  TabTitle("Kwemeza Email")
+  TabTitle("Xác thực email")
   const { email } = useSelector((state) => state.auth);
 
   return (
@@ -21,10 +21,10 @@ const EmailVerificationRequiredPage = () => {
     >
       <Stack sx={{ pb: 2 }} alignItems="center">
         <Typography variant="h5" gutterBottom>
-          Emeza Email
+          Xác nhận email
         </Typography>
         <Typography variant="subtitle2 ">
-          Murakoze kwiyandikisha kuri IMYANYA
+          Cảm ơn bạn đã đăng ký tài khoản MyJob
         </Typography>
       </Stack>
       <Card sx={{ p: 6, pt: 2, boxShadow: 0 }}>
@@ -33,17 +33,17 @@ const EmailVerificationRequiredPage = () => {
             <FontAwesomeIcon
               icon={faEnvelopeCircleCheck}
               size="7x"
-              color="#00B2A3"
+              color="#fca34d"
             />
           </Box>
           <Box>
             <Typography variant="h5" gutterBottom>
-              Emeza aderesi yawe ya Email
+              Xác nhận địa chỉ email của bạn
             </Typography>
           </Box>
           <Box>
             <Typography variant="body1" gutterBottom>
-              Email y'ibyemezo yoherejwe kuri:
+              Email xác nhận đã được gửi đến:
             </Typography>
             <Typography variant="subtitle2" sx={{ textAlign: 'center' }}>
               {email}
@@ -51,7 +51,7 @@ const EmailVerificationRequiredPage = () => {
           </Box>
           <Box>
             <Typography variant="caption" sx={{ color: 'gray' }}>
-              Kanda ku rufunguzo ruherereye muri email kugirango ukore konti yawe
+              Nhấp vào liên kết trong email để kích hoạt tài khoản của bạn
             </Typography>
           </Box>
         </Stack>
@@ -60,9 +60,9 @@ const EmailVerificationRequiredPage = () => {
             variant="body1"
             sx={{ color: 'gray', textAlign: 'center', cursor: 'pointer' }}
           >
-            Ntabwo wahawe email?{' '}
+            Không nhận được email?{' '}
             <span style={{ fontWeight: 'bold', color: 'red' }}>
-              Ongera wohereze email
+              Gửi lại email
             </span>
           </Typography>
         </Box>

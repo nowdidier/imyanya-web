@@ -34,13 +34,12 @@ const ChatInfo = ({ avatarUrl, title, subTitle, description }) => {
           <FontAwesomeIcon icon={faCheckCircle} /> {description}
         </Typography>
         <Typography textAlign="center" variant="caption">
-          Tangira ikiganiro usuhuza 😍
+          Hãy bắt đầu cuộc trò chuyện bằng một lời chào 😍
         </Typography>
       </Stack>
     </Stack>
   );
 };
-
 
 const HeaderChatInfo = ({ avatarUrl, title, subTitle }) => {
   return (

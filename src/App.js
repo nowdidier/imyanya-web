@@ -119,31 +119,31 @@ function App() {
             MuiCssBaseline: {
               styleOverrides: {
                 body: {
-                  scrollbarColor: '#182642 #fff',
+                  scrollbarColor: '#441da0 #fff',
                   '&::-webkit-scrollbar, & *::-webkit-scrollbar': {
                     backgroundColor: '#fff',
                   },
                   '&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb': {
                     borderRadius: 8,
-                    backgroundColor: '#182642',
+                    backgroundColor: '#441da0',
                     minHeight: 24,
                     border: '4px solid #fff',
                   },
                   '&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus':
                     {
-                      backgroundColor: '#182642',
+                      backgroundColor: '#441da0',
                     },
                   '&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active':
                     {
-                      backgroundColor: '#182642',
+                      backgroundColor: '#441da0',
                     },
                   '&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover':
                     {
-                      backgroundColor: '#182642',
+                      backgroundColor: '#441da0',
                     },
                   '&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner':
                     {
-                      backgroundColor: '#182642',
+                      backgroundColor: '#441da0',
                     },
                 },
               },
@@ -152,13 +152,13 @@ function App() {
           palette: {
             mode: mode,
             primary: {
-              main: '#182642',
+              main: '#441da0',
             },
             secondary: {
-              main: '#00B2A3',
+              main: '#fca34d',
             },
             warning: {
-              main: '#00B2A3',
+              main: '#fca34d',
             },
             text: {
               hint: '#c0ca33',
@@ -257,7 +257,7 @@ function App() {
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: '#182642',
+            colorPrimary: '#441da0',
           },
         }}
       >

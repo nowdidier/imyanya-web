@@ -6,26 +6,27 @@ import CompanySearch from '../../components/defaults/CompanySearch';
 import Companies from '../../../components/Companies';
 
 const CompanyPage = () => {
-  TabTitle('Ibisubizo byo gushakisha abakoresha')
+  TabTitle('Kết quả tìm kiếm nhà tuyển dụng')
 
   return (
     <Box sx={{ mt: 2 }}>
       <Box sx={{ mt: 4 }}>
         <Typography variant="h4" gutterBottom>
-          Menya ibiranga Ikigo
+          Khám Phá Văn Hóa Công ty
         </Typography>
         <Typography>
-          Menya umuco w'ikigo kandi uhitemo ahantu heza ho gukorera hakubereye
+          Tìm hiểu văn hóa công ty và chọn cho bạn nơi làm việc phù hợp nhất
         </Typography>
       </Box>
       <Box sx={{ mt: 4 }}>
         <CompanySearch />
       </Box>
       <Box sx={{ mt: 4 }}>
-        <Card sx={{ px: { xs: 1, sm: 1, md: 2, lg: 4, xl: 4 } }} variant="outlined">
+        <Card sx={{ px: { xs: 1, sm: 1, md: 2, lg: 4, xl: 4 }  }} variant="outlined">
           {/* Start: companies */}
           <Companies />
           {/* End: companies */}
+
         </Card>
       </Box>
     </Box>

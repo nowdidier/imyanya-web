@@ -35,7 +35,7 @@ const FeedbackCard = ({ id, avatarUrl, fullName, content }) => {
         {fullName}
       </Typography>
       <Typography textAlign="center">
-        <FontAwesomeIcon icon={faQuoteLeft} fontSize={25} color="#00B2A3" />
+        <FontAwesomeIcon icon={faQuoteLeft} fontSize={25} color="#fca34d" />
       </Typography>
       <Box>
         <Typography

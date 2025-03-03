@@ -38,7 +38,7 @@ const JobSeekerQuantityStatistics = () => {
         <Card bordered={false} style={{ borderRadius: 4 }}>
           <Statistic
             title={
-              <span style={{ fontWeight: 'bold' }}>Imirimo Usabye</span>
+              <span style={{ fontWeight: 'bold' }}>Việc làm đã ứng tuyển</span>
             }
             value={data?.totalApply}
             precision={0}
@@ -52,7 +52,7 @@ const JobSeekerQuantityStatistics = () => {
       <Grid item xs={12} sm={12} md={6} lg={3}>
         <Card bordered={false} style={{ borderRadius: 4 }}>
           <Statistic
-            title={<span style={{ fontWeight: 'bold' }}>Imirimo Ubitse</span>}
+            title={<span style={{ fontWeight: 'bold' }}>Việc làm đã lưu</span>}
             value={data?.totalSave}
             precision={0}
             valueStyle={{ color: '#673ab7' }}
@@ -65,7 +65,7 @@ const JobSeekerQuantityStatistics = () => {
       <Grid item xs={12} sm={12} md={6} lg={3}>
         <Card bordered={false} style={{ borderRadius: 4 }}>
           <Statistic
-            title={<span style={{ fontWeight: 'bold' }}>Abakoresha Barebye Porofayiri</span>}
+            title={<span style={{ fontWeight: 'bold' }}>NTD đã xem hồ sơ</span>}
             value={data?.totalView}
             precision={0}
             valueStyle={{ color: '#00b0ff' }}
@@ -79,7 +79,7 @@ const JobSeekerQuantityStatistics = () => {
         <Card bordered={false} style={{ borderRadius: 4 }}>
           <Statistic
             title={
-              <span style={{ fontWeight: 'bold' }}>Abakoresha Bakurikira</span>
+              <span style={{ fontWeight: 'bold' }}>NTD đang theo dõi</span>
             }
             value={data?.totalFollow}
             precision={0}

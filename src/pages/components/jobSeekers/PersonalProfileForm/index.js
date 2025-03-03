@@ -19,40 +19,40 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
     user: yup.object().shape({
       fullName: yup
         .string()
-        .required('Amazina yombi arakenewe.')
-        .max(100, 'Amazina yombi ararenze uburebure bwemewe.'),
+        .required('Họ và tên là bắt buộc.')
+        .max(100, 'Họ và tên vượt quá độ dài cho phép.'),
     }),
     phone: yup
       .string()
-      .required('Numero ya telefone irakenewe.')
-      .matches(REGEX_VATIDATE.phoneRegExp, 'Numero ya telefone siyo.')
-      .max(15, 'Numero ya telefone irarenze uburebure bwemewe.'),
+      .required('Số điện thoại là bắt buộc.')
+      .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
+      .max(15, 'Số điện thoại vượt quá độ dài cho phép.'),
     birthday: yup
       .date()
-      .required('Itariki y’amavuko irakenewe.')
-      .typeError('Itariki y’amavuko siyo.')
-      .max(DATE_OPTIONS.yesterday, 'Itariki y’amavuko siyo.'),
+      .required('Ngày sinh là bắt buộc.')
+      .typeError('Ngày sinh không hợp lệ.')
+      .max(DATE_OPTIONS.yesterday, 'Ngày sinh không hợp lệ.'),
     gender: yup
       .string()
-      .required('Igitsina kirakenewe.')
-      .max(1, 'Igitsina kirarenze uburebure bwemewe.'),
+      .required('Giới tính là bắt buộc.')
+      .max(1, 'Giới tính vượt quá độ dài cho phép.'),
     maritalStatus: yup
       .string()
-      .required('Imiterere y’isezerano irakenewe.')
-      .max(1, 'Imiterere y’isezerano irarenze uburebure bwemewe.'),
+      .required('Tình trạng hôn nhân là bắt buộc.')
+      .max(1, 'Tình trạng hôn nhân vượt quá độ dài cho phép.'),
     location: yup.object().shape({
       city: yup
         .number()
-        .required('Intara/Umutwe w’umujyi birakenewe.')
-        .typeError('Intara/Umutwe w’umujyi birakenewe.'),
+        .required('Tỉnh/Thành phố là bắt buộc.')
+        .typeError('Tỉnh/Thành phố là bắt buộc.'),
       district: yup
         .number()
-        .required('Akarere irakenewe.')
-        .typeError('Akarere irakenewe.'),
+        .required('Quận/Huyện là bắt buộc.')
+        .typeError('Quận/Huyện là bắt buộc.'),
       address: yup
         .string()
-        .required('Aderesi irakenewe.')
-        .max(255, 'Aderesi irarenze uburebure bwemewe.'),
+        .required('Địa chỉ là bắt buộc.')
+        .max(255, 'Địa chỉ vượt quá độ dài cho phép.'),
     }),
   });
   const [districtOptions, setDistrictOptions] = React.useState([]);
@@ -109,18 +109,18 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="user.fullName"
-            title="Amazina Yombi"
+            title="Họ và tên"
             showRequired={true}
-            placeholder="Injiza Amazina Yombi"
+            placeholder="Nhập họ và tên"
             control={control}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextFieldCustom
             name="phone"
-            title="Numero ya Telefone"
+            title="Số điện thoại"
             showRequired={true}
-            placeholder="Injiza Numero ya Telefone"
+            placeholder="Nhập số điện thoại"
             control={control}
           />
         </Grid>
@@ -128,7 +128,7 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
           <DatePickerCustom
             name="birthday"
             control={control}
-            title="Itariki y’Amavuko"
+            title="Ngày sinh"
             showRequired={true}
             maxDate={DATE_OPTIONS.yesterday}
           />
@@ -138,9 +138,9 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
             name="gender"
             control={control}
             options={allConfig?.genderOptions || []}
-            title="Igitsina"
+            title="Giới tính"
             showRequired={true}
-            placeholder="Hitamo Igitsina"
+            placeholder="Chọn giới tính"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -148,9 +148,9 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
             name="maritalStatus"
             control={control}
             options={allConfig?.maritalStatusOptions || []}
-            title="Imiterere y'Isezerano"
+            title="Tình trạng hôn nhân"
             showRequired={true}
-            placeholder="Hitamo Imiterere y'Isezerano"
+            placeholder="Chọn tình trạng hôn nhân"
           />
         </Grid>
 
@@ -159,9 +159,9 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
             name="location.city"
             control={control}
             options={allConfig?.cityOptions || []}
-            title="Intara/Umutwe w’Umujyi"
+            title="Tỉnh/Thành phố"
             showRequired={true}
-            placeholder="Hitamo Intara/Umutwe w’Umujyi"
+            placeholder="Chọn tỉnh thành phố"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -169,17 +169,17 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
             options={districtOptions || []}
             name="location.district"
             control={control}
-            title="Akarere"
+            title="Quận/Huyện"
             showRequired={true}
-            placeholder="Hitamo Akarere"
+            placeholder="Chọn Quận/Huyện"
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="location.address"
-            title="Aderesi"
+            title="Địa chỉ"
             showRequired={true}
-            placeholder="Injiza Aderesi"
+            placeholder="Nhập địa chỉ"
             control={control}
           />
         </Grid>

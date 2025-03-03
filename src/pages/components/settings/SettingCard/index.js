@@ -61,9 +61,9 @@ const SettingCard = ({ title }) => {
         const resData = await authService.updateUserSettings(data);
         
         setEditData(resData.data);
-        toastMessages.success('Guhindura byagenze neza.');
+        toastMessages.success('Cập nhật setting thành công.');
       } catch (error) {
-        toastMessages.error('Guhindura byanze.');
+        toastMessages.error('Cập nhật setting thất bại.');
       }
     };
 
@@ -106,7 +106,7 @@ const SettingCard = ({ title }) => {
                       type="submit"
                       form="setting-form"
                     >
-                      Hindura
+                      Cập nhật
                     </Button>
                   </Stack>
                 </Grid>

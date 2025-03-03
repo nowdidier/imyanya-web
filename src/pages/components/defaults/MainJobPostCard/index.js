@@ -46,7 +46,8 @@ const MainJobPostCard = () => {
     <>
       <Box sx={{ pt: 2, pb: 3 }}>
         <Typography variant="h5">
-          Ibisubizo by'ibyashakishijwe (<span style={{ color: 'red' }}>{count.toLocaleString()}</span> itangazo)
+          Kết quả tìm kiếm (<span style={{ color: 'red' }}>{count.toLocaleString()}</span> tin
+          đăng)
         </Typography>
       </Box>
       <Stack spacing={2}>
@@ -58,7 +59,7 @@ const MainJobPostCard = () => {
           ))
         ) : jobPosts.length === 0 ? (
           <NoDataCard
-            title="Kugeza ubu nta kazi kabonetse guhuje n'ibyo wasabye"
+            title="Hiện chưa tìm thấy việc làm phù hợp với tiêu chí của bạn"
             imgComponentSgv={<ImageSvg3 />}
           />
         ) : (

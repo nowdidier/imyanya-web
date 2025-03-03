@@ -33,14 +33,14 @@ const SettingForm = ({ editData, handleUpdate }) => {
           <CheckboxCustom
             name="emailNotificationActive"
             control={control}
-            title="Emeza kohereza email"
+            title="Cho phép gửi email"
           />
         </Grid>
         <Grid item xs={12}>
           <CheckboxCustom
             name="smsNotificationActive"
             control={control}
-            title="Emeza kohereza ubutumwa bwa SMS"
+            title="Cho phép gửi tin nhắn SMS"
           />
         </Grid>
       </Grid>

@@ -30,7 +30,7 @@ import authService from '../../../services/authService';
 import tokenService from '../../../services/tokenService';
 
 const JobSeekerLogin = () => {
-  TabTitle('Kwinjira uwushakamwuga');
+  TabTitle('Đăng nhập tài khoản Người tìm việc');
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -76,10 +76,10 @@ const JobSeekerLogin = () => {
               nav('/');
             })
             .catch(() => {
-              toastMessages.error('Ikibazo cyageze, ihangane wongere winjire');
+              toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
             });
         } else {
-          toastMessages.error('Ikibazo cyageze, ihangane wongere winjire');
+          toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
         }
       } catch (error) {
         // 400 bad request
@@ -89,7 +89,7 @@ const JobSeekerLogin = () => {
           if ('errorMessage' in errors) {
             setErrorMessage(errors.errorMessage.join(' '));
           } else {
-            toastMessages.error('Ikibazo cyageze, gerageza bundi bushya!');
+            toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
           }
         }
       } finally {
@@ -117,7 +117,7 @@ const JobSeekerLogin = () => {
           return;
         } else if (exists === false) {
           setErrorMessage(
-            'Nta gahunda y\'uwushakamwuga ifitanye n\'iyi imeri!'
+            'Không tồn tại tài khoản ứng viên nào với email này!'
           );
 
           return;
@@ -125,7 +125,7 @@ const JobSeekerLogin = () => {
 
         getAccesToken(resEmail, password, roleName);
       } catch (error) {
-        toastMessages.error('Ikibazo cyageze, ihangane wongere winjire');
+        toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
       } finally {
         setIsFullScreenLoading(false);
       }
@@ -169,10 +169,10 @@ const JobSeekerLogin = () => {
             nav('/');
           })
           .catch(() => {
-            toastMessages.error('Ikibazo cyageze, ihangane wongere winjire');
+            toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
           });
       } else {
-        toastMessages.error('Ikibazo cyageze, ihangane wongere winjire');
+        toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
       }
     } catch (error) {
       // 400 bad request
@@ -182,7 +182,7 @@ const JobSeekerLogin = () => {
         if ('errorMessage' in errors) {
           setErrorMessage(errors.errorMessage.join(' '));
         } else {
-          toastMessages.error('Ikibazo cyageze, gerageza bundi bushya!');
+          toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
         }
       }
     } finally {
@@ -237,7 +237,7 @@ const JobSeekerLogin = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5" align="center">
-              kwinjira muri gahunda y'uwushakamwuga
+              Đăng nhập tài khoản ứng viên
             </Typography>
           </Box>
           {/* <Box>
@@ -252,19 +252,19 @@ const JobSeekerLogin = () => {
             </Alert>
           </Box> */}
           {errorMessage ? (
-             <Box>
-             <Alert severity="error">
-               <AlertTitle>Kumanuka</AlertTitle>
-               {errorMessage}
-             </Alert>
-           </Box>
+            <Box>
+              <Alert severity="error">
+                <AlertTitle>Thất bại</AlertTitle>
+                {errorMessage}
+              </Alert>
+            </Box>
           ) : successMessage ? (
             <Box>
-    <Alert severity="success">
-      <AlertTitle>Ikigero</AlertTitle>
-      {successMessage}
-    </Alert>
-  </Box>
+              <Alert severity="success">
+                <AlertTitle>Thành công</AlertTitle>
+                {successMessage}
+              </Alert>
+            </Box>
           ) : (
             ''
           )}
@@ -279,24 +279,24 @@ const JobSeekerLogin = () => {
             {/* End: login form */}
           </Box>
           <Grid container sx={{ mt: 3 }}>
-  <Grid item xs>
-    <Link
-      to="/quen-mat-khau"
-      variant="body2"
-      style={{ textDecoration: 'none', color: '#182642' }}
-    >
-      Wibagiwe ijambobanga?
-    </Link>
-  </Grid>
-  <Grid item>
-    <Link
-      to="/dang-ky-tai-khoan-ung-vien"
-      variant="body2"
-      style={{ textDecoration: 'none', color: '#182642' }}
-    >
-      {'Nturabasha kwinjira? Kwiyandikisha'}
-    </Link>
-  </Grid>
+            <Grid item xs>
+              <Link
+                to="/quen-mat-khau"
+                variant="body2"
+                style={{ textDecoration: 'none', color: '#441da0' }}
+              >
+                Quên mật khẩu?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link
+                to="/dang-ky-tai-khoan-ung-vien"
+                variant="body2"
+                style={{ textDecoration: 'none', color: '#441da0' }}
+              >
+                {'Chưa có tài khoản? Đăng ký'}
+              </Link>
+            </Grid>
           </Grid>
         </Card>
       </Container>

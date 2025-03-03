@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   CopyFilled,
   ClockCircleFilled,
@@ -15,10 +16,11 @@ const EmployerQuantityStatistics = () => {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    const fetchStatistics = async () => {
+    const statistics = async () => {
       setIsLoading(true);
       try {
         const resData = await statisticService.employerGeneralStatistics();
+
         setData(resData.data);
       } catch (error) {
         console.error('Error: ', error);
@@ -27,7 +29,7 @@ const EmployerQuantityStatistics = () => {
       }
     };
 
-    fetchStatistics();
+    statistics();
   }, []);
 
   return (
@@ -36,9 +38,7 @@ const EmployerQuantityStatistics = () => {
         <Card bordered={false}>
           <Statistic
             title={
-              <span style={{ fontWeight: 'bold' }}>
-                Ibyangombwa byose by'akazi
-              </span>
+              <span style={{ fontWeight: 'bold' }}>Tất cả tin tuyển dụng</span>
             }
             value={data?.totalJobPost}
             precision={0}
@@ -54,7 +54,7 @@ const EmployerQuantityStatistics = () => {
           <Statistic
             title={
               <span style={{ fontWeight: 'bold' }}>
-                Itangazo ry'akazi ritegereje kwemezwa
+                Tin tuyển dụng chờ duyệt
               </span>
             }
             value={data?.totalJobPostingPendingApproval}
@@ -70,9 +70,7 @@ const EmployerQuantityStatistics = () => {
         <Card bordered={false}>
           <Statistic
             title={
-              <span style={{ fontWeight: 'bold' }}>
-                Itangazo ry'akazi ryarangiye
-              </span>
+              <span style={{ fontWeight: 'bold' }}>Tin tuyển dụng hết hạn</span>
             }
             value={data?.totalJobPostExpired}
             precision={0}
@@ -87,7 +85,7 @@ const EmployerQuantityStatistics = () => {
         <Card bordered={false}>
           <Statistic
             title={
-              <span style={{ fontWeight: 'bold' }}>Abakandida basabye akazi</span>
+              <span style={{ fontWeight: 'bold' }}>Ứng viên ứng tuyển</span>
             }
             value={data?.totalApply}
             precision={0}

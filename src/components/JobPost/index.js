@@ -44,7 +44,7 @@ const JobPost = ({
         cursor: 'pointer',
         p: 1,
         '&:hover': {
-          borderColor: '#182642',
+          borderColor: '#441da0',
           boxShadow: 5,
         },
       }}
@@ -120,7 +120,8 @@ const JobPost = ({
                     color: 'orange',
                   }}
                 >
-                  Gutoranya byihutirwa                </span>
+                  Tuyển gấp
+                </span>
               )}
             </Stack>
           </Stack>

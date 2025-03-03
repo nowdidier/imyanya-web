@@ -51,7 +51,7 @@ const ProfileSearch = () => {
             <TextFieldCustom
               name="kw"
               showRequired={true}
-              placeholder="Andika ijambo ngenderwako"
+              placeholder="Nhập từ khóa"
               control={control}
               icon={<SearchIcon />}
             />
@@ -62,7 +62,7 @@ const ProfileSearch = () => {
               control={control}
               options={allConfig?.cityOptions || []}
               showRequired={true}
-              placeholder="Hitamo Intara/Umujyi"
+              placeholder="Chọn Tỉnh/Thành phố"
             />
           </Grid>
           <Grid item xs={12} sm={12} md={3} lg={2} xl={2}>
@@ -74,7 +74,7 @@ const ProfileSearch = () => {
                 sx={{ color: 'white', height: '100%' }}
                 type="submit"
               >
-                Gushakisha
+                Tìm kiếm
               </Button>
             </Stack>
           </Grid>
@@ -96,7 +96,7 @@ const ProfileSearch = () => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography variant="h6">Igisagara cy'ibanza: </Typography>
+            <Typography variant="h6">Bộ lọc nâng cao: </Typography>
             <Button
               variant="text"
               color="error"
@@ -105,7 +105,7 @@ const ProfileSearch = () => {
               sx={{ textTransform: 'inherit' }}
               onClick={handleReset}
             >
-              Gusiba ibyo wagatoranyije
+              Xóa lọc
             </Button>
           </Stack>
           <Stack spacing={1}>
@@ -115,14 +115,14 @@ const ProfileSearch = () => {
                   icon={faBriefcase}
                   style={{ marginRight: 3 }}
                 />{' '}
-                Utanga
+                Ngành nghề
               </Typography>
             </Box>
             <SingleSelectCustom
               name="careerId"
               control={control}
               options={allConfig?.careerOptions || []}
-              placeholder="Utanga twose"
+              placeholder="Tất cả ngành nghề"
             />
           </Stack>
           <Stack spacing={1}>
@@ -132,28 +132,28 @@ const ProfileSearch = () => {
                   icon={faMagicWandSparkles}
                   style={{ marginRight: 3 }}
                 />{' '}
-                Ubunararibonye
+                Kinh nghiệm
               </Typography>
             </Box>
             <SingleSelectCustom
               name="experienceId"
               control={control}
               options={allConfig?.experienceOptions || []}
-              placeholder="Ubunararibonye bwose"
+              placeholder="Tất cả kinh nghiệm"
             />
           </Stack>
           <Stack spacing={1}>
             <Box>
               <Typography variant="subtitle2">
                 <FontAwesomeIcon icon={faUsers} style={{ marginRight: 3 }} />{' '}
-                Ipeti
+                Cấp bậc
               </Typography>
             </Box>
             <SingleSelectCustom
               name="positionId"
               control={control}
               options={allConfig?.positionOptions || []}
-              placeholder="Ipeti zose"
+              placeholder="Tất cả cấp bậc"
             />
           </Stack>
           <Stack spacing={1}>
@@ -163,28 +163,28 @@ const ProfileSearch = () => {
                   icon={faGraduationCap}
                   style={{ marginRight: 3 }}
                 />{' '}
-                Amashuri
+                Học vấn
               </Typography>
             </Box>
             <SingleSelectCustom
               name="academicLevelId"
               control={control}
               options={allConfig?.academicLevelOptions || []}
-              placeholder="Amashuri yose"
+              placeholder="Tất cả học vấn"
             />
           </Stack>
           <Stack spacing={1}>
             <Box>
               <Typography variant="subtitle2">
                 <FontAwesomeIcon icon={faBuilding} style={{ marginRight: 3 }} />{' '}
-                Aho ukorera
+                Nơi làm việc
               </Typography>
             </Box>
             <SingleSelectCustom
               name="typeOfWorkplaceId"
               control={control}
               options={allConfig?.typeOfWorkplaceOptions || []}
-              placeholder="Aho ukorera hose"
+              placeholder="Tất cả nơi làm việc"
             />
           </Stack>
           <Stack spacing={1}>
@@ -194,14 +194,14 @@ const ProfileSearch = () => {
                   icon={faPersonDigging}
                   style={{ marginRight: 3 }}
                 />{' '}
-                Uburyo bwo gukorera
+                Hình thức làm việc
               </Typography>
             </Box>
             <SingleSelectCustom
               name="jobTypeId"
               control={control}
               options={allConfig?.jobTypeOptions || []}
-              placeholder="Uburyo bwose bwo gukorera"
+              placeholder="Tất cả hình thức làm việc"
             />
           </Stack>
           <Stack spacing={1}>
@@ -211,14 +211,14 @@ const ProfileSearch = () => {
                   icon={faVenusMars}
                   style={{ marginRight: 3 }}
                 />{' '}
-                Igitsina
+                Giới tính
               </Typography>
             </Box>
             <SingleSelectCustom
               name="genderId"
               control={control}
               options={allConfig?.genderOptions || []}
-              placeholder="Igitsina icyo aricyo cyose"
+              placeholder="Tất cả giới tính"
             />
           </Stack>
           <Stack spacing={1}>
@@ -228,14 +228,14 @@ const ProfileSearch = () => {
                   icon={faPeopleRoof}
                   style={{ marginRight: 3 }}
                 />{' '}
-                Imiryango
+                Tình trạng hôn nhân
               </Typography>
             </Box>
             <SingleSelectCustom
               name="maritalStatusId"
               control={control}
               options={allConfig?.maritalStatusOptions || []}
-              placeholder="Imiryango yose"
+              placeholder="Tất cả tình trạng hôn nhân"
             />
           </Stack>
         </Stack>

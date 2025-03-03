@@ -127,7 +127,7 @@ const AdvancedSkillCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Ubumenyi bwihariye bwongewe neza.');
+        toastMessages.success('Thêm kỹ năng chuyên môn thành công.');
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -142,7 +142,7 @@ const AdvancedSkillCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Ubumenyi bwihariye bwasubiwemo neza.');
+        toastMessages.success('Cập nhật kỹ năng chuyên môn thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -169,7 +169,7 @@ const AdvancedSkillCard = ({ title }) => {
         await advancedSkillService.deleteAdvancedSkillById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Ubumenyi bwihariye bwashizwemo neza.');
+        toastMessages.success('Xóa kỹ năng chuyên môn thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -179,8 +179,8 @@ const AdvancedSkillCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Siba ubumenyi bwihariye',
-      'Ubumenyi bwihariye buzahanagurwa burundu kandi ntibizabasha kugaruzwa. Urabyizeye?',
+      'Xóa kỹ năng chuyên môn',
+      'Kỹ năng chuyên môn này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
       'warning'
     );
   };
@@ -213,7 +213,7 @@ const AdvancedSkillCard = ({ title }) => {
             <Box sx={{ px: 1 }}>
               {advancedSkills.length === 0 ? (
                 <EmptyCard
-                  content="Shyiramo ubumenyi bwihariye bwawe kugira ngo abakoresha babashe kubireba"
+                  content="Bạn hãy thêm kỹ năng chuyên môn của mình để nhà tuyển dụng tham khảo"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -221,9 +221,9 @@ const AdvancedSkillCard = ({ title }) => {
                   <Table aria-label="simple table" size="small">
                     <TableHead>
                       <TableRow>
-                        <TableCell align="left">Ubumenyi</TableCell>
-                        <TableCell align="left">Urwego</TableCell>
-                        <TableCell align="right">Ibikorwa</TableCell>
+                        <TableCell align="left">Kỹ năng</TableCell>
+                        <TableCell align="left">Trình độ</TableCell>
+                        <TableCell align="right">Hành động</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -280,7 +280,7 @@ const AdvancedSkillCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Ubumenyi bwihariye"
+        title="Kỹ năng chuyên môn"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

@@ -18,7 +18,7 @@ const SidebarHeader = () => {
 
   const handleRedirect = () => {
     if (isEmployer) {
-      nav('/umukoresha');
+      nav('/nha-tuyen-dung');
     } else {
       nav('/');
     }
@@ -37,7 +37,7 @@ const SidebarHeader = () => {
         <Box>
           <Chip
             icon={!isEmployer ? <HomeIcon /> : <GridViewIcon />}
-            label={!isEmployer ? 'Subira ku rupapuro rw\'ibanze' : 'Subira ku rupapuro rw\'ubuyobozi'}
+            label={!isEmployer ? 'Về trang chủ' : 'Về trang quản trị'}
             onClick={handleRedirect}
           />
         </Box>

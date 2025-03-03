@@ -37,16 +37,16 @@ const SidebarViewTotal = () => {
     <Box>
       <Box>
         <Typography variant="h6" sx={{ mb: 1 }}>
-          Ese CV yawe imeze neza bihagije?
+          CV của bạn đã đủ tốt?
         </Typography>
         <Typography variant="caption">
-          Ni ba NTD bangahe bari kwitabira Umwirondoro wawe?
+          Bao nhiêu NTD đang quan tâm tới Hồ sơ của bạn?
         </Typography>
       </Box>
       <Box sx={{ pt: 2 }}>
         <Stack direction="row" spacing={2}>
           <Box>
-            <Avatar sx={{ width: 80, height: 80, bgcolor: '#182642' }}>
+            <Avatar sx={{ width: 80, height: 80, bgcolor: '#441da0' }}>
               {isLoading ? (
                 <CircularProgress color="secondary" />
               ) : data === null ? (
@@ -58,7 +58,8 @@ const SidebarViewTotal = () => {
           </Box>
           <Box>
             <Typography variant="body1">
-              Buri gihe Umukozi areba CV yawe, biguha amahirwe yo kwegera akazi gakwiriye.
+              Mỗi lượt Nhà tuyển dụng xem CV mang đến một cơ hội để bạn gần hơn
+              với công việc phù hợp.
             </Typography>
           </Box>
         </Stack>
@@ -69,7 +70,7 @@ const SidebarViewTotal = () => {
           size="small"
           onClick={() => nav('/viec-lam')}
         >
-          Tembera Umenye
+          Khám phá ngay
         </Button>
       </Stack>
     </Box>

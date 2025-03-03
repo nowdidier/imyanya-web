@@ -15,7 +15,7 @@ const BackdropLoading = ({ bgColor = 'rgba(0, 0, 0, 0.4)' }) => {
       }}
       open={true}
     >
-      <HashLoader color="#00B2A3" size={100} speedMultiplier={2} />
+      <HashLoader color="#fca34d" size={100} speedMultiplier={2} />
     </Backdrop>
   );
 };

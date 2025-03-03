@@ -18,7 +18,7 @@ const JobPostsTable = (props) => {
       {!isLoading && rows.length === 0 ? (
         <TableBody>
           <TableCell colSpan={7}>
-            <NoDataCard title="Nta butumwa bw'akazi ufite" />
+            <NoDataCard title="Bạn chưa có tin tuyển dụng nào" />
           </TableCell>
         </TableBody>
       ) : (
@@ -29,7 +29,7 @@ const JobPostsTable = (props) => {
                 {row.jobName}{' '}
                 {row.isUrgent && (
                   <Chip
-                    label="Akazi k'ingutu"
+                    label="Tuyển gấp"
                     color="error"
                     variant="outlined"
                     size="small"
@@ -60,7 +60,7 @@ const JobPostsTable = (props) => {
                 />
               </TableCell>
               <TableCell align="right">
-                <Tooltip title="Kuvugurura" arrow>
+                <Tooltip title="Cập nhật" arrow>
                   <IconButton
                     color="secondary"
                     aria-label="edit"
@@ -69,7 +69,7 @@ const JobPostsTable = (props) => {
                     <EditOutlinedIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="Gusiba" arrow>
+                <Tooltip title="Xóa" arrow>
                   <IconButton
                     color="error"
                     aria-label="delete"

@@ -9,39 +9,39 @@ import TextFieldCustom from '../../../../components/controls/TextFieldCustom';
 import MultilineTextFieldCustom from '../../../../components/controls/MultilineTextFieldCustom';
 import DatePickerCustom from '../../../../components/controls/DatePickerCustom';
 
-const ExperienceDetailForm = ({ handleAddOrUpdate, editData }) => {
+const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
   const schema = yup.object().shape({
     jobName: yup
       .string()
-      .required('Izina ry\'umwanya w\'akazi ni ngombwa.')
-      .max(200, 'Izina ry\'umwanya w\'akazi rirarenga uburebure bwemewe.'),
+      .required('Tên công việc là bắt buộc.')
+      .max(200, 'Tên công việc vượt quá độ dài cho phép.'),
     companyName: yup
       .string()
-      .required('Izina ry\'ikigo ni ngombwa.')
-      .max(255, 'Izina ry\'ikigo rirarenga uburebure bwemewe.'),
+      .required('Tên công ty là bắt buộc.')
+      .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
     startDate: yup
       .date()
-      .required('Itariki yo gutangira ni ngombwa.')
-      .typeError('Itariki yo gutangira ni ngombwa.')
-      .max(DATE_OPTIONS.yesterday, 'Itariki yo gutangira igomba kuba iri munsi y\'uyu munsi.')
+      .required('Ngày bắt đầu là bắt buộc.')
+      .typeError('Ngày bắt đầu là bắt buộc.')
+      .max(DATE_OPTIONS.yesterday, 'Ngày bắt đầu phải nhỏ hơn ngày hôm nay.')
       .test(
         'start-date-comparison',
-        'Itariki yo gutangira igomba kuba iri munsi y\'itariki yo kurangiza.',
+        'Ngày bắt đầu phải nhỏ hơn ngày kết thúc.',
         function (value) {
           return !(value >= this.parent.endDate);
         }
       ),
     endDate: yup
       .date()
-      .required('Itariki yo kurangiza ni ngombwa.')
-      .typeError('Itariki yo kurangiza ni ngombwa.')
+      .required('Ngày kết thúc là bắt buộc.')
+      .typeError('Ngày kết thúc là bắt buộc.')
       .max(
         DATE_OPTIONS.today,
-        'Itariki yo kurangiza igomba kuba iri munsi cyangwa ingana n\'uyu munsi.'
+        'Ngày kết thúc phải nhỏ hơn hoặc bằng ngày hôm nay.'
       )
       .test(
         'end-date-comparison',
-        'Itariki yo kurangiza igomba kuba iri hejuru y\'itariki yo gutangira.',
+        'Ngày kết thúc phải lớn hơn ngày bắt đầu.',
         function (value) {
           return !(value <= this.parent.startDate);
         }
@@ -70,16 +70,16 @@ const ExperienceDetailForm = ({ handleAddOrUpdate, editData }) => {
           <TextFieldCustom
             name="jobName"
             control={control}
-            placeholder="Urugero: Injeniyeri wa software"
-            title="Umwanya/akazi"
+            placeholder="VD: Kỹ sư phần mềm"
+            title="Chức danh/vị trí công việc"
             showRequired={true}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="companyName"
-            title="Izina ry'ikigo"
-            placeholder="Injiza izina ry'ikigo"
+            title="Tên công ty"
+            placeholder="Nhập tên công ty"
             control={control}
             showRequired={true}
           />
@@ -88,7 +88,7 @@ const ExperienceDetailForm = ({ handleAddOrUpdate, editData }) => {
           <DatePickerCustom
             name="startDate"
             control={control}
-            title="Itariki yo gutangira"
+            title="Ngày bắt đầu"
             showRequired={true}
             maxDate={DATE_OPTIONS.yesterday}
           />
@@ -97,7 +97,7 @@ const ExperienceDetailForm = ({ handleAddOrUpdate, editData }) => {
           <DatePickerCustom
             name="endDate"
             control={control}
-            title="Itariki yo kurangiza"
+            title="Ngày kết thúc"
             showRequired={true}
             maxDate={DATE_OPTIONS.today}
           />
@@ -105,8 +105,8 @@ const ExperienceDetailForm = ({ handleAddOrUpdate, editData }) => {
         <Grid item xs={12}>
           <MultilineTextFieldCustom
             name="description"
-            title="Ibisobanuro byisumbuyeho"
-            placeholder="Injiza ibisobanuro hano"
+            title="Mô tả thêm"
+            placeholder="Nhập nội dung mô tả tại đây"
             control={control}
           />
         </Grid>
@@ -115,4 +115,4 @@ const ExperienceDetailForm = ({ handleAddOrUpdate, editData }) => {
   );
 };
 
-export default ExperienceDetailForm;
+export default ExperienceDetaiForm;

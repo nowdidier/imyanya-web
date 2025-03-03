@@ -28,7 +28,7 @@ const AppIntroductionCard = () => {
       try {
         await myjobService.sendSMSDownloadApp(data);
 
-        toastMessages.success('Yoherejwe neza. Sura ubutumwa bwawe');
+        toastMessages.success('Gửi thành công. Vui lòng kiểm tra tin nhắn');
         setValue('');
       } catch (error) {
         console.log(error);
@@ -45,7 +45,7 @@ const AppIntroductionCard = () => {
       ) {
         sendSMS({ phone: value });
       } else {
-        toastMessages.error('Nomero ya telefoni ntibaho!');
+        toastMessages.error('Số điện thoại không hợp lệ!');
       }
   };
 
@@ -54,11 +54,12 @@ const AppIntroductionCard = () => {
       <Card sx={{ p: 3 }}>
         <Stack spacing={3} alignItems="center">
           <Box>
-            <Typography variant="h5">Kumanura porogaramu ku buntu</Typography>
+            <Typography variant="h5">Tải ứng dụng miễn phí</Typography>
           </Box>
           <Box>
             <Typography>
-              Shaka akazi neza unyuze mu kumanura IMYANYA muri telefone yawe kandi witegure guhabwa akazi uyu munsi!
+              Tìm việc hiệu quả bằng cách tải MyJob về di động của bạn và sẵn
+              sàng nhận việc làm ngay hôm nay!
             </Typography>
           </Box>
           <Box component="form" onSubmit={handleSendSMS}>
@@ -79,7 +80,7 @@ const AppIntroductionCard = () => {
                 inputProps={{ 'aria-label': 'search' }}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                placeholder="Shyiramo nomero ya telefoni"
+                placeholder="Nhập số điện thoại"
               />
               <Button
                 variant="contained"
@@ -87,7 +88,7 @@ const AppIntroductionCard = () => {
                 style={{ borderRadius: 20, color: 'white' }}
                 type="submit"
               >
-                Ohereza
+                gửi đi
               </Button>
             </Paper>
           </Box>

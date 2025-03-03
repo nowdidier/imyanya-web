@@ -11,16 +11,16 @@ const EmployerLoginForm = ({ onLogin }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Email ni ngombwa!')
-      .email('Email ntiyubahirije uburyo bwemewe'),
+      .required('Email là bắt buộc!')
+      .email('Email không đúng định dạng'),
     password: yup
       .string()
-      .required('Ijambo ryibanga ni ngombwa!')
-      .min(8, 'Ijambo ryibanga rigomba kuba nibura imibare 8.')
-      .max(128, 'Ijambo ryibanga rirenze uburebure bwemewe.')
+      .required('Mật khẩu là bắt buộc!')
+      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
+      .max(128, 'Mật khẩu vượt quá độ dài cho phép.')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Rigomba kuba ririmo inyuguti nkuru, inyuguti nto, umubare n’ikimenyetso kidasanzwe'
+        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
       ),
   });
 
@@ -39,19 +39,19 @@ const EmployerLoginForm = ({ onLogin }) => {
           name="email"
           control={control}
           title="Email"
-          placeholder="Shyiramo email"
+          placeholder="Nhập email"
           showRequired={true}
         />
         <PasswordTextFieldCustom
           name="password"
           control={control}
-          title="Ijambo ryibanga"
-          placeholder="Shyiramo ijambo ryibanga"
+          title="Mật khẩu"
+          placeholder="Nhập mật khẩu"
           showRequired={true}
         />
       </Stack>
       <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} type="submit">
-        Injira
+        Đăng nhập
       </Button>
     </Box>
   );

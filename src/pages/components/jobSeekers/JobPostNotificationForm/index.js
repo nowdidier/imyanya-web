@@ -15,22 +15,22 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
   const schema = yup.object().shape({
     jobName: yup
       .string()
-      .required('Ijambo ryibanze rirakenewe.')
-      .max(200, 'Ijambo ryibanze ntirigomba kurenga inyuguti 200.'),
+      .required('Từ khóa là bắt buộc.')
+      .max(200, 'Từ khóa là bắt buộc.'),
     career: yup
       .number()
-      .required('Umwuga urakenewe.')
-      .typeError('Umwuga urakenewe.'),
+      .required('Ngành/nghề là bắt buộc.')
+      .typeError('Ngành/nghề là bắt buộc.'),
     city: yup
       .number()
-      .required('Intara/Umujyi birakenewe.')
-      .typeError('Intara/Umujyi birakenewe.'),
+      .required('Tỉnh/Thành phố là bắt buộc.')
+      .typeError('Tỉnh/Thành phố là bắt buộc.'),
     position: yup.number().notRequired().nullable(),
     experience: yup.number().notRequired().nullable(),
     salary: yup
       .number()
       .nullable()
-      .typeError('Umushahara wifuzwa ntabwo ari wo.')
+      .typeError('Mức lương mong muốn không hợp lệ.')
       .transform((value, originalValue) => {
         if (originalValue === '') {
           return null;
@@ -70,9 +70,9 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="jobName"
-            title="Ijambo ryibanze"
+            title="Từ khóa"
             showRequired={true}
-            placeholder="Injiza ijambo ryibanze ari izina ry'akazi cyangwa irihariye ku kazi urimo gushaka."
+            placeholder="Nhập từ khoá là tên công việc hoặc liên quan đến tên công việc mà bạn đang tìm."
             control={control}
           />
         </Grid>
@@ -81,9 +81,9 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
             name="career"
             control={control}
             options={allConfig?.careerOptions || []}
-            title="Umwuga"
+            title="Ngành nghề"
             showRequired={true}
-            placeholder="Hitamo umwuga ushaka gukora"
+            placeholder="Chọn ngành nghề cần tuyển"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -91,9 +91,9 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
             name="city"
             control={control}
             options={allConfig?.cityOptions || []}
-            title="Intara/Umujyi"
+            title="Tỉnh/Thành phố"
             showRequired={true}
-            placeholder="Hitamo intara cyangwa umujyi"
+            placeholder="Chọn tỉnh thành phố"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -101,8 +101,8 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
             name="position"
             control={control}
             options={allConfig?.positionOptions || []}
-            title="Umwanya/Intebe"
-            placeholder="Hitamo umwanya cyangwa intebe"
+            title="Vị trí/chức vụ"
+            placeholder="Chọn vị trí/chức vụ"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -110,15 +110,15 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
             name="experience"
             control={control}
             options={allConfig?.experienceOptions || []}
-            title="Uburambe"
-            placeholder="Hitamo uburambe busabwa"
+            title="Kinh nghiệm"
+            placeholder="Chọn kinh nghiệm yêu cầu"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <TextFieldCustom
             name="salary"
-            title="Umushahara wifuzwa"
-            placeholder="Injiza umushahara wifuzwa"
+            title="Mức lương mong muốn"
+            placeholder="Nhập mức lương mong muốn của bạn"
             control={control}
             type="number"
           />
@@ -128,7 +128,7 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
             name="frequency"
             control={control}
             options={allConfig?.frequencyNotificationOptions || []}
-            title="Ubwinshi bw'amakuru"
+            title="Tần suất thông báo"
           />
         </Grid>
       </Grid>

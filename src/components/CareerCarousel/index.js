@@ -135,7 +135,7 @@ const CareerCarousel = () => {
                       boxShadow: 0,
                       cursor: 'pointer',
                       '&:hover': {
-                        color: '#00B2A3',
+                        color: '#fca34d',
                         boxShadow: 4,
                       },
                       backgroundColor: (theme) =>

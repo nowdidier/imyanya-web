@@ -13,8 +13,8 @@ const AccountForm = ({ handleUpdate, serverErrors }) => {
   const schema = yup.object().shape({
     fullName: yup
       .string()
-      .required('Izina ryuzuye ni ngombwa.')
-      .max(100, 'Izina ryuzuye rirenze uburebure bwemewe.'),
+      .required('Họ và tên là bắt buộc.')
+      .max(100, 'Họ và tên vượt quá độ dài cho phép.'),
   });
 
   const { control, reset, setError, handleSubmit } = useForm({
@@ -50,9 +50,9 @@ const AccountForm = ({ handleUpdate, serverErrors }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="fullName"
-            title="Izina ryuzuye"
+            title="Họ và tên"
             showRequired={true}
-            placeholder="Shyiramo izina ryuzuye ryawe"
+            placeholder="Nhập họ và tên của bạn"
             control={control}
           />
         </Grid>
@@ -61,7 +61,7 @@ const AccountForm = ({ handleUpdate, serverErrors }) => {
             name="email"
             title="Email"
             showRequired={true}
-            placeholder="Shyiramo email"
+            placeholder="Nhập email"
             control={control}
             disabled={true}
           />
@@ -69,9 +69,9 @@ const AccountForm = ({ handleUpdate, serverErrors }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="password"
-            title="Ijambo ryibanga"
+            title="Mật khẩu"
             showRequired={true}
-            placeholder="Shyiramo ijambo ryibanga"
+            placeholder="Nhập mật khẩu"
             control={control}
             disabled={true}
           />

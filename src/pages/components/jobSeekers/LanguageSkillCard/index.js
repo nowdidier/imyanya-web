@@ -129,7 +129,7 @@ const LanguageSkillCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Kongera ubumenyi bw\'ururimi byagenze neza.');
+        toastMessages.success('Thêm kỹ năng ngôn ngữ thành công.');
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -144,7 +144,7 @@ const LanguageSkillCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Guhindura ubumenyi bw\'ururimi byagenze neza.');
+        toastMessages.success('Cập nhật kỹ năng ngôn ngữ thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -171,7 +171,7 @@ const LanguageSkillCard = ({ title }) => {
         await languageSkillService.deleteLanguageSkillById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Gusiba ubumenyi bw\'ururimi byagenze neza.');
+        toastMessages.success('Xóa kỹ năng ngôn ngữ thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -181,8 +181,8 @@ const LanguageSkillCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Gusiba ubumenyi bw\'ururimi',
-      'Ubu bumenyi bw\'ururimi buzashira burundu kandi ntibuzagaruka. Urabihamya?',
+      'Xóa kỹ năng ngôn ngữ',
+      'Kỹ năng ngôn ngữ này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
       'warning'
     );
   };
@@ -215,7 +215,7 @@ const LanguageSkillCard = ({ title }) => {
             <Box sx={{ px: 1 }}>
               {languageSkills.length === 0 ? (
                 <EmptyCard
-                  content="Ongera ubumenyi bw'ururimi rwawe kugira ngo abashaka abakozi babashe kubureba"
+                  content="Bạn hãy thêm kỹ năng ngôn ngữ của mình để nhà tuyển dụng tham khảo"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -223,9 +223,9 @@ const LanguageSkillCard = ({ title }) => {
                   <Table aria-label="simple table" size="small">
                     <TableHead>
                       <TableRow>
-                        <TableCell align="left">Ururimi</TableCell>
-                        <TableCell align="left">Urwego</TableCell>
-                        <TableCell align="right">Ibikorwa</TableCell>
+                        <TableCell align="left">Ngoại ngữ</TableCell>
+                        <TableCell align="left">Trình độ</TableCell>
+                        <TableCell align="right">Hành động</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -284,7 +284,7 @@ const LanguageSkillCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Ubumenyi bw'ururimi"
+        title="Kỹ năng ngôn ngữ"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

@@ -129,7 +129,7 @@ const TopCompanyCarousel = () => {
                       mb: 0.5,
                       cursor: 'pointer',
                       '&:hover': {
-                        color: '#00B2A3',
+                        color: '#fca34d',
                         boxShadow: 9,
                       },
                       minHeight: 165,

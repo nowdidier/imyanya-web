@@ -8,7 +8,7 @@ import CompanyFollowedCard from '../../components/jobSeekers/CompanyFollowedCard
 import SuggestedJobPostCard from '../../components/defaults/SuggestedJobPostCard';
 
 const MyCompanyPage = () => {
-  TabTitle("Paji y'ubuyobozi bwa sosiyete yanjye")
+  TabTitle("Trang quản trị Công ty của tôi")
 
   const [value, setValue] = React.useState('1');
 
@@ -26,17 +26,17 @@ const MyCompanyPage = () => {
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                   <TabList
                     onChange={handleChange}
-                    aria-label="akazi kanjye"
+                    aria-label="my job"
                     variant="scrollable"
                     allowScrollButtonsMobile
                   >
                     <Tab
-                      label="Abakoresha barebye umwirondoro"
+                      label="Nhà tuyển dụng xem hồ sơ"
                       sx={{ textTransform: 'capitalize'}}
                       value="1"
                     />
                     <Tab
-                      label="Gukurikira sosiyete"
+                      label="Theo dõi công ty"
                       sx={{ textTransform: 'capitalize' }}
                       value="2"
                     />
@@ -62,7 +62,7 @@ const MyCompanyPage = () => {
           <Card  sx={{p: {xs: 1, sm: 1, md: 2, lg: 2, xl: 2} }}> 
             <Stack>
               <Box sx={{ mb: 2 }}>
-                <Typography variant="h6">Akazi gahuye neza</Typography>
+                <Typography variant="h6">Việc làm phù hợp</Typography>
               </Box>
               <Box>
                 {/* Start: SuggestedJobPostCard */}

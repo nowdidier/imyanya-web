@@ -7,7 +7,7 @@ import CompanyImageCard from '../../components/employers/CompanyImageCard';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 const CompanyPage = () => {
-  TabTitle("Gucunga amakuru y'ikigo")
+  TabTitle("Quản lý thông tin công ty")
 
   const [value, setValue] = React.useState(0);
 
@@ -20,8 +20,8 @@ const CompanyPage = () => {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="company tabs">
-            <Tab label="Amakuru y'ikigo" />
-            <Tab label="Itangazamakuru ryinshi" />
+            <Tab label="Thông tin công ty" />
+            <Tab label="Đa phương tiện" />
           </TabList>
         </Box>
         <TabPanel value={0} sx={{ px: 1 }}>

@@ -19,7 +19,7 @@ import {
 
 const jobSeekerUserMenu = [
   {
-    label: "Gucunga konti",
+    label: "Quản lý tài khoản",
     path: "/ung-vien",
   },
 ];
@@ -129,13 +129,13 @@ const UserMenu = ({ anchorElUser, open, handleCloseUserMenu }) => {
             handleCloseUserMenu();
             confirmModal(
               handleLogout,
-              "Gusohoka muri konti",
-              "Urashaka gusohoka muri konti?",
+              "Đăng xuất tài khoản",
+              "Bạn có chắc chắn muốn đăng xuất?",
               "question"
             );
           }}
         >
-          <Typography marginRight="auto">Gusohoka</Typography>
+          <Typography marginRight="auto">Đăng xuất</Typography>
         </Button>
       </Stack>
     </Menu>

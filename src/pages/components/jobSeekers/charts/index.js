@@ -94,7 +94,7 @@ const ActivityChart = () => {
           ) : data.length === 0 ? (
             <Empty
               image={Empty.PRESENTED_IMAGE_SIMPLE}
-              description="Nta makuru ahari yo gukora imibare"
+              description="Không có dữ liệu để thống kê"
             />
           ) : (
             <Line options={options} data={dataOptions} height={320} />

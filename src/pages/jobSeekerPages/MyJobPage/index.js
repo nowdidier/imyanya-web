@@ -10,7 +10,7 @@ import JobPostNotificationCard from '../../components/jobSeekers/JobPostNotifica
 import { useSearchParams } from 'react-router-dom';
 
 const MyJobPage = () => {
-  TabTitle("Urupapuro rw'akazi kanjye rwo gucunga") // Translated to 'My Job Management Page'
+  TabTitle("Trang quản trị Việc làm của tôi")
 
   const [searchParams] = useSearchParams();
   const [value, setValue] = React.useState(searchParams.get("tab") || "1");
@@ -34,17 +34,17 @@ const MyJobPage = () => {
                     allowScrollButtonsMobile
                   >
                     <Tab
-                      label="Akazi karinzwe"
+                      label="Việc làm đã lưu"
                       sx={{ textTransform: 'capitalize' }}
                       value="1"
                     />
                     <Tab
-                      label="Akazi kasabiwe"
+                      label="Việc làm đã ứng tuyển"
                       sx={{ textTransform: 'capitalize' }}
                       value="2"
                     />
                     <Tab
-                      label="Amakuru y'akazi"
+                      label="Thông báo việc làm"
                       sx={{ textTransform: 'capitalize' }}
                       value="3"
                     />
@@ -59,8 +59,8 @@ const MyJobPage = () => {
                   {/* End: SavedJobCard */}
                   <Box mt={1}>
                     <Typography color="gray" variant="caption">
-                      Icyitonderwa: Ntushobora kubona akazi karangiye igihe cyo gutanga
-                      cyangwa kahagaritswe kwakira ibyangombwa.
+                      Lưu ý: Bạn không xem được việc làm đã hết thời hạn đăng
+                      tuyển hoặc tạm ngưng nhận hồ sơ.
                     </Typography>
                   </Box>
                 </TabPanel>
@@ -90,7 +90,7 @@ const MyJobPage = () => {
           <Card sx={{ p: { xs: 1, sm: 1, md: 2, lg: 2, xl: 2 } }}>
             <Stack>
               <Box sx={{ mb: 2 }}>
-                <Typography variant="h6">Akazi gahuye neza</Typography>
+                <Typography variant="h6">Việc làm phù hợp</Typography>
               </Box>
               <Box>
                 {/* Start: SuggestedJobPostCard */}

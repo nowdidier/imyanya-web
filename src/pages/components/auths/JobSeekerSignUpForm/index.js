@@ -19,25 +19,25 @@ const JobSeekerSignUpForm = ({
   serverErrors = {},
 }) => {
   const schema = yup.object().shape({
-    fullName: yup.string().required('Amazina yuzuye ni ngombwa.'),
+    fullName: yup.string().required('Họ và tên là bắt buộc.'),
     email: yup
       .string()
-      .required('Email ni ngombwa!')
-      .email('Email ntifite uburyo bwiza')
-      .max(100, 'Email irenze uburebure bwemewe.'),
+      .required('Email là bắt buộc!')
+      .email('Email không đúng định dạng')
+      .max(100, 'Email vượt quá độ dài cho phép.'),
     password: yup
       .string()
-      .required('Ijambo ryibanga ni ngombwa!')
-      .min(8, 'Ijambo ryibanga rigomba kuba nibura ibimenyetso 8.')
-      .max(128, 'Ijambo ryibanga rirenze uburebure bwemewe.')
+      .required('Mật khẩu là bắt buộc!')
+      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
+      .max(128, 'Mật khẩu vượt quá độ dài cho phép.')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Rigomba kuba ririmo inyuguti nkuru, inyuguti nto, umubare n’ikimenyetso kidasanzwe'
+        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
       ),
     confirmPassword: yup
       .string()
-      .required('Kwemeza ijambo ryibanga ni ngombwa.')
-      .oneOf([yup.ref('password')], 'Kwemeza ijambo ryibanga ntibihuye.'),
+      .required('Mật khẩu xác nhận là bắt buộc.')
+      .oneOf([yup.ref('password')], 'Mật khẩu xác nhận không chính xác.'),
   });
 
   const { control, setError, handleSubmit } = useForm({
@@ -62,36 +62,36 @@ const JobSeekerSignUpForm = ({
         <TextFieldCustom
           name="fullName"
           control={control}
-          title="Amazina yuzuye"
-          placeholder="Shyiramo amazina yuzuye"
+          title="Họ và tên"
+          placeholder="Nhập họ và tên"
           showRequired={true}
         />
         <TextFieldCustom
           name="email"
           control={control}
           title="Email"
-          placeholder="Shyiramo email"
+          placeholder="Nhập email"
           showRequired={true}
         />
         <PasswordTextFieldCustom
           name="password"
           control={control}
-          title="Ijambo ryibanga"
-          placeholder="Shyiramo ijambo ryibanga"
+          title="Mật khẩu"
+          placeholder="Nhập mật khẩu"
           showRequired={true}
         />
         <PasswordTextFieldCustom
           name="confirmPassword"
           control={control}
-          title="Kwemeza ijambo ryibanga"
-          placeholder="Shyiramo ijambo ryibanga kwemeza"
+          title="Mật khẩu xác nhận"
+          placeholder="Nhập mật khẩu xác nhận"
           showRequired={true}
         />
       </Stack>
       <Button fullWidth variant="contained" type="submit" sx={{ mt: 3, mb: 2 }}>
-        Iyandikishe
+        Đăng ký
       </Button>
-      <Divider>CYANGWA</Divider>
+      <Divider>HOẶC</Divider>
       <LoginSocialFacebook
         appId={AUTH_CONFIG.FACEBOOK_CLIENT_ID}
         fieldsProfile={'id'}
@@ -111,7 +111,7 @@ const JobSeekerSignUpForm = ({
           sx={{ mt: 3, mb: 2, backgroundColor: '#3B66C4' }}
           startIcon={<FacebookIcon />}
         >
-          Kwiyandikisha na Facebook
+          Đăng ký với Facebook
         </Button>
       </LoginSocialFacebook>
 
@@ -135,7 +135,7 @@ const JobSeekerSignUpForm = ({
           sx={{ mb: 2, backgroundColor: '#CF4332' }}
           startIcon={<GoogleIcon />}
         >
-          Kwiyandikisha na Google
+          Đăng ký với Google
         </Button>
       </LoginSocialGoogle>
     </Box>

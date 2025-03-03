@@ -31,7 +31,7 @@ const SavedResumeTable = (props) => {
         <TableBody>
           <TableCell colSpan={7}>
             <NoDataCard
-              title="Nta mukandida wabitse"
+              title="Bạn chưa lưu ứng viên nào"
               imgComponentSgv={<ImageSvg12 />}
             />
           </TableCell>
@@ -42,15 +42,15 @@ const SavedResumeTable = (props) => {
             <TableBody key={row.id}>
               <TableCell component="th" scope="row" padding="none">
                 {row?.resume?.type === CV_TYPES.cvWebsite ? (
-                  <Tooltip title="Ubushobozi bwo kuri internet" arrow>
+                  <Tooltip title="Hồ sơ Online" arrow>
                     <FontAwesomeIcon
                       icon={faFile}
                       style={{ marginRight: 1 }}
-                      color="#182642"
+                      color="#441da0"
                     />
                   </Tooltip>
                 ) : (
-                  <Tooltip title="Ubushobozi bwashyizweho" arrow>
+                  <Tooltip title="Hồ sơ Đính kèm" arrow>
                     <FontAwesomeIcon
                       icon={faFilePdf}
                       style={{ marginRight: 1 }}
@@ -66,7 +66,7 @@ const SavedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Ntarashyirwa
+                    Chưa cập nhật
                   </span>
                 )}{' '}
               </TableCell>
@@ -85,7 +85,7 @@ const SavedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Ntarashyirwa
+                    Chưa cập nhật
                   </span>
                 )}
               </TableCell>
@@ -98,7 +98,7 @@ const SavedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Ntarashyirwa
+                    Chưa cập nhật
                   </span>
                 )}
               </TableCell>
@@ -111,7 +111,7 @@ const SavedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Ntarashyirwa
+                    Chưa cập nhật
                   </span>
                 )}
               </TableCell>
@@ -120,7 +120,7 @@ const SavedResumeTable = (props) => {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} justifyContent="flex-end">
-                  <Tooltip title="Reba ubushobozi" arrow>
+                  <Tooltip title="Xem hồ sơ" arrow>
                     <IconButton aria-label="view" size="small">
                       <RemoveRedEyeOutlinedIcon
                         fontSize="small"
@@ -141,7 +141,7 @@ const SavedResumeTable = (props) => {
                     startIcon={<FavoriteIcon />}
                     onClick={() => handleUnsave(row?.resume?.slug)}
                   >
-                    Gukuraho
+                    Hủy lưu
                   </Button>
                 </Stack>
               </TableCell>

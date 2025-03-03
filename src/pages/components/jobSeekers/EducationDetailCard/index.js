@@ -130,7 +130,7 @@ const EducationDetailCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Kongeye amakuru ajyanye n\'amashuri neza.');
+        toastMessages.success('Thêm thông tin học vấn thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -145,7 +145,7 @@ const EducationDetailCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Ukoze neza mu guhindura amakuru ajyanye n\'amashuri.');
+        toastMessages.success('Cập nhật thông tin học vấn thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -172,7 +172,7 @@ const EducationDetailCard = ({ title }) => {
         await educationDetailService.deleteEducationDetailById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Ubuze neza gusiba amakuru ajyanye n\'amashuri.');
+        toastMessages.success('Xóa thông tin học vấn thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -182,8 +182,8 @@ const EducationDetailCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Gusiba amakuru ajyanye n\'amashuri',
-      'Aya makuru ajyanye n\'amashuri azasibangana burundu kandi ntazagaruka. Urabizi neza?',
+      'Xóa thông tin học vấn',
+      'Thông tin học vấn này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
       'warning'
     );
   };
@@ -216,7 +216,7 @@ const EducationDetailCard = ({ title }) => {
             <Box sx={{ px: 1 }}>
               {educationsDetail.length === 0 ? (
                 <EmptyCard
-                  content="Shyiramo amakuru ajyanye n'amashuri yawe kugira ngo abakoresha babashe kuyabona"
+                  content="Bạn hãy thêm thông tin học vấn của mình để nhà tuyển dụng tham khảo"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -243,7 +243,7 @@ const EducationDetailCard = ({ title }) => {
                               {value.completedDate}
                             </Moment>
                           ) : (
-                            'Ubu'
+                            'Hiện tại'
                           )}
                         </Typography>
                         <Typography
@@ -290,14 +290,14 @@ const EducationDetailCard = ({ title }) => {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                           >
-                            <Typography color="gray">Ibisobanuro byimbitse</Typography>
+                            <Typography color="gray">Mô tả chi tiết</Typography>
                           </AccordionSummary>
                           <AccordionDetails sx={{ p: 0, m: 0 }}>
                             <Typography>
                               {value?.description || (
-                                <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-                                  Ntibirahindurwa
-                                </span>
+                                 <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
+                                 Chưa cập nhật
+                               </span>
                               )}
                             </Typography>
                           </AccordionDetails>
@@ -314,7 +314,7 @@ const EducationDetailCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Amashuri"
+        title="Học vấn"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

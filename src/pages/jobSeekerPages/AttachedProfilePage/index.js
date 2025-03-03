@@ -22,13 +22,13 @@ import GeneralInfoCard from '../../components/jobSeekers/GeneralInfoCard';
 import CVCard from '../../components/jobSeekers/CVCard';
 
 const items = [
-  { id: 0, value: 'Amakuru yihariye', icon: <PersonPinOutlinedIcon /> },
-  { id: 1, value: 'Amakuru rusange', icon: <WorkOutlineOutlinedIcon /> },
-  { id: 2, value: 'Shyiraho CV yawe', icon: <UploadFileOutlinedIcon /> },
+  { id: 0, value: 'Thông tin cá nhân', icon: <PersonPinOutlinedIcon /> },
+  { id: 1, value: 'Thông tin chung', icon: <WorkOutlineOutlinedIcon /> },
+  { id: 2, value: 'Tải CV đính kèm', icon: <UploadFileOutlinedIcon /> },
 ];
 
 const AttachedProfilePage = () => {
-  TabTitle("Hindura umwirondoro wawe")
+  TabTitle("Cập nhật hồ sơ Đính kèm")
   const refs = React.useRef([]);
 
   const handleClickScroll = (index) => {
@@ -42,17 +42,17 @@ const AttachedProfilePage = () => {
           <Stack spacing={2}>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[0] = el)}>
               {/* Start: Personal info */}
-              <PersonalInfoCard title="Amakuru yihariye" />
+              <PersonalInfoCard title="Thông tin cá nhân" />
               {/* End: Personal info  */}
             </Card>
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[1] = el)}>
               {/* Start: General info */}
-              <GeneralInfoCard title="Amakuru rusange" />
+              <GeneralInfoCard title="Thông tin chung" />
               {/* End: General info */}
             </Card> 
             <Card sx={{ p: 2 }} ref={(el) => (refs.current[1] = el)}>
               {/* Start: Cv card */}
-              <CVCard title="Shyiraho CV yawe" />
+              <CVCard title="Tải CV đính kèm" />
               {/* End: Cv card */}
             </Card>
           </Stack>
@@ -78,7 +78,7 @@ const AttachedProfilePage = () => {
             <Card sx={{ p: 2 }}>
               <Stack>
                 <Box>
-                  <Typography variant="h6">Umwirondoro wawe</Typography>
+                  <Typography variant="h6">Hồ sơ đính kèm của bạn</Typography>
                 </Box>
                 <Box>
                   <List

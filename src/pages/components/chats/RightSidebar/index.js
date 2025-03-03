@@ -302,7 +302,7 @@ const EmployerSidebar = () => {
   return (
     <Box>
       <Typography sx={{ fontSize: 14, fontWeight: 700 }}>
-        ABASABA AKAZI
+        ỨNG VIÊN ỨNG TUYỂN
       </Typography>
       <Box p={2} sx={{ height: '85vh', overflowY: 'auto' }}>
         {isLoading ? (
@@ -313,7 +313,7 @@ const EmployerSidebar = () => {
           </Stack>
         ) : jobPostsApplied.length === 0 ? (
           <Box py={5}>
-            <Empty description="Nta muntu urasaba aka kazi" />
+            <Empty description="Chưa có ứng viên nào ứng tuyển" />
           </Box>
         ) : (
           <Stack spacing={2}>
@@ -368,7 +368,7 @@ const EmployerSidebar = () => {
                 </Stack>
                 <Box>
                   <Chip
-                    label="Ohereza ubutumwa"
+                    label="Nhắn tin"
                     color="success"
                     variant="outlined"
                     onClick={() =>
@@ -404,9 +404,8 @@ const EmployerSidebar = () => {
       </Stack>
     </Box>
   );
-  };
-  
-  RightSidebar.Employer = EmployerSidebar;
-  
-  export default RightSidebar;
-  
+};
+
+RightSidebar.Employer = EmployerSidebar;
+
+export default RightSidebar;

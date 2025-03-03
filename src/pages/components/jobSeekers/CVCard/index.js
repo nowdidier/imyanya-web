@@ -47,7 +47,7 @@ const CVCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Gutanga Ifishi byagenze neza.');
+        toastMessages.success('Upload File thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -81,9 +81,9 @@ const CVCard = ({ title }) => {
         <Divider sx={{ mt: 2, mb: 3 }} />
         <Box sx={{ px: 1 }}>
           {isLoadingCv ? (
-            <h1>Birimo Bikorwa</h1>
+            <h1>Loading</h1>
           ) : cv === null ? (
-            <h1>Cv ntiriho</h1>
+            <h1>Cv null</h1>
           ) : (
             <Stack spacing={4}>
               <Box>
@@ -94,19 +94,19 @@ const CVCard = ({ title }) => {
         </Box>
       </Stack>
 
-      {/* Itangiriro: ifishi */}
+      {/* Start: form  */}
       <FormPopup
-        title="Hindura CV"
+        title="Cập nhật CV"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
         <CVForm handleUpdate={handleUpdate} />
       </FormPopup>
-      {/* Irangiza: ifishi */}
+      {/* End: form */}
 
-      {/* Itangiriro: guhindura umwanya wose */}
+      {/* Start: full screen loading */}
       {isFullScreenLoading && <BackdropLoading />}
-      {/* Irangiza: guhindura umwanya wose */}
+      {/* End: full screen loading */}
     </>
   );
 };

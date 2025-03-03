@@ -44,7 +44,7 @@ const DefaultLayout = () => {
             xl: 5,
           },
           color: 'white',
-          bgcolor: '#182642',
+          bgcolor: '#441da0',
         }}
       >
         <Footer />

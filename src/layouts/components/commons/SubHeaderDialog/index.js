@@ -32,8 +32,7 @@ const DesktopContent = (setOpen, careers, handleFilter) => {
           <CloseIcon />
         </IconButton>
         <Typography variant="h6" component="div">
-          Urutonde rw’imirimo yose
-
+          Danh sách tất cả nghề nghiệp
         </Typography>
       </Stack>
       <Box>
@@ -54,7 +53,7 @@ const DesktopContent = (setOpen, careers, handleFilter) => {
               }}
             >
               <Stack>
-                <Typography variant="h6">Imirimo 10 yambere</Typography>
+                <Typography variant="h6">Top 10 nghề nghiệp</Typography>
                 <Divider sx={{ my: 2 }} />
                 <Grid container spacing={2}>
                   {careers
@@ -65,7 +64,7 @@ const DesktopContent = (setOpen, careers, handleFilter) => {
                           sx={{
                             cursor: 'pointer',
                             '&:hover': {
-                              color: '#00B2A3',
+                              color: '#fca34d',
                               fontWeight: 'bold',
                             },
                           }}
@@ -81,7 +80,7 @@ const DesktopContent = (setOpen, careers, handleFilter) => {
           </Grid>
           <Grid item sm={7} md={9}>
             <Stack sx={{ p: 2 }}>
-              <Typography variant="h6">Imirimo itandukanye</Typography>
+              <Typography variant="h6">Ngành nghề khác</Typography>
               <Divider sx={{ my: 2 }} />
               <Grid container spacing={2}>
                 {careers
@@ -100,7 +99,7 @@ const DesktopContent = (setOpen, careers, handleFilter) => {
                         sx={{
                           cursor: 'pointer',
                           '&:hover': {
-                            color: '#00B2A3',
+                            color: '#fca34d',
                             fontWeight: 'bold',
                           },
                         }}
@@ -133,8 +132,7 @@ const MobileContent = (setOpen, careers, handleFilter) => {
           <CloseIcon />
         </IconButton>
         <Typography variant="h6" component="div">
-          Urutonde rw’imirimo yose
-
+          Danh sách tất cả nghề nghiệp
         </Typography>
       </Stack>
 
@@ -146,7 +144,7 @@ const MobileContent = (setOpen, careers, handleFilter) => {
                 sx={{
                   cursor: 'pointer',
                   '&:hover': {
-                    color: '#00B2A3',
+                    color: '#fca34d',
                     fontWeight: 'bold',
                   },
                 }}

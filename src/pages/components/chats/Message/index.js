@@ -18,7 +18,7 @@ const Message = ({ userId, text, avatarUrl, createdAt }) => {
             <p
               className="small p-2 me-3 mb-1 text-white"
               style={{
-                backgroundColor: '#182642',
+                backgroundColor: '#441da0',
                 borderTopLeftRadius: 6,
                 borderTopRightRadius: 6,
                 borderBottomLeftRadius: 6,
@@ -29,7 +29,7 @@ const Message = ({ userId, text, avatarUrl, createdAt }) => {
             <p className="small me-3 mb-3 rounded-3 text-muted">
               {createdAt?.seconds
                 ? formatMessageDate(createdAt?.seconds * 1000)
-                : 'Kohereza ...'}
+                : 'Đang gửi ...'}
             </p>
           </div>
           <img
@@ -75,7 +75,7 @@ const Message = ({ userId, text, avatarUrl, createdAt }) => {
             <p className="small ms-3 mb-3 rounded-3 text-muted float-end">
               {createdAt?.seconds
                 ? formatMessageDate(createdAt?.seconds * 1000)
-                : 'Kohereza ...'}
+                : 'Đang gửi ...'}
             </p>
           </div>
         </div>

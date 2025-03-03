@@ -8,7 +8,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 
 const DropzoneDialogCustom = (props) => {
-  const { open, setOpen, handleUpload, title = 'Igitekerezo' } = props;
+  const { open, setOpen, handleUpload, title = 'Tiêu đề' } = props;
 
   const dialogTitle = (title) => (
     <>
@@ -25,8 +25,8 @@ const DropzoneDialogCustom = (props) => {
     <DropzoneDialog
       dialogTitle={dialogTitle(title)}
       acceptedFiles={['image/*']}
-      submitButtonText="Emeza"
-      cancelButtonText="Siba"
+      submitButtonText="Tải lên"
+      cancelButtonText="Hủy"
       maxFileSize={5000000}
       open={open}
       onClose={() => setOpen(false)}
@@ -37,15 +37,15 @@ const DropzoneDialogCustom = (props) => {
       }}
       showPreviews={true}
       showFileNamesInPreview={false}
-      dropzoneText="Kuvugurura akarango hano cyangwa gukomeza"
-      previewText="Ikimenyetso"
+      dropzoneText="Kéo và thả tệp vào đây hoặc nhấp vào"
+      previewText="Xem trước"
       getFileLimitExceedMessage={(number) =>
-        `Igikomezo cyo kuvugurura ni ${number} cyarangiye.`
+        `Giới hạn tải lên là ${number} tệp.`
       }
       getFileAddedMessage={(fileName) =>
-        `Igikorwa cyo kuvugurura têri ${fileName} cyakozwe neza.`
+        `Tệp ${fileName} đã được thêm thành công.`
       }
-      getFileRemovedMessage={(fileName) => `Igikorwa cyo kuvugurura têri ${fileName} cyakozwe`}
+      getFileRemovedMessage={(fileName) => `Tệp ${fileName} đã được hủy`}
       {...props}
     />
   );

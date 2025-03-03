@@ -73,7 +73,7 @@ const item = (title, value) => {
       <Typography sx={{textAlign: 'justify'}}>
         {value || (
            <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-           Ntibyavuguruwe
+           Chưa cập nhật
          </span>
         )}
       </Typography>
@@ -115,7 +115,7 @@ const GeneralInfoCard = ({ title }) => {
 
         setIsSuccess(!isSuccess);
         setOpenPopup(false);
-        toastMessages.success('Guhindura amakuru y\'umwirondoro byagenze neza.');
+        toastMessages.success('Cập nhật thông tin hồ sơ thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -133,7 +133,7 @@ const GeneralInfoCard = ({ title }) => {
           {isLoadingResumeDetail ? (
             Loading
           ) : resumeDetail === null ? (
-            <h1>Amakuru y'umwirondoro ntayari</h1>
+            <h1>PRofile detail null</h1>
           ) : (
             <>
               <Box>
@@ -157,26 +157,26 @@ const GeneralInfoCard = ({ title }) => {
               <Box sx={{ px: 1 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    {item('Intego z\'umwuga', resumeDetail?.description)}
+                    {item('Mục tiêu nghề nghiệp', resumeDetail?.description)}
                     <Divider sx={{ pt: 2, pb: 2 }} />
                   </Grid>
                   <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
                     <Stack spacing={2}>
-                      {item('Umwanya wifuzwa', resumeDetail?.title)}
+                      {item('Vị trí mong muốn', resumeDetail?.title)}
                       {item(
-                        'Urwego rwifuzwa',
+                        'Cấp bậc mong muốn',
                         allConfig.positionDict[resumeDetail?.position]
                       )}
                       {item(
-                        'Urwego rw\'amashuri',
+                        'Trình độ học vấn',
                         allConfig.academicLevelDict[resumeDetail?.academicLevel]
                       )}
                       {item(
-                        'Ubunararibonye mu kazi',
+                        'Kinh nghiệm',
                         allConfig.experienceDict[resumeDetail?.experience]
                       )}
                       {item(
-                        'Uburyo bw\'umwuga',
+                        'Nghề nghiệp',
                         allConfig.careerDict[resumeDetail?.career]
                       )}
                     </Stack>
@@ -184,24 +184,24 @@ const GeneralInfoCard = ({ title }) => {
                   <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
                     <Stack spacing={2}>
                       {item(
-                        'Aho ukorera',
+                        'Địa điểm làm việc',
                         allConfig.cityDict[resumeDetail?.city]
                       )}
                       {item(
-                        'Umushahara wifuzwa',
+                        'Mức lương mong muốn',
                         salaryString(
                           resumeDetail?.salaryMin,
                           resumeDetail?.salaryMax
                         )
                       )}
                       {item(
-                        'Naho ukorera',
+                        'Nơi làm việc',
                         allConfig.typeOfWorkplaceDict[
                           resumeDetail?.typeOfWorkplace
                         ]
                       )}
                       {item(
-                        'Ubwoko bw\'akazi',
+                        'Hình thức làm việc',
                         allConfig.jobTypeDict[resumeDetail?.jobType]
                       )}
                     </Stack>
@@ -215,7 +215,7 @@ const GeneralInfoCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Amakuru y'umwirondoro"
+        title="Thông tin hồ sơ"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

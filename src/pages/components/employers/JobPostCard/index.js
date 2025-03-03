@@ -32,49 +32,49 @@ const headCells = [
     showOrder: true,
     numeric: false,
     disablePadding: true,
-    label: 'Izina ry\'Itangazo ry\'Akazi',
+    label: 'Tên tin đăng',
   },
   {
     id: 'createAt',
     showOrder: true,
     numeric: false,
     disablePadding: false,
-    label: 'Itariki yo Gutangaza',
+    label: 'Ngày đăng',
   },
   {
     id: 'deadline',
     showOrder: true,
     numeric: false,
     disablePadding: false,
-    label: 'Itariki ntarengwa yo Gupiganwa',
+    label: 'Thời hạn nộp',
   },
   {
     id: 'appliedTotal',
     showOrder: true,
     numeric: false,
     disablePadding: false,
-    label: 'Umubare w\'Abapiganwe',
+    label: 'Lượt nộp',
   },
   {
     id: 'viewedTotal',
     showOrder: true,
     numeric: false,
     disablePadding: false,
-    label: 'Umubare w\'Abarebye',
+    label: 'Lượt xem',
   },
   {
     id: 'isVerify',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Imimerere',
+    label: 'Trạng thái',
   },
   {
     id: 'action',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Igikorwa',
+    label: 'Hành động',
   },
 ];
 
@@ -186,91 +186,90 @@ const JobPostCard = () => {
       benefitsEnjoyed: convertEditorStateToHTMLString(data.benefitsEnjoyed),
     };
 
-const create = async (data) => {
-  setIsFullScreenLoading(true);
-  try {
-    await jobService.addJobPost(data);
+    const create = async (data) => {
+      setIsFullScreenLoading(true);
+      try {
+        await jobService.addJobPost(data);
 
-    setOpenPopup(false);
-    setIsSuccess(!isSuccess);
-    toastMessages.success('Gutangaza akazi bishya byagenze neza.');
-  } catch (error) {
-    errorHandling(error, setServerErrors);
-  } finally {
-    setIsFullScreenLoading(false);
-  }
-};
+        setOpenPopup(false);
+        setIsSuccess(!isSuccess);
+        toastMessages.success('Thêm mới tin tuyển dụng thành công.');
+      } catch (error) {
+        errorHandling(error, setServerErrors);
+      } finally {
+        setIsFullScreenLoading(false);
+      }
+    };
 
-const update = async (data) => {
-  setIsFullScreenLoading(true);
-  try {
-    await jobService.updateJobPostById(data.id, data);
-    setOpenPopup(false);
-    setIsSuccess(!isSuccess);
-    toastMessages.success('Guvugurura itangazo ry\'akazi byagenze neza.');
-  } catch (error) {
-    errorHandling(error);
-  } finally {
-    setIsFullScreenLoading(false);
-  }
-};
+    const update = async (data) => {
+      setIsFullScreenLoading(true);
+      try {
+        await jobService.updateJobPostById(data.id, data);
+        setOpenPopup(false);
+        setIsSuccess(!isSuccess);
+        toastMessages.success('Cập nhật tin tuyển dụng thành công.');
+      } catch (error) {
+        errorHandling(error);
+      } finally {
+        setIsFullScreenLoading(false);
+      }
+    };
 
-if ('id' in data) {
-  // update
-  update(dataCustom);
-} else {
-  // create
-  create(dataCustom);
-}
-};
-
-const handleDeleteJobPost = (id) => {
-  const del = async (id) => {
-    try {
-      await jobService.deleteJobPostById(id);
-      setIsSuccess(!isSuccess);
-      toastMessages.success('Gusiba itangazo ry\'akazi byagenze neza.');
-    } catch (error) {
-      errorHandling(error);
-    } finally {
-      setIsFullScreenLoading(false);
+    if ('id' in data) {
+      // update
+      update(dataCustom);
+    } else {
+      // create
+      create(dataCustom);
     }
   };
 
-  confirmModal(
-    () => del(id),
-    'Gusiba itangazo ry\'akazi',
-    'Itangazo ry\'akazi rizasibwa burundu kandi ntirishobora kugarurwa. Ufite ubwizigame?',
-    'warning'
-  );
-};
+  const handleDeleteJobPost = (id) => {
+    const del = async (id) => {
+      try {
+        await jobService.deleteJobPostById(id);
+        setIsSuccess(!isSuccess);
+        toastMessages.success('Xóa tin tuyển dụng thành công.');
+      } catch (error) {
+        errorHandling(error);
+      } finally {
+        setIsFullScreenLoading(false);
+      }
+    };
 
-const handleFilter = (data) => {
-  setFilterData({
-    ...data,
-    isUrgent: data.isUrgent === 1 ? true : data.isUrgent === 2 ? false : '',
-    pageSize: pageSize,
-  });
-  setPage(0);
-};
-
-const handleExport = () => {
-  const exportJobPosts = async (params) => {
-    setIsFullScreenLoading(true);
-
-    try {
-      const resData = await jobService.exportEmployerJobPosts(params);
-      const data = resData.data;
-
-      // export
-      xlsxUtils.exportToXLSX(data, 'DanhSachViecLam');
-    } catch (error) {
-      errorHandling(error);
-    } finally {
-      setIsFullScreenLoading(false);
-    }
+    confirmModal(
+      () => del(id),
+      'Xóa tin tuyển dụng',
+      'Tin tuyển dụng này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
+      'warning'
+    );
   };
 
+  const handleFilter = (data) => {
+    setFilterData({
+      ...data,
+      isUrgent: data.isUrgent === 1 ? true : data.isUrgent === 2 ? false : '',
+      pageSize: pageSize,
+    });
+    setPage(0);
+  };
+
+  const handleExport = () => {
+    const exportJobPosts = async (params) => {
+      setIsFullScreenLoading(true);
+
+      try {
+        const resData = await jobService.exportEmployerJobPosts(params);
+        const data = resData.data;
+
+        // export
+        xlsxUtils.exportToXLSX(data, 'DanhSachViecLam');
+      } catch (error) {
+        errorHandling(error);
+      } finally {
+        setIsFullScreenLoading(false);
+      }
+    };
 
     exportJobPosts({
       page: page + 1,
@@ -294,7 +293,7 @@ const handleExport = () => {
         spacing={2}
       >
         <Box>
-          <Typography variant="subtitle2">Igikoresho cyo gushungura: </Typography>
+          <Typography variant="subtitle2">Bộ lọc: </Typography>
         </Box>
         <Box flex={1}>
           {/* Start: JobPostFilterForm */}
@@ -309,7 +308,7 @@ const handleExport = () => {
           startIcon={<FileDownloadOutlinedIcon />}
           onClick={handleExport}
         >
-          Vanaho urutonde
+          Tải danh sách
         </Button>
         <Button
           variant="contained"
@@ -317,7 +316,7 @@ const handleExport = () => {
           startIcon={<AddIcon />}
           onClick={handleShowAdd}
         >
-          Tanga itangazo rishya
+          Tạo tin mới
         </Button>
       </Stack>
       {isLoadingJobPost ? <LinearProgress color="primary" /> : <Divider />}
@@ -337,10 +336,10 @@ const handleExport = () => {
         handleUpdate={handleShowUpdate}
       />
       {/* <DataTableCustom.Loading /> */}
-  
+
       {/* Start: form  */}
       <FormPopup
-        title="Itangazo ry'akazi"
+        title="Tin tuyển dụng"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
@@ -351,13 +350,12 @@ const handleExport = () => {
         />
       </FormPopup>
       {/* End: form */}
-  
+
       {/* Start: full screen loading */}
       {isFullScreenLoading && <BackdropLoading />}
       {/* End: full screen loading */}
     </>
   );
-  };
-  
-  export default JobPostCard;
-  
+};
+
+export default JobPostCard;

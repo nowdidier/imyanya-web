@@ -28,11 +28,11 @@ const Feedback = () => {
   const [isFullScreenLoading, setIsFullScreenLoading] = React.useState(false);
 
   const schema = yup.object().shape({
-    rating: yup.number().required('Gutanga amanota ni itegeko.'),
+    rating: yup.number().required('Đánh giá là bắt buộc.'),
     content: yup
       .string()
-      .required('Ibirimo byo gutanga amanota ni itegeko.')
-      .max(500, 'Ibirimo byo gutanga amanota birenze uburebure bwemewe.'),
+      .required('Nội dung đánh giá là bắt buộc.')
+      .max(500, 'Nội dung đánh giá vượt quá độ dài cho phép.'),
   });
 
   const { control, handleSubmit } = useForm({
@@ -57,7 +57,7 @@ const Feedback = () => {
       try {
         await myjobService.createFeedback(data);
         handleClose();
-        toastMessages.success('Kohereza ibitekerezo byagenze neza.');
+        toastMessages.success('Gửi phản hồi thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -85,7 +85,7 @@ const Feedback = () => {
         }}
         startIcon={<SentimentVerySatisfiedIcon />}
       >
-        Ibitekerezo
+        Phản hồi
       </Button>
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
         <DialogTitle>
@@ -94,7 +94,7 @@ const Feedback = () => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography variant="h5">Ibitekerezo</Typography>
+            <Typography variant="h5">Phản hồi</Typography>
             <IconButton color="error" onClick={handleClose}>
               <CloseIcon />
             </IconButton>
@@ -108,7 +108,7 @@ const Feedback = () => {
             <Grid item xs={12}>
               <MultilineTextFieldCustom
                 name="content"
-                placeholder="Andika ibirimo byo gutanga amanota hano"
+                placeholder="Nhập nội dung đánh giá tại đây"
                 control={control}
                 minRows={7}
                 maxRows={30}
@@ -123,7 +123,7 @@ const Feedback = () => {
             color="primary"
             sx={{ margin: '0 auto' }}
           >
-            Kohereza
+            Gửi
           </Button>
         </DialogActions>
       </Dialog>

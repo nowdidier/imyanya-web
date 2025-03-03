@@ -52,7 +52,7 @@ const CompanyViewedCard = () => {
           </Stack>
         ) : resumesViewed.length === 0 ? (
           <NoDataCard
-            title="Nta mukoresha wigeze areba CV yawe"
+            title="Chưa có nhà tuyển dụng nào xem hồ sơ của bạn"
             imgComponentSgv={<ImageSvg6 />}
           ></NoDataCard>
         ) : (
@@ -69,7 +69,7 @@ const CompanyViewedCard = () => {
                 {value.isSavedResume && (
                   <Chip
                     icon={<CheckIcon />}
-                    label="Yarabitswe"
+                    label="Đã lưu hồ sơ của bạn"
                     size="small"
                     sx={{
                       backgroundColor: 'rgba(47, 161, 51, 0.15)',

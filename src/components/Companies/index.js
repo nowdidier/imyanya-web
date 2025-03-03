@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Grid, Pagination, Stack, Typography } from '@mui/material';
+
 import { ImageSvg4 } from '../../configs/constants';
 import NoDataCard from '../NoDataCard';
 import Company from '../Company';
@@ -18,8 +19,13 @@ const Companies = () => {
     const getCompanies = async () => {
       setIsLoading(true);
       try {
-        const resData = await companyService.getCompanies({ ...companyFilter, page: page, });
+        const resData = await companyService.getCompanies({
+          ...companyFilter,
+          page: page,
+        });
+
         const data = resData.data;
+
         setCount(data.count);
         setCompanies(data?.results || []);
       } catch (error) {
@@ -28,6 +34,7 @@ const Companies = () => {
         setIsLoading(false);
       }
     };
+
     getCompanies();
   }, [companyFilter, page]);
 
@@ -37,13 +44,25 @@ const Companies = () => {
 
   return (
     <>
-      <Stack direction={{ xs: 'column', sm: 'row', md: 'row', lg: 'row', xl: 'row', }} sx={{ py: 3 }} justifyContent="space-between">
+      <Stack
+        direction={{
+          xs: 'column',
+          sm: 'row',
+          md: 'row',
+          lg: 'row',
+          xl: 'row',
+        }}
+        sx={{ py: 3 }}
+        justifyContent="space-between"
+      >
         <Box>
           <Typography variant="h5" gutterBottom>
-            ibigo biza  Imbere (<span style={{ color: 'red', fontWeight: 'bold' }}>{count}</span>)
+            Công Ty Nổi Bật (
+            <span style={{ color: 'red', fontWeight: 'bold' }}>{count}</span>)
           </Typography>
         </Box>
       </Stack>
+
       <Stack spacing={2}>
         {isLoading ? (
           <Grid container spacing={2}>
@@ -55,7 +74,7 @@ const Companies = () => {
           </Grid>
         ) : companies.length === 0 ? (
           <NoDataCard
-            title="Ntibyagaragara ko hari ikigo kiri guhuza nibyo washatse nawe"
+            title="Hiện chưa tìm công ty phù hợp với tiêu chí của bạn"
             imgComponentSgv={<ImageSvg4 />}
           />
         ) : (

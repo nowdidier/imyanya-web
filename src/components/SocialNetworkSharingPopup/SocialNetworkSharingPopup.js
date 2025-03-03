@@ -42,7 +42,7 @@ const SocialNetworkSharingPopup = (props) => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Typography variant="h5">Share via</Typography>
+          <Typography variant="h5">Chia sẻ qua</Typography>
           <IconButton
             color="error"
             onClick={() => setOpenPopup(false)}

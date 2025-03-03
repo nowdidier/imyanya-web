@@ -58,15 +58,15 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
     if (isAuthenticated) {
       let title = '';
       let text =
-        'Konti iri kwinjira ubu izasohoka. Urabikomeye?';
+        'Tài khoản đang đăng nhập hiện tại sẽ được đăng xuất. Bạn có chắc chắn?';
       let path = '';
       switch (currentUser?.roleName) {
         case ROLES_NAME.JOB_SEEKER:
-          title = 'Injira nk’umukoresha';
+          title = 'Đăng nhập nhà tuyển dụng';
           path = '/dang-nhap-nha-tuyen-dung';
           break;
         case ROLES_NAME.EMPLOYER:
-          title = 'Injira nk’umushakisha akazi';
+          title = 'Đăng nhập ứng viên';
           path = '/dang-nhap-ung-vien';
           break;
         default:
@@ -87,15 +87,15 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
     if (isAuthenticated) {
       let title = '';
       let text =
-        'Konti iri kwinjira ubu izasohoka. Urabikomeye?';
+        'Tài khoản đang đăng nhập hiện tại sẽ được đăng xuất. Bạn có chắc chắn?';
       let path = '';
       switch (currentUser?.roleName) {
         case ROLES_NAME.JOB_SEEKER:
-          title = 'Iyandikishe nk’umukoresha';
+          title = 'Đăng ký tài khoản nhà tuyển dụng';
           path = '/dang-ky-tai-khoan-nha-tuyen-dung';
           break;
         case ROLES_NAME.EMPLOYER:
-          title = 'Iyandikishe nk’umushakisha akazi';
+          title = 'Đăng ký tài khoản ứng viên';
           path = '/dang-ky-tai-khoan-ung-vien';
           break;
         default:
@@ -114,45 +114,45 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
     return currentUser?.roleName === ROLES_NAME.JOB_SEEKER ? (
       <Stack direction="row" alignItems="center">
         <FontAwesomeIcon
-          color="#F3A92C"
+          color="#2c95ff"
           icon={faBriefcase}
           fontSize={25}
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Umukoresha</Typography>
+          <Typography>Nhà tuyển dụng</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            Tangaza ku buntu
+            Đăng tin miễn phí
           </Typography>
         </Stack>
       </Stack>
     ) : currentUser?.roleName === ROLES_NAME.EMPLOYER ? (
       <Stack direction="row" alignItems="center">
         <FontAwesomeIcon
-          color="#F3A92C"
+          color="#2c95ff"
           icon={faUsers}
           fontSize={25}
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Umushakisha akazi</Typography>
+          <Typography>Người tìm việc</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            <FontAwesomeIcon icon={faArrowRight} /> Hindura
+            <FontAwesomeIcon icon={faArrowRight} /> Chuyển
           </Typography>
         </Stack>
       </Stack>
     ) : (
       <Stack direction="row" alignItems="center">
         <FontAwesomeIcon
-          color="#F3A92C"
+          color="#2c95ff"
           icon={faBriefcase}
           fontSize={25}
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Umukoresha</Typography>
+          <Typography>Nhà tuyển dụng</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            Tangaza ku buntu
+            Đăng tin miễn phí
           </Typography>
         </Stack>
       </Stack>
@@ -172,8 +172,8 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             sx={{ textTransform: 'inherit' }}
           >
             {currentUser?.roleName === ROLES_NAME.EMPLOYER
-              ? 'Injira nk’umushakisha akazi'
-              : 'Injira nk’umukoresha'}
+              ? 'Đăng nhập ứng viên'
+              : 'Đăng nhập NTD'}
           </Button>
           <Button
             variant="outlined"
@@ -184,8 +184,8 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             onClick={handleSignUp}
           >
             {currentUser?.roleName === ROLES_NAME.EMPLOYER
-              ? 'Iyandikishe nk’umushakisha akazi'
-              : 'Iyandikishe nk’umukoresha'}
+              ? 'Đăng ký ứng viên'
+              : 'Đăng ký NTD'}
           </Button>
         </Stack>
       ) : (
@@ -234,7 +234,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
                 onClick={handleLogin}
                 sx={{ color: 'white' }}
               >
-                Injira
+                Đăng nhập
               </Button>
               <Button
                 variant="contained"
@@ -243,7 +243,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
                 sx={{ color: 'white' }}
                 onClick={handleSignUp}
               >
-                Iyandikishe
+                Đăng ký
               </Button>
             </Stack>
           </Menu>{' '}

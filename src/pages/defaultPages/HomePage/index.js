@@ -26,7 +26,7 @@ import FilterJobPostCard from '../../components/defaults/FilterJobPostCard';
 import SuggestedJobPostCard from '../../components/defaults/SuggestedJobPostCard';
 
 export default function HomePage() {
-  TabTitle("Shakisha akazi vuba, gutoranya neza kuri MyJob")
+  TabTitle("Tìm việc nhanh, tuyển dụng hiệu quả tại MyJob")
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
   const nav = useNavigate()
 
@@ -35,7 +35,7 @@ export default function HomePage() {
       <Box sx={{ mt: 6 }}>
         {/*Start: Top cong ty */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          Ibigo by'ingenzi
+          Các công ty nổi bậc
         </Typography>
         <TopCompanyCarousel />
         {/*End: Top cong ty */}
@@ -52,7 +52,7 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: 'white' }}>
-                Akazi k'ingenzi
+                Việc làm tuyển gấp
               </Typography>
             }
             sx={{
@@ -76,7 +76,7 @@ export default function HomePage() {
       <Box sx={{ mt: 10 }}>
         {/* Start: Cac nganh nghe */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          Imirimo y'ingenzi
+          Ngành nghề trọng điểm
         </Typography>
         <CareerCarousel />
         {/* End: Cac nganh nghe */}
@@ -94,7 +94,7 @@ export default function HomePage() {
               }
               title={
                 <Typography variant="h5" sx={{ color: '#441da0' }}>
-                  Akazi gashishikaje
+                  Việc làm gợi ý
                 </Typography>
               }
               sx={{
@@ -139,7 +139,7 @@ export default function HomePage() {
         >
           <Box>
             <Typography fontSize={32} fontWeight="bold" color="white">
-              Ukeneye akazi kagukwiriye?
+              Cần tìm việc làm phù hợp cho bạn?
             </Typography>
           </Box>
           <Box>
@@ -150,7 +150,7 @@ export default function HomePage() {
               startIcon={<SearchIcon />}
               onClick={() => nav('/viec-lam')}
             >
-              Tangira gusuzuma
+              Bắt đầu khám phá
             </Button>
           </Box>
         </Stack>
@@ -167,7 +167,7 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: 'white' }}>
-                {`Akazi muri ${HOME_FILTER_CAREER[0].name}`}
+                {`Việc làm ngành ${HOME_FILTER_CAREER[0].name}`}
               </Typography>
             }
             sx={{
@@ -199,7 +199,7 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: 'white' }}>
-                {`Akazi muri ${HOME_FILTER_CAREER[1].name}`}
+                {`Việc làm ngành ${HOME_FILTER_CAREER[1].name}`}
               </Typography>
             }
             sx={{
@@ -223,7 +223,7 @@ export default function HomePage() {
       <Box sx={{ mt: 10 }}>
         {/* Start: Feedback */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          Abakoresha batanga ibitekerezo
+          Người dùng đánh giá
         </Typography>
         <FeedbackCarousel />
         {/* End: Feedback */}

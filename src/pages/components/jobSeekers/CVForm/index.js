@@ -12,7 +12,7 @@ const CVForm = ({ handleUpdate }) => {
       .mixed()
       .test(
         'files empty',
-        'Ifishi irakenewe.',
+        'Tập tin là bắt buộc.',
         (value) =>
           !(
             value === undefined ||
@@ -34,7 +34,7 @@ const CVForm = ({ handleUpdate }) => {
           <BasicDropzone
             control={control}
             name="files"
-            title="Hitamo ifishi yawe ya CV"
+            title="Chọn tệp CV của bạn"
             showRequired={true}
           />
         </Grid>

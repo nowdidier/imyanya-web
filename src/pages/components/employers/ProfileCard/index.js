@@ -71,7 +71,7 @@ const ProfileCard = () => {
 
         setResumes(resumesNew);
         toastMessages.success(
-          isSaved ? 'Kubika byagenze neza.' : 'Guhagarika kubika byagenze neza.'
+          isSaved ? 'Lưu thành công.' : 'Hủy lưu thành công.'
         );
       } catch (error) {
         errorHandling(error);
@@ -95,8 +95,8 @@ const ProfileCard = () => {
                 variant="body1"
                 sx={{ fontSize: 18, fontWeight: 'bold' }}
               >
-                Ibisubizo byabonetse:{' '}
-                <span style={{ color: 'red' }}>{count} uburambe</span>
+                Kết quả tìm thấy:{' '}
+                <span style={{ color: 'red' }}>{count} hồ sơ</span>
               </Typography>
             </Box>
             <Box sx={{ mt: 2 }}>
@@ -120,7 +120,7 @@ const ProfileCard = () => {
                 </Box>
               ) : resumes.length === 0 ? (
                 <NoDataCard
-                  title="Nta bisubizo byabonetse."
+                  title="Không tìm thấy kết quả."
                   imgComponentSgv={<ImageSvg11 />}
                 />
               ) : (

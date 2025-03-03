@@ -30,7 +30,7 @@ const HomeSearch = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSaveKeywordLocalStorage = (kw) => {
+  const handleSaveKeyworLocalStorage = (kw) => {
     try {
       if (kw) {
         const keywordListStr = localStorage.getItem('myjob_search_history');
@@ -63,15 +63,15 @@ const HomeSearch = () => {
         }
       }
     } catch (error) {
-      console.error('Ikosa ryo kubika kw muri local storage: ', error);
+      console.error('Loi khi set kw vao local storage: ', error);
     }
   };
 
   const handleFilter = (data) => {
-    handleSaveKeywordLocalStorage(data?.kw);
+    handleSaveKeyworLocalStorage(data?.kw);
 
     dispatch(searchJobPost(data));
-    nav('/akazi');
+    nav('/viec-lam');
   };
 
   return (
@@ -89,7 +89,7 @@ const HomeSearch = () => {
             <InputBaseSearchHomeCustom
               name="kw"
               control={control}
-              placeholder="Shakisha amahirwe y'akazi"
+              placeholder="Tìm kiếm cơ hội việc làm"
               showSubmitButton={true}
               location='HOME'
             />
@@ -97,7 +97,7 @@ const HomeSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <SingleSelectSearchCustom
               name="careerId"
-              placeholder="Imyuga yose"
+              placeholder="Tất cả ngành nghề"
               control={control}
               options={allConfig?.careerOptions || []}
             />
@@ -105,7 +105,7 @@ const HomeSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <SingleSelectSearchCustom
               name="cityId"
-              placeholder="Intara zose"
+              placeholder="Tất cả tỉnh thành"
               control={control}
               options={allConfig?.cityOptions || []}
             />

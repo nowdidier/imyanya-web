@@ -133,7 +133,7 @@ const ExperienceDetailCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Guhindura akazi byagenze neza.');
+        toastMessages.success('Thêm kinh nghiệm làm việc thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -148,7 +148,7 @@ const ExperienceDetailCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Guhindura akazi byagenze neza.');
+        toastMessages.success('Cập nhật kinh nghiệm làm việc thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -175,7 +175,7 @@ const ExperienceDetailCard = ({ title }) => {
         await expericenDetailService.deleteExperienceDetailById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Gusiba ubunararibonye byagenze neza.');
+        toastMessages.success('Xóa kinh nghiệm làm việc thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -185,8 +185,8 @@ const ExperienceDetailCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Gusiba ubunararibonye',
-      'Ubu bunararibonye buzahanagurwa burundu kandi ntibuzasubizwa. Urabyizeye?',
+      'Xóa kinh nghiệm làm việc',
+      'Kinh nghiệm làm việc này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
       'warning'
     );
   };
@@ -219,7 +219,7 @@ const ExperienceDetailCard = ({ title }) => {
             <Box sx={{ px: 1 }}>
               {experiencesDetail.length === 0 ? (
                 <EmptyCard
-                  content="Ongeraho uburambe bwawe kugira ngo abatanga akazi babone ibyo wamenye."
+                  content="Bạn hãy thêm kinh nghiệm làm việc của mình để nhà tuyển dụng tham khảo"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -244,7 +244,7 @@ const ExperienceDetailCard = ({ title }) => {
                           {value.endDate ? (
                             <Moment format="DD/MM/yyyy">{value.endDate}</Moment>
                           ) : (
-                            'Uyu munsi'
+                            'Hiện tại'
                           )}
                         </Typography>
                         <Typography
@@ -284,14 +284,14 @@ const ExperienceDetailCard = ({ title }) => {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                           >
-                            <Typography color="gray">Ibisobanuro birambuye</Typography>
+                            <Typography color="gray">Mô tả chi tiết</Typography>
                           </AccordionSummary>
                           <AccordionDetails sx={{ p: 0, m: 0 }}>
                             <Typography>
                               {value.description || (
-                                <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
-                                  Ntabwo iravugururwa
-                                </span>
+                                 <span style={{ color: '#e0e0e0', fontStyle: 'italic', fontSize: 13 }}>
+                                 Chưa cập nhật
+                               </span>
                               )}
                             </Typography>
                           </AccordionDetails>
@@ -308,7 +308,7 @@ const ExperienceDetailCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Uburambe mu kazi"
+        title="Kinh nghiệm làm việc"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

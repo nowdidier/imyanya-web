@@ -26,121 +26,121 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
   const schema = yup.object().shape({
     jobName: yup
       .string()
-      .required('Izina ry’akazi ni ngombwa.')
-      .max(200, 'Izina ry’akazi rirenze uburebure bwemewe.'),
+      .required('Tên công việc là bắt buộc.')
+      .max(200, 'Tên công việc vượt quá độ dài cho phép.'),
     career: yup
       .number()
-      .required('Umwuga ni ngombwa.')
-      .typeError('Umwuga ni ngombwa.'),
+      .required('Ngành/nghề là bắt buộc.')
+      .typeError('Ngành/nghề là bắt buộc.'),
     position: yup
       .number()
-      .required('Umwanya w’akazi ni ngombwa.')
-      .typeError('Umwanya w’akazi ni ngombwa.'),
+      .required('Vị trí công việc là bắt buộc.')
+      .typeError('Vị trí công việc là bắt buộc.'),
     experience: yup
       .number()
-      .required('Ubunararibonye ni ngombwa.')
-      .typeError('Ubunararibonye ni ngombwa.'),
+      .required('Kinh nghiệm làm việc là bắt buộc.')
+      .typeError('Kinh nghiệm làm việc là bắt buộc.'),
     typeOfWorkplace: yup
       .number()
-      .required('Aho wakorera ni ngombwa.')
-      .typeError('Aho wakorera ni ngombwa.'),
+      .required('Nơi làm việc là bắt buộc.')
+      .typeError('Nơi làm việc là bắt buộc.'),
     jobType: yup
       .number()
-      .required('Ubwoko bw’akazi ni ngombwa.')
-      .typeError('Ubwoko bw’akazi ni ngombwa.'),
+      .required('Hình thức làm việc là bắt buộc.')
+      .typeError('Hình thức làm việc là bắt buộc.'),
     quantity: yup
       .number()
-      .required('Umubare w’abakozi ni ngombwa.')
-      .typeError('Umubare w’abakozi si ngombwa.')
-      .min(1, 'Umubare w’abakozi byibuze ni umwe.'),
+      .required('Số lượng tuyển là bắt buộc.')
+      .typeError('Số lượng tuyển không hợp lệ.')
+      .min(1, 'Số lượng tuyển ít nhất là một ứng viên.'),
     genderRequired: yup
       .string()
-      .required('Igitsina ni ngombwa.')
-      .typeError('Igitsina ni ngombwa.'),
+      .required('Yêu cầu giới tính là bắt buộc.')
+      .typeError('Yêu cầu giới tính là bắt buộc.'),
     salaryMin: yup
       .number()
-      .required('Umushahara muto ni ngombwa.')
-      .typeError('Umushahara muto si ngombwa.')
-      .min(0, 'Umushahara muto si ngombwa.')
+      .required('Lương tối thiểu là bắt buộc.')
+      .typeError('Lương tối thiểu không hợp lệ.')
+      .min(0, 'Lương tối thiểu không hợp lệ.')
       .test(
         'minimum-wage-comparison',
-        'Umushahara muto ugomba kuba muto kuruta umushahara munini.',
+        'Lương tối thiểu phải nhỏ hơn lương tối đa.',
         function (value) {
           return !(value >= this.parent.salaryMax);
         }
       ),
     salaryMax: yup
       .number()
-      .required('Umushahara munini ni ngombwa.')
-      .typeError('Umushahara munini si ngombwa.')
-      .min(0, 'Umushahara munini si ngombwa.')
+      .required('Lương tối đa là bắt buộc.')
+      .typeError('Lương tối đa không hợp lệ.')
+      .min(0, 'Lương tối đa không hợp lệ.')
       .test(
         'maximum-wage-comparison',
-        'Umushahara munini ugomba kuba munini kuruta umushahara muto.',
+        'Lương tối đa phải lớn hơn lương tối thiểu.',
         function (value) {
           return !(value <= this.parent.salaryMin);
         }
       ),
     academicLevel: yup
       .number()
-      .required('Impamyabumenyi ni ngombwa.')
-      .typeError('Impamyabumenyi ni ngombwa.'),
+      .required('Bằng cấp là bắt buộc.')
+      .typeError('Bằng cấp là bắt buộc.'),
     deadline: yup
       .date()
-      .required('Igihe ntarengwa cyo gusaba ni ngombwa.')
-      .typeError('Igihe ntarengwa cyo gusaba si ngombwa.')
-      .min(new Date() + 1, 'Igihe ntarengwa cyo gusaba kigomba kuba kinini kuruta uyu munsi.'),
+      .required('Hạn nộp hồ sơ là bắt buộc.')
+      .typeError('Hạn nộp hồ sơ không hợp lệ.')
+      .min(new Date() + 1, 'Hạn nộp hồ sơ phải lớn hơn ngày hôm nay.'),
     jobDescription: yup
       .mixed()
-      .test('editorContent', 'Ibisobanuro by’akazi ni ngombwa.', (value) =>
+      .test('editorContent', 'Mô tả công việc là bắt buộc.', (value) =>
         value.getCurrentContent().hasText()
       ),
     jobRequirement: yup
       .mixed()
-      .test('editorContent', 'Ibisabwa ku kazi ni ngombwa.', (value) =>
+      .test('editorContent', 'Yêu cầu công việc là bắt buộc.', (value) =>
         value.getCurrentContent().hasText()
       ),
     benefitsEnjoyed: yup
       .mixed()
-      .test('editorContent', 'Ibyiza ni ngombwa.', (value) =>
+      .test('editorContent', 'Quyền lợi là bắt buộc.', (value) =>
         value.getCurrentContent().hasText()
       ),
     location: yup.object().shape({
       city: yup
         .number()
-        .required('Umujyi ni ngombwa.')
-        .typeError('Umujyi ni ngombwa.'),
+        .required('Tỉnh/Thành phố là bắt buộc.')
+        .typeError('Tỉnh/Thành phố là bắt buộc.'),
       district: yup
         .number()
-        .required('Akarere ni ngombwa.')
-        .typeError('Akarere ni ngombwa.'),
+        .required('Quận/Huyện là bắt buộc.')
+        .typeError('Quận/Huyện là bắt buộc.'),
       address: yup
         .string()
-        .required('Aderesi ni ngombwa.')
-        .max(255, 'Aderesi irenze uburebure bwemewe.'),
+        .required('Địa chỉ là bắt buộc.')
+        .max(255, 'Địa chỉ vượt quá độ dài cho phép.'),
       lat: yup
         .number()
-        .required('Latitude ku ikarita ni ngombwa.')
-        .typeError('Latitude ku ikarita si ngombwa.'),
+        .required('Vĩ độ trên bản đồ là bắt buộc.')
+        .typeError('Vĩ độ trên bản đồ không hợp lệ.'),
       lng: yup
         .number()
-        .required('Longitude ku ikarita ni ngombwa.')
-        .typeError('Longitude ku ikarita si ngombwa.'),
+        .required('Kinh độ trên bản đồ là bắt buộc.')
+        .typeError('Kinh độ trên bản đồ không hợp lệ.'),
     }),
     contactPersonName: yup
       .string()
-      .required('Izina ry’uwo muvugana ni ngombwa.')
-      .max(100, 'Izina ry’uwo muvugana rirenze uburebure bwemewe.'),
+      .required('Tên người liên hệ là bắt buộc.')
+      .max(100, 'Tên người liên hệ vượt quá độ dài cho phép.'),
     contactPersonPhone: yup
       .string()
-      .required('Telefone y’uwo muvugana ni ngombwa.')
-      .matches(REGEX_VATIDATE.phoneRegExp, 'Telefone si ngombwa.')
-      .max(15, 'Telefone y’uwo muvugana rirenze uburebure bwemewe.'),
+      .required('Số điện thoại người liên hệ là bắt buộc.')
+      .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
+      .max(15, 'Số điện thoại người liên hệ vượt quá độ dài cho phép.'),
     contactPersonEmail: yup
       .string()
-      .required('Email y’uwo muvugana ni ngombwa.')
-      .email('Email si ngombwa.')
-      .max(100, 'Email y’uwo muvugana rirenze uburebure bwemewe.'),
+      .required('Email người liên hệ là bắt buộc.')
+      .email('Email không hợp lệ.')
+      .max(100, 'Email người liên hệ vượt quá độ dài cho phép.'),
     isUrgent: yup.boolean().default(false),
   });
 
@@ -230,17 +230,16 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Alert severity="warning">
-            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            Iyo uvuguruye itangazo, rizaba riri mu gihe cyo gusuzumwa!
+            Khi bạn cập nhật bài đăng, nó sẽ ở trạng thái chờ kiểm duyệt!
           </Alert>
         </Grid>
 
         <Grid item xs={12}>
           <TextFieldCustom
             name="jobName"
-            title="Izina ry'akazi"
+            title="Tên công việc"
             showRequired={true}
-            placeholder="Andika izina ry'akazi"
+            placeholder="Nhập tên công việc"
             control={control}
           />
         </Grid>
@@ -249,9 +248,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="career"
             control={control}
             options={allConfig?.careerOptions || []}
-            title="Urwego rw'umwuga"
+            title="Ngành nghề"
             showRequired={true}
-            placeholder="Hitamo urwego rw'umwuga wo gushaka"
+            placeholder="Chọn ngành nghề cần tuyển"
           />
         </Grid>
         <Grid item xs={6}>
@@ -259,9 +258,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="position"
             control={control}
             options={allConfig?.positionOptions || []}
-            title="Umwanya/Inshingano"
+            title="Vị trí/chức vụ"
             showRequired={true}
-            placeholder="Hitamo umwanya/inshingano"
+            placeholder="Chọn vị trí/chức vụ"
           />
         </Grid>
         <Grid item xs={6}>
@@ -269,9 +268,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="experience"
             control={control}
             options={allConfig?.experienceOptions || []}
-            title="Uburambe"
+            title="Kinh nghiệm"
             showRequired={true}
-            placeholder="Hitamo uburambe busabwa"
+            placeholder="Chọn kinh nghiệm yêu cầu"
           />
         </Grid>
         <Grid item xs={6}>
@@ -279,9 +278,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="typeOfWorkplace"
             control={control}
             options={allConfig?.typeOfWorkplaceOptions || []}
-            title="Aho akazi gakorerwa"
+            title="Nơi làm việc"
             showRequired={true}
-            placeholder="Hitamo aho akazi gakorerwa"
+            placeholder="Chọn vị nơi làm việc"
           />
         </Grid>
         <Grid item xs={6}>
@@ -289,17 +288,17 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="jobType"
             control={control}
             options={allConfig?.jobTypeOptions || []}
-            title="Ubwoko bw'akazi"
+            title="Hình thức làm việc"
             showRequired={true}
-            placeholder="Hitamo ubwoko bw'akazi"
+            placeholder="Chọn hình thức làm việc"
           />
         </Grid>
         <Grid item xs={6}>
           <TextFieldCustom
             name="quantity"
-            title="Umubare w'abakozi bashakwa"
+            title="Số lượng tuyển"
             showRequired={true}
-            placeholder="Andika umubare w'abakozi bashakwa"
+            placeholder="Nhập số lượng nhân sự cần tuyển"
             control={control}
             type="number"
           />
@@ -309,17 +308,17 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="genderRequired"
             control={control}
             options={allConfig?.genderOptions || []}
-            title="Ibisabwa ku gitsina"
+            title="Yêu cầu giới tính"
             showRequired={true}
-            placeholder="Hitamo igitsina gisabwa"
+            placeholder="Chọn giới tính yêu cầu"
           />
         </Grid>
         <Grid item xs={6}>
           <TextFieldCustom
             name="salaryMin"
-            title="Umushahara ntarengwa muto"
+            title="Mức lương tối thiểu"
             showRequired={true}
-            placeholder="Andika umushahara ntarengwa muto"
+            placeholder="Nhập mức lương tối thiểu"
             control={control}
             type="number"
           />
@@ -327,9 +326,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
         <Grid item xs={6}>
           <TextFieldCustom
             name="salaryMax"
-            title="Umushahara ntarengwa munini"
+            title="Mức lương tối đa"
             showRequired={true}
-            placeholder="Andika umushahara ntarengwa munini"
+            placeholder="Nhập mức lương tối đa"
             control={control}
             type="number"
           />
@@ -339,9 +338,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="academicLevel"
             control={control}
             options={allConfig?.academicLevelOptions || []}
-            title="Impamyabumenyi"
+            title="Bằng cấp"
             showRequired={true}
-            placeholder="Hitamo impamyabumenyi"
+            placeholder="Chọn bằng cấp"
           />
         </Grid>
         <Grid item xs={6}>
@@ -349,7 +348,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="deadline"
             control={control}
             showRequired={true}
-            title="Igihe ntarengwa cyo gutanga ibyangombwa"
+            title="Hạn nộp hồ sơ"
             minDate={DATE_OPTIONS.tomorrow}
           />
         </Grid>
@@ -357,7 +356,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           <RichTextEditorCustom
             name="jobDescription"
             control={control}
-            title="Ibisobanuro by'akazi"
+            title="Mô tả công việc"
             showRequired={true}
           />
         </Grid>
@@ -365,7 +364,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           <RichTextEditorCustom
             name="jobRequirement"
             control={control}
-            title="Ibisabwa mu kazi"
+            title="Yêu cầu công việc"
             showRequired={true}
           />
         </Grid>
@@ -373,7 +372,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           <RichTextEditorCustom
             name="benefitsEnjoyed"
             control={control}
-            title="Ibyiza by'akazi"
+            title="Quyền lợi"
             showRequired={true}
           />
         </Grid>
@@ -382,9 +381,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="location.city"
             control={control}
             options={allConfig?.cityOptions || []}
-            title="Umujyi/Intara"
+            title="Tỉnh/Thành phố"
             showRequired={true}
-            placeholder="Hitamo umujyi/intara"
+            placeholder="Chọn tỉnh thành phố"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -392,17 +391,17 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="location.district"
             control={control}
             options={districtOptions}
-            title="Akarere/Sekiteri"
+            title="Quận/Huyện"
             showRequired={true}
-            placeholder="Hitamo akarere/sekiteri"
+            placeholder="Chọn Quận/Huyện"
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldAutoCompleteCustom
             name="location.address"
-            title="Adiresi"
+            title="Địa chỉ"
             showRequired={true}
-            placeholder="Andika adiresi"
+            placeholder="Nhập địa chỉ"
             control={control}
             options={locationOptions}
             loading={true}
@@ -412,10 +411,10 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <TextFieldCustom
             name="location.lat"
-            title="Latitude"
+            title="Vĩ độ"
             showRequired={true}
-            placeholder="Andika latitude y'aho ikigo giherereye ku ikarita."
-            helperText="Birazuzuzwa byikora iyo uhise uhitemo adiresi yatanzwe."
+            placeholder="Nhập vĩ độ tọa độ trên bản đồ của công ty."
+            helperText="Tự động điền nếu bạn chọn địa chỉ được gợi ý."
             control={control}
             type="number"
           />
@@ -423,10 +422,10 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <TextFieldCustom
             name="location.lng"
-            title="Longitude"
+            title="Kinh độ"
             showRequired={true}
-            placeholder="Andika longitude y'aho ikigo giherereye ku ikarita."
-            helperText="Birazuzuzwa byikora iyo uhise uhitemo adiresi yatanzwe."
+            placeholder="Nhập kinh độ tọa độ trên bản đồ của công ty."
+            helperText="Tự động điền nếu bạn chọn địa chỉ được gợi ý."
             control={control}
             type="number"
           />
@@ -434,32 +433,32 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="contactPersonName"
-            title="Izina ry'umuntu wo guhamagara"
+            title="Tên người liên hệ"
             showRequired={true}
-            placeholder="Andika izina ry'umuntu wo guhamagara"
+            placeholder="Nhập tên người liên hệ"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="contactPersonPhone"
-            title="Telefoni y'umuntu wo guhamagara"
+            title="Số điện thoại người liên hệ"
             showRequired={true}
-            placeholder="Andika telefoni y'umuntu wo guhamagara"
+            placeholder="Nhập số điện thoại người liên hệ"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="contactPersonEmail"
-            title="Imeli y'umuntu wo guhamagara"
+            title="Email người liên hệ"
             showRequired={true}
-            placeholder="Andika imeli y'umuntu wo guhamagara"
+            placeholder="Nhập email người liên hệ"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
-          <CheckboxCustom name="isUrgent" control={control} title="Akazi kihutirwa" />
+          <CheckboxCustom name="isUrgent" control={control} title="Tuyển gấp" />
         </Grid>
       </Grid>
     </form>

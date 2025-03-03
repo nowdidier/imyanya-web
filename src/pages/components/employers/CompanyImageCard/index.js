@@ -52,7 +52,7 @@ const CompanyImageCard = () => {
           });
         }
         setFileList([...fileList, ...newResults]);
-        toastMessages.success('Gushyira ifoto kuri interineti byagenze neza.');
+        toastMessages.success('Tải ảnh lên thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -79,7 +79,7 @@ const CompanyImageCard = () => {
           setFileList(newFileList);
         }
 
-        toastMessages.success('Gusiba ifoto byagenze neza.');
+        toastMessages.success('Xóa hình ảnh thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -89,8 +89,8 @@ const CompanyImageCard = () => {
 
     confirmModal(
       () => deleteCompanyImage(file.uid),
-      'Gusiba ifoto',
-      'Iyi foto izasibwa burundu kandi ntishobora kugarurwa. Urabikomeye?',
+      'Xóa hình ảnh',
+      'Hình ảnh này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
       'warning'
     );
   };
@@ -105,7 +105,7 @@ const CompanyImageCard = () => {
 
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
-      const reader =  new FileReader();
+      const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
@@ -121,16 +121,16 @@ const CompanyImageCard = () => {
         onRemove={handleDelete}
         customRequest={handleCustomRequest}
       >
-        {fileList.length < 15 && '+ Gushyira kuri interineti'}
+        {fileList.length < 15 && '+ Tải lên'}
       </Upload>
       <Modal
         zIndex={8000}
         open={previewVisible}
-        title='Kureba ifoto'
+        title="Xem hình ảnh"
         footer={null}
         onCancel={() => setPreviewVisible(false)}
       >
-        <img alt='Kureba' style={{ width: '100%' }} src={previewImage} />
+        <img alt="Preview" style={{ width: '100%' }} src={previewImage} />
       </Modal>
 
       {/* Start: full screen loading */}

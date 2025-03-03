@@ -142,13 +142,13 @@ const LeftDrawer = ({ window, pages, mobileOpen, handleDrawerToggle }) => {
             onClick={() =>
               confirmModal(
                 handleLogout,
-                'Sohora kuri konti',
-                'Uzi neza ko ushaka gusohoka?',
-                'ikibazo'
+                'Đăng xuất tài khoản',
+                'Bạn có chắc chắn muốn đăng xuất?',
+                'question'
               )
             }
           >
-            Gusohoka
+            Đăng xuất
           </Button>
         ) : (
           <>
@@ -167,7 +167,7 @@ const LeftDrawer = ({ window, pages, mobileOpen, handleDrawerToggle }) => {
               }}
               onClick={() => nav('/dang-ky-tai-khoan-ung-vien')}
             >
-              Iyandikishe
+              Đăng ký
             </Button>
           </>
         )}

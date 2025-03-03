@@ -265,8 +265,8 @@ const ChatWindow = () => {
                     subTitle={selectedRoom?.user?.company?.companyName}
                     description={
                       selectedRoom?.createdBy !== `${currentUserChat?.userId}`
-                        ? `${selectedRoom?.user?.company?.companyName} yarakunze kuvugana nawe.`
-                        : `Warakunze kuvugana na ${selectedRoom?.user?.company?.companyName}`
+                        ? `${selectedRoom?.user?.company?.companyName} đã kết nối với bạn.`
+                        : `Bạn đã kết nối đến ${selectedRoom?.user?.company?.companyName}`
                     }
                   />
                 ) : (
@@ -276,8 +276,8 @@ const ChatWindow = () => {
                     subTitle={selectedRoom?.user?.email}
                     description={
                       selectedRoom?.createdBy !== `${currentUserChat?.userId}`
-                        ? `${selectedRoom?.user?.name} yarakunze kuvugana nawe.`
-                        : `Warakunze kuvugana na ${selectedRoom?.user?.name}`
+                        ? `${selectedRoom?.user?.name} đã kết nối với bạn.`
+                        : `Bạn đã kết nối đến ${selectedRoom?.user?.name}`
                     }
                   />
                 )
@@ -341,7 +341,7 @@ const ChatWindow = () => {
                   <TextField
                     inputRef={inputRef}
                     fullWidth
-                    placeholder={'Andika ibikubiye hano ...'}
+                    placeholder={'Nhập nội dung tại đây ...'}
                     defaultValue=""
                     value={inputValue}
                     onChange={handleInputChange}
@@ -358,7 +358,7 @@ const ChatWindow = () => {
                     endIcon={<SendIcon />}
                     type="submit"
                   >
-                    Ohereza
+                    Gửi
                   </Button>
                 </Box>
               </Stack>
@@ -368,14 +368,13 @@ const ChatWindow = () => {
           <Stack justifyContent="center" alignItems="center">
             <Empty
               style={{ marginTop: 150 }}
-              description="Nta kiganiro cyatoranyijwe ..."
+              description="Bạn chưa chọn cuộc trò chuyện nào ..."
             />
           </Stack>
         )}
       </Box>
     </Stack>
   );
-  };
-  
-  export default ChatWindow;
-  
+};
+
+export default ChatWindow;

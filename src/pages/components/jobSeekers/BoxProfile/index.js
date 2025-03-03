@@ -141,7 +141,7 @@ const BoxProfile = ({ title }) => {
         await resumeService.activeResume(resumeSlug);
 
         dispatch(reloadResume());
-        toastMessages.success('Guhindura ahagaragara resume byagenze neza.');
+        toastMessages.success('Thay đổi trạng thái hồ sơ thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -185,7 +185,7 @@ const BoxProfile = ({ title }) => {
                       size="small"
                       icon={<StarIcon color="warning" />}
                       color="success"
-                      label="Bishobora gushakishwa"
+                      label="Cho phép tìm kiếm"
                       onClick={() => handleActive(resume.slug)}
                     />
                   ) : (
@@ -194,12 +194,12 @@ const BoxProfile = ({ title }) => {
                       size="small"
                       icon={<StarOutlineIcon color="warning" />}
                       color="default"
-                      label="Bishobora gushakishwa"
+                      label="Cho phép tìm kiếm"
                       onClick={() => handleActive(resume.slug)}
                     />
                   )}
                   <Tooltip
-                    title={`Gukomeza "Bishobora gushakishwa" bizafasha abakoresha kubona resume yawe kandi bashobora kuguhamagara ku mirimo mishya. Ni imwe gusa resume izakomeza "Bishobora gushakishwa" muri resumes zawe zose.`}
+                    title={`Bật "Cho phép tìm kiếm" sẽ giúp nhà tuyển dụng tìm thấy hồ sơ của bạn và họ có thể liên hệ với bạn về công việc mới. Chỉ có duy nhất một hồ được bật trạng thái "cho phép tìm kiếm" trong tất cả hồ sơ của bạn.`}
                     arrow
                   >
                     <HelpIcon color="disabled" />
@@ -216,7 +216,7 @@ const BoxProfile = ({ title }) => {
                       size="small"
                       icon={<DownloadIcon />}
                       color="secondary"
-                      label="Kuramo"
+                      label="Tải xuống"
                       onClick={() => {}}
                     />
                   )}
@@ -277,7 +277,7 @@ const BoxProfile = ({ title }) => {
                             fontSize: 13,
                           }}
                         >
-                          Ntabwo iravugururwa
+                          Chưa cập nhật
                         </span>
                       )}
                     </Typography>
@@ -328,7 +328,7 @@ const BoxProfile = ({ title }) => {
                               fontSize: 13,
                             }}
                           >
-                            Ntabwo iravugururwa
+                            Chưa cập nhật
                           </span>
                         )}
                       </Typography>
@@ -340,7 +340,7 @@ const BoxProfile = ({ title }) => {
                         icon={faMagicWandSparkles}
                         style={{ marginRight: 10 }}
                       />
-                      Ubumenyi:{' '}
+                      Kinh nghiệm:{' '}
                       <span
                         style={{
                           color:
@@ -358,7 +358,7 @@ const BoxProfile = ({ title }) => {
                               fontSize: 13,
                             }}
                           >
-                            Ntabwo iravugururwa
+                            Chưa cập nhật
                           </span>
                         )}
                       </span>
@@ -370,7 +370,7 @@ const BoxProfile = ({ title }) => {
                         icon={faUser}
                         style={{ marginRight: 10 }}
                       />
-                      Umwanya:{' '}
+                      Cấp bậc:{' '}
                       <span
                         style={{
                           color:
@@ -388,7 +388,7 @@ const BoxProfile = ({ title }) => {
                               fontSize: 13,
                             }}
                           >
-                            Ntabwo iravugururwa
+                            Chưa cập nhật
                           </span>
                         )}
                       </span>
@@ -400,7 +400,7 @@ const BoxProfile = ({ title }) => {
                         icon={faDollarSign}
                         style={{ marginRight: 10 }}
                       />
-                      Umushahara wifuza:{' '}
+                      Mức lương mong muốn:{' '}
                       <span
                         style={{
                           color:
@@ -420,7 +420,7 @@ const BoxProfile = ({ title }) => {
                         icon={faCalendar}
                         style={{ marginRight: 10 }}
                       />
-                      Itariki yo kuvugurura:{' '}
+                      Ngày cập nhật:{' '}
                       <span
                         style={{
                           color:
@@ -443,7 +443,8 @@ const BoxProfile = ({ title }) => {
                     style={{ marginRight: 5 }}
                     color="gray"
                   />
-                  Nyamuneka ongeraho amakuru yose akenewe kugirango urangize resume yawe.
+                  Vui lòng thêm tất cả các thông tin cần thiết để hoàn thành hồ
+                  sơ của bạn.
                 </Typography>
               </Grid>
               <Grid item xs={12}>
@@ -456,7 +457,7 @@ const BoxProfile = ({ title }) => {
                       nav(`/ung-vien/ho-so-tung-buoc/${resume.slug}`)
                     }
                   >
-                    Hindura resume
+                    Chỉnh sửa hồ sơ
                   </Button>
                 </Stack>
               </Grid>

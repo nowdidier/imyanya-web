@@ -17,7 +17,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import toastMessages from '../../../utils/toastMessages';
 
 const ResetPasswordPage = () => {
-  TabTitle("Hindura ijambo ry'ibanga")
+  TabTitle("Cập nhật mật khẩu")
 
   const { token } = useParams();
   const nav = useNavigate();
@@ -34,7 +34,7 @@ const ResetPasswordPage = () => {
         const redirectLoginUrl = resData.data?.redirectLoginUrl;
 
         nav(
-          `${redirectLoginUrl}/?successMessage=Hindura ijambo ry'ibanga ryagenze neza.`
+          `${redirectLoginUrl}/?successMessage=Cập nhật mật khẩu thành công.`
         );
       } catch (error) {
         const res = error.response;
@@ -49,7 +49,7 @@ const ResetPasswordPage = () => {
             }
             break;
           default:
-            toastMessages.error('Habaye ikosa, mwongere mugerageze!');
+            toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
         }
       } finally {
         setIsFullScreenLoading(false);
@@ -80,7 +80,7 @@ const ResetPasswordPage = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              Hindura ijambo ry'ibanga ryawe
+              Đặt lại mật khẩu của bạn
             </Typography>
           </Box>
 
@@ -88,7 +88,7 @@ const ResetPasswordPage = () => {
           {errorMessage && (
             <Box>
               <Alert severity="error">
-                <AlertTitle>Byanze</AlertTitle>
+                <AlertTitle>Thất bại</AlertTitle>
                 {errorMessage}
               </Alert>
             </Box>

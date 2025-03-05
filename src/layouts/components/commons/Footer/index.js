@@ -12,6 +12,8 @@ import {
 } from '@mui/material';
 import { ICONS, IMAGES, LINKS } from '../../../../configs/constants';
 import MuiImageCustom from '../../../../components/MuiImageCustom';
+// Import certification logo
+import certificationLogo from '../../../../assets/images/certification-logo.png';
 
 const Footer = () => {
   const nav = useNavigate();
@@ -31,36 +33,36 @@ const Footer = () => {
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
-                onClick={() => nav('/ve-chung-toi')}
-                primary="Về imyanya"
+                onClick={() => nav('/about-us')}
+                primary="About imyanya"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
-                onClick={() => nav('/lien-he')}
-                primary="Liên Hệ"
+                onClick={() => nav('/contact')}
+                primary="Contact"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
-                onClick={() => nav('/hoi-dap')}
-                primary="Hỏi Đáp"
+                onClick={() => nav('/faq')}
+                primary="FAQ"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
-                onClick={() => nav('/thoa-thuan-su-dung')}
-                primary="Thỏa thuận sử dụng"
+                onClick={() => nav('/terms-of-use')}
+                primary="Terms of Use"
               />
             </ListItem>
             <ListItem>
               <ListItemText
                 sx={{ cursor: 'pointer' }}
-                onClick={() => nav('/quy-dinh-bao-mat')}
-                primary="Quy định bảo mật"
+                onClick={() => nav('/privacy-policy')}
+                primary="Privacy Policy"
               />
             </ListItem>
           </List>
@@ -186,7 +188,7 @@ const Footer = () => {
                 gutterBottom
                 style={{ fontWeight: 'bold' }}
               >
-                Chứng nhận bởi
+                Certified by
               </Typography>
             </ListItem>
             <ListItem>
@@ -194,7 +196,8 @@ const Footer = () => {
                 <Link href={LINKS.CERTIFICATE_LINK} target="_blank">
                   <MuiImageCustom
                     width={140}
-                    src={require('../../../../assets/images/certification-logo.png')}
+                    src={certificationLogo}
+                    alt="Certification Logo"
                   />
                 </Link>
               </Stack>
@@ -211,29 +214,27 @@ const Footer = () => {
             </ListItem>
             <ListItem>
               <Stack direction="row" spacing={1}>
-                <Link href={LINKS.FACEBOOK_LINK} target="_blank">
-                  <img height="40" width="40" src={ICONS.FACEBOOK} alt="" />
-                </Link>
-                <Link href={LINKS.FACEBOOK_MESSENGER_LINK} target="_blank">
-                  <img
-                    height="40"
-                    width="40"
-                    src={ICONS.FACEBOOK_MESSENGER}
-                    alt=""
-                  />
-                </Link>
-                <Link href={LINKS.INSTAGRAM_LINK} target="_blank">
-                  <img height="40" width="40" src={ICONS.INSTAGRAM} alt="" />
-                </Link>
-                <Link href={LINKS.LINKEDIN_LINK} target="_blank">
-                  <img height="40" width="40" src={ICONS.LINKEDIN} alt="" />
-                </Link>
-                <Link href={LINKS.YOUTUBE_LINK} target="_blank">
-                  <img height="40" width="40" src={ICONS.YOUTUBE} alt="" />
-                </Link>
-                <Link href={LINKS.TWITTER_LINK} target="_blank">
-                  <img height="40" width="40" src={ICONS.TWITTER} alt="" />
-                </Link>
+                {Object.entries({
+                  FACEBOOK: LINKS.FACEBOOK_LINK,
+                  FACEBOOK_MESSENGER: LINKS.FACEBOOK_MESSENGER_LINK,
+                  INSTAGRAM: LINKS.INSTAGRAM_LINK,
+                  LINKEDIN: LINKS.LINKEDIN_LINK,
+                  YOUTUBE: LINKS.YOUTUBE_LINK,
+                  TWITTER: LINKS.TWITTER_LINK
+                }).map(([key, link]) => (
+                  <Link key={key} href={link} target="_blank">
+                    <img 
+                      height="40" 
+                      width="40" 
+                      src={ICONS[key]} 
+                      alt={key.toLowerCase()} 
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'fallback-icon.png';
+                      }}
+                    />
+                  </Link>
+                ))}
               </Stack>
             </ListItem>
           </List>

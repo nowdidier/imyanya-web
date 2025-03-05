@@ -73,12 +73,12 @@ const ROLES_NAME = {
 const HOME_FILTER_CAREER = [
   {
     id: 8,
-    name: 'IT - Phần mềm',
+    name: 'IT - Software',
     titleIcon: <DevicesIcon color="secondary" />,
   },
   {
     id: 7,
-    name: 'IT - Phần cứng',
+    name: 'IT - Hardware',
     titleIcon: <DeveloperBoardIcon color="secondary" />,
   },
 ];
@@ -136,12 +136,12 @@ const LINKS = {
   CHPLAY_LINK: 'https://play.google.com/store/',
   APPSTORE_LINK: 'https://www.apple.com/app-store/',
   CERTIFICATE_LINK: 'http://online.gov.vn/',
-  INSTAGRAM_LINK: 'https://www.instagram.com/huybk2/',
-  FACEBOOK_LINK: 'https://www.facebook.com/bkhuy/',
-  FACEBOOK_MESSENGER_LINK: 'https://www.facebook.com/bkhuy/',
-  LINKEDIN_LINK: 'https://www.linkedin.com/in/huy-khanh-10041b20b/',
-  TWITTER_LINK: 'https://twitter.com/HuyBuiKhanh',
-  YOUTUBE_LINK: 'https://www.youtube.com/channel/UCn49BvcP1w1mamaOSGTKVZw',
+  INSTAGRAM_LINK: 'https://www.instagram.com/imyanya/',
+  FACEBOOK_LINK: 'https://www.facebook.com/imyanya/',
+  FACEBOOK_MESSENGER_LINK: 'https://www.facebook.com/imyanya/',
+  LINKEDIN_LINK: 'https://www.linkedin.com/company/imyanya/',
+  TWITTER_LINK: 'https://twitter.com/imyanya',
+  YOUTUBE_LINK: 'https://www.youtube.com/@imyanya',
 };
 
 const BANNER_TYPE = {
@@ -150,9 +150,9 @@ const BANNER_TYPE = {
 };
 
 const JOB_POST_STATUS_BG_COLOR = {
-  1: 'warning',
-  2: 'error',
-  3: 'success',
+  1: 'warning',  // Pending
+  2: 'error',    // Rejected
+  3: 'success',  // Approved
 };
 
 export {

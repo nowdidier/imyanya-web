@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -32,14 +21,14 @@ const AppIntroductionCard = () => {
 
   const handleSendSMS = (event) => {
     event.preventDefault();
-    
+
     const sendSMS = async (data) => {
       setIsFullScreenLoading(true);
 
       try {
         await myjobService.sendSMSDownloadApp(data);
 
-        toastMessages.success('Gửi thành công. Vui lòng kiểm tra tin nhắn');
+        toastMessages.success('Sent successfully. Please check your message');
         setValue('');
       } catch (error) {
         console.log(error);
@@ -56,7 +45,7 @@ const AppIntroductionCard = () => {
       ) {
         sendSMS({ phone: value });
       } else {
-        toastMessages.error('Số điện thoại không hợp lệ!');
+        toastMessages.error('Invalid phone number!');
       }
   };
 
@@ -65,12 +54,12 @@ const AppIntroductionCard = () => {
       <Card sx={{ p: 3 }}>
         <Stack spacing={3} alignItems="center">
           <Box>
-            <Typography variant="h5">Tải ứng dụng miễn phí</Typography>
+            <Typography variant="h5">Download the app for free</Typography>
           </Box>
           <Box>
             <Typography>
-              Tìm việc hiệu quả bằng cách tải MyJob về di động của bạn và sẵn
-              sàng nhận việc làm ngay hôm nay!
+              Find jobs effectively by downloading Imyanyato your mobile and get
+              ready to receive job offers today!
             </Typography>
           </Box>
           <Box component="form" onSubmit={handleSendSMS}>
@@ -91,7 +80,7 @@ const AppIntroductionCard = () => {
                 inputProps={{ 'aria-label': 'search' }}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                placeholder="Nhập số điện thoại"
+                placeholder="Enter your phone number"
               />
               <Button
                 variant="contained"
@@ -99,7 +88,7 @@ const AppIntroductionCard = () => {
                 style={{ borderRadius: 20, color: 'white' }}
                 type="submit"
               >
-                gửi đi
+                Send
               </Button>
             </Paper>
           </Box>
@@ -111,7 +100,7 @@ const AppIntroductionCard = () => {
                   width="150"
                   component="img"
                   image={IMAGES.chPlayDownload}
-                  alt="Paella dish"
+                  alt="Google Play Download"
                 />
               </Link>
               <Link href={LINKS.APPSTORE_LINK} target="_blank">
@@ -120,7 +109,7 @@ const AppIntroductionCard = () => {
                   width="150"
                   component="img"
                   image={IMAGES.appStoreDownload}
-                  alt="Paella dish"
+                  alt="App Store Download"
                 />
               </Link>
             </Stack>

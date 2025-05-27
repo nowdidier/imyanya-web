@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import {
   Box,
@@ -185,7 +174,7 @@ const CandidateChart = ({ title }) => {
               {title}
             </Typography>
             <MuiTooltip
-              title="Thống kê số hồ sơ ứng tuyển nhận được theo ngày"
+              title="Statistics of received applications by day"
               arrow
               placement="left"
             >
@@ -201,9 +190,7 @@ const CandidateChart = ({ title }) => {
             </MuiTooltip>
           </Stack>
         </Box>
-
         <Divider sx={{ borderStyle: 'dashed' }} />
-
         <Box>
           <Stack direction="row" justifyContent="flex-end" spacing={1} mb={3}>
             <RangePickerCustom
@@ -213,7 +200,6 @@ const CandidateChart = ({ title }) => {
               setSelectedDateRange={setSelectedDateRange}
             />
           </Stack>
-
           <Box sx={{ position: 'relative', minHeight: 320 }}>
             {isLoading ? (
               <Stack
@@ -243,7 +229,7 @@ const CandidateChart = ({ title }) => {
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
                   description={
                     <Typography variant="body2" color="text.secondary">
-                      Không có dữ liệu để thống kê
+                      No data to display
                     </Typography>
                   }
                 />

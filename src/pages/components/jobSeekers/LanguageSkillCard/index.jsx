@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -140,7 +129,7 @@ const LanguageSkillCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Thêm kỹ năng ngôn ngữ thành công.');
+        toastMessages.success('Add language skill successfully.');
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -155,7 +144,7 @@ const LanguageSkillCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Cập nhật kỹ năng ngôn ngữ thành công.');
+        toastMessages.success('Update language skill successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -182,7 +171,7 @@ const LanguageSkillCard = ({ title }) => {
         await languageSkillService.deleteLanguageSkillById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Xóa kỹ năng ngôn ngữ thành công.');
+        toastMessages.success('Delete language skill successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -192,8 +181,8 @@ const LanguageSkillCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Xóa kỹ năng ngôn ngữ',
-      'Kỹ năng ngôn ngữ này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
+      'Delete language skill',
+      'This language skill will be permanently deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -247,7 +236,7 @@ const LanguageSkillCard = ({ title }) => {
             <Box>
               {languageSkills.length === 0 ? (
                 <EmptyCard
-                  content="Bạn hãy thêm kỹ năng ngôn ngữ của mình để nhà tuyển dụng tham khảo"
+                  content="Add your language skills for recruiters to refer to"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -273,7 +262,7 @@ const LanguageSkillCard = ({ title }) => {
                             borderColor: 'primary.light',
                           }}
                         >
-                          Ngoại ngữ
+                          Language
                         </TableCell>
                         <TableCell 
                           align="left"
@@ -285,7 +274,7 @@ const LanguageSkillCard = ({ title }) => {
                             borderColor: 'primary.light',
                           }}
                         >
-                          Trình độ
+                          Level
                         </TableCell>
                         <TableCell 
                           align="right"
@@ -297,7 +286,7 @@ const LanguageSkillCard = ({ title }) => {
                             borderColor: 'primary.light',
                           }}
                         >
-                          Hành động
+                          Action
                         </TableCell>
                       </TableRow>
                     </TableHead>
@@ -321,7 +310,7 @@ const LanguageSkillCard = ({ title }) => {
                               fontSize: '0.875rem',
                             }}
                           >
-                            {allConfig.languageDict[value?.language]}
+                            {allConfig?.languageDict[value?.language]}
                           </TableCell>
                           <TableCell align="left">
                             <Rating
@@ -380,7 +369,7 @@ const LanguageSkillCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Kỹ năng ngôn ngữ"
+        title="Language Skill"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

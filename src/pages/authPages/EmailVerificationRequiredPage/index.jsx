@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -17,7 +8,7 @@ import { faEnvelopeCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { TabTitle } from '../../../utils/generalFunction';
 import { APP_NAME } from '../../../configs/constants';
 const EmailVerificationRequiredPage = () => {
-  TabTitle("Xác thực email")
+  TabTitle("Verify email")
   const { email } = useSelector((state) => state.auth);
 
   return (
@@ -31,10 +22,10 @@ const EmailVerificationRequiredPage = () => {
     >
       <Stack sx={{ pb: 2 }} alignItems="center">
         <Typography variant="h5" gutterBottom>
-          Xác nhận email
+          Verify email
         </Typography>
         <Typography variant="subtitle2 ">
-          Cảm ơn bạn đã đăng ký tài khoản {APP_NAME}
+          Thank you for registering for {APP_NAME}
         </Typography>
       </Stack>
       <Card sx={{ p: 6, pt: 2, boxShadow: 0 }}>
@@ -48,12 +39,12 @@ const EmailVerificationRequiredPage = () => {
           </Box>
           <Box>
             <Typography variant="h5" gutterBottom>
-              Xác nhận địa chỉ email của bạn
+              Verify your email address
             </Typography>
           </Box>
           <Box>
             <Typography variant="body1" gutterBottom>
-              Email xác nhận đã được gửi đến:
+              A verification email has been sent to:
             </Typography>
             <Typography variant="subtitle2" sx={{ textAlign: 'center' }}>
               {email}
@@ -61,7 +52,7 @@ const EmailVerificationRequiredPage = () => {
           </Box>
           <Box>
             <Typography variant="caption" sx={{ color: 'gray' }}>
-              Nhấp vào liên kết trong email để kích hoạt tài khoản của bạn
+              Click the link in the email to activate your account
             </Typography>
           </Box>
         </Stack>
@@ -70,9 +61,9 @@ const EmailVerificationRequiredPage = () => {
             variant="body1"
             sx={{ color: 'gray', textAlign: 'center', cursor: 'pointer' }}
           >
-            Không nhận được email?{' '}
+            Didn't receive the email?{' '}
             <span style={{ fontWeight: 'bold', color: 'red' }}>
-              Gửi lại email
+              Resend email
             </span>
           </Typography>
         </Box>

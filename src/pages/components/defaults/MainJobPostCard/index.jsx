@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Pagination, Stack, Typography } from '@mui/material';
@@ -76,7 +65,7 @@ const MainJobPostCard = () => {
             gap: 1
           }}
         >
-          Kết quả tìm kiếm
+          Search Results
           <Box 
             component="span"
             sx={{
@@ -88,7 +77,7 @@ const MainJobPostCard = () => {
               fontSize: '0.9em'
             }}
           >
-            {count.toLocaleString()} tin đăng
+            {count.toLocaleString()} posts
           </Box>
         </Typography>
       </Box>
@@ -101,7 +90,7 @@ const MainJobPostCard = () => {
           ))
         ) : jobPosts.length === 0 ? (
           <NoDataCard
-            title="Hiện chưa tìm thấy việc làm phù hợp với tiêu chí của bạn"
+            title="No jobs found matching your criteria"
             imgComponentSgv={<SVG_IMAGES.ImageSvg3 />}
           />
         ) : (

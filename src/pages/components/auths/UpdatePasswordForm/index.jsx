@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -21,21 +12,21 @@ const UpdatePasswordForm = ({ handleUpdatePassword, serverErrors = {} }) => {
   const schema = yup.object().shape({
     oldPassword: yup
       .string()
-      .required('Mật khẩu hiện tại là bắt buộc!')
-      .max(128, 'Mật khẩu hiện tại vượt quá độ dài cho phép.'),
+      .required('Current password is required!')
+      .max(128, 'Current password exceeds maximum length.'),
     newPassword: yup
       .string()
-      .required('Mật khẩu mới là bắt buộc!')
-      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
-      .max(128, 'Mật khẩu mới vượt quá độ dài cho phép.')
+      .required('New password is required!')
+      .min(8, 'Password must be at least 8 characters.')
+      .max(128, 'New password exceeds maximum length.')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
+        'Must contain uppercase, lowercase, number and special character'
       ),
     confirmPassword: yup
       .string()
-      .required('Mật khẩu xác nhận là bắt buộc.')
-      .oneOf([yup.ref('newPassword')], 'Mật khẩu xác nhận không chính xác.'),
+      .required('Confirm password is required.')
+      .oneOf([yup.ref('newPassword')], 'Passwords do not match.'),
   });
 
   const { control, setError, handleSubmit } = useForm({
@@ -60,27 +51,27 @@ const UpdatePasswordForm = ({ handleUpdatePassword, serverErrors = {} }) => {
           <PasswordTextFieldCustom
             name="oldPassword"
             control={control}
-            title="Mật khẩu hiện tại"
+            title="Current Password"
             showRequired={true}
-            placeholder="Nhập mật khẩu hiện tại"
+            placeholder="Enter current password"
           />
         </Grid>
         <Grid item xs={12}>
           <PasswordTextFieldCustom
             name="newPassword"
             control={control}
-            title="Mật khẩu mới"
+            title="New Password"
             showRequired={true}
-            placeholder="Nhập mật khẩu mới"
+            placeholder="Enter new password"
           />
         </Grid>
         <Grid item xs={12}>
           <PasswordTextFieldCustom
             name="confirmPassword"
             control={control}
-            title="Mật khẩu xác nhận"
+            title="Confirm Password"
             showRequired={true}
-            placeholder="Nhập lại mật khẩu mới"
+            placeholder="Re-enter new password"
           />
         </Grid>
       </Grid>

@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { Viewer, Worker } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
@@ -77,7 +66,7 @@ const Pdf = ({ fileUrl, title = '' }) => {
                       sx={{ color: 'white' }}
                       size="small"
                       onClick={() => props.onZoom(SpecialZoomLevel.ActualSize)}
-                      label="Kích thước chuẩn của tệp"
+                      label="Actual file size"
                       color="warning"
                     />
                   )}
@@ -114,7 +103,7 @@ const Pdf = ({ fileUrl, title = '' }) => {
                       onClick={props.onClick}
                       startIcon={<FileDownloadIcon />}
                     >
-                      Tải xuống
+                      Download
                     </Button>
                   )}
                 </Download>

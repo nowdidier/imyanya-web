@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -61,7 +50,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 const EmployerSignUp = () => {
-  TabTitle("Đăng ký tài khoản Nhà tuyển dụng")
+  TabTitle("Employer Account Registration")
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -107,7 +96,7 @@ const EmployerSignUp = () => {
       if (exists === true) {
         // set server errors here
         setServerErrors({
-          email: ['Email đã tồn tại'],
+          email: ['Email already exists'],
         });
 
         return false;
@@ -160,7 +149,7 @@ const EmployerSignUp = () => {
                 mb: 1
               }}
             >
-              Đăng ký tài khoản
+              Register Account
             </Typography>
             <Typography 
               variant="subtitle1" 
@@ -170,7 +159,7 @@ const EmployerSignUp = () => {
                 mb: 2 
               }}
             >
-              Tạo tài khoản nhà tuyển dụng mới
+              Create a new employer account
             </Typography>
           </Box>
 
@@ -192,7 +181,7 @@ const EmployerSignUp = () => {
           >
             <Grid item>
               <StyledLink to={`/${ROUTES.AUTH.LOGIN}`}>
-                Đã có tài khoản? Đăng nhập
+                Already have an account? Log in
               </StyledLink>
             </Grid>
           </Grid>

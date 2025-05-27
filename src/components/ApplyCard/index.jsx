@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
@@ -35,7 +24,7 @@ const ApplyCard = ({
       try {
         await jobPostActivityService.applyJob(data);
 
-        toastMessages.success('Ứng tuyển thành công.');
+        toastMessages.success('Application submitted successfully.');
         setIsApplySuccess(true);
         setOpenPopup(false);
       } catch (error) {
@@ -53,11 +42,11 @@ const ApplyCard = ({
       <FormPopup
         title={
           <>
-            <Typography color="gray">Ứng tuyển vị trí </Typography>
+            <Typography color="gray">Apply for position </Typography>
             <span>{title}</span>
           </>
         }
-        buttonText="Ứng tuyển"
+        buttonText="Apply"
         buttonIcon={<SendIcon />}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}

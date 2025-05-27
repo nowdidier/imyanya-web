@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import {
@@ -277,9 +268,9 @@ const CVDoc = ({ resume, user, themeColor }) => {
               <Text style={styles.title}>{resume?.title}</Text>
               <View style={styles.contactInfo}>
                 <Text style={styles.contactItem}>Email: {user?.email}</Text>
-                <Text style={styles.contactItem}>SĐT: {user?.phone}</Text>
+                <Text style={styles.contactItem}>Phone: {user?.phone}</Text>
                 <Text style={styles.contactItem}>
-                  Cập nhật: {formatDate(resume?.updateAt)}
+                  Updated: {formatDate(resume?.updateAt)}
                 </Text>
               </View>
             </View>
@@ -290,43 +281,43 @@ const CVDoc = ({ resume, user, themeColor }) => {
         <View style={styles.body}>
           {/* Desired Information */}
           <View style={[styles.section, styles.sectionPageBreak]} wrap={false}>
-            <Text style={styles.sectionTitle}>THÔNG TIN CHUNG</Text>
+            <Text style={styles.sectionTitle}>GENERAL INFORMATION</Text>
             <View style={styles.infoGridWrapper}>
               <View style={styles.infoGrid}>
                 <View style={styles.infoItem}>
-                  <Text style={styles.infoLabel}>Vị trí:</Text>
+                  <Text style={styles.infoLabel}>Position:</Text>
                   <Text style={styles.infoValue}>
                     {resume?.positionChooseData?.name}
                   </Text>
                 </View>
                 <View style={styles.infoItem}>
-                  <Text style={styles.infoLabel}>Kinh nghiệm:</Text>
+                  <Text style={styles.infoLabel}>Experience:</Text>
                   <Text style={styles.infoValue}>
                     {resume?.experienceChooseData?.name}
                   </Text>
                 </View>
                 <View style={styles.infoItem}>
-                  <Text style={styles.infoLabel}>Học vấn:</Text>
+                  <Text style={styles.infoLabel}>Education:</Text>
                   <Text style={styles.infoValue}>
                     {resume?.academicLevelChooseData?.name}
                   </Text>
                 </View>
                 <View style={styles.infoItem}>
-                  <Text style={styles.infoLabel}>Mức lương:</Text>
+                  <Text style={styles.infoLabel}>Salary:</Text>
                   <Text style={styles.infoValue}>
                     {`${(resume?.salaryMin / 1000000).toFixed(1)} - ${(
                       resume?.salaryMax / 1000000
-                    ).toFixed(1)} triệu`}
+                    ).toFixed(1)} million`}
                   </Text>
                 </View>
                 <View style={styles.infoItem}>
-                  <Text style={styles.infoLabel}>Nơi làm việc:</Text>
+                  <Text style={styles.infoLabel}>Workplace:</Text>
                   <Text style={styles.infoValue}>
                     {resume?.typeOfWorkplaceChooseData?.name}
                   </Text>
                 </View>
                 <View style={styles.infoItem}>
-                  <Text style={styles.infoLabel}>Hình thức:</Text>
+                  <Text style={styles.infoLabel}>Type:</Text>
                   <Text style={styles.infoValue}>
                     {resume?.jobTypeChooseData?.name}
                   </Text>
@@ -337,7 +328,7 @@ const CVDoc = ({ resume, user, themeColor }) => {
 
           {/* Work Experience */}
           <View style={[styles.section, styles.sectionPageBreak]} wrap={false}>
-            <Text style={styles.sectionTitle}>KINH NGHIỆM LÀM VIỆC</Text>
+            <Text style={styles.sectionTitle}>WORK EXPERIENCE</Text>
             {resume?.experienceDetails?.map((exp, index) => (
               <View key={index} style={styles.experienceItem}>
                 <View style={styles.experienceHeader}>
@@ -346,7 +337,7 @@ const CVDoc = ({ resume, user, themeColor }) => {
                     <Text style={styles.experienceCompany}>{exp?.companyName}</Text>
                   </View>
                   <Text style={styles.experienceDate}>
-                      {formatDate(exp?.startDate)} - {formatDate(exp?.endDate) || "Hiện tại"}
+                      {formatDate(exp?.startDate)} - {formatDate(exp?.endDate) || "Present"}
                   </Text>
                 </View>
                 <Text style={styles.experienceDesc}>{exp?.description}</Text>
@@ -356,7 +347,7 @@ const CVDoc = ({ resume, user, themeColor }) => {
 
           {/* Education */}
           <View style={[styles.section, styles.sectionPageBreak]} wrap={false}>
-            <Text style={styles.sectionTitle}>HỌC VẤN</Text>
+            <Text style={styles.sectionTitle}>EDUCATION</Text>
             {resume?.educationDetails?.map((edu, index) => (
               <View key={index} style={styles.experienceItem}>
                 <View style={styles.experienceHeader}>
@@ -366,7 +357,7 @@ const CVDoc = ({ resume, user, themeColor }) => {
                       {edu?.trainingPlaceName}
                     </Text>
                     <Text style={[styles.experienceCompany, { fontSize: 11 }]}>
-                      Chuyên ngành: {edu?.major}
+                      Major: {edu?.major}
                     </Text>
                   </View>
                   <Text style={styles.experienceDate}>
@@ -382,7 +373,7 @@ const CVDoc = ({ resume, user, themeColor }) => {
 
           {/* Professional Skills */}
           <View style={[styles.section, styles.sectionPageBreak]} wrap={false}>
-            <Text style={styles.sectionTitle}>KỸ NĂNG CHUYÊN MÔN</Text>
+            <Text style={styles.sectionTitle}>PROFESSIONAL SKILLS</Text>
             <View style={styles.skillsWrapper}>
               <View style={styles.skillsGrid}>
                 {resume?.advancedSkills?.map((skill, index) => (
@@ -397,12 +388,12 @@ const CVDoc = ({ resume, user, themeColor }) => {
           {/* Languages */}
           {resume?.languageSkills?.length > 0 && (
             <View style={[styles.section, styles.sectionPageBreak]} wrap={false}>
-              <Text style={styles.sectionTitle}>NGOẠI NGỮ</Text>
+              <Text style={styles.sectionTitle}>LANGUAGES</Text>
               <View style={styles.languageWrapper}>
                 {resume?.languageSkills?.map((lang, index) => (
                   <View key={index} style={styles.languageItem}>
                     <Text style={styles.languageName}>
-                      Tiếng {lang?.language}
+                      {lang?.language}
                     </Text>
                     <View style={styles.languageLevel}>
                       {renderLanguageLevel(lang?.level)}
@@ -416,7 +407,7 @@ const CVDoc = ({ resume, user, themeColor }) => {
           {/* Certificates */}
           {resume?.certificateDetails?.length > 0 && (
             <View style={[styles.section, styles.sectionPageBreak]} wrap={false}>
-              <Text style={styles.sectionTitle}>CHỨNG CHỈ</Text>
+              <Text style={styles.sectionTitle}>CERTIFICATES</Text>
               {resume.certificateDetails.map((cert, index) => (
                 <View key={index} style={styles.experienceItem}>
                   <View style={styles.experienceHeader}>
@@ -430,7 +421,7 @@ const CVDoc = ({ resume, user, themeColor }) => {
                       {formatDate(cert?.startDate)}
                       {cert?.expirationDate
                         ? ` - ${formatDate(cert?.expirationDate)}`
-                        : " - Không thời hạn"}
+                        : " - No expiration"}
                     </Text>
                   </View>
                 </View>

@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -44,18 +33,18 @@ const ApplyForm = ({ handleApplyJob }) => {
   const schema = yup.object().shape({
     fullName: yup
       .string()
-      .required('Họ và tên là bắt buộc.')
-      .max(100, 'Họ và tên vượt quá độ dài cho phép.'),
+      .required('Full name is required.')
+      .max(100, 'Full name exceeds the allowed length.'),
     email: yup
       .string()
-      .required('Email là bắt buộc.')
-      .email('Email không hợp lệ.')
-      .max(100, 'Email vượt quá độ dài cho phép.'),
+      .required('Email is required.')
+      .email('Invalid email.')
+      .max(100, 'Email exceeds the allowed length.'),
     phone: yup
       .string()
-      .required('Số điện thoại là bắt buộc.')
-      .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
-      .max(15, 'Số điện thoại vượt quá độ dài cho phép.'),
+      .required('Phone number is required.')
+      .matches(REGEX_VATIDATE.phoneRegExp, 'Invalid phone number.')
+      .max(15, 'Phone number exceeds the allowed length.'),
   });
 
   const { control, setValue, handleSubmit } = useForm({
@@ -140,7 +129,7 @@ const ApplyForm = ({ handleApplyJob }) => {
                                     style={{ marginRight: 1 }}
                                     color="#441da0"
                                   />{' '}
-                                  Hồ sơ trực tuyến
+                                  Online profile
                                 </>
                               ) : value.type === CV_TYPES.cvUpload ? (
                                 <>
@@ -149,7 +138,7 @@ const ApplyForm = ({ handleApplyJob }) => {
                                     style={{ marginRight: 1 }}
                                     color="red"
                                   />{' '}
-                                  Hồ sơ đính kèm
+                                  Attached profile
                                 </>
                               ) : (
                                 ''
@@ -172,7 +161,7 @@ const ApplyForm = ({ handleApplyJob }) => {
                                 sx={{ fontWeight: 'bold', cursor: 'pointer' }}
                                 color="#441da0"
                               >
-                                <FontAwesomeIcon icon={faEye} /> Xem hồ sơ
+                                <FontAwesomeIcon icon={faEye} /> View profile
                               </Typography>
                             </Link>
                           </Stack>
@@ -187,9 +176,9 @@ const ApplyForm = ({ handleApplyJob }) => {
           <Grid item xs={12}>
             <TextFieldCustom
               name="fullName"
-              title="Họ và tên"
+              title="Full name"
               showRequired={true}
-              placeholder="Nhập họ và tên"
+              placeholder="Enter your full name"
               control={control}
             />
           </Grid>
@@ -198,23 +187,22 @@ const ApplyForm = ({ handleApplyJob }) => {
               name="email"
               title="Email"
               showRequired={true}
-              placeholder="Nhập email"
+              placeholder="Enter your email"
               control={control}
             />
           </Grid>
           <Grid item xs={12}>
             <TextFieldCustom
               name="phone"
-              title="Số điện thoại"
+              title="Phone number"
               showRequired={true}
-              placeholder="Nhập số điện thoại"
+              placeholder="Enter your phone number"
               control={control}
             />
           </Grid>
           <Grid item xs={12}>
             <Typography color="GrayText" variant="caption">
-              Lưu ý: Họ tên, email, số điện thoại cần chính xác để nhà tuyển
-              dụng liên hệ với bạn.
+              Note: Full name, email, and phone number must be accurate so employers can contact you.
             </Typography>
           </Grid>
         </Grid>

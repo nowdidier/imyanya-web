@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -21,7 +12,6 @@ import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import { Skeleton, Stack } from '@mui/material';
-
 
 function EnhancedTableHead({ headCells, order, orderBy, onRequestSort }) {
   const createSortHandler = (property) => (event) => {

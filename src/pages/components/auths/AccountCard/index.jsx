@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -39,7 +28,7 @@ const AccountCard = ({ title, sx }) => {
     dispatch(updateUserInfo(data))
       .unwrap()
       .then(() =>
-        toastMessages.success("Cập nhật thông tin tài khoản thành công.")
+        toastMessages.success("Account information updated successfully.")
       )
       .catch((error) => {
         errorHandling(error, setServerErrors);
@@ -53,7 +42,7 @@ const AccountCard = ({ title, sx }) => {
         await authService.changePassword(data);
 
         setOpenPopup(false);
-        toastMessages.success("Đổi mật khẩu thành công.");
+        toastMessages.success("Password changed successfully.");
 
         let path = ROUTES.AUTH.LOGIN;
         const accessToken = tokenService.getAccessTokenFromCookie();
@@ -64,7 +53,7 @@ const AccountCard = ({ title, sx }) => {
             nav(path);
           })
           .catch((err) => {
-            toastMessages.error("Đã xảy ra lỗi!");
+            toastMessages.error("An error occurred!");
           });
       } catch (error) {
         errorHandling(error, setServerErrors);
@@ -130,7 +119,7 @@ const AccountCard = ({ title, sx }) => {
                       style={{ cursor: "pointer" }}
                       onClick={() => setOpenPopup(true)}
                     >
-                      Thay đổi mật khẩu
+                      Change password
                     </span>
                   </Typography>
                 </Box>
@@ -154,7 +143,7 @@ const AccountCard = ({ title, sx }) => {
                       },
                     }}
                   >
-                    Cập nhật
+                    Update
                   </Button>
                 </Stack>
               </Grid>
@@ -164,7 +153,7 @@ const AccountCard = ({ title, sx }) => {
       </Box>
 
       <FormPopup
-        title="Cập nhật mật khẩu"
+        title="Update Password"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

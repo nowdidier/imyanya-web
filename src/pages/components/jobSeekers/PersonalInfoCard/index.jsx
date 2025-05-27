@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
@@ -103,7 +92,7 @@ const item = (title, value) => {
           fontSize: value ? "1rem" : "0.875rem",
         }}
       >
-        {value || "Chưa cập nhật"}
+        {value || "Not updated yet"}
       </Typography>
     </Box>
   );
@@ -145,7 +134,7 @@ const PersonalInfoCard = ({ title }) => {
         dispatch(getUserInfo());
         setIsSuccess(!isSuccess);
         setOpenPopup(false);
-        toastMessages.success("Cập nhật thông tin cá nhân thành công.");
+        toastMessages.success("Personal information updated successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -210,17 +199,17 @@ const PersonalInfoCard = ({ title }) => {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
                   <Stack spacing={1.5}>
-                    {item("Họ và tên", profile?.user?.fullName)}
-                    {item("Số điện thoại", profile?.phone)}
-                    {item("Giới tính", allConfig.genderDict[profile?.gender])}
+                    {item("Full name", profile?.user?.fullName)}
+                    {item("Phone number", profile?.phone)}
+                    {item("Gender", allConfig.genderDict[profile?.gender])}
                     {item(
-                      "Ngày sinh",
+                      "Date of birth",
                       profile?.birthday
                         ? dayjs(profile.birthday).format("DD/MM/YYYY")
                         : profile?.birthday
                     )}
                     {item(
-                      "Tình trạng hôn nhân",
+                      "Marital status",
                       allConfig.maritalStatusDict[profile?.maritalStatus]
                     )}
                   </Stack>
@@ -228,11 +217,11 @@ const PersonalInfoCard = ({ title }) => {
                 <Grid item xs={12} sm={6} md={8} lg={8} xl={8}>
                   <Stack spacing={1.5}>
                     {item(
-                      "Tỉnh/Thành phố",
+                      "City/Province",
                       allConfig.cityDict[profile?.location?.city]
                     )}
-                    {item("Quận/Huyện", profile?.location?.districtDict?.name)}
-                    {item("Địa chỉ", profile?.location?.address)}
+                    {item("District", profile?.location?.districtDict?.name)}
+                    {item("Address", profile?.location?.address)}
                   </Stack>
                 </Grid>
               </Grid>
@@ -243,7 +232,7 @@ const PersonalInfoCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Thông tin cá nhân"
+        title="Personal information"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -68,7 +59,7 @@ const JobByCategory = () => {
               pb: 1,
             }}
           >
-            Việc làm theo nghề nghiệp
+            Jobs by Career
           </Typography>
           <Stack spacing={1.5}>
             {careerOptions?.slice(0, maxItem).map((item) => (
@@ -110,7 +101,7 @@ const JobByCategory = () => {
                 component={Link}
                 to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER}`}
               >
-                Xem tất cả nghề nghiệp <FontAwesomeIcon icon={faChevronRight} />
+                View all careers <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}
           </Stack>
@@ -134,7 +125,7 @@ const JobByCategory = () => {
               pb: 1,
             }}
           >
-            Việc làm theo khu vực
+            Jobs by Location
           </Typography>
           <Stack spacing={1.5}>
             {cityOptions?.slice(0, maxItem).map((item) => (
@@ -176,7 +167,7 @@ const JobByCategory = () => {
                 component={Link}
                 to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CITY}`}
               >
-                Xem tất cả khu vực <FontAwesomeIcon icon={faChevronRight} />
+                View all locations <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}
           </Stack>
@@ -200,7 +191,7 @@ const JobByCategory = () => {
               pb: 1,
             }}
           >
-            Việc làm theo hình thức làm việc
+            Jobs by Work Type
           </Typography>
           <Stack spacing={1.5}>
             {jobTypeOptions?.slice(0, maxItem).map((item) => (
@@ -242,8 +233,7 @@ const JobByCategory = () => {
                 component={Link}
                 to={`/${ROUTES.JOB_SEEKER.JOBS_BY_TYPE}`}
               >
-                Xem tất cả hình thức làm việc{" "}
-                <FontAwesomeIcon icon={faChevronRight} />
+                View all work types <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}
           </Stack>

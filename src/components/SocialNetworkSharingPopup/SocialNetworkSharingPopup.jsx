@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import {
   Dialog,
@@ -69,7 +60,7 @@ const SocialNetworkSharingPopup = (props) => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Typography variant="h5" sx={{ fontWeight: 600 }}>Chia sẻ qua</Typography>
+          <Typography variant="h5" sx={{ fontWeight: 600 }}>Share via</Typography>
           <IconButton
             onClick={() => setOpenPopup(false)}
             size="small"

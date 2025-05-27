@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -21,17 +10,17 @@ const ResetPasswordForm = ({ handleResetPassword, serverErrors = {} }) => {
   const schema = yup.object().shape({
     newPassword: yup
       .string()
-      .required('Mật khẩu mới là bắt buộc!')
-      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
-      .max(128, 'Mật khẩu mới vượt quá độ dài cho phép.')
+      .required('New password is required!')
+      .min(8, 'Password must be at least 8 characters.')
+      .max(128, 'Password exceeds maximum length.')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
+        'Must contain uppercase, lowercase, number and special character'
       ),
     confirmPassword: yup
       .string()
-      .required('Mật khẩu xác nhận là bắt buộc.')
-      .oneOf([yup.ref('newPassword')], 'Mật khẩu xác nhận không chính xác.'),
+      .required('Confirm password is required.')
+      .oneOf([yup.ref('newPassword')], 'Passwords do not match.'),
   });
 
   const { control, setError, handleSubmit } = useForm({
@@ -54,16 +43,16 @@ const ResetPasswordForm = ({ handleResetPassword, serverErrors = {} }) => {
         <PasswordTextFieldCustom
           name="newPassword"
           control={control}
-          title="Mật khẩu mới"
+          title="New Password"
           showRequired={true}
-          placeholder="Nhập mật khẩu mới"
+          placeholder="Enter new password"
         />
         <PasswordTextFieldCustom
           name="confirmPassword"
           control={control}
-          title="Mật khẩu xác nhận"
+          title="Confirm Password"
           showRequired={true}
-          placeholder="Nhập lại mật khẩu mới"
+          placeholder="Re-enter new password"
         />
       </Stack>
 
@@ -73,7 +62,7 @@ const ResetPasswordForm = ({ handleResetPassword, serverErrors = {} }) => {
         sx={{ mt: 3, mb: 2 }}
         onClick={handleSubmit(handleResetPassword)}
       >
-        Đặt lại mật khẩu
+        Reset Password
       </Button>
     </Box>
   );

@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -86,7 +75,7 @@ const JobPostSearch = () => {
         }
       }
     } catch (error) {
-      console.error('Loi khi set kw vao local storage: ', error);
+      console.error('Error while saving keyword to local storage: ', error);
     }
   };
 
@@ -107,14 +96,14 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
             <InputBaseSearchHomeCustom
               name="kw"
-              placeholder="Tìm kiếm cơ hội việc làm"
+              placeholder="Search for job opportunities"
               control={control}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
             <SingleSelectSearchCustom
               name="careerId"
-              placeholder="Tất cả ngành nghề"
+              placeholder="All careers"
               control={control}
               options={allConfig?.careerOptions || []}
             />
@@ -122,7 +111,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="cityId"
-              placeholder="Tất cả tỉnh thành"
+              placeholder="All cities"
               control={control}
               options={allConfig?.cityOptions || []}
             />
@@ -145,7 +134,7 @@ const JobPostSearch = () => {
                 sx={{ py: 1 }}
                 type="submit"
               >
-                Tìm kiếm
+                Search
               </Button>
               <Button
                 variant="contained"
@@ -156,7 +145,7 @@ const JobPostSearch = () => {
                 color="secondary"
                 onClick={handleChangeShowFilter}
               >
-                Lọc nâng cao
+                Advanced Filter
               </Button>
             </Stack>
           </Grid>
@@ -177,13 +166,13 @@ const JobPostSearch = () => {
               sx={{ pt: 1, fontSize: 14 }}
               color="GrayText"
             >
-              Lọc nâng cao
+              Advanced Filter
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="positionId"
-              placeholder="Tất cả vị trí"
+              placeholder="All positions"
               control={control}
               options={allConfig?.positionOptions || []}
             />
@@ -191,7 +180,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="experienceId"
-              placeholder="Tất cả kinh nghiệm"
+              placeholder="All experience levels"
               control={control}
               options={allConfig?.experienceOptions || []}
             />
@@ -199,7 +188,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="jobTypeId"
-              placeholder="Tất cả hình thức làm việc"
+              placeholder="All work types"
               control={control}
               options={allConfig?.jobTypeOptions || []}
             />
@@ -207,7 +196,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="typeOfWorkplaceId"
-              placeholder="Tất cả loại hình làm việc"
+              placeholder="All workplace types"
               control={control}
               options={allConfig?.typeOfWorkplaceOptions || []}
             />
@@ -215,7 +204,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="genderId"
-              placeholder="Tất cả giới tính"
+              placeholder="All genders"
               control={control}
               options={allConfig?.genderOptions || []}
             />

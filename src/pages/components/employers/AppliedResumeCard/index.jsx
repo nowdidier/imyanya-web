@@ -1,20 +1,10 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
   Autocomplete,
   Box,
   Button,
+  Chip,
   Divider,
   Grid,
   IconButton,
@@ -47,42 +37,42 @@ const headCells = [
     showOrder: false,
     numeric: false,
     disablePadding: true,
-    label: 'Tên hồ sơ',
+    label: 'Resume Name',
   },
   {
     id: 'jobName',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Vị trí ứng tuyển',
+    label: 'Applied Position',
   },
   {
     id: 'appliedDate',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Thời gian nộp',
+    label: 'Applied Date',
   },
   {
     id: 'type',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Loại hồ sơ',
+    label: 'Resume Type',
   },
   {
     id: 'city',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Trạng thái tuyển dụng',
+    label: 'Recruitment Status',
   },
   {
     id: 'action',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Hành động',
+    label: 'Action',
   },
 ];
 
@@ -202,7 +192,7 @@ const AppliedResumeCard = ({ title }) => {
         const data = resData.data;
 
         // export
-        xlsxUtils.exportToXLSX(data, 'DanhSachHoSoUngTuyen');
+        xlsxUtils.exportToXLSX(data, 'AppliedResumeList');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -245,7 +235,7 @@ const AppliedResumeCard = ({ title }) => {
       try {
         await jobPostActivityService.deleteJobPostActivity(id);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Xóa hồ sơ ứng tuyển thành công.');
+        toastMessages.success('Successfully deleted applied resume.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -255,8 +245,8 @@ const AppliedResumeCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Xóa hồ sơ ứng tuyển',
-      'Hồ sơ ứng tuyển này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
+      'Delete applied resume',
+      'This applied resume will be permanently deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -316,7 +306,7 @@ const AppliedResumeCard = ({ title }) => {
             }
           }}
         >
-          Tải danh sách
+          Download List
         </Button>
       </Stack>
 
@@ -345,7 +335,7 @@ const AppliedResumeCard = ({ title }) => {
               renderInput={(params) => (
                 <TextField 
                   {...params} 
-                  placeholder="Tất cả tin đăng"
+                  placeholder="All job posts"
                   sx={{
                     '& .MuiOutlinedInput-root': {
                       borderRadius: 2,
@@ -371,7 +361,7 @@ const AppliedResumeCard = ({ title }) => {
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  placeholder="Tất cả trạng thái tuyển dụng"
+                  placeholder="All recruitment statuses"
                   sx={{
                     '& .MuiOutlinedInput-root': {
                       borderRadius: 2,
@@ -417,7 +407,7 @@ const AppliedResumeCard = ({ title }) => {
                   }
                 }}
               >
-                Lọc nâng cao ({numbersFilter})
+                Advanced Filter ({numbersFilter})
               </Button>
             </Stack>
           </Grid>
@@ -467,8 +457,8 @@ const AppliedResumeCard = ({ title }) => {
 
       {/* Popup and Loading remain unchanged */}
       <FormPopup
-        title="Lọc nâng cao"
-        buttonText="Lọc"
+        title="Advanced Filter"
+        buttonText="Filter"
         buttonIcon={<FilterListIcon />}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}

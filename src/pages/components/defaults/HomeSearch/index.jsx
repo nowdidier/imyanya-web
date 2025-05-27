@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -101,7 +92,7 @@ const HomeSearch = () => {
             <InputBaseSearchHomeCustom
               name="kw"
               control={control}
-              placeholder="Tìm kiếm cơ hội việc làm"
+              placeholder="Search for job opportunities"
               showSubmitButton={true}
               location='HOME'
             />
@@ -109,7 +100,7 @@ const HomeSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <SingleSelectSearchCustom
               name="careerId"
-              placeholder="Tất cả ngành nghề"
+              placeholder="All careers"
               control={control}
               options={allConfig?.careerOptions || []}
             />
@@ -117,7 +108,7 @@ const HomeSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <SingleSelectSearchCustom
               name="cityId"
-              placeholder="Tất cả tỉnh thành"
+              placeholder="All cities"
               control={control}
               options={allConfig?.cityOptions || []}
             />

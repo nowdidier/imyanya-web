@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -76,7 +65,7 @@ const AppliedJobCard = () => {
           </Stack>
         ) : jobPostsApplied.length === 0 ? (
           <NoDataCard
-            title="Bạn chưa ứng tuyển công việc nào"
+            title="You have not applied for any jobs"
             imgComponentSgv={<SVG_IMAGES.ImageSvg5 />}
           >
             <Button
@@ -86,7 +75,7 @@ const AppliedJobCard = () => {
               color="primary"
               sx={{ textTransform: 'inherit' }}
             >
-              Tìm việc làm
+              Find a job
             </Button>
           </NoDataCard>
         ) : (
@@ -110,7 +99,7 @@ const AppliedJobCard = () => {
               >
                 <Stack spacing={1}>
                   <Chip
-                    label={`Ứng tuyển ngày: ${dayjs(value?.createAt).format(
+                    label={`Applied date: ${dayjs(value?.createAt).format(
                       'DD/MM/YYYY'
                     )}`}
                     size="small"
@@ -125,7 +114,7 @@ const AppliedJobCard = () => {
                           style={{ marginRight: 1 }}
                           color="#441da0"
                         />{' '}
-                        Hồ sơ trực tuyến
+                        Online resume
                       </>
                     ) : value?.resumeDict?.type === CV_TYPES.cvUpload ? (
                       <>
@@ -134,7 +123,7 @@ const AppliedJobCard = () => {
                           style={{ marginRight: 1 }}
                           color="red"
                         />{' '}
-                        Hồ sơ đính kèm
+                        Attached resume
                       </>
                     ) : (
                       ''

@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
@@ -40,7 +29,7 @@ const JobPostFilterForm = ({ handleFilter }) => {
         <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
           <TextFieldCustom
             name="kw"
-            placeholder="Nhập tên tin đăng"
+            placeholder="Enter job post name"
             control={control}
           />
         </Grid>
@@ -49,11 +38,11 @@ const JobPostFilterForm = ({ handleFilter }) => {
             name="isUrgent"
             control={control}
             options={[
-              { id: 1, name: 'Tuyển gấp' },
-              { id: 2, name: 'Không tuyển gấp' },
+              { id: 1, name: 'Urgent' },
+              { id: 2, name: 'Not urgent' },
             ]}
             showRequired={true}
-            placeholder="Trạng thái tuyển dụng"
+            placeholder="Recruitment status"
           />
         </Grid>
         <Grid item flex={1}>
@@ -62,7 +51,7 @@ const JobPostFilterForm = ({ handleFilter }) => {
             control={control}
             options={allConfig?.jobPostStatusOptions || []}
             showRequired={true}
-            placeholder="Trạng thái duyệt"
+            placeholder="Approval status"
           />
         </Grid>
         <Grid item>
@@ -77,7 +66,7 @@ const JobPostFilterForm = ({ handleFilter }) => {
               xl: 'center',
             }}
           >
-            <Tooltip title="Đặt lại" arrow>
+            <Tooltip title="Reset" arrow>
               <IconButton
                 aria-label="refresh"
                 onClick={() => {
@@ -95,7 +84,7 @@ const JobPostFilterForm = ({ handleFilter }) => {
               type="submit"
               startIcon={<SearchIcon />}
             >
-              Tìm kiếm
+              Search
             </Button>
           </Stack>
         </Grid>

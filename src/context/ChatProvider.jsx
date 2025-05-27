@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -32,7 +21,7 @@ const ChatProvider = ({ children }) => {
       const isExists = await checkExists('accounts', userId);
 
       if (!isExists) {
-        // tao moi user tren firestore.
+        // create new user on firestore
         let userData = null;
         const roleName = currentUser.roleName;
         if (roleName === ROLES_NAME.JOB_SEEKER) {
@@ -59,10 +48,10 @@ const ChatProvider = ({ children }) => {
         }
 
         const createResult = await createUser('accounts', userData, userId);
-        console.log('CREATE USER TRÊN FILRESTORE: ', createResult);
+        console.log('CREATE USER ON FIRESTORE: ', createResult);
       }
 
-      // lay thong tin user hien tai
+      // get current user info
       const userChat = await getUserAccount('accounts', userId);
       setCurrentUserChat(userChat);
       console.log('userChat: ', userChat);

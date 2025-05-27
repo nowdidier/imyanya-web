@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -62,7 +51,7 @@ const ProfileSearch = () => {
             <TextFieldCustom
               name="kw"
               showRequired={true}
-              placeholder="Nhập từ khóa tìm kiếm..."
+              placeholder="Enter keywords to search..."
               control={control}
               icon={<SearchIcon sx={{ color: 'grey.500' }} />}
               sx={{
@@ -85,7 +74,7 @@ const ProfileSearch = () => {
               control={control}
               options={allConfig?.cityOptions || []}
               showRequired={true}
-              placeholder="Chọn Tỉnh/Thành phố"
+              placeholder="Select City/Province"
               sx={{
                 '& .MuiOutlinedInput-root': {
                   backgroundColor: 'background.paper',
@@ -117,7 +106,7 @@ const ProfileSearch = () => {
                 }}
                 type="submit"
               >
-                Tìm kiếm
+                Search
               </Button>
             </Stack>
           </Grid>
@@ -149,7 +138,7 @@ const ProfileSearch = () => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography variant="h6" sx={{ fontWeight: 600 }}>Bộ lọc nâng cao</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 600 }}>Advanced Filter</Typography>
             <Button
               variant="text"
               color="error"
@@ -163,20 +152,20 @@ const ProfileSearch = () => {
               }}
               onClick={handleReset}
             >
-              Xóa lọc
+              Clear Filter
             </Button>
           </Stack>
           <Stack spacing={2}>
             <Stack spacing={1}>
               <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', color: 'grey.700' }}>
                 <FontAwesomeIcon icon={faBriefcase} style={{ marginRight: 8, color: '#441da0' }} />
-                Ngành nghề
+                Industry
               </Typography>
               <SingleSelectCustom
                 name="careerId"
                 control={control}
                 options={allConfig?.careerOptions || []}
-                placeholder="Tất cả ngành nghề"
+                placeholder="All industries"
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     backgroundColor: 'background.paper',
@@ -194,13 +183,13 @@ const ProfileSearch = () => {
             <Stack spacing={1}>
               <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', color: 'grey.700' }}>
                 <FontAwesomeIcon icon={faMagicWandSparkles} style={{ marginRight: 8, color: '#441da0' }} />
-                Kinh nghiệm
+                Experience
               </Typography>
               <SingleSelectCustom
                 name="experienceId"
                 control={control}
                 options={allConfig?.experienceOptions || []}
-                placeholder="Tất cả kinh nghiệm"
+                placeholder="All experiences"
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     backgroundColor: 'background.paper',
@@ -218,13 +207,13 @@ const ProfileSearch = () => {
             <Stack spacing={1}>
               <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', color: 'grey.700' }}>
                 <FontAwesomeIcon icon={faUsers} style={{ marginRight: 8, color: '#441da0' }} />
-                Cấp bậc
+                Level
               </Typography>
               <SingleSelectCustom
                 name="positionId"
                 control={control}
                 options={allConfig?.positionOptions || []}
-                placeholder="Tất cả cấp bậc"
+                placeholder="All levels"
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     backgroundColor: 'background.paper',
@@ -242,13 +231,13 @@ const ProfileSearch = () => {
             <Stack spacing={1}>
               <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', color: 'grey.700' }}>
                 <FontAwesomeIcon icon={faGraduationCap} style={{ marginRight: 8, color: '#441da0' }} />
-                Học vấn
+                Education
               </Typography>
               <SingleSelectCustom
                 name="academicLevelId"
                 control={control}
                 options={allConfig?.academicLevelOptions || []}
-                placeholder="Tất cả học vấn"
+                placeholder="All education levels"
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     backgroundColor: 'background.paper',
@@ -266,13 +255,13 @@ const ProfileSearch = () => {
             <Stack spacing={1}>
               <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', color: 'grey.700' }}>
                 <FontAwesomeIcon icon={faBuilding} style={{ marginRight: 8, color: '#441da0' }} />
-                Nơi làm việc
+                Workplace
               </Typography>
               <SingleSelectCustom
                 name="typeOfWorkplaceId"
                 control={control}
                 options={allConfig?.typeOfWorkplaceOptions || []}
-                placeholder="Tất cả nơi làm việc"
+                placeholder="All workplaces"
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     backgroundColor: 'background.paper',
@@ -290,13 +279,13 @@ const ProfileSearch = () => {
             <Stack spacing={1}>
               <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', color: 'grey.700' }}>
                 <FontAwesomeIcon icon={faPersonDigging} style={{ marginRight: 8, color: '#441da0' }} />
-                Hình thức làm việc
+                Work form
               </Typography>
               <SingleSelectCustom
                 name="jobTypeId"
                 control={control}
                 options={allConfig?.jobTypeOptions || []}
-                placeholder="Tất cả hình thức làm việc"
+                placeholder="All work forms"
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     backgroundColor: 'background.paper',
@@ -314,13 +303,13 @@ const ProfileSearch = () => {
             <Stack spacing={1}>
               <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', color: 'grey.700' }}>
                 <FontAwesomeIcon icon={faVenusMars} style={{ marginRight: 8, color: '#441da0' }} />
-                Giới tính
+                Gender
               </Typography>
               <SingleSelectCustom
                 name="genderId"
                 control={control}
                 options={allConfig?.genderOptions || []}
-                placeholder="Tất cả giới tính"
+                placeholder="All genders"
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     backgroundColor: 'background.paper',
@@ -338,13 +327,13 @@ const ProfileSearch = () => {
             <Stack spacing={1}>
               <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', color: 'grey.700' }}>
                 <FontAwesomeIcon icon={faPeopleRoof} style={{ marginRight: 8, color: '#441da0' }} />
-                Tình trạng hôn nhân
+                Marital status
               </Typography>
               <SingleSelectCustom
                 name="maritalStatusId"
                 control={control}
                 options={allConfig?.maritalStatusOptions || []}
-                placeholder="Tất cả tình trạng hôn nhân"
+                placeholder="All marital statuses"
                 sx={{
                   '& .MuiOutlinedInput-root': {
                     backgroundColor: 'background.paper',

@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
@@ -30,14 +19,14 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
     user: yup.object().shape({
       fullName: yup
         .string()
-        .required('Họ và tên là bắt buộc.')
-        .max(100, 'Họ và tên vượt quá độ dài cho phép.'),
+        .required('Full name is required.')
+        .max(100, 'Full name exceeds the allowed length.'),
     }),
     phone: yup
       .string()
-      .required('Số điện thoại là bắt buộc.')
-      .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
-      .max(15, 'Số điện thoại vượt quá độ dài cho phép.'),
+      .required('Phone number is required.')
+      .matches(REGEX_VATIDATE.phoneRegExp, 'Invalid phone number.')
+      .max(15, 'Phone number exceeds the allowed length.'),
     birthday: yup
       .date()
       .transform((value, originalValue) => {
@@ -46,30 +35,30 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
         }
         return value;
       })
-      .required('Ngày sinh là bắt buộc.')
-      .typeError('Ngày sinh không hợp lệ.')
-      .max(DATE_OPTIONS.yesterday, 'Ngày sinh không hợp lệ.'),
+      .required('Date of birth is required.')
+      .typeError('Invalid date of birth.')
+      .max(DATE_OPTIONS.yesterday, 'Invalid date of birth.'),
     gender: yup
       .string()
-      .required('Giới tính là bắt buộc.')
-      .max(1, 'Giới tính vượt quá độ dài cho phép.'),
+      .required('Gender is required.')
+      .max(1, 'Gender exceeds the allowed length.'),
     maritalStatus: yup
       .string()
-      .required('Tình trạng hôn nhân là bắt buộc.')
-      .max(1, 'Tình trạng hôn nhân vượt quá độ dài cho phép.'),
+      .required('Marital status is required.')
+      .max(1, 'Marital status exceeds the allowed length.'),
     location: yup.object().shape({
       city: yup
         .number()
-        .required('Tỉnh/Thành phố là bắt buộc.')
-        .typeError('Tỉnh/Thành phố là bắt buộc.'),
+        .required('City/Province is required.')
+        .typeError('City/Province is required.'),
       district: yup
         .number()
-        .required('Quận/Huyện là bắt buộc.')
-        .typeError('Quận/Huyện là bắt buộc.'),
+        .required('District is required.')
+        .typeError('District is required.'),
       address: yup
         .string()
-        .required('Địa chỉ là bắt buộc.')
-        .max(255, 'Địa chỉ vượt quá độ dài cho phép.'),
+        .required('Address is required.')
+        .max(255, 'Address exceeds the allowed length.'),
     }),
   });
   const [districtOptions, setDistrictOptions] = React.useState([]);
@@ -126,18 +115,18 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="user.fullName"
-            title="Họ và tên"
+            title="Full name"
             showRequired={true}
-            placeholder="Nhập họ và tên"
+            placeholder="Enter full name"
             control={control}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextFieldCustom
             name="phone"
-            title="Số điện thoại"
+            title="Phone number"
             showRequired={true}
-            placeholder="Nhập số điện thoại"
+            placeholder="Enter phone number"
             control={control}
           />
         </Grid>
@@ -145,7 +134,7 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
           <DatePickerCustom
             name="birthday"
             control={control}
-            title="Ngày sinh"
+            title="Date of birth"
             showRequired={true}
             maxDate={DATE_OPTIONS.yesterday}
           />
@@ -155,9 +144,9 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
             name="gender"
             control={control}
             options={allConfig?.genderOptions || []}
-            title="Giới tính"
+            title="Gender"
             showRequired={true}
-            placeholder="Chọn giới tính"
+            placeholder="Select gender"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -165,9 +154,9 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
             name="maritalStatus"
             control={control}
             options={allConfig?.maritalStatusOptions || []}
-            title="Tình trạng hôn nhân"
+            title="Marital status"
             showRequired={true}
-            placeholder="Chọn tình trạng hôn nhân"
+            placeholder="Select marital status"
           />
         </Grid>
 
@@ -176,9 +165,9 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
             name="location.city"
             control={control}
             options={allConfig?.cityOptions || []}
-            title="Tỉnh/Thành phố"
+            title="City/Province"
             showRequired={true}
-            placeholder="Chọn tỉnh thành phố"
+            placeholder="Select city/province"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -186,17 +175,17 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
             options={districtOptions || []}
             name="location.district"
             control={control}
-            title="Quận/Huyện"
+            title="District"
             showRequired={true}
-            placeholder="Chọn Quận/Huyện"
+            placeholder="Select district"
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="location.address"
-            title="Địa chỉ"
+            title="Address"
             showRequired={true}
-            placeholder="Nhập địa chỉ"
+            placeholder="Enter address"
             control={control}
           />
         </Grid>

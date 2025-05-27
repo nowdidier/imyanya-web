@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Link from '@mui/material/Link';
@@ -46,35 +35,35 @@ const Footer = () => {
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.ABOUT_US}`)}
-                  primary={`Về ${APP_NAME}`}
+                  primary={`About ${APP_NAME}`}
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/lien-he')}
-                  primary="Liên Hệ"
+                  onClick={() => nav('/contact')}
+                  primary="Contact" 
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/hoi-dap')}
-                  primary="Hỏi Đáp"
+                  onClick={() => nav('/faq')}
+                  primary="FAQ"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/thoa-thuan-su-dung')}
-                  primary="Thỏa thuận sử dụng"
+                  onClick={() => nav('/terms')}
+                  primary="Terms of Use"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/quy-dinh-bao-mat')}
-                  primary="Quy định bảo mật"
+                  onClick={() => nav('/privacy')}
+                  primary="Privacy Policy"
                 />
               </ListItem>
             </List>
@@ -82,49 +71,43 @@ const Footer = () => {
           <Grid xs={12} sm={6} md={3} item>
             <List disablePadding>
               <ListItem>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    fontWeight: 600,
-                    mb: 1,
-                  }}
-                >
-                  Dành cho nhà tuyển dụng
+                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                  For Employers
                 </Typography>
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.EMPLOYER.JOB_POST}`)}
-                  primary="Đăng Tin Tuyển Dụng"
+                  primary="Post a Job"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.EMPLOYER.PROFILE}`)}
-                  primary="Tìm Kiếm Hồ Sơ"
+                  primary="Search Resumes" 
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.EMPLOYER.DASHBOARD}`)}
-                  primary="Quản Lý Nhà Tuyển Dụng"
+                  primary="Employer Dashboard"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.EMPLOYER.CHAT}`)}
-                  primary="Tin Nhắn"
+                  primary="Messages"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.EMPLOYER.NOTIFICATION}`)}
-                  primary="Thông Báo"
+                  primary="Notifications"
                 />
               </ListItem>
             </List>
@@ -132,49 +115,43 @@ const Footer = () => {
           <Grid xs={12} sm={6} md={3} item>
             <List disablePadding>
               <ListItem>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    fontWeight: 600,
-                    mb: 1,
-                  }}
-                >
-                  Dành cho ứng viên
+                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                  For Job Seekers
                 </Typography>
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS}`)}
-                  primary="Việc Làm"
+                  primary="Jobs"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.COMPANY}`)}
-                  primary="Công ty"
+                  primary="Companies"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.DASHBOARD}`)}
-                  primary="Quản Lý Ứng Viên"
+                  primary="Candidate Dashboard"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.CHAT}`)}
-                  primary="Tin Nhắn"
+                  primary="Messages"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.NOTIFICATION}`)}
-                  primary="Thông Báo"
+                  primary="Notifications"
                 />
               </ListItem>
             </List>
@@ -182,14 +159,8 @@ const Footer = () => {
           <Grid xs={12} sm={6} md={3} item>
             <List disablePadding>
               <ListItem>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    fontWeight: 600,
-                    mb: 1,
-                  }}
-                >
-                  Ứng dụng di động
+                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                  Mobile App
                 </Typography>
               </ListItem>
               <ListItem>
@@ -218,14 +189,8 @@ const Footer = () => {
               </ListItem>
               
               <ListItem sx={{ mt: 3 }}>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    fontWeight: 600,
-                    mb: 1,
-                  }}
-                >
-                  Kết nối với MyJob
+                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+                  Connect with MyJob
                 </Typography>
               </ListItem>
               <ListItem>
@@ -258,13 +223,8 @@ const Footer = () => {
 
         <Divider sx={{ my: 4 }} />
         
-        <Typography 
-          variant="body2" 
-          color="grey.400" 
-          align="center"
-          sx={{ pt: 2 }}
-        >
-          © {new Date().getFullYear()} MyJob. Tất cả quyền được bảo lưu.
+        <Typography variant="body2" color="grey.400" align="center" sx={{ pt: 2 }}>
+          © {new Date().getFullYear()} MyJob. All rights reserved.
         </Typography>
       </Container>
     </Box>

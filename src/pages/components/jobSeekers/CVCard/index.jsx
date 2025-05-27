@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -58,7 +49,7 @@ const CVCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success("Upload File thành công.");
+        toastMessages.success("Upload File successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -118,7 +109,7 @@ const CVCard = ({ title }) => {
           {isLoadingCv ? (
             <Stack alignItems="center" justifyContent="center" sx={{ py: 8 }}>
               <Typography variant="subtitle1" color="text.secondary">
-                Đang tải CV...
+                Loading CV...
               </Typography>
             </Stack>
           ) : cv === null ? (
@@ -136,14 +127,14 @@ const CVCard = ({ title }) => {
                 color="text.secondary"
                 sx={{ mb: 1 }}
               >
-                Chưa có CV nào được tải lên
+                No CV has been uploaded
               </Typography>
               <Typography
                 variant="body2"
                 color="text.secondary"
                 sx={{ fontStyle: "italic" }}
               >
-                Nhấn nút tải lên để thêm CV của bạn
+                Press the upload button to add your CV
               </Typography>
             </Stack>
           ) : (
@@ -164,7 +155,7 @@ const CVCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Cập nhật CV"
+        title="Update CV"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

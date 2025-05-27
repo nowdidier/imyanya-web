@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -27,16 +16,16 @@ const CertificateForm = ({
   const schema = yup.object().shape({
     name: yup
       .string()
-      .required('Tên chứng chỉ là bắt buộc.')
-      .max(200, 'Tên chứng chỉ vượt quá độ dài cho phép.'),
+      .required('Certificate name is required.')
+      .max(200, 'Certificate name exceeds allowed length.'),
     trainingPlace: yup
       .string()
-      .required('Tên trường/Trung tâm đào tạo là bắt buộc.')
-      .max(255, 'Tên trường/Trung tâm đào tạo vượt quá độ dài cho phép.'),
+      .required('Training institution/center name is required.')
+      .max(255, 'Training institution/center name exceeds allowed length.'),
     startDate: yup
       .date()
-      .required('Ngày bắt đầu là bắt buộc.')
-      .typeError('Ngày bắt đầu là bắt buộc.'),
+      .required('Start date is required.')
+      .typeError('Start date is required.'),
     expirationDate: yup.date().nullable(),
   });
 
@@ -78,18 +67,18 @@ const CertificateForm = ({
         <Grid item xs={12}>
           <TextFieldCustom
             name="name"
-            title="Tên chứng chỉ"
+            title="Certificate Name"
             showRequired={true}
-            placeholder="Nhập tên chứng chỉ"
+            placeholder="Enter certificate name"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="trainingPlace"
-            title="Trường/Trung tâm đào tạo"
+            title="Training Institution/Center"
             showRequired={true}
-            placeholder="Nhập tên trường/Trung tâm đào tạo"
+            placeholder="Enter institution/center name"
             control={control}
           />
         </Grid>
@@ -97,7 +86,7 @@ const CertificateForm = ({
           <DatePickerCustom
             name="startDate"
             control={control}
-            title="Ngày bắt đầu"
+            title="Start Date"
             showRequired={true}
             maxDate={DATE_OPTIONS.yesterday}
           />
@@ -106,7 +95,7 @@ const CertificateForm = ({
           <DatePickerCustom
             name="expirationDate"
             control={control}
-            title="Ngày hết hạn (Để trống nếu chứng chỉ vô thời hạn)"
+            title="Expiration Date (Leave empty if no expiration)"
             maxDate={DATE_OPTIONS.today}
           />
         </Grid>

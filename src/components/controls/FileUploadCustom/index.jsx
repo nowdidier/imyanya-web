@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { Stack, Alert, Box, Button, Typography } from '@mui/material';
@@ -81,7 +70,7 @@ const FileUploadCustom = ({
                 }} 
               />
               <Typography variant="subtitle1" sx={{ color: 'text.primary', mb: 0.5 }}>
-                Kéo thả file vào đây hoặc
+                Drag and drop file here or
               </Typography>
               <Button
                 variant="contained"
@@ -94,10 +83,10 @@ const FileUploadCustom = ({
                   boxShadow: 'none'
                 }}
               >
-                Chọn file
+                Choose file
               </Button>
               <Typography variant="caption" sx={{ display: 'block', mt: 1, color: 'text.secondary' }}>
-                Chỉ chấp nhận file PDF
+                Only PDF files are accepted
               </Typography>
             </>
           ) : (
@@ -125,7 +114,7 @@ const FileUploadCustom = ({
                 }}
                 sx={{ ml: 2 }}
               >
-                Xóa
+                Delete
               </Button>
             </Alert>
           )}

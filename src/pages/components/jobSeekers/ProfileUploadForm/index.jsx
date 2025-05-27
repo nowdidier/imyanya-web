@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -28,7 +17,7 @@ const ProfileUploadForm = ({ handleAdd }) => {
       .mixed()
       .test(
         'files empty',
-        'Tập tin là bắt buộc.',
+        'File is required.',
         (value) =>
           !(
             value === undefined ||
@@ -39,64 +28,64 @@ const ProfileUploadForm = ({ handleAdd }) => {
       ),
     title: yup
       .string()
-      .required('Vị trí mong muốn là bắt buộc.')
-      .max(200, 'Vị trí mong muốn vượt quá độ dài cho phép.'),
+      .required('Desired position is required.')
+      .max(200, 'Desired position exceeds the allowed length.'),
     position: yup
       .number()
-      .required('Cấp bậc mong muốn là bắt buộc.')
-      .typeError('Cấp bậc mong muốn là bắt buộc.'),
+      .required('Desired level is required.')
+      .typeError('Desired level is required.'),
     academicLevel: yup
       .number()
-      .required('Trình độ học vấn là bắt buộc.')
-      .typeError('Trình độ học vấn là bắt buộc.'),
+      .required('Education level is required.')
+      .typeError('Education level is required.'),
     experience: yup
       .number()
-      .required('Kinh nghiệm làm việc là bắt buộc.')
-      .typeError('Kinh nghiệm làm việc là bắt buộc.'),
+      .required('Work experience is required.')
+      .typeError('Work experience is required.'),
     career: yup
       .number()
-      .required('Ngành nghề là bắt buộc.')
-      .typeError('Ngành nghề là bắt buộc.'),
+      .required('Career is required.')
+      .typeError('Career is required.'),
     city: yup
       .number()
-      .required('Tỉnh/Thành phố là bắt buộc.')
-      .typeError('Tỉnh/Thành phố là bắt buộc.'),
+      .required('Province/City is required.')
+      .typeError('Province/City is required.'),
     salaryMin: yup
       .number()
-      .required('Mức lương mong muốn tối thiểu là bắt buộc.')
-      .typeError('Lương tối thiểu không hợp lệ.')
-      .min(0, 'Lương tối thiểu không hợp lệ.')
+      .required('Minimum desired salary is required.')
+      .typeError('Invalid minimum salary.')
+      .min(0, 'Invalid minimum salary.')
       .test(
         'minimum-wage-comparison',
-        'Lương tối thiểu phải nhỏ hơn lương tối đa.',
+        'Minimum salary must be less than maximum salary.',
         function (value) {
           return !(value >= this.parent.salaryMax);
         }
       ),
     salaryMax: yup
       .number()
-      .required('Mức lương mong muốn tối đa là bắt buộc.')
-      .typeError('Lương tối đa không hợp lệ.')
-      .min(0, 'Lương tối đa không hợp lệ.')
+      .required('Maximum desired salary is required.')
+      .typeError('Invalid maximum salary.')
+      .min(0, 'Invalid maximum salary.')
       .test(
         'maximum-wage-comparison',
-        'Lương tối đa phải lớn hơn lương tối thiểu.',
+        'Maximum salary must be greater than minimum salary.',
         function (value) {
           return !(value <= this.parent.salaryMin);
         }
       ),
     typeOfWorkplace: yup
       .number()
-      .required('Nơi làm việc là bắt buộc.')
-      .typeError('Nơi làm việc là bắt buộc.'),
+      .required('Workplace is required.')
+      .typeError('Workplace is required.'),
     jobType: yup
       .number()
-      .required('Hình thức làm việc là bắt buộc.')
-      .typeError('Hình thức làm việc là bắt buộc.'),
+      .required('Job type is required.')
+      .typeError('Job type is required.'),
     description: yup
       .string()
-      .required('Mục tiêu nghề nghiệp là bắt buộc.')
-      .max(800, 'Mục tiêu nghề nghiệp vượt quá độ dài cho phép.'),
+      .required('Career objective is required.')
+      .max(800, 'Career objective exceeds the allowed length.'),
   });
 
   const { control, handleSubmit } = useForm({
@@ -110,7 +99,7 @@ const ProfileUploadForm = ({ handleAdd }) => {
           <FileUploadCustom
             control={control}
             name="file"
-            title="Chọn tệp CV của bạn"
+            title="Choose your CV file"
             showRequired={true}
           />
         </Grid>
@@ -118,8 +107,8 @@ const ProfileUploadForm = ({ handleAdd }) => {
           <TextFieldCustom
             name="title"
             showRequired={true}
-            title="Vị trí mong muốn"
-            placeholder="VD: Lập trình viên Backend"
+            title="Desired position"
+            placeholder="E.g.: Backend Developer"
             control={control}
           />
         </Grid>
@@ -128,9 +117,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="position"
             control={control}
             options={allConfig?.positionOptions || []}
-            title="Cấp bậc mong muốn"
+            title="Desired level"
             showRequired={true}
-            placeholder="Chọn cấp bậc"
+            placeholder="Select level"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -138,9 +127,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="academicLevel"
             control={control}
             options={allConfig?.academicLevelOptions || []}
-            title="Trình độ học vấn"
+            title="Education level"
             showRequired={true}
-            placeholder="Chọn trình độ học vấn"
+            placeholder="Select education level"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -148,9 +137,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="experience"
             control={control}
             options={allConfig?.experienceOptions || []}
-            title="Kinh nghiệm làm việc"
+            title="Work experience"
             showRequired={true}
-            placeholder="Chọn kinh nghiệm làm việc"
+            placeholder="Select work experience"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -158,9 +147,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="career"
             control={control}
             options={allConfig?.careerOptions || []}
-            title="Nghề nghiệp"
+            title="Career"
             showRequired={true}
-            placeholder="Chọn nghề nghiệp"
+            placeholder="Select career"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -168,17 +157,17 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="city"
             control={control}
             options={allConfig?.cityOptions || []}
-            title="Tỉnh/Thành phố"
+            title="Province/City"
             showRequired={true}
-            placeholder="Chọn tỉnh thành phố"
+            placeholder="Select province/city"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextFieldCustom
             name="salaryMin"
-            title="Mức lương mong muốn tối thiểu"
+            title="Minimum desired salary"
             showRequired={true}
-            placeholder="Nhập mức lương mong muốn tối thiểu"
+            placeholder="Enter minimum desired salary"
             control={control}
             icon={'VND'}
             type='number'
@@ -187,9 +176,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
         <Grid item xs={12} sm={6}>
           <TextFieldCustom
             name="salaryMax"
-            title="Mức lương mong muốn tối đa"
+            title="Maximum desired salary"
             showRequired={true}
-            placeholder="Nhập mức lương mong muốn tối đa"
+            placeholder="Enter maximum desired salary"
             control={control}
             icon={'VND'}
             type='number'
@@ -200,9 +189,9 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="typeOfWorkplace"
             control={control}
             options={allConfig?.typeOfWorkplaceOptions || []}
-            title="Nơi làm việc"
+            title="Workplace"
             showRequired={true}
-            placeholder="Chọn nơi làm việc"
+            placeholder="Select workplace"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -210,17 +199,17 @@ const ProfileUploadForm = ({ handleAdd }) => {
             name="jobType"
             control={control}
             options={allConfig?.jobTypeOptions || []}
-            title="Hình thức làm việc"
+            title="Job type"
             showRequired={true}
-            placeholder="Chọn hình thức làm việc"
+            placeholder="Select job type"
           />
         </Grid>
         <Grid item xs={12}>
           <MultilineTextFieldCustom
             name="description"
-            title="Mục tiêu nghề nghiệp"
+            title="Career objective"
             showRequired={true}
-            placeholder="Nhập nội dung tại đây"
+            placeholder="Enter content here"
             control={control}
           />
         </Grid>

@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -135,7 +124,7 @@ const RightSidebar = () => {
           mb: 2
         }}
       >
-        TIN TUYỂN DỤNG ĐÃ ỨNG TUYỂN
+        CÁC TIN TUYỂN DỤNG ĐÃ ỨNG TUYỂN
       </Typography>
 
       <Box 
@@ -389,7 +378,7 @@ const EmployerSidebar = () => {
           mb: 2
         }}
       >
-        ỨNG VIÊN ỨNG TUYỂN
+        CÁC ỨNG VIÊN ỨNG TUYỂN
       </Typography>
       <Box 
         sx={{ 

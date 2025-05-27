@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -28,9 +17,9 @@ const LanguageSkillForm = ({
   const schema = yup.object().shape({
     language: yup
       .number()
-      .required('Ngôn ngữ là bắt buộc.')
-      .typeError('Ngôn ngữ là bắt buộc.'),
-    level: yup.number().required('Trình độ là bắt buộc.'),
+      .required('Language is required.')
+      .typeError('Language is required.'),
+    level: yup.number().required('Level is required.'),
   });
 
   const { control, reset, setError, handleSubmit } = useForm({
@@ -70,13 +59,13 @@ const LanguageSkillForm = ({
             name="language"
             control={control}
             options={allConfig?.languageOptions || []}
-            title="Ngôn ngữ"
+            title="Language"
             showRequired={true}
-            placeholder="Chọn ngôn ngữ"
+            placeholder="Select language"
           />
         </Grid>
         <Grid item xs={12}>
-          <RatingCustom name="level" control={control} title="Trình độ" />
+          <RatingCustom name="level" control={control} title="Level" />
         </Grid>
       </Grid>
     </form>

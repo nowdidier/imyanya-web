@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -143,7 +134,7 @@ const CertificateCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Thêm thông tin chứng chỉ thành công.');
+        toastMessages.success('Add certificate information successfully.');
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -158,7 +149,7 @@ const CertificateCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Cập nhật thông tin chứng chỉ thành công.');
+        toastMessages.success('Update certificate information successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -185,7 +176,7 @@ const CertificateCard = ({ title }) => {
         await certificateService.deleteCertificateById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Xóa thông tin chứng chỉ thành công.');
+        toastMessages.success('Delete certificate information successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -195,8 +186,8 @@ const CertificateCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Xóa thông tin chứng chỉ',
-      'Thông tin chứng chỉ này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
+      'Delete certificate information',
+      'This certificate information will be permanently deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -250,7 +241,7 @@ const CertificateCard = ({ title }) => {
             <Box>
               {certificates.length === 0 ? (
                 <EmptyCard
-                  content="Bạn hãy thêm chứng chỉ của mình để nhà tuyển dụng tham khảo"
+                  content="Add your certificates for recruiters to view"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -286,7 +277,7 @@ const CertificateCard = ({ title }) => {
                             {value.expirationDate ? (
                               <TimeAgo date={value.expirationDate} type="format" format="DD/MM/YYYY"/>
                             ) : (
-                              'Không thời hạn'
+                              'No expiry date'
                             )}
                           </Typography>
                           <Typography
@@ -352,7 +343,7 @@ const CertificateCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Chứng chỉ"
+        title="Certificate"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

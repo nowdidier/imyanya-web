@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React, { useState } from 'react';
 import { Upload, Modal } from 'antd';
 import { Box, Typography} from "@mui/material";
@@ -65,7 +54,7 @@ const CompanyImageCard = () => {
           });
         }
         setFileList([...fileList, ...newResults]);
-        toastMessages.success('Tải ảnh lên thành công.');
+        toastMessages.success('Upload image successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -92,7 +81,7 @@ const CompanyImageCard = () => {
           setFileList(newFileList);
         }
 
-        toastMessages.success('Xóa hình ảnh thành công.');
+        toastMessages.success('Delete image successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -102,8 +91,8 @@ const CompanyImageCard = () => {
 
     confirmModal(
       () => deleteCompanyImage(file.uid),
-      'Xóa hình ảnh',
-      'Hình ảnh này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
+      'Delete Image',
+      'This image will be permanently deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -134,7 +123,7 @@ const CompanyImageCard = () => {
           color: 'text.primary'
         }}
       >
-        Thư viện ảnh công ty
+        Company Image Library
       </Typography>
 
       <Upload
@@ -183,7 +172,7 @@ const CompanyImageCard = () => {
                 textAlign: 'center'
               }}
             >
-              Tải lên
+              Upload
             </Typography>
           </Box>
         )}
@@ -194,7 +183,7 @@ const CompanyImageCard = () => {
         open={previewVisible}
         title={
           <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-            Xem hình ảnh
+            View Image
           </Typography>
         }
         footer={null}

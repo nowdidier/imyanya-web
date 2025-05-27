@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import * as React from 'react';
 import {
   Alert,
@@ -28,7 +17,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import toastMessages from '../../../utils/toastMessages';
 
 const ResetPasswordPage = () => {
-  TabTitle("Cập nhật mật khẩu")
+  TabTitle("Reset Password")
 
   const { token } = useParams();
   const nav = useNavigate();
@@ -45,7 +34,7 @@ const ResetPasswordPage = () => {
         const redirectLoginUrl = resData.data?.redirectLoginUrl;
 
         nav(
-          `${redirectLoginUrl}/?successMessage=Cập nhật mật khẩu thành công.`
+          `${redirectLoginUrl}/?successMessage=Password updated successfully.`
         );
       } catch (error) {
         const res = error.response;
@@ -60,7 +49,7 @@ const ResetPasswordPage = () => {
             }
             break;
           default:
-            toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
+            toastMessages.error('An error occurred, please try again!');
         }
       } finally {
         setIsFullScreenLoading(false);
@@ -91,7 +80,7 @@ const ResetPasswordPage = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              Đặt lại mật khẩu của bạn
+              Reset your password
             </Typography>
           </Box>
 
@@ -99,7 +88,7 @@ const ResetPasswordPage = () => {
           {errorMessage && (
             <Box>
               <Alert severity="error">
-                <AlertTitle>Thất bại</AlertTitle>
+                <AlertTitle>Failed</AlertTitle>
                 {errorMessage}
               </Alert>
             </Box>

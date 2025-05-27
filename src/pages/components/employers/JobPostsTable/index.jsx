@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Chip, IconButton, TableBody, TableCell, Tooltip } from '@mui/material';
@@ -29,7 +18,7 @@ const JobPostsTable = (props) => {
       {!isLoading && rows.length === 0 ? (
         <TableBody>
           <TableCell colSpan={7}>
-            <NoDataCard title="Bạn chưa có tin tuyển dụng nào" />
+            <NoDataCard title="You have no job postings" />
           </TableCell>
         </TableBody>
       ) : (
@@ -40,7 +29,7 @@ const JobPostsTable = (props) => {
                 {row.jobName}{' '}
                 {row.isUrgent && (
                   <Chip
-                    label="Tuyển gấp"
+                    label="Urgent"
                     color="error"
                     variant="outlined"
                     size="small"
@@ -71,7 +60,7 @@ const JobPostsTable = (props) => {
                 />
               </TableCell>
               <TableCell align="right">
-                <Tooltip title="Cập nhật" arrow>
+                <Tooltip title="Update" arrow>
                   <IconButton
                     color="secondary"
                     aria-label="edit"
@@ -80,7 +69,7 @@ const JobPostsTable = (props) => {
                     <EditOutlinedIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="Xóa" arrow>
+                <Tooltip title="Delete" arrow>
                   <IconButton
                     color="error"
                     aria-label="delete"

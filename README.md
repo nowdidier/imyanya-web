@@ -4,7 +4,7 @@
  
 </p>
 <h1 align="center">JOB PORTAL SYSTEM</h1>
-<h1 align="center">MyJob Web Application (ReactJS)</h1>
+<h1 align="center">ImyanyaWeb Application (ReactJS)</h1>
 
 ❗Must run [SERVER](https://github.com/BuiKhanhHuy/myjob_api) first
 

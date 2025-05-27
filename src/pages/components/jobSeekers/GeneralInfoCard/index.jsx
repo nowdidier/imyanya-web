@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -98,7 +89,7 @@ const item = (title, value) => {
         fontStyle: value ? 'normal' : 'italic',
         fontSize: value ? '1rem' : '0.875rem',
       }}>
-        {value || 'Chưa cập nhật'}
+        {value || 'Not updated yet'}
       </Typography>
     </Box>
   );
@@ -138,7 +129,7 @@ const GeneralInfoCard = ({ title }) => {
 
         setIsSuccess(!isSuccess);
         setOpenPopup(false);
-        toastMessages.success('Cập nhật thông tin hồ sơ thành công.');
+        toastMessages.success('Profile information updated successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -161,7 +152,7 @@ const GeneralInfoCard = ({ title }) => {
           Loading
         ) : resumeDetail === null ? (
           <Typography variant="h6" color="error.main" textAlign="center">
-            Không tìm thấy thông tin hồ sơ
+            Profile information not found
           </Typography>
         ) : (
           <>
@@ -202,27 +193,27 @@ const GeneralInfoCard = ({ title }) => {
             <Stack sx={{ px: 1 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  {item('Mục tiêu nghề nghiệp', resumeDetail?.description)}
+                  {item('Career objective', resumeDetail?.description)}
                   <Divider sx={{ my: 1, borderColor: 'grey.300' }} />
                 </Grid>
                 
                 <Grid item xs={12} sm={6}>
                   <Stack spacing={1.5}>
-                    {item('Vị trí mong muốn', resumeDetail?.title)}
+                    {item('Desired position', resumeDetail?.title)}
                     {item(
-                      'Cấp bậc mong muốn',
+                      'Desired level',
                       allConfig.positionDict[resumeDetail?.position]
                     )}
                     {item(
-                      'Trình độ học vấn',
+                      'Education level',
                       allConfig.academicLevelDict[resumeDetail?.academicLevel]
                     )}
                     {item(
-                      'Kinh nghiệm',
+                      'Experience',
                       allConfig.experienceDict[resumeDetail?.experience]
                     )}
                     {item(
-                      'Nghề nghiệp',
+                      'Career',
                       allConfig.careerDict[resumeDetail?.career]
                     )}
                   </Stack>
@@ -231,24 +222,24 @@ const GeneralInfoCard = ({ title }) => {
                 <Grid item xs={12} sm={6}>
                   <Stack spacing={1.5}>
                     {item(
-                      'Địa điểm làm việc',
+                      'Work location',
                       allConfig.cityDict[resumeDetail?.city]
                     )}
                     {item(
-                      'Mức lương mong muốn',
+                      'Desired salary',
                       salaryString(
                         resumeDetail?.salaryMin,
                         resumeDetail?.salaryMax
                       )
                     )}
                     {item(
-                      'Nơi làm việc',
+                      'Workplace',
                       allConfig.typeOfWorkplaceDict[
                         resumeDetail?.typeOfWorkplace
                       ]
                     )}
                     {item(
-                      'Hình thức làm việc',
+                      'Job type',
                       allConfig.jobTypeDict[resumeDetail?.jobType]
                     )}
                   </Stack>
@@ -261,7 +252,7 @@ const GeneralInfoCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Thông tin hồ sơ"
+        title="Profile information"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

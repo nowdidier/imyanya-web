@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from "react";
 import { useSelector } from "react-redux";
 import { Box, Grid, Pagination, Stack, Typography } from "@mui/material";
@@ -83,7 +72,7 @@ const Companies = () => {
               gap: 1,
             }}
           >
-            Công ty nổi bật
+            Featured Companies
             <Box
               component="span"
               sx={{
@@ -95,7 +84,7 @@ const Companies = () => {
                 fontSize: "0.9em",
               }}
             >
-              {count} công ty
+              {count} companies
             </Box>
           </Typography>
         </Box>
@@ -112,7 +101,7 @@ const Companies = () => {
           </Grid>
         ) : companies.length === 0 ? (
           <NoDataCard
-            title="Hiện chưa tìm công ty phù hợp với tiêu chí của bạn"
+            title="No companies found matching your criteria"
             imgComponentSgv={<SVG_IMAGES.ImageSvg4 />}
           />
         ) : (

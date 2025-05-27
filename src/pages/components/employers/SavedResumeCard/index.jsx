@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import {
   Box,
@@ -36,49 +25,49 @@ const headCells = [
     showOrder: false,
     numeric: false,
     disablePadding: true,
-    label: 'Tên hồ sơ',
+    label: 'Resume Name',
   },
   {
     id: 'fullName',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Tên ứng viên',
+    label: 'Candidate Name',
   },
   {
     id: 'salary',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Mức lương',
+    label: 'Salary',
   },
   {
     id: 'experience',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Kinh nghiệm',
+    label: 'Experience',
   },
   {
     id: 'city',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Tỉnh/Thành phố',
+    label: 'City/Province',
   },
   {
     id: 'createAt',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Ngày lưu',
+    label: 'Saved Date',
   },
   {
     id: 'action',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Hành động',
+    label: 'Action',
   },
 ];
 

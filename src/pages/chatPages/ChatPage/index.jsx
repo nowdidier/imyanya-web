@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { 
@@ -163,13 +152,13 @@ const ChatPage = () => {
                   flex: 1,
                   background: (theme) => theme.palette.primary.gradient,
                   backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
+                  WebkitBackgroundClip: 'text', 
                   WebkitTextFillColor: 'transparent',
                   textAlign: 'center'
                 }}
               >
-                New way to follow your chance.{' '}
-                <span>More engage, more success</span>
+                New way to follow your chances.{' '}
+                <span>More engagement, more success</span>
               </Typography>
             </Box>
             

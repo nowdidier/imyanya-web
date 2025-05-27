@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -26,22 +17,22 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
   const schema = yup.object().shape({
     jobName: yup
       .string()
-      .required('Từ khóa là bắt buộc.')
-      .max(200, 'Từ khóa là bắt buộc.'),
+      .required('Keyword is required.')
+      .max(200, 'Keyword is required.'),
     career: yup
       .number()
-      .required('Ngành/nghề là bắt buộc.')
-      .typeError('Ngành/nghề là bắt buộc.'),
+      .required('Career is required.')
+      .typeError('Career is required.'),
     city: yup
       .number()
-      .required('Tỉnh/Thành phố là bắt buộc.')
-      .typeError('Tỉnh/Thành phố là bắt buộc.'),
+      .required('Province/City is required.')
+      .typeError('Province/City is required.'),
     position: yup.number().notRequired().nullable(),
     experience: yup.number().notRequired().nullable(),
     salary: yup
       .number()
       .nullable()
-      .typeError('Mức lương mong muốn không hợp lệ.')
+      .typeError('Desired salary is invalid.')
       .transform((value, originalValue) => {
         if (originalValue === '') {
           return null;
@@ -81,9 +72,9 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="jobName"
-            title="Từ khóa"
+            title="Keyword"
             showRequired={true}
-            placeholder="Nhập từ khoá là tên công việc hoặc liên quan đến tên công việc mà bạn đang tìm."
+            placeholder="Enter a keyword that is a job title or related to the job you are looking for."
             control={control}
           />
         </Grid>
@@ -92,9 +83,9 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
             name="career"
             control={control}
             options={allConfig?.careerOptions || []}
-            title="Ngành nghề"
+            title="Career"
             showRequired={true}
-            placeholder="Chọn ngành nghề cần tuyển"
+            placeholder="Select the career you want to apply for"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -102,9 +93,9 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
             name="city"
             control={control}
             options={allConfig?.cityOptions || []}
-            title="Tỉnh/Thành phố"
+            title="Province/City"
             showRequired={true}
-            placeholder="Chọn tỉnh thành phố"
+            placeholder="Select province/city"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -112,8 +103,8 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
             name="position"
             control={control}
             options={allConfig?.positionOptions || []}
-            title="Vị trí/chức vụ"
-            placeholder="Chọn vị trí/chức vụ"
+            title="Position"
+            placeholder="Select position"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -121,15 +112,15 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
             name="experience"
             control={control}
             options={allConfig?.experienceOptions || []}
-            title="Kinh nghiệm"
-            placeholder="Chọn kinh nghiệm yêu cầu"
+            title="Experience"
+            placeholder="Select required experience"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <TextFieldCustom
             name="salary"
-            title="Mức lương mong muốn"
-            placeholder="Nhập mức lương mong muốn của bạn"
+            title="Desired salary"
+            placeholder="Enter your desired salary"
             control={control}
             type="number"
           />
@@ -139,7 +130,7 @@ const JobPostNotificationForm = ({ handleAddOrUpdate, editData }) => {
             name="frequency"
             control={control}
             options={allConfig?.frequencyNotificationOptions || []}
-            title="Tần suất thông báo"
+            title="Notification frequency"
           />
         </Grid>
       </Grid>

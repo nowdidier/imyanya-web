@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from "react";
 import { useSelector } from "react-redux";
@@ -62,7 +53,7 @@ const JobApplicationCard = () => {
         mb={2}
       >
         <Typography variant="h6" sx={{ fontWeight: 600 }}>
-          Hồ sơ xin việc
+          Job Application Profile
         </Typography>
         <IconButton
           aria-label="ArrowForward"
@@ -104,7 +95,7 @@ const JobApplicationCard = () => {
               <List.Item.Meta
                 avatar={
                   item?.type === CV_TYPES.cvWebsite ? (
-                    <Tooltip title="Hồ sơ Online">
+                    <Tooltip title="Online Profile">
                       <AntAvatar
                         style={{
                           backgroundColor: (theme) =>
@@ -117,7 +108,7 @@ const JobApplicationCard = () => {
                       />
                     </Tooltip>
                   ) : item?.type === CV_TYPES.cvUpload ? (
-                    <Tooltip title="Hồ sơ đính kèm">
+                    <Tooltip title="Attached Profile">
                       <AntAvatar
                         style={{
                           backgroundColor: (theme) => theme.palette.hot.main,
@@ -151,7 +142,7 @@ const JobApplicationCard = () => {
                         color: (theme) => theme.palette.text.secondary,
                       }}
                     >
-                      Sửa lần cuối {dayjs(item?.updateAt).format("DD/MM/YYYY")}
+                      Last edited {dayjs(item?.updateAt).format("DD/MM/YYYY")}
                     </Typography>
                     <Typography
                       variant="body2"
@@ -163,8 +154,8 @@ const JobApplicationCard = () => {
                       }}
                     >
                       {item?.isActive
-                        ? "Đang cho phép tìm kiếm"
-                        : "Không cho phép tìm kiếm"}
+                        ? "Search enabled"
+                        : "Search not enabled"}
                     </Typography>
                   </Stack>
                 }

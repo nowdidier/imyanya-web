@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
@@ -37,121 +26,121 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
   const schema = yup.object().shape({
     jobName: yup
       .string()
-      .required('Tên công việc là bắt buộc.')
-      .max(200, 'Tên công việc vượt quá độ dài cho phép.'),
+      .required('Job title is required.')
+      .max(200, 'Job title exceeds the maximum length.'),
     career: yup
       .number()
-      .required('Ngành/nghề là bắt buộc.')
-      .typeError('Ngành/nghề là bắt buộc.'),
+      .required('Industry/Field is required.')
+      .typeError('Industry/Field is required.'),
     position: yup
       .number()
-      .required('Vị trí công việc là bắt buộc.')
-      .typeError('Vị trí công việc là bắt buộc.'),
+      .required('Job position is required.')
+      .typeError('Job position is required.'),
     experience: yup
       .number()
-      .required('Kinh nghiệm làm việc là bắt buộc.')
-      .typeError('Kinh nghiệm làm việc là bắt buộc.'),
+      .required('Work experience is required.')
+      .typeError('Work experience is required.'),
     typeOfWorkplace: yup
       .number()
-      .required('Nơi làm việc là bắt buộc.')
-      .typeError('Nơi làm việc là bắt buộc.'),
+      .required('Workplace is required.')
+      .typeError('Workplace is required.'),
     jobType: yup
       .number()
-      .required('Hình thức làm việc là bắt buộc.')
-      .typeError('Hình thức làm việc là bắt buộc.'),
+      .required('Job type is required.')
+      .typeError('Job type is required.'),
     quantity: yup
       .number()
-      .required('Số lượng tuyển là bắt buộc.')
-      .typeError('Số lượng tuyển không hợp lệ.')
-      .min(1, 'Số lượng tuyển ít nhất là một ứng viên.'),
+      .required('Number of recruits is required.')
+      .typeError('Number of recruits is not valid.')
+      .min(1, 'At least one candidate is required.'),
     genderRequired: yup
       .string()
-      .required('Yêu cầu giới tính là bắt buộc.')
-      .typeError('Yêu cầu giới tính là bắt buộc.'),
+      .required('Gender requirement is required.')
+      .typeError('Gender requirement is required.'),
     salaryMin: yup
       .number()
-      .required('Lương tối thiểu là bắt buộc.')
-      .typeError('Lương tối thiểu không hợp lệ.')
-      .min(0, 'Lương tối thiểu không hợp lệ.')
+      .required('Minimum salary is required.')
+      .typeError('Minimum salary is not valid.')
+      .min(0, 'Minimum salary is not valid.')
       .test(
         'minimum-wage-comparison',
-        'Lương tối thiểu phải nhỏ hơn lương tối đa.',
+        'Minimum salary must be less than maximum salary.',
         function (value) {
           return !(value >= this.parent.salaryMax);
         }
       ),
     salaryMax: yup
       .number()
-      .required('Lương tối đa là bắt buộc.')
-      .typeError('Lương tối đa không hợp lệ.')
-      .min(0, 'Lương tối đa không hợp lệ.')
+      .required('Maximum salary is required.')
+      .typeError('Maximum salary is not valid.')
+      .min(0, 'Maximum salary is not valid.')
       .test(
         'maximum-wage-comparison',
-        'Lương tối đa phải lớn hơn lương tối thiểu.',
+        'Maximum salary must be greater than minimum salary.',
         function (value) {
           return !(value <= this.parent.salaryMin);
         }
       ),
     academicLevel: yup
       .number()
-      .required('Bằng cấp là bắt buộc.')
-      .typeError('Bằng cấp là bắt buộc.'),
+      .required('Academic degree is required.')
+      .typeError('Academic degree is required.'),
     deadline: yup
       .date()
-      .required('Hạn nộp hồ sơ là bắt buộc.')
-      .typeError('Hạn nộp hồ sơ không hợp lệ.')
-      .min(new Date() + 1, 'Hạn nộp hồ sơ phải lớn hơn ngày hôm nay.'),
+      .required('Application deadline is required.')
+      .typeError('Application deadline is not valid.')
+      .min(new Date() + 1, 'Application deadline must be later than today.'),
     jobDescription: yup
       .mixed()
-      .test('editorContent', 'Mô tả công việc là bắt buộc.', (value) =>
+      .test('editorContent', 'Job description is required.', (value) =>
         value.getCurrentContent().hasText()
       ),
     jobRequirement: yup
       .mixed()
-      .test('editorContent', 'Yêu cầu công việc là bắt buộc.', (value) =>
+      .test('editorContent', 'Job requirements are required.', (value) =>
         value.getCurrentContent().hasText()
       ),
     benefitsEnjoyed: yup
       .mixed()
-      .test('editorContent', 'Quyền lợi là bắt buộc.', (value) =>
+      .test('editorContent', 'Benefits are required.', (value) =>
         value.getCurrentContent().hasText()
       ),
     location: yup.object().shape({
       city: yup
         .number()
-        .required('Tỉnh/Thành phố là bắt buộc.')
-        .typeError('Tỉnh/Thành phố là bắt buộc.'),
+        .required('City/Province is required.')
+        .typeError('City/Province is required.'),
       district: yup
         .number()
-        .required('Quận/Huyện là bắt buộc.')
-        .typeError('Quận/Huyện là bắt buộc.'),
+        .required('District/County is required.')
+        .typeError('District/County is required.'),
       address: yup
         .string()
-        .required('Địa chỉ là bắt buộc.')
-        .max(255, 'Địa chỉ vượt quá độ dài cho phép.'),
+        .required('Address is required.')
+        .max(255, 'Address exceeds the maximum length.'),
       lat: yup
         .number()
-        .required('Vĩ độ trên bản đồ là bắt buộc.')
-        .typeError('Vĩ độ trên bản đồ không hợp lệ.'),
+        .required('Latitude on the map is required.')
+        .typeError('Latitude on the map is not valid.'),
       lng: yup
         .number()
-        .required('Kinh độ trên bản đồ là bắt buộc.')
-        .typeError('Kinh độ trên bản đồ không hợp lệ.'),
+        .required('Longitude on the map is required.')
+        .typeError('Longitude on the map is not valid.'),
     }),
     contactPersonName: yup
       .string()
-      .required('Tên người liên hệ là bắt buộc.')
-      .max(100, 'Tên người liên hệ vượt quá độ dài cho phép.'),
+      .required('Contact person name is required.')
+      .max(100, 'Contact person name exceeds the maximum length.'),
     contactPersonPhone: yup
       .string()
-      .required('Số điện thoại người liên hệ là bắt buộc.')
-      .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
-      .max(15, 'Số điện thoại người liên hệ vượt quá độ dài cho phép.'),
+      .required('Contact person phone number is required.')
+      .matches(REGEX_VATIDATE.phoneRegExp, 'Phone number is not valid.')
+      .max(15, 'Contact person phone number exceeds the maximum length.'),
     contactPersonEmail: yup
       .string()
-      .required('Email người liên hệ là bắt buộc.')
-      .email('Email không hợp lệ.')
-      .max(100, 'Email người liên hệ vượt quá độ dài cho phép.'),
+      .required('Contact person email is required.')
+      .email('Email is not valid.')
+      .max(100, 'Contact person email exceeds the maximum length.'),
     isUrgent: yup.boolean().default(false),
   });
 
@@ -241,16 +230,16 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Alert severity="warning">
-            Khi bạn cập nhật bài đăng, nó sẽ ở trạng thái chờ kiểm duyệt!
+            When you update the post, it will be in a pending review status!
           </Alert>
         </Grid>
 
         <Grid item xs={12}>
           <TextFieldCustom
             name="jobName"
-            title="Tên công việc"
+            title="Job Title"
             showRequired={true}
-            placeholder="Nhập tên công việc"
+            placeholder="Enter job title"
             control={control}
           />
         </Grid>
@@ -259,9 +248,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="career"
             control={control}
             options={allConfig?.careerOptions || []}
-            title="Ngành nghề"
+            title="Industry"
             showRequired={true}
-            placeholder="Chọn ngành nghề cần tuyển"
+            placeholder="Select the industry to recruit"
           />
         </Grid>
         <Grid item xs={6}>
@@ -269,9 +258,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="position"
             control={control}
             options={allConfig?.positionOptions || []}
-            title="Vị trí/chức vụ"
+            title="Position"
             showRequired={true}
-            placeholder="Chọn vị trí/chức vụ"
+            placeholder="Select position"
           />
         </Grid>
         <Grid item xs={6}>
@@ -279,9 +268,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="experience"
             control={control}
             options={allConfig?.experienceOptions || []}
-            title="Kinh nghiệm"
+            title="Experience"
             showRequired={true}
-            placeholder="Chọn kinh nghiệm yêu cầu"
+            placeholder="Select required experience"
           />
         </Grid>
         <Grid item xs={6}>
@@ -289,9 +278,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="typeOfWorkplace"
             control={control}
             options={allConfig?.typeOfWorkplaceOptions || []}
-            title="Nơi làm việc"
+            title="Workplace"
             showRequired={true}
-            placeholder="Chọn vị nơi làm việc"
+            placeholder="Select workplace"
           />
         </Grid>
         <Grid item xs={6}>
@@ -299,17 +288,17 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="jobType"
             control={control}
             options={allConfig?.jobTypeOptions || []}
-            title="Hình thức làm việc"
+            title="Job Type"
             showRequired={true}
-            placeholder="Chọn hình thức làm việc"
+            placeholder="Select job type"
           />
         </Grid>
         <Grid item xs={6}>
           <TextFieldCustom
             name="quantity"
-            title="Số lượng tuyển"
+            title="Number of Recruits"
             showRequired={true}
-            placeholder="Nhập số lượng nhân sự cần tuyển"
+            placeholder="Enter the number of recruits"
             control={control}
             type="number"
           />
@@ -319,17 +308,17 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="genderRequired"
             control={control}
             options={allConfig?.genderOptions || []}
-            title="Yêu cầu giới tính"
+            title="Gender Requirement"
             showRequired={true}
-            placeholder="Chọn giới tính yêu cầu"
+            placeholder="Select gender requirement"
           />
         </Grid>
         <Grid item xs={6}>
           <TextFieldCustom
             name="salaryMin"
-            title="Mức lương tối thiểu"
+            title="Minimum Salary"
             showRequired={true}
-            placeholder="Nhập mức lương tối thiểu"
+            placeholder="Enter minimum salary"
             control={control}
             type="number"
           />
@@ -337,9 +326,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
         <Grid item xs={6}>
           <TextFieldCustom
             name="salaryMax"
-            title="Mức lương tối đa"
+            title="Maximum Salary"
             showRequired={true}
-            placeholder="Nhập mức lương tối đa"
+            placeholder="Enter maximum salary"
             control={control}
             type="number"
           />
@@ -349,9 +338,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="academicLevel"
             control={control}
             options={allConfig?.academicLevelOptions || []}
-            title="Bằng cấp"
+            title="Academic Degree"
             showRequired={true}
-            placeholder="Chọn bằng cấp"
+            placeholder="Select academic degree"
           />
         </Grid>
         <Grid item xs={6}>
@@ -359,7 +348,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="deadline"
             control={control}
             showRequired={true}
-            title="Hạn nộp hồ sơ"
+            title="Application Deadline"
             minDate={DATE_OPTIONS.tomorrow}
           />
         </Grid>
@@ -367,7 +356,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           <RichTextEditorCustom
             name="jobDescription"
             control={control}
-            title="Mô tả công việc"
+            title="Job Description"
             showRequired={true}
           />
         </Grid>
@@ -375,7 +364,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           <RichTextEditorCustom
             name="jobRequirement"
             control={control}
-            title="Yêu cầu công việc"
+            title="Job Requirements"
             showRequired={true}
           />
         </Grid>
@@ -383,7 +372,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           <RichTextEditorCustom
             name="benefitsEnjoyed"
             control={control}
-            title="Quyền lợi"
+            title="Benefits"
             showRequired={true}
           />
         </Grid>
@@ -392,9 +381,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="location.city"
             control={control}
             options={allConfig?.cityOptions || []}
-            title="Tỉnh/Thành phố"
+            title="City/Province"
             showRequired={true}
-            placeholder="Chọn tỉnh thành phố"
+            placeholder="Select city/province"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -402,17 +391,17 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             name="location.district"
             control={control}
             options={districtOptions}
-            title="Quận/Huyện"
+            title="District/County"
             showRequired={true}
-            placeholder="Chọn Quận/Huyện"
+            placeholder="Select district/county"
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldAutoCompleteCustom
             name="location.address"
-            title="Địa chỉ"
+            title="Address"
             showRequired={true}
-            placeholder="Nhập địa chỉ"
+            placeholder="Enter address"
             control={control}
             options={locationOptions}
             loading={true}
@@ -422,10 +411,10 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <TextFieldCustom
             name="location.lat"
-            title="Vĩ độ"
+            title="Latitude"
             showRequired={true}
-            placeholder="Nhập vĩ độ tọa độ trên bản đồ của công ty."
-            helperText="Tự động điền nếu bạn chọn địa chỉ được gợi ý."
+            placeholder="Enter latitude coordinate on the company's map."
+            helperText="Automatically filled if you select the suggested address."
             control={control}
             type="number"
           />
@@ -433,10 +422,10 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <TextFieldCustom
             name="location.lng"
-            title="Kinh độ"
+            title="Longitude"
             showRequired={true}
-            placeholder="Nhập kinh độ tọa độ trên bản đồ của công ty."
-            helperText="Tự động điền nếu bạn chọn địa chỉ được gợi ý."
+            placeholder="Enter longitude coordinate on the company's map."
+            helperText="Automatically filled if you select the suggested address."
             control={control}
             type="number"
           />
@@ -444,32 +433,32 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="contactPersonName"
-            title="Tên người liên hệ"
+            title="Contact Person Name"
             showRequired={true}
-            placeholder="Nhập tên người liên hệ"
+            placeholder="Enter contact person name"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="contactPersonPhone"
-            title="Số điện thoại người liên hệ"
+            title="Contact Person Phone"
             showRequired={true}
-            placeholder="Nhập số điện thoại người liên hệ"
+            placeholder="Enter contact person phone number"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="contactPersonEmail"
-            title="Email người liên hệ"
+            title="Contact Person Email"
             showRequired={true}
-            placeholder="Nhập email người liên hệ"
+            placeholder="Enter contact person email"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
-          <CheckboxCustom name="isUrgent" control={control} title="Tuyển gấp" />
+          <CheckboxCustom name="isUrgent" control={control} title="Urgent Recruitment" />
         </Grid>
       </Grid>
     </form>

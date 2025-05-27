@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import { Box, Stack, Pagination, Chip } from '@mui/material';
@@ -63,7 +54,7 @@ const CompanyViewedCard = () => {
           </Stack>
         ) : resumesViewed.length === 0 ? (
           <NoDataCard
-            title="Chưa có nhà tuyển dụng nào xem hồ sơ của bạn"
+            title="No recruiters have viewed your profile yet"
             imgComponentSgv={<SVG_IMAGES.ImageSvg6 />}
           ></NoDataCard>
         ) : (

@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -97,7 +86,7 @@ const ProfileUploadCard = ({
               }}
               size="small"
               icon={<StarIcon sx={{ color: 'warning.main' }} />}
-              label="Cho phép tìm kiếm"
+              label="Allow search"
               onClick={() => handleActive(slug)}
             />
           ) : (
@@ -111,12 +100,12 @@ const ProfileUploadCard = ({
               }}
               size="small"
               icon={<StarOutlineIcon sx={{ color: 'warning.main' }} />}
-              label="Cho phép tìm kiếm"
+              label="Allow search"
               onClick={() => handleActive(slug)}
             />
           )}
           <Tooltip
-            title={`Bật "Cho phép tìm kiếm" sẽ giúp nhà tuyển dụng tìm thấy hồ sơ của bạn và họ có thể liên hệ với bạn về công việc mới. Chỉ có duy nhất một hồ được bật trạng thái "cho phép tìm kiếm" trong tất cả hồ sơ của bạn.`}
+            title={`Enabling "Allow search" will help employers find your profile and they may contact you about new jobs. Only one profile can be enabled for "allow search" among all your profiles.`}
             arrow
           >
             <HelpIcon sx={{ ml: 1, color: 'rgba(255, 255, 255, 0.7)' }} />
@@ -157,7 +146,7 @@ const ProfileUploadCard = ({
             </Stack>
 
             <Typography variant="caption" sx={{ opacity: 0.8 }}>
-              Cập nhật lần cuối: {dayjs(updateAt).format('DD/MM/YYYY HH:mm:ss')}
+              Last updated: {dayjs(updateAt).format('DD/MM/YYYY HH:mm:ss')}
             </Typography>
 
             <Stack direction="row" justifyContent="space-between" alignItems="center">
@@ -171,7 +160,7 @@ const ProfileUploadCard = ({
                 }}
                 size="small"
                 icon={<DownloadIcon sx={{ color: defaultTheme.palette.secondary.main }} />}
-                label="Tải xuống"
+                label="Download"
                 onClick={() => downloadPdf(fileUrl, title)}
               />
               <IconButton

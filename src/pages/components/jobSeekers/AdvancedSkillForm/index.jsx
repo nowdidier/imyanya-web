@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -26,9 +15,9 @@ const AdvancedSkillForm = ({
   const schema = yup.object().shape({
     name: yup
       .string()
-      .required('Tên kỹ năng là bắt buộc.')
-      .max(200, 'Tên kỹ năng vượt quá độ dài cho phép.'),
-    level: yup.number().required('Trình độ là bắt buộc.'),
+      .required('Skill name is required.')
+      .max(200, 'Skill name exceeds maximum length.'),
+    level: yup.number().required('Level is required.'),
   });
 
   const { control, reset, setError, handleSubmit } = useForm({
@@ -66,14 +55,14 @@ const AdvancedSkillForm = ({
         <Grid item xs={12} lg={12} md={12}>
           <TextFieldCustom
             name="name"
-            title="Tên kỹ năng"
+            title="Skill Name"
             showRequired={true}
-            placeholder="Nhập tên kỹ năng"
+            placeholder="Enter skill name"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
-          <RatingCustom name="level" control={control} title="Trình độ" />
+          <RatingCustom name="level" control={control} title="Level" />
         </Grid>
       </Grid>
     </form>

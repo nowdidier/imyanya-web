@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -61,7 +52,7 @@ const CompanyFollowedCard = () => {
       try {
         await companyService.followCompany(slugCompany);
 
-        toastMessages.success('Hủy theo dõi thành công.');
+        toastMessages.success('Unfollow successfully.');
         setIsSuccess(!isSuccess);
       } catch (error) {
         errorHandling(error);
@@ -82,7 +73,7 @@ const CompanyFollowedCard = () => {
           </Stack>
         ) : resumesViewed.length === 0 ? (
           <NoDataCard
-            title="Bạn chưa theo dõi bất kỳ nhà tuyển dụng nào"
+            title="You are not following any recruiters"
             imgComponentSgv={<SVG_IMAGES.ImageSvg7 />}
           >
             <Button
@@ -91,7 +82,7 @@ const CompanyFollowedCard = () => {
               component={Link}
               to={`/${ROUTES.JOB_SEEKER.COMPANY}`}
             >
-              Tìm công ty
+              Find company
             </Button>
           </NoDataCard>
         ) : (
@@ -109,7 +100,7 @@ const CompanyFollowedCard = () => {
                   size="small"
                   onClick={() => handleFollow(value.company?.slug)}
                 >
-                  Hủy theo dõi
+                  Unfollow
                 </Button>
               </CompanyAction.CompanyActionFollow>
             ))}

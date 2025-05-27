@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -71,7 +60,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 const JobSeekerSignUp = () => {
-  TabTitle("Đăng ký tài khoản Người tìm việc")
+  TabTitle("Register Job Seeker Account")
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -134,10 +123,10 @@ const JobSeekerSignUp = () => {
             nav('/');
           })
           .catch(() => {
-            toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
+            toastMessages.error('An error occurred, please log in again!');
           });
       } else {
-        toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
+        toastMessages.error('An error occurred, please log in again!');
       }
     } catch (error) {
       // 400 bad request
@@ -147,7 +136,7 @@ const JobSeekerSignUp = () => {
         if ('errorMessage' in errors) {
           setErrorMessage(errors.errorMessage.join(' '));
         } else {
-          toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
+          toastMessages.error('An error occurred, please try again!');
         }
       }
     } finally {
@@ -219,7 +208,7 @@ const JobSeekerSignUp = () => {
                 mb: 1
               }}
             >
-              Đăng ký tài khoản
+              Register Account
             </Typography>
             <Typography 
               variant="subtitle1" 
@@ -229,7 +218,7 @@ const JobSeekerSignUp = () => {
                 mb: 2 
               }}
             >
-              Tạo tài khoản ứng viên mới
+              Create a new job seeker account
             </Typography>
           </Box>
 
@@ -241,7 +230,7 @@ const JobSeekerSignUp = () => {
                 borderRadius: '8px',
               }}
             >
-              <AlertTitle>Thất bại</AlertTitle>
+              <AlertTitle>Failed</AlertTitle>
               {errorMessage}
             </Alert>
           )}
@@ -265,7 +254,7 @@ const JobSeekerSignUp = () => {
           >
             <Grid item>
               <StyledLink to={`/${ROUTES.AUTH.LOGIN}`}>
-                Đã có tài khoản? Đăng nhập
+                Already have an account? Log in
               </StyledLink>
             </Grid>
           </Grid>

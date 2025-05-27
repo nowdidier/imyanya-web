@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
@@ -17,6 +6,7 @@ import * as yup from 'yup';
 import {
   Box,
   Button,
+  Divider,
   Grid,
   Stack,
   Step,
@@ -42,7 +32,7 @@ import TextFieldAutoCompleteCustom from '../../../../components/controls/TextFie
 import commonService from '../../../../services/commonService';
 import goongService from '../../../../services/goongService';
 
-const steps = ['Thông tin đăng nhập', 'Thông tin công ty'];
+const steps = ['Login Information', 'Company Information'];
 
 const StyledButton = styled(Button)(({ theme }) => ({
   padding: '8px 16px',
@@ -58,18 +48,25 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const StyledStepper = styled(Stepper)(({ theme }) => ({
-  '& .MuiStepLabel-root .Mui-completed': {
-    color: theme.palette.primary.main,
-  },
-  '& .MuiStepLabel-root .Mui-active': {
-    color: theme.palette.primary.main,
-  },
-  '& .MuiStepLabel-label': {
-    fontSize: '14px',
-    fontWeight: 500,
+const StyledSocialButton = styled(Button)(({ theme }) => ({
+  padding: '8px 16px',
+  borderRadius: '8px',
+  fontSize: '14px',
+  fontWeight: 500,
+  textTransform: 'none',
+  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+  transition: 'all 0.2s ease',
+  '&:hover': {
+    transform: 'translateY(-1px)',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
   },
 }));
+
+const StyledDivider = styled(Divider)({
+  height: '2px',
+  background: 'linear-gradient(to right, #1976d2, #9c27b0)',
+  border: 'none',
+});
 
 const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -81,69 +78,69 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
   const schema = yup.object().shape({
     fullName: yup
       .string()
-      .required('Họ và tên là bắt buộc!')
-      .max(100, 'Họ và tên vượt quá độ dài cho phép.'),
+      .required('Full name is required!')
+      .max(100, 'Full name exceeds maximum length.'),
     email: yup
       .string()
-      .required('Email là bắt buộc!')
-      .email('Email không đúng định dạng')
-      .max(100, 'Email vượt quá độ dài cho phép.'),
+      .required('Email is required!')
+      .email('Invalid email format')
+      .max(100, 'Email exceeds maximum length.'),
     password: yup
       .string()
-      .required('Mật khẩu là bắt buộc!')
-      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
-      .max(128, 'Mật khẩu vượt quá độ dài cho phép.')
+      .required('Password is required!')
+      .min(8, 'Password must be at least 8 characters.')
+      .max(128, 'Password exceeds maximum length.')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
+        'Must contain uppercase, lowercase, number and special character'
       ),
     confirmPassword: yup
       .string()
-      .required('Mật khẩu xác nhận là bắt buộc.')
-      .oneOf([yup.ref('password')], 'Mật khẩu xác nhận không chính xác.'),
+      .required('Confirm password is required.')
+      .oneOf([yup.ref('password')], 'Passwords do not match.'),
     company: yup.object().shape({
       companyName: yup
         .string()
-        .required('Tên công ty là bắt buộc!')
-        .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
+        .required('Company name is required!')
+        .max(255, 'Company name exceeds maximum length.'),
       companyEmail: yup
         .string()
-        .required('Email công ty là bắt buộc')
-        .email('Email công ty không đúng định dạng')
-        .max(100, 'Email công ty vượt quá độ dài cho phép.'),
+        .required('Company email is required')
+        .email('Invalid company email format')
+        .max(100, 'Company email exceeds maximum length.'),
       companyPhone: yup
         .string()
-        .required('Số điện thoại công ty là bắt buộc')
-        .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
-        .max(15, 'Số điện thoại công ty vượt quá độ dài cho phép.'),
+        .required('Company phone number is required')
+        .matches(REGEX_VATIDATE.phoneRegExp, 'Invalid phone number.')
+        .max(15, 'Company phone number exceeds maximum length.'),
       taxCode: yup
         .string()
-        .required('Mã số thuế công ty là bắt buộc')
-        .max(30, 'Mã số thuế công ty vượt quá độ dài cho phép.'),
+        .required('Company tax code is required')
+        .max(30, 'Company tax code exceeds maximum length.'),
       since: yup.date().nullable().typeError(),
       fieldOperation: yup
         .string()
-        .max(255, 'Lĩnh vực hoạt động công ty vượt quá độ dài cho phép.'),
+        .max(255, 'Company field of operation exceeds maximum length.'),
       employeeSize: yup
         .number()
-        .required('Số lượng nhân viên là bắt buộc.')
-        .typeError('Số lượng nhân viên là bắt buộc.'),
+        .required('Number of employees is required.')
+        .typeError('Number of employees is required.'),
       websiteUrl: yup
         .string()
-        .max(300, 'Đường dẫn website công ty vượt quá độ dài cho phép.'),
+        .max(300, 'Company website URL exceeds maximum length.'),
       location: yup.object().shape({
         city: yup
           .number()
-          .required('Tỉnh/Thành phố là bắt buộc.')
-          .typeError('Tỉnh/Thành phố là bắt buộc.'),
+          .required('City/Province is required.')
+          .typeError('City/Province is required.'),
         district: yup
           .number()
-          .required('Quận/Huyện là bắt buộc.')
-          .typeError('Quận/Huyện là bắt buộc.'),
+          .required('District is required.')
+          .typeError('District is required.'),
         address: yup
           .string()
-          .required('Địa chỉ công ty là bắt buộc!')
-          .max(255, 'Địa chỉ công ty vượt quá độ dài cho phép.'),
+          .required('Company address is required!')
+          .max(255, 'Company address exceeds maximum length.'),
       }),
     }),
   });

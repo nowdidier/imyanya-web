@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from "react";
 import { Box, Button, Stack, Typography, Paper } from "@mui/material";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
@@ -151,7 +140,7 @@ const CompanyCard = () => {
               color: "text.primary",
             }}
           >
-            Logo công ty
+            Company Logo
           </Typography>
           <Box sx={{ position: "relative" }}>
             <MuiImageCustom
@@ -171,11 +160,11 @@ const CompanyCard = () => {
                   zIndex: 2000,
                   style: { borderRadius: 16 },
                 }}
-                modalTitle="Chỉnh sửa ảnh"
-                modalOk="Tải lên"
-                modalCancel="Hủy"
+                modalTitle="Edit Image"
+                modalOk="Upload"
+                modalCancel="Cancel"
                 showReset={true}
-                resetText="Đặt lại"
+                resetText="Reset"
               >
                 <Upload
                   listType="picture"
@@ -193,7 +182,7 @@ const CompanyCard = () => {
                       boxShadow: "none",
                     }}
                   >
-                    Thay logo
+                    Change logo
                   </Button>
                 </Upload>
               </ImgCrop>
@@ -210,7 +199,7 @@ const CompanyCard = () => {
               color: "text.primary",
             }}
           >
-            Ảnh bìa công ty
+            Company Cover Image
           </Typography>
           <Box sx={{ position: "relative" }}>
             <MuiImageCustom
@@ -241,7 +230,7 @@ const CompanyCard = () => {
                     boxShadow: "none",
                   }}
                 >
-                  Thay ảnh bìa
+                  Change cover image
                 </Button>
               </Upload>
             </Box>
@@ -277,7 +266,7 @@ const CompanyCard = () => {
                     },
                   }}
                 >
-                  Cập nhật
+                  Update
                 </Button>
               </Box>
             </>

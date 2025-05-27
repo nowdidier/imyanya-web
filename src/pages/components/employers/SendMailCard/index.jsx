@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -30,20 +19,20 @@ const SendMailCard = ({
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Email người nhận là bắt buộc.')
-      .email('Email người nhận không hợp lệ.')
-      .max(100, 'Email người nhận vượt quá độ dài cho phép.'),
+      .required('Recipient email is required.')
+      .email('Invalid recipient email.')
+      .max(100, 'Recipient email exceeds maximum length.'),
     fullName: yup
       .string()
-      .required('Tên người nhận.')
-      .max(100, 'Tên người nhận vượt quá độ dài cho phép.'),
+      .required('Recipient name is required.')
+      .max(100, 'Recipient name exceeds maximum length.'),
     title: yup
       .string()
-      .required('Tiêu đề email là bắt buộc.')
-      .max(200, 'Tiêu đề email vượt quá độ dài cho phép.'),
+      .required('Email title is required.')
+      .max(200, 'Email title exceeds maximum length.'),
     content: yup
       .mixed()
-      .test('content', 'Nội dung email là bắt buộc.', (value) =>
+      .test('content', 'Email content is required.', (value) =>
         value.getCurrentContent().hasText()
       ),
     isSendMe: yup.boolean().default(false),
@@ -75,10 +64,10 @@ const SendMailCard = ({
   return (
     <>
       <FormPopup
-        title="Gửi mail"
+        title="Send mail"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
-        buttonText="Gửi"
+        buttonText="Send"
         buttonIcon={<SendIcon />}
       >
         <form id="modal-form" onSubmit={handleSubmit(handleSendEmail)}>
@@ -86,9 +75,9 @@ const SendMailCard = ({
             <Grid item xs={12}>
               <TextFieldCustom
                 name="fullName"
-                title="Tên người nhận"
+                title="Recipient Name"
                 showRequired={true}
-                placeholder="Nhập tên người nhận"
+                placeholder="Enter recipient name"
                 control={control}
                 disabled={true}
               />
@@ -96,9 +85,9 @@ const SendMailCard = ({
             <Grid item xs={12}>
               <TextFieldCustom
                 name="email"
-                title="Email người nhận"
+                title="Recipient Email"
                 showRequired={true}
-                placeholder="Nhập email người nhận"
+                placeholder="Enter recipient email"
                 control={control}
                 disabled={true}
               />
@@ -106,9 +95,9 @@ const SendMailCard = ({
             <Grid item xs={12}>
               <TextFieldCustom
                 name="title"
-                title="Tiêu đề"
+                title="Title"
                 showRequired={true}
-                placeholder="Nhập tiêu đề email"
+                placeholder="Enter email title"
                 control={control}
               />
             </Grid>
@@ -116,7 +105,7 @@ const SendMailCard = ({
               <RichTextEditorCustom
                 name="content"
                 control={control}
-                title="Nội dung email"
+                title="Email Content"
                 showRequired={true}
               />
             </Grid>
@@ -124,7 +113,7 @@ const SendMailCard = ({
               <CheckboxCustom
                 name="isSendMe"
                 control={control}
-                title="Gửi một bản sao đến địa chỉ email nhà tuyển dụng của tôi."
+                title="Send a copy to my employer email address."
               />
             </Grid>
           </Grid>

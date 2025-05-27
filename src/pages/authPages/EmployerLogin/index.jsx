@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
@@ -66,7 +55,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 const EmployerLogin = () => {
-  TabTitle('Đăng nhập tài khoản Nhà tuyển dụng');
+  TabTitle('Employer Account Login');
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -111,10 +100,10 @@ const EmployerLogin = () => {
               nav(`/${ROUTES.EMPLOYER.DASHBOARD}`);
             })
             .catch(() => {
-              toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
+              toastMessages.error('An error occurred, please log in again!');
             });
         } else {
-          toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
+          toastMessages.error('An error occurred, please log in again!');
         }
       } catch (error) {
         // 400 bad request
@@ -124,7 +113,7 @@ const EmployerLogin = () => {
           if ('errorMessage' in errors) {
             setErrorMessage(errors.errorMessage.join(' '));
           } else {
-            toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
+            toastMessages.error('An error occurred, please try again!');
           }
         }
       } finally {
@@ -151,7 +140,7 @@ const EmployerLogin = () => {
           return;
         } else if (exists === false) {
           setErrorMessage(
-            'Không tồn tại tài khoản nhà tuyển dụng nào với email này!'
+            "No employer account exists with this email!"
           );
 
           return;
@@ -159,7 +148,7 @@ const EmployerLogin = () => {
 
         getAccesToken(resEmail, password, roleName);
       } catch (error) {
-        toastMessages.error('Đã xảy ra lỗi, vui lòng đăng nhập lại!');
+        toastMessages.error('An error occurred, please log in again!');
       } finally {
         setIsFullScreenLoading(false);
       }
@@ -208,7 +197,7 @@ const EmployerLogin = () => {
                 mb: 1
               }}
             >
-              Đăng nhập
+              Login
             </Typography>
             <Typography 
               variant="subtitle1" 
@@ -218,7 +207,7 @@ const EmployerLogin = () => {
                 mb: 2 
               }}
             >
-              Chào mừng bạn đến với cổng tuyển dụng
+              Welcome to the recruitment portal
             </Typography>
           </Box>
 
@@ -230,7 +219,7 @@ const EmployerLogin = () => {
                 borderRadius: '8px',
               }}
             >
-              <AlertTitle>Thất bại</AlertTitle>
+              <AlertTitle>Failed</AlertTitle>
               {errorMessage}
             </Alert>
           )}
@@ -243,7 +232,7 @@ const EmployerLogin = () => {
                 borderRadius: '8px',
               }}
             >
-              <AlertTitle>Thành công</AlertTitle>
+              <AlertTitle>Success</AlertTitle>
               {successMessage}
             </Alert>
           )}
@@ -263,7 +252,7 @@ const EmployerLogin = () => {
           >
             <Grid item xs={12} sm={6}>
               <StyledLink to={`/${ROUTES.AUTH.FORGOT_PASSWORD}`}>
-                Quên mật khẩu?
+                Forgot password?
               </StyledLink>
             </Grid>
             <Grid 
@@ -275,7 +264,7 @@ const EmployerLogin = () => {
               }}
             >
               <StyledLink to={`/${ROUTES.AUTH.REGISTER}`}>
-                Chưa có tài khoản? Đăng ký
+                Don't have an account? Register
               </StyledLink>
             </Grid>
           </Grid>

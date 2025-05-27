@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -67,16 +58,16 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required("Email là bắt buộc!")
-      .email("Email không đúng định dạng"),
+      .required("Email is required!")
+      .email("Invalid email format"),
     password: yup
       .string()
-      .required("Mật khẩu là bắt buộc!")
-      .min(8, "Mật khẩu phải có ít nhất 8 ký tự.")
-      .max(128, "Mật khẩu vượt quá độ dài cho phép.")
+      .required("Password is required!")
+      .min(8, "Password must be at least 8 characters.")
+      .max(128, "Password exceeds maximum length.")
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        "Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt"
+        "Must contain uppercase, lowercase, number and special character"
       ),
   });
 
@@ -109,7 +100,7 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
           name="email"
           control={control}
           title="Email"
-          placeholder="Nhập email của bạn"
+          placeholder="Enter your email"
           showRequired={true}
           sx={{
             "& .MuiOutlinedInput-root": {
@@ -121,8 +112,8 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
         <PasswordTextFieldCustom
           name="password"
           control={control}
-          title="Mật khẩu"
-          placeholder="Nhập mật khẩu của bạn"
+          title="Password"
+          placeholder="Enter your password"
           showRequired={true}
           sx={{
             "& .MuiOutlinedInput-root": {
@@ -138,10 +129,10 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
         type="submit"
         startIcon={<LoginIcon />}
       >
-        Đăng nhập
+        Login
       </StyledButton>
 
-      <StyledDivider>Hoặc đăng nhập với</StyledDivider>
+      <StyledDivider>Or login with</StyledDivider>
 
       <Stack
         direction="row"

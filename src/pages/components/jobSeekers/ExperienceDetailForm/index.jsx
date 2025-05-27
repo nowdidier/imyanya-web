@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -24,35 +15,35 @@ const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
   const schema = yup.object().shape({
     jobName: yup
       .string()
-      .required('Tên công việc là bắt buộc.')
-      .max(200, 'Tên công việc vượt quá độ dài cho phép.'),
+      .required('Job name is required.')
+      .max(200, 'Job name exceeds the allowed length.'),
     companyName: yup
       .string()
-      .required('Tên công ty là bắt buộc.')
-      .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
+      .required('Company name is required.')
+      .max(255, 'Company name exceeds the allowed length.'),
     startDate: yup
       .date()
-      .required('Ngày bắt đầu là bắt buộc.')
-      .typeError('Ngày bắt đầu là bắt buộc.')
-      .max(DATE_OPTIONS.yesterday, 'Ngày bắt đầu phải nhỏ hơn ngày hôm nay.')
+      .required('Start date is required.')
+      .typeError('Start date is required.')
+      .max(DATE_OPTIONS.yesterday, 'Start date must be before today.')
       .test(
         'start-date-comparison',
-        'Ngày bắt đầu phải nhỏ hơn ngày kết thúc.',
+        'Start date must be before end date.',
         function (value) {
           return !(value >= this.parent.endDate);
         }
       ),
     endDate: yup
       .date()
-      .required('Ngày kết thúc là bắt buộc.')
-      .typeError('Ngày kết thúc là bắt buộc.')
+      .required('End date is required.')
+      .typeError('End date is required.')
       .max(
         DATE_OPTIONS.today,
-        'Ngày kết thúc phải nhỏ hơn hoặc bằng ngày hôm nay.'
+        'End date must be before or equal to today.'
       )
       .test(
         'end-date-comparison',
-        'Ngày kết thúc phải lớn hơn ngày bắt đầu.',
+        'End date must be after start date.',
         function (value) {
           return !(value <= this.parent.startDate);
         }
@@ -81,16 +72,16 @@ const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
           <TextFieldCustom
             name="jobName"
             control={control}
-            placeholder="VD: Kỹ sư phần mềm"
-            title="Chức danh/vị trí công việc"
+            placeholder="E.g.: Software Engineer"
+            title="Job title/position"
             showRequired={true}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="companyName"
-            title="Tên công ty"
-            placeholder="Nhập tên công ty"
+            title="Company name"
+            placeholder="Enter company name"
             control={control}
             showRequired={true}
           />
@@ -99,7 +90,7 @@ const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
           <DatePickerCustom
             name="startDate"
             control={control}
-            title="Ngày bắt đầu"
+            title="Start date"
             showRequired={true}
             maxDate={DATE_OPTIONS.yesterday}
           />
@@ -108,7 +99,7 @@ const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
           <DatePickerCustom
             name="endDate"
             control={control}
-            title="Ngày kết thúc"
+            title="End date"
             showRequired={true}
             maxDate={DATE_OPTIONS.today}
           />
@@ -116,8 +107,8 @@ const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
         <Grid item xs={12}>
           <MultilineTextFieldCustom
             name="description"
-            title="Mô tả thêm"
-            placeholder="Nhập nội dung mô tả tại đây"
+            title="More description"
+            placeholder="Enter description content here"
             control={control}
           />
         </Grid>

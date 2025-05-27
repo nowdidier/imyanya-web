@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -47,7 +36,7 @@ const FollowComponent = ({ slug, isFollowed }) => {
 
         setFollowed(isFollowed);
         toastMessages.success(
-          isFollowed ? 'Theo dõi thành công.' : 'Hủy theo dõi thành công.'
+          isFollowed ? 'Followed successfully.' : 'Unfollowed successfully.'
         );
       } catch (error) {
         errorHandling(error);
@@ -81,9 +70,9 @@ const FollowComponent = ({ slug, isFollowed }) => {
           >
             <span>
               {followed ? (
-                <span style={{ color: 'white' }}>Đang theo dõi</span>
+                <span style={{ color: 'white' }}>Following</span>
               ) : (
-                'Theo dõi'
+                'Follow'
               )}
             </span>
           </LoadingButton>
@@ -189,7 +178,7 @@ const Company = ({
                   style={{ marginRight: 4 }}
                   color={(theme) => theme.palette.custom.mutedText} 
                 />
-                {followNumber} lượt theo dõi
+                {followNumber} followers
               </Typography>
             </Box>
           </Box>
@@ -224,7 +213,7 @@ const Company = ({
                 />
                 {fieldOperation || (
                   <span style={{ color: '#9e9e9e', fontStyle: 'italic', fontSize: 13 }}>
-                    Chưa cập nhật
+                    Not updated
                   </span>
                 )}
               </Typography>
@@ -237,7 +226,7 @@ const Company = ({
                 />
                 {allConfig?.cityDict[city] || (
                   <span style={{ color: '#9e9e9e', fontStyle: 'italic', fontSize: 13 }}>
-                    Chưa cập nhật
+                    Not updated
                   </span>
                 )}
               </Typography>
@@ -250,7 +239,7 @@ const Company = ({
                 />
                 {allConfig?.employeeSizeDict[employeeSize] || (
                   <span style={{ color: '#9e9e9e', fontStyle: 'italic', fontSize: 13 }}>
-                    Chưa cập nhật
+                    Not updated
                   </span>
                 )}
               </Typography>
@@ -270,7 +259,7 @@ const Company = ({
                   style={{ width: 16 }}
                   sx={{ color: 'primary.main' }}
                 />
-                {jobPostNumber} việc làm
+                {jobPostNumber} jobs
               </Typography>
             </Stack>
           </Box>

@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import * as React from 'react';
 import { Stack, Typography, Button, Box } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -53,7 +42,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
 
 
   const title = React.useMemo(() => {
-    return hostName === HOST_NAME.MYJOB ? (
+    return hostName === HOST_NAME.Imyanya? (
       <Stack direction="row" alignItems="center">
         <FontAwesomeIcon
           color="#2c95ff"
@@ -68,7 +57,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           </Typography>
         </Stack>
       </Stack>
-    ) : hostName === HOST_NAME.EMPLOYER_MYJOB ? (
+    ) : hostName === HOST_NAME.EMPLOYER_Imyanya? (
       <Stack direction="row" alignItems="center">
         <FontAwesomeIcon
           color="#2c95ff"
@@ -77,9 +66,9 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Người tìm việc</Typography>
+          <Typography>Job Seeker</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            <FontAwesomeIcon icon={faArrowRight} /> Chuyển
+            <FontAwesomeIcon icon={faArrowRight} /> Switch
           </Typography>
         </Stack>
       </Stack>
@@ -92,9 +81,9 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Nhà tuyển dụng</Typography>
+          <Typography>Employer</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            Đăng tin miễn phí
+            Post a job for free
           </Typography>
         </Stack>
       </Stack>
@@ -114,8 +103,8 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             sx={{ textTransform: 'inherit' }}
           >
             {hostName === HOST_NAME.EMPLOYER_MYJOB
-              ? 'Đăng nhập ứng viên'
-              : 'Đăng nhập NTD'}
+              ? 'Job Seeker Login'
+              : 'Employer Login'}
           </Button>
           <Button
             variant="outlined"
@@ -126,8 +115,8 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             onClick={() => handleClickAuth(false)}
           >
             {hostName === HOST_NAME.EMPLOYER_MYJOB
-              ? 'Đăng ký ứng viên'
-              : 'Đăng ký NTD'}
+              ? 'Job Seeker Register'
+              : 'Employer Register'}
           </Button>
         </Stack>
       ) : (

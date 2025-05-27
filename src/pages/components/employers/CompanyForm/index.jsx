@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
@@ -36,53 +25,53 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
   const schema = yup.object().shape({
     companyName: yup
       .string()
-      .required('Tên công ty là bắt buộc.')
-      .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
+      .required('Company name is required.')
+      .max(255, 'Company name exceeds maximum length.'),
     taxCode: yup
       .string()
-      .required('Mã số thuế là bắt buộc.')
-      .max(30, 'Mã số thuế vượt quá độ dài cho phép.'),
+      .required('Tax code is required.')
+      .max(30, 'Tax code exceeds maximum length.'),
     employeeSize: yup
       .number()
-      .required('Quy mô nhân sự là bắt buộc.')
-      .typeError('Quy mô nhân sự là bắt buộc.'),
+      .required('Employee size is required.')
+      .typeError('Employee size is required.'),
     fieldOperation: yup
       .string()
-      .required('Lĩnh vực hoạt động là bắt buộc.')
-      .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
+      .required('Field of operation is required.')
+      .max(255, 'Field of operation exceeds maximum length.'),
     location: yup.object().shape({
       city: yup
         .number()
-        .required('Tỉnh/Thành phố là bắt buộc.')
-        .typeError('Tỉnh/Thành phố là bắt buộc.'),
+        .required('City/Province is required.')
+        .typeError('City/Province is required.'),
       district: yup
         .number()
-        .required('Quận/Huyện là bắt buộc.')
-        .typeError('Quận/Huyện là bắt buộc.'),
+        .required('District is required.')
+        .typeError('District is required.'),
       address: yup
         .string()
-        .required('Địa chỉ là bắt buộc.')
-        .max(255, 'Địa chỉ vượt quá độ dài cho phép.'),
+        .required('Address is required.')
+        .max(255, 'Address exceeds maximum length.'),
       lat: yup
         .number()
-        .required('Vĩ độ trên bản đồ của công ty là bắt buộc.')
-        .typeError('Vĩ độ trên bản đồ của công ty không hợp lệ.'),
+        .required('Latitude is required.')
+        .typeError('Invalid latitude.'),
       lng: yup
         .number()
-        .required('Kinh độ trên bản đồ của công ty là bắt buộc.')
-        .typeError('Kinh độ trên bản đồ của công ty không hợp lệ.'),
+        .required('Longitude is required.')
+        .typeError('Invalid longitude.'),
     }),
     since: yup.date().nullable(),
     companyEmail: yup
       .string()
-      .required('Email công ty là bắt buộc.')
-      .email('Email không hợp lệ.')
-      .max(100, 'Email công ty vượt quá độ dài cho phép.'),
+      .required('Company email is required.')
+      .email('Invalid email.')
+      .max(100, 'Company email exceeds maximum length.'),
     companyPhone: yup
       .string()
-      .required('Số điện thoại công ty là bắt buộc.')
-      .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
-      .max(15, 'Số điện thoại công ty vượt quá độ dài cho phép.'),
+      .required('Company phone number is required.')
+      .matches(REGEX_VATIDATE.phoneRegExp, 'Invalid phone number.')
+      .max(15, 'Company phone number exceeds maximum length.'),
   });
 
   const { control, reset, setValue, setError, handleSubmit } = useForm({
@@ -177,18 +166,18 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
               <TextFieldCustom
                 name="companyName"
-                title="Tên công ty"
+                title="Company Name"
                 showRequired={true}
-                placeholder="Nhập tên công ty"
+                placeholder="Enter company name"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="taxCode"
-                title="Mã số thuế"
+                title="Tax Code"
                 showRequired={true}
-                placeholder="Nhập mã số thuế công ty"
+                placeholder="Enter company tax code"
                 control={control}
               />
             </Grid>
@@ -197,17 +186,17 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 name="employeeSize"
                 control={control}
                 options={allConfig?.employeeSizeOptions || []}
-                title="Quy mô công ty"
+                title="Company Size"
                 showRequired={true}
-                placeholder="Chọn quy mô công ty"
+                placeholder="Select company size"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="fieldOperation"
-                title="Lĩnh vực hoạt động"
+                title="Field of Operation"
                 showRequired={true}
-                placeholder="Nhập lĩnh vực hoạt động của công ty"
+                placeholder="Enter company field of operation"
                 control={control}
               />
             </Grid>
@@ -215,56 +204,56 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
               <DatePickerCustom
                 name="since"
                 control={control}
-                title="Ngày thành lập công ty"
+                title="Company Establishment Date"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="websiteUrl"
-                title="Đường dẫn website"
-                placeholder="Nhập URL website của công ty"
+                title="Website URL"
+                placeholder="Enter company website URL"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="facebookUrl"
-                title="Đường dẫn Facebook"
-                placeholder="Nhập URL Facebook"
+                title="Facebook URL"
+                placeholder="Enter Facebook URL"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="youtubeUrl"
-                title="Đường dẫn Youtube"
-                placeholder="Nhập URL Youtube"
+                title="Youtube URL"
+                placeholder="Enter Youtube URL"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="linkedinUrl"
-                title="Đường dẫn Linkedin"
-                placeholder="Nhập URL Linkedin"
+                title="Linkedin URL"
+                placeholder="Enter Linkedin URL"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="companyEmail"
-                title="Email công ty"
+                title="Company Email"
                 showRequired={true}
-                placeholder="Nhập email của công ty"
+                placeholder="Enter company email"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="companyPhone"
-                title="Số điện thoại"
+                title="Phone Number"
                 showRequired={true}
-                placeholder="Nhập số điện thoại của công ty"
+                placeholder="Enter company phone number"
                 control={control}
               />
             </Grid>
@@ -273,9 +262,9 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 name="location.city"
                 control={control}
                 options={allConfig?.cityOptions || []}
-                title="Tỉnh/Thành phố"
+                title="City/Province"
                 showRequired={true}
-                placeholder="Chọn tỉnh thành phố"
+                placeholder="Select city/province"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -283,17 +272,17 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 options={districtOptions}
                 name="location.district"
                 control={control}
-                title="Quận/Huyện"
+                title="District"
                 showRequired={true}
-                placeholder="Chọn Quận/Huyện"
+                placeholder="Select district"
               />
             </Grid>
             <Grid item xs={12}>
               <TextFieldAutoCompleteCustom
                 name="location.address"
-                title="Địa chỉ"
+                title="Address"
                 showRequired={true}
-                placeholder="Nhập địa chỉ"
+                placeholder="Enter address"
                 control={control}
                 options={locationOptions}
                 handleSelect={handleSelectLocation}
@@ -302,20 +291,20 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="location.lat"
-                title="Vĩ độ"
+                title="Latitude"
                 showRequired={true}
-                placeholder="Nhập vĩ độ tọa độ trên bản đồ của công ty."
-                helperText="Tự động điền nếu bạn chọn địa chỉ được gợi ý."
+                placeholder="Enter company latitude."
+                helperText="Auto-filled if you select a suggested address."
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="location.lng"
-                title="Kinh độ"
+                title="Longitude"
                 showRequired={true}
-                placeholder="Nhập kinh độ tọa độ trên bản đồ của công ty."
-                helperText="Tự động điền nếu bạn chọn địa chỉ được gợi ý."
+                placeholder="Enter company longitude."
+                helperText="Auto-filled if you select a suggested address."
                 control={control}
               />
             </Grid>
@@ -323,7 +312,7 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
               <RichTextEditorCustom
                 name="description"
                 control={control}
-                title="Mô tả thêm"
+                title="Additional Description"
               />
               {/* <MultilineTextFieldCustom
                 name="description"

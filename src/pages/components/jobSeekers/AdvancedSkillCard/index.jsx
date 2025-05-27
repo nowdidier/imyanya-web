@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import {
@@ -64,11 +53,13 @@ const Loading = (
       <Box sx={{ py: 2 }}>
         <Skeleton height={5} />
       </Box>
-      {Array(4)
+      {Array(2)
         .fill(0)
         .map((item, index) => (
-          <Box sx={{ py: 0.5 }} key={index}>
-            <Skeleton height={30} />
+          <Box sx={{ py: 1 }} key={index}>
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
           </Box>
         ))}
     </Box>
@@ -190,8 +181,8 @@ const AdvancedSkillCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Xóa kỹ năng chuyên môn',
-      'Kỹ năng chuyên môn này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
+      'Delete professional skill',
+      'This professional skill will be permanently deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -245,7 +236,7 @@ const AdvancedSkillCard = ({ title }) => {
             <Box>
               {advancedSkills.length === 0 ? (
                 <EmptyCard
-                  content="Bạn hãy thêm kỹ năng chuyên môn của mình để nhà tuyển dụng tham khảo"
+                  content="Add your professional skills for recruiters to refer to"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -271,7 +262,7 @@ const AdvancedSkillCard = ({ title }) => {
                             borderColor: 'primary.light',
                           }}
                         >
-                          Kỹ năng
+                          Skill
                         </TableCell>
                         <TableCell 
                           align="left"
@@ -283,7 +274,7 @@ const AdvancedSkillCard = ({ title }) => {
                             borderColor: 'primary.light',
                           }}
                         >
-                          Trình độ
+                          Level
                         </TableCell>
                         <TableCell 
                           align="right"
@@ -295,7 +286,7 @@ const AdvancedSkillCard = ({ title }) => {
                             borderColor: 'primary.light',
                           }}
                         >
-                          Hành động
+                          Action
                         </TableCell>
                       </TableRow>
                     </TableHead>
@@ -378,7 +369,7 @@ const AdvancedSkillCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Kỹ năng chuyên môn"
+        title="Professional Skill"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import {
@@ -63,7 +54,7 @@ const JobSeekerQuantityStatistics = () => {
                 marginBottom: '8px',
                 display: 'block'
               }}>
-                Việc làm đã ứng tuyển
+                Jobs applied
               </span>
             }
             value={data?.totalApply}
@@ -99,7 +90,7 @@ const JobSeekerQuantityStatistics = () => {
                 marginBottom: '8px',
                 display: 'block'
               }}>
-                Việc làm đã lưu
+                Saved jobs
               </span>
             }
             value={data?.totalSave}
@@ -135,7 +126,7 @@ const JobSeekerQuantityStatistics = () => {
                 marginBottom: '8px',
                 display: 'block'
               }}>
-                NTD đã xem hồ sơ
+                Employers viewed profile
               </span>
             }
             value={data?.totalView}
@@ -171,7 +162,7 @@ const JobSeekerQuantityStatistics = () => {
                 marginBottom: '8px',
                 display: 'block'
               }}>
-                NTD đang theo dõi
+                Employers are following
               </span>
             }
             value={data?.totalFollow}

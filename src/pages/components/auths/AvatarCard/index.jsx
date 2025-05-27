@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,10 +30,10 @@ const AvatarCard = () => {
     dispatch(updateAvatar(formData))
       .unwrap()
       .then(() => {
-        toastMessages.success('Cập nhật ảnh đại diện thành công.');
+        toastMessages.success('Avatar updated successfully.');
       })
       .catch(() => {
-        toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại.');
+        toastMessages.error('An error occurred, please try again.');
       })
       .finally(() => setIsFullScreenLoading(false));
   };
@@ -54,18 +45,18 @@ const AvatarCard = () => {
       dispatch(deleteAvatar())
         .unwrap()
         .then(() => {
-          toastMessages.success('Xóa ảnh đại diện thành công.');
+          toastMessages.success('Avatar deleted successfully.');
         })
         .catch((err) => {
-          toastMessages.error();
+          toastMessages.error('An error occurred!');
         })
         .finally(() => setIsFullScreenLoading(false));
     };
 
     confirmModal(
       () => del(),
-      'Xóa ảnh đại diện',
-      'Ảnh đại diện này sẽ được xóa và không thể khôi phục. Bạn có chắc chắn?',
+      'Delete Avatar',
+      'This avatar will be deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -120,11 +111,11 @@ const AvatarCard = () => {
               <ImgCrop
                 rotationSlider
                 modalProps={{ zIndex: 2000 }}
-                modalTitle="Chỉnh sửa ảnh"
-                modalOk="Tải lên"
-                modalCancel="Hủy"
+                modalTitle="Edit Image"
+                modalOk="Upload"
+                modalCancel="Cancel"
                 showReset={true}
-                resetText="Đặt lại"
+                resetText="Reset"
               >
                 <Upload
                   listType="picture"
@@ -161,7 +152,7 @@ const AvatarCard = () => {
         </Box>
 
         <Typography variant="subtitle2" gutterBottom sx={{ mt: 1 }}>
-          Ảnh đại diện
+          Profile Picture
         </Typography>
       </Stack>
 

@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import {
   Dialog,
@@ -57,13 +46,13 @@ const ColorPickerDialog = ({ open, onClose, onColorSelect }) => {
       fullWidth
     >
       <DialogTitle>
-        Chọn màu sắc cho CV của bạn
+        Choose a color for your CV
       </DialogTitle>
       <DialogContent>
         <Stack spacing={3}>
           <Box>
             <Typography variant="subtitle2" sx={{ mb: 1 }}>
-              Màu sắc gợi ý
+              Suggested colors
             </Typography>
             <Stack direction="row" spacing={1} justifyContent="center">
               {DEFAULT_COLORS.map((color) => (
@@ -120,7 +109,7 @@ const ColorPickerDialog = ({ open, onClose, onColorSelect }) => {
             borderColor: 'grey.300'
           }}>
             <Typography variant="subtitle2" gutterBottom>
-              Xem trước màu đã chọn
+              Preview selected color
             </Typography>
             <Box sx={{
               width: '100%',
@@ -133,7 +122,7 @@ const ColorPickerDialog = ({ open, onClose, onColorSelect }) => {
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Hủy</Button>
+        <Button onClick={onClose}>Cancel</Button>
         <Button 
           variant="contained"
           onClick={handleConfirm}
@@ -145,11 +134,11 @@ const ColorPickerDialog = ({ open, onClose, onColorSelect }) => {
             },
           }}
         >
-          Xác nhận
+          Confirm
         </Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default ColorPickerDialog; 
+export default ColorPickerDialog;

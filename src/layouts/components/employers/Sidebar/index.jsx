@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React, { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import {
@@ -216,7 +205,7 @@ const DrawerContent = () => {
                 isChild
               />
               <MenuItem
-                text="Tìm ứng viên mới"
+                text="Find new candidates"
                 to={`/${ROUTES.EMPLOYER.PROFILE}`}
                 isSelected={location.pathname === `/${ROUTES.EMPLOYER.PROFILE}`}
                 isChild
@@ -228,7 +217,7 @@ const DrawerContent = () => {
           <ListItem disablePadding>
             <MenuItem
               icon={NotificationsNoneOutlinedIcon}
-              text={`${APP_NAME} thông báo`}
+              text={`${APP_NAME} notifications`}
               to={`/${ROUTES.EMPLOYER.NOTIFICATION}`}
               isSelected={location.pathname === `/${ROUTES.EMPLOYER.NOTIFICATION}`}
             />
@@ -238,7 +227,7 @@ const DrawerContent = () => {
           <ListItem disablePadding>
             <MenuItem
               icon={BusinessOutlinedIcon}
-              text="Quản lý tài khoản"
+              text="Account management"
               hasChildren
               isExpanded={expandedItems.account}
               onClick={() => handleExpand('account')}
@@ -247,19 +236,19 @@ const DrawerContent = () => {
           <Collapse in={expandedItems.account} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <MenuItem
-                text="Thông tin công ty"
+                text="Company information"
                 to={`/${ROUTES.EMPLOYER.COMPANY}`}
                 isSelected={location.pathname === `/${ROUTES.EMPLOYER.COMPANY}`}
                 isChild
               />
               <MenuItem
-                text="Tài khoản"
+                text="Account"
                 to={`/${ROUTES.EMPLOYER.ACCOUNT}`}
                 isSelected={location.pathname === `/${ROUTES.EMPLOYER.ACCOUNT}`}
                 isChild
               />
               <MenuItem
-                text="Cài đặt"
+                text="Settings"
                 to={`/${ROUTES.EMPLOYER.SETTING}`}
                 isSelected={location.pathname === `/${ROUTES.EMPLOYER.SETTING}`}
                 isChild

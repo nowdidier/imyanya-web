@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -73,7 +62,7 @@ const ProfileUpload = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success("Tải CV thành công.");
+        toastMessages.success("Upload CV successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -94,7 +83,7 @@ const ProfileUpload = ({ title }) => {
         await resumeService.deleteResume(slug);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success("Xóa thành công.");
+        toastMessages.success("Delete successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -104,8 +93,8 @@ const ProfileUpload = ({ title }) => {
 
     confirmModal(
       () => del(slug),
-      "Xóa CV đính kém",
-      "CV này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?",
+      "Delete attached CV",
+      "This CV will be permanently deleted and cannot be recovered. Are you sure?",
       "warning"
     );
   };
@@ -117,7 +106,7 @@ const ProfileUpload = ({ title }) => {
         await resumeService.activeResume(resumeSlug);
 
         dispatch(reloadResume());
-        toastMessages.success("Thay đổi trạng thái hồ sơ thành công.");
+        toastMessages.success("Change resume status successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -150,7 +139,7 @@ const ProfileUpload = ({ title }) => {
                 </Grid>
               ) : resumes.length === 0 ? (
                 <NoDataCard
-                  title="Bạn chưa tải lên CV nào"
+                  title="You have not uploaded any CV"
                   imgComponentSgv={<SVG_IMAGES.ImageSvg2 />}
                 />
               ) : (
@@ -204,7 +193,7 @@ const ProfileUpload = ({ title }) => {
       </Stack>
       {/* Start: form  */}
       <FormPopup
-        title="Thông tin hồ sơ"
+        title="Resume information"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

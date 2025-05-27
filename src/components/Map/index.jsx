@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
@@ -55,7 +44,7 @@ const Map = ({ title, subTitle, latitude, longitude }) => {
           }}
         >
           <LocationOnIcon fontSize="small" />
-          Chưa thể xác định vị trí trên bản đồ
+          Unable to determine location on the map
         </Typography>
       </Box>
     );

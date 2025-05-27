@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -42,11 +31,11 @@ const Feedback = () => {
   const [hover, setHover] = React.useState(-1);
 
   const schema = yup.object().shape({
-    rating: yup.number().required('Đánh giá là bắt buộc.'),
+    rating: yup.number().required('Rating is required.'),
     content: yup
       .string()
-      .required('Nội dung đánh giá là bắt buộc.')
-      .max(500, 'Nội dung đánh giá vượt quá độ dài cho phép.'),
+      .required('Feedback content is required.')
+      .max(500, 'Feedback content exceeds the allowed length.'),
   });
 
   const { control, handleSubmit, watch } = useForm({
@@ -74,7 +63,7 @@ const Feedback = () => {
       try {
         await myjobService.createFeedback(data);
         handleClose();
-        toastMessages.success('Gửi phản hồi thành công.');
+        toastMessages.success('Feedback sent successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -154,7 +143,7 @@ const Feedback = () => {
           />
         }
       >
-        Phản hồi
+        Feedback
       </Button>
 
       <Dialog 
@@ -188,7 +177,7 @@ const Feedback = () => {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Phản hồi của bạn
+              Your feedback
             </Typography>
             <IconButton 
               onClick={handleClose}
@@ -256,7 +245,7 @@ const Feedback = () => {
             <Grid item xs={12}>
               <MultilineTextFieldCustom
                 name="content"
-                placeholder="Chia sẻ trải nghiệm của bạn..."
+                placeholder="Share your experience..."
                 control={control}
                 minRows={5}
                 maxRows={8}
@@ -293,7 +282,7 @@ const Feedback = () => {
               }
             }}
           >
-            Gửi phản hồi
+            Send feedback
           </Button>
         </DialogActions>
       </Dialog>

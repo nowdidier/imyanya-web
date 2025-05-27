@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -594,9 +583,9 @@ const BoxProfile = ({ title }) => {
                   }}
                 >
                   <FontAwesomeIcon icon={faWarning} />
-                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                    Vui lòng thêm tất cả các thông tin cần thiết để hoàn thành
-                    hồ sơ của bạn.
+                  <Typography variant="body2" color="text.secondary">
+                    Please add all the necessary information to complete your
+                    profile.
                   </Typography>
                 </Box>
               </Grid>

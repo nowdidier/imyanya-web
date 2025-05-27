@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { DropzoneDialog } from 'mui-file-dropzone';
 import {
@@ -19,7 +8,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 
 const DropzoneDialogCustom = (props) => {
-  const { open, setOpen, handleUpload, title = 'Tiêu đề' } = props;
+  const { open, setOpen, handleUpload, title = 'Title' } = props;
 
   const dialogTitle = (title) => (
     <>
@@ -36,8 +25,8 @@ const DropzoneDialogCustom = (props) => {
     <DropzoneDialog
       dialogTitle={dialogTitle(title)}
       acceptedFiles={['image/*']}
-      submitButtonText="Tải lên"
-      cancelButtonText="Hủy"
+      submitButtonText="Upload"
+      cancelButtonText="Cancel"
       maxFileSize={5000000}
       open={open}
       onClose={() => setOpen(false)}
@@ -48,15 +37,15 @@ const DropzoneDialogCustom = (props) => {
       }}
       showPreviews={true}
       showFileNamesInPreview={false}
-      dropzoneText="Kéo và thả tệp vào đây hoặc nhấp vào"
-      previewText="Xem trước"
+      dropzoneText="Drag and drop files here or click"
+      previewText="Preview"
       getFileLimitExceedMessage={(number) =>
-        `Giới hạn tải lên là ${number} tệp.`
+        `Upload limit is ${number} files.`
       }
       getFileAddedMessage={(fileName) =>
-        `Tệp ${fileName} đã được thêm thành công.`
+        `File ${fileName} was added successfully.`
       }
-      getFileRemovedMessage={(fileName) => `Tệp ${fileName} đã được hủy`}
+      getFileRemovedMessage={(fileName) => `File ${fileName} was removed`}
       {...props}
     />
   );

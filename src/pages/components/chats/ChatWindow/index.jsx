@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -235,12 +224,12 @@ const ChatWindow = () => {
   }, [messages]);
 
   return (
-    <Stack 
-      direction="column" 
-      sx={{ 
+    <Stack
+      direction="column"
+      sx={{
         height: '100%',
         position: 'relative',
-        bgcolor: 'background.default'
+        bgcolor: 'background.default',
       }}
     >
       {selectedRoomId && (
@@ -274,20 +263,20 @@ const ChatWindow = () => {
         </Box>
       )}
 
-      <Box 
-        sx={{ 
-          flexGrow: 1, 
+      <Box
+        sx={{
+          flexGrow: 1,
           overflow: 'hidden',
           mt: selectedRoomId ? '72px' : 0, // Chiều cao của header chat
-          mb: '80px' // Chiều cao của khung nhập tin nhắn
+          mb: '80px', // Chiều cao của khung nhập tin nhắn
         }}
       >
         {selectedRoomId ? (
           <Stack sx={{ height: '100%' }}>
-            <Box 
-              sx={{ 
+            <Box
+              sx={{
                 height: '100%',
-                position: 'relative'
+                position: 'relative',
               }}
             >
               {isLoading ? (
@@ -300,7 +289,7 @@ const ChatWindow = () => {
                 </Stack>
               ) : messages.length === 0 ? (
                 <Stack
-                  justifyContent="center" 
+                  justifyContent="center"
                   alignItems="center"
                   height="100%"
                   p={2}
@@ -338,7 +327,7 @@ const ChatWindow = () => {
                     overflow: 'auto',
                     display: 'flex',
                     flexDirection: 'column-reverse',
-                    padding: '16px'
+                    padding: '16px',
                   }}
                 >
                   <InfiniteScroll
@@ -380,9 +369,9 @@ const ChatWindow = () => {
             </Box>
           </Stack>
         ) : (
-          <Stack 
-            justifyContent="center" 
-            alignItems="center" 
+          <Stack
+            justifyContent="center"
+            alignItems="center"
             height="100%"
             spacing={2}
             p={2}
@@ -411,14 +400,14 @@ const ChatWindow = () => {
             borderTop: 1,
             borderColor: 'divider',
             bgcolor: 'background.paper',
-            zIndex: 10
+            zIndex: 10,
           }}
         >
           <Stack direction="row" spacing={2} alignItems="flex-end">
             <TextField
               inputRef={inputRef}
               fullWidth
-              placeholder="Nhập nội dung tại đây ..."
+              placeholder="Type your message here ..."
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
@@ -432,9 +421,9 @@ const ChatWindow = () => {
                   '&:hover': {
                     '& > fieldset': {
                       borderColor: 'primary.main',
-                    }
-                  }
-                }
+                    },
+                  },
+                },
               }}
             />
             <Button
@@ -445,10 +434,10 @@ const ChatWindow = () => {
               sx={{
                 height: 54,
                 px: 3,
-                background: (theme) => theme.palette.primary.gradient
+                background: (theme) => theme.palette.primary.gradient,
               }}
             >
-              Gửi
+              Send
             </Button>
           </Stack>
         </Box>

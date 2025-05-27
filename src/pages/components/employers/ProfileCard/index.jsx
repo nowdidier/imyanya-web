@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Card, Grid, Pagination, Stack, Typography } from '@mui/material';
@@ -106,8 +95,8 @@ const ProfileCard = () => {
                 variant="body1"
                 sx={{ fontSize: 18, fontWeight: 'bold' }}
               >
-                Kết quả tìm thấy:{' '}
-                <span style={{ color: 'red' }}>{count} hồ sơ</span>
+                Found results:{' '}
+                <span style={{ color: 'red' }}>{count} profiles</span>
               </Typography>
             </Box>
             <Box sx={{ mt: 3 }}>
@@ -131,7 +120,7 @@ const ProfileCard = () => {
                 </Box>
               ) : resumes.length === 0 ? (
                 <NoDataCard
-                  title="Không tìm thấy kết quả."
+                  title="No results found."
                   imgComponentSgv={<SVG_IMAGES.ImageSvg11 />}
                 />
               ) : (

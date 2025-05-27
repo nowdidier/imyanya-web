@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -111,7 +100,7 @@ const JobSeekerProfile = ({
                       ...defaultTheme.palette.text.italic
                     }}
                   >
-                    Chưa cập nhật
+                    Not updated
                   </Typography>
                 )}
                 <Typography
@@ -122,20 +111,19 @@ const JobSeekerProfile = ({
                     fontSize: '0.95rem'
                   }}
                 >
-                  (
-                  {jobSeekerProfile?.old || (
+                  ({jobSeekerProfile?.old || (
                     <span style={defaultTheme.palette.text.italic}>
-                      Chưa cập nhật
+                      Not updated
                     </span>
                   )}{' '}
-                  tuổi)
+                  years old)
                 </Typography>
               </span>
             </Typography>
             {lastViewedDate && (
               <Chip
                 icon={<CheckCircleRoundedIcon />}
-                label={`Xem lần cuối: ${dayjs(lastViewedDate).format(
+                label={`Last viewed: ${dayjs(lastViewedDate).format(
                   'DD/MM/YYYY HH:mm'
                 )}`}
                 color="success"
@@ -177,7 +165,7 @@ const JobSeekerProfile = ({
                 component="span"
                 sx={defaultTheme.palette.text.italic}
               >
-                Chưa cập nhật
+                Not updated
               </Typography>
             )}
           </Typography>
@@ -189,7 +177,7 @@ const JobSeekerProfile = ({
               label={
                 salaryString(salaryMin, salaryMax) || (
                   <Typography component="span" sx={defaultTheme.palette.text.italic}>
-                    Chưa cập nhật
+                    Not updated
                   </Typography>
                 )
               }
@@ -207,7 +195,7 @@ const JobSeekerProfile = ({
               label={
                 allConfig.experienceDict[experience] || (
                   <Typography component="span" sx={defaultTheme.palette.text.italic}>
-                    Chưa cập nhật
+                    Not updated
                   </Typography>
                 )
               }
@@ -222,7 +210,7 @@ const JobSeekerProfile = ({
               label={
                 allConfig.cityDict[city] || (
                   <Typography component="span" sx={defaultTheme.palette.text.italic}>
-                    Chưa cập nhật
+                    Not updated
                   </Typography>
                 )
               }
@@ -245,7 +233,7 @@ const JobSeekerProfile = ({
           spacing={1}
         >
           <Stack direction="row" spacing={1}>
-            <Tooltip title="Lưu hồ sơ" arrow>
+            <Tooltip title="Save profile" arrow>
               <IconButton
                 aria-label="save"
                 size="small"
@@ -264,7 +252,7 @@ const JobSeekerProfile = ({
                 )}
               </IconButton>
             </Tooltip>
-            <Tooltip title="Xem hồ sơ" arrow>
+            <Tooltip title="View profile" arrow>
               <IconButton 
                 aria-label="view" 
                 size="small"
@@ -290,7 +278,7 @@ const JobSeekerProfile = ({
               gap: 0.5
             }}
           >
-            Cập nhật: {dayjs(updateAt).format('DD/MM/YYYY')}
+            Updated: {dayjs(updateAt).format('DD/MM/YYYY')}
           </Typography>
 
           <Typography
@@ -308,7 +296,7 @@ const JobSeekerProfile = ({
                 color: defaultTheme.palette.grey[500]
               }} 
             />
-            {viewEmployerNumber} NTD quan tâm
+            {viewEmployerNumber} employers interested
           </Typography>
         </Stack>
       </Stack>

@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -111,7 +100,7 @@ const FeedbackCarousel = () => {
             ))}
           </Swiper>
         ) : feedbacks.length === 0 ? (
-          <NoDataCard title="Chưa có người dùng nào đánh giá" />
+          <NoDataCard title="No user feedback yet" />
         ) : (
           <Swiper
             slidesPerView={col}

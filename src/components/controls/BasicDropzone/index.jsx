@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Controller } from 'react-hook-form';
@@ -73,10 +62,10 @@ const FileDropzone = ({ accept, onDrop, values }) => {
                 fontWeight: 600 
               }}
             >
-              Kéo hồ sơ của bạn vào đây
+              Drag your file here
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Hoặc bạn có thể
+              Or you can
             </Typography>
             <Button
               variant="contained"
@@ -92,7 +81,7 @@ const FileDropzone = ({ accept, onDrop, values }) => {
                 }
               }}
             >
-              Chọn hồ sơ từ máy bạn
+              Choose file from your device
             </Button>
             <Typography 
               variant="caption" 
@@ -101,7 +90,7 @@ const FileDropzone = ({ accept, onDrop, values }) => {
                 mt: 1 
               }}
             >
-              Hỗ trợ định dạng .pdf
+              Supports .pdf format
             </Typography>
           </>
         ) : (
@@ -124,7 +113,7 @@ const FileDropzone = ({ accept, onDrop, values }) => {
                 borderRadius: 2,
               }}
             >
-              Đổi tập tin
+              Change file
             </Button>
           </>
         )}

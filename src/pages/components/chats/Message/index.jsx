@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from "react";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
@@ -88,7 +79,7 @@ const Message = ({ userId, text, avatarUrl, createdAt }) => {
             <p className="small ms-3 mb-3 rounded-3 text-muted float-end">
               {createdAt?.seconds
                 ? formatMessageDate(createdAt?.seconds * 1000)
-                : "Đang gửi ..."}
+                : "Sending ..."}
             </p>
           </div>
         </div>

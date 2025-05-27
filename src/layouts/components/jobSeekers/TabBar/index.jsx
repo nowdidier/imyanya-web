@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -28,31 +19,31 @@ const tabItems = [
   { id: 1, label: `My ${APP_NAME}`, icon: <DashboardIcon />, path: `/${ROUTES.JOB_SEEKER.DASHBOARD}` },
   {
     id: 2,
-    label: "Hồ sơ xin việc",
+    label: "Job profile",
     icon: <AssignmentIndIcon />,
     path: `/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.PROFILE}`,
   },
   {
     id: 3,
-    label: "Việc làm của tôi",
+    label: "My jobs",
     icon: <WorkIcon />,
     path: `/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.MY_JOB}`,
   },
   {
     id: 4,
-    label: "Công ty của tôi",
+    label: "My companies",
     icon: <ApartmentIcon />,
     path: `/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.MY_COMPANY}`,
   },
   {
     id: 5,
-    label: `${APP_NAME} thông báo`,
+    label: `${APP_NAME} notifications`,
     icon: <CircleNotificationsIcon />,
     path: `/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.NOTIFICATION}`,
   },
   {
     id: 6,
-    label: "Tài khoản & cài đặt",
+    label: "Account & settings",
     icon: <ManageAccountsOutlinedIcon />,
     path: `/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.ACCOUNT}`,
   },

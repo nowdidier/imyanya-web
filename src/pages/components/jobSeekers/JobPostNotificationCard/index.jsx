@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from "react";
 import { useSelector } from "react-redux";
@@ -260,7 +251,7 @@ const ItemComponent = ({
                       fontStyle="italic"
                       color="grey.400"
                     >
-                      Chưa cập nhật
+                      Not updated yet
                     </Typography>
                   )}
                 </Box>
@@ -278,7 +269,7 @@ const ItemComponent = ({
                       fontStyle="italic"
                       color="grey.400"
                     >
-                      Chưa cập nhật
+                      Not updated yet
                     </Typography>
                   )}
                 </Box>
@@ -296,7 +287,7 @@ const ItemComponent = ({
                       fontStyle="italic"
                       color="grey.400"
                     >
-                      Chưa cập nhật
+                      Not updated yet
                     </Typography>
                   )}
                 </Box>
@@ -314,7 +305,7 @@ const ItemComponent = ({
                       fontStyle="italic"
                       color="grey.400"
                     >
-                      Chưa cập nhật
+                      Not updated yet
                     </Typography>
                   )}
                 </Box>
@@ -448,7 +439,7 @@ const JobPostNotificationCard = () => {
         await jobPostNotificationService.addJobPostNotification(data);
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success("Thêm thông báo việc làm thành công.");
+        toastMessages.success("Added job notification successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -465,7 +456,7 @@ const JobPostNotificationCard = () => {
         );
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success("Cập nhật thông báo việc làm thành công.");
+        toastMessages.success("Updated job notification successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -489,7 +480,7 @@ const JobPostNotificationCard = () => {
           id
         );
         setIsSuccess(!isSuccess);
-        toastMessages.success("Xóa thông báo việc làm thành công.");
+        toastMessages.success("Deleted job notification successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -499,8 +490,8 @@ const JobPostNotificationCard = () => {
 
     confirmModal(
       () => del(id),
-      "Xóa thông báo việc làm",
-      "Thông báo việc làm này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?",
+      "Delete job notification",
+      "This job notification will be permanently deleted and cannot be recovered. Are you sure?",
       "warning"
     );
   };
@@ -513,7 +504,7 @@ const JobPostNotificationCard = () => {
             <Stack flex={1}>
               <Box>
                 <Typography variant="h5" fontWeight="600" color="text.primary">
-                  Thông báo việc làm
+                  Job Notifications
                 </Typography>
               </Box>
               <Box>
@@ -522,7 +513,7 @@ const JobPostNotificationCard = () => {
                   color="text.secondary"
                   sx={{ mt: 0.5 }}
                 >
-                  Tối đa 3 thông báo việc làm được bật
+                  Up to 3 job notifications can be enabled
                 </Typography>
               </Box>
             </Stack>
@@ -541,7 +532,7 @@ const JobPostNotificationCard = () => {
                   },
                 }}
               >
-                Tạo thông báo
+                Create notification
               </Button>
             </Box>
           </Stack>
@@ -556,11 +547,11 @@ const JobPostNotificationCard = () => {
             </Stack>
           ) : jobPostNotifications.length === 0 ? (
             <NoDataCard
-              title="Bạn chưa có thông báo việc làm nào"
+              title="You have no job notifications yet"
               imgComponentSgv={<SVG_IMAGES.ImageSvg10 />}
             >
               <Button variant="contained" color="primary">
-                Tạo thông báo bây giờ
+                Create notification now
               </Button>
             </NoDataCard>
           ) : (
@@ -615,7 +606,7 @@ const JobPostNotificationCard = () => {
             </Box>
             <Stack>
               <Box>
-                <Typography variant="h5">Tạo thông báo việc làm</Typography>
+                <Typography variant="h5">Create job notification</Typography>
               </Box>
               <Box>
                 <Typography color="#757575">{currentUser?.email}</Typography>
@@ -623,7 +614,7 @@ const JobPostNotificationCard = () => {
             </Stack>
           </Stack>
         }
-        buttonText={editData ? "Lưu" : "Tạo thông báo"}
+        buttonText={editData ? "Save" : "Create notification"}
         buttonIcon={null}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}

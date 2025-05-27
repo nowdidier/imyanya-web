@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -23,7 +12,7 @@ import MuiImageCustom from "../MuiImageCustom";
 import { searchJobPost } from "../../redux/filterSlice";
 import { ROUTES } from "../../configs/constants";
 
-// Cập nhật styles cho pagination
+// Update styles for pagination
 const styles = {
   ".swiper-pagination": {
     bottom: "-5px !important",
@@ -46,7 +35,7 @@ const styles = {
   },
 };
 
-// Cập nhật component Loading
+// Update Loading component
 const Loading = (
   <Card
     sx={{
@@ -227,7 +216,7 @@ const CareerCarousel = () => {
                         fontSize: "0.75rem",
                       }}
                     >
-                      {value.jobPostTotal} Việc Làm
+                      {value.jobPostTotal} Jobs
                     </Typography>
                   </Card>
                 </SwiperSlide>

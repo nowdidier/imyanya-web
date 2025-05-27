@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import * as React from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -41,16 +30,16 @@ import ChatCard from "../../../../components/ChatCard";
 
 const pages = {
   [HOST_NAME.MYJOB]: [
-    { id: 1, label: "Việc làm", path: `/${ROUTES.JOB_SEEKER.JOBS}` },
-    { id: 2, label: "Công ty", path: `/${ROUTES.JOB_SEEKER.COMPANY}` },
-    { id: 3, label: "Về chúng tôi", path: `/${ROUTES.JOB_SEEKER.ABOUT_US}` },
+    { id: 1, label: "Jobs", path: `/${ROUTES.JOB_SEEKER.JOBS}` },
+    { id: 2, label: "Companies", path: `/${ROUTES.JOB_SEEKER.COMPANY}` },
+    { id: 3, label: "About Us", path: `/${ROUTES.JOB_SEEKER.ABOUT_US}` },
   ],
   [HOST_NAME.EMPLOYER_MYJOB]: [
-    { id: 1, label: "Giới thiệu", path: `/${ROUTES.EMPLOYER.INTRODUCE}` },
-    { id: 2, label: "Dịch vụ", path: `/${ROUTES.EMPLOYER.SERVICE}` },
-    { id: 3, label: "Báo giá", path: `/${ROUTES.EMPLOYER.PRICING}` },
-    { id: 4, label: "Hỗ trợ", path: `/${ROUTES.EMPLOYER.SUPPORT}` },
-    { id: 5, label: "Blog tuyển dụng", path: `/${ROUTES.EMPLOYER.BLOG}` },
+    { id: 1, label: "Introduction", path: `/${ROUTES.EMPLOYER.INTRODUCE}` },
+    { id: 2, label: "Services", path: `/${ROUTES.EMPLOYER.SERVICE}` },
+    { id: 3, label: "Pricing", path: `/${ROUTES.EMPLOYER.PRICING}` },
+    { id: 4, label: "Support", path: `/${ROUTES.EMPLOYER.SUPPORT}` },
+    { id: 5, label: "Recruitment Blog", path: `/${ROUTES.EMPLOYER.BLOG}` },
   ],
 };
 
@@ -152,7 +141,7 @@ const Header = (props) => {
           sx={{ color: "white" }}
           onClick={handleLogin}
         >
-          Đăng nhập
+          Login
         </Button>
         <Button
           variant="outlined"
@@ -169,7 +158,7 @@ const Header = (props) => {
           }}
           onClick={handleSignUp}
         >
-          Đăng ký
+          Register
         </Button>
       </Stack>
     </Box>

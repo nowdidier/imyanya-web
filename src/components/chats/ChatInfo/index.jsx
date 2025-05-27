@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { Box,  Stack, Typography } from '@mui/material';
 
@@ -45,7 +34,7 @@ const ChatInfo = ({ avatarUrl, title, subTitle, description }) => {
           <FontAwesomeIcon icon={faCheckCircle} /> {description}
         </Typography>
         <Typography textAlign="center" variant="caption">
-          Hãy bắt đầu cuộc trò chuyện bằng một lời chào 😍
+          Start the conversation with a greeting 😍
         </Typography>
       </Stack>
     </Stack>

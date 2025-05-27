@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import * as React from 'react';
 import { Alert, Box, Card, Container, Stack, Typography } from '@mui/material';
@@ -22,7 +13,7 @@ import ForgotPasswordForm from '../../components/auths/ForgotPasswordForm';
 import authService from '../../../services/authService';
 
 const ForgotPasswordPage = () => {
-  TabTitle("Quên mật khẩu")
+  TabTitle("Forgot password")
 
   const [isFullScreenLoading, setIsFullScreenLoading] = React.useState(false);
   const [messageSuccess, setMessageSuccess] = React.useState(null);
@@ -35,7 +26,7 @@ const ForgotPasswordPage = () => {
         await authService.forgotPassword(data);
 
         setMessageSuccess(
-          `Chúng tôi đã gửi email hướng dẫn đến ${data?.email}`
+          `We have sent instructions to ${data?.email}`
         );
       } catch (error) {
         errorHandling(error);
@@ -70,7 +61,7 @@ const ForgotPasswordPage = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              {!messageSuccess ? 'Quên mật khẩu' : 'Đã gửi'}
+              {!messageSuccess ? 'Forgot password' : 'Sent'}
             </Typography>
           </Box>
 
@@ -78,8 +69,7 @@ const ForgotPasswordPage = () => {
             <Box>
               <Box sx={{ py: 2 }}>
                 <Typography>
-                  Nếu tài khoản tồn tại, chúng tôi sẽ gửi hướng dẫn đặt lại mật
-                  khẩu qua email cho bạn.
+                  If the account exists, we will send password reset instructions to your email.
                 </Typography>
               </Box>
               <Box sx={{ mt: 4 }}>
@@ -102,11 +92,10 @@ const ForgotPasswordPage = () => {
                   {messageSuccess}
                 </Alert>
                 <Typography variant="caption">
-                  Nếu email không hiển thị sớm, hãy kiểm tra thư mục thư rác của
-                  bạn.
+                  If the email doesn't show up soon, check your spam folder.
                 </Typography>
                 <Typography variant="caption">
-                  Chúng tôi đã gửi nó từ myjob.contact00000@gmail.com.
+                  We sent it from myjob.contact00000@gmail.com.
                 </Typography>
               </Stack>
             </Box>

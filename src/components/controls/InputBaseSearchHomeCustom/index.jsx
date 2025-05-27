@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -140,7 +129,7 @@ const InputBaseSearchHomeCustom = ({
             <Stack>
               <Box>
                 <Typography fontWeight="bold" fontSize={17} color="#2C95FF">
-                  Gợi ý tìm kiếm
+                  Search suggestions
                 </Typography>
                 <Stack>
                   {isLoading ? (
@@ -154,7 +143,7 @@ const InputBaseSearchHomeCustom = ({
                       color={'#bdbdbd'}
                       variant="caption"
                     >
-                      Không có dữ liệu
+                      No data
                     </Typography>
                   ) : (
                     <List>
@@ -188,7 +177,7 @@ const InputBaseSearchHomeCustom = ({
               {(recentSearch || [])?.length > 0 && (
                 <Box>
                   <Typography fontWeight="bold" fontSize={17} color="#2C95FF">
-                    Tìm kiếm gần đây
+                    Recent searches
                   </Typography>
                   <Stack>
                     <List>
@@ -289,7 +278,7 @@ const InputBaseSearchHomeCustom = ({
           />
           {showSubmitButton && (
             <Button variant="contained" type="submit" color="primary">
-              Tìm kiếm
+              Search
             </Button>
           )}
         </Box>

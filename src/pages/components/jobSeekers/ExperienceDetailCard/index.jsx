@@ -1,13 +1,4 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
 
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -144,7 +135,7 @@ const ExperienceDetailCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success("Thêm kinh nghiệm làm việc thành công.");
+        toastMessages.success("Add work experience successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -159,7 +150,7 @@ const ExperienceDetailCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success("Cập nhật kinh nghiệm làm việc thành công.");
+        toastMessages.success("Update work experience successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -186,7 +177,7 @@ const ExperienceDetailCard = ({ title }) => {
         await expericenDetailService.deleteExperienceDetailById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success("Xóa kinh nghiệm làm việc thành công.");
+        toastMessages.success("Delete work experience successfully.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -196,8 +187,8 @@ const ExperienceDetailCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      "Xóa kinh nghiệm làm việc",
-      "Kinh nghiệm làm việc này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?",
+      "Delete work experience",
+      "This work experience will be permanently deleted and cannot be recovered. Are you sure?",
       "warning"
     );
   };
@@ -251,7 +242,7 @@ const ExperienceDetailCard = ({ title }) => {
             <Box>
               {experiencesDetail.length === 0 ? (
                 <EmptyCard
-                  content="Bạn hãy thêm kinh nghiệm làm việc của mình để nhà tuyển dụng tham khảo"
+                  content="Add your work experience for recruiters to refer to"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -292,7 +283,7 @@ const ExperienceDetailCard = ({ title }) => {
                             {value.endDate ? (
                               <TimeAgo date={value.endDate} type="format" format="DD/MM/YYYY"/>
                             ) : (
-                              "Hiện tại"
+                              "Present"
                             )}
                           </Typography>
                           <Typography
@@ -374,7 +365,7 @@ const ExperienceDetailCard = ({ title }) => {
                                   fontWeight: 500,
                                 }}
                               >
-                                Mô tả chi tiết
+                                Detailed description
                               </Typography>
                             </AccordionSummary>
                             <AccordionDetails>
@@ -389,7 +380,7 @@ const ExperienceDetailCard = ({ title }) => {
                                     : "italic",
                                 }}
                               >
-                                {value.description || "Chưa cập nhật"}
+                                {value.description || "Not updated yet"}
                               </Typography>
                             </AccordionDetails>
                           </Accordion>
@@ -406,7 +397,7 @@ const ExperienceDetailCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Kinh nghiệm làm việc"
+        title="Work experience"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

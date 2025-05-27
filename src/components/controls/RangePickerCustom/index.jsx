@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import { Box, Button, IconButton } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -20,12 +9,12 @@ import dayjs from 'dayjs';
 const { RangePicker } = DatePicker;
 
 function getMonthDiff(dateA, dateB) {
-  const msPerDay = 86400000; // số milisecond trong một ngày
+  const msPerDay = 86400000; // milliseconds in a day
 
-  // tính số ngày giữa hai ngày
+  // calculate days between two dates
   const daysDiff = Math.round((dateB - dateA) / msPerDay);
 
-  // tính số tháng và ngày còn lại
+  // calculate months and remaining days
   const monthDiff = Math.floor(daysDiff / 30);
   const daysRemaining = daysDiff % 30;
 
@@ -43,7 +32,6 @@ const RangePickerCustom = ({
   const disabledDate = React.useCallback(
     (current) => {
       return current && current > maxDate;
-
       // eslint-disable-next-line react-hooks/exhaustive-deps
     },
     [maxDate]
@@ -121,7 +109,7 @@ const RangePickerCustom = ({
           disabled={!selectedDateRange}
           onClick={() => setAllowSubmit(!allowSubmit)}
         >
-          Áp dụng
+          Apply
         </Button>
       </Box>
     </>

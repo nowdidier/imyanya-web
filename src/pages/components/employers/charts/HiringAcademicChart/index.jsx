@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from 'react';
 import {
   Box,
@@ -133,7 +122,7 @@ const HiringAcademicChart = ({ title }) => {
           >
             <Typography fontWeight="bold">{title}</Typography>
             <MuiTooltip
-              title="Thống kê chỉ số ứng tuyển theo trình độ học vấn"
+              title="Statistics of applications by education level"
               arrow
             >
               <InfoIcon color="disabled" />
@@ -161,7 +150,7 @@ const HiringAcademicChart = ({ title }) => {
             ) : data.length === 0 ? (
               <Empty
                 image={Empty.PRESENTED_IMAGE_SIMPLE}
-                description="Không có dữ liệu để thống kê"
+                description="No data to display"
               />
             ) : (
               <Pie data={dataOptions} options={options} height={320} />

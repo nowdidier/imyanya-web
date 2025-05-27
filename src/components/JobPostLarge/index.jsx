@@ -1,14 +1,3 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
-
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
-
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
@@ -121,7 +110,7 @@ const JobPostLarge = ({
               }}
             />
             {isUrgent && (
-              <Tooltip title="Tuyển gấp" placement="top">
+              <Tooltip title="Urgent recruitment" placement="top">
                 <Box
                   sx={{
                     position: "absolute",
@@ -301,7 +290,7 @@ const JobPostLarge = ({
                 >
                   {allConfig?.cityDict[cityId] || (
                     <span style={{ fontStyle: "italic", opacity: 0.7 }}>
-                      Chưa cập nhật
+                      Not updated
                     </span>
                   )}
                 </Typography>
@@ -364,7 +353,7 @@ const JobPostLarge = ({
             }}
             variant="body2"
           >
-            Còn{" "}
+            Remaining{" "}
             <TimeAgo date={deadline} type="fromNow" />
           </Typography>
         </Box>

@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import {
@@ -132,7 +130,7 @@ const EducationDetailCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Thêm thông tin học vấn thành công.');
+        toastMessages.success('Successfully added education information.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -147,7 +145,7 @@ const EducationDetailCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Cập nhật thông tin học vấn thành công.');
+        toastMessages.success('Successfully updated education information.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -184,8 +182,8 @@ const EducationDetailCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Xóa thông tin học vấn',
-      'Thông tin học vấn này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
+      'Delete Education Information',
+      'This education information will be permanently deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -239,7 +237,7 @@ const EducationDetailCard = ({ title }) => {
             <Box>
               {educationsDetail.length === 0 ? (
                 <EmptyCard
-                  content="Bạn hãy thêm thông tin học vấn của mình để nhà tuyển dụng tham khảo"
+                  content="Please add your education information for employers to reference"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -275,7 +273,7 @@ const EducationDetailCard = ({ title }) => {
                             {value.completedDate ? (
                               <TimeAgo date={value.completedDate} type="format" format="DD/MM/YYYY"/>
                             ) : (
-                              'Hiện tại'
+                              'Present'
                             )}
                           </Typography>
                           <Typography
@@ -365,7 +363,7 @@ const EducationDetailCard = ({ title }) => {
                                   fontWeight: 500
                                 }}
                               >
-                                Mô tả chi tiết
+                                Detailed Description
                               </Typography>
                             </AccordionSummary>
                             <AccordionDetails>
@@ -376,7 +374,7 @@ const EducationDetailCard = ({ title }) => {
                                   fontStyle: value.description ? 'normal' : 'italic',
                                 }}
                               >
-                                {value.description || "Chưa cập nhật"}
+                                {value.description || "Not updated"}
                               </Typography>
                             </AccordionDetails>
                           </Accordion>
@@ -393,7 +391,7 @@ const EducationDetailCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Học vấn"
+        title="Education"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

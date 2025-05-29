@@ -71,7 +71,7 @@ const ProfileCard = () => {
 
         setResumes(resumesNew);
         toastMessages.success(
-          isSaved ? 'Lưu thành công.' : 'Hủy lưu thành công.'
+          isSaved ? 'Save successful.' : 'Unsave successful.'
         );
       } catch (error) {
         errorHandling(error);

@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Card, Grid, Stack, Typography } from "@mui/material";
 
@@ -7,7 +5,7 @@ import { TabTitle } from "../../../utils/generalFunction";
 import AccountCard from "../../components/auths/AccountCard";
 
 const AccountPage = () => {
-  TabTitle("Quản lý tài khoản Nhà tuyển dụng");
+  TabTitle("Manage Employer Account");
 
   return (
     <Stack spacing={3}>
@@ -26,7 +24,7 @@ const AccountPage = () => {
                     fontSize: { xs: "1.25rem", sm: "1.5rem" },
                   }}
                 >
-                  Thông tin tài khoản
+                  Account Information
                 </Typography>
               }
               sx={{ boxShadow: 0 }}

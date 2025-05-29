@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Box, Card, Grid, Stack, Typography } from "@mui/material";
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
@@ -13,31 +11,31 @@ import MuiImageCustom from "../../../components/MuiImageCustom";
 import { ABOUT_IMAGES, APP_NAME } from "../../../configs/constants";
 
 const AboutUsPage = () => {
-  TabTitle(`Về chúng tôi - Hệ thống giới thiệu việc làm ${APP_NAME}`);
+  TabTitle(`About us - Job introduction system ${APP_NAME}`);
 
   const features = [
     {
-      title: "Chọn đúng việc - Đi đúng hướng",
+      title: "Choose the right job - Go in the right direction",
       icon: WorkOutlineIcon,
-      description: "Khám phá công việc phù hợp với định hướng nghề nghiệp. Thông tin chi tiết về yêu cầu công việc, môi trường và cơ hội phát triển tại mỗi công ty.",
+      description: "Discover jobs that match your career orientation. Detailed information about job requirements, environment and development opportunities at each company.",
       color: "primary.main"
     },
     {
-      title: "Tạo CV & Profile",
+      title: "Create CV & Profile",
       icon: PersonOutlineIcon,
-      description: "Xây dựng hồ sơ ứng tuyển chuyên nghiệp với công cụ tạo CV thông minh. Tối ưu profile với các mẫu CV đẹp mắt theo từng ngành nghề.",
+      description: "Build a professional application profile with a smart CV creation tool. Optimize your profile with beautiful CV templates for each industry.",
       color: "primary.main"
     },
     {
-      title: "Việc làm xung quanh bạn",
+      title: "Jobs around you",
       icon: LocationOnOutlinedIcon,
-      description: "Tìm kiếm cơ hội việc làm lý tưởng trong khu vực. Với tính năng định vị thông minh, gợi ý công việc phù hợp gần nơi bạn sinh sống.",
+      description: "Find ideal job opportunities in the area. With smart positioning, suggest suitable jobs near where you live.",
       color: "primary.main"
     },
     {
-      title: "Thông báo việc làm mọi lúc",
+      title: "Job notifications at all times",
       icon: NotificationsNoneIcon,
-      description: "Không bỏ lỡ cơ hội với hệ thống thông báo thông minh. Nhận thông tin tức thì về các vị trí việc làm mới phù hợp với kỹ năng.",
+      description: "Don't miss out on opportunities with a smart notification system. Get instant information about new job positions that match your skills.",
       color: "primary.main"
     },
   ];
@@ -55,7 +53,7 @@ const AboutUsPage = () => {
             fontWeight: 700,
           }}
         >
-          Về chúng tôi
+          About us
         </Typography>
         <Typography
           sx={{
@@ -65,13 +63,13 @@ const AboutUsPage = () => {
             lineHeight: 1.8,
           }}
         >
-          {APP_NAME} - Kênh thông tin tuyển dụng và việc làm dành cho mọi Doanh
-          nghiệp và Ứng viên. Chúng tôi tin tưởng sẽ đem lại "HY VỌNG" cho Doanh
-          nghiệp tìm kiếm nhân tài và cho Ứng viên tìm kiếm cơ hội nghề
-          nghiệp.Với 2 hệ thống: Website dành cho Nhà Tuyển Dụng và Ứng dụng
-          (Application) dành cho Người Tìm Việc, {APP_NAME} sẽ mang lại những trải
-          nghiệm mới mẻ, thú vị; kết nối ước mơ chinh phục công việc của mọi
-          nhân tài và giúp doanh nghiệp xây dựng đội ngũ nhân sự vững mạnh.
+          {APP_NAME} - Recruitment and job information channel for all
+          Businesses and Candidates. We believe in bringing "HOPE" to 
+          Businesses seeking talent and for Candidates seeking career opportunities. 
+          With 2 systems: Website for Employers and Application
+          for Job Seekers, {APP_NAME} will bring new and exciting
+          experiences; Connect all talents' dreams of finding their ideal job 
+          and help businesses build strong teams.
         </Typography>
       </Box>
 
@@ -185,18 +183,18 @@ const AboutUsPage = () => {
                   variant="h4"
                   style={{ color: "warning.main", fontSize: 30 }}
                 >
-                  Chọn đúng việc - Đi đúng hướng
+                  Choose the right job - Go in the right direction
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Khám phá công việc phù hợp với định hướng nghề nghiệp của bạn.
+                  Discover jobs that match your career orientation.
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Chúng tôi cung cấp thông tin chi tiết về yêu cầu công việc,
-                  môi trường làm việc và cơ hội phát triển tại mỗi công ty.
+                  We provide detailed information about job requirements, 
+                  work environment and development opportunities at each company.
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Đánh giá chân thực từ nhân viên sẽ giúp bạn có cái nhìn thực
-                  tế nhất trước khi đưa ra quyết định quan trọng cho sự nghiệp.
+                  Honest reviews from employees will help you get the most realistic view
+                  before making important career decisions.
                 </Typography>
               </Stack>
             </Box>
@@ -222,19 +220,18 @@ const AboutUsPage = () => {
                   variant="h4"
                   style={{ color: "warning.main", fontSize: 30 }}
                 >
-                  Tạo CV & Profile
+                  Create CV & Profile  
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Xây dựng hồ sơ ứng tuyển chuyên nghiệp với công cụ tạo CV
-                  thông minh.
+                  Build a professional application profile with smart CV creation tools.
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Tối ưu hóa profile của bạn với các mẫu CV đẹp mắt, phù hợp với
-                  từng ngành nghề.
+                  Optimize your profile with beautiful CV templates suitable for
+                  each industry.
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Dễ dàng cập nhật và điều chỉnh CV theo yêu cầu của nhà tuyển
-                  dụng, tăng cơ hội được chú ý và lựa chọn cho vị trí mong muốn.
+                  Easy to update and customize your CV according to employer requirements,
+                  increasing chances of getting noticed and selected for desired positions.
                 </Typography>
               </Stack>
             </Box>
@@ -270,22 +267,21 @@ const AboutUsPage = () => {
                   variant="h4"
                   style={{ color: "warning.main", fontSize: 30 }}
                 >
-                  Việc làm xung quanh bạn
+                  Jobs around you
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Tìm kiếm cơ hội việc làm lý tưởng trong khu vực của bạn
+                  Find ideal job opportunities in your area.
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Tìm kiếm cơ hội việc làm lý tưởng trong khu vực của bạn.
+                  Find ideal job opportunities in your area.
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Với tính năng định vị thông minh, chúng tôi gợi ý những công
-                  việc phù hợp gần nơi bạn sinh sống.
+                  With smart location features, we suggest suitable jobs
+                  near where you live.
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Tiết kiệm thời gian di chuyển và tận hưởng sự cân bằng giữa
-                  công việc và cuộc sống với các cơ hội việc làm trong bán kính
-                  mong muốn.
+                  Save commute time and enjoy work-life balance with job
+                  opportunities within your desired radius.
                 </Typography>
               </Stack>
             </Box>
@@ -311,20 +307,19 @@ const AboutUsPage = () => {
                   variant="h4"
                   style={{ color: "warning.main", fontSize: 30 }}
                 >
-                  Thông báo việc làm mọi lúc
+                  Job notifications anytime
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Không bỏ lỡ bất kỳ cơ hội nào với hệ thống thông báo thông
-                  minh.
+                  Don't miss any opportunities with smart notification system.
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Nhận thông tin tức thì về các vị trí việc làm mới phù hợp với
-                  kỹ năng và mong muốn của bạn.
+                  Get instant updates about new job positions matching your
+                  skills and preferences.
                 </Typography>
                 <Typography textAlign="justify" color="text.secondary">
-                  Tùy chỉnh các tiêu chí thông báo như mức lương, địa điểm,
-                  ngành nghề để đảm bảo bạn luôn cập nhật những cơ hội tốt nhất
-                  trên thị trường.
+                  Customize notification criteria like salary, location,
+                  industry to ensure you're always updated with the best
+                  opportunities in the market.
                 </Typography>
               </Stack>
             </Box>

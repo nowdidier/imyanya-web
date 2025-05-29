@@ -65,7 +65,7 @@ const CompanyCard = () => {
 
         setIsSuccess(!isSuccess);
         if (serverErrors !== null) setServerErrors(null);
-        toastMessages.success("Cập nhật thông tin công ty thành công.");
+        toastMessages.success("Company information updated successfully.");
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -89,7 +89,7 @@ const CompanyCard = () => {
         const resData = await companyService.updateCompanyImageUrl(formData);
         const data = resData.data;
 
-        toastMessages.success("Cập nhật logo công ty thành công.");
+        toastMessages.success("Company logo updated successfully.");
         setCompanyImageUrl(data?.companyImageUrl);
       } catch (error) {
         errorHandling(error);
@@ -114,7 +114,7 @@ const CompanyCard = () => {
         );
         const data = resData.data;
 
-        toastMessages.success("Cập nhật ảnh bìa công ty thành công.");
+        toastMessages.success("Company cover image updated successfully.");
         setCompanyCoverImageUrl(data?.companyCoverImageUrl);
       } catch (error) {
         errorHandling(error);

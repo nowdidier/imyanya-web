@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Card, Grid, Stack, Typography } from "@mui/material";
 import SettingCard from "../../components/settings/SettingCard";
@@ -22,7 +20,7 @@ const SettingPage = () => {
                     fontSize: { xs: "1.25rem", sm: "1.5rem" },
                   }}
                 >
-                  Cài đặt
+                  Settings
                 </Typography>
               }
               sx={{ boxShadow: 0 }}

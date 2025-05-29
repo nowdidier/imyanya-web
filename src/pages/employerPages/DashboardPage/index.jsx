@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { Grid } from '@mui/material';
 
@@ -11,7 +9,7 @@ import ApplicationChart from '../../components/employers/charts/ApplicationChart
 import HiringAcademicChart from '../../components/employers/charts/HiringAcademicChart';
 
 const DashboardPage = () => {
-  TabTitle("Trang quản trị Nhà tuyển dụng")
+  TabTitle("Employer Dashboard")
 
   return (
     <>
@@ -23,22 +21,22 @@ const DashboardPage = () => {
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={6}>
           {/* Start: RecruitmentChart */}
-          <RecruitmentChart title="BIỂU ĐỒ TUYỂN DỤNG" />
+          <RecruitmentChart title="RECRUITMENT CHART" />
           {/* End: RecruitmentChart */}
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={6}>
           {/* Start: CandidateChart */}
-          <CandidateChart title="BIỂU ĐỒ ỨNG VIÊN" />
+          <CandidateChart title="CANDIDATE CHART" />
           {/* End: CandidateChart */}
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={6}>
           {/* Start: ApplicationChart */}
-          <ApplicationChart title="BIỂU ĐỒ TUYỂN DỤNG & ỨNG TUYỂN" />
+          <ApplicationChart title="RECRUITMENT & APPLICATION CHART" />
           {/* End: ApplicationChart */}
         </Grid>
         <Grid item xs={12} sm={12} md={12} lg={6}>
           {/* Start: HiringAcademicChart */}
-          <HiringAcademicChart title="BIỂU ĐỒ TUYỂN DỤNG THEO CẤP BẬC" />
+          <HiringAcademicChart title="RECRUITMENT BY LEVEL CHART" />
           {/* End: HiringAcademicChart */}
         </Grid>
       </Grid>

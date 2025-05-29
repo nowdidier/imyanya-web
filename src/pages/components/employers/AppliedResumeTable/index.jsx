@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -64,7 +62,7 @@ const SendEmailComponent = ({
           setSentEmail(true);
         }
         setOpenSendMailPopup(false);
-        toastMessages.success('Gửi email thành công.');
+        toastMessages.success('Email sent successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -92,7 +90,7 @@ const SendEmailComponent = ({
         }
         onClick={() => handleOpenSendMail(email, fullName)}
       >
-        {sentEmail ? 'Gửi lại' : 'Gửi email'}
+        {sentEmail ? 'Resend' : 'Send email'}
       </Button>
       {/* Start: send mail */}
       <SendMailCard
@@ -123,10 +121,10 @@ const AppliedStatusComponent = ({
 
     if (chooseValue < applyStatus) {
       errorModal(
-        'Đã có lỗi',
-        `Bạn không được phép chuyển trạng thái hồ sơ từ <strong style="color:red;">"${
+        'Error',
+        `You are not allowed to change the application status from <strong style="color:red;">"${
           allConfig?.applicationStatusDict[applyStatus] || '---'
-        }"</strong> sang <strong style="color:red;">"${
+        }"</strong> to <strong style="color:red;">"${
           allConfig?.applicationStatusDict[e.target.value] || '---'
         }"</strong>`
       );
@@ -138,10 +136,10 @@ const AppliedStatusComponent = ({
               setApplyStatus(chooseValue);
             }
           }),
-        'Cập nhật trạng thái hồ sơ',
-        `Hồ sơ sẽ được cập nhật sang trạng thái <strong style="color:red;">"${
+        'Update Application Status',
+        `Application will be updated to status <strong style="color:red;">"${
           allConfig?.applicationStatusDict[e.target.value] || '---'
-        }"</strong>. Bạn có chắc chắn?`,
+        }"</strong>. Are you sure?`,
         'question'
       );
     }
@@ -177,7 +175,7 @@ const AppliedResumeTable = (props) => {
         <TableBody>
           <TableCell colSpan={7}>
             <NoDataCard
-              title="Chưa có ứng viên ứng tuyển"
+              title="No candidates have applied yet"
               imgComponentSgv={<SVG_IMAGES.ImageSvg13 />}
             />
           </TableCell>
@@ -191,7 +189,7 @@ const AppliedResumeTable = (props) => {
                   {row?.fullName}
                 </Typography>
                 {row?.type === CV_TYPES.cvWebsite ? (
-                  <Tooltip title="Hồ sơ Online" arrow>
+                  <Tooltip title="Online Profile" arrow>
                     <FontAwesomeIcon
                       icon={faFile}
                       style={{ marginRight: 1 }}
@@ -199,7 +197,7 @@ const AppliedResumeTable = (props) => {
                     />
                   </Tooltip>
                 ) : (
-                  <Tooltip title="Hồ sơ Đính kèm" arrow>
+                  <Tooltip title="Attached Profile" arrow>
                     <FontAwesomeIcon
                       icon={faFilePdf}
                       style={{ marginRight: 1 }}
@@ -215,7 +213,7 @@ const AppliedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Chưa cập nhật
+                    Not updated
                   </span>
                 )}{' '}
               </TableCell>
@@ -225,8 +223,8 @@ const AppliedResumeTable = (props) => {
               </TableCell>
               <TableCell align="left">
                 {row?.type === CV_TYPES.cvWebsite
-                  ? 'Hồ sơ Online'
-                  : 'Hồ sơ đính kèm'}
+                  ? 'Online Profile'
+                  : 'Attached Profile'}
               </TableCell>
               <TableCell align="right">
                 <AppliedStatusComponent
@@ -238,7 +236,7 @@ const AppliedResumeTable = (props) => {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} justifyContent="flex-end">
-                  <Tooltip title="Xem hồ sơ" arrow>
+                  <Tooltip title="View profile" arrow>
                     <IconButton
                       color="primary"
                       aria-label="view"
@@ -252,7 +250,7 @@ const AppliedResumeTable = (props) => {
                       <RemoveRedEyeOutlinedIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Xóa hồ sơ" arrow>
+                  <Tooltip title="Delete profile" arrow>
                     <IconButton
                       size="small"
                       color="error"
@@ -269,7 +267,7 @@ const AppliedResumeTable = (props) => {
                     fullName={row?.fullName}
                   />
                   <Chip
-                    label="Nhắn tin"
+                    label="Message"
                     onClick={() => {}}
                     sx={{
                       cursor: 'pointer',

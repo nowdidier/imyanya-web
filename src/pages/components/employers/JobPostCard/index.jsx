@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import {
   Box,
@@ -34,49 +32,49 @@ const headCells = [
     showOrder: true,
     numeric: false,
     disablePadding: true,
-    label: 'Tên tin đăng',
+    label: 'Job Name',
   },
   {
     id: 'createAt',
     showOrder: true,
     numeric: false,
     disablePadding: false,
-    label: 'Ngày đăng',
+    label: 'Posted Date',
   },
   {
     id: 'deadline',
     showOrder: true,
     numeric: false,
     disablePadding: false,
-    label: 'Thời hạn nộp',
+    label: 'Deadline',
   },
   {
     id: 'appliedTotal',
     showOrder: true,
     numeric: false,
     disablePadding: false,
-    label: 'Lượt nộp',
+    label: 'Applications',
   },
   {
     id: 'viewedTotal',
     showOrder: true,
     numeric: false,
     disablePadding: false,
-    label: 'Lượt xem',
+    label: 'Views',
   },
   {
     id: 'isVerify',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Trạng thái',
+    label: 'Status',
   },
   {
     id: 'action',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Hành động',
+    label: 'Actions',
   },
 ];
 
@@ -195,7 +193,7 @@ const JobPostCard = () => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Thêm mới tin tuyển dụng thành công.');
+        toastMessages.success('Successfully added new job post.');
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -209,7 +207,7 @@ const JobPostCard = () => {
         await jobService.updateJobPostById(data.id, data);
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Cập nhật tin tuyển dụng thành công.');
+        toastMessages.success('Successfully updated job post.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -231,7 +229,7 @@ const JobPostCard = () => {
       try {
         await jobService.deleteJobPostById(id);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Xóa tin tuyển dụng thành công.');
+        toastMessages.success('Successfully deleted job post.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -241,8 +239,8 @@ const JobPostCard = () => {
 
     confirmModal(
       () => del(id),
-      'Xóa tin tuyển dụng',
-      'Tin tuyển dụng này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?',
+      'Delete Job Post',
+      'This job post will be permanently deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -305,7 +303,7 @@ const JobPostCard = () => {
             fontSize: { xs: '1.25rem', sm: '1.5rem' }
           }}
         >
-          Quản lý tin tuyển dụng
+          Manage Job Posts
         </Typography>
         <Stack 
           direction={{ xs: 'column', sm: 'row' }} 
@@ -326,7 +324,7 @@ const JobPostCard = () => {
               }
             }}
           >
-            Tải danh sách
+            Download List
           </Button>
           <Button
             variant="contained"
@@ -344,7 +342,7 @@ const JobPostCard = () => {
               }
             }}
           >
-            Tạo tin mới
+            Create New Post
           </Button>
         </Stack>
       </Stack>
@@ -365,7 +363,7 @@ const JobPostCard = () => {
               mb: { xs: 1, md: 0 }
             }}
           >
-            Bộ lọc:
+            Filters:
           </Typography>
         </Box>
         <Box flex={1} width="100%">
@@ -418,7 +416,7 @@ const JobPostCard = () => {
       </Box>
 
       <FormPopup
-        title="Tin tuyển dụng"
+        title="Job Post"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

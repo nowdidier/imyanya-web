@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 
 import { Box, Card, Grid, Stack, Typography } from '@mui/material';
@@ -13,7 +11,7 @@ import ActivityChart from '../../components/jobSeekers/charts';
 import JobApplicationCard from '../../components/jobSeekers/JobApplicationCard';
 
 const DashboardPage = () => {
-  TabTitle("Trang quản trị Người tìm việc")
+  TabTitle("Job Seeker Dashboard")
 
   return (
     <Box>
@@ -47,7 +45,7 @@ const DashboardPage = () => {
             <Card sx={{ p: 2 }}>
               <Stack>
                 <Box sx={{ mb: 2 }}>
-                  <Typography variant="h6">Hoạt động của bạn</Typography>
+                  <Typography variant="h6">Your Activities</Typography>
                 </Box>
                 <Box>
                   {/* Start: ActivityChart */}
@@ -59,7 +57,7 @@ const DashboardPage = () => {
             <Card sx={{p: { xs: 1, sm: 1, md: 2, lg: 2, xl: 2 }  }}>
               <Stack>
                 <Box sx={{ mb: 2 }}>
-                  <Typography variant="h6">Việc làm gợi ý</Typography>
+                  <Typography variant="h6">Suggested Jobs</Typography>
                 </Box>
                 <Box>
                   {/* Start: SuggestedJobPostCard */}

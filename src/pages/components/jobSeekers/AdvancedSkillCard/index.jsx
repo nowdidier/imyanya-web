@@ -129,7 +129,7 @@ const AdvancedSkillCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Thêm kỹ năng chuyên môn thành công.');
+        toastMessages.success('Successfully added professional skill.');
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -144,7 +144,7 @@ const AdvancedSkillCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Cập nhật kỹ năng chuyên môn thành công.');
+        toastMessages.success('Successfully updated professional skill.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -171,7 +171,7 @@ const AdvancedSkillCard = ({ title }) => {
         await advancedSkillService.deleteAdvancedSkillById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Xóa kỹ năng chuyên môn thành công.');
+        toastMessages.success('Successfully deleted professional skill.');
       } catch (error) {
         errorHandling(error);
       } finally {

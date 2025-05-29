@@ -237,7 +237,7 @@ const BoxProfile = ({ title }) => {
                     />
                   )}
                   <Tooltip
-                    title={`Bật "Cho phép tìm kiếm" sẽ giúp nhà tuyển dụng tìm thấy hồ sơ của bạn và họ có thể liên hệ với bạn về công việc mới. Chỉ có duy nhất một hồ được bật trạng thái "cho phép tìm kiếm" trong tất cả hồ sơ của bạn.`}
+                    title={`Enabling "Allow search" will help employers find your profile and they can contact you about new jobs. Only one profile can have "allow search" status enabled among all your profiles.`}
                     arrow
                   >
                     <HelpIcon sx={{ color: "grey.400" }} />

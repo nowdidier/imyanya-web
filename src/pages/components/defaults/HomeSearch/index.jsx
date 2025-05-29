@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -66,7 +64,7 @@ const HomeSearch = () => {
         }
       }
     } catch (error) {
-      console.error('Loi khi set kw vao local storage: ', error);
+      console.error('Error when setting keyword to local storage: ', error);
     }
   };
 

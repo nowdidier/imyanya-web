@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 
 import {
@@ -32,17 +30,17 @@ import LanguageSkillCard from '../../components/jobSeekers/LanguageSkillCard';
 import AdvancedSkillCard from '../../components/jobSeekers/AdvancedSkillCard';
 
 const items = [
-  { id: 0, value: 'Thông tin cá nhân', icon: <PersonPinOutlinedIcon /> },
-  { id: 1, value: 'Thông tin chung', icon: <WorkOutlineOutlinedIcon /> },
-  { id: 2, value: 'Kinh nghiệm làm việc', icon: <ReceiptLongOutlinedIcon /> },
-  { id: 3, value: 'Thông tin học vấn', icon: <SchoolOutlinedIcon /> },
-  { id: 4, value: 'Chứng chỉ', icon: <ThumbsUpDownOutlinedIcon /> },
-  { id: 5, value: 'Kỹ năng ngôn ngữ', icon: <TranslateOutlinedIcon /> },
-  { id: 6, value: 'Kỹ năng chuyên môn', icon: <AutoFixHighOutlinedIcon /> },
+  { id: 0, value: 'Personal Information', icon: <PersonPinOutlinedIcon /> },
+  { id: 1, value: 'General Information', icon: <WorkOutlineOutlinedIcon /> },
+  { id: 2, value: 'Work Experience', icon: <ReceiptLongOutlinedIcon /> },
+  { id: 3, value: 'Education', icon: <SchoolOutlinedIcon /> },
+  { id: 4, value: 'Certificates', icon: <ThumbsUpDownOutlinedIcon /> },
+  { id: 5, value: 'Language Skills', icon: <TranslateOutlinedIcon /> },
+  { id: 6, value: 'Professional Skills', icon: <AutoFixHighOutlinedIcon /> },
 ];
 
 const OnlineProfilePage = () => {
-  TabTitle("Cập nhật hồ sơ Online")
+  TabTitle("Update Online Profile")
   const refs = React.useRef([]);
 
   const handleClickScroll = (index) => {
@@ -64,25 +62,25 @@ const OnlineProfilePage = () => {
                 }
               }}
             >
-              <PersonalInfoCard title="Thông tin cá nhân" />
+              <PersonalInfoCard title="Personal Information" />
             </Card>
             <Card  ref={(el) => (refs.current[1] = el)}>
-              <GeneralInfoCard title="Thông tin chung" />
+              <GeneralInfoCard title="General Information" />
             </Card>
             <Card ref={(el) => (refs.current[2] = el)}>
-              <ExperienceDetailCard title="Kinh nghiệm làm việc" />
+              <ExperienceDetailCard title="Work Experience" />
             </Card>
             <Card ref={(el) => (refs.current[3] = el)}>
-              <EducationDetailCard title="Thông tin học vấn" />
+              <EducationDetailCard title="Education" />
             </Card>
             <Card ref={(el) => (refs.current[4] = el)}>
-              <CertificateCard title="Chứng chỉ" />
+              <CertificateCard title="Certificates" />
             </Card>
             <Card ref={(el) => (refs.current[5] = el)}>
-              <LanguageSkillCard title="Kỹ năng ngôn ngữ" />
+              <LanguageSkillCard title="Language Skills" />
             </Card>
             <Card ref={(el) => (refs.current[6] = el)}>
-              <AdvancedSkillCard title="Kỹ năng chuyên môn" />
+              <AdvancedSkillCard title="Professional Skills" />
             </Card>
           </Stack>
         </Grid>
@@ -124,7 +122,7 @@ const OnlineProfilePage = () => {
                     color: 'inherit'
                   }}
                 >
-                  Hồ sơ trực tuyến của bạn
+                  Your Online Profile
                 </Typography>
 
                 <List sx={{ width: '100%' }}>

@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { Box, Card, Typography, Container } from '@mui/material';
 
@@ -8,7 +6,7 @@ import CompanySearch from '../../components/defaults/CompanySearch';
 import Companies from '../../../components/Companies';
 
 const CompanyPage = () => {
-  TabTitle('Kết quả tìm kiếm nhà tuyển dụng')
+  TabTitle('Search results for employers')
 
   return (
     <Container maxWidth="xl">
@@ -30,7 +28,7 @@ const CompanyPage = () => {
             mb: 1
           }}
         >
-          Khám Phá Văn Hóa Công ty
+          Explore Company Culture
         </Typography>
         <Typography 
           variant="h6" 
@@ -40,7 +38,7 @@ const CompanyPage = () => {
             mb: 4
           }}
         >
-          Tìm hiểu văn hóa công ty và chọn cho bạn nơi làm việc phù hợp nhất
+          Learn about company culture and choose the most suitable workplace for you
         </Typography>
 
         <Box sx={{ mt: 2, mb: 6 }}>

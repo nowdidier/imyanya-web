@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { useSelector } from "react-redux";
 import {
@@ -63,9 +61,9 @@ const SettingCard = ({ title, sx }) => {
         const resData = await authService.updateUserSettings(data);
 
         setEditData(resData.data);
-        toastMessages.success("Cập nhật setting thành công.");
+        toastMessages.success("Successfully updated settings.");
       } catch (error) {
-        toastMessages.error("Cập nhật setting thất bại.");
+        toastMessages.error("Failed to update settings.");
       }
     };
 
@@ -137,7 +135,7 @@ const SettingCard = ({ title, sx }) => {
                       },
                     }}
                   >
-                    Cập nhật
+                    Update
                   </Button>
                 </Stack>
               </Grid>

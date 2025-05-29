@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 
@@ -11,7 +9,7 @@ import AppIntroductionCard from "../../../components/AppIntroductionCard";
 import MainJobRightBanner from "../../../components/MainJobRightBanner";
 
 const JobPage = () => {
-  TabTitle("Kết quả tìm kiếm tin tuyển dụng");
+  TabTitle("Search results for job postings");
 
   return (
     <>
@@ -30,7 +28,7 @@ const JobPage = () => {
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
               <Box sx={{ pt: 2, pb: 3 }}>
-                <Typography variant="h5">Việc làm đề xuất</Typography>
+                <Typography variant="h5">Suggested Jobs</Typography>
               </Box>
               {/* Start: SuggestedJobPostCard */}
               <SuggestedJobPostCard fullWidth={true} />

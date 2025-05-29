@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -40,10 +38,10 @@ const SidebarViewTotal = () => {
     <Box>
       <Box>
         <Typography variant="h6" sx={{ mb: 1 }}>
-          CV của bạn đã đủ tốt?
+          Is your CV good enough?
         </Typography>
         <Typography variant="caption">
-          Bao nhiêu NTD đang quan tâm tới Hồ sơ của bạn?
+          How many employers are interested in your profile?
         </Typography>
       </Box>
       <Box sx={{ pt: 2 }}>
@@ -86,8 +84,8 @@ const SidebarViewTotal = () => {
           </Box>
           <Box>
             <Typography variant="body1">
-              Mỗi lượt Nhà tuyển dụng xem CV mang đến một cơ hội để bạn gần hơn
-              với công việc phù hợp.
+              Each time an employer views your CV brings you closer to finding your
+              ideal job.
             </Typography>
           </Box>
         </Stack>
@@ -108,7 +106,7 @@ const SidebarViewTotal = () => {
             },
           }}
         >
-          Khám phá ngay
+          Explore now
         </Button>
       </Stack>
     </Box>

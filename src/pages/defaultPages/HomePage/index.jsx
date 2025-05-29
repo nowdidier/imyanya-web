@@ -1,5 +1,3 @@
-
-
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -37,7 +35,7 @@ import bannerExplore from '../../../assets/images/banner-explore.png';
 import bannerExplorePc from '../../../assets/images/banner-explore-pc.png';
 
 export default function HomePage() {
-  TabTitle(`Tìm việc nhanh, tuyển dụng hiệu quả tại ${APP_NAME}`);
+  TabTitle(`Find jobs quickly, recruit effectively at ${APP_NAME}`);
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
   const nav = useNavigate();
 
@@ -51,7 +49,7 @@ export default function HomePage() {
       <Box sx={{ mt: 6 }}>
         {/*Start: Top cong ty */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          Các công ty nổi bậc
+          Featured Companies
         </Typography>
         <TopCompanyCarousel />
         {/*End: Top cong ty */}
@@ -68,7 +66,7 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: "white" }}>
-                Việc làm tuyển gấp
+                Urgent Jobs
               </Typography>
             }
             sx={{
@@ -92,7 +90,7 @@ export default function HomePage() {
       <Box sx={{ mt: 10 }}>
         {/* Start: Cac nganh nghe */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          Ngành nghề trọng điểm
+          Key Industries
         </Typography>
         <CareerCarousel />
         {/* End: Cac nganh nghe */}
@@ -110,7 +108,7 @@ export default function HomePage() {
               }
               title={
                 <Typography variant="h5" sx={{ color: "#441da0" }}>
-                  Việc làm gợi ý
+                  Suggested Jobs
                 </Typography>
               }
               sx={{
@@ -155,7 +153,7 @@ export default function HomePage() {
         >
           <Box>
             <Typography fontSize={32} fontWeight="bold" color="white">
-              Cần tìm việc làm phù hợp cho bạn?
+              Need to find a suitable job for you?
             </Typography>
           </Box>
           <Box>
@@ -166,7 +164,7 @@ export default function HomePage() {
               startIcon={<SearchIcon />}
               onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS}`)}
             >
-              Bắt đầu khám phá
+              Start Exploring
             </Button>
           </Box>
         </Stack>
@@ -183,7 +181,7 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: "white" }}>
-                {`Việc làm ngành ${HOME_FILTER_CAREER[0].name}`}
+                {`Jobs in ${HOME_FILTER_CAREER[0].name} Industry`}
               </Typography>
             }
             sx={{
@@ -215,7 +213,7 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: "white" }}>
-                {`Việc làm ngành ${HOME_FILTER_CAREER[1].name}`}
+                {`Jobs in ${HOME_FILTER_CAREER[1].name} Industry`}
               </Typography>
             }
             sx={{
@@ -239,7 +237,7 @@ export default function HomePage() {
       <Box sx={{ mt: 10 }}>
         {/* Start: Feedback */}
         <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          Người dùng đánh giá
+          User Reviews
         </Typography>
         <FeedbackCarousel />
         {/* End: Feedback */}

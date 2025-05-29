@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Card, Typography } from "@mui/material";
 
@@ -8,7 +6,7 @@ import NotificationCard from "../../components/defaults/NotificationCard";
 import { APP_NAME } from "../../../configs/constants";
 
 const NotificationPage = () => {
-  TabTitle(`${APP_NAME} thông báo`);
+  TabTitle(`${APP_NAME} Notifications`);
 
   return (
     <Card sx={{ p: { xs: 2, sm: 2, md: 2, lg: 3, xl: 3 } }}>
@@ -24,7 +22,7 @@ const NotificationPage = () => {
               fontSize: { xs: "1.25rem", sm: "1.5rem" },
             }}
           >
-            {`${APP_NAME} thông báo`}
+            {`${APP_NAME} Notifications`}
           </Typography>
         }
       />

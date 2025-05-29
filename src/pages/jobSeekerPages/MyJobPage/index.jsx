@@ -1,5 +1,3 @@
-
-
 import * as React from "react";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Card, Grid, Stack, Tab, Typography } from "@mui/material";
@@ -12,7 +10,7 @@ import JobPostNotificationCard from "../../components/jobSeekers/JobPostNotifica
 import { useSearchParams } from "react-router-dom";
 
 const MyJobPage = () => {
-  TabTitle("Trang quản trị Việc làm của tôi");
+  TabTitle("My Jobs Dashboard");
 
   const [searchParams] = useSearchParams();
   const [value, setValue] = React.useState(searchParams.get("tab") || "1");
@@ -36,17 +34,17 @@ const MyJobPage = () => {
                     allowScrollButtonsMobile
                   >
                     <Tab
-                      label="Việc làm đã lưu"
+                      label="Saved Jobs"
                       sx={{ textTransform: "capitalize" }}
                       value="1"
                     />
                     <Tab
-                      label="Việc làm đã ứng tuyển"
+                      label="Applied Jobs"
                       sx={{ textTransform: "capitalize" }}
                       value="2"
                     />
                     <Tab
-                      label="Thông báo việc làm"
+                      label="Job Notifications"
                       sx={{ textTransform: "capitalize" }}
                       value="3"
                     />
@@ -61,8 +59,8 @@ const MyJobPage = () => {
                   {/* End: SavedJobCard */}
                   <Box mt={1}>
                     <Typography color="gray" variant="caption">
-                      Lưu ý: Bạn không xem được việc làm đã hết thời hạn đăng
-                      tuyển hoặc tạm ngưng nhận hồ sơ.
+                      Note: You cannot view jobs that have expired or are temporarily
+                      not accepting applications.
                     </Typography>
                   </Box>
                 </TabPanel>
@@ -89,7 +87,7 @@ const MyJobPage = () => {
           <Card sx={{ p: { xs: 1, sm: 1, md: 2, lg: 2, xl: 2 } }}>
             <Stack>
               <Box sx={{ mb: 2 }}>
-                <Typography variant="h6">Việc làm phù hợp</Typography>
+                <Typography variant="h6">Matching Jobs</Typography>
               </Box>
               <Box>
                 {/* Start: SuggestedJobPostCard */}

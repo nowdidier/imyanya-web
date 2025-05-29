@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -195,7 +193,7 @@ const CompanyDetailPage = () => {
             : companyDetail.followNumber - 1,
         });
         toastMessages.success(
-          isFollowed ? "Theo dõi thành công." : "Hủy theo dõi thành công."
+          isFollowed ? "Follow successful." : "Unfollow successful."
         );
       } catch (error) {
         errorHandling(error);
@@ -365,8 +363,8 @@ const CompanyDetailPage = () => {
                       >
                         <span>
                           {companyDetail.isFollowed
-                            ? "Đang theo dõi"
-                            : "Theo dõi"}{" "}
+                            ? "Following"
+                            : "Follow"}{" "}
                           ({companyDetail.followNumber})
                         </span>
                       </LoadingButton>
@@ -382,7 +380,7 @@ const CompanyDetailPage = () => {
                       boxShadow: "none",
                     }}
                   >
-                    Chia sẻ
+                    Share
                   </Button>
                 </Stack>
               </Stack>
@@ -409,7 +407,7 @@ const CompanyDetailPage = () => {
                           mb: 3,
                         }}
                       >
-                        Về công ty
+                        About Company
                       </Typography>
                       <Box
                         sx={{
@@ -456,7 +454,7 @@ const CompanyDetailPage = () => {
                           mb: 3,
                         }}
                       >
-                        Việc làm đang tuyển
+                        Current Jobs
                       </Typography>
                       <FilterJobPostCard
                         params={{
@@ -535,7 +533,7 @@ const CompanyDetailPage = () => {
                           mb: 2,
                         }}
                       >
-                        Theo dõi tại
+                        Follow at
                       </Typography>
                       <Stack
                         direction="row"
@@ -577,7 +575,7 @@ const CompanyDetailPage = () => {
                           mb: 2,
                         }}
                       >
-                        Thông tin chung
+                        General Information
                       </Typography>
                       <Stack
                         spacing={2}
@@ -627,7 +625,7 @@ const CompanyDetailPage = () => {
                                 fontSize: 13,
                               }}
                             >
-                              Chưa cập nhật
+                              Not updated
                             </span>
                           )}
                         </Typography>
@@ -672,7 +670,7 @@ const CompanyDetailPage = () => {
                             mb: 2,
                           }}
                         >
-                          Hình ảnh
+                          Images
                         </Typography>
                         <Box
                           sx={{

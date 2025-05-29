@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Stack, Button, Pagination } from '@mui/material';
@@ -54,7 +52,7 @@ const SavedJobCard = () => {
         const isSaved = resData.data.isSaved;
 
         toastMessages.success(
-          isSaved ? 'Lưu thành công.' : 'Hủy lưu thành công.'
+          isSaved ? 'Save successful.' : 'Unsave successful.'
         );
         setIsSuccess(!isSuccess);
       } catch (error) {
@@ -76,7 +74,7 @@ const SavedJobCard = () => {
           </Stack>
         ) : jobPosts.length === 0 ? (
           <NoDataCard
-            title="Bạn chưa lưu công việc nào"
+            title="You haven't saved any jobs yet"
             imgComponentSgv={<SVG_IMAGES.ImageSvg5 />}
           >
             <Button
@@ -86,7 +84,7 @@ const SavedJobCard = () => {
               color="primary"
               sx={{ textTransform: 'inherit' }}
             >
-              Tìm việc làm
+              Find Jobs
             </Button>
           </NoDataCard>
         ) : (
@@ -114,7 +112,7 @@ const SavedJobCard = () => {
                   startIcon={<FavoriteIcon />}
                   onClick={() => handleSave(value.slug)}
                 >
-                  Hủy lưu
+                  Unsave
                 </Button>
               </JobPostAction>
             ))}

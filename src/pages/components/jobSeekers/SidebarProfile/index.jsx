@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -41,14 +39,14 @@ const SidebarProfile = () => {
           />
         </Box>
         <Box flex={1}>
-          <Typography variant="caption">Chào mừng trở lại,</Typography>
+          <Typography variant="caption">Welcome back,</Typography>
           <Typography variant="h6" gutterBottom>
             {currentUser?.fullName}
           </Typography>
           {currentUser?.isVerifyEmail ? (
             <Chip
               icon={<CheckIcon />}
-              label="Tài khoản đã xác thực"
+              label="Account verified"
               color="success"
               size="small"
               variant="filled"
@@ -56,7 +54,7 @@ const SidebarProfile = () => {
           ) : (
             <Chip
               icon={<ClearIcon />}
-              label="Tài khoản chưa xác thực"
+              label="Account not verified"
               color="error"
               size="small"
               variant="filled"

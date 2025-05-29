@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -35,14 +33,14 @@ const SettingForm = ({ editData, handleUpdate }) => {
           <CheckboxCustom
             name="emailNotificationActive"
             control={control}
-            title="Cho phép gửi email"
+            title="Allow sending email"
           />
         </Grid>
         <Grid item xs={12}>
           <CheckboxCustom
             name="smsNotificationActive"
             control={control}
-            title="Cho phép gửi tin nhắn SMS"
+            title="Allow sending SMS messages"
           />
         </Grid>
       </Grid>

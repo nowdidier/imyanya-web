@@ -87,7 +87,7 @@ const HiringAcademicChart = ({ title }) => {
     labels: data?.labels || [],
     datasets: [
       {
-        label: '# Số lượng ứng tuyển',
+        label: '# Number of Applications',
         data: data?.data || [],
         backgroundColor: [
           'rgba(255, 152, 0, 0.9)',  // secondary

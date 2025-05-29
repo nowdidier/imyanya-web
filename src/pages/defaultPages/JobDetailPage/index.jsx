@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
@@ -232,7 +230,7 @@ const item = (title, value) => {
           <span style={{ fontWeight: "bold" }}>{value}</span>
         ) : (
           <span style={{ color: "#e0e0e0", fontStyle: "italic", fontSize: 13 }}>
-            Chưa cập nhật
+            Not updated
           </span>
         )}
       </Typography>
@@ -268,7 +266,7 @@ const ActionComponent = ({
           disabled={isApplied}
           onClick={handleShowApplyForm}
         >
-          {isApplied ? "Đã ứng tuyển" : "Nộp hồ sơ"}
+          {isApplied ? "Applied" : "Submit application"}
         </Button>
         <LoadingButton
           onClick={handleSave}
@@ -295,7 +293,7 @@ const ActionComponent = ({
                 }),
           }}
         >
-          <span>{isSaved ? "Đã lưu" : "Lưu tin"}</span>
+          <span>{isSaved ? "Saved" : "Save"}</span>
         </LoadingButton>
       </>
     )}
@@ -314,7 +312,7 @@ const ActionComponent = ({
       }}
       onClick={() => setOpenSharePopup(true)}
     >
-      Chia sẻ
+      Share
     </Button>
   </Stack>
 );
@@ -363,7 +361,7 @@ const JobDetailPage = () => {
 
         setJobPostDetail({ ...jobPostDetail, isSaved: isSaved });
         toastMessages.success(
-          isSaved ? "Lưu thành công." : "Hủy lưu thành công."
+          isSaved ? "Save successful." : "Unsave successful."
         );
       } catch (error) {
         errorHandling(error);
@@ -478,7 +476,7 @@ const JobDetailPage = () => {
                             color: "#9c27b0",
                           }}
                         />
-                        Hạn nộp:{" "}
+                        Deadline:{" "}
                         {dayjs(jobPostDetail?.deadline).format("DD/MM/YYYY")}
                       </Typography>
                       <Typography
@@ -497,7 +495,7 @@ const JobDetailPage = () => {
                             color: "#9c27b0",
                           }}
                         />
-                        {jobPostDetail?.views} lượt xem
+                        {jobPostDetail?.views} views
                       </Typography>
                       <Typography
                         variant="subtitle2"
@@ -515,7 +513,7 @@ const JobDetailPage = () => {
                             color: "#9c27b0",
                           }}
                         />
-                        Đăng ngày:{" "}
+                        Posted on:{" "}
                         {dayjs(jobPostDetail?.createAt).format("DD/MM/YYYY")}
                       </Typography>
                     </Stack>
@@ -537,7 +535,7 @@ const JobDetailPage = () => {
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={3}>
                       {item(
-                        "Mức lương",
+                        "Salary",
                         salaryString(
                           jobPostDetail?.salaryMin,
                           jobPostDetail?.salaryMax
@@ -546,19 +544,19 @@ const JobDetailPage = () => {
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                       {item(
-                        "Kinh nghiệm",
+                        "Experience",
                         allConfig?.experienceDict[jobPostDetail?.experience]
                       )}
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                       {item(
-                        "Cấp bậc",
+                        "Level",
                         allConfig?.positionDict[jobPostDetail?.position]
                       )}
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                       {item(
-                        "Hình thức",
+                        "Type",
                         allConfig?.jobTypeDict[jobPostDetail?.jobType]
                       )}
                     </Grid>
@@ -596,7 +594,7 @@ const JobDetailPage = () => {
                         },
                       }}
                     >
-                      Mô tả công việc
+                      Job Description
                     </Typography>
                     <div
                       dangerouslySetInnerHTML={{
@@ -624,7 +622,7 @@ const JobDetailPage = () => {
                         },
                       }}
                     >
-                      Yêu cầu công việc
+                      Job Requirement
                     </Typography>
                     <div
                       dangerouslySetInnerHTML={{
@@ -652,7 +650,7 @@ const JobDetailPage = () => {
                         },
                       }}
                     >
-                      Quyền lợi
+                      Benefits
                     </Typography>
                     <div
                       dangerouslySetInnerHTML={{
@@ -666,13 +664,13 @@ const JobDetailPage = () => {
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={6}>
                         {item(
-                          "Nghề nghiệp",
+                          "Career",
                           allConfig.careerDict[jobPostDetail?.career]
                         )}
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         {item(
-                          "Nơi làm việc",
+                          "Workplace",
                           allConfig.typeOfWorkplaceDict[
                             jobPostDetail?.typeOfWorkplace
                           ]
@@ -680,24 +678,24 @@ const JobDetailPage = () => {
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         {item(
-                          "Học vấn",
+                          "Education",
                           allConfig.academicLevelDict[
                             jobPostDetail?.academicLevel
                           ]
                         )}
                       </Grid>
                       <Grid item xs={12} sm={6}>
-                        {item("Số lượng tuyển", jobPostDetail?.quantity)}
+                        {item("Quantity", jobPostDetail?.quantity)}
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         {item(
-                          "Khu vực tuyển",
+                          "Location",
                           allConfig.cityDict[jobPostDetail?.location?.city]
                         )}
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         {item(
-                          "Yêu cầu giới tính",
+                          "Gender Required",
                           allConfig.genderDict[jobPostDetail?.genderRequired]
                         )}
                       </Grid>
@@ -736,7 +734,7 @@ const JobDetailPage = () => {
                           },
                         }}
                       >
-                        Thông tin liên hệ
+                        Contact Information
                       </Typography>
 
                       <Stack spacing={2.5}>
@@ -758,10 +756,10 @@ const JobDetailPage = () => {
                           <PersonIcon sx={{ color: "#9c27b0", fontSize: 24 }} />
                           <Box>
                             <Typography variant="body2" color="text.secondary" gutterBottom>
-                              Người liên hệ
+                              Contact Person
                             </Typography>
                             <Typography variant="body1" fontWeight={500}>
-                              {jobPostDetail?.contactPersonName || "Chưa cập nhật"}
+                              {jobPostDetail?.contactPersonName || "Not updated"}
                             </Typography>
                           </Box>
                         </Box>
@@ -784,10 +782,10 @@ const JobDetailPage = () => {
                           <EmailIcon sx={{ color: "#9c27b0", fontSize: 24 }} />
                           <Box>
                             <Typography variant="body2" color="text.secondary" gutterBottom>
-                              Email liên hệ
+                              Contact Email
                             </Typography>
                             <Typography variant="body1" fontWeight={500}>
-                              {jobPostDetail?.contactPersonEmail || "Chưa cập nhật"}
+                              {jobPostDetail?.contactPersonEmail || "Not updated"}
                             </Typography>
                           </Box>
                         </Box>
@@ -810,10 +808,10 @@ const JobDetailPage = () => {
                           <PhoneIcon sx={{ color: "#9c27b0", fontSize: 24 }} />
                           <Box>
                             <Typography variant="body2" color="text.secondary" gutterBottom>
-                              Số điện thoại
+                              Phone Number
                             </Typography>
                             <Typography variant="body1" fontWeight={500}>
-                              {jobPostDetail?.contactPersonPhone || "Chưa cập nhật"}
+                              {jobPostDetail?.contactPersonPhone || "Not updated"}
                             </Typography>
                           </Box>
                         </Box>
@@ -836,10 +834,10 @@ const JobDetailPage = () => {
                           <LocationOnIcon sx={{ color: "#9c27b0", fontSize: 24 }} />
                           <Box>
                             <Typography variant="body2" color="text.secondary" gutterBottom>
-                              Địa chỉ
+                              Address
                             </Typography>
                             <Typography variant="body1" fontWeight={500}>
-                              {jobPostDetail?.location?.address || "Chưa cập nhật"}
+                              {jobPostDetail?.location?.address || "Not updated"}
                             </Typography>
                           </Box>
                         </Box>
@@ -866,7 +864,7 @@ const JobDetailPage = () => {
                           },
                         }}
                       >
-                        Bản đồ
+                        Map
                       </Typography>
                       <Box sx={{ 
                         borderRadius: 2,
@@ -890,7 +888,7 @@ const JobDetailPage = () => {
             <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
               <Card sx={{ p: { xs: 1.5, sm: 1.5, md: 2, lg: 2, xl: 2 } }}>
                 <Stack spacing={2}>
-                  <Typography variant="h5">Việc làm tương tự</Typography>
+                  <Typography variant="h5">Similar jobs</Typography>
                   <Box
                     sx={{ width: 120, height: 5, backgroundColor: "#441da0" }}
                   ></Box>

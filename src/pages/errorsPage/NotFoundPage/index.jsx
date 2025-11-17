@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Stack } from '@mui/material';
@@ -6,7 +8,7 @@ import { Result } from 'antd';
 import { TabTitle } from '../../../utils/generalFunction';
 
 const NotFoundPage = () => {
-  TabTitle("Page Not Found")
+  TabTitle("Không tìm thấy trang")
   const nav = useNavigate();
 
   return (
@@ -20,10 +22,10 @@ const NotFoundPage = () => {
         style={{ marginTop: '15vh' }}
         status="404"
         title="404"
-        subTitle="Sorry, the page you visited does not exist."
+        subTitle="Xin lỗi, trang bạn truy cập không tồn tại."
         extra={
           <Button type="primary" variant="contained" onClick={() => nav('/')}>
-            Back to Home
+            Về trang chủ
           </Button>
         }
       />

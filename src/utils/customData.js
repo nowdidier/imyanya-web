@@ -1,3 +1,5 @@
+
+
 import {
   ContentState,
   convertFromHTML,
@@ -26,9 +28,9 @@ const createEditorStateFromHTMLString = (htmlString) => {
 
 const convertMoney = n => {
   if (n >= 1000000000) {
-    return `${Math.trunc(n / 1000000000)} billion`;
+    return `${Math.trunc(n / 1000000000)} tỉ`;
   } else if (n >= 1000000) {
-    return `${Math.trunc(n / 1000000)} million`;
+    return `${Math.trunc(n / 1000000)} tr`;
   } else {
     return `${Math.trunc(n)}`;
   }

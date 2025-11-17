@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { Stack } from '@mui/material';
 import { Result } from 'antd';
@@ -14,7 +16,7 @@ const SystemErrorPage = () => {
         style={{ marginTop: '15vh' }}
         status="500"
         title="500"
-        subTitle="Sorry, the system is under maintenance. Please try again later."
+        subTitle="Xin lỗi, hệ thống đang bảo trì. Bạn vui lòng quay lại sau."
       />
     </Stack>
   );

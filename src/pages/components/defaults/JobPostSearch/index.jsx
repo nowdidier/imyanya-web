@@ -45,7 +45,7 @@ const JobPostSearch = () => {
   const handleSaveKeyworLocalStorage = (kw) => {
     try {
       if (kw) {
-        const keywordListStr = localStorage.getItem('myjob_search_history');
+        const keywordListStr = localStorage.getItem('imyanya_search_history');
 
         if (
           keywordListStr !== null &&
@@ -57,7 +57,7 @@ const JobPostSearch = () => {
           if (!keywordList.includes(kw)) {
             if (keywordList.length >= 5) {
               localStorage.setItem(
-                'myjob_search_history',
+                'imyanya_search_history',
                 JSON.stringify([
                   kw,
                   ...keywordList.slice(0, keywordList.length - 1),
@@ -65,13 +65,13 @@ const JobPostSearch = () => {
               );
             } else {
               localStorage.setItem(
-                'myjob_search_history',
+                'imyanya_search_history',
                 JSON.stringify([kw, ...keywordList])
               );
             }
           }
         } else {
-          localStorage.setItem('myjob_search_history', JSON.stringify([kw]));
+          localStorage.setItem('imyanya_search_history', JSON.stringify([kw]));
         }
       }
     } catch (error) {

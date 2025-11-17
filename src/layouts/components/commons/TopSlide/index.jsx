@@ -11,7 +11,7 @@ import { Box, Link } from '@mui/material';
 
 import HomeSearch from '../../../../pages/components/defaults/HomeSearch';
 import MuiImageCustom from '../../../../components/MuiImageCustom';
-import myjobService from '../../../../services/myjobService';
+import imyanyaService from '../../../../services/imyanyaService';
 import { BANNER_TYPES } from '../../../../configs/constants';
 
 const styles = {
@@ -99,7 +99,7 @@ const TopSlide = () => {
   React.useEffect(() => {
     const getBanners = async () => {
       try {
-        const resData = await myjobService.getBanners({type: BANNER_TYPES.HOME});
+        const resData = await imyanyaService.getBanners({type: BANNER_TYPES.HOME});
 
         const data = resData?.data || [];
 

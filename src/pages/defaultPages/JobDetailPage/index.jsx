@@ -927,7 +927,7 @@ const JobDetailPage = () => {
         facebook={{
           url: window.location.href,
           quote: jobPostDetail?.jobName,
-          hashtag: "#myjob",
+          hashtag: "#imyanya",
         }}
         facebookMessenger={{
           url: window.location.href,
@@ -936,12 +936,12 @@ const JobDetailPage = () => {
           url: window.location.href,
           title: jobPostDetail?.jobName,
           summary: jobPostDetail?.jobDescription,
-          source: "MyJob",
+          source: "Imyanya",
         }}
         twitter={{
           url: window.location.href,
           title: jobPostDetail?.jobName,
-          hashtags: ["myjob", "tuyendung"],
+          hashtags: ["imyanya", "tuyendung"],
         }}
         email={{
           url: window.location.href,

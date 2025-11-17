@@ -51,11 +51,11 @@ const ENV = import.meta.env.VITE_NODE_ENV || "development";
 
 const PLATFORM = "WEB";
 
-const APP_NAME = "MyJob";
+const APP_NAME = "Imyanya";
 
 const HOST_NAME = {
-  MYJOB:  import.meta.env.VITE_MYJOB_HOST_NAME,
-  EMPLOYER_MYJOB:  import.meta.env.VITE_EMPLOYER_MYJOB_HOST_NAME,
+  IMYANYA:  import.meta.env.VITE_IMYANYA_HOST_NAME,
+  EMPLOYER_IMYANYA:  import.meta.env.VITE_EMPLOYER_IMYANYA_HOST_NAME,
 };
 
 const AUTH_PROVIDER = {
@@ -65,8 +65,8 @@ const AUTH_PROVIDER = {
 
 const AUTH_CONFIG = {
   // BACKEND
-  CLIENT_ID: import.meta.env.VITE_MYJOB_SERVER_CLIENT_ID,
-  CLIENT_SECRECT: import.meta.env.VITE_MYJOB_SERVER_CLIENT_SECRECT,
+  CLIENT_ID: import.meta.env.VITE_IMYANYA_SERVER_CLIENT_ID,
+  CLIENT_SECRECT: import.meta.env.VITE_IMYANYA_SERVER_CLIENT_SECRECT,
   BACKEND_KEY: "backend",
   ACCESS_TOKEN_KEY: "access_token",
   REFRESH_TOKEN_KEY: "refresh_token",
@@ -87,12 +87,12 @@ const AUTH_CONFIG = {
   // Dialogflow chatbot
   JOB_SEEKER_BOT: {
     AGENT_ID: import.meta.env.VITE_JOB_SEEKER_BOT_AGENT_ID || "",
-    CHAT_TITLE: "MyJob AI",
+    CHAT_TITLE: "IMYANYA AI",
     CHAT_ICON: jobSeekerChatbotIcon,
   },
   EMPLOYER_BOT: {
     AGENT_ID: import.meta.env.VITE_EMPLOYER_BOT_AGENT_ID || "",
-    CHAT_TITLE: "MyJob AI",
+    CHAT_TITLE: "IMYANYA AI",
     CHAT_ICON: employerChatbotIcon,
   },
 };

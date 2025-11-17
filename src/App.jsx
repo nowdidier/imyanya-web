@@ -26,7 +26,7 @@ import { ConfigProvider } from "antd";
 import AppRoutes from "./routes/AppRouter";
 
 // chatbot
-import { MyJobChatBot } from "./chatbot";
+import { ImyanyaChatBot } from "./chatbot";
 import Feedback from "./components/Feedback";
 import ScrollToTop from "./components/ScrollToTop";
 import { ROLES_NAME, ROUTES, AUTH_CONFIG } from "./configs/constants";
@@ -105,7 +105,7 @@ function App() {
                 {/* Start: Feedback */}
                 {isAuthenticated && <Feedback />}
                 {/* End: Feedback */}
-                <MyJobChatBot />
+                <ImyanyaChatBot />
               </>
             )}
           </GoogleOAuthProvider>

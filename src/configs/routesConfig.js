@@ -36,7 +36,7 @@ import {
   AttachedProfilePage,
   DashboardPage,
   MyCompanyPage,
-  MyJobPage,
+  ImyanyaPage,
   OnlineProfilePage,
   ProfilePage,
 } from "../pages/jobSeekerPages";
@@ -57,7 +57,7 @@ import {
 } from "../pages/errorsPage";
 
 const routesConfig = {
-  [HOST_NAME.MYJOB]: [
+  [HOST_NAME.IMYANYA]: [
     {
       path: ROUTES.JOB_SEEKER.HOME,
       layouts: Outlet,
@@ -133,7 +133,7 @@ const routesConfig = {
             },
             {
               path: ROUTES.JOB_SEEKER.MY_JOB,
-              element: MyJobPage,
+              element: ImyanyaPage,
             },
             {
               path: ROUTES.JOB_SEEKER.MY_COMPANY,
@@ -202,7 +202,7 @@ const routesConfig = {
       element: NotFoundPage,
     },
   ],
-  [HOST_NAME.EMPLOYER_MYJOB]: [
+  [HOST_NAME.EMPLOYER_IMYANYA]: [
     {
       path: ROUTES.EMPLOYER.DASHBOARD,
       layouts: EmployerLayout,

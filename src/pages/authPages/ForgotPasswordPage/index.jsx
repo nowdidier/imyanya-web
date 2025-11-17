@@ -95,7 +95,7 @@ const ForgotPasswordPage = () => {
                   If the email doesn't show up soon, check your spam folder.
                 </Typography>
                 <Typography variant="caption">
-                  We sent it from myjob.contact00000@gmail.com.
+                  We sent it from imyanya.contact00000@gmail.com.
                 </Typography>
               </Stack>
             </Box>

@@ -9,7 +9,7 @@ import SuggestedJobPostCard from "../../components/defaults/SuggestedJobPostCard
 import JobPostNotificationCard from "../../components/jobSeekers/JobPostNotificationCard";
 import { useSearchParams } from "react-router-dom";
 
-const MyJobPage = () => {
+const ImyanyaPage = () => {
   TabTitle("My Jobs Dashboard");
 
   const [searchParams] = useSearchParams();
@@ -102,4 +102,4 @@ const MyJobPage = () => {
   );
 };
 
-export default MyJobPage;
+export default ImyanyaPage;

@@ -5,10 +5,10 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: myjob-frontend-container
+    container_name: imyanya-frontend-container
     volumes:
-      - .:/myjob_web_app
-      - /myjob_web_app/node_modules
+      - .:/imyanya_web_app
+      - /imyanya_web_app/node_modules
     ports:
       - "3000:3000"
     environment:
@@ -16,16 +16,16 @@ services:
     env_file:
       - .env
     networks:
-      - myjob-network
+      - imyanya-network
 
   frontend_nginx:
     image: nginx:1.24.0-alpine
-    container_name: myjob-frontend-nginx-container
+    container_name: imyanya-frontend-nginx-container
     restart: unless-stopped
     env_file:
       - .env
     networks:
-      - myjob-network
+      - imyanya-network
     ports:
       - "443:443"
     volumes:
@@ -35,5 +35,5 @@ services:
       - frontend_dev
 
 networks:
-  myjob-network:
-    name: myjob-network
+  imyanya-network:
+    name: imyanya-network

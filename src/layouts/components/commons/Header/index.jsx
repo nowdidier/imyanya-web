@@ -29,12 +29,12 @@ import NotificationCard from "../../../../components/NotificationCard";
 import ChatCard from "../../../../components/ChatCard";
 
 const pages = {
-  [HOST_NAME.MYJOB]: [
+  [HOST_NAME.IMYANYA]: [
     { id: 1, label: "Jobs", path: `/${ROUTES.JOB_SEEKER.JOBS}` },
     { id: 2, label: "Companies", path: `/${ROUTES.JOB_SEEKER.COMPANY}` },
     { id: 3, label: "About Us", path: `/${ROUTES.JOB_SEEKER.ABOUT_US}` },
   ],
-  [HOST_NAME.EMPLOYER_MYJOB]: [
+  [HOST_NAME.EMPLOYER_IMYANYA]: [
     { id: 1, label: "Introduction", path: `/${ROUTES.EMPLOYER.INTRODUCE}` },
     { id: 2, label: "Services", path: `/${ROUTES.EMPLOYER.SERVICE}` },
     { id: 3, label: "Pricing", path: `/${ROUTES.EMPLOYER.PRICING}` },

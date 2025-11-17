@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Stack, styled, useTheme } from "@mui/material";
 
 import { BANNER_TYPES } from "../../configs/constants";
-import myjobService from "../../services/myjobService";
+import imyanyaService from "../../services/imyanyaService";
 
 const StyledBannerImage = styled("img")({
   width: "100%",
@@ -26,7 +26,7 @@ const MainJobRightBanner = () => {
   React.useEffect(() => {
     const getRightBanners = async () => {
       try {
-        const resData = await myjobService.getBanners({
+        const resData = await imyanyaService.getBanners({
           type: BANNER_TYPES.MAIN_JOB_RIGHT,
         });
         const data = resData?.data || [];

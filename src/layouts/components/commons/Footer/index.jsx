@@ -190,7 +190,7 @@ const Footer = () => {
               
               <ListItem sx={{ mt: 3 }}>
                 <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-                  Connect with MyJob
+                  Connect with Imyanya
                 </Typography>
               </ListItem>
               <ListItem>
@@ -224,7 +224,7 @@ const Footer = () => {
         <Divider sx={{ my: 4 }} />
         
         <Typography variant="body2" color="grey.400" align="center" sx={{ pt: 2 }}>
-          © {new Date().getFullYear()} MyJob. All rights reserved.
+          © {new Date().getFullYear()} Imyanya. All rights reserved.
         </Typography>
       </Container>
     </Box>

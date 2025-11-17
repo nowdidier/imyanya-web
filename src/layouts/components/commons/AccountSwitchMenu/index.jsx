@@ -14,14 +14,14 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
 
   const handleClick = () => {
     switch(hostName) {
-      case HOST_NAME.MYJOB:
-        window.open(buildURL(HOST_NAME.EMPLOYER_MYJOB), '_blank');
+      case HOST_NAME.IMYANYA:
+        window.open(buildURL(HOST_NAME.EMPLOYER_IMYANYA), '_blank');
         break;
-      case HOST_NAME.EMPLOYER_MYJOB:
-        window.open(buildURL(HOST_NAME.MYJOB), '_blank');
+      case HOST_NAME.EMPLOYER_IMYANYA:
+        window.open(buildURL(HOST_NAME.IMYANYA), '_blank');
         break;
       default:
-        window.open(buildURL(HOST_NAME.MYJOB), '_blank');
+        window.open(buildURL(HOST_NAME.IMYANYA), '_blank');
     }
   };
 
@@ -29,14 +29,14 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
     const path = isLogin ? ROUTES.AUTH.LOGIN : ROUTES.AUTH.REGISTER;
 
     switch(hostName) {
-      case HOST_NAME.MYJOB:
-        window.open(`${buildURL(HOST_NAME.EMPLOYER_MYJOB)}/${path}`, '_blank');
+      case HOST_NAME.IMYANYA:
+        window.open(`${buildURL(HOST_NAME.EMPLOYER_IMYANYA)}/${path}`, '_blank');
         break;
-      case HOST_NAME.EMPLOYER_MYJOB:
-        window.open(`${buildURL(HOST_NAME.MYJOB)}/${path}`, '_blank');
+      case HOST_NAME.EMPLOYER_IMYANYA:
+        window.open(`${buildURL(HOST_NAME.IMYANYA)}/${path}`, '_blank');
         break;
       default:
-        window.open(`${buildURL(HOST_NAME.MYJOB)}/${path}`, '_blank');
+        window.open(`${buildURL(HOST_NAME.IMYANYA)}/${path}`, '_blank');
     }
   }
 
@@ -102,7 +102,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             size="small"
             sx={{ textTransform: 'inherit' }}
           >
-            {hostName === HOST_NAME.EMPLOYER_MYJOB
+            {hostName === HOST_NAME.EMPLOYER_IMYANYA
               ? 'Job Seeker Login'
               : 'Employer Login'}
           </Button>
@@ -114,7 +114,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             sx={{ textTransform: 'inherit' }}
             onClick={() => handleClickAuth(false)}
           >
-            {hostName === HOST_NAME.EMPLOYER_MYJOB
+            {hostName === HOST_NAME.EMPLOYER_IMYANYA
               ? 'Job Seeker Register'
               : 'Employer Register'}
           </Button>

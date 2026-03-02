@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Card, Grid, Stack, Tab, Typography } from "@mui/material";
@@ -9,7 +10,7 @@ import SuggestedJobPostCard from "../../components/defaults/SuggestedJobPostCard
 import JobPostNotificationCard from "../../components/jobSeekers/JobPostNotificationCard";
 import { useSearchParams } from "react-router-dom";
 
-const ImyanyaPage = () => {
+const MyJobPage = () => {
   TabTitle("My Jobs Dashboard");
 
   const [searchParams] = useSearchParams();
@@ -102,4 +103,4 @@ const ImyanyaPage = () => {
   );
 };
 
-export default ImyanyaPage;
+export default MyJobPage;

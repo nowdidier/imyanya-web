@@ -1,5 +1,4 @@
 
-
 import React from "react";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
@@ -79,7 +78,7 @@ const Message = ({ userId, text, avatarUrl, createdAt }) => {
             <p className="small ms-3 mb-3 rounded-3 text-muted float-end">
               {createdAt?.seconds
                 ? formatMessageDate(createdAt?.seconds * 1000)
-                : "Sending ..."}
+                : "Đang gửi ..."}
             </p>
           </div>
         </div>

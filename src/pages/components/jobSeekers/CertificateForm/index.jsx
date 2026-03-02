@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,16 +17,13 @@ const CertificateForm = ({
   const schema = yup.object().shape({
     name: yup
       .string()
-      .required('Certificate name is required.')
-      .max(200, 'Certificate name exceeds allowed length.'),
+   
     trainingPlace: yup
       .string()
-      .required('Training institution/center name is required.')
-      .max(255, 'Training institution/center name exceeds allowed length.'),
+      
     startDate: yup
       .date()
-      .required('Start date is required.')
-      .typeError('Start date is required.'),
+     
     expirationDate: yup.date().nullable(),
   });
 
@@ -67,18 +65,14 @@ const CertificateForm = ({
         <Grid item xs={12}>
           <TextFieldCustom
             name="name"
-            title="Certificate Name"
             showRequired={true}
-            placeholder="Enter certificate name"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="trainingPlace"
-            title="Training Institution/Center"
             showRequired={true}
-            placeholder="Enter institution/center name"
             control={control}
           />
         </Grid>
@@ -86,7 +80,6 @@ const CertificateForm = ({
           <DatePickerCustom
             name="startDate"
             control={control}
-            title="Start Date"
             showRequired={true}
             maxDate={DATE_OPTIONS.yesterday}
           />
@@ -95,7 +88,6 @@ const CertificateForm = ({
           <DatePickerCustom
             name="expirationDate"
             control={control}
-            title="Expiration Date (Leave empty if no expiration)"
             maxDate={DATE_OPTIONS.today}
           />
         </Grid>

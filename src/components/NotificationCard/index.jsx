@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -311,7 +312,6 @@ const NotificationCard = () => {
                   color="text.secondary"
                   sx={{ py: 2 }}
                 >
-                  No notifications yet
                 </Typography>
               ) : (
                 notifications.map((value, idx) => (
@@ -392,7 +392,6 @@ const NotificationCard = () => {
                               fontWeight: value?.is_read ? 400 : 500
                             }}
                           >
-                            {value?.is_read === true ? 'Read' : 'New'}
                           </Typography>
                         </Stack>
                       </Stack>
@@ -428,7 +427,6 @@ const NotificationCard = () => {
                       color="GrayText"
                     >
                       <span style={{ cursor: 'pointer' }} onClick={loadMore}>
-                        See more
                       </span>
                     </Typography>
                   </Stack>
@@ -446,7 +444,6 @@ const NotificationCard = () => {
                         style={{ cursor: 'pointer' }}
                         onClick={handleRemoveAll}
                       >
-                        Delete all
                       </span>
                     </Typography>
                   </Stack>

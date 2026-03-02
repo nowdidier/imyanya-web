@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -124,7 +125,7 @@ const RightSidebar = () => {
           mb: 2
         }}
       >
-        CÁC TIN TUYỂN DỤNG ĐÃ ỨNG TUYỂN
+        TIN TUYỂN DỤNG ĐÃ ỨNG TUYỂN
       </Typography>
 
       <Box 
@@ -369,174 +370,174 @@ const EmployerSidebar = () => {
   return (
     <Box>
       <Typography 
-        variant="subtitle2"
-        sx={{ 
-          fontSize: 13,
-          fontWeight: 700,
-          color: 'text.secondary',
-          letterSpacing: '0.5px',
-          mb: 2
-        }}
+      variant="subtitle2"
+      sx={{ 
+        fontSize: 13,
+        fontWeight: 700,
+        color: 'text.secondary',
+        letterSpacing: '0.5px',
+        mb: 2
+      }}
       >
-        CÁC ỨNG VIÊN ỨNG TUYỂN
+      APPLIED CANDIDATES
       </Typography>
       <Box 
-        sx={{ 
-          maxHeight: 'calc(100vh - 120px)',
-          overflowY: 'auto',
-          pr: 1,
-          '&::-webkit-scrollbar': {
-            width: '4px',
-          },
-        }}
+      sx={{ 
+        maxHeight: 'calc(100vh - 120px)',
+        overflowY: 'auto',
+        pr: 1,
+        '&::-webkit-scrollbar': {
+        width: '4px',
+        },
+      }}
       >
-        {isLoading ? (
-          <Stack spacing={2}>
-            {Array.from(Array(12).keys()).map((value) => (
-              <LoadingComponentItem key={value} />
-            ))}
-          </Stack>
-        ) : jobPostsApplied.length === 0 ? (
-          <Stack 
-            spacing={2} 
-            alignItems="center" 
-            justifyContent="center"
-            sx={{ 
-              py: 8,
-              px: 2,
-              bgcolor: 'background.default',
-              borderRadius: 2
-            }}
+      {isLoading ? (
+        <Stack spacing={2}>
+        {Array.from(Array(12).keys()).map((value) => (
+          <LoadingComponentItem key={value} />
+        ))}
+        </Stack>
+      ) : jobPostsApplied.length === 0 ? (
+        <Stack 
+        spacing={2} 
+        alignItems="center" 
+        justifyContent="center"
+        sx={{ 
+          py: 8,
+          px: 2,
+          bgcolor: 'background.default',
+          borderRadius: 2
+        }}
+        >
+        <Empty description={
+          <Typography variant="body2" color="text.secondary">
+          No candidates have applied yet
+          </Typography>
+        } />
+        </Stack>
+      ) : (
+        <Stack spacing={1.5}>
+        {jobPostsApplied.map((value) => (
+          <Box
+          key={value.id}
+          sx={{
+            p: 1.5,
+            borderRadius: 2,
+            bgcolor: 'background.default',
+            transition: 'all 0.2s ease-in-out',
+            '&:hover': {
+            bgcolor: 'primary.background',
+            transform: 'translateY(-2px)',
+            boxShadow: (theme) => theme.customShadows.card
+            }
+          }}
           >
-            <Empty description={
-              <Typography variant="body2" color="text.secondary">
-                Chưa có ứng viên nào ứng tuyển
-              </Typography>
-            } />
-          </Stack>
-        ) : (
-          <Stack spacing={1.5}>
-            {jobPostsApplied.map((value) => (
-              <Box
-                key={value.id}
-                sx={{
-                  p: 1.5,
-                  borderRadius: 2,
-                  bgcolor: 'background.default',
-                  transition: 'all 0.2s ease-in-out',
-                  '&:hover': {
-                    bgcolor: 'primary.background',
-                    transform: 'translateY(-2px)',
-                    boxShadow: (theme) => theme.customShadows.card
-                  }
-                }}
+          <Stack direction="row" spacing={2} alignItems="center">
+            <Box>
+            <MuiImageCustom
+              width={48}
+              height={48}
+              sx={{
+              borderRadius: 2,
+              border: 1,
+              borderColor: 'divider',
+              p: 0.5,
+              }}
+              src={value?.avatarUrl}
+            />
+            </Box>
+            <Stack flex={1} minWidth={0}>
+            <Tooltip title={value?.fullName} arrow placement="top">
+              <Typography
+              variant="subtitle2"
+              noWrap
+              sx={{
+                fontWeight: 600,
+                color: 'text.primary',
+                cursor: 'pointer',
+                '&:hover': { color: 'primary.main' }
+              }}
               >
-                <Stack direction="row" spacing={2} alignItems="center">
-                  <Box>
-                    <MuiImageCustom
-                      width={48}
-                      height={48}
-                      sx={{
-                        borderRadius: 2,
-                        border: 1,
-                        borderColor: 'divider',
-                        p: 0.5,
-                      }}
-                      src={value?.avatarUrl}
-                    />
-                  </Box>
-                  <Stack flex={1} minWidth={0}>
-                    <Tooltip title={value?.fullName} arrow placement="top">
-                      <Typography
-                        variant="subtitle2"
-                        noWrap
-                        sx={{
-                          fontWeight: 600,
-                          color: 'text.primary',
-                          cursor: 'pointer',
-                          '&:hover': { color: 'primary.main' }
-                        }}
-                      >
-                        {value?.fullName || '---'}
-                      </Typography>
-                    </Tooltip>
-                    
-                    <Tooltip title={value?.jobPostTitle} arrow placement="bottom">
-                      <Typography
-                        variant="caption"
-                        noWrap
-                        sx={{
-                          color: 'text.secondary',
-                          cursor: 'pointer',
-                          '&:hover': { color: 'primary.main' }
-                        }}
-                      >
-                        {value?.jobPostTitle || '---'}
-                      </Typography>
-                    </Tooltip>
-                  </Stack>
+              {value?.fullName || '---'}
+              </Typography>
+            </Tooltip>
+            
+            <Tooltip title={value?.jobPostTitle} arrow placement="bottom">
+              <Typography
+              variant="caption"
+              noWrap
+              sx={{
+                color: 'text.secondary',
+                cursor: 'pointer',
+                '&:hover': { color: 'primary.main' }
+              }}
+              >
+              {value?.jobPostTitle || '---'}
+              </Typography>
+            </Tooltip>
+            </Stack>
 
-                  <Box>
-                    <Chip
-                      label="Nhắn tin"
-                      color="primary" 
-                      size="small"
-                      variant="outlined"
-                      onClick={() =>
-                        handleAddRoom(value?.userId, {
-                          userId: value?.userId,
-                          name: value?.fullName,
-                          email: value?.userEmail,
-                          avatarUrl: value?.avatarUrl,
-                          company: null,
-                        })
-                      }
-                      sx={{
-                        borderRadius: 1,
-                        '&:hover': {
-                          bgcolor: 'primary.background',
-                          borderColor: 'primary.main'
-                        }
-                      }}
-                    />
-                  </Box>
-                </Stack>
-              </Box>
-            ))}
+            <Box>
+            <Chip
+              label="Message"
+              color="primary" 
+              size="small"
+              variant="outlined"
+              onClick={() =>
+              handleAddRoom(value?.userId, {
+                userId: value?.userId,
+                name: value?.fullName,
+                email: value?.userEmail,
+                avatarUrl: value?.avatarUrl,
+                company: null,
+              })
+              }
+              sx={{
+              borderRadius: 1,
+              '&:hover': {
+                bgcolor: 'primary.background',
+                borderColor: 'primary.main'
+              }
+              }}
+            />
+            </Box>
           </Stack>
-        )}
+          </Box>
+        ))}
+        </Stack>
+      )}
       </Box>
 
       {Math.ceil(count / pageSize) > 1 && (
-        <Stack 
-          sx={{ 
-            pt: 2,
-            mt: 2,
-            borderTop: 1,
-            borderColor: 'divider'
-          }} 
-          alignItems="center"
-        >
-          <Pagination
-            color="primary"
-            size="small"
-            shape="rounded"
-            variant="outlined"
-            count={Math.ceil(count / pageSize)}
-            page={page}
-            onChange={(event, newPage) => {
-              setPage(newPage);
-            }}
-            sx={{
-              '& .MuiPaginationItem-root': {
-                borderRadius: 1
-              }
-            }}
-          />
-        </Stack>
+      <Stack 
+        sx={{ 
+        pt: 2,
+        mt: 2,
+        borderTop: 1,
+        borderColor: 'divider'
+        }} 
+        alignItems="center"
+      >
+        <Pagination
+        color="primary"
+        size="small"
+        shape="rounded"
+        variant="outlined"
+        count={Math.ceil(count / pageSize)}
+        page={page}
+        onChange={(event, newPage) => {
+          setPage(newPage);
+        }}
+        sx={{
+          '& .MuiPaginationItem-root': {
+          borderRadius: 1
+          }
+        }}
+        />
+      </Stack>
       )}
     </Box>
-  );
+    );
 };
 
 RightSidebar.Employer = EmployerSidebar;

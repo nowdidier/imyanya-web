@@ -1,10 +1,10 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
   Autocomplete,
   Box,
   Button,
-  Chip,
   Divider,
   Grid,
   IconButton,
@@ -37,42 +37,36 @@ const headCells = [
     showOrder: false,
     numeric: false,
     disablePadding: true,
-    label: 'Resume Name',
   },
   {
     id: 'jobName',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Applied Position',
   },
   {
     id: 'appliedDate',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Applied Date',
   },
   {
     id: 'type',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Resume Type',
   },
   {
     id: 'city',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Recruitment Status',
   },
   {
     id: 'action',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Action',
   },
 ];
 
@@ -192,7 +186,6 @@ const AppliedResumeCard = ({ title }) => {
         const data = resData.data;
 
         // export
-        xlsxUtils.exportToXLSX(data, 'AppliedResumeList');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -235,7 +228,6 @@ const AppliedResumeCard = ({ title }) => {
       try {
         await jobPostActivityService.deleteJobPostActivity(id);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Successfully deleted applied resume.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -245,8 +237,7 @@ const AppliedResumeCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Delete applied resume',
-      'This applied resume will be permanently deleted and cannot be recovered. Are you sure?',
+      
       'warning'
     );
   };
@@ -306,7 +297,6 @@ const AppliedResumeCard = ({ title }) => {
             }
           }}
         >
-          Download List
         </Button>
       </Stack>
 
@@ -335,7 +325,6 @@ const AppliedResumeCard = ({ title }) => {
               renderInput={(params) => (
                 <TextField 
                   {...params} 
-                  placeholder="All job posts"
                   sx={{
                     '& .MuiOutlinedInput-root': {
                       borderRadius: 2,
@@ -361,7 +350,6 @@ const AppliedResumeCard = ({ title }) => {
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  placeholder="All recruitment statuses"
                   sx={{
                     '& .MuiOutlinedInput-root': {
                       borderRadius: 2,
@@ -407,7 +395,6 @@ const AppliedResumeCard = ({ title }) => {
                   }
                 }}
               >
-                Advanced Filter ({numbersFilter})
               </Button>
             </Stack>
           </Grid>
@@ -457,8 +444,7 @@ const AppliedResumeCard = ({ title }) => {
 
       {/* Popup and Loading remain unchanged */}
       <FormPopup
-        title="Advanced Filter"
-        buttonText="Filter"
+      
         buttonIcon={<FilterListIcon />}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}

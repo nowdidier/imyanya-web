@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,7 +13,6 @@ const CVForm = ({ handleUpdate }) => {
       .mixed()
       .test(
         'files empty',
-        'File is required.',
         (value) =>
           !(
             value === undefined ||
@@ -34,7 +34,6 @@ const CVForm = ({ handleUpdate }) => {
           <BasicDropzone
             control={control}
             name="files"
-            title="Select your CV file"
             showRequired={true}
           />
         </Grid>

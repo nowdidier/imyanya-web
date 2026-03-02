@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,21 +11,16 @@ const UpdatePasswordForm = ({ handleUpdatePassword, serverErrors = {} }) => {
   const schema = yup.object().shape({
     oldPassword: yup
       .string()
-      .required('Current password is required!')
-      .max(128, 'Current password exceeds maximum length.'),
+      .required(),
     newPassword: yup
       .string()
-      .required('New password is required!')
-      .min(8, 'Password must be at least 8 characters.')
-      .max(128, 'New password exceeds maximum length.')
+      .required()
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Must contain uppercase, lowercase, number and special character'
       ),
     confirmPassword: yup
       .string()
-      .required('Confirm password is required.')
-      .oneOf([yup.ref('newPassword')], 'Passwords do not match.'),
+      .required(),
   });
 
   const { control, setError, handleSubmit } = useForm({
@@ -51,27 +45,21 @@ const UpdatePasswordForm = ({ handleUpdatePassword, serverErrors = {} }) => {
           <PasswordTextFieldCustom
             name="oldPassword"
             control={control}
-            title="Current Password"
             showRequired={true}
-            placeholder="Enter current password"
           />
         </Grid>
         <Grid item xs={12}>
           <PasswordTextFieldCustom
             name="newPassword"
             control={control}
-            title="New Password"
             showRequired={true}
-            placeholder="Enter new password"
           />
         </Grid>
         <Grid item xs={12}>
           <PasswordTextFieldCustom
             name="confirmPassword"
             control={control}
-            title="Confirm Password"
             showRequired={true}
-            placeholder="Re-enter new password"
           />
         </Grid>
       </Grid>

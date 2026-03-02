@@ -1,7 +1,7 @@
 # Frontend development environment
 FROM node:18.18
 
-WORKDIR /imyanya_web_app
+WORKDIR /myjob_web_app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./

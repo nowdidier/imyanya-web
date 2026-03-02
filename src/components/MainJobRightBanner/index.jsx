@@ -1,8 +1,9 @@
+
 import React from "react";
 import { Box, Button, Stack, styled, useTheme } from "@mui/material";
 
 import { BANNER_TYPES } from "../../configs/constants";
-import imyanyaService from "../../services/imyanyaService";
+import myjobService from "../../services/myjobService";
 
 const StyledBannerImage = styled("img")({
   width: "100%",
@@ -26,7 +27,7 @@ const MainJobRightBanner = () => {
   React.useEffect(() => {
     const getRightBanners = async () => {
       try {
-        const resData = await imyanyaService.getBanners({
+        const resData = await myjobService.getBanners({
           type: BANNER_TYPES.MAIN_JOB_RIGHT,
         });
         const data = resData?.data || [];
@@ -99,7 +100,6 @@ const MainJobRightBanner = () => {
                   }
                 }}
               >
-                {banner.buttonText || 'See more'}
               </Button>
             </Box>
           )}

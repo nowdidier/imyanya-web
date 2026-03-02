@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { Stack, Typography, Button, Box } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,14 +15,14 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
 
   const handleClick = () => {
     switch(hostName) {
-      case HOST_NAME.IMYANYA:
-        window.open(buildURL(HOST_NAME.EMPLOYER_IMYANYA), '_blank');
+      case HOST_NAME.MYJOB:
+        window.open(buildURL(HOST_NAME.EMPLOYER_MYJOB), '_blank');
         break;
-      case HOST_NAME.EMPLOYER_IMYANYA:
-        window.open(buildURL(HOST_NAME.IMYANYA), '_blank');
+      case HOST_NAME.EMPLOYER_MYJOB:
+        window.open(buildURL(HOST_NAME.MYJOB), '_blank');
         break;
       default:
-        window.open(buildURL(HOST_NAME.IMYANYA), '_blank');
+        window.open(buildURL(HOST_NAME.MYJOB), '_blank');
     }
   };
 
@@ -29,20 +30,20 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
     const path = isLogin ? ROUTES.AUTH.LOGIN : ROUTES.AUTH.REGISTER;
 
     switch(hostName) {
-      case HOST_NAME.IMYANYA:
-        window.open(`${buildURL(HOST_NAME.EMPLOYER_IMYANYA)}/${path}`, '_blank');
+      case HOST_NAME.MYJOB:
+        window.open(`${buildURL(HOST_NAME.EMPLOYER_MYJOB)}/${path}`, '_blank');
         break;
-      case HOST_NAME.EMPLOYER_IMYANYA:
-        window.open(`${buildURL(HOST_NAME.IMYANYA)}/${path}`, '_blank');
+      case HOST_NAME.EMPLOYER_MYJOB:
+        window.open(`${buildURL(HOST_NAME.MYJOB)}/${path}`, '_blank');
         break;
       default:
-        window.open(`${buildURL(HOST_NAME.IMYANYA)}/${path}`, '_blank');
+        window.open(`${buildURL(HOST_NAME.MYJOB)}/${path}`, '_blank');
     }
   }
 
 
   const title = React.useMemo(() => {
-    return hostName === HOST_NAME.Imyanya? (
+    return hostName === HOST_NAME.MYJOB ? (
       <Stack direction="row" alignItems="center">
         <FontAwesomeIcon
           color="#2c95ff"
@@ -57,7 +58,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           </Typography>
         </Stack>
       </Stack>
-    ) : hostName === HOST_NAME.EMPLOYER_Imyanya? (
+    ) : hostName === HOST_NAME.EMPLOYER_MYJOB ? (
       <Stack direction="row" alignItems="center">
         <FontAwesomeIcon
           color="#2c95ff"
@@ -66,9 +67,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Job Seeker</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            <FontAwesomeIcon icon={faArrowRight} /> Switch
           </Typography>
         </Stack>
       </Stack>
@@ -81,9 +80,7 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
           style={{ marginRight: 8 }}
         />
         <Stack direction="column">
-          <Typography>Employer</Typography>
           <Typography variant="caption" sx={{ fontSize: 11 }}>
-            Post a job for free
           </Typography>
         </Stack>
       </Stack>
@@ -102,9 +99,6 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             size="small"
             sx={{ textTransform: 'inherit' }}
           >
-            {hostName === HOST_NAME.EMPLOYER_IMYANYA
-              ? 'Job Seeker Login'
-              : 'Employer Login'}
           </Button>
           <Button
             variant="outlined"
@@ -114,9 +108,6 @@ const AccountSwitchMenu = ({ isShowButton = false }) => {
             sx={{ textTransform: 'inherit' }}
             onClick={() => handleClickAuth(false)}
           >
-            {hostName === HOST_NAME.EMPLOYER_IMYANYA
-              ? 'Job Seeker Register'
-              : 'Employer Register'}
           </Button>
         </Stack>
       ) : (

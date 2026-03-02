@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Box, Card, Typography } from '@mui/material';
 
@@ -13,7 +14,6 @@ const NumberCard = ({ color, backgroundColor }) => {
         </Typography>
       </Box>
       <Box>
-        <Typography variant="button">Employers viewed profile</Typography>
       </Box>
     </Card>
   );

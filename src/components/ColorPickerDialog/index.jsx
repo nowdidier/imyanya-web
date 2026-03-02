@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   Dialog,
@@ -46,13 +47,11 @@ const ColorPickerDialog = ({ open, onClose, onColorSelect }) => {
       fullWidth
     >
       <DialogTitle>
-        Choose a color for your CV
       </DialogTitle>
       <DialogContent>
         <Stack spacing={3}>
           <Box>
             <Typography variant="subtitle2" sx={{ mb: 1 }}>
-              Suggested colors
             </Typography>
             <Stack direction="row" spacing={1} justifyContent="center">
               {DEFAULT_COLORS.map((color) => (
@@ -109,7 +108,6 @@ const ColorPickerDialog = ({ open, onClose, onColorSelect }) => {
             borderColor: 'grey.300'
           }}>
             <Typography variant="subtitle2" gutterBottom>
-              Preview selected color
             </Typography>
             <Box sx={{
               width: '100%',
@@ -122,7 +120,6 @@ const ColorPickerDialog = ({ open, onClose, onColorSelect }) => {
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
         <Button 
           variant="contained"
           onClick={handleConfirm}
@@ -134,11 +131,10 @@ const ColorPickerDialog = ({ open, onClose, onColorSelect }) => {
             },
           }}
         >
-          Confirm
         </Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default ColorPickerDialog;
+export default ColorPickerDialog; 

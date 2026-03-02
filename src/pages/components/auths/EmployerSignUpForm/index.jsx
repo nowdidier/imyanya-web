@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
@@ -6,7 +7,6 @@ import * as yup from 'yup';
 import {
   Box,
   Button,
-  Divider,
   Grid,
   Stack,
   Step,
@@ -32,7 +32,7 @@ import TextFieldAutoCompleteCustom from '../../../../components/controls/TextFie
 import commonService from '../../../../services/commonService';
 import goongService from '../../../../services/goongService';
 
-const steps = ['Login Information', 'Company Information'];
+const steps = ['Thông tin đăng nhập', 'Thông tin công ty'];
 
 const StyledButton = styled(Button)(({ theme }) => ({
   padding: '8px 16px',
@@ -48,25 +48,18 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const StyledSocialButton = styled(Button)(({ theme }) => ({
-  padding: '8px 16px',
-  borderRadius: '8px',
-  fontSize: '14px',
-  fontWeight: 500,
-  textTransform: 'none',
-  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-  transition: 'all 0.2s ease',
-  '&:hover': {
-    transform: 'translateY(-1px)',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+const StyledStepper = styled(Stepper)(({ theme }) => ({
+  '& .MuiStepLabel-root .Mui-completed': {
+    color: theme.palette.primary.main,
+  },
+  '& .MuiStepLabel-root .Mui-active': {
+    color: theme.palette.primary.main,
+  },
+  '& .MuiStepLabel-label': {
+    fontSize: '14px',
+    fontWeight: 500,
   },
 }));
-
-const StyledDivider = styled(Divider)({
-  height: '2px',
-  background: 'linear-gradient(to right, #1976d2, #9c27b0)',
-  border: 'none',
-});
 
 const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -78,69 +71,69 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
   const schema = yup.object().shape({
     fullName: yup
       .string()
-      .required('Full name is required!')
-      .max(100, 'Full name exceeds maximum length.'),
+      .required('Họ và tên là bắt buộc!')
+      .max(100, 'Họ và tên vượt quá độ dài cho phép.'),
     email: yup
       .string()
-      .required('Email is required!')
-      .email('Invalid email format')
-      .max(100, 'Email exceeds maximum length.'),
+      .required('Email là bắt buộc!')
+      .email('Email không đúng định dạng')
+      .max(100, 'Email vượt quá độ dài cho phép.'),
     password: yup
       .string()
-      .required('Password is required!')
-      .min(8, 'Password must be at least 8 characters.')
-      .max(128, 'Password exceeds maximum length.')
+      .required('Mật khẩu là bắt buộc!')
+      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự.')
+      .max(128, 'Mật khẩu vượt quá độ dài cho phép.')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Must contain uppercase, lowercase, number and special character'
+        'Phải chứa một chữ hoa, một chữ thường, một số và một ký tự đặc biệt'
       ),
     confirmPassword: yup
       .string()
-      .required('Confirm password is required.')
-      .oneOf([yup.ref('password')], 'Passwords do not match.'),
+      .required('Mật khẩu xác nhận là bắt buộc.')
+      .oneOf([yup.ref('password')], 'Mật khẩu xác nhận không chính xác.'),
     company: yup.object().shape({
       companyName: yup
         .string()
-        .required('Company name is required!')
-        .max(255, 'Company name exceeds maximum length.'),
+        .required('Tên công ty là bắt buộc!')
+        .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
       companyEmail: yup
         .string()
-        .required('Company email is required')
-        .email('Invalid company email format')
-        .max(100, 'Company email exceeds maximum length.'),
+        .required('Email công ty là bắt buộc')
+        .email('Email công ty không đúng định dạng')
+        .max(100, 'Email công ty vượt quá độ dài cho phép.'),
       companyPhone: yup
         .string()
-        .required('Company phone number is required')
-        .matches(REGEX_VATIDATE.phoneRegExp, 'Invalid phone number.')
-        .max(15, 'Company phone number exceeds maximum length.'),
+        .required('Số điện thoại công ty là bắt buộc')
+        .matches(REGEX_VATIDATE.phoneRegExp, 'Số điện thoại không hợp lệ.')
+        .max(15, 'Số điện thoại công ty vượt quá độ dài cho phép.'),
       taxCode: yup
         .string()
-        .required('Company tax code is required')
-        .max(30, 'Company tax code exceeds maximum length.'),
+        .required('Mã số thuế công ty là bắt buộc')
+        .max(30, 'Mã số thuế công ty vượt quá độ dài cho phép.'),
       since: yup.date().nullable().typeError(),
       fieldOperation: yup
         .string()
-        .max(255, 'Company field of operation exceeds maximum length.'),
+        .max(255, 'Lĩnh vực hoạt động công ty vượt quá độ dài cho phép.'),
       employeeSize: yup
         .number()
-        .required('Number of employees is required.')
-        .typeError('Number of employees is required.'),
+        .required('Số lượng nhân viên là bắt buộc.')
+        .typeError('Số lượng nhân viên là bắt buộc.'),
       websiteUrl: yup
         .string()
-        .max(300, 'Company website URL exceeds maximum length.'),
+        .max(300, 'Đường dẫn website công ty vượt quá độ dài cho phép.'),
       location: yup.object().shape({
         city: yup
           .number()
-          .required('City/Province is required.')
-          .typeError('City/Province is required.'),
+          .required('Tỉnh/Thành phố là bắt buộc.')
+          .typeError('Tỉnh/Thành phố là bắt buộc.'),
         district: yup
           .number()
-          .required('District is required.')
-          .typeError('District is required.'),
+          .required('Quận/Huyện là bắt buộc.')
+          .typeError('Quận/Huyện là bắt buộc.'),
         address: yup
           .string()
-          .required('Company address is required!')
-          .max(255, 'Company address exceeds maximum length.'),
+          .required('Địa chỉ công ty là bắt buộc!')
+          .max(255, 'Địa chỉ công ty vượt quá độ dài cho phép.'),
       }),
     }),
   });

@@ -1,4 +1,6 @@
+
 import React from 'react';
+
 import {
   CopyFilled,
   ClockCircleFilled,
@@ -53,7 +55,6 @@ const EmployerQuantityStatistics = () => {
                 color: '#333',
                 marginBottom: '10px'
               }}>
-                All job posts
               </span>
             }
             value={data?.totalJobPost}
@@ -82,7 +83,6 @@ const EmployerQuantityStatistics = () => {
                 color: '#333',
                 marginBottom: '10px'
               }}>
-                Pending approval job posts
               </span>
             }
             value={data?.totalJobPostingPendingApproval}
@@ -111,7 +111,6 @@ const EmployerQuantityStatistics = () => {
                 color: '#333',
                 marginBottom: '10px'
               }}>
-                Expired job posts
               </span>
             }
             value={data?.totalJobPostExpired}
@@ -140,7 +139,6 @@ const EmployerQuantityStatistics = () => {
                 color: '#333',
                 marginBottom: '10px'
               }}>
-                Applicants
               </span>
             }
             value={data?.totalApply}

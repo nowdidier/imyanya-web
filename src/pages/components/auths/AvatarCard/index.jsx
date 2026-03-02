@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Stack, IconButton, Typography } from '@mui/material';
@@ -30,10 +29,8 @@ const AvatarCard = () => {
     dispatch(updateAvatar(formData))
       .unwrap()
       .then(() => {
-        toastMessages.success('Avatar updated successfully.');
       })
       .catch(() => {
-        toastMessages.error('An error occurred, please try again.');
       })
       .finally(() => setIsFullScreenLoading(false));
   };
@@ -45,18 +42,15 @@ const AvatarCard = () => {
       dispatch(deleteAvatar())
         .unwrap()
         .then(() => {
-          toastMessages.success('Avatar deleted successfully.');
         })
         .catch((err) => {
-          toastMessages.error('An error occurred!');
+          toastMessages.error();
         })
         .finally(() => setIsFullScreenLoading(false));
     };
 
     confirmModal(
       () => del(),
-      'Delete Avatar',
-      'This avatar will be deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -111,11 +105,7 @@ const AvatarCard = () => {
               <ImgCrop
                 rotationSlider
                 modalProps={{ zIndex: 2000 }}
-                modalTitle="Edit Image"
-                modalOk="Upload"
-                modalCancel="Cancel"
                 showReset={true}
-                resetText="Reset"
               >
                 <Upload
                   listType="picture"
@@ -152,7 +142,6 @@ const AvatarCard = () => {
         </Box>
 
         <Typography variant="subtitle2" gutterBottom sx={{ mt: 1 }}>
-          Profile Picture
         </Typography>
       </Stack>
 

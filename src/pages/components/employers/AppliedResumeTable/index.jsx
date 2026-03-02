@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -12,7 +13,6 @@ import {
   Button,
   IconButton,
   Stack,
-  Chip,
 } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
@@ -62,7 +62,6 @@ const SendEmailComponent = ({
           setSentEmail(true);
         }
         setOpenSendMailPopup(false);
-        toastMessages.success('Email sent successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -90,7 +89,6 @@ const SendEmailComponent = ({
         }
         onClick={() => handleOpenSendMail(email, fullName)}
       >
-        {sentEmail ? 'Resend' : 'Send email'}
       </Button>
       {/* Start: send mail */}
       <SendMailCard
@@ -121,10 +119,10 @@ const AppliedStatusComponent = ({
 
     if (chooseValue < applyStatus) {
       errorModal(
-        'Error',
-        `You are not allowed to change the application status from <strong style="color:red;">"${
+      
+    
           allConfig?.applicationStatusDict[applyStatus] || '---'
-        }"</strong> to <strong style="color:red;">"${
+      
           allConfig?.applicationStatusDict[e.target.value] || '---'
         }"</strong>`
       );
@@ -136,11 +134,9 @@ const AppliedStatusComponent = ({
               setApplyStatus(chooseValue);
             }
           }),
-        'Update Application Status',
-        `Application will be updated to status <strong style="color:red;">"${
+      
           allConfig?.applicationStatusDict[e.target.value] || '---'
-        }"</strong>. Are you sure?`,
-        'question'
+        
       );
     }
   };
@@ -175,7 +171,6 @@ const AppliedResumeTable = (props) => {
         <TableBody>
           <TableCell colSpan={7}>
             <NoDataCard
-              title="No candidates have applied yet"
               imgComponentSgv={<SVG_IMAGES.ImageSvg13 />}
             />
           </TableCell>
@@ -189,7 +184,6 @@ const AppliedResumeTable = (props) => {
                   {row?.fullName}
                 </Typography>
                 {row?.type === CV_TYPES.cvWebsite ? (
-                  <Tooltip title="Online Profile" arrow>
                     <FontAwesomeIcon
                       icon={faFile}
                       style={{ marginRight: 1 }}
@@ -197,7 +191,6 @@ const AppliedResumeTable = (props) => {
                     />
                   </Tooltip>
                 ) : (
-                  <Tooltip title="Attached Profile" arrow>
                     <FontAwesomeIcon
                       icon={faFilePdf}
                       style={{ marginRight: 1 }}
@@ -213,7 +206,6 @@ const AppliedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Not updated
                   </span>
                 )}{' '}
               </TableCell>
@@ -223,8 +215,7 @@ const AppliedResumeTable = (props) => {
               </TableCell>
               <TableCell align="left">
                 {row?.type === CV_TYPES.cvWebsite
-                  ? 'Online Profile'
-                  : 'Attached Profile'}
+                 
               </TableCell>
               <TableCell align="right">
                 <AppliedStatusComponent
@@ -236,7 +227,6 @@ const AppliedResumeTable = (props) => {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} justifyContent="flex-end">
-                  <Tooltip title="View profile" arrow>
                     <IconButton
                       color="primary"
                       aria-label="view"
@@ -250,7 +240,6 @@ const AppliedResumeTable = (props) => {
                       <RemoveRedEyeOutlinedIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
-                  <Tooltip title="Delete profile" arrow>
                     <IconButton
                       size="small"
                       color="error"
@@ -265,18 +254,6 @@ const AppliedResumeTable = (props) => {
                     isSentEmail={row?.isSentEmail}
                     email={row?.email}
                     fullName={row?.fullName}
-                  />
-                  <Chip
-                    label="Message"
-                    onClick={() => {}}
-                    sx={{
-                      cursor: 'pointer',
-                      bgcolor: '#ececec',
-                      color: '#333',
-                      '&:hover': {
-                        bgcolor: '#d4d4d4',
-                      },
-                    }}
                   />
                 </Stack>
               </TableCell>

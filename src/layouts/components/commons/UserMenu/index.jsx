@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,14 +20,12 @@ import {
 
 const jobSeekerUserMenu = [
   {
-    label: "Account management",
     path: ROUTES.JOB_SEEKER.DASHBOARD,
   },
 ];
 
 const employerUserMenu = [
   {
-    label: "Employer dashboard",
     path: ROUTES.EMPLOYER.DASHBOARD,
   },
 ];
@@ -119,13 +118,10 @@ const UserMenu = ({ anchorElUser, open, handleCloseUserMenu }) => {
             handleCloseUserMenu();
             confirmModal(
               handleLogout,
-              "Log out",
-              "Are you sure you want to log out?",
               "question"
             );
           }}
         >
-          <Typography marginRight="auto">Log out</Typography>
         </Button>
       </Stack>
     </Menu>

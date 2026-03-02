@@ -1,10 +1,10 @@
+
 import React from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { SVG_IMAGES } from '../../configs/constants';
 import SvgIcon from '../SvgIcon';
 
 const NoDataCard = ({
-  title = 'No data',
   content,
   buttonText,
   onClick,

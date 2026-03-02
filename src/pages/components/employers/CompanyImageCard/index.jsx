@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Upload, Modal } from 'antd';
 import { Box, Typography} from "@mui/material";
@@ -54,7 +55,6 @@ const CompanyImageCard = () => {
           });
         }
         setFileList([...fileList, ...newResults]);
-        toastMessages.success('Upload image successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -81,7 +81,6 @@ const CompanyImageCard = () => {
           setFileList(newFileList);
         }
 
-        toastMessages.success('Delete image successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -91,8 +90,7 @@ const CompanyImageCard = () => {
 
     confirmModal(
       () => deleteCompanyImage(file.uid),
-      'Delete Image',
-      'This image will be permanently deleted and cannot be recovered. Are you sure?',
+      
       'warning'
     );
   };
@@ -123,7 +121,6 @@ const CompanyImageCard = () => {
           color: 'text.primary'
         }}
       >
-        Company Image Library
       </Typography>
 
       <Upload
@@ -172,7 +169,6 @@ const CompanyImageCard = () => {
                 textAlign: 'center'
               }}
             >
-              Upload
             </Typography>
           </Box>
         )}
@@ -183,7 +179,6 @@ const CompanyImageCard = () => {
         open={previewVisible}
         title={
           <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-            View Image
           </Typography>
         }
         footer={null}

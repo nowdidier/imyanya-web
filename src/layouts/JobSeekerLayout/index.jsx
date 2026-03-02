@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Outlet } from "react-router-dom";
 
@@ -8,6 +9,7 @@ import TabBar from "../components/jobSeekers/TabBar";
 import Footer from "../components/commons/Footer";
 
 const JobSeekerLayout = () => {
+
   return (
     <Box>
       <Header />

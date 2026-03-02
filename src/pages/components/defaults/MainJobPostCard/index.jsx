@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Pagination, Stack, Typography } from '@mui/material';
@@ -65,7 +66,6 @@ const MainJobPostCard = () => {
             gap: 1
           }}
         >
-          Search Results
           <Box 
             component="span"
             sx={{
@@ -77,7 +77,6 @@ const MainJobPostCard = () => {
               fontSize: '0.9em'
             }}
           >
-            {count.toLocaleString()} posts
           </Box>
         </Typography>
       </Box>
@@ -90,7 +89,6 @@ const MainJobPostCard = () => {
           ))
         ) : jobPosts.length === 0 ? (
           <NoDataCard
-            title="No jobs found matching your criteria"
             imgComponentSgv={<SVG_IMAGES.ImageSvg3 />}
           />
         ) : (

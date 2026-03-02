@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -12,7 +13,7 @@ import {
 } from '@mui/material';
 import { IMAGES, LINKS } from '../../configs/constants';
 import toastMessages from '../../utils/toastMessages';
-import imyanyaService from '../../services/imyanyaService';
+import myjobService from '../../services/myjobService';
 import BackdropLoading from '../loading/BackdropLoading';
 
 const AppIntroductionCard = () => {
@@ -21,14 +22,13 @@ const AppIntroductionCard = () => {
 
   const handleSendSMS = (event) => {
     event.preventDefault();
-
+    
     const sendSMS = async (data) => {
       setIsFullScreenLoading(true);
 
       try {
-        await imyanyaService.sendSMSDownloadApp(data);
+        await myjobService.sendSMSDownloadApp(data);
 
-        toastMessages.success('Sent successfully. Please check your message');
         setValue('');
       } catch (error) {
         console.log(error);
@@ -45,7 +45,6 @@ const AppIntroductionCard = () => {
       ) {
         sendSMS({ phone: value });
       } else {
-        toastMessages.error('Invalid phone number!');
       }
   };
 
@@ -54,12 +53,10 @@ const AppIntroductionCard = () => {
       <Card sx={{ p: 3 }}>
         <Stack spacing={3} alignItems="center">
           <Box>
-            <Typography variant="h5">Download the app for free</Typography>
           </Box>
           <Box>
             <Typography>
-              Find jobs effectively by downloading Imyanyato your mobile and get
-              ready to receive job offers today!
+             
             </Typography>
           </Box>
           <Box component="form" onSubmit={handleSendSMS}>
@@ -80,7 +77,6 @@ const AppIntroductionCard = () => {
                 inputProps={{ 'aria-label': 'search' }}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                placeholder="Enter your phone number"
               />
               <Button
                 variant="contained"
@@ -88,7 +84,6 @@ const AppIntroductionCard = () => {
                 style={{ borderRadius: 20, color: 'white' }}
                 type="submit"
               >
-                Send
               </Button>
             </Paper>
           </Box>
@@ -100,7 +95,6 @@ const AppIntroductionCard = () => {
                   width="150"
                   component="img"
                   image={IMAGES.chPlayDownload}
-                  alt="Google Play Download"
                 />
               </Link>
               <Link href={LINKS.APPSTORE_LINK} target="_blank">
@@ -109,7 +103,6 @@ const AppIntroductionCard = () => {
                   width="150"
                   component="img"
                   image={IMAGES.appStoreDownload}
-                  alt="App Store Download"
                 />
               </Link>
             </Stack>

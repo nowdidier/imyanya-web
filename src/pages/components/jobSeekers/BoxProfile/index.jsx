@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -237,7 +238,7 @@ const BoxProfile = ({ title }) => {
                     />
                   )}
                   <Tooltip
-                    title={`Enabling "Allow search" will help employers find your profile and they can contact you about new jobs. Only one profile can have "allow search" status enabled among all your profiles.`}
+                    title={`Bật "Cho phép tìm kiếm" sẽ giúp nhà tuyển dụng tìm thấy hồ sơ của bạn và họ có thể liên hệ với bạn về công việc mới. Chỉ có duy nhất một hồ được bật trạng thái "cho phép tìm kiếm" trong tất cả hồ sơ của bạn.`}
                     arrow
                   >
                     <HelpIcon sx={{ color: "grey.400" }} />
@@ -583,9 +584,9 @@ const BoxProfile = ({ title }) => {
                   }}
                 >
                   <FontAwesomeIcon icon={faWarning} />
-                  <Typography variant="body2" color="text.secondary">
-                    Please add all the necessary information to complete your
-                    profile.
+                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                    Vui lòng thêm tất cả các thông tin cần thiết để hoàn thành
+                    hồ sơ của bạn.
                   </Typography>
                 </Box>
               </Grid>

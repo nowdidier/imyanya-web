@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -66,7 +67,6 @@ const CategoryCard = ({ options, type }) => {
             sx={{ ml: 1, flex: 1 }}
             inputProps={{ 'aria-label': 'search' }}
             defaultValue=""
-            placeholder="Quick search"
             onChange={(event) => handleFilterChange(event.target.value)}
           />
         </Paper>

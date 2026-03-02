@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Box, Stack, CircularProgress, Typography } from "@mui/material";
 
@@ -144,7 +145,6 @@ const ActivityChart = () => {
               image={Empty.PRESENTED_IMAGE_SIMPLE}
               description={
                 <Typography variant="body2" color="text.secondary">
-                  No data available for statistics
                 </Typography>
               }
             />

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -31,14 +32,12 @@ const SavedResumeFilterForm = ({ handleFilter }) => {
         <Grid item xs={12} sm={12} md={7} lg={3} xl={3}>
           <TextFieldCustom
             name="kw"
-            placeholder="Enter job post or candidate name"
             control={control}
           />
         </Grid>
         <Grid item xs={12} sm={12} md={5} lg={2} xl={2}>
           <TextFieldCustom
             name="salaryMax"
-            placeholder="Enter maximum salary"
             control={control}
             type="number"
           />
@@ -48,7 +47,6 @@ const SavedResumeFilterForm = ({ handleFilter }) => {
             name="experienceId"
             control={control}
             options={allConfig?.experienceOptions || []}
-            placeholder="Select experience"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={4} lg={2} xl={2}>
@@ -56,12 +54,10 @@ const SavedResumeFilterForm = ({ handleFilter }) => {
             name="cityId"
             control={control}
             options={allConfig?.cityOptions || []}
-            placeholder="Select location"
           />
         </Grid>
         <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
           <Stack direction="row" spacing={2}>
-            <Tooltip title="Reset" arrow>
               <IconButton
                 aria-label="refresh"
                 onClick={() => {
@@ -79,7 +75,6 @@ const SavedResumeFilterForm = ({ handleFilter }) => {
               type="submit"
               startIcon={<SearchIcon />}
             >
-              Search
             </Button>
           </Stack>
         </Grid>

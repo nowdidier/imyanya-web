@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Card, Grid, Stack, Tab, Typography } from '@mui/material';
@@ -31,12 +32,12 @@ const MyCompanyPage = () => {
                     allowScrollButtonsMobile
                   >
                     <Tab
-                      label="Employers who viewed profile"
+                      label="Nhà tuyển dụng xem hồ sơ"
                       sx={{ textTransform: 'capitalize'}}
                       value="1"
                     />
                     <Tab
-                      label="Following Companies"
+                      label="Theo dõi công ty"
                       sx={{ textTransform: 'capitalize' }}
                       value="2"
                     />
@@ -62,7 +63,7 @@ const MyCompanyPage = () => {
           <Card  sx={{p: {xs: 1, sm: 1, md: 2, lg: 2, xl: 2} }}> 
             <Stack>
               <Box sx={{ mb: 2 }}>
-                <Typography variant="h6">Matching Jobs</Typography>
+                <Typography variant="h6">Việc làm phù hợp</Typography>
               </Box>
               <Box>
                 {/* Start: SuggestedJobPostCard */}

@@ -1,5 +1,4 @@
 
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -59,7 +58,6 @@ const JobByCategory = () => {
               pb: 1,
             }}
           >
-            Jobs by Career
           </Typography>
           <Stack spacing={1.5}>
             {careerOptions?.slice(0, maxItem).map((item) => (
@@ -101,7 +99,6 @@ const JobByCategory = () => {
                 component={Link}
                 to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER}`}
               >
-                View all careers <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}
           </Stack>
@@ -125,7 +122,6 @@ const JobByCategory = () => {
               pb: 1,
             }}
           >
-            Jobs by Location
           </Typography>
           <Stack spacing={1.5}>
             {cityOptions?.slice(0, maxItem).map((item) => (
@@ -167,7 +163,6 @@ const JobByCategory = () => {
                 component={Link}
                 to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CITY}`}
               >
-                View all locations <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}
           </Stack>
@@ -191,7 +186,6 @@ const JobByCategory = () => {
               pb: 1,
             }}
           >
-            Jobs by Work Type
           </Typography>
           <Stack spacing={1.5}>
             {jobTypeOptions?.slice(0, maxItem).map((item) => (
@@ -233,7 +227,7 @@ const JobByCategory = () => {
                 component={Link}
                 to={`/${ROUTES.JOB_SEEKER.JOBS_BY_TYPE}`}
               >
-                View all work types <FontAwesomeIcon icon={faChevronRight} />
+                <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}
           </Stack>

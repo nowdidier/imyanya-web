@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   Box,
@@ -198,7 +199,6 @@ const LeftSidebar = () => {
           <ChatRoomSearch
             value={searchText}
             setValue={setSearchText}
-            placeholder="Company name, recruiter name, ..."
           />
         </Box>
         <Box
@@ -214,7 +214,6 @@ const LeftSidebar = () => {
             </Stack>
           ) : chatRooms.length === 0 ? (
             <NoDataCard
-              title="No conversations found..."
               imgComponentSgv={<SVG_IMAGES.ImageSvg15 />}
             />
           ) : (
@@ -462,7 +461,6 @@ const EmployerSidebar = () => {
           <ChatRoomSearch
             value={searchText}
             setValue={setSearchText}
-            placeholder="Candidate name ..."
           />
         </Box>
         <Box sx={{ height: '75vh', overflowY: 'auto' }}>
@@ -474,7 +472,6 @@ const EmployerSidebar = () => {
             </Stack>
           ) : chatRooms.length === 0 ? (
             <NoDataCard
-              title="No conversations found..."
               imgComponentSgv={<SVG_IMAGES.ImageSvg15 />}
             />
           ) : (

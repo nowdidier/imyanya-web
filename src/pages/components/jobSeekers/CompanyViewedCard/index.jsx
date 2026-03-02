@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { Box, Stack, Pagination, Chip } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
@@ -54,7 +53,6 @@ const CompanyViewedCard = () => {
           </Stack>
         ) : resumesViewed.length === 0 ? (
           <NoDataCard
-            title="No recruiters have viewed your profile yet"
             imgComponentSgv={<SVG_IMAGES.ImageSvg6 />}
           ></NoDataCard>
         ) : (

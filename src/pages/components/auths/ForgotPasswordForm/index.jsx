@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,8 +11,7 @@ const ForgotPasswordForm = ({ handleRequestResetPassword }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Email is required!')
-      .email('Invalid email format'),
+      
   });
 
   const { control, handleSubmit } = useForm({
@@ -29,12 +29,10 @@ const ForgotPasswordForm = ({ handleRequestResetPassword }) => {
           control={control}
           title="Email"
           showRequired={true}
-          placeholder="Enter email"
         />
       </Stack>
 
       <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} type="submit">
-        Reset Password
       </Button>
     </Box>
   );

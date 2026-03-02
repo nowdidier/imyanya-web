@@ -1,5 +1,4 @@
 
-
 import {
   ContentState,
   convertFromHTML,

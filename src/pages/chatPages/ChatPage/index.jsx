@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { 
@@ -152,13 +153,13 @@ const ChatPage = () => {
                   flex: 1,
                   background: (theme) => theme.palette.primary.gradient,
                   backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text', 
+                  WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   textAlign: 'center'
                 }}
               >
-                New way to follow your chances.{' '}
-                <span>More engagement, more success</span>
+                New way to follow your chance.{' '}
+                <span>More engage, more success</span>
               </Typography>
             </Box>
             

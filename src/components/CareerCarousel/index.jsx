@@ -1,3 +1,4 @@
+
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -12,7 +13,7 @@ import MuiImageCustom from "../MuiImageCustom";
 import { searchJobPost } from "../../redux/filterSlice";
 import { ROUTES } from "../../configs/constants";
 
-// Update styles for pagination
+// Cập nhật styles cho pagination
 const styles = {
   ".swiper-pagination": {
     bottom: "-5px !important",
@@ -35,7 +36,7 @@ const styles = {
   },
 };
 
-// Update Loading component
+// Cập nhật component Loading
 const Loading = (
   <Card
     sx={{
@@ -216,7 +217,6 @@ const CareerCarousel = () => {
                         fontSize: "0.75rem",
                       }}
                     >
-                      {value.jobPostTotal} Jobs
                     </Typography>
                   </Card>
                 </SwiperSlide>

@@ -1,5 +1,4 @@
 
-
 import * as React from 'react';
 import { Alert, Box, Card, Container, Stack, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +12,6 @@ import ForgotPasswordForm from '../../components/auths/ForgotPasswordForm';
 import authService from '../../../services/authService';
 
 const ForgotPasswordPage = () => {
-  TabTitle("Forgot password")
 
   const [isFullScreenLoading, setIsFullScreenLoading] = React.useState(false);
   const [messageSuccess, setMessageSuccess] = React.useState(null);
@@ -26,7 +24,6 @@ const ForgotPasswordPage = () => {
         await authService.forgotPassword(data);
 
         setMessageSuccess(
-          `We have sent instructions to ${data?.email}`
         );
       } catch (error) {
         errorHandling(error);
@@ -61,7 +58,6 @@ const ForgotPasswordPage = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              {!messageSuccess ? 'Forgot password' : 'Sent'}
             </Typography>
           </Box>
 
@@ -69,7 +65,7 @@ const ForgotPasswordPage = () => {
             <Box>
               <Box sx={{ py: 2 }}>
                 <Typography>
-                  If the account exists, we will send password reset instructions to your email.
+                  
                 </Typography>
               </Box>
               <Box sx={{ mt: 4 }}>
@@ -92,10 +88,9 @@ const ForgotPasswordPage = () => {
                   {messageSuccess}
                 </Alert>
                 <Typography variant="caption">
-                  If the email doesn't show up soon, check your spam folder.
+                
                 </Typography>
                 <Typography variant="caption">
-                  We sent it from imyanya.contact00000@gmail.com.
                 </Typography>
               </Stack>
             </Box>

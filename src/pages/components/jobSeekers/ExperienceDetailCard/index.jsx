@@ -1,5 +1,4 @@
 
-
 import React from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -135,7 +134,7 @@ const ExperienceDetailCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success("Add work experience successfully.");
+        toastMessages.success("Thêm kinh nghiệm làm việc thành công.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -150,7 +149,7 @@ const ExperienceDetailCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success("Update work experience successfully.");
+        toastMessages.success("Cập nhật kinh nghiệm làm việc thành công.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -177,7 +176,7 @@ const ExperienceDetailCard = ({ title }) => {
         await expericenDetailService.deleteExperienceDetailById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success("Delete work experience successfully.");
+        toastMessages.success("Xóa kinh nghiệm làm việc thành công.");
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -187,8 +186,8 @@ const ExperienceDetailCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      "Delete work experience",
-      "This work experience will be permanently deleted and cannot be recovered. Are you sure?",
+      "Xóa kinh nghiệm làm việc",
+      "Kinh nghiệm làm việc này sẽ được xóa vĩnh viễn và không thể khôi phục. Bạn có chắc chắn?",
       "warning"
     );
   };
@@ -242,7 +241,7 @@ const ExperienceDetailCard = ({ title }) => {
             <Box>
               {experiencesDetail.length === 0 ? (
                 <EmptyCard
-                  content="Add your work experience for recruiters to refer to"
+                  content="Bạn hãy thêm kinh nghiệm làm việc của mình để nhà tuyển dụng tham khảo"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -283,7 +282,7 @@ const ExperienceDetailCard = ({ title }) => {
                             {value.endDate ? (
                               <TimeAgo date={value.endDate} type="format" format="DD/MM/YYYY"/>
                             ) : (
-                              "Present"
+                              "Hiện tại"
                             )}
                           </Typography>
                           <Typography
@@ -365,7 +364,7 @@ const ExperienceDetailCard = ({ title }) => {
                                   fontWeight: 500,
                                 }}
                               >
-                                Detailed description
+                                Mô tả chi tiết
                               </Typography>
                             </AccordionSummary>
                             <AccordionDetails>
@@ -380,7 +379,7 @@ const ExperienceDetailCard = ({ title }) => {
                                     : "italic",
                                 }}
                               >
-                                {value.description || "Not updated yet"}
+                                {value.description || "Chưa cập nhật"}
                               </Typography>
                             </AccordionDetails>
                           </Accordion>
@@ -397,7 +396,7 @@ const ExperienceDetailCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Work experience"
+        title="Kinh nghiệm làm việc"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

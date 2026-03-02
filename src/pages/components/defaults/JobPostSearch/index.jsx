@@ -1,3 +1,14 @@
+/*
+MyJob Recruitment System - Part of MyJob Platform
+
+Author: Bui Khanh Huy
+Email: khuy220@gmail.com
+Copyright (c) 2023 Bui Khanh Huy
+
+License: MIT License
+See the LICENSE file in the project root for full license information.
+*/
+
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -45,7 +56,7 @@ const JobPostSearch = () => {
   const handleSaveKeyworLocalStorage = (kw) => {
     try {
       if (kw) {
-        const keywordListStr = localStorage.getItem('imyanya_search_history');
+        const keywordListStr = localStorage.getItem('myjob_search_history');
 
         if (
           keywordListStr !== null &&
@@ -57,7 +68,7 @@ const JobPostSearch = () => {
           if (!keywordList.includes(kw)) {
             if (keywordList.length >= 5) {
               localStorage.setItem(
-                'imyanya_search_history',
+                'myjob_search_history',
                 JSON.stringify([
                   kw,
                   ...keywordList.slice(0, keywordList.length - 1),
@@ -65,17 +76,17 @@ const JobPostSearch = () => {
               );
             } else {
               localStorage.setItem(
-                'imyanya_search_history',
+                'myjob_search_history',
                 JSON.stringify([kw, ...keywordList])
               );
             }
           }
         } else {
-          localStorage.setItem('imyanya_search_history', JSON.stringify([kw]));
+          localStorage.setItem('myjob_search_history', JSON.stringify([kw]));
         }
       }
     } catch (error) {
-      console.error('Error while saving keyword to local storage: ', error);
+      console.error('Loi khi set kw vao local storage: ', error);
     }
   };
 
@@ -96,14 +107,14 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
             <InputBaseSearchHomeCustom
               name="kw"
-              placeholder="Search for job opportunities"
+              placeholder="Tìm kiếm cơ hội việc làm"
               control={control}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={3} xl={3}>
             <SingleSelectSearchCustom
               name="careerId"
-              placeholder="All careers"
+              placeholder="Tất cả ngành nghề"
               control={control}
               options={allConfig?.careerOptions || []}
             />
@@ -111,7 +122,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={3} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="cityId"
-              placeholder="All cities"
+              placeholder="Tất cả tỉnh thành"
               control={control}
               options={allConfig?.cityOptions || []}
             />
@@ -134,7 +145,7 @@ const JobPostSearch = () => {
                 sx={{ py: 1 }}
                 type="submit"
               >
-                Search
+                Tìm kiếm
               </Button>
               <Button
                 variant="contained"
@@ -145,7 +156,7 @@ const JobPostSearch = () => {
                 color="secondary"
                 onClick={handleChangeShowFilter}
               >
-                Advanced Filter
+                Lọc nâng cao
               </Button>
             </Stack>
           </Grid>
@@ -166,13 +177,13 @@ const JobPostSearch = () => {
               sx={{ pt: 1, fontSize: 14 }}
               color="GrayText"
             >
-              Advanced Filter
+              Lọc nâng cao
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="positionId"
-              placeholder="All positions"
+              placeholder="Tất cả vị trí"
               control={control}
               options={allConfig?.positionOptions || []}
             />
@@ -180,7 +191,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="experienceId"
-              placeholder="All experience levels"
+              placeholder="Tất cả kinh nghiệm"
               control={control}
               options={allConfig?.experienceOptions || []}
             />
@@ -188,7 +199,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="jobTypeId"
-              placeholder="All work types"
+              placeholder="Tất cả hình thức làm việc"
               control={control}
               options={allConfig?.jobTypeOptions || []}
             />
@@ -196,7 +207,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="typeOfWorkplaceId"
-              placeholder="All workplace types"
+              placeholder="Tất cả loại hình làm việc"
               control={control}
               options={allConfig?.typeOfWorkplaceOptions || []}
             />
@@ -204,7 +215,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="genderId"
-              placeholder="All genders"
+              placeholder="Tất cả giới tính"
               control={control}
               options={allConfig?.genderOptions || []}
             />

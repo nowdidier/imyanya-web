@@ -1,7 +1,7 @@
 # HTTP server block - Redirect all HTTP traffic to HTTPS
 server {
     listen 80;
-    server_name imyanya.com www.imyanya.com employer.imyanya.com;
+    server_name imyanya.com www.imyanya.rw employer.imyanya.com;
     
     # Redirect all HTTP requests to HTTPS
     return 301 https://$host$request_uri;
@@ -10,7 +10,7 @@ server {
 # HTTPS server block
 server {
     listen 443 ssl;
-    server_name imyanya.com www.imyanya.com employer.imyanya.com;
+    server_name imyanya.com www.imyanya.rw employer.imyanya.com;
 
     # SSL Configuration
     ssl_certificate /etc/nginx/certs/imyanya.crt;

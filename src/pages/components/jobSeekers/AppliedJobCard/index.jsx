@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -65,7 +66,6 @@ const AppliedJobCard = () => {
           </Stack>
         ) : jobPostsApplied.length === 0 ? (
           <NoDataCard
-            title="You have not applied for any jobs"
             imgComponentSgv={<SVG_IMAGES.ImageSvg5 />}
           >
             <Button
@@ -75,7 +75,6 @@ const AppliedJobCard = () => {
               color="primary"
               sx={{ textTransform: 'inherit' }}
             >
-              Find a job
             </Button>
           </NoDataCard>
         ) : (
@@ -99,7 +98,6 @@ const AppliedJobCard = () => {
               >
                 <Stack spacing={1}>
                   <Chip
-                    label={`Applied date: ${dayjs(value?.createAt).format(
                       'DD/MM/YYYY'
                     )}`}
                     size="small"
@@ -114,7 +112,6 @@ const AppliedJobCard = () => {
                           style={{ marginRight: 1 }}
                           color="#441da0"
                         />{' '}
-                        Online resume
                       </>
                     ) : value?.resumeDict?.type === CV_TYPES.cvUpload ? (
                       <>
@@ -123,7 +120,6 @@ const AppliedJobCard = () => {
                           style={{ marginRight: 1 }}
                           color="red"
                         />{' '}
-                        Attached resume
                       </>
                     ) : (
                       ''

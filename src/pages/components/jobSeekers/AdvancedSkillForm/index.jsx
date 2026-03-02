@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,9 +16,7 @@ const AdvancedSkillForm = ({
   const schema = yup.object().shape({
     name: yup
       .string()
-      .required('Skill name is required.')
-      .max(200, 'Skill name exceeds maximum length.'),
-    level: yup.number().required('Level is required.'),
+      
   });
 
   const { control, reset, setError, handleSubmit } = useForm({
@@ -55,14 +54,11 @@ const AdvancedSkillForm = ({
         <Grid item xs={12} lg={12} md={12}>
           <TextFieldCustom
             name="name"
-            title="Skill Name"
             showRequired={true}
-            placeholder="Enter skill name"
             control={control}
           />
         </Grid>
         <Grid item xs={12}>
-          <RatingCustom name="level" control={control} title="Level" />
         </Grid>
       </Grid>
     </form>

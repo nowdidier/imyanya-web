@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,20 +20,15 @@ const SendMailCard = ({
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Recipient email is required.')
-      .email('Invalid recipient email.')
-      .max(100, 'Recipient email exceeds maximum length.'),
+     
     fullName: yup
       .string()
-      .required('Recipient name is required.')
-      .max(100, 'Recipient name exceeds maximum length.'),
+      
     title: yup
       .string()
-      .required('Email title is required.')
-      .max(200, 'Email title exceeds maximum length.'),
+     
     content: yup
       .mixed()
-      .test('content', 'Email content is required.', (value) =>
         value.getCurrentContent().hasText()
       ),
     isSendMe: yup.boolean().default(false),
@@ -64,10 +60,8 @@ const SendMailCard = ({
   return (
     <>
       <FormPopup
-        title="Send mail"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
-        buttonText="Send"
         buttonIcon={<SendIcon />}
       >
         <form id="modal-form" onSubmit={handleSubmit(handleSendEmail)}>
@@ -75,9 +69,7 @@ const SendMailCard = ({
             <Grid item xs={12}>
               <TextFieldCustom
                 name="fullName"
-                title="Recipient Name"
                 showRequired={true}
-                placeholder="Enter recipient name"
                 control={control}
                 disabled={true}
               />
@@ -85,9 +77,7 @@ const SendMailCard = ({
             <Grid item xs={12}>
               <TextFieldCustom
                 name="email"
-                title="Recipient Email"
                 showRequired={true}
-                placeholder="Enter recipient email"
                 control={control}
                 disabled={true}
               />
@@ -95,9 +85,7 @@ const SendMailCard = ({
             <Grid item xs={12}>
               <TextFieldCustom
                 name="title"
-                title="Title"
                 showRequired={true}
-                placeholder="Enter email title"
                 control={control}
               />
             </Grid>
@@ -105,7 +93,6 @@ const SendMailCard = ({
               <RichTextEditorCustom
                 name="content"
                 control={control}
-                title="Email Content"
                 showRequired={true}
               />
             </Grid>
@@ -113,7 +100,6 @@ const SendMailCard = ({
               <CheckboxCustom
                 name="isSendMe"
                 control={control}
-                title="Send a copy to my employer email address."
               />
             </Grid>
           </Grid>

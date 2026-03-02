@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -16,64 +15,64 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
   const schema = yup.object().shape({
     title: yup
       .string()
-      .required('Desired position is required.')
-      .max(200, 'Desired position exceeds the allowed length.'),
+      .required('Vị trí mong muốn là bắt buộc.')
+      .max(200, 'Vị trí mong muốn vượt quá độ dài cho phép.'),
     position: yup
       .number()
-      .required('Desired level is required.')
-      .typeError('Desired level is required.'),
+      .required('Cấp bậc mong muốn là bắt buộc.')
+      .typeError('Cấp bậc mong muốn là bắt buộc.'),
     academicLevel: yup
       .number()
-      .required('Education level is required.')
-      .typeError('Education level is required.'),
+      .required('Trình độ học vấn là bắt buộc.')
+      .typeError('Trình độ học vấn là bắt buộc.'),
     experience: yup
       .number()
-      .required('Work experience is required.')
-      .typeError('Work experience is required.'),
+      .required('Kinh nghiệm làm việc là bắt buộc.')
+      .typeError('Kinh nghiệm làm việc là bắt buộc.'),
     career: yup
       .number()
-      .required('Career is required.')
-      .typeError('Career is required.'),
+      .required('Ngành nghề là bắt buộc.')
+      .typeError('Ngành nghề là bắt buộc.'),
     city: yup
       .number()
-      .required('Province/City is required.')
-      .typeError('Province/City is required.'),
+      .required('Tỉnh/Thành phố là bắt buộc.')
+      .typeError('Tỉnh/Thành phố là bắt buộc.'),
     salaryMin: yup
       .number()
-      .required('Minimum desired salary is required.')
-      .typeError('Invalid minimum salary.')
-      .min(0, 'Invalid minimum salary.')
+      .required('Mức lương mong muốn tối thiểu là bắt buộc.')
+      .typeError('Lương tối thiểu không hợp lệ.')
+      .min(0, 'Lương tối thiểu không hợp lệ.')
       .test(
         'minimum-wage-comparison',
-        'Minimum salary must be less than maximum salary.',
+        'Lương tối thiểu phải nhỏ hơn lương tối đa.',
         function (value) {
           return !(value >= this.parent.salaryMax);
         }
       ),
     salaryMax: yup
       .number()
-      .required('Maximum desired salary is required.')
-      .typeError('Invalid maximum salary.')
-      .min(0, 'Invalid maximum salary.')
+      .required('Mức lương mong muốn tối đa là bắt buộc.')
+      .typeError('Lương tối đa không hợp lệ.')
+      .min(0, 'Lương tối đa không hợp lệ.')
       .test(
         'maximum-wage-comparison',
-        'Maximum salary must be greater than minimum salary.',
+        'Lương tối đa phải lớn hơn lương tối thiểu.',
         function (value) {
           return !(value <= this.parent.salaryMin);
         }
       ),
     typeOfWorkplace: yup
       .number()
-      .required('Workplace is required.')
-      .typeError('Workplace is required.'),
+      .required('Nơi làm việc là bắt buộc.')
+      .typeError('Nơi làm việc là bắt buộc.'),
     jobType: yup
       .number()
-      .required('Job type is required.')
-      .typeError('Job type is required.'),
+      .required('Hình thức làm việc là bắt buộc.')
+      .typeError('Hình thức làm việc là bắt buộc.'),
     description: yup
       .string()
-      .required('Career objective is required.')
-      .max(800, 'Career objective exceeds the allowed length.'),
+      .required('Mục tiêu nghề nghiệp là bắt buộc.')
+      .max(800, 'Mục tiêu nghề nghiệp vượt quá độ dài cho phép.'),
   });
 
   const { control, reset, handleSubmit } = useForm({
@@ -104,8 +103,8 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
           <TextFieldCustom
             name="title"
             showRequired={true}
-            title="Desired position"
-            placeholder="E.g.: Backend Developer"
+            title="Vị trí mong muốn"
+            placeholder="VD: Lập trình viên Backend"
             control={control}
           />
         </Grid>
@@ -114,9 +113,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="position"
             control={control}
             options={allConfig?.positionOptions || []}
-            title="Desired level"
+            title="Cấp bậc mong muốn"
             showRequired={true}
-            placeholder="Select level"
+            placeholder="Chọn cấp bậc"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -124,9 +123,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="academicLevel"
             control={control}
             options={allConfig?.academicLevelOptions || []}
-            title="Education level"
+            title="Trình độ học vấn"
             showRequired={true}
-            placeholder="Select education level"
+            placeholder="Chọn trình độ học vấn"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -134,9 +133,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="experience"
             control={control}
             options={allConfig?.experienceOptions || []}
-            title="Work experience"
+            title="Kinh nghiệm làm việc"
             showRequired={true}
-            placeholder="Select work experience"
+            placeholder="Chọn kinh nghiệm làm việc"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -144,9 +143,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="career"
             control={control}
             options={allConfig?.careerOptions || []}
-            title="Career"
+            title="Nghề nghiệp"
             showRequired={true}
-            placeholder="Select career"
+            placeholder="Chọn nghề nghiệp"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -154,17 +153,17 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="city"
             control={control}
             options={allConfig?.cityOptions || []}
-            title="Province/City"
+            title="Tỉnh/Thành phố"
             showRequired={true}
-            placeholder="Select province/city"
+            placeholder="Chọn tỉnh thành phố"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextFieldCustom
             name="salaryMin"
-            title="Minimum desired salary"
+            title="Mức lương mong muốn tối thiểu"
             showRequired={true}
-            placeholder="Enter minimum desired salary"
+            placeholder="Nhập mức lương mong muốn tối thiểu"
             control={control}
             icon={'VND'}
             type="number"
@@ -173,9 +172,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
         <Grid item xs={12} sm={6}>
           <TextFieldCustom
             name="salaryMax"
-            title="Maximum desired salary"
+            title="Mức lương mong muốn tối đa"
             showRequired={true}
-            placeholder="Enter maximum desired salary"
+            placeholder="Nhập mức lương mong muốn tối đa"
             control={control}
             icon={'VND'}
             type="number"
@@ -186,9 +185,9 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="typeOfWorkplace"
             control={control}
             options={allConfig?.typeOfWorkplaceOptions || []}
-            title="Workplace"
+            title="Nơi làm việc"
             showRequired={true}
-            placeholder="Select workplace"
+            placeholder="Chọn nơi làm việc"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -196,17 +195,17 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             name="jobType"
             control={control}
             options={allConfig?.jobTypeOptions || []}
-            title="Job type"
+            title="Hình thức làm việc"
             showRequired={true}
-            placeholder="Select job type"
+            placeholder="Chọn hình thức làm việc"
           />
         </Grid>
         <Grid item xs={12}>
           <MultilineTextFieldCustom
             name="description"
-            title="Career objective"
+            title="Mục tiêu nghề nghiệp"
             showRequired={true}
-            placeholder="Enter content here"
+            placeholder="Nhập nội dung tại đây"
             control={control}
           />
         </Grid>

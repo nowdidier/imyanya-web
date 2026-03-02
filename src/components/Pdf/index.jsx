@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Viewer, Worker } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
@@ -17,7 +18,7 @@ const Pdf = ({ fileUrl, title = '' }) => {
   const zoomPluginInstance = zoomPlugin();
   const getFilePluginInstance = getFilePlugin({
     fileNameGenerator: (file) => {
-      return `Imyanya_CV-${toSlug(title)}`;
+      return `MyJob_CV-${toSlug(title)}`;
     },
   });
 
@@ -66,7 +67,6 @@ const Pdf = ({ fileUrl, title = '' }) => {
                       sx={{ color: 'white' }}
                       size="small"
                       onClick={() => props.onZoom(SpecialZoomLevel.ActualSize)}
-                      label="Actual file size"
                       color="warning"
                     />
                   )}
@@ -103,7 +103,6 @@ const Pdf = ({ fileUrl, title = '' }) => {
                       onClick={props.onClick}
                       startIcon={<FileDownloadIcon />}
                     >
-                      Download
                     </Button>
                   )}
                 </Download>

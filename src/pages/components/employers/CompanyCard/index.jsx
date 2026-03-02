@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Box, Button, Stack, Typography, Paper } from "@mui/material";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
@@ -65,7 +66,6 @@ const CompanyCard = () => {
 
         setIsSuccess(!isSuccess);
         if (serverErrors !== null) setServerErrors(null);
-        toastMessages.success("Company information updated successfully.");
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -89,7 +89,6 @@ const CompanyCard = () => {
         const resData = await companyService.updateCompanyImageUrl(formData);
         const data = resData.data;
 
-        toastMessages.success("Company logo updated successfully.");
         setCompanyImageUrl(data?.companyImageUrl);
       } catch (error) {
         errorHandling(error);
@@ -114,7 +113,6 @@ const CompanyCard = () => {
         );
         const data = resData.data;
 
-        toastMessages.success("Company cover image updated successfully.");
         setCompanyCoverImageUrl(data?.companyCoverImageUrl);
       } catch (error) {
         errorHandling(error);
@@ -140,7 +138,6 @@ const CompanyCard = () => {
               color: "text.primary",
             }}
           >
-            Company Logo
           </Typography>
           <Box sx={{ position: "relative" }}>
             <MuiImageCustom
@@ -160,11 +157,8 @@ const CompanyCard = () => {
                   zIndex: 2000,
                   style: { borderRadius: 16 },
                 }}
-                modalTitle="Edit Image"
-                modalOk="Upload"
-                modalCancel="Cancel"
+               
                 showReset={true}
-                resetText="Reset"
               >
                 <Upload
                   listType="picture"
@@ -182,7 +176,6 @@ const CompanyCard = () => {
                       boxShadow: "none",
                     }}
                   >
-                    Change logo
                   </Button>
                 </Upload>
               </ImgCrop>
@@ -199,7 +192,6 @@ const CompanyCard = () => {
               color: "text.primary",
             }}
           >
-            Company Cover Image
           </Typography>
           <Box sx={{ position: "relative" }}>
             <MuiImageCustom
@@ -230,7 +222,6 @@ const CompanyCard = () => {
                     boxShadow: "none",
                   }}
                 >
-                  Change cover image
                 </Button>
               </Upload>
             </Box>
@@ -266,7 +257,6 @@ const CompanyCard = () => {
                     },
                   }}
                 >
-                  Update
                 </Button>
               </Box>
             </>

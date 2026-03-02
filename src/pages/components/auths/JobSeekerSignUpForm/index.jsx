@@ -1,5 +1,4 @@
 
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -61,25 +60,18 @@ const JobSeekerSignUpForm = ({
   serverErrors = {},
 }) => {
   const schema = yup.object().shape({
-    fullName: yup.string().required("Full name is required."),
     email: yup
       .string()
-      .required("Email is required!")
-      .email("Invalid email format")
-      .max(100, "Email exceeds maximum length."),
+    
     password: yup
       .string()
-      .required("Password is required!")
-      .min(8, "Password must be at least 8 characters.")
-      .max(128, "Password exceeds maximum length.")
+      
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        "Must contain uppercase, lowercase, number and special character"
       ),
     confirmPassword: yup
       .string()
-      .required("Confirm password is required.")
-      .oneOf([yup.ref("password")], "Passwords do not match."),
+      
   });
 
   const { control, setError, handleSubmit } = useForm({
@@ -118,8 +110,6 @@ const JobSeekerSignUpForm = ({
         <TextFieldCustom
           name="fullName"
           control={control}
-          title="Full Name"
-          placeholder="Enter your full name"
           showRequired={true}
           sx={{
             "& .MuiOutlinedInput-root": {
@@ -132,7 +122,6 @@ const JobSeekerSignUpForm = ({
           name="email"
           control={control}
           title="Email"
-          placeholder="Enter your email"
           showRequired={true}
           sx={{
             "& .MuiOutlinedInput-root": {
@@ -144,8 +133,7 @@ const JobSeekerSignUpForm = ({
         <PasswordTextFieldCustom
           name="password"
           control={control}
-          title="Password"
-          placeholder="Enter your password"
+         
           showRequired={true}
           sx={{
             "& .MuiOutlinedInput-root": {
@@ -157,8 +145,7 @@ const JobSeekerSignUpForm = ({
         <PasswordTextFieldCustom
           name="confirmPassword"
           control={control}
-          title="Confirm Password"
-          placeholder="Re-enter your password"
+          
           showRequired={true}
           sx={{
             "& .MuiOutlinedInput-root": {
@@ -174,10 +161,8 @@ const JobSeekerSignUpForm = ({
         type="submit"
         endIcon={<HowToRegIcon />}
       >
-        Register
       </StyledButton>
 
-      <StyledDivider>Or register with</StyledDivider>
 
       <Stack
         direction="row"

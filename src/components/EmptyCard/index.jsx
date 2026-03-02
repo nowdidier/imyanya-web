@@ -1,10 +1,10 @@
+
 import React from 'react';
 import { Box } from '@mui/system';
 
 import AddIcon from '@mui/icons-material/Add';
 import { Button, Typography } from '@mui/material';
 
-const EmptyCard = ({ content, labelButton="Add new", onClick }) => {
   return (
     <Box
       sx={{

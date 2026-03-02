@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
@@ -25,53 +26,41 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
   const schema = yup.object().shape({
     companyName: yup
       .string()
-      .required('Company name is required.')
-      .max(255, 'Company name exceeds maximum length.'),
+      .required('Tên công ty là bắt buộc.')
+      .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
     taxCode: yup
       .string()
-      .required('Tax code is required.')
-      .max(30, 'Tax code exceeds maximum length.'),
+     
     employeeSize: yup
       .number()
-      .required('Employee size is required.')
-      .typeError('Employee size is required.'),
+     
     fieldOperation: yup
       .string()
-      .required('Field of operation is required.')
-      .max(255, 'Field of operation exceeds maximum length.'),
+      
     location: yup.object().shape({
       city: yup
         .number()
-        .required('City/Province is required.')
-        .typeError('City/Province is required.'),
+      
       district: yup
         .number()
-        .required('District is required.')
-        .typeError('District is required.'),
+      
       address: yup
         .string()
-        .required('Address is required.')
-        .max(255, 'Address exceeds maximum length.'),
+        
       lat: yup
         .number()
-        .required('Latitude is required.')
-        .typeError('Invalid latitude.'),
+      
       lng: yup
         .number()
-        .required('Longitude is required.')
-        .typeError('Invalid longitude.'),
+        
     }),
     since: yup.date().nullable(),
     companyEmail: yup
       .string()
-      .required('Company email is required.')
-      .email('Invalid email.')
-      .max(100, 'Company email exceeds maximum length.'),
+      
     companyPhone: yup
       .string()
-      .required('Company phone number is required.')
-      .matches(REGEX_VATIDATE.phoneRegExp, 'Invalid phone number.')
-      .max(15, 'Company phone number exceeds maximum length.'),
+      
   });
 
   const { control, reset, setValue, setError, handleSubmit } = useForm({
@@ -166,18 +155,14 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
               <TextFieldCustom
                 name="companyName"
-                title="Company Name"
                 showRequired={true}
-                placeholder="Enter company name"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="taxCode"
-                title="Tax Code"
                 showRequired={true}
-                placeholder="Enter company tax code"
                 control={control}
               />
             </Grid>
@@ -186,17 +171,13 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 name="employeeSize"
                 control={control}
                 options={allConfig?.employeeSizeOptions || []}
-                title="Company Size"
                 showRequired={true}
-                placeholder="Select company size"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="fieldOperation"
-                title="Field of Operation"
                 showRequired={true}
-                placeholder="Enter company field of operation"
                 control={control}
               />
             </Grid>
@@ -204,56 +185,47 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
               <DatePickerCustom
                 name="since"
                 control={control}
-                title="Company Establishment Date"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="websiteUrl"
-                title="Website URL"
-                placeholder="Enter company website URL"
+                
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="facebookUrl"
-                title="Facebook URL"
-                placeholder="Enter Facebook URL"
+                
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="youtubeUrl"
-                title="Youtube URL"
-                placeholder="Enter Youtube URL"
+               
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="linkedinUrl"
-                title="Linkedin URL"
-                placeholder="Enter Linkedin URL"
+                
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="companyEmail"
-                title="Company Email"
                 showRequired={true}
-                placeholder="Enter company email"
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="companyPhone"
-                title="Phone Number"
                 showRequired={true}
-                placeholder="Enter company phone number"
                 control={control}
               />
             </Grid>
@@ -262,9 +234,7 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 name="location.city"
                 control={control}
                 options={allConfig?.cityOptions || []}
-                title="City/Province"
                 showRequired={true}
-                placeholder="Select city/province"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -272,17 +242,13 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 options={districtOptions}
                 name="location.district"
                 control={control}
-                title="District"
                 showRequired={true}
-                placeholder="Select district"
               />
             </Grid>
             <Grid item xs={12}>
               <TextFieldAutoCompleteCustom
                 name="location.address"
-                title="Address"
                 showRequired={true}
-                placeholder="Enter address"
                 control={control}
                 options={locationOptions}
                 handleSelect={handleSelectLocation}
@@ -291,20 +257,16 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="location.lat"
-                title="Latitude"
                 showRequired={true}
-                placeholder="Enter company latitude."
-                helperText="Auto-filled if you select a suggested address."
+
                 control={control}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <TextFieldCustom
                 name="location.lng"
-                title="Longitude"
                 showRequired={true}
-                placeholder="Enter company longitude."
-                helperText="Auto-filled if you select a suggested address."
+
                 control={control}
               />
             </Grid>
@@ -312,7 +274,6 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
               <RichTextEditorCustom
                 name="description"
                 control={control}
-                title="Additional Description"
               />
               {/* <MultilineTextFieldCustom
                 name="description"

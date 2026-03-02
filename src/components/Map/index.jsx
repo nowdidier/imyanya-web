@@ -1,3 +1,4 @@
+
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
@@ -44,7 +45,6 @@ const Map = ({ title, subTitle, latitude, longitude }) => {
           }}
         >
           <LocationOnIcon fontSize="small" />
-          Unable to determine location on the map
         </Typography>
       </Box>
     );

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +38,6 @@ const SidebarHeader = () => {
         <Box>
           <Chip
             icon={!isEmployer ? <HomeIcon /> : <GridViewIcon />}
-            label={!isEmployer ? 'Go to homepage' : 'Go to dashboard'}
             onClick={handleRedirect}
           />
         </Box>

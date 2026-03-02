@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,35 +14,35 @@ const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
   const schema = yup.object().shape({
     jobName: yup
       .string()
-      .required('Job name is required.')
-      .max(200, 'Job name exceeds the allowed length.'),
+      .required('Tên công việc là bắt buộc.')
+      .max(200, 'Tên công việc vượt quá độ dài cho phép.'),
     companyName: yup
       .string()
-      .required('Company name is required.')
-      .max(255, 'Company name exceeds the allowed length.'),
+      .required('Tên công ty là bắt buộc.')
+      .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
     startDate: yup
       .date()
-      .required('Start date is required.')
-      .typeError('Start date is required.')
-      .max(DATE_OPTIONS.yesterday, 'Start date must be before today.')
+      .required('Ngày bắt đầu là bắt buộc.')
+      .typeError('Ngày bắt đầu là bắt buộc.')
+      .max(DATE_OPTIONS.yesterday, 'Ngày bắt đầu phải nhỏ hơn ngày hôm nay.')
       .test(
         'start-date-comparison',
-        'Start date must be before end date.',
+        'Ngày bắt đầu phải nhỏ hơn ngày kết thúc.',
         function (value) {
           return !(value >= this.parent.endDate);
         }
       ),
     endDate: yup
       .date()
-      .required('End date is required.')
-      .typeError('End date is required.')
+      .required('Ngày kết thúc là bắt buộc.')
+      .typeError('Ngày kết thúc là bắt buộc.')
       .max(
         DATE_OPTIONS.today,
-        'End date must be before or equal to today.'
+        'Ngày kết thúc phải nhỏ hơn hoặc bằng ngày hôm nay.'
       )
       .test(
         'end-date-comparison',
-        'End date must be after start date.',
+        'Ngày kết thúc phải lớn hơn ngày bắt đầu.',
         function (value) {
           return !(value <= this.parent.startDate);
         }
@@ -72,16 +71,16 @@ const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
           <TextFieldCustom
             name="jobName"
             control={control}
-            placeholder="E.g.: Software Engineer"
-            title="Job title/position"
+            placeholder="VD: Kỹ sư phần mềm"
+            title="Chức danh/vị trí công việc"
             showRequired={true}
           />
         </Grid>
         <Grid item xs={12}>
           <TextFieldCustom
             name="companyName"
-            title="Company name"
-            placeholder="Enter company name"
+            title="Tên công ty"
+            placeholder="Nhập tên công ty"
             control={control}
             showRequired={true}
           />
@@ -90,7 +89,7 @@ const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
           <DatePickerCustom
             name="startDate"
             control={control}
-            title="Start date"
+            title="Ngày bắt đầu"
             showRequired={true}
             maxDate={DATE_OPTIONS.yesterday}
           />
@@ -99,7 +98,7 @@ const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
           <DatePickerCustom
             name="endDate"
             control={control}
-            title="End date"
+            title="Ngày kết thúc"
             showRequired={true}
             maxDate={DATE_OPTIONS.today}
           />
@@ -107,8 +106,8 @@ const ExperienceDetaiForm = ({ handleAddOrUpdate, editData }) => {
         <Grid item xs={12}>
           <MultilineTextFieldCustom
             name="description"
-            title="More description"
-            placeholder="Enter description content here"
+            title="Mô tả thêm"
+            placeholder="Nhập nội dung mô tả tại đây"
             control={control}
           />
         </Grid>

@@ -1,5 +1,4 @@
 
-
 import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -19,31 +18,26 @@ const tabItems = [
   { id: 1, label: `My ${APP_NAME}`, icon: <DashboardIcon />, path: `/${ROUTES.JOB_SEEKER.DASHBOARD}` },
   {
     id: 2,
-    label: "Job profile",
     icon: <AssignmentIndIcon />,
     path: `/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.PROFILE}`,
   },
   {
     id: 3,
-    label: "My jobs",
     icon: <WorkIcon />,
     path: `/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.MY_JOB}`,
   },
   {
     id: 4,
-    label: "My companies",
     icon: <ApartmentIcon />,
     path: `/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.MY_COMPANY}`,
   },
   {
     id: 5,
-    label: `${APP_NAME} notifications`,
     icon: <CircleNotificationsIcon />,
     path: `/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.NOTIFICATION}`,
   },
   {
     id: 6,
-    label: "Account & settings",
     icon: <ManageAccountsOutlinedIcon />,
     path: `/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.ACCOUNT}`,
   },

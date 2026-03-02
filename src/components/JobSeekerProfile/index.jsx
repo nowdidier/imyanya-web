@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -100,7 +101,6 @@ const JobSeekerProfile = ({
                       ...defaultTheme.palette.text.italic
                     }}
                   >
-                    Not updated
                   </Typography>
                 )}
                 <Typography
@@ -111,19 +111,17 @@ const JobSeekerProfile = ({
                     fontSize: '0.95rem'
                   }}
                 >
-                  ({jobSeekerProfile?.old || (
+                  (
+                  {jobSeekerProfile?.old || (
                     <span style={defaultTheme.palette.text.italic}>
-                      Not updated
                     </span>
                   )}{' '}
-                  years old)
                 </Typography>
               </span>
             </Typography>
             {lastViewedDate && (
               <Chip
                 icon={<CheckCircleRoundedIcon />}
-                label={`Last viewed: ${dayjs(lastViewedDate).format(
                   'DD/MM/YYYY HH:mm'
                 )}`}
                 color="success"
@@ -165,7 +163,6 @@ const JobSeekerProfile = ({
                 component="span"
                 sx={defaultTheme.palette.text.italic}
               >
-                Not updated
               </Typography>
             )}
           </Typography>
@@ -177,7 +174,6 @@ const JobSeekerProfile = ({
               label={
                 salaryString(salaryMin, salaryMax) || (
                   <Typography component="span" sx={defaultTheme.palette.text.italic}>
-                    Not updated
                   </Typography>
                 )
               }
@@ -195,7 +191,6 @@ const JobSeekerProfile = ({
               label={
                 allConfig.experienceDict[experience] || (
                   <Typography component="span" sx={defaultTheme.palette.text.italic}>
-                    Not updated
                   </Typography>
                 )
               }
@@ -210,7 +205,6 @@ const JobSeekerProfile = ({
               label={
                 allConfig.cityDict[city] || (
                   <Typography component="span" sx={defaultTheme.palette.text.italic}>
-                    Not updated
                   </Typography>
                 )
               }
@@ -233,7 +227,6 @@ const JobSeekerProfile = ({
           spacing={1}
         >
           <Stack direction="row" spacing={1}>
-            <Tooltip title="Save profile" arrow>
               <IconButton
                 aria-label="save"
                 size="small"
@@ -252,7 +245,6 @@ const JobSeekerProfile = ({
                 )}
               </IconButton>
             </Tooltip>
-            <Tooltip title="View profile" arrow>
               <IconButton 
                 aria-label="view" 
                 size="small"
@@ -278,7 +270,6 @@ const JobSeekerProfile = ({
               gap: 0.5
             }}
           >
-            Updated: {dayjs(updateAt).format('DD/MM/YYYY')}
           </Typography>
 
           <Typography
@@ -296,7 +287,6 @@ const JobSeekerProfile = ({
                 color: defaultTheme.palette.grey[500]
               }} 
             />
-            {viewEmployerNumber} employers interested
           </Typography>
         </Stack>
       </Stack>

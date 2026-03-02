@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Stack, Pagination, Button } from '@mui/material';
@@ -52,7 +51,6 @@ const CompanyFollowedCard = () => {
       try {
         await companyService.followCompany(slugCompany);
 
-        toastMessages.success('Unfollow successfully.');
         setIsSuccess(!isSuccess);
       } catch (error) {
         errorHandling(error);
@@ -73,7 +71,6 @@ const CompanyFollowedCard = () => {
           </Stack>
         ) : resumesViewed.length === 0 ? (
           <NoDataCard
-            title="You are not following any recruiters"
             imgComponentSgv={<SVG_IMAGES.ImageSvg7 />}
           >
             <Button
@@ -82,7 +79,6 @@ const CompanyFollowedCard = () => {
               component={Link}
               to={`/${ROUTES.JOB_SEEKER.COMPANY}`}
             >
-              Find company
             </Button>
           </NoDataCard>
         ) : (
@@ -100,7 +96,6 @@ const CompanyFollowedCard = () => {
                   size="small"
                   onClick={() => handleFollow(value.company?.slug)}
                 >
-                  Unfollow
                 </Button>
               </CompanyAction.CompanyActionFollow>
             ))}

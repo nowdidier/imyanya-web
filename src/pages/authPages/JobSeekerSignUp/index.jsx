@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -60,7 +61,6 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 const JobSeekerSignUp = () => {
-  TabTitle("Register Job Seeker Account")
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -123,10 +123,8 @@ const JobSeekerSignUp = () => {
             nav('/');
           })
           .catch(() => {
-            toastMessages.error('An error occurred, please log in again!');
           });
       } else {
-        toastMessages.error('An error occurred, please log in again!');
       }
     } catch (error) {
       // 400 bad request
@@ -136,7 +134,6 @@ const JobSeekerSignUp = () => {
         if ('errorMessage' in errors) {
           setErrorMessage(errors.errorMessage.join(' '));
         } else {
-          toastMessages.error('An error occurred, please try again!');
         }
       }
     } finally {
@@ -208,7 +205,6 @@ const JobSeekerSignUp = () => {
                 mb: 1
               }}
             >
-              Register Account
             </Typography>
             <Typography 
               variant="subtitle1" 
@@ -218,7 +214,6 @@ const JobSeekerSignUp = () => {
                 mb: 2 
               }}
             >
-              Create a new job seeker account
             </Typography>
           </Box>
 
@@ -230,7 +225,6 @@ const JobSeekerSignUp = () => {
                 borderRadius: '8px',
               }}
             >
-              <AlertTitle>Failed</AlertTitle>
               {errorMessage}
             </Alert>
           )}
@@ -254,7 +248,6 @@ const JobSeekerSignUp = () => {
           >
             <Grid item>
               <StyledLink to={`/${ROUTES.AUTH.LOGIN}`}>
-                Already have an account? Log in
               </StyledLink>
             </Grid>
           </Grid>

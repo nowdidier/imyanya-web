@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -291,7 +292,6 @@ const NotificationCard = ({ title }) => {
                   }}
                   onClick={handleMakeAllRead}
                 >
-                  Mark all as read
                 </Button>
 
                 <Button
@@ -309,7 +309,6 @@ const NotificationCard = ({ title }) => {
                   }}
                   onClick={handleRemoveAll}
                 >
-                  Delete all
                 </Button>
               </>
             )}
@@ -325,7 +324,6 @@ const NotificationCard = ({ title }) => {
             </Stack>
           ) : notifications.length === 0 ? (
             <NoDataCard
-              title="No notifications yet."
               imgComponentSgv={<SVG_IMAGES.ImageSvg9 />}
             />
           ) : (
@@ -414,7 +412,6 @@ const NotificationCard = ({ title }) => {
                     borderRadius: 2,
                   }}
                 >
-                  See more
                 </Button>
               )}
             </Stack>

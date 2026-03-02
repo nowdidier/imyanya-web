@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -89,7 +88,7 @@ const item = (title, value) => {
         fontStyle: value ? 'normal' : 'italic',
         fontSize: value ? '1rem' : '0.875rem',
       }}>
-        {value || 'Not updated yet'}
+        {value || 'Chưa cập nhật'}
       </Typography>
     </Box>
   );
@@ -129,7 +128,7 @@ const GeneralInfoCard = ({ title }) => {
 
         setIsSuccess(!isSuccess);
         setOpenPopup(false);
-        toastMessages.success('Profile information updated successfully.');
+        toastMessages.success('Cập nhật thông tin hồ sơ thành công.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -152,7 +151,7 @@ const GeneralInfoCard = ({ title }) => {
           Loading
         ) : resumeDetail === null ? (
           <Typography variant="h6" color="error.main" textAlign="center">
-            Profile information not found
+            Không tìm thấy thông tin hồ sơ
           </Typography>
         ) : (
           <>
@@ -193,27 +192,27 @@ const GeneralInfoCard = ({ title }) => {
             <Stack sx={{ px: 1 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  {item('Career objective', resumeDetail?.description)}
+                  {item('Mục tiêu nghề nghiệp', resumeDetail?.description)}
                   <Divider sx={{ my: 1, borderColor: 'grey.300' }} />
                 </Grid>
                 
                 <Grid item xs={12} sm={6}>
                   <Stack spacing={1.5}>
-                    {item('Desired position', resumeDetail?.title)}
+                    {item('Vị trí mong muốn', resumeDetail?.title)}
                     {item(
-                      'Desired level',
+                      'Cấp bậc mong muốn',
                       allConfig.positionDict[resumeDetail?.position]
                     )}
                     {item(
-                      'Education level',
+                      'Trình độ học vấn',
                       allConfig.academicLevelDict[resumeDetail?.academicLevel]
                     )}
                     {item(
-                      'Experience',
+                      'Kinh nghiệm',
                       allConfig.experienceDict[resumeDetail?.experience]
                     )}
                     {item(
-                      'Career',
+                      'Nghề nghiệp',
                       allConfig.careerDict[resumeDetail?.career]
                     )}
                   </Stack>
@@ -222,24 +221,24 @@ const GeneralInfoCard = ({ title }) => {
                 <Grid item xs={12} sm={6}>
                   <Stack spacing={1.5}>
                     {item(
-                      'Work location',
+                      'Địa điểm làm việc',
                       allConfig.cityDict[resumeDetail?.city]
                     )}
                     {item(
-                      'Desired salary',
+                      'Mức lương mong muốn',
                       salaryString(
                         resumeDetail?.salaryMin,
                         resumeDetail?.salaryMax
                       )
                     )}
                     {item(
-                      'Workplace',
+                      'Nơi làm việc',
                       allConfig.typeOfWorkplaceDict[
                         resumeDetail?.typeOfWorkplace
                       ]
                     )}
                     {item(
-                      'Job type',
+                      'Hình thức làm việc',
                       allConfig.jobTypeDict[resumeDetail?.jobType]
                     )}
                   </Stack>
@@ -252,7 +251,7 @@ const GeneralInfoCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Profile information"
+        title="Thông tin hồ sơ"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

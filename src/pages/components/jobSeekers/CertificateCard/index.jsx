@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import {
@@ -134,7 +133,6 @@ const CertificateCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Add certificate information successfully.');
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -149,7 +147,6 @@ const CertificateCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Update certificate information successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -176,7 +173,6 @@ const CertificateCard = ({ title }) => {
         await certificateService.deleteCertificateById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Delete certificate information successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -186,8 +182,6 @@ const CertificateCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Delete certificate information',
-      'This certificate information will be permanently deleted and cannot be recovered. Are you sure?',
       'warning'
     );
   };
@@ -241,7 +235,6 @@ const CertificateCard = ({ title }) => {
             <Box>
               {certificates.length === 0 ? (
                 <EmptyCard
-                  content="Add your certificates for recruiters to view"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -277,7 +270,6 @@ const CertificateCard = ({ title }) => {
                             {value.expirationDate ? (
                               <TimeAgo date={value.expirationDate} type="format" format="DD/MM/YYYY"/>
                             ) : (
-                              'No expiry date'
                             )}
                           </Typography>
                           <Typography
@@ -343,7 +335,6 @@ const CertificateCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Certificate"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

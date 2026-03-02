@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import {
   Alert,
@@ -17,7 +18,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import toastMessages from '../../../utils/toastMessages';
 
 const ResetPasswordPage = () => {
-  TabTitle("Reset Password")
 
   const { token } = useParams();
   const nav = useNavigate();
@@ -34,7 +34,6 @@ const ResetPasswordPage = () => {
         const redirectLoginUrl = resData.data?.redirectLoginUrl;
 
         nav(
-          `${redirectLoginUrl}/?successMessage=Password updated successfully.`
         );
       } catch (error) {
         const res = error.response;
@@ -49,7 +48,6 @@ const ResetPasswordPage = () => {
             }
             break;
           default:
-            toastMessages.error('An error occurred, please try again!');
         }
       } finally {
         setIsFullScreenLoading(false);
@@ -80,7 +78,7 @@ const ResetPasswordPage = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              Reset your password
+              Đặt lại mật khẩu của bạn
             </Typography>
           </Box>
 
@@ -88,7 +86,6 @@ const ResetPasswordPage = () => {
           {errorMessage && (
             <Box>
               <Alert severity="error">
-                <AlertTitle>Failed</AlertTitle>
                 {errorMessage}
               </Alert>
             </Box>

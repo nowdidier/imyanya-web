@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import {
@@ -53,13 +54,11 @@ const Loading = (
       <Box sx={{ py: 2 }}>
         <Skeleton height={5} />
       </Box>
-      {Array(2)
+      {Array(4)
         .fill(0)
         .map((item, index) => (
-          <Box sx={{ py: 1 }} key={index}>
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
+          <Box sx={{ py: 0.5 }} key={index}>
+            <Skeleton height={30} />
           </Box>
         ))}
     </Box>
@@ -129,7 +128,6 @@ const AdvancedSkillCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Successfully added professional skill.');
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -144,7 +142,6 @@ const AdvancedSkillCard = ({ title }) => {
 
         setOpenPopup(false);
         setIsSuccess(!isSuccess);
-        toastMessages.success('Successfully updated professional skill.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -171,7 +168,6 @@ const AdvancedSkillCard = ({ title }) => {
         await advancedSkillService.deleteAdvancedSkillById(id);
 
         setIsSuccess(!isSuccess);
-        toastMessages.success('Successfully deleted professional skill.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -181,9 +177,7 @@ const AdvancedSkillCard = ({ title }) => {
 
     confirmModal(
       () => del(id),
-      'Delete professional skill',
-      'This professional skill will be permanently deleted and cannot be recovered. Are you sure?',
-      'warning'
+      
     );
   };
 
@@ -236,7 +230,6 @@ const AdvancedSkillCard = ({ title }) => {
             <Box>
               {advancedSkills.length === 0 ? (
                 <EmptyCard
-                  content="Add your professional skills for recruiters to refer to"
                   onClick={handleShowAdd}
                 />
               ) : (
@@ -262,7 +255,6 @@ const AdvancedSkillCard = ({ title }) => {
                             borderColor: 'primary.light',
                           }}
                         >
-                          Skill
                         </TableCell>
                         <TableCell 
                           align="left"
@@ -274,7 +266,6 @@ const AdvancedSkillCard = ({ title }) => {
                             borderColor: 'primary.light',
                           }}
                         >
-                          Level
                         </TableCell>
                         <TableCell 
                           align="right"
@@ -286,7 +277,6 @@ const AdvancedSkillCard = ({ title }) => {
                             borderColor: 'primary.light',
                           }}
                         >
-                          Action
                         </TableCell>
                       </TableRow>
                     </TableHead>
@@ -369,7 +359,6 @@ const AdvancedSkillCard = ({ title }) => {
 
       {/* Start: form  */}
       <FormPopup
-        title="Professional Skill"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

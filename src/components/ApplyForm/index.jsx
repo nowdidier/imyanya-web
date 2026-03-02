@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -33,18 +34,10 @@ const ApplyForm = ({ handleApplyJob }) => {
   const schema = yup.object().shape({
     fullName: yup
       .string()
-      .required('Full name is required.')
-      .max(100, 'Full name exceeds the allowed length.'),
     email: yup
       .string()
-      .required('Email is required.')
-      .email('Invalid email.')
-      .max(100, 'Email exceeds the allowed length.'),
     phone: yup
       .string()
-      .required('Phone number is required.')
-      .matches(REGEX_VATIDATE.phoneRegExp, 'Invalid phone number.')
-      .max(15, 'Phone number exceeds the allowed length.'),
   });
 
   const { control, setValue, handleSubmit } = useForm({
@@ -129,7 +122,6 @@ const ApplyForm = ({ handleApplyJob }) => {
                                     style={{ marginRight: 1 }}
                                     color="#441da0"
                                   />{' '}
-                                  Online profile
                                 </>
                               ) : value.type === CV_TYPES.cvUpload ? (
                                 <>
@@ -138,7 +130,6 @@ const ApplyForm = ({ handleApplyJob }) => {
                                     style={{ marginRight: 1 }}
                                     color="red"
                                   />{' '}
-                                  Attached profile
                                 </>
                               ) : (
                                 ''
@@ -161,7 +152,6 @@ const ApplyForm = ({ handleApplyJob }) => {
                                 sx={{ fontWeight: 'bold', cursor: 'pointer' }}
                                 color="#441da0"
                               >
-                                <FontAwesomeIcon icon={faEye} /> View profile
                               </Typography>
                             </Link>
                           </Stack>
@@ -176,9 +166,7 @@ const ApplyForm = ({ handleApplyJob }) => {
           <Grid item xs={12}>
             <TextFieldCustom
               name="fullName"
-              title="Full name"
               showRequired={true}
-              placeholder="Enter your full name"
               control={control}
             />
           </Grid>
@@ -187,22 +175,18 @@ const ApplyForm = ({ handleApplyJob }) => {
               name="email"
               title="Email"
               showRequired={true}
-              placeholder="Enter your email"
               control={control}
             />
           </Grid>
           <Grid item xs={12}>
             <TextFieldCustom
               name="phone"
-              title="Phone number"
               showRequired={true}
-              placeholder="Enter your phone number"
               control={control}
             />
           </Grid>
           <Grid item xs={12}>
             <Typography color="GrayText" variant="caption">
-              Note: Full name, email, and phone number must be accurate so employers can contact you.
             </Typography>
           </Grid>
         </Grid>

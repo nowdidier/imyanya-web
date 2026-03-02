@@ -1,5 +1,3 @@
-
-
 import toastMessages from './toastMessages';
 
 const errorHandling = (error, setError = null) => {
@@ -14,13 +12,14 @@ const errorHandling = (error, setError = null) => {
         setError && setError(errors);
       }
       break;
+
     case 403:
-      toastMessages.error('Bạn không có quyền, vui lòng quay lại!');
+      toastMessages.error('You do not have permission. Please go back!');
       break;
+
     default:
-      toastMessages.error('Đã xảy ra lỗi, vui lòng thử lại!');
+      toastMessages.error('An error occurred. Please try again!');
   }
 };
 
 export default errorHandling;
-

@@ -1,7 +1,5 @@
 
-
 import "sweetalert2/src/sweetalert2.scss";
-
 import "./App.css";
 
 import * as React from "react";
@@ -12,7 +10,7 @@ import { getAllConfig } from "./redux/configSlice";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import { viVN } from "@mui/material/locale";
+import { enUS } from "@mui/material/locale";
 
 // toast
 import { ToastContainer } from "react-toastify";
@@ -26,25 +24,31 @@ import { ConfigProvider } from "antd";
 import AppRoutes from "./routes/AppRouter";
 
 // chatbot
-import { ImyanyaChatBot } from "./chatbot";
+import { MyJobChatBot } from "./chatbot";
 import Feedback from "./components/Feedback";
 import ScrollToTop from "./components/ScrollToTop";
 import { ROLES_NAME, ROUTES, AUTH_CONFIG } from "./configs/constants";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+
 function App() {
   const dispatch = useDispatch();
   const [isInitializing, setIsInitializing] = React.useState(true);
   const { isAllowVerifyEmail } = useSelector((state) => state.auth);
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
+
   const settings = {
-    isAuthenticated: isAuthenticated,
+    isAuthenticated,
     isJobSeekerRole: currentUser?.roleName === ROLES_NAME.JOB_SEEKER,
     isEmployerRole: currentUser?.roleName === ROLES_NAME.EMPLOYER,
-    isAllowVerifyEmail: isAllowVerifyEmail,
+    isAllowVerifyEmail,
   };
+
   const location = useLocation();
 
-  const theme = React.useMemo(() => createTheme(defaultTheme, viVN), []);
+  const theme = React.useMemo(
+    () => createTheme(defaultTheme, enUS),
+    []
+  );
 
   React.useEffect(() => {
     const initializeApp = async () => {
@@ -53,7 +57,7 @@ function App() {
           dispatch(getUserInfo()).unwrap(),
           dispatch(getAllConfig()).unwrap(),
         ]);
-        console.log("Init app successfully");
+        console.log("App initialized successfully");
       } catch (err) {
         console.log(err);
       } finally {
@@ -76,10 +80,8 @@ function App() {
     initializeApp();
   }, [dispatch]);
 
-  // When initializing, render nothing because the loading HTML is already displayed
-  if (isInitializing) {
-    return null;
-  }
+  // While initializing, keep the HTML loader visible
+  if (isInitializing) return null;
 
   return (
     <>
@@ -94,23 +96,22 @@ function App() {
           <GoogleOAuthProvider clientId={AUTH_CONFIG.GOOGLE_CLIENT_ID}>
             <CssBaseline enableColorScheme />
             <AppRoutes settings={settings} />
-            {/* Start: toast */}
-            <ToastContainer autoClose={1300} />
-            {/* End: toast */}
 
-          {/* Do not show feedback and chatbot in chat pages */}
-          {!location.pathname.startsWith(`/${ROUTES.JOB_SEEKER.CHAT}`) &&
-            !location.pathname.startsWith(`/${ROUTES.EMPLOYER.CHAT}`) && (
-              <>
-                {/* Start: Feedback */}
-                {isAuthenticated && <Feedback />}
-                {/* End: Feedback */}
-                <ImyanyaChatBot />
-              </>
-            )}
+            {/* Toast notifications */}
+            <ToastContainer autoClose={1300} />
+
+            {/* Hide feedback & chatbot in chat pages */}
+            {!location.pathname.startsWith(`/${ROUTES.JOB_SEEKER.CHAT}`) &&
+              !location.pathname.startsWith(`/${ROUTES.EMPLOYER.CHAT}`) && (
+                <>
+                  {isAuthenticated && <Feedback />}
+                  <MyJobChatBot />
+                </>
+              )}
           </GoogleOAuthProvider>
         </ThemeProvider>
       </ConfigProvider>
+
       <ScrollToTop />
     </>
   );

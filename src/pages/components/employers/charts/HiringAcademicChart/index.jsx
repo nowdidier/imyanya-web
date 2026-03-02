@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   Box,
@@ -87,7 +88,6 @@ const HiringAcademicChart = ({ title }) => {
     labels: data?.labels || [],
     datasets: [
       {
-        label: '# Number of Applications',
         data: data?.data || [],
         backgroundColor: [
           'rgba(255, 152, 0, 0.9)',  // secondary
@@ -122,7 +122,6 @@ const HiringAcademicChart = ({ title }) => {
           >
             <Typography fontWeight="bold">{title}</Typography>
             <MuiTooltip
-              title="Statistics of applications by education level"
               arrow
             >
               <InfoIcon color="disabled" />
@@ -150,7 +149,6 @@ const HiringAcademicChart = ({ title }) => {
             ) : data.length === 0 ? (
               <Empty
                 image={Empty.PRESENTED_IMAGE_SIMPLE}
-                description="No data to display"
               />
             ) : (
               <Pie data={dataOptions} options={options} height={320} />

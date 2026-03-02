@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { Stack, Alert, Box, Button, Typography } from '@mui/material';
@@ -70,7 +71,6 @@ const FileUploadCustom = ({
                 }} 
               />
               <Typography variant="subtitle1" sx={{ color: 'text.primary', mb: 0.5 }}>
-                Drag and drop file here or
               </Typography>
               <Button
                 variant="contained"
@@ -83,10 +83,8 @@ const FileUploadCustom = ({
                   boxShadow: 'none'
                 }}
               >
-                Choose file
               </Button>
               <Typography variant="caption" sx={{ display: 'block', mt: 1, color: 'text.secondary' }}>
-                Only PDF files are accepted
               </Typography>
             </>
           ) : (
@@ -114,7 +112,6 @@ const FileUploadCustom = ({
                 }}
                 sx={{ ml: 2 }}
               >
-                Delete
               </Button>
             </Alert>
           )}

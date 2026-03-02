@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useSelector } from "react-redux";
 import { Box, Grid, Pagination, Stack, Typography } from "@mui/material";
@@ -72,7 +73,6 @@ const Companies = () => {
               gap: 1,
             }}
           >
-            Featured Companies
             <Box
               component="span"
               sx={{
@@ -84,7 +84,6 @@ const Companies = () => {
                 fontSize: "0.9em",
               }}
             >
-              {count} companies
             </Box>
           </Typography>
         </Box>
@@ -101,7 +100,6 @@ const Companies = () => {
           </Grid>
         ) : companies.length === 0 ? (
           <NoDataCard
-            title="No companies found matching your criteria"
             imgComponentSgv={<SVG_IMAGES.ImageSvg4 />}
           />
         ) : (

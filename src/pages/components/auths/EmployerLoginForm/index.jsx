@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -26,16 +27,12 @@ const EmployerLoginForm = ({ onLogin }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
-      .required('Email is required!')
-      .email('Invalid email format'),
+      
     password: yup
       .string()
-      .required('Password is required!')
-      .min(8, 'Password must be at least 8 characters.')
-      .max(128, 'Password exceeds maximum length.')
+     
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Must contain uppercase, lowercase, number and special character'
       ),
   });
 
@@ -63,7 +60,6 @@ const EmployerLoginForm = ({ onLogin }) => {
           name="email"
           control={control}
           title="Email"
-          placeholder="Enter your email"
           showRequired={true}
           sx={{
             '& .MuiOutlinedInput-root': {
@@ -75,8 +71,7 @@ const EmployerLoginForm = ({ onLogin }) => {
         <PasswordTextFieldCustom
           name="password"
           control={control}
-          title="Password"
-          placeholder="Enter your password"
+         
           showRequired={true}
           sx={{
             '& .MuiOutlinedInput-root': {
@@ -92,7 +87,6 @@ const EmployerLoginForm = ({ onLogin }) => {
         type="submit"
         startIcon={<LoginIcon />}
       >
-        Login
       </StyledButton>
     </Box>
   );

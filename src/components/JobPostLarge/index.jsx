@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
@@ -110,7 +111,6 @@ const JobPostLarge = ({
               }}
             />
             {isUrgent && (
-              <Tooltip title="Urgent recruitment" placement="top">
                 <Box
                   sx={{
                     position: "absolute",
@@ -290,7 +290,6 @@ const JobPostLarge = ({
                 >
                   {allConfig?.cityDict[cityId] || (
                     <span style={{ fontStyle: "italic", opacity: 0.7 }}>
-                      Not updated
                     </span>
                   )}
                 </Typography>
@@ -353,7 +352,6 @@ const JobPostLarge = ({
             }}
             variant="body2"
           >
-            Remaining{" "}
             <TimeAgo date={deadline} type="fromNow" />
           </Typography>
         </Box>

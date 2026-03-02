@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
@@ -29,7 +30,6 @@ const JobPostFilterForm = ({ handleFilter }) => {
         <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
           <TextFieldCustom
             name="kw"
-            placeholder="Enter job post name"
             control={control}
           />
         </Grid>
@@ -38,11 +38,8 @@ const JobPostFilterForm = ({ handleFilter }) => {
             name="isUrgent"
             control={control}
             options={[
-              { id: 1, name: 'Urgent' },
-              { id: 2, name: 'Not urgent' },
             ]}
             showRequired={true}
-            placeholder="Recruitment status"
           />
         </Grid>
         <Grid item flex={1}>
@@ -51,7 +48,6 @@ const JobPostFilterForm = ({ handleFilter }) => {
             control={control}
             options={allConfig?.jobPostStatusOptions || []}
             showRequired={true}
-            placeholder="Approval status"
           />
         </Grid>
         <Grid item>
@@ -66,7 +62,6 @@ const JobPostFilterForm = ({ handleFilter }) => {
               xl: 'center',
             }}
           >
-            <Tooltip title="Reset" arrow>
               <IconButton
                 aria-label="refresh"
                 onClick={() => {
@@ -84,7 +79,6 @@ const JobPostFilterForm = ({ handleFilter }) => {
               type="submit"
               startIcon={<SearchIcon />}
             >
-              Search
             </Button>
           </Stack>
         </Grid>

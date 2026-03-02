@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   Box,
@@ -25,49 +26,42 @@ const headCells = [
     showOrder: false,
     numeric: false,
     disablePadding: true,
-    label: 'Resume Name',
   },
   {
     id: 'fullName',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Candidate Name',
   },
   {
     id: 'salary',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Salary',
   },
   {
     id: 'experience',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Experience',
   },
   {
     id: 'city',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'City/Province',
   },
   {
     id: 'createAt',
     showOrder: false,
     numeric: false,
     disablePadding: false,
-    label: 'Saved Date',
   },
   {
     id: 'action',
     showOrder: false,
     numeric: true,
     disablePadding: false,
-    label: 'Action',
   },
 ];
 

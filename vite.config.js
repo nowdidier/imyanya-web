@@ -50,7 +50,7 @@ export default defineConfig({
       allow: ['..']
     },
     middlewareMode: false,
-    allowedHosts: ['www.imyanya.com', 'employer.imyanya.com']
+    allowedHosts: ['www.myjob.com', 'employer.myjob.com']
   },
   build: {
     outDir: 'build',

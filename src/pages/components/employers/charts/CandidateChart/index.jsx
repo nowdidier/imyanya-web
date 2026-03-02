@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   Box,
@@ -174,7 +175,6 @@ const CandidateChart = ({ title }) => {
               {title}
             </Typography>
             <MuiTooltip
-              title="Statistics of received applications by day"
               arrow
               placement="left"
             >
@@ -190,7 +190,9 @@ const CandidateChart = ({ title }) => {
             </MuiTooltip>
           </Stack>
         </Box>
+
         <Divider sx={{ borderStyle: 'dashed' }} />
+
         <Box>
           <Stack direction="row" justifyContent="flex-end" spacing={1} mb={3}>
             <RangePickerCustom
@@ -200,6 +202,7 @@ const CandidateChart = ({ title }) => {
               setSelectedDateRange={setSelectedDateRange}
             />
           </Stack>
+
           <Box sx={{ position: 'relative', minHeight: 320 }}>
             {isLoading ? (
               <Stack
@@ -229,7 +232,6 @@ const CandidateChart = ({ title }) => {
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
                   description={
                     <Typography variant="body2" color="text.secondary">
-                      No data to display
                     </Typography>
                   }
                 />

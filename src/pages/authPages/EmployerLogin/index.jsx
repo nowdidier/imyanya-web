@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
@@ -55,7 +56,6 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 const EmployerLogin = () => {
-  TabTitle('Employer Account Login');
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -100,10 +100,8 @@ const EmployerLogin = () => {
               nav(`/${ROUTES.EMPLOYER.DASHBOARD}`);
             })
             .catch(() => {
-              toastMessages.error('An error occurred, please log in again!');
             });
         } else {
-          toastMessages.error('An error occurred, please log in again!');
         }
       } catch (error) {
         // 400 bad request
@@ -113,7 +111,6 @@ const EmployerLogin = () => {
           if ('errorMessage' in errors) {
             setErrorMessage(errors.errorMessage.join(' '));
           } else {
-            toastMessages.error('An error occurred, please try again!');
           }
         }
       } finally {
@@ -140,7 +137,6 @@ const EmployerLogin = () => {
           return;
         } else if (exists === false) {
           setErrorMessage(
-            "No employer account exists with this email!"
           );
 
           return;
@@ -148,7 +144,6 @@ const EmployerLogin = () => {
 
         getAccesToken(resEmail, password, roleName);
       } catch (error) {
-        toastMessages.error('An error occurred, please log in again!');
       } finally {
         setIsFullScreenLoading(false);
       }
@@ -197,7 +192,6 @@ const EmployerLogin = () => {
                 mb: 1
               }}
             >
-              Login
             </Typography>
             <Typography 
               variant="subtitle1" 
@@ -207,7 +201,6 @@ const EmployerLogin = () => {
                 mb: 2 
               }}
             >
-              Welcome to the recruitment portal
             </Typography>
           </Box>
 
@@ -219,7 +212,6 @@ const EmployerLogin = () => {
                 borderRadius: '8px',
               }}
             >
-              <AlertTitle>Failed</AlertTitle>
               {errorMessage}
             </Alert>
           )}
@@ -232,7 +224,6 @@ const EmployerLogin = () => {
                 borderRadius: '8px',
               }}
             >
-              <AlertTitle>Success</AlertTitle>
               {successMessage}
             </Alert>
           )}
@@ -252,7 +243,6 @@ const EmployerLogin = () => {
           >
             <Grid item xs={12} sm={6}>
               <StyledLink to={`/${ROUTES.AUTH.FORGOT_PASSWORD}`}>
-                Forgot password?
               </StyledLink>
             </Grid>
             <Grid 
@@ -264,7 +254,6 @@ const EmployerLogin = () => {
               }}
             >
               <StyledLink to={`/${ROUTES.AUTH.REGISTER}`}>
-                Don't have an account? Register
               </StyledLink>
             </Grid>
           </Grid>

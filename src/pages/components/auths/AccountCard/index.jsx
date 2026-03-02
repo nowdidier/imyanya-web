@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -28,7 +29,7 @@ const AccountCard = ({ title, sx }) => {
     dispatch(updateUserInfo(data))
       .unwrap()
       .then(() =>
-        toastMessages.success("Account information updated successfully.")
+        
       )
       .catch((error) => {
         errorHandling(error, setServerErrors);
@@ -42,7 +43,6 @@ const AccountCard = ({ title, sx }) => {
         await authService.changePassword(data);
 
         setOpenPopup(false);
-        toastMessages.success("Password changed successfully.");
 
         let path = ROUTES.AUTH.LOGIN;
         const accessToken = tokenService.getAccessTokenFromCookie();
@@ -53,7 +53,6 @@ const AccountCard = ({ title, sx }) => {
             nav(path);
           })
           .catch((err) => {
-            toastMessages.error("An error occurred!");
           });
       } catch (error) {
         errorHandling(error, setServerErrors);
@@ -119,7 +118,7 @@ const AccountCard = ({ title, sx }) => {
                       style={{ cursor: "pointer" }}
                       onClick={() => setOpenPopup(true)}
                     >
-                      Change password
+                      Thay đổi mật khẩu
                     </span>
                   </Typography>
                 </Box>
@@ -143,7 +142,6 @@ const AccountCard = ({ title, sx }) => {
                       },
                     }}
                   >
-                    Update
                   </Button>
                 </Stack>
               </Grid>
@@ -153,7 +151,6 @@ const AccountCard = ({ title, sx }) => {
       </Box>
 
       <FormPopup
-        title="Update Password"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

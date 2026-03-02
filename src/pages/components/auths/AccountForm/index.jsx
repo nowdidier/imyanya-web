@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -15,8 +14,7 @@ const AccountForm = ({ handleUpdate, serverErrors }) => {
   const schema = yup.object().shape({
     fullName: yup
       .string()
-      .required('Full name is required.')
-      .max(100, 'Full name exceeds maximum length.'),
+      
   });
 
   const { control, reset, setError, handleSubmit } = useForm({
@@ -52,9 +50,7 @@ const AccountForm = ({ handleUpdate, serverErrors }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="fullName"
-            title="Full Name"
             showRequired={true}
-            placeholder="Enter your full name"
             control={control}
           />
         </Grid>
@@ -63,7 +59,6 @@ const AccountForm = ({ handleUpdate, serverErrors }) => {
             name="email"
             title="Email"
             showRequired={true}
-            placeholder="Enter email"
             control={control}
             disabled={true}
           />
@@ -71,9 +66,7 @@ const AccountForm = ({ handleUpdate, serverErrors }) => {
         <Grid item xs={12}>
           <TextFieldCustom
             name="password"
-            title="Password"
             showRequired={true}
-            placeholder="Enter password"
             control={control}
             disabled={true}
           />

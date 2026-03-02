@@ -1,5 +1,4 @@
 
-
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
@@ -61,7 +60,6 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 const JobSeekerLogin = () => {
-  TabTitle('Job Seeker Account Login');
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -107,10 +105,8 @@ const JobSeekerLogin = () => {
               nav('/');
             })
             .catch(() => {
-              toastMessages.error('An error occurred, please log in again!');
             });
         } else {
-          toastMessages.error('An error occurred, please log in again!');
         }
       } catch (error) {
         // 400 bad request
@@ -120,7 +116,6 @@ const JobSeekerLogin = () => {
           if ('errorMessage' in errors) {
             setErrorMessage(errors.errorMessage.join(' '));
           } else {
-            toastMessages.error('An error occurred, please try again!');
           }
         }
       } finally {
@@ -148,7 +143,6 @@ const JobSeekerLogin = () => {
           return;
         } else if (exists === false) {
           setErrorMessage(
-            'No candidate account exists with this email!'
           );
 
           return;
@@ -156,7 +150,6 @@ const JobSeekerLogin = () => {
 
         getAccesToken(resEmail, password, roleName);
       } catch (error) {
-        toastMessages.error('An error occurred, please log in again!');
       } finally {
         setIsFullScreenLoading(false);
       }
@@ -200,10 +193,8 @@ const JobSeekerLogin = () => {
             nav('/');
           })
           .catch(() => {
-            toastMessages.error('An error occurred, please log in again!');
           });
       } else {
-        toastMessages.error('An error occurred, please log in again!');
       }
     } catch (error) {
       // 400 bad request
@@ -213,7 +204,6 @@ const JobSeekerLogin = () => {
         if ('errorMessage' in errors) {
           setErrorMessage(errors.errorMessage.join(' '));
         } else {
-          toastMessages.error('An error occurred, please try again!');
         }
       }
     } finally {
@@ -285,7 +275,6 @@ const JobSeekerLogin = () => {
                 mb: 1
               }}
             >
-              Login
             </Typography>
             <Typography 
               variant="subtitle1" 
@@ -295,7 +284,6 @@ const JobSeekerLogin = () => {
                 mb: 2 
               }}
             >
-              Welcome back
             </Typography>
           </Box>
 
@@ -307,7 +295,6 @@ const JobSeekerLogin = () => {
                 borderRadius: '8px',
               }}
             >
-              <AlertTitle>Failed</AlertTitle>
               {errorMessage}
             </Alert>
           )}
@@ -320,7 +307,6 @@ const JobSeekerLogin = () => {
                 borderRadius: '8px',
               }}
             >
-              <AlertTitle>Success</AlertTitle>
               {successMessage}
             </Alert>
           )}
@@ -344,7 +330,6 @@ const JobSeekerLogin = () => {
           >
             <Grid item xs={12} sm={6}>
               <StyledLink to={`/${ROUTES.AUTH.FORGOT_PASSWORD}`}>
-                Forgot password?
               </StyledLink>
             </Grid>
             <Grid 
@@ -356,7 +341,6 @@ const JobSeekerLogin = () => {
               }}
             >
               <StyledLink to={`/${ROUTES.AUTH.REGISTER}`}>
-                Don't have an account? Register
               </StyledLink>
             </Grid>
           </Grid>

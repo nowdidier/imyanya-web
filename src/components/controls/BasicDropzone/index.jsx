@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Controller } from 'react-hook-form';
@@ -62,10 +63,8 @@ const FileDropzone = ({ accept, onDrop, values }) => {
                 fontWeight: 600 
               }}
             >
-              Drag your file here
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Or you can
             </Typography>
             <Button
               variant="contained"
@@ -81,7 +80,6 @@ const FileDropzone = ({ accept, onDrop, values }) => {
                 }
               }}
             >
-              Choose file from your device
             </Button>
             <Typography 
               variant="caption" 
@@ -90,7 +88,6 @@ const FileDropzone = ({ accept, onDrop, values }) => {
                 mt: 1 
               }}
             >
-              Supports .pdf format
             </Typography>
           </>
         ) : (
@@ -113,7 +110,6 @@ const FileDropzone = ({ accept, onDrop, values }) => {
                 borderRadius: 2,
               }}
             >
-              Change file
             </Button>
           </>
         )}

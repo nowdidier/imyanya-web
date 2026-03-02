@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
@@ -927,7 +928,7 @@ const JobDetailPage = () => {
         facebook={{
           url: window.location.href,
           quote: jobPostDetail?.jobName,
-          hashtag: "#imyanya",
+          hashtag: "#myjob",
         }}
         facebookMessenger={{
           url: window.location.href,
@@ -936,12 +937,12 @@ const JobDetailPage = () => {
           url: window.location.href,
           title: jobPostDetail?.jobName,
           summary: jobPostDetail?.jobDescription,
-          source: "Imyanya",
+          source: "MyJob",
         }}
         twitter={{
           url: window.location.href,
           title: jobPostDetail?.jobName,
-          hashtags: ["imyanya", "tuyendung"],
+          hashtags: ["myjob", "tuyendung"],
         }}
         email={{
           url: window.location.href,

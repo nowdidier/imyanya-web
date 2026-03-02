@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -310,7 +311,7 @@ const LanguageSkillCard = ({ title }) => {
                               fontSize: '0.875rem',
                             }}
                           >
-                            {allConfig?.languageDict[value?.language]}
+                            {allConfig.languageDict[value?.language]}
                           </TableCell>
                           <TableCell align="left">
                             <Rating

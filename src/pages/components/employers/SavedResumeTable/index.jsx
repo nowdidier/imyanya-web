@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -32,7 +33,6 @@ const SavedResumeTable = (props) => {
         <TableBody>
           <TableCell colSpan={7}>
             <NoDataCard
-              title="You have not saved any candidates"
               imgComponentSgv={<SVG_IMAGES.ImageSvg12 />}
             />
           </TableCell>
@@ -43,7 +43,6 @@ const SavedResumeTable = (props) => {
             <TableBody key={row.id}>
               <TableCell component="th" scope="row" padding="none">
                 {row?.resume?.type === CV_TYPES.cvWebsite ? (
-                  <Tooltip title="Online Resume" arrow>
                     <FontAwesomeIcon
                       icon={faFile}
                       style={{ marginRight: 1 }}
@@ -51,7 +50,6 @@ const SavedResumeTable = (props) => {
                     />
                   </Tooltip>
                 ) : (
-                  <Tooltip title="Attached Resume" arrow>
                     <FontAwesomeIcon
                       icon={faFilePdf}
                       style={{ marginRight: 1 }}
@@ -67,7 +65,6 @@ const SavedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Not updated
                   </span>
                 )}{' '}
               </TableCell>
@@ -86,7 +83,6 @@ const SavedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Not updated
                   </span>
                 )}
               </TableCell>
@@ -99,7 +95,6 @@ const SavedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Not updated
                   </span>
                 )}
               </TableCell>
@@ -112,7 +107,6 @@ const SavedResumeTable = (props) => {
                       fontSize: 13,
                     }}
                   >
-                    Not updated
                   </span>
                 )}
               </TableCell>
@@ -121,7 +115,6 @@ const SavedResumeTable = (props) => {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} justifyContent="flex-end">
-                  <Tooltip title="View profile" arrow>
                     <IconButton aria-label="view" size="small">
                       <RemoveRedEyeOutlinedIcon
                         fontSize="small"
@@ -142,7 +135,6 @@ const SavedResumeTable = (props) => {
                     startIcon={<FavoriteIcon />}
                     onClick={() => handleUnsave(row?.resume?.slug)}
                   >
-                    Unsave
                   </Button>
                 </Stack>
               </TableCell>

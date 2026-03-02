@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 
 import { useTheme } from '@mui/material/styles';
@@ -72,7 +73,6 @@ const InputBaseSearchCompanyCustom = ({
         />
         {showSubmitButton && (
           <Button variant="contained" type="submit" color="primary">
-            Search
           </Button>
         )}
       </Box>

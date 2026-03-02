@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -86,7 +87,6 @@ const ProfileUploadCard = ({
               }}
               size="small"
               icon={<StarIcon sx={{ color: 'warning.main' }} />}
-              label="Allow search"
               onClick={() => handleActive(slug)}
             />
           ) : (
@@ -100,12 +100,10 @@ const ProfileUploadCard = ({
               }}
               size="small"
               icon={<StarOutlineIcon sx={{ color: 'warning.main' }} />}
-              label="Allow search"
               onClick={() => handleActive(slug)}
             />
           )}
           <Tooltip
-            title={`Enabling "Allow search" will help employers find your profile and they may contact you about new jobs. Only one profile can be enabled for "allow search" among all your profiles.`}
             arrow
           >
             <HelpIcon sx={{ ml: 1, color: 'rgba(255, 255, 255, 0.7)' }} />
@@ -146,7 +144,6 @@ const ProfileUploadCard = ({
             </Stack>
 
             <Typography variant="caption" sx={{ opacity: 0.8 }}>
-              Last updated: {dayjs(updateAt).format('DD/MM/YYYY HH:mm:ss')}
             </Typography>
 
             <Stack direction="row" justifyContent="space-between" alignItems="center">
@@ -160,7 +157,6 @@ const ProfileUploadCard = ({
                 }}
                 size="small"
                 icon={<DownloadIcon sx={{ color: defaultTheme.palette.secondary.main }} />}
-                label="Download"
                 onClick={() => downloadPdf(fileUrl, title)}
               />
               <IconButton

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -20,7 +21,6 @@ const Popup = ({
   openPopup,
   setOpenPopup,
   showDialogAction = true,
-  buttonText = 'Save',
   buttonIcon = <SaveIcon />,
   children,
 }) => {

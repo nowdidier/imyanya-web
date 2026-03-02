@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,7 +23,7 @@ import toastMessages from '../../utils/toastMessages';
 import BackdropLoading from '../loading/BackdropLoading';
 import RatingCustom from '../controls/RatingCustom';
 import MultilineTextFieldCustom from '../controls/MultilineTextFieldCustom';
-import imyanyaService from '../../services/imyanyaService';
+import myjobService from '../../services/myjobService';
 import { FEEDBACK_IMAGES } from '../../configs/constants';
 
 const Feedback = () => {
@@ -31,11 +32,8 @@ const Feedback = () => {
   const [hover, setHover] = React.useState(-1);
 
   const schema = yup.object().shape({
-    rating: yup.number().required('Rating is required.'),
     content: yup
       .string()
-      .required('Feedback content is required.')
-      .max(500, 'Feedback content exceeds the allowed length.'),
   });
 
   const { control, handleSubmit, watch } = useForm({
@@ -61,9 +59,8 @@ const Feedback = () => {
     const sendFeedback = async (data) => {
       setIsFullScreenLoading(true);
       try {
-        await imyanyaService.createFeedback(data);
+        await myjobService.createFeedback(data);
         handleClose();
-        toastMessages.success('Feedback sent successfully.');
       } catch (error) {
         errorHandling(error);
       } finally {
@@ -143,7 +140,6 @@ const Feedback = () => {
           />
         }
       >
-        Feedback
       </Button>
 
       <Dialog 
@@ -177,7 +173,6 @@ const Feedback = () => {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Your feedback
             </Typography>
             <IconButton 
               onClick={handleClose}
@@ -245,7 +240,6 @@ const Feedback = () => {
             <Grid item xs={12}>
               <MultilineTextFieldCustom
                 name="content"
-                placeholder="Share your experience..."
                 control={control}
                 minRows={5}
                 maxRows={8}
@@ -282,7 +276,6 @@ const Feedback = () => {
               }
             }}
           >
-            Send feedback
           </Button>
         </DialogActions>
       </Dialog>

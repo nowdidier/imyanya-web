@@ -1,5 +1,4 @@
 
-
 import { Outlet } from "react-router-dom";
 import { HOST_NAME, ROUTES } from "./constants";
 import {
@@ -36,7 +35,7 @@ import {
   AttachedProfilePage,
   DashboardPage,
   MyCompanyPage,
-  ImyanyaPage,
+  MyJobPage,
   OnlineProfilePage,
   ProfilePage,
 } from "../pages/jobSeekerPages";
@@ -57,7 +56,7 @@ import {
 } from "../pages/errorsPage";
 
 const routesConfig = {
-  [HOST_NAME.IMYANYA]: [
+  [HOST_NAME.MYJOB]: [
     {
       path: ROUTES.JOB_SEEKER.HOME,
       layouts: Outlet,
@@ -133,7 +132,7 @@ const routesConfig = {
             },
             {
               path: ROUTES.JOB_SEEKER.MY_JOB,
-              element: ImyanyaPage,
+              element: MyJobPage,
             },
             {
               path: ROUTES.JOB_SEEKER.MY_COMPANY,
@@ -202,7 +201,7 @@ const routesConfig = {
       element: NotFoundPage,
     },
   ],
-  [HOST_NAME.EMPLOYER_IMYANYA]: [
+  [HOST_NAME.EMPLOYER_MYJOB]: [
     {
       path: ROUTES.EMPLOYER.DASHBOARD,
       layouts: EmployerLayout,

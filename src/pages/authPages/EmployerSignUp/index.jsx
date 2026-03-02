@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -50,7 +51,6 @@ const StyledLink = styled(Link)(({ theme }) => ({
 }));
 
 const EmployerSignUp = () => {
-  TabTitle("Employer Account Registration")
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -96,7 +96,6 @@ const EmployerSignUp = () => {
       if (exists === true) {
         // set server errors here
         setServerErrors({
-          email: ['Email already exists'],
         });
 
         return false;
@@ -149,7 +148,6 @@ const EmployerSignUp = () => {
                 mb: 1
               }}
             >
-              Register Account
             </Typography>
             <Typography 
               variant="subtitle1" 
@@ -159,7 +157,6 @@ const EmployerSignUp = () => {
                 mb: 2 
               }}
             >
-              Create a new employer account
             </Typography>
           </Box>
 
@@ -181,7 +178,6 @@ const EmployerSignUp = () => {
           >
             <Grid item>
               <StyledLink to={`/${ROUTES.AUTH.LOGIN}`}>
-                Already have an account? Log in
               </StyledLink>
             </Grid>
           </Grid>

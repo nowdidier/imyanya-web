@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -34,7 +35,7 @@ const HomeSearch = () => {
   const handleSaveKeyworLocalStorage = (kw) => {
     try {
       if (kw) {
-        const keywordListStr = localStorage.getItem('imyanya_search_history');
+        const keywordListStr = localStorage.getItem('myjob_search_history');
 
         if (
           keywordListStr !== null &&
@@ -46,7 +47,7 @@ const HomeSearch = () => {
           if (!keywordList.includes(kw)) {
             if (keywordList.length >= 5) {
               localStorage.setItem(
-                'imyanya_search_history',
+                'myjob_search_history',
                 JSON.stringify([
                   kw,
                   ...keywordList.slice(0, keywordList.length - 1),
@@ -54,17 +55,16 @@ const HomeSearch = () => {
               );
             } else {
               localStorage.setItem(
-                'imyanya_search_history',
+                'myjob_search_history',
                 JSON.stringify([kw, ...keywordList])
               );
             }
           }
         } else {
-          localStorage.setItem('imyanya_search_history', JSON.stringify([kw]));
+          localStorage.setItem('myjob_search_history', JSON.stringify([kw]));
         }
       }
     } catch (error) {
-      console.error('Error when setting keyword to local storage: ', error);
     }
   };
 
@@ -90,7 +90,6 @@ const HomeSearch = () => {
             <InputBaseSearchHomeCustom
               name="kw"
               control={control}
-              placeholder="Search for job opportunities"
               showSubmitButton={true}
               location='HOME'
             />
@@ -98,7 +97,6 @@ const HomeSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <SingleSelectSearchCustom
               name="careerId"
-              placeholder="All careers"
               control={control}
               options={allConfig?.careerOptions || []}
             />
@@ -106,7 +104,6 @@ const HomeSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <SingleSelectSearchCustom
               name="cityId"
-              placeholder="All cities"
               control={control}
               options={allConfig?.cityOptions || []}
             />

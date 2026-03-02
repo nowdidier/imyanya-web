@@ -1,5 +1,4 @@
 
-
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
@@ -11,7 +10,7 @@ import { Box, Link } from '@mui/material';
 
 import HomeSearch from '../../../../pages/components/defaults/HomeSearch';
 import MuiImageCustom from '../../../../components/MuiImageCustom';
-import imyanyaService from '../../../../services/imyanyaService';
+import myjobService from '../../../../services/myjobService';
 import { BANNER_TYPES } from '../../../../configs/constants';
 
 const styles = {
@@ -99,7 +98,7 @@ const TopSlide = () => {
   React.useEffect(() => {
     const getBanners = async () => {
       try {
-        const resData = await imyanyaService.getBanners({type: BANNER_TYPES.HOME});
+        const resData = await myjobService.getBanners({type: BANNER_TYPES.HOME});
 
         const data = resData?.data || [];
 

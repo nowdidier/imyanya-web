@@ -48,7 +48,7 @@ const InputBaseSearchHomeCustom = ({
 
   React.useEffect(() => {
     try {
-      const keywordListStr = localStorage.getItem('imyanya_search_history');
+      const keywordListStr = localStorage.getItem('myjob_search_history');
       if (
         keywordListStr !== null ||
         keywordListStr !== undefined ||
@@ -129,7 +129,6 @@ const InputBaseSearchHomeCustom = ({
             <Stack>
               <Box>
                 <Typography fontWeight="bold" fontSize={17} color="#2C95FF">
-                  Search suggestions
                 </Typography>
                 <Stack>
                   {isLoading ? (
@@ -143,7 +142,6 @@ const InputBaseSearchHomeCustom = ({
                       color={'#bdbdbd'}
                       variant="caption"
                     >
-                      No data
                     </Typography>
                   ) : (
                     <List>
@@ -177,7 +175,6 @@ const InputBaseSearchHomeCustom = ({
               {(recentSearch || [])?.length > 0 && (
                 <Box>
                   <Typography fontWeight="bold" fontSize={17} color="#2C95FF">
-                    Recent searches
                   </Typography>
                   <Stack>
                     <List>
@@ -278,7 +275,6 @@ const InputBaseSearchHomeCustom = ({
           />
           {showSubmitButton && (
             <Button variant="contained" type="submit" color="primary">
-              Search
             </Button>
           )}
         </Box>

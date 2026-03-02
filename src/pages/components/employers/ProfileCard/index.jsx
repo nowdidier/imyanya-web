@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Card, Grid, Pagination, Stack, Typography } from '@mui/material';
@@ -71,7 +72,6 @@ const ProfileCard = () => {
 
         setResumes(resumesNew);
         toastMessages.success(
-          isSaved ? 'Save successful.' : 'Unsave successful.'
         );
       } catch (error) {
         errorHandling(error);
@@ -95,8 +95,7 @@ const ProfileCard = () => {
                 variant="body1"
                 sx={{ fontSize: 18, fontWeight: 'bold' }}
               >
-                Found results:{' '}
-                <span style={{ color: 'red' }}>{count} profiles</span>
+            
               </Typography>
             </Box>
             <Box sx={{ mt: 3 }}>
@@ -120,7 +119,6 @@ const ProfileCard = () => {
                 </Box>
               ) : resumes.length === 0 ? (
                 <NoDataCard
-                  title="No results found."
                   imgComponentSgv={<SVG_IMAGES.ImageSvg11 />}
                 />
               ) : (

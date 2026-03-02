@@ -12,7 +12,7 @@ dayjs.extend(tz);
 dayjs.extend(customParseFormat);
 
 // Set default locale to Vietnamese
-dayjs.locale('vi');
+dayjs.locale('en');
 
 // Set default timezone to Asia/Ho_Chi_Minh
 dayjs.tz.setDefault('Asia/Ho_Chi_Minh');

@@ -1,3 +1,4 @@
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -7,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Box } from '@mui/material';
 
 import FeedbackCard from '../FeedbackCard';
-import imyanyaService from '../../services/imyanyaService';
+import myjobService from '../../services/myjobService';
 import NoDataCard from '../NoDataCard';
 
 const styles = {
@@ -64,7 +65,7 @@ const FeedbackCarousel = () => {
   React.useEffect(() => {
     const getFeedbacks = async () => {
       setIsLoading(true);
-      const resData = await imyanyaService.getFeedbacks();
+      const resData = await myjobService.getFeedbacks();
 
       setFeedbacks(resData.data);
       try {
@@ -100,7 +101,6 @@ const FeedbackCarousel = () => {
             ))}
           </Swiper>
         ) : feedbacks.length === 0 ? (
-          <NoDataCard title="No user feedback yet" />
         ) : (
           <Swiper
             slidesPerView={col}

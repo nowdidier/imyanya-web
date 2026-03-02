@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import {
   SolutionOutlined,
@@ -54,7 +53,7 @@ const JobSeekerQuantityStatistics = () => {
                 marginBottom: '8px',
                 display: 'block'
               }}>
-                Jobs applied
+                Việc làm đã ứng tuyển
               </span>
             }
             value={data?.totalApply}
@@ -90,7 +89,7 @@ const JobSeekerQuantityStatistics = () => {
                 marginBottom: '8px',
                 display: 'block'
               }}>
-                Saved jobs
+                Việc làm đã lưu
               </span>
             }
             value={data?.totalSave}
@@ -126,7 +125,7 @@ const JobSeekerQuantityStatistics = () => {
                 marginBottom: '8px',
                 display: 'block'
               }}>
-                Employers viewed profile
+                NTD đã xem hồ sơ
               </span>
             }
             value={data?.totalView}
@@ -162,7 +161,7 @@ const JobSeekerQuantityStatistics = () => {
                 marginBottom: '8px',
                 display: 'block'
               }}>
-                Employers are following
+                NTD đang theo dõi
               </span>
             }
             value={data?.totalFollow}

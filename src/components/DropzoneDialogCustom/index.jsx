@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { DropzoneDialog } from 'mui-file-dropzone';
 import {
@@ -8,7 +9,6 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 
 const DropzoneDialogCustom = (props) => {
-  const { open, setOpen, handleUpload, title = 'Title' } = props;
 
   const dialogTitle = (title) => (
     <>
@@ -25,8 +25,6 @@ const DropzoneDialogCustom = (props) => {
     <DropzoneDialog
       dialogTitle={dialogTitle(title)}
       acceptedFiles={['image/*']}
-      submitButtonText="Upload"
-      cancelButtonText="Cancel"
       maxFileSize={5000000}
       open={open}
       onClose={() => setOpen(false)}
@@ -37,15 +35,10 @@ const DropzoneDialogCustom = (props) => {
       }}
       showPreviews={true}
       showFileNamesInPreview={false}
-      dropzoneText="Drag and drop files here or click"
-      previewText="Preview"
       getFileLimitExceedMessage={(number) =>
-        `Upload limit is ${number} files.`
       }
       getFileAddedMessage={(fileName) =>
-        `File ${fileName} was added successfully.`
       }
-      getFileRemovedMessage={(fileName) => `File ${fileName} was removed`}
       {...props}
     />
   );

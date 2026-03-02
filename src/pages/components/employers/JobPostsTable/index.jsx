@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Chip, IconButton, TableBody, TableCell, Tooltip } from '@mui/material';
@@ -18,7 +19,6 @@ const JobPostsTable = (props) => {
       {!isLoading && rows.length === 0 ? (
         <TableBody>
           <TableCell colSpan={7}>
-            <NoDataCard title="You have no job postings" />
           </TableCell>
         </TableBody>
       ) : (
@@ -29,7 +29,6 @@ const JobPostsTable = (props) => {
                 {row.jobName}{' '}
                 {row.isUrgent && (
                   <Chip
-                    label="Urgent"
                     color="error"
                     variant="outlined"
                     size="small"
@@ -60,7 +59,6 @@ const JobPostsTable = (props) => {
                 />
               </TableCell>
               <TableCell align="right">
-                <Tooltip title="Update" arrow>
                   <IconButton
                     color="secondary"
                     aria-label="edit"
@@ -69,7 +67,6 @@ const JobPostsTable = (props) => {
                     <EditOutlinedIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="Delete" arrow>
                   <IconButton
                     color="error"
                     aria-label="delete"

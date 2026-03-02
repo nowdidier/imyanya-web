@@ -1,5 +1,4 @@
 
-
 const mode = "light";
 
 // Define colors

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
@@ -24,7 +25,6 @@ const ApplyCard = ({
       try {
         await jobPostActivityService.applyJob(data);
 
-        toastMessages.success('Application submitted successfully.');
         setIsApplySuccess(true);
         setOpenPopup(false);
       } catch (error) {
@@ -42,11 +42,9 @@ const ApplyCard = ({
       <FormPopup
         title={
           <>
-            <Typography color="gray">Apply for position </Typography>
             <span>{title}</span>
           </>
         }
-        buttonText="Apply"
         buttonIcon={<SendIcon />}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}

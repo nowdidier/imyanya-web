@@ -1,9 +1,10 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
- 
+
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
@@ -17,7 +18,7 @@ import './configs/moment-config';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
-      <LocalizationProvider 
+      <LocalizationProvider
         dateAdapter={AdapterDayjs}
         adapterLocale="en"
         dateFormats={{ monthAndYear: "MM/YYYY" }}
@@ -27,7 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           clearButtonLabel: "Clear",
           todayButtonLabel: "Today",
         }}
-        adapterLocaleData={{ timezone: 'Africa/Kigali' }}
+        adapterLocaleData={{ timezone: 'UTC' }}
       >
         <App />
       </LocalizationProvider>

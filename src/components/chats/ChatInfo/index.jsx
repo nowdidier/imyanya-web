@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Box,  Stack, Typography } from '@mui/material';
 
@@ -34,7 +35,6 @@ const ChatInfo = ({ avatarUrl, title, subTitle, description }) => {
           <FontAwesomeIcon icon={faCheckCircle} /> {description}
         </Typography>
         <Typography textAlign="center" variant="caption">
-          Start the conversation with a greeting 😍
         </Typography>
       </Stack>
     </Stack>

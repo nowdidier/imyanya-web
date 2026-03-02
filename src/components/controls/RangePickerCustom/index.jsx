@@ -1,20 +1,21 @@
+
 import React from 'react';
 import { Box, Button, IconButton } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 
 import { DatePicker } from 'antd';
-import locale from '../../../locales/vi_VN';
+import locale from '../../../locales/en_US';
 
 import dayjs from 'dayjs';
 const { RangePicker } = DatePicker;
 
 function getMonthDiff(dateA, dateB) {
-  const msPerDay = 86400000; // milliseconds in a day
+  const msPerDay = 86400000; // số milisecond trong một ngày
 
-  // calculate days between two dates
+  // tính số ngày giữa hai ngày
   const daysDiff = Math.round((dateB - dateA) / msPerDay);
 
-  // calculate months and remaining days
+  // tính số tháng và ngày còn lại
   const monthDiff = Math.floor(daysDiff / 30);
   const daysRemaining = daysDiff % 30;
 
@@ -32,6 +33,7 @@ const RangePickerCustom = ({
   const disabledDate = React.useCallback(
     (current) => {
       return current && current > maxDate;
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
     },
     [maxDate]
@@ -109,7 +111,6 @@ const RangePickerCustom = ({
           disabled={!selectedDateRange}
           onClick={() => setAllowSubmit(!allowSubmit)}
         >
-          Apply
         </Button>
       </Box>
     </>

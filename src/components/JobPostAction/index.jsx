@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -157,7 +158,6 @@ const JobPostAction = ({
                         fontStyle: 'italic',
                         fontSize: 13
                       }}>
-                        Not updated
                       </span>
                     )}
                   </Typography>

@@ -1,5 +1,4 @@
 
-
 import {
   Dialog,
   DialogTitle,
@@ -60,7 +59,6 @@ const SocialNetworkSharingPopup = (props) => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Typography variant="h5" sx={{ fontWeight: 600 }}>Share via</Typography>
           <IconButton
             onClick={() => setOpenPopup(false)}
             size="small"

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Link from '@mui/material/Link';
@@ -35,35 +36,30 @@ const Footer = () => {
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.ABOUT_US}`)}
-                  primary={`About ${APP_NAME}`}
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/contact')}
-                  primary="Contact" 
+                  onClick={() => nav('/lien-he')}
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/faq')}
-                  primary="FAQ"
+                  onClick={() => nav('/hoi-dap')}
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/terms')}
-                  primary="Terms of Use"
+                  onClick={() => nav('/thoa-thuan-su-dung')}
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/privacy')}
-                  primary="Privacy Policy"
+                  onClick={() => nav('/quy-dinh-bao-mat')}
                 />
               </ListItem>
             </List>
@@ -71,43 +67,36 @@ const Footer = () => {
           <Grid xs={12} sm={6} md={3} item>
             <List disablePadding>
               <ListItem>
-                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-                  For Employers
-                </Typography>
+                
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.EMPLOYER.JOB_POST}`)}
-                  primary="Post a Job"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.EMPLOYER.PROFILE}`)}
-                  primary="Search Resumes" 
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.EMPLOYER.DASHBOARD}`)}
-                  primary="Employer Dashboard"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.EMPLOYER.CHAT}`)}
-                  primary="Messages"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.EMPLOYER.NOTIFICATION}`)}
-                  primary="Notifications"
                 />
               </ListItem>
             </List>
@@ -115,43 +104,36 @@ const Footer = () => {
           <Grid xs={12} sm={6} md={3} item>
             <List disablePadding>
               <ListItem>
-                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-                  For Job Seekers
-                </Typography>
+                
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS}`)}
-                  primary="Jobs"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.COMPANY}`)}
-                  primary="Companies"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.DASHBOARD}`)}
-                  primary="Candidate Dashboard"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.CHAT}`)}
-                  primary="Messages"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.NOTIFICATION}`)}
-                  primary="Notifications"
                 />
               </ListItem>
             </List>
@@ -159,9 +141,6 @@ const Footer = () => {
           <Grid xs={12} sm={6} md={3} item>
             <List disablePadding>
               <ListItem>
-                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-                  Mobile App
-                </Typography>
               </ListItem>
               <ListItem>
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
@@ -189,9 +168,6 @@ const Footer = () => {
               </ListItem>
               
               <ListItem sx={{ mt: 3 }}>
-                <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-                  Connect with Imyanya
-                </Typography>
               </ListItem>
               <ListItem>
                 <Stack direction="row" spacing={0} sx={{ flexWrap: 'wrap', gap: 0.5 }}>
@@ -223,9 +199,6 @@ const Footer = () => {
 
         <Divider sx={{ my: 4 }} />
         
-        <Typography variant="body2" color="grey.400" align="center" sx={{ pt: 2 }}>
-          © {new Date().getFullYear()} Imyanya. All rights reserved.
-        </Typography>
       </Container>
     </Box>
   );

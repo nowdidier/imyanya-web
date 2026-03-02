@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -65,7 +66,7 @@ const LanguageSkillForm = ({
           />
         </Grid>
         <Grid item xs={12}>
-          <RatingCustom name="level" control={control} title="Level" />
+          <RatingCustom name="level" control={control} title="Trình độ" />
         </Grid>
       </Grid>
     </form>

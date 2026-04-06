@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { TextField, Typography } from '@mui/material';
+import { TextField, Typography, Box } from '@mui/material';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +16,7 @@ const MultilineTextFieldCustom = ({
   minRows = 4
 }) => {
   return (
-    <div>
+    <Box>
       {title && (
         <Typography variant="subtitle2" gutterBottom>
            {title} {showRequired && <span style={{ color: 'red' }}>*</span>}
@@ -29,14 +28,11 @@ const MultilineTextFieldCustom = ({
         render={({ field, fieldState }) => (
           <>
             <TextField
+              {...field} // Spread handles name, onChange, onBlur, and value automatically
+              value={field.value || ''} // Fallback to '' prevents "uncontrolled to controlled" warning
               fullWidth
-            //   size="small"
               id={field.name}
               placeholder={placeholder}
-              defaultValue=""
-              value={field.value}
-              onChange={field.onChange}
-              onBlur={field.onBlur}
               error={fieldState.invalid}
               disabled={disabled}
               multiline
@@ -45,22 +41,26 @@ const MultilineTextFieldCustom = ({
               variant="outlined"
             />
             {fieldState.invalid && (
-              <span
-                style={{
+              <Box
+                component="span"
+                sx={{
                   color: 'red',
                   fontSize: 13,
-                  marginTop: 1,
-                  marginLeft: 1,
+                  marginTop: '4px',
+                  marginLeft: '4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px'
                 }}
               >
-                <FontAwesomeIcon icon={faCircleExclamation} />{' '}
+                <FontAwesomeIcon icon={faCircleExclamation} />
                 {fieldState.error?.message}
-              </span>
+              </Box>
             )}
           </>
         )}
       />
-    </div>
+    </Box>
   );
 };
 

@@ -14,16 +14,16 @@ const EducationDetaiForm = ({ handleAddOrUpdate, editData }) => {
   const schema = yup.object().shape({
     degreeName: yup
       .string()
-      
+      .required(),
     major: yup
       .string()
-      
+      .required(),
     trainingPlaceName: yup
       .string()
-      
+      .required(),
     startDate: yup
       .date()
-      
+      .required(),
     completedDate: yup.date().nullable(),
   });
 

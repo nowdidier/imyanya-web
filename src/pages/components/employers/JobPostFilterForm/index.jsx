@@ -62,16 +62,17 @@ const JobPostFilterForm = ({ handleFilter }) => {
               xl: 'center',
             }}
           >
-              <IconButton
-                aria-label="refresh"
-                onClick={() => {
-                  reset();
-                  handleSubmit(handleFilter(defaultValues));
-                }}
-              >
-                <RefreshIcon />
-              </IconButton>
-            </Tooltip>
+              <Tooltip title="Refresh">
+                <IconButton
+                  aria-label="refresh"
+                  onClick={() => {
+                    reset();
+                    handleSubmit(handleFilter(defaultValues));
+                  }}
+                >
+                  <RefreshIcon />
+                </IconButton>
+              </Tooltip>
             <Button
               sx={{ color: 'white' }}
               variant="contained"

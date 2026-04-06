@@ -149,7 +149,6 @@ const JobPostLarge = ({
                     }}
                   />
                 </Box>
-              </Tooltip>
             )}
           </Box>
 

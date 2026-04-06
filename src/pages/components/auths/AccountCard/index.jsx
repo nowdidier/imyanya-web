@@ -25,17 +25,16 @@ const AccountCard = ({ title, sx }) => {
   const [isFullScreenLoading, setIsFullScreenLoading] = React.useState(false);
   const [serverErrors, setServerErrors] = React.useState(null);
 
-  const handleUpdateAccount = (data) => {
-    dispatch(updateUserInfo(data))
-      .unwrap()
-      .then(() =>
-        
-      )
-      .catch((error) => {
-        errorHandling(error, setServerErrors);
-      });
-  };
-
+ const handleUpdateAccount = (data) => {
+  dispatch(updateUserInfo(data))
+    .unwrap()
+    .then(() => {
+      toast.success('Account updated successfully!');
+    })
+    .catch((error) => {
+      errorHandling(error, setServerErrors);
+    });
+};
   const handleUpdatePassword = (data) => {
     const update = async (data) => {
       setIsFullScreenLoading(true);

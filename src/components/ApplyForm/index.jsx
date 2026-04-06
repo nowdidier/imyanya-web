@@ -32,12 +32,9 @@ const ApplyForm = ({ handleApplyJob }) => {
   const [resumes, setResumes] = React.useState([]);
 
   const schema = yup.object().shape({
-    fullName: yup
-      .string()
-    email: yup
-      .string()
-    phone: yup
-      .string()
+    fullName: yup.string(),
+    email: yup.string().email(),
+    phone: yup.string(),
   });
 
   const { control, setValue, handleSubmit } = useForm({

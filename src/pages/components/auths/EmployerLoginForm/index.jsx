@@ -25,16 +25,18 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 const EmployerLoginForm = ({ onLogin }) => {
   const schema = yup.object().shape({
-    email: yup
-      .string()
-      
-    password: yup
-      .string()
-     
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      ),
-  });
+  email: yup
+    .string()
+    .email('Invalid email')
+    .required('Email is required'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      'Password must have 8+ chars, upper, lower, number and special character'
+    ),
+});
 
   const { control, handleSubmit } = useForm({
     defaultValues: {

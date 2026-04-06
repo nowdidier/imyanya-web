@@ -98,12 +98,11 @@ const AppliedJobCard = () => {
               >
                 <Stack spacing={1}>
                   <Chip
-                      'DD/MM/YYYY'
-                    )}`}
-                    size="small"
-                    color="success"
-                    icon={<DoneIcon />}
-                  />
+  label={`Applied on: ${moment(date).format('DD/MM/YYYY')}`}
+  size="small"
+  color="success"
+  icon={<DoneIcon />}
+/>
                   <Typography variant="subtitle2" color="GrayText">
                     {value?.resumeDict?.type === CV_TYPES.cvWebsite ? (
                       <>

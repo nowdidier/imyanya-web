@@ -5,6 +5,7 @@ import { Box } from '@mui/system';
 import AddIcon from '@mui/icons-material/Add';
 import { Button, Typography } from '@mui/material';
 
+const EmptyCard = ({ content, labelButton, onClick }) => {
   return (
     <Box
       sx={{

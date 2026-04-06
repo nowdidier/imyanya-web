@@ -59,6 +59,7 @@ const JobPostsTable = (props) => {
                 />
               </TableCell>
               <TableCell align="right">
+                <Tooltip title="Edit">
                   <IconButton
                     color="secondary"
                     aria-label="edit"
@@ -67,6 +68,7 @@ const JobPostsTable = (props) => {
                     <EditOutlinedIcon />
                   </IconButton>
                 </Tooltip>
+                <Tooltip title="Delete">
                   <IconButton
                     color="error"
                     aria-label="delete"

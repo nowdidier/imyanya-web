@@ -38,109 +38,111 @@ const SavedResumeTable = (props) => {
           </TableCell>
         </TableBody>
       ) : (
-        rows.map((row, index) => {
-          return (
-            <TableBody key={row.id}>
-              <TableCell component="th" scope="row" padding="none">
-                {row?.resume?.type === CV_TYPES.cvWebsite ? (
+        <>
+          {rows.map((row) => {
+            return (
+              <TableBody key={row.id}>
+                <TableCell component="th" scope="row" padding="none">
+                  {row?.resume?.type === CV_TYPES.cvWebsite ? (
                     <FontAwesomeIcon
                       icon={faFile}
                       style={{ marginRight: 1 }}
                       color="#441da0"
                     />
-                  </Tooltip>
-                ) : (
+                  ) : (
                     <FontAwesomeIcon
                       icon={faFilePdf}
                       style={{ marginRight: 1 }}
                       color="red"
                     />
-                  </Tooltip>
-                )}{' '}
-                {row?.resume?.title || (
-                  <span
-                    style={{
-                      color: '#e0e0e0',
-                      fontStyle: 'italic',
-                      fontSize: 13,
-                    }}
-                  >
-                  </span>
-                )}{' '}
-              </TableCell>
-              <TableCell align="left">
-                {row?.resume?.userDict?.fullName}
-              </TableCell>
-              <TableCell align="left">
-                {salaryString(
-                  row?.resume?.salaryMin,
-                  row?.resume?.salaryMax
-                ) || (
-                  <span
-                    style={{
-                      color: '#e0e0e0',
-                      fontStyle: 'italic',
-                      fontSize: 13,
-                    }}
-                  >
-                  </span>
-                )}
-              </TableCell>
-              <TableCell align="left">
-                {allConfig?.experienceDict[row?.resume?.experience] || (
-                  <span
-                    style={{
-                      color: '#e0e0e0',
-                      fontStyle: 'italic',
-                      fontSize: 13,
-                    }}
-                  >
-                  </span>
-                )}
-              </TableCell>
-              <TableCell align="left">
-                {allConfig?.cityDict[row?.resume?.city] || (
-                  <span
-                    style={{
-                      color: '#e0e0e0',
-                      fontStyle: 'italic',
-                      fontSize: 13,
-                    }}
-                  >
-                  </span>
-                )}
-              </TableCell>
-              <TableCell align="left">
-                {dayjs(row?.createAt).format('DD/MM/YYYY')}
-              </TableCell>
-              <TableCell align="right">
-                <Stack direction="row" spacing={1} justifyContent="flex-end">
-                    <IconButton aria-label="view" size="small">
-                      <RemoveRedEyeOutlinedIcon
-                        fontSize="small"
-                        color="primary"
-                        onClick={() =>
-                          nav(
-                            `/${formatRoute(ROUTES.EMPLOYER.PROFILE_DETAIL, row?.resume?.slug)}`
-                          )
-                        }
-                      />
-                    </IconButton>
-                  </Tooltip>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    color="error"
-                    sx={{ textTransform: 'inherit', width: 110 }}
-                    startIcon={<FavoriteIcon />}
-                    onClick={() => handleUnsave(row?.resume?.slug)}
-                  >
-                  </Button>
-                </Stack>
-              </TableCell>
-            </TableBody>
-          );
-        })
+                  )}{' '}
+                  {row?.resume?.title || (
+                    <span
+                      style={{
+                        color: '#e0e0e0',
+                        fontStyle: 'italic',
+                        fontSize: 13,
+                      }}
+                    >
+                    </span>
+                  )}{' '}
+                </TableCell>
+                <TableCell align="left">
+                  {row?.resume?.userDict?.fullName}
+                </TableCell>
+                <TableCell align="left">
+                  {salaryString(
+                    row?.resume?.salaryMin,
+                    row?.resume?.salaryMax
+                  ) || (
+                    <span
+                      style={{
+                        color: '#e0e0e0',
+                        fontStyle: 'italic',
+                        fontSize: 13,
+                      }}
+                    >
+                    </span>
+                  )}
+                </TableCell>
+                <TableCell align="left">
+                  {allConfig?.experienceDict[row?.resume?.experience] || (
+                    <span
+                      style={{
+                        color: '#e0e0e0',
+                        fontStyle: 'italic',
+                        fontSize: 13,
+                      }}
+                    >
+                    </span>
+                  )}
+                </TableCell>
+                <TableCell align="left">
+                  {allConfig?.cityDict[row?.resume?.city] || (
+                    <span
+                      style={{
+                        color: '#e0e0e0',
+                        fontStyle: 'italic',
+                        fontSize: 13,
+                      }}
+                    >
+                    </span>
+                  )}
+                </TableCell>
+                <TableCell align="left">
+                  {dayjs(row?.createAt).format('DD/MM/YYYY')}
+                </TableCell>
+                <TableCell align="right">
+                  <Stack direction="row" spacing={1} justifyContent="flex-end">
+                    <Tooltip title="View">
+                      <IconButton aria-label="view" size="small">
+                        <RemoveRedEyeOutlinedIcon
+                          fontSize="small"
+                          color="primary"
+                          onClick={() =>
+                            nav(
+                              `/${formatRoute(ROUTES.EMPLOYER.PROFILE_DETAIL, row?.resume?.slug)}`
+                            )
+                          }
+                        />
+                      </IconButton>
+                    </Tooltip>
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      color="error"
+                      sx={{ textTransform: 'inherit', width: 110 }}
+                      startIcon={<FavoriteIcon />}
+                      onClick={() => handleUnsave(row?.resume?.slug)}
+                    >
+                      Unsave
+                    </Button>
+                  </Stack>
+                </TableCell>
+              </TableBody>
+            );
+          })}
+        </>
       )}
     </DataTableCustom>
   );

@@ -68,11 +68,13 @@ const FollowComponent = ({ slug, isFollowed }) => {
             color="warning"
             sx={{ textTransform: 'inherit' }}
           >
-            <span>
-              {followed ? (
-              ) : (
-              )}
-            </span>
+           <span>
+  {followed ? (
+    'Unfollow'
+  ) : (
+    'Follow'
+  )}
+</span>
           </LoadingButton>
         </Stack>
       )}

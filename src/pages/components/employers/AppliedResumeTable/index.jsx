@@ -7,6 +7,7 @@ import {
   MenuItem,
   TableBody,
   TableCell,
+  TableRow,
   TextField,
   Tooltip,
   Typography,
@@ -119,12 +120,11 @@ const AppliedStatusComponent = ({
 
     if (chooseValue < applyStatus) {
       errorModal(
-      
-    
+        `Cannot downgrade from <strong>${
           allConfig?.applicationStatusDict[applyStatus] || '---'
-      
+        }</strong> to <strong>${
           allConfig?.applicationStatusDict[e.target.value] || '---'
-        }"</strong>`
+        }</strong>`
       );
     } else {
       confirmModal(
@@ -134,9 +134,9 @@ const AppliedStatusComponent = ({
               setApplyStatus(chooseValue);
             }
           }),
-      
+        `Update status to <strong>${
           allConfig?.applicationStatusDict[e.target.value] || '---'
-        
+        }</strong>?`
       );
     }
   };
@@ -167,100 +167,106 @@ const AppliedResumeTable = (props) => {
 
   return (
     <DataTableCustom {...props}>
-      {!isLoading && rows.length === 0 ? (
-        <TableBody>
-          <TableCell colSpan={7}>
-            <NoDataCard
-              imgComponentSgv={<SVG_IMAGES.ImageSvg13 />}
-            />
-          </TableCell>
-        </TableBody>
-      ) : (
-        rows.map((row, index) => {
-          return (
-            <TableBody key={row.id}>
-              <TableCell component="th" scope="row" padding="none">
-                <Typography sx={{ fontWeight: 'bold' }}>
-                  {row?.fullName}
-                </Typography>
-                {row?.type === CV_TYPES.cvWebsite ? (
-                    <FontAwesomeIcon
-                      icon={faFile}
-                      style={{ marginRight: 1 }}
-                      color="#441da0"
-                    />
+      <TableBody>
+        {!isLoading && rows.length === 0 ? (
+          <TableRow>
+            <TableCell colSpan={7}>
+              <NoDataCard
+                imgComponentSgv={<SVG_IMAGES.ImageSvg13 />}
+              />
+            </TableCell>
+          </TableRow>
+        ) : (
+          rows.map((row) => {
+            return (
+              <TableRow key={row.id}>
+                <TableCell component="th" scope="row" padding="none">
+                  <Typography sx={{ fontWeight: 'bold' }}>
+                    {row?.fullName}
+                  </Typography>
+                  <Tooltip title={row?.type === CV_TYPES.cvWebsite ? 'Website' : 'PDF'}>
+                    {row?.type === CV_TYPES.cvWebsite ? (
+                      <FontAwesomeIcon
+                        icon={faFile}
+                        style={{ marginRight: 1 }}
+                        color="#441da0"
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faFilePdf}
+                        style={{ marginRight: 1 }}
+                        color="red"
+                      />
+                    )}
                   </Tooltip>
-                ) : (
-                    <FontAwesomeIcon
-                      icon={faFilePdf}
-                      style={{ marginRight: 1 }}
-                      color="red"
-                    />
-                  </Tooltip>
-                )}{' '}
-                {row?.title || (
-                  <span
-                    style={{
-                      color: '#e0e0e0',
-                      fontStyle: 'italic',
-                      fontSize: 13,
-                    }}
-                  >
-                  </span>
-                )}{' '}
-              </TableCell>
-              <TableCell align="left">{row?.jobName}</TableCell>
-              <TableCell align="left">
-                {dayjs(row?.createAt).format('DD/MM/YYYY')}
-              </TableCell>
-              <TableCell align="left">
-                {row?.type === CV_TYPES.cvWebsite
-                 
-              </TableCell>
-              <TableCell align="right">
-                <AppliedStatusComponent
-                  options={allConfig?.applicationStatusOptions || []}
-                  defaultStatus={row?.status}
-                  id={row?.id}
-                  handleChangeApplicationStatus={handleChangeApplicationStatus}
-                />
-              </TableCell>
-              <TableCell align="right">
-                <Stack direction="row" spacing={1} justifyContent="flex-end">
-                    <IconButton
-                      color="primary"
-                      aria-label="view"
-                      size="small"
-                      onClick={() =>
-                        nav(
-                          `/${formatRoute(ROUTES.EMPLOYER.PROFILE_DETAIL, row?.resumeSlug)}`
-                        )
-                      }
+                  {' '}
+                  {row?.title || (
+                    <span
+                      style={{
+                        color: '#e0e0e0',
+                        fontStyle: 'italic',
+                        fontSize: 13,
+                      }}
                     >
-                      <RemoveRedEyeOutlinedIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                    <IconButton
-                      size="small"
-                      color="error"
-                      aria-label="delete"
-                      onClick={() => handleDelete(row?.id)}
-                    >
-                      <DeleteOutlineOutlinedIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                  <SendEmailComponent
-                    jobPostActivityId={row.id}
-                    isSentEmail={row?.isSentEmail}
-                    email={row?.email}
-                    fullName={row?.fullName}
+                      No Title
+                    </span>
+                  )}
+                  {' '}
+                </TableCell>
+                <TableCell align="left">{row?.jobName}</TableCell>
+                <TableCell align="left">
+                  {dayjs(row?.createAt).format('DD/MM/YYYY')}
+                </TableCell>
+                <TableCell align="left">
+                  {row?.type === CV_TYPES.cvWebsite ? 'Website' : 'PDF'}
+                </TableCell>
+                <TableCell align="right">
+                  <AppliedStatusComponent
+                    options={allConfig?.applicationStatusOptions || []}
+                    defaultStatus={row?.status}
+                    id={row?.id}
+                    handleChangeApplicationStatus={handleChangeApplicationStatus}
                   />
-                </Stack>
-              </TableCell>
-            </TableBody>
-          );
-        })
-      )}
+                </TableCell>
+                <TableCell align="right">
+                  <Stack direction="row" spacing={1} justifyContent="flex-end">
+                    <Tooltip title="View">
+                      <IconButton
+                        color="primary"
+                        aria-label="view"
+                        size="small"
+                        onClick={() =>
+                          nav(
+                            `/${formatRoute(ROUTES.EMPLOYER.PROFILE_DETAIL, row?.resumeSlug)}`
+                          )
+                        }
+                      >
+                        <RemoveRedEyeOutlinedIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Delete">
+                      <IconButton
+                        size="small"
+                        color="error"
+                        aria-label="delete"
+                        onClick={() => handleDelete(row?.id)}
+                      >
+                        <DeleteOutlineOutlinedIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                    <SendEmailComponent
+                      jobPostActivityId={row.id}
+                      isSentEmail={row?.isSentEmail}
+                      email={row?.email}
+                      fullName={row?.fullName}
+                    />
+                  </Stack>
+                </TableCell>
+              </TableRow>
+            );
+          })
+        )}
+      </TableBody>
     </DataTableCustom>
   );
 };

@@ -27,31 +27,31 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
   const schema = yup.object().shape({
     jobName: yup
       .string()
-   
+      .required(),
     career: yup
       .number()
-  
+      .required(),
     position: yup
       .number()
-      
+      .required(),
     experience: yup
       .number()
-     
+      .required(),
     typeOfWorkplace: yup
       .number()
-      
+      .required(),
     jobType: yup
       .number()
-      
+      .required(),
     quantity: yup
       .number()
-      
+      .required(),
     genderRequired: yup
       .string()
-      
+      .required(),
     salaryMin: yup
       .number()
-      
+      .required()
       .test(
         'minimum-wage-comparison',
         function (value) {
@@ -60,7 +60,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
       ),
     salaryMax: yup
       .number()
-     
+      .required()
       .test(
         'maximum-wage-comparison',
         function (value) {
@@ -69,48 +69,51 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
       ),
     academicLevel: yup
       .number()
-      
+      .required(),
     deadline: yup
       .date()
-      
+      .required(),
     jobDescription: yup
       .mixed()
-        value.getCurrentContent().hasText()
-      ),
+      .test('has-text', function (value) {
+        return value && value.getCurrentContent().hasText();
+      }),
     jobRequirement: yup
       .mixed()
-        value.getCurrentContent().hasText()
-      ),
+      .test('has-text', function (value) {
+        return value && value.getCurrentContent().hasText();
+      }),
     benefitsEnjoyed: yup
       .mixed()
-        value.getCurrentContent().hasText()
-      ),
+      .test('has-text', function (value) {
+        return value && value.getCurrentContent().hasText();
+      }),
     location: yup.object().shape({
       city: yup
         .number()
-      
+        .required(),
       district: yup
         .number()
-        
+        .required(),
       address: yup
         .string()
-        
+        .required(),
       lat: yup
         .number()
-        
+        .required(),
       lng: yup
         .number()
-      
+        .required(),
     }),
     contactPersonName: yup
       .string()
-      
+      .required(),
     contactPersonPhone: yup
       .string()
-     
+      .required(),
     contactPersonEmail: yup
       .string()
-     
+      .required(),
     isUrgent: yup.boolean().default(false),
   });
 

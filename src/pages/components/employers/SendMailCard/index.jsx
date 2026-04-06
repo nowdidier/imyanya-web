@@ -20,17 +20,16 @@ const SendMailCard = ({
   const schema = yup.object().shape({
     email: yup
       .string()
-     
+      .required('Email is required'),
     fullName: yup
       .string()
-      
+      .required('Full name is required'),
     title: yup
       .string()
-     
+      .required('Title is required'),
     content: yup
       .mixed()
-        value.getCurrentContent().hasText()
-      ),
+      .required('Content is required'),
     isSendMe: yup.boolean().default(false),
   });
 

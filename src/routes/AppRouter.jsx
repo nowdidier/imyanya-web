@@ -72,7 +72,7 @@ const renderRoutes = (routes, settings) => {
 
 const AppRoutes = ({ settings }) => {
   const hostName = window.location.hostname;
-  const routes = routesConfig[hostName];
+  const routes = routesConfig[hostName] || [];
 
   return <Routes>{renderRoutes(routes, settings)}</Routes>;
 };

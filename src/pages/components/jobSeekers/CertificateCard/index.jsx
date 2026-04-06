@@ -268,9 +268,10 @@ const CertificateCard = ({ title }) => {
                             <TimeAgo date={value.startDate} type="format" format="DD/MM/YYYY"/>{' '}
                             -{' '}
                             {value.expirationDate ? (
-                              <TimeAgo date={value.expirationDate} type="format" format="DD/MM/YYYY"/>
-                            ) : (
-                            )}
+  <TimeAgo date={value.expirationDate} type="format" format="DD/MM/YYYY"/>
+) : (
+  null
+)}
                           </Typography>
                           <Typography
                             variant="h6"

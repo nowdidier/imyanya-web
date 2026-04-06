@@ -4,7 +4,7 @@ import { Box, Button, IconButton } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 
 import { DatePicker } from 'antd';
-import locale from '../../../locales/en_US';
+import locale from '../../../locales/rwa_KI';
 
 import dayjs from 'dayjs';
 const { RangePicker } = DatePicker;

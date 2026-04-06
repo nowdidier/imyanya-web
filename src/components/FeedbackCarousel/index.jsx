@@ -1,4 +1,3 @@
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -13,10 +12,10 @@ import NoDataCard from '../NoDataCard';
 
 const styles = {
   ".swiper-pagination": {
-    bottom: "-5px !important", // Move down 10px,
+    bottom: "-5px !important",
   },
   ".swiper-wrapper": {
-    paddingBottom: "30px", // Add padding to avoid being blocked
+    paddingBottom: "30px",
   },
   ".swiper-pagination-bullet": {
     width: 15,
@@ -65,10 +64,9 @@ const FeedbackCarousel = () => {
   React.useEffect(() => {
     const getFeedbacks = async () => {
       setIsLoading(true);
-      const resData = await myjobService.getFeedbacks();
-
-      setFeedbacks(resData.data);
       try {
+        const resData = await myjobService.getFeedbacks();
+        setFeedbacks(resData.data);
       } catch (error) {
       } finally {
         setIsLoading(false);
@@ -101,6 +99,7 @@ const FeedbackCarousel = () => {
             ))}
           </Swiper>
         ) : feedbacks.length === 0 ? (
+          <NoDataCard />
         ) : (
           <Swiper
             slidesPerView={col}

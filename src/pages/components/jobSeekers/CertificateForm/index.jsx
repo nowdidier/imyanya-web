@@ -17,13 +17,13 @@ const CertificateForm = ({
   const schema = yup.object().shape({
     name: yup
       .string()
-   
+      .required(),
     trainingPlace: yup
       .string()
-      
+      .required(),
     startDate: yup
       .date()
-     
+      .required(),
     expirationDate: yup.date().nullable(),
   });
 

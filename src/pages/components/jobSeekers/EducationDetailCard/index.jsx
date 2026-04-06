@@ -267,9 +267,10 @@ const EducationDetailCard = ({ title }) => {
                             <TimeAgo date={value.startDate} type="format" format="DD/MM/YYYY"/>{' '}
                             -{' '}
                             {value.completedDate ? (
-                              <TimeAgo date={value.completedDate} type="format" format="DD/MM/YYYY"/>
-                            ) : (
-                            )}
+  <TimeAgo date={value.completedDate} type="format" format="DD/MM/YYYY"/>
+) : (
+  null
+)}
                           </Typography>
                           <Typography
                             variant="h6"

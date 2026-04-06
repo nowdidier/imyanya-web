@@ -67,7 +67,6 @@ const SavedResumeFilterForm = ({ handleFilter }) => {
               >
                 <RefreshIcon />
               </IconButton>
-            </Tooltip>
             <Button
               sx={{ color: 'white' }}
               variant="contained"

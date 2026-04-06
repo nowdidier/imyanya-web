@@ -29,38 +29,28 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
       .required('Tên công ty là bắt buộc.')
       .max(255, 'Tên công ty vượt quá độ dài cho phép.'),
     taxCode: yup
-      .string()
-     
+      .string(),
     employeeSize: yup
-      .number()
-     
+      .number(),
     fieldOperation: yup
-      .string()
-      
+      .string(),
     location: yup.object().shape({
       city: yup
-        .number()
-      
+        .number(),
       district: yup
-        .number()
-      
+        .number(),
       address: yup
-        .string()
-        
+        .string(),
       lat: yup
-        .number()
-      
+        .number(),
       lng: yup
-        .number()
-        
+        .number(),
     }),
     since: yup.date().nullable(),
     companyEmail: yup
-      .string()
-      
+      .string(),
     companyPhone: yup
-      .string()
-      
+      .string(),
   });
 
   const { control, reset, setValue, setError, handleSubmit } = useForm({

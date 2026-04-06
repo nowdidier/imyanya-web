@@ -35,10 +35,8 @@ const DropzoneDialogCustom = (props) => {
       }}
       showPreviews={true}
       showFileNamesInPreview={false}
-      getFileLimitExceedMessage={(number) =>
-      }
-      getFileAddedMessage={(fileName) =>
-      }
+      getFileLimitExceedMessage={(number) => `File limit exceeded: ${number}`}
+      getFileAddedMessage={(fileName) => `${fileName} added`}
       {...props}
     />
   );

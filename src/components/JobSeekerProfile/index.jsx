@@ -120,22 +120,23 @@ const JobSeekerProfile = ({
               </span>
             </Typography>
             {lastViewedDate && (
-              <Chip
-                icon={<CheckCircleRoundedIcon />}
-                  'DD/MM/YYYY HH:mm'
-                )}`}
-                color="success"
-                variant="outlined"
-                size="small"
-                sx={{
-                  borderRadius: '6px',
-                  backgroundColor: defaultTheme.palette.success.background,
-                  borderColor: defaultTheme.palette.success.light,
-                  '& .MuiChip-label': {
-                    px: 1,
-                  }
-                }}
-              />
+              <Tooltip title={`Xem lần cuối: ${dayjs(lastViewedDate).format('DD/MM/YYYY HH:mm')}`}>
+                <Chip
+                  icon={<CheckCircleRoundedIcon />}
+                  label="Đã xem"
+                  color="success"
+                  variant="outlined"
+                  size="small"
+                  sx={{
+                    borderRadius: '6px',
+                    backgroundColor: defaultTheme.palette.success.background,
+                    borderColor: defaultTheme.palette.success.light,
+                    '& .MuiChip-label': {
+                      px: 1,
+                    }
+                  }}
+                />
+              </Tooltip>
             )}
           </Stack>
 
@@ -227,6 +228,7 @@ const JobSeekerProfile = ({
           spacing={1}
         >
           <Stack direction="row" spacing={1}>
+            <Tooltip title="Lưu hồ sơ">
               <IconButton
                 aria-label="save"
                 size="small"
@@ -245,6 +247,7 @@ const JobSeekerProfile = ({
                 )}
               </IconButton>
             </Tooltip>
+            <Tooltip title="Xem chi tiết">
               <IconButton 
                 aria-label="view" 
                 size="small"
@@ -270,6 +273,7 @@ const JobSeekerProfile = ({
               gap: 0.5
             }}
           >
+            Cập nhật: {dayjs(updateAt).format('DD/MM/YYYY')}
           </Typography>
 
           <Typography
@@ -287,6 +291,7 @@ const JobSeekerProfile = ({
                 color: defaultTheme.palette.grey[500]
               }} 
             />
+            {viewEmployerNumber || 0} lượt xem
           </Typography>
         </Stack>
       </Stack>

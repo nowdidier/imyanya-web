@@ -297,9 +297,8 @@ const CVDoc = ({ resume, user, themeColor }) => {
                 </View>
                 <View style={styles.infoItem}>
                   <Text style={styles.infoValue}>
-                    {`${(resume?.salaryMin / 1000000).toFixed(1)} - ${(
-                      resume?.salaryMax / 1000000
-                  </Text>
+  {(resume?.salaryMin / 1000000).toFixed(1)} - {(resume?.salaryMax / 1000000).toFixed(1)}
+</Text>
                 </View>
                 <View style={styles.infoItem}>
                   <Text style={styles.infoValue}>
@@ -402,6 +401,8 @@ const CVDoc = ({ resume, user, themeColor }) => {
                       {formatDate(cert?.startDate)}
                       {cert?.expirationDate
                         ? ` - ${formatDate(cert?.expirationDate)}`
+                        : ''
+                      }
                     </Text>
                   </View>
                 </View>

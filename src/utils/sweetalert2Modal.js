@@ -1,4 +1,3 @@
-
 import Swal from 'sweetalert2';
 
 const confirmModal = (
@@ -7,8 +6,8 @@ const confirmModal = (
   text = '',
   icon = 'success',
   showCancelButton = true,
-  confirmButtonText = 'Confirm',
-  cancelButtonText = 'Cancel'
+  confirmButtonText = 'Đồng ý',
+  cancelButtonText = 'Hủy'
 ) => {
   return Swal.fire({
     title: title,

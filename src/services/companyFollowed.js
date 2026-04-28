@@ -1,4 +1,3 @@
-
 import httpRequest from '../utils/httpRequest';
 
 const companyFollowed = {

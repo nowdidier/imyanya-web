@@ -1,4 +1,3 @@
-
 export {default as AccountPage} from './AccountPage'
 export {default as CompanyPage} from './CompanyPage'
 export {default as DashboardPage} from './DashboardPage'

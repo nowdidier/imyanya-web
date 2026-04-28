@@ -1,4 +1,3 @@
-
 import { Outlet } from "react-router-dom";
 import { HOST_NAME, ROUTES } from "./constants";
 import {

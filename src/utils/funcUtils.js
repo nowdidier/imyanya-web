@@ -1,4 +1,3 @@
-
 import toSlug from "./customData";
 import { APP_NAME } from "../configs/constants";
 

@@ -2,7 +2,7 @@
 Sisitemu yo gushaka no gutanga akazi ya MyJob - Igice cya MyJob Platform
 
 Umwanditsi: Bui Khanh Huy
-Email: khuy220@gmail.com
+email: khuy220@gmail.com
 Uburenganzira bw’umwanditsi (c) 2023 Bui Khanh Huy
 
 Uruhushya: MIT License

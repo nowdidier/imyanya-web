@@ -23,7 +23,7 @@ const prefix = "api";
 // BASE URL
 // ==============================
 
-// Local CRACO and Vercel both proxy /api
+// Local CRACO, Vercel, and Cloudflare all proxy /api
 // to the backend, avoiding browser CORS.
 //
 // Dev:

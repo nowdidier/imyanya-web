@@ -1,3 +1,6 @@
 name = "imyanya-web"
 pages_build_output_dir = "./build"
 compatibility_date = "2024-09-23"
+
+[vars]
+BACKEND_URL = "https://philosophical-ariel-novarwa-4fd2a870.koyeb.app"

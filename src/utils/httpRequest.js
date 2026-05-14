@@ -1,89 +1,114 @@
-/*
-MyJob Recruitment System - Part of MyJob Platform
+import axios from "axios";
+import queryString from "query-string";
 
-Author: Bui Khanh Huy
-Email: khuy220@gmail.com
-Copyright (c) 2023 Bui Khanh Huy
+import tokenService from "../services/tokenService";
 
-License: MIT License
-See the LICENSE file in the project root for full license information.
-*/
-
-import axios from 'axios';
-import queryString from 'query-string';
-import tokenService from '../services/tokenService';
+// ==============================
+// PUBLIC ENDPOINTS
+// ==============================
 
 // API endpoints that do not require authentication
-const notAuthenticationURL = ['api/auth/token/', 'api/auth/convert-token/'];
-// Prefix for API endpoints
-const prefix = 'api'
+const notAuthenticationURL = [
+  "auth/token/",
+  "auth/convert-token/",
+];
 
-// Use relative path to work with nginx proxy
+// ==============================
+// API PREFIX
+// ==============================
+
+const prefix = "api";
+
+// ==============================
+// BASE URL
+// ==============================
+
+// Local CRACO and Vercel both proxy /api
+// to the backend, avoiding browser CORS.
+//
+// Dev:
+//   React → CRACO Proxy → Backend
+//
+// Production:
+//   Vercel Rewrite → Backend
+//
 const baseURL = `/${prefix}/`;
+
+// ==============================
+// AXIOS INSTANCE
+// ==============================
 
 const httpRequest = axios.create({
   baseURL,
+
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
+
   paramsSerializer: {
     serialize: (params) => {
-      return queryString.stringify(params, { arrayFormat: 'bracket' });
+      return queryString.stringify(
+        params,
+        {
+          arrayFormat: "bracket",
+        }
+      );
     },
   },
+
   withCredentials: true,
+
   timeout: 30000,
 });
 
+// ==============================
+// REQUEST INTERCEPTOR
+// ==============================
+
 httpRequest.interceptors.request.use(
   (config) => {
-    const accessToken = tokenService.getAccessTokenFromCookie();
+    const accessToken =
+      tokenService.getAccessTokenFromCookie();
 
-    if (accessToken && !notAuthenticationURL.includes(config.url)) {
-      config.headers['Authorization'] = `Bearer ${accessToken}`;
+    const requestURL =
+      config.url?.replace(/^\/+/, "") || "";
+
+    // Attach token only for protected routes
+    if (
+      accessToken &&
+      !notAuthenticationURL.includes(
+        requestURL
+      )
+    ) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
+
     return config;
   },
+
   (error) => {
     return Promise.reject(error);
   }
 );
 
+// ==============================
+// RESPONSE INTERCEPTOR
+// ==============================
+
 httpRequest.interceptors.response.use(
   (response) => {
     return response.data;
   },
+
   async (error) => {
-    // const originalConfig = error.config;
-
-    // Access Token was expired
-    if (error.response.status === 401) {
+    // Access token expired or invalid
+    if (
+      error?.response?.status === 401
+    ) {
       tokenService.removeAccessTokenAndRefreshTokenFromCookie();
-      // const refreshTokenCookie = tokenService.getRefreshTokenFromCookie();
 
-      // if (!refreshTokenCookie) {
-      //   return Promise.reject(error);
-      // }
-
-      // try {
-      //   const resData = await httpRequest.post('api/auth/token/', {
-      //     grant_type: 'refresh_token',
-      //     client_id: 'VYqeXWvCcINnPhStYBKg3HJC5BeJqCZaohYlyROz',
-      //     client_secret:
-      //       'Buz6z6vwxy8W5QCVlxqCyfDnhFDDsGgf7N9B2lApShX1nj9hiFGyT8stTo6hSxn3ph2MttFPPfwWLUlwpaYaOjxvCjoYABdoq23EBoe5pMhF5zlUhUolwVdgQ7nuDtYG',
-      //     refresh_token: refreshTokenCookie,
-      //   });
-
-      //   const { access_token: accessToken, refresh_token: refreshToken } =
-      //     resData.data;
-
-      //   tokenService.saveAccessTokenAndRefreshTokenToCookie(accessToken, refreshToken);
-
-      //   return httpRequest(originalConfig);
-      // } catch (_error) {
-      //   tokenService.removeAccessTokenAndRefreshTokenFromCookie();
-      //   return Promise.reject(_error);
-      // }
+      // Optional refresh token logic
+      // can be added here later.
     }
 
     return Promise.reject(error);

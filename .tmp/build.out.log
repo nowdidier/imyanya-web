@@ -1,0 +1,227 @@
+
+> my-job-web-app@0.1.0 build:fast
+> cross-env NODE_ENV=production CI=false GENERATE_SOURCEMAP=false NODE_OPTIONS=--max-old-space-size=4096 craco build
+
+Creating an optimized production build...
+Compiled with warnings.
+
+[eslint] 
+src\components\ApplyCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\components\Companies\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\components\EmptyCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\components\FeedbackCarousel\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\components\MainJobRightBanner\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\components\NoDataCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\components\SocialNetworkSharingPopup\SocialNetworkSharingPopup.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\components\controls\FormPopup\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\components\controls\InputBaseSearchCompanyCustom\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\components\controls\InputBaseSearchHomeCustom\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\layouts\components\commons\LeftDrawer\index.js
+  Line 36:9:  'theme' is assigned a value but never used  no-unused-vars
+
+src\layouts\components\commons\TopSlide\index.js
+  Line 30:10:  'location' is assigned a value but never used  no-unused-vars
+
+src\layouts\components\employers\Sidebar\index.js
+  Line 10:3:   'Typography' is defined but never used                      no-unused-vars
+  Line 18:8:   'PropTypes' is defined but never used                       no-unused-vars
+  Line 25:8:   'BookmarkAddedOutlinedIcon' is defined but never used       no-unused-vars
+  Line 26:8:   'ContentPasteSearchOutlinedIcon' is defined but never used  no-unused-vars
+  Line 29:8:   'AccountCircleOutlinedIcon' is defined but never used       no-unused-vars
+  Line 30:8:   'SettingsOutlinedIcon' is defined but never used            no-unused-vars
+  Line 265:9:  'location' is assigned a value but never used               no-unused-vars
+
+src\pages\components\auths\AvatarCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\auths\EmployerLoginForm\index.js
+  Line 37:53:  Unnecessary escape character: \$  no-useless-escape
+  Line 37:56:  Unnecessary escape character: \^  no-useless-escape
+  Line 37:59:  Unnecessary escape character: \*  no-useless-escape
+
+src\pages\components\auths\EmployerSignUpForm\index.js
+  Line 86:53:  Unnecessary escape character: \$  no-useless-escape
+  Line 86:56:  Unnecessary escape character: \^  no-useless-escape
+  Line 86:59:  Unnecessary escape character: \*  no-useless-escape
+
+src\pages\components\auths\JobSeekerLoginForm\index.js
+  Line 67:53:  Unnecessary escape character: \$  no-useless-escape
+  Line 67:56:  Unnecessary escape character: \^  no-useless-escape
+  Line 67:59:  Unnecessary escape character: \*  no-useless-escape
+
+src\pages\components\auths\JobSeekerSignUpForm\index.js
+  Line 74:53:  Unnecessary escape character: \$  no-useless-escape
+  Line 74:56:  Unnecessary escape character: \^  no-useless-escape
+  Line 74:59:  Unnecessary escape character: \*  no-useless-escape
+
+src\pages\components\auths\ResetPasswordForm\index.js
+  Line 17:53:  Unnecessary escape character: \$  no-useless-escape
+  Line 17:56:  Unnecessary escape character: \^  no-useless-escape
+  Line 17:59:  Unnecessary escape character: \*  no-useless-escape
+
+src\pages\components\auths\UpdatePasswordForm\index.js
+  Line 21:53:  Unnecessary escape character: \$  no-useless-escape
+  Line 21:56:  Unnecessary escape character: \^  no-useless-escape
+  Line 21:59:  Unnecessary escape character: \*  no-useless-escape
+
+src\pages\components\defaults\CategoryCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\defaults\FilterJobPostCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\defaults\JobByCategory\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\defaults\MainJobPostCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\defaults\SuggestedJobPostCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\employers\ProfileDetailCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\employers\SavedResumeTable\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\employers\charts\ApplicationChart\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\employers\charts\CandidateChart\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\employers\charts\RecruitmentChart\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\jobSeekers\AppliedJobCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\jobSeekers\PersonalInfoCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\jobSeekers\SavedJobCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\jobSeekers\SidebarProfile\index.js
+  Line 1:1:   Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+  Line 4:10:  'Avatar' is defined but never used        no-unused-vars
+
+src\pages\components\jobSeekers\SidebarViewTotal\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\jobSeekers\charts\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\settings\SettingCard\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\components\settings\SettingForm\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\defaultPages\HomePage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\defaultPages\JobDetailPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\defaultPages\JobsByCareerPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\defaultPages\JobsByCityPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\defaultPages\JobsByJobTypePage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\defaultPages\NotificationPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\employerPages\CompanyPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\employerPages\DashboardPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\employerPages\ProfileAppliedPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\employerPages\ProfileDetailPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\employerPages\ProfilePage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\employerPages\SavedProfilePage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\employerPages\SettingPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\errorsPage\SystemErrorPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\jobSeekerPages\AttachedProfilePage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\jobSeekerPages\DashboardPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\jobSeekerPages\MyCompanyPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\jobSeekerPages\MyJobPage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\jobSeekerPages\OnlineProfilePage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+src\pages\jobSeekerPages\ProfilePage\index.js
+  Line 1:1:  Unexpected Unicode BOM (Byte Order Mark)  unicode-bom
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+File sizes after gzip:
+
+  1.93 MB   build\static\js\main.1b312a29.js
+  72.41 kB  build\static\css\main.95a4d83a.css
+  1.74 kB   build\static\js\206.769c9032.chunk.js
+
+The bundle size is significantly larger than recommended.
+Consider reducing it with code splitting: https://goo.gl/9VhYWB
+You can also analyze the project dependencies: https://goo.gl/LeUzfb
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+

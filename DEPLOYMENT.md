@@ -4,9 +4,9 @@ This app intentionally calls the API through the same-origin `/api/` path.
 
 - Local development: CRACO proxies `/api/*` to Koyeb.
 - Vercel: `vercel.json` rewrites `/api/*` to Koyeb.
-- Cloudflare Pages: `functions/api/[[path]].js` proxies `/api/*` to Koyeb.
+- Cloudflare Pages: `public/_worker.js` proxies `/api/*` to Koyeb and serves React assets through `env.ASSETS`.
 
-Do not use Cloudflare `_redirects` to proxy `/api/*` to Koyeb. Cloudflare Pages only supports `200` proxying to relative URLs on the same site, so the API proxy must be a Pages Function.
+Do not use Cloudflare `_redirects` to proxy `/api/*` to Koyeb. Cloudflare Pages only supports `200` proxying to relative URLs on your site, so the API proxy must be a Pages Function or `_worker.js`.
 
 ## Vercel
 
@@ -19,7 +19,7 @@ Do not use Cloudflare `_redirects` to proxy `/api/*` to Koyeb. Cloudflare Pages 
 
 - Build command: `npm run build:fast`
 - Build output directory: `build`
-- Deploy through Git integration or Wrangler when using Pages Functions. Direct Upload from the dashboard does not deploy Functions.
+- `public/_worker.js` is copied into `build/_worker.js` and supports both Git/Wrangler deployments and dashboard drag-and-drop deployments.
 - Add the required `REACT_APP_*` variables in Workers & Pages > your project > Settings > Variables and Secrets.
 - `BACKEND_URL` can be set there too; `wrangler.toml` already provides the Koyeb default.
 

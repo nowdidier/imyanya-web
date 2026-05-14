@@ -32,6 +32,7 @@ const prefix = "api";
 // Production:
 //   Vercel Rewrite → Backend
 //
+// Cloudflare uses public/_worker.js for the same /api path.
 const baseURL = `/${prefix}/`;
 
 // ==============================

@@ -1,0 +1,60 @@
+
+ ⛅️ wrangler 4.90.0
+───────────────────
+✨ Compiled Worker successfully
+✨ Parsed 0 valid redirect rules.
+✨ Parsed 4 valid header rules.
+Using secrets defined in .env
+Your Worker has access to the following bindings:
+Binding                                                                                      Resource                  Mode
+env.CF_PAGES ("1")                                                                           Environment Variable      local
+env.CF_PAGES_BRANCH ("main")                                                                 Environment Variable      local
+env.CF_PAGES_COMMIT_SHA ("74f32505a1616f5b31cee4f193399ba64ced3...")                         Environment Variable      local
+env.CF_PAGES_URL ("https://74f3250.imyanya-web.pages.dev")                                   Environment Variable      local
+env.BACKEND_URL ("https://philosophical-ariel-novarwa-4...")                                 Environment Variable      local
+env.NODE_ENV ("(hidden)")                                                                    Environment Variable      local
+env.REACT_APP_MYJOB_HOST_NAME ("(hidden)")                                                   Environment Variable      local
+env.REACT_APP_EMPLOYER_MYJOB_HOST_NAME ("(hidden)")                                          Environment Variable      local
+env.REACT_APP_API_BASE_URL ("(hidden)")                                                      Environment Variable      local
+env.REACT_APP_MYJOB_SERVER_CLIENT_ID ("(hidden)")                                            Environment Variable      local
+env.REACT_APP_MYJOB_SERVER_CLIENT_SECRET ("(hidden)")                                        Environment Variable      local
+env.REACT_APP_FACEBOOK_CLIENT_ID ("(hidden)")                                                Environment Variable      local
+env.REACT_APP_FACEBOOK_CLIENT_SECRET ("(hidden)")                                            Environment Variable      local
+env.REACT_APP_GOOGLE_CLIENT_ID ("(hidden)")                                                  Environment Variable      local
+env.REACT_APP_GOOGLE_CLIENT_SECRET ("(hidden)")                                              Environment Variable      local
+env.REACT_APP_GOONGAPI_KEY ("(hidden)")                                                      Environment Variable      local
+env.REACT_APP_JOB_SEEKER_BOT_AGENT_ID ("(hidden)")                                           Environment Variable      local
+env.REACT_APP_EMPLOYER_BOT_AGENT_ID ("(hidden)")                                             Environment Variable      local
+env.REACT_APP_FIREBASE_API_KEY ("(hidden)")                                                  Environment Variable      local
+env.REACT_APP_FIREBASE_AUTH_DOMAIN ("(hidden)")                                              Environment Variable      local
+env.REACT_APP_FIREBASE_PROJECT_ID ("(hidden)")                                               Environment Variable      local
+env.REACT_APP_FIREBASE_STORAGE_BUCKET ("(hidden)")                                           Environment Variable      local
+env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID ("(hidden)")                                      Environment Variable      local
+env.REACT_APP_FIREBASE_APP_ID ("(hidden)")                                                   Environment Variable      local
+env.REACT_APP_FIREBASE_DATABASE_URL ("(hidden)")                                             Environment Variable      local
+
+⎔ Starting local server...
+[wrangler:warn] Unable to fetch the `Request.cf` object! Falling back to a default placeholder...
+TimeoutError: The operation was aborted due to timeout
+    at new DOMException (node:internal/per_context/domexception:76:18)
+    at Timeout._onTimeout (node:internal/abort_controller:154:9)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+    at C:\Users\Novar\OneDrive\Desktop\imyanya-web\node_modules\undici\index.js:157:7
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at runNextTicks (node:internal/process/task_queues:68:3)
+    at process.processTimers (node:internal/timers:538:9)
+    at async setupCf (C:\Users\Novar\OneDrive\Desktop\imyanya-web\node_modules\miniflare\dist\src\index.js:56931:17)
+    at async #assembleConfig (C:\Users\Novar\OneDrive\Desktop\imyanya-web\node_modules\miniflare\dist\src\index.js:88754:26)
+    at async #assembleAndUpdateConfig (C:\Users\Novar\OneDrive\Desktop\imyanya-web\node_modules\miniflare\dist\src\index.js:89093:20)
+    at async Mutex.runWith (C:\Users\Novar\OneDrive\Desktop\imyanya-web\node_modules\miniflare\dist\src\index.js:58144:48)
+    at async #waitForReady (C:\Users\Novar\OneDrive\Desktop\imyanya-web\node_modules\miniflare\dist\src\index.js:89266:5)
+    at async #onBundleComplete (C:\Users\Novar\OneDrive\Desktop\imyanya-web\node_modules\wrangler\wrangler-dist\cli.js:318648:33)
+[wrangler:info] Ready on http://127.0.0.1:8788
+[wrangler:info] HEAD / 404 Not Found (16ms)
+[wrangler:info] GET /api/job/web/job-posts/ 200 OK (3993ms)
+[wrangler:info] HEAD /viec-lam 404 Not Found (17ms)
+[wrangler:info] HEAD / 404 Not Found (7ms)
+[wrangler:info] GET / 404 Not Found (11ms)
+[wrangler:info] HEAD /index.html 404 Not Found (20ms)
+[wrangler:info] GET /index.html 404 Not Found (8ms)

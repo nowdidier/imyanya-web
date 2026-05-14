@@ -1,0 +1,49 @@
+# Enable mod_rewrite
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Set base URL based on domain
+    RewriteCond %{HTTP_HOST} ^(www\.)?employers\.imyanya\.rw$ [NC]
+    RewriteBase /
+    
+    RewriteCond %{HTTP_HOST} ^(www\.)?imyanya\.rw$ [NC]
+    RewriteBase /
+    
+    # Remove .html extension
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([^\.]+)$ $1.html [NC, L]
+    
+    # Route all requests to index.html for SPA routing
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.html [QSA,L]
+    
+    # Security headers
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # CORS for both domains
+    SetEnvIf Origin "^https?://(www\.)?(imyanya\.rw|employers\.imyanya\.rw)$" CORS_MATCH=1
+    Header set Access-Control-Allow-Origin "%{CORS_MATCH}e" env=CORS_MATCH
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS" env=CORS_MATCH
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization" env=CORS_MATCH
+</IfModule>
+
+# Gzip compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Cache control
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/* "access plus 1 year"
+    ExpiresByType font/* "access plus 1 year"
+</IfModule>

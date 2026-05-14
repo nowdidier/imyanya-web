@@ -1,0 +1,29 @@
+# Editor
+.vscode/
+.idea/
+
+# Environment files — values live in GitHub Secrets
+.env
+.env.local
+.env.development
+.env.development.local
+.env.production
+.env.production.local
+
+# Cloudflare Wrangler
+.wrangler/
+
+# Dependencies
+/node_modules
+
+# Production build
+/build
+
+# Logs
+yarn-error.log
+yarn-debug.log*
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db".env.production" 

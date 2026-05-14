@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://imyanya.rw/sitemap.xml
+Sitemap: https://employers.imyanya.rw/sitemap.xml

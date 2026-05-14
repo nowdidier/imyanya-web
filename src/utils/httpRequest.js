@@ -4,11 +4,10 @@ import tokenService from '../services/tokenService';
 
 const prefix = 'api';
 
-// Dev: relative path → CRACO proxy forwards to Koyeb (avoids CORS in browser)
-// Prod: full URL → Cloudflare Workers has no proxy, so we need the absolute backend URL
-const baseURL = `/${prefix}/`;
+// Dev:  relative path → CRACO proxy forwards to Koyeb (avoids CORS in browser)
+// Prod: REACT_APP_API_BASE_URL set via GitHub Actions secret → absolute Koyeb URL
+const baseURL = process.env.REACT_APP_API_BASE_URL || `/${prefix}/`;
 
-// These URLs are relative to baseURL, so no 'api/' prefix needed
 const notAuthenticationURL = ['auth/token/', 'auth/convert-token/'];
 
 const httpRequest = axios.create({

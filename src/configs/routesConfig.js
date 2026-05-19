@@ -28,6 +28,8 @@ import {
   JobsByCityPage,
   JobsByJobTypePage,
   NotificationPage,
+  PrivacyPolicyPage,
+  TermsOfUsePage,
 } from "../pages/defaultPages";
 import {
   AccountPage,
@@ -91,6 +93,14 @@ const routesConfig = {
             {
               path: ROUTES.JOB_SEEKER.ABOUT_US,
               element: AboutUsPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.PRIVACY_POLICY,
+              element: PrivacyPolicyPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.TERMS_OF_USE,
+              element: TermsOfUsePage,
             },
             {
               path: ROUTES.JOB_SEEKER.JOBS_BY_CAREER,

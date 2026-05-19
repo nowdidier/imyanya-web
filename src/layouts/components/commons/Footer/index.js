@@ -55,15 +55,29 @@ const Footer = () => {
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/thoa-thuan-su-dung')}
-                  primary="Terms of Use"
+                  primary={
+                    <Link
+                      href={`/${ROUTES.JOB_SEEKER.TERMS_OF_USE}`}
+                      color="inherit"
+                      underline="hover"
+                    >
+                      Terms of Use
+                    </Link>
+                  }
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/quy-dinh-bao-mat')}
-                  primary="Privacy Policy"
+                  primary={
+                    <Link
+                      href={`/${ROUTES.JOB_SEEKER.PRIVACY_POLICY}`}
+                      color="inherit"
+                      underline="hover"
+                    >
+                      Privacy Policy
+                    </Link>
+                  }
                 />
               </ListItem>
             </List>
@@ -214,7 +228,7 @@ const Footer = () => {
                     mb: 1,
                   }}
                 >
-                  Connect with IMYANYA
+                  Connect with {APP_NAME}
                 </Typography>
               </ListItem>
               <ListItem>
@@ -253,7 +267,7 @@ const Footer = () => {
           align="center"
           sx={{ pt: 2 }}
         >
-          © {new Date().getFullYear()} IMYANYA. All rights reserved.
+          © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
         </Typography>
       </Container>
     </Box>

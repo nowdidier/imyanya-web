@@ -19,7 +19,7 @@ import { ReactComponent as ImageSvg15 } from "../assets/images/svg-images/sad.sv
 
 const ENV = process.env.NODE_ENV || "development";
 const PLATFORM = "WEB";
-const APP_NAME = "IMYANYA";
+const APP_NAME = "Imyanya";
 
 const normalizeHostNameValue = (value = "") => {
   return String(value)
@@ -29,22 +29,29 @@ const normalizeHostNameValue = (value = "") => {
     .replace(/\/.*$/, "");
 };
 
+const stripWwwPrefix = (value = "") => {
+  return normalizeHostNameValue(value).replace(/^www\./, "");
+};
+
 const HOST_NAME = {
   MYJOB:
     normalizeHostNameValue(process.env.REACT_APP_MYJOB_HOST_NAME) ||
-    "127.0.0.1",
+    "imyanya.rw",
   EMPLOYER_MYJOB:
     normalizeHostNameValue(process.env.REACT_APP_EMPLOYER_MYJOB_HOST_NAME) ||
-    "localhost",
+    "employers.imyanya.rw",
 };
 
 // Normalizes any hostname to a known HOST_NAME value.
 // Unknown/local hosts default to MYJOB.
 const getCanonicalHostName = (hostname = "") => {
   const h = normalizeHostNameValue(hostname);
+  const hWithoutWww = stripWwwPrefix(h);
+  const employerHost = stripWwwPrefix(HOST_NAME.EMPLOYER_MYJOB);
+  const jobSeekerHost = stripWwwPrefix(HOST_NAME.MYJOB);
 
-  if (h === HOST_NAME.EMPLOYER_MYJOB.toLowerCase()) return HOST_NAME.EMPLOYER_MYJOB;
-  if (h === HOST_NAME.MYJOB.toLowerCase())          return HOST_NAME.MYJOB;
+  if (hWithoutWww === employerHost) return HOST_NAME.EMPLOYER_MYJOB;
+  if (hWithoutWww === jobSeekerHost) return HOST_NAME.MYJOB;
 
   // Cloudflare Pages / Vercel preview URLs → default to job seeker
   if (h.includes("pages.dev") || h.includes("vercel.app")) return HOST_NAME.MYJOB;
@@ -235,6 +242,8 @@ const ROUTES = {
     COMPANY: "cong-ty",
     COMPANY_DETAIL: "cong-ty/:slug",
     ABOUT_US: "ve-chung-toi",
+    PRIVACY_POLICY: "quy-dinh-bao-mat",
+    TERMS_OF_USE: "thoa-thuan-su-dung",
     JOBS_BY_CAREER: "viec-lam-theo-nganh-nghe",
     JOBS_BY_CITY: "viec-lam-theo-tinh-thanh",
     JOBS_BY_TYPE: "viec-lam-theo-hinh-thuc-lam-viec",

@@ -6,17 +6,17 @@ const EMPLOYER_ORIGIN = "https://employers.imyanya.rw";
 const SHARE_IMAGE = `${MAIN_ORIGIN}/logo512.png`;
 
 const MAIN_DEFAULT_SEO = {
-  title: "IMYANYA | Jobs in Rwanda | Imyanya y'akazi",
+  title: "Imyanya | Jobs in Rwanda | Imyanya y'akazi",
   description:
-    "Find jobs in Rwanda, Kigali vacancies, internships, NGO jobs, and connect with employers hiring qualified candidates on IMYANYA.",
+    "Find jobs in Rwanda, Kigali vacancies, internships, NGO jobs, and connect with employers hiring qualified candidates on Imyanya.",
   keywords:
-    "jobs in Rwanda, imyanya, imyanya y'akazi, Rwanda jobs, Kigali jobs, NGO jobs Rwanda, internships Rwanda, job vacancies Rwanda, recruitment Rwanda",
+    "jobs in Rwanda, imyanya, Imyanya y'akazi, Rwanda jobs, Kigali jobs, NGO jobs Rwanda, internships Rwanda, job vacancies Rwanda, recruitment Rwanda",
 };
 
 const EMPLOYER_DEFAULT_SEO = {
-  title: "Post Jobs in Rwanda | Employer Recruitment Portal | IMYANYA",
+  title: "Post Jobs in Rwanda | Employer Recruitment Portal | Imyanya",
   description:
-    "Employers in Rwanda can post jobs, manage applications, search candidate profiles, and recruit qualified talent with IMYANYA.",
+    "Employers in Rwanda can post jobs, manage applications, search candidate profiles, and recruit qualified talent with Imyanya.",
   keywords:
     "post jobs in Rwanda, recruitment Rwanda, hire in Rwanda, employers Rwanda, candidate search Rwanda, Kigali recruitment",
 };
@@ -24,100 +24,110 @@ const EMPLOYER_DEFAULT_SEO = {
 const SEO_BY_PATH = {
   "/": MAIN_DEFAULT_SEO,
   "/viec-lam": {
-    title: "Jobs in Rwanda | Kigali Jobs and Vacancies | IMYANYA",
+    title: "Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
     description:
       "Search current jobs in Rwanda including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/jobs": {
-    title: "Jobs in Rwanda | Kigali Jobs and Vacancies | IMYANYA",
+    title: "Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
     description:
       "Search current jobs in Rwanda including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/jobs-in-rwanda": {
-    title: "Jobs in Rwanda | Kigali Jobs and Vacancies | IMYANYA",
+    title: "Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
     description:
       "Search current jobs in Rwanda including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
   },
   "/job-vacancies-rwanda": {
-    title: "Job Vacancies in Rwanda | IMYANYA",
+    title: "Job Vacancies in Rwanda | Imyanya",
     description:
       "Browse job vacancies in Rwanda from trusted employers and apply to opportunities that match your skills.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/kigali-jobs": {
-    title: "Kigali Jobs and Rwanda Vacancies | IMYANYA",
+    title: "Kigali Jobs and Rwanda Vacancies | Imyanya",
     description:
       "Find Kigali jobs and job vacancies across Rwanda from companies, NGOs, and organizations hiring now.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/cong-ty": {
-    title: "Companies Hiring in Rwanda | IMYANYA",
+    title: "Companies Hiring in Rwanda | Imyanya",
     description:
       "Discover companies hiring in Rwanda and explore employer profiles, open vacancies, and recruitment opportunities.",
     canonicalPath: "/companies",
   },
   "/companies": {
-    title: "Companies Hiring in Rwanda | IMYANYA",
+    title: "Companies Hiring in Rwanda | Imyanya",
     description:
       "Discover companies hiring in Rwanda and explore employer profiles, open vacancies, and recruitment opportunities.",
   },
   "/employers": {
-    title: "Employers and Companies in Rwanda | IMYANYA",
+    title: "Employers and Companies in Rwanda | Imyanya",
     description:
-      "Find employers in Rwanda, view company profiles, and explore active job openings on IMYANYA.",
+      "Find employers in Rwanda, view company profiles, and explore active job openings on Imyanya.",
     canonicalPath: "/companies",
   },
   "/viec-lam-theo-nganh-nghe": {
-    title: "Jobs by Career in Rwanda | IMYANYA",
+    title: "Jobs by Career in Rwanda | Imyanya",
     description:
       "Browse Rwanda jobs by career field including technology, finance, operations, sales, education, and more.",
     canonicalPath: "/jobs-by-career",
   },
   "/jobs-by-career": {
-    title: "Jobs by Career in Rwanda | IMYANYA",
+    title: "Jobs by Career in Rwanda | Imyanya",
     description:
       "Browse Rwanda jobs by career field including technology, finance, operations, sales, education, and more.",
   },
   "/viec-lam-theo-tinh-thanh": {
-    title: "Jobs by Location in Rwanda | IMYANYA",
+    title: "Jobs by Location in Rwanda | Imyanya",
     description:
       "Search jobs by location in Rwanda, including Kigali and opportunities across every province.",
     canonicalPath: "/jobs-by-location",
   },
   "/jobs-by-location": {
-    title: "Jobs by Location in Rwanda | IMYANYA",
+    title: "Jobs by Location in Rwanda | Imyanya",
     description:
       "Search jobs by location in Rwanda, including Kigali and opportunities across every province.",
   },
   "/viec-lam-theo-hinh-thuc-lam-viec": {
-    title: "Full-time, Part-time and Remote Jobs in Rwanda | IMYANYA",
+    title: "Full-time, Part-time and Remote Jobs in Rwanda | Imyanya",
     description:
       "Browse Rwanda jobs by work type, including full-time jobs, part-time roles, internships, and remote work.",
     canonicalPath: "/jobs-by-type",
   },
   "/jobs-by-type": {
-    title: "Full-time, Part-time and Remote Jobs in Rwanda | IMYANYA",
+    title: "Full-time, Part-time and Remote Jobs in Rwanda | Imyanya",
     description:
       "Browse Rwanda jobs by work type, including full-time jobs, part-time roles, internships, and remote work.",
   },
   "/ve-chung-toi": {
-    title: "About IMYANYA | Rwanda Jobs and Recruitment",
+    title: "About Imyanya | Rwanda Jobs and Recruitment",
     description:
-      "Learn how IMYANYA helps job seekers find opportunities and helps employers recruit qualified talent across Rwanda.",
+      "Learn how Imyanya helps job seekers find opportunities and helps employers recruit qualified talent across Rwanda.",
     canonicalPath: "/about-us",
   },
   "/about": {
-    title: "About IMYANYA | Rwanda Jobs and Recruitment",
+    title: "About Imyanya | Rwanda Jobs and Recruitment",
     description:
-      "Learn how IMYANYA helps job seekers find opportunities and helps employers recruit qualified talent across Rwanda.",
+      "Learn how Imyanya helps job seekers find opportunities and helps employers recruit qualified talent across Rwanda.",
     canonicalPath: "/about-us",
   },
   "/about-us": {
-    title: "About IMYANYA | Rwanda Jobs and Recruitment",
+    title: "About Imyanya | Rwanda Jobs and Recruitment",
     description:
-      "Learn how IMYANYA helps job seekers find opportunities and helps employers recruit qualified talent across Rwanda.",
+      "Learn how Imyanya helps job seekers find opportunities and helps employers recruit qualified talent across Rwanda.",
+  },
+  "/quy-dinh-bao-mat": {
+    title: "Privacy Policy | Imyanya",
+    description:
+      "Read the Imyanya privacy policy for information about account data, job seeker profiles, employer recruitment data, and authentication.",
+  },
+  "/thoa-thuan-su-dung": {
+    title: "Terms of Use | Imyanya",
+    description:
+      "Read the Imyanya terms of use for job seekers and employers using the recruitment platform.",
   },
 };
 
@@ -147,17 +157,17 @@ const getSeoForPath = (pathname) => {
 
   if (path.startsWith("/viec-lam/") || path.startsWith("/jobs/")) {
     return {
-      title: "Job Details in Rwanda | IMYANYA",
+      title: "Job Details in Rwanda | Imyanya",
       description:
-        "View job details, requirements, deadline, company information, and apply for this Rwanda job on IMYANYA.",
+        "View job details, requirements, deadline, company information, and apply for this Rwanda job on Imyanya.",
     };
   }
 
   if (path.startsWith("/cong-ty/") || path.startsWith("/companies/")) {
     return {
-      title: "Company Profile in Rwanda | IMYANYA",
+      title: "Company Profile in Rwanda | Imyanya",
       description:
-        "View company details, open vacancies, and hiring information from this Rwanda employer on IMYANYA.",
+        "View company details, open vacancies, and hiring information from this Rwanda employer on Imyanya.",
     };
   }
 
@@ -263,7 +273,7 @@ const SeoManager = () => {
     });
     upsertMeta('meta[property="og:site_name"]', {
       property: "og:site_name",
-      content: "IMYANYA",
+      content: "Imyanya",
     });
     upsertMeta('meta[property="og:title"]', {
       property: "og:title",
@@ -301,7 +311,7 @@ const SeoManager = () => {
     upsertJsonLd("imyanya-organization-schema", {
       "@context": "https://schema.org",
       "@type": "Organization",
-      name: "IMYANYA",
+      name: "Imyanya",
       url: MAIN_ORIGIN,
       logo: SHARE_IMAGE,
       sameAs: [
@@ -315,7 +325,7 @@ const SeoManager = () => {
     upsertJsonLd("imyanya-website-schema", {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      name: "IMYANYA",
+      name: "Imyanya",
       url: MAIN_ORIGIN,
       description: MAIN_DEFAULT_SEO.description,
       inLanguage: ["en-RW", "rw-RW"],

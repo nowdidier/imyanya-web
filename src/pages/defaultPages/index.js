@@ -8,4 +8,5 @@ export {default as JobsByCareerPage} from './JobsByCareerPage'
 export {default as JobsByCityPage} from './JobsByCityPage'
 export {default as JobsByJobTypePage} from './JobsByJobTypePage'
 export {default as NotificationPage} from './NotificationPage'
-
+export {default as PrivacyPolicyPage} from './PrivacyPolicyPage'
+export {default as TermsOfUsePage} from './TermsOfUsePage'

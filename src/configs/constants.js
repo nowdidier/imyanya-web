@@ -188,12 +188,12 @@ const LINKS = {
   CHPLAY_LINK: "https://play.google.com/store/",
   APPSTORE_LINK: "https://www.apple.com/app-store/",
   CERTIFICATE_LINK: "http://online.gov.vn/",
-  INSTAGRAM_LINK: "https://www.instagram.com/huybk2/",
-  FACEBOOK_LINK: "https://www.facebook.com/bkhuy/",
-  FACEBOOK_MESSENGER_LINK: "https://www.facebook.com/bkhuy/",
-  LINKEDIN_LINK: "https://www.linkedin.com/in/huy-khanh-10041b20b/",
-  TWITTER_LINK: "https://twitter.com/HuyBuiKhanh",
-  YOUTUBE_LINK: "https://www.youtube.com/channel/UCn49BvcP1w1mamaOSGTKVZw",
+  INSTAGRAM_LINK: "https://www.instagram.com/imyanya.rw/",
+  FACEBOOK_LINK: "https://www.facebook.com/profile.php?id=61560204704738",
+  FACEBOOK_MESSENGER_LINK: "https://www.facebook.com/profile.php?id=61560204704738",
+  LINKEDIN_LINK: "https://www.linkedin.com/company/imyanya/",
+  TWITTER_LINK: "https://x.com/imyanya_rw",
+  YOUTUBE_LINK: "https://www.youtube.com/@imyanyarw",
 };
 
 const LOADING_IMAGES = {

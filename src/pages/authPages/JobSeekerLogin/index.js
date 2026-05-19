@@ -15,13 +15,13 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { TabTitle } from '../../../utils/generalFunction';
+import getAuthErrorMessage from '../../../utils/authErrorMessage';
 import {
   AUTH_CONFIG,
   AUTH_PROVIDER,
   ROLES_NAME,
   ROUTES,
 } from '../../../configs/constants';
-import toastMessages from '../../../utils/toastMessages';
 import BackdropLoading from '../../../components/loading/BackdropLoading';
 
 import { updateVerifyEmail } from '../../../redux/authSlice';
@@ -82,6 +82,7 @@ const JobSeekerLogin = () => {
   const handleLogin = (data) => {
     const getAccesToken = async (email, password, roleName) => {
       setIsFullScreenLoading(true);
+      setErrorMessage(null);
 
      try {
         const resData = await authService.getToken(email, password, roleName);
@@ -97,30 +98,19 @@ const JobSeekerLogin = () => {
             accessToken,
             refreshToken,
             backend
-          );
+        );
         if (isSaveTokenToCookie) {
-          dispatch(getUserInfo())
-            .unwrap()
-            .then(() => {
-              nav('/');
-            })
-            .catch(() => {
-              toastMessages.error('An error occurred, please log in again!');
-            });
+          try {
+            await dispatch(getUserInfo()).unwrap();
+            nav('/');
+          } catch (error) {
+            setErrorMessage(getAuthErrorMessage(error));
+          }
         } else {
-          toastMessages.error('An error occurred, please log in again!');
+          setErrorMessage('Unable to save the login session in this browser. Please allow cookies and try again.');
         }
       } catch (error) {
-        // 400 bad request
-        const res = error.response;
-        if (res.status === 400) {
-          const errors = res.data?.errors;
-          if ('errorMessage' in errors) {
-            setErrorMessage(errors.errorMessage.join(' '));
-          } else {
-            toastMessages.error('An error occurred, please try again!');
-          }
-        }
+        setErrorMessage(getAuthErrorMessage(error));
       } finally {
         setIsFullScreenLoading(false);
       }
@@ -128,6 +118,7 @@ const JobSeekerLogin = () => {
 
     const checkCreds = async (email, password, roleName) => {
       setIsFullScreenLoading(true);
+      setErrorMessage(null);
 
      try {
         const resData = await authService.checkCreds(email, roleName);
@@ -152,9 +143,9 @@ const JobSeekerLogin = () => {
           return;
         }
 
-        getAccesToken(resEmail, password, roleName);
+        await getAccesToken(resEmail, password, roleName);
       } catch (error) {
-        toastMessages.error('An error occurred, please log in again!');
+        setErrorMessage(getAuthErrorMessage(error));
       } finally {
         setIsFullScreenLoading(false);
       }
@@ -170,6 +161,7 @@ const JobSeekerLogin = () => {
     token
   ) => {
     setIsFullScreenLoading(true);
+    setErrorMessage(null);
 
    try {
       const resData = await authService.convertToken(
@@ -190,33 +182,26 @@ const JobSeekerLogin = () => {
           accessToken,
           refreshToken,
           backend
-        );
+      );
       if (isSaveTokenToCookie) {
-        dispatch(getUserInfo())
-          .unwrap()
-          .then(() => {
-            nav('/');
-          })
-          .catch(() => {
-            toastMessages.error('An error occurred, please log in again!');
-          });
+        try {
+          await dispatch(getUserInfo()).unwrap();
+          nav('/');
+        } catch (error) {
+          setErrorMessage(getAuthErrorMessage(error));
+        }
       } else {
-        toastMessages.error('An error occurred, please log in again!');
+        setErrorMessage('Unable to save the login session in this browser. Please allow cookies and try again.');
       }
     } catch (error) {
-      // 400 bad request
-      const res = error.response;
-      if (res.status === 400) {
-        const errors = res.data?.errors;
-        if ('errorMessage' in errors) {
-          setErrorMessage(errors.errorMessage.join(' '));
-        } else {
-          toastMessages.error('An error occurred, please try again!');
-        }
-      }
+      setErrorMessage(getAuthErrorMessage(error));
     } finally {
       setIsFullScreenLoading(false);
     }
+  };
+
+  const handleInvalidLogin = () => {
+    setErrorMessage('Please enter your email and password, then try again.');
   };
 
   const handleFacebookLogin = (result) => {
@@ -241,6 +226,16 @@ const JobSeekerLogin = () => {
         accessToken
       );
     }
+  };
+
+  const handleSocialReject = (error) => {
+    const errorText =
+      error?.error_description ||
+      error?.error ||
+      error?.message ||
+      'Social login was not completed. Please try again.';
+
+    setErrorMessage(errorText);
   };
 
   return (
@@ -326,8 +321,10 @@ const JobSeekerLogin = () => {
           <Box sx={{ mt: 2 }}>
             <JobSeekerLoginForm
               onLogin={handleLogin}
+              onInvalid={handleInvalidLogin}
               onFacebookLogin={handleFacebookLogin}
               onGoogleLogin={handleGoogleLogin}
+              onSocialReject={handleSocialReject}
             />
           </Box>
 

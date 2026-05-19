@@ -30,7 +30,9 @@ In Google Cloud Console > APIs & Services > Credentials > your Web OAuth client,
 Use origins only, with no path or trailing route:
 
 - `https://imyanya.rw`
+- `https://www.imyanya.rw`
 - `https://employers.imyanya.rw`
+- `https://www.employers.imyanya.rw`
 - `https://<your-vercel-project>.vercel.app`
 - `https://<your-cloudflare-project>.pages.dev`
 - `http://localhost:3000`

@@ -22,7 +22,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const EmployerLoginForm = ({ onLogin }) => {
+const EmployerLoginForm = ({ onLogin, onInvalid }) => {
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -30,13 +30,7 @@ const EmployerLoginForm = ({ onLogin }) => {
       .email('Invalid email format'),
     password: yup
       .string()
-      .required('Password is required!')
-      .min(8, 'Password must be at least 8 characters.')
-      .max(128, 'Password exceeds the maximum length.')
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        'Must contain one uppercase letter, one lowercase letter, one number, and one special character'
-      ),
+      .required('Password is required!'),
   });
 
   const { control, handleSubmit } = useForm({
@@ -50,7 +44,7 @@ const EmployerLoginForm = ({ onLogin }) => {
   return (
     <Box 
       component="form" 
-      onSubmit={handleSubmit(onLogin)}
+      onSubmit={handleSubmit(onLogin, onInvalid)}
       sx={{
         width: '100%',
         '& .MuiTextField-root': {

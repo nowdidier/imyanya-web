@@ -52,7 +52,13 @@ const StyledDivider = styled(Divider)({
   },
 });
 
-const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
+const JobSeekerLoginForm = ({
+  onLogin,
+  onInvalid,
+  onFacebookLogin,
+  onGoogleLogin,
+  onSocialReject,
+}) => {
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -60,13 +66,7 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
       .email('Invalid email format'),
     password: yup
       .string()
-      .required("Password is required!")
-      .min(8, "Password must be at least 8 characters.")
-      .max(128, "Password exceeds the maximum length.")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        "Must contain one uppercase letter, one lowercase letter, one number, and one special character"
-      ),
+      .required("Password is required!"),
   });
 
   const { control, handleSubmit } = useForm({
@@ -80,7 +80,7 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
   return (
     <Box
       component="form"
-      onSubmit={handleSubmit(onLogin)}
+      onSubmit={handleSubmit(onLogin, onInvalid)}
       sx={{
         width: "100%",
         "& .MuiTextField-root": {
@@ -144,14 +144,11 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
           isOnlyGetToken={true}
           ux_mode="popup"
           onResolve={onFacebookLogin}
-          onReject={(err) => {
-            console.log(err);
-          }}
+          onReject={onSocialReject}
         >
           <StyledSocialButton
             fullWidth
             variant="outlined"
-            onClick={onFacebookLogin}
             startIcon={<FacebookIcon />}
             sx={{
               borderColor: "#4267B2",
@@ -173,15 +170,12 @@ const JobSeekerLoginForm = ({ onLogin, onFacebookLogin, onGoogleLogin }) => {
           scope="openid profile email"
           discoveryDocs="claims_supported"
           onResolve={onGoogleLogin}
-          onReject={(err) => {
-            console.log(err);
-          }}
+          onReject={onSocialReject}
           ux_mode="popup"
         >
           <StyledSocialButton
             fullWidth
             variant="outlined"
-            onClick={onGoogleLogin}
             startIcon={<GoogleIcon />}
             sx={{
               borderColor: "#DB4437",

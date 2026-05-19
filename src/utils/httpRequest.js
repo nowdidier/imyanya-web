@@ -11,6 +11,11 @@ import tokenService from "../services/tokenService";
 const notAuthenticationURL = [
   "auth/token/",
   "auth/convert-token/",
+  "auth/check-creds/",
+  "auth/job-seeker/register/",
+  "auth/employer/register/",
+  "auth/forgot-password/",
+  "auth/reset-password/",
 ];
 
 // ==============================

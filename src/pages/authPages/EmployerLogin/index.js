@@ -15,8 +15,8 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { TabTitle } from '../../../utils/generalFunction';
+import getAuthErrorMessage from '../../../utils/authErrorMessage';
 import { ROLES_NAME, ROUTES } from '../../../configs/constants';
-import toastMessages from '../../../utils/toastMessages';
 import BackdropLoading from '../../../components/loading/BackdropLoading';
 
 import { updateVerifyEmail } from '../../../redux/authSlice';
@@ -78,6 +78,7 @@ const EmployerLogin = () => {
   const handleLogin = (data) => {
     const getAccesToken = async (email, password, roleName) => {
       setIsFullScreenLoading(true);
+      setErrorMessage(null);
      try {
         const resData = await authService.getToken(email, password, roleName);
         const {
@@ -92,30 +93,19 @@ const EmployerLogin = () => {
             accessToken,
             refreshToken,
             backend
-          );
+        );
         if (isSaveTokenToCookie) {
-          dispatch(getUserInfo())
-            .unwrap()
-            .then(() => {
-              nav(`/${ROUTES.EMPLOYER.DASHBOARD}`);
-            })
-            .catch(() => {
-              toastMessages.error('An error occurred, please log in again!');
-            });
+          try {
+            await dispatch(getUserInfo()).unwrap();
+            nav(`/${ROUTES.EMPLOYER.DASHBOARD}`);
+          } catch (error) {
+            setErrorMessage(getAuthErrorMessage(error));
+          }
         } else {
-          toastMessages.error('An error occurred, please log in again!');
+          setErrorMessage('Unable to save the login session in this browser. Please allow cookies and try again.');
         }
       } catch (error) {
-        // 400 bad request
-        const res = error.response;
-        if (res.status === 400) {
-          const errors = res.data?.errors;
-          if ('errorMessage' in errors) {
-            setErrorMessage(errors.errorMessage.join(' '));
-          } else {
-            toastMessages.error('An error occurred, please try again!');
-          }
-        }
+        setErrorMessage(getAuthErrorMessage(error));
       } finally {
         setIsFullScreenLoading(false);
       }
@@ -123,6 +113,7 @@ const EmployerLogin = () => {
 
     const checkCreds = async (email, password, roleName) => {
       setIsFullScreenLoading(true);
+      setErrorMessage(null);
      try {
         const resData = await authService.checkCreds(email, roleName);
 
@@ -146,15 +137,19 @@ const EmployerLogin = () => {
           return;
         }
 
-        getAccesToken(resEmail, password, roleName);
+        await getAccesToken(resEmail, password, roleName);
       } catch (error) {
-        toastMessages.error('An error occurred, please log in again!');
+        setErrorMessage(getAuthErrorMessage(error));
       } finally {
         setIsFullScreenLoading(false);
       }
     };
 
     checkCreds(data.email, data.password, ROLES_NAME.EMPLOYER);
+  };
+
+  const handleInvalidLogin = () => {
+    setErrorMessage('Please enter your email and password, then try again.');
   };
 
   return (
@@ -238,7 +233,10 @@ const EmployerLogin = () => {
           )}
 
           <Box sx={{ mt: 2 }}>
-            <EmployerLoginForm onLogin={handleLogin} />
+            <EmployerLoginForm
+              onLogin={handleLogin}
+              onInvalid={handleInvalidLogin}
+            />
           </Box>
 
           <Grid 

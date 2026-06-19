@@ -19,11 +19,29 @@ const getAuthErrorMessage = (
     return errorMessage;
   }
 
+  if (errors && typeof errors === 'object') {
+    const fieldMessages = Object.values(errors)
+      .flat()
+      .filter(Boolean);
+
+    if (fieldMessages.length > 0) {
+      return fieldMessages.join(' ');
+    }
+  }
+
   if (typeof res.data?.detail === 'string') {
     return res.data.detail;
   }
 
+  if (res.status >= 500) {
+    return 'The authentication server is temporarily unavailable. Please try again in a moment.';
+  }
+
   if (typeof res.data === 'string') {
+    if (/<html[\s>]/i.test(res.data) || /<!doctype html/i.test(res.data)) {
+      return 'The authentication server returned a server error. Please try again in a moment.';
+    }
+
     if (res.data.includes('Bad Request')) {
       return 'The authentication server rejected this domain. Please check backend ALLOWED_HOSTS, CSRF, and CORS settings.';
     }
@@ -41,10 +59,6 @@ const getAuthErrorMessage = (
 
   if (res.status === 403) {
     return 'The authentication server blocked this request. Please check CSRF/CORS trusted origins for this domain.';
-  }
-
-  if (res.status >= 500) {
-    return 'The authentication server is temporarily unavailable. Please try again in a moment.';
   }
 
   return fallback;

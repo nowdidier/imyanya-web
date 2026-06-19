@@ -2,10 +2,14 @@ import toastMessages from './toastMessages';
 
 const errorHandling = (error, setError = null) => {
   const res = error.response;
+  if (!res) {
+    toastMessages.error('Unable to reach the server. Please check your connection and try again.');
+    return;
+  }
 
   switch (res.status) {
     case 400:
-      const errors = res.data?.errors;
+      const errors = res.data?.errors || {};
       if ('errorMessage' in errors) {
         toastMessages.error(errors.errorMessage.join(' '));
       } else {

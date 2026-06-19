@@ -14,6 +14,7 @@ const notAuthenticationURL = [
   "auth/check-creds/",
   "auth/job-seeker/register/",
   "auth/employer/register/",
+  "auth/resend-verification-email/",
   "auth/forgot-password/",
   "auth/reset-password/",
 ];

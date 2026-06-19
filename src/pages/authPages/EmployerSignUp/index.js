@@ -15,6 +15,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { TabTitle } from '../../../utils/generalFunction';
 import { PLATFORM, ROLES_NAME, ROUTES } from '../../../configs/constants';
 import errorHandling from '../../../utils/errorHandling';
+import toastMessages from '../../../utils/toastMessages';
 import BackdropLoading from '../../../components/loading/BackdropLoading';
 
 import { updateVerifyEmail } from '../../../redux/authSlice';
@@ -62,18 +63,22 @@ const EmployerSignUp = () => {
       setIsFullScreenLoading(true);
 
      try {
-        await authService.employerRegister(data);
+        const resData = await authService.employerRegister(data);
+        const registeredUser = resData.data || {};
 
         dispatch(
           updateVerifyEmail({
             isAllowVerifyEmail:true,
-            email: data?.email,
-            roleName: roleName,
+            email: registeredUser.email || data?.email,
+            roleName: registeredUser.roleName || roleName,
           })
         );
+        if (registeredUser.emailSent === false) {
+          toastMessages.warn('Account created, but the verification email was not sent. Please use Resend email.');
+        }
         nav(`/${ROUTES.AUTH.EMAIL_VERIFICATION}`);
       } catch (error) {
-        errorHandling(error);
+        errorHandling(error, setServerErrors);
       } finally {
         setIsFullScreenLoading(false);
       }

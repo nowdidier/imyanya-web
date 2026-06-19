@@ -72,15 +72,19 @@ const JobSeekerSignUp = () => {
     const register = async (data, roleName) => {
       setIsFullScreenLoading(true);
      try {
-        await authService.jobSeekerRegister(data);
+        const resData = await authService.jobSeekerRegister(data);
+        const registeredUser = resData.data || {};
 
         dispatch(
           updateVerifyEmail({
             isAllowVerifyEmail:true,
-            email: data?.email,
-            roleName: roleName,
+            email: registeredUser.email || data?.email,
+            roleName: registeredUser.roleName || roleName,
           })
         );
+        if (registeredUser.emailSent === false) {
+          toastMessages.warn('Account created, but the verification email was not sent. Please use Resend email.');
+        }
         nav(`/${ROUTES.AUTH.EMAIL_VERIFICATION}`);
       } catch (error) {
         errorHandling(error, setServerErrors);

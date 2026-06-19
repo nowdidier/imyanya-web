@@ -61,6 +61,11 @@ const authService = {
 
     return httpRequest.post(url, data);
   },
+  resendVerificationEmail: (data) => {
+    const url = 'auth/resend-verification-email/';
+
+    return httpRequest.post(url, data);
+  },
   getUserInfo: () => {
     const url = 'auth/user-info/';
 

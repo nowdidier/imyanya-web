@@ -32,7 +32,7 @@ import authService from '../../../services/authService';
 import { getUserInfo } from '../../../redux/userSlice';
 import { updateVerifyEmail } from '../../../redux/authSlice';
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(() => ({
   background: 'rgba(255, 255, 255, 0.9)',
   backdropFilter: 'blur(10px)',
   borderRadius: '16px',
@@ -98,7 +98,7 @@ const JobSeekerSignUp = () => {
 
   const handleSocialRegister = async (
     clientId,
-    clientSecrect,
+    clientSecret,
     provider,
     token
   ) => {
@@ -107,7 +107,7 @@ const JobSeekerSignUp = () => {
    try {
       const resData = await authService.convertToken(
         clientId,
-        clientSecrect,
+        clientSecret,
         provider,
         token
       );

@@ -5,75 +5,55 @@ import tokenService from '../services/tokenService';
 
 const getUserInfo = createAsyncThunk(
   'user/getUserInfo',
-  async (_, thunkAPI) => {
-   try {
-      const resData = await authService.getUserInfo();
+  async () => {
+    const resData = await authService.getUserInfo();
 
-      return resData.data;
-    } catch (error) {
-      throw error;
-    }
+    return resData.data;
   }
 );
 
 const updateUserInfo = createAsyncThunk(
   'user/updateUser',
-  async (data, thunkAPI) => {
-   try {
-      const resData = await authService.updateUser(data);
+  async (data) => {
+    const resData = await authService.updateUser(data);
 
-      return resData.data;
-    } catch (error) {
-      throw error;
-    }
+    return resData.data;
   }
 );
 
 const removeUserInfo = createAsyncThunk(
   'user/removeUserInfo',
-  async (data, thunkAPI) => {
-   try {
-      /**
-       * Khong revoktoken
-       * RevokToken -> token app -> chet theo
-       */
-      await authService.revokToken(data.accessToken, data.backend);
+  async (data) => {
+    /**
+     * Khong revoktoken
+     * RevokToken -> token app -> chet theo
+     */
+    await authService.revokeToken(data.accessToken, data.backend);
 
-      const removeResult =
-        tokenService.removeAccessTokenAndRefreshTokenFromCookie();
+    const removeResult =
+      tokenService.removeAccessTokenAndRefreshTokenFromCookie();
 
-      if (!removeResult) {
-        return Promise.reject("Can't remove token in Cookie");
-      }
-    } catch (error) {
-      throw error;
+    if (!removeResult) {
+      throw new Error("Can't remove token in Cookie");
     }
   }
 );
 
 const updateAvatar = createAsyncThunk(
   'user/updateAvatar',
-  async (formData, thunkAPI) => {
-   try {
-      const resData = await authService.updateAvatar(formData);
+  async (formData) => {
+    const resData = await authService.updateAvatar(formData);
 
-      return resData.data;
-    } catch (error) {
-      throw error;
-    }
+    return resData.data;
   }
 );
 
 const deleteAvatar = createAsyncThunk(
   'user/deleteAvatar',
-  async (_, thunkAPI) => {
-   try {
-      const resData = await authService.deleteAvatar();
+  async () => {
+    const resData = await authService.deleteAvatar();
 
-      return resData.data;
-    } catch (error) {
-      throw error;
-    }
+    return resData.data;
   }
 );
 

@@ -12,52 +12,66 @@ export const ChatContext = React.createContext();
 
 const ChatProvider = ({ children }) => {
   const { currentUser } = useSelector((state) => state.user);
-  const { id: userId } = currentUser;
+  const userId = currentUser?.id;
   const [selectedRoomId, setSelectedRoomId] = React.useState('');
   const [currentUserChat, setCurrentUserChat] = React.useState(null);
 
   React.useEffect(() => {
+    let isActive = true;
+
     const createUserChat = async () => {
+      if (!userId) {
+        setCurrentUserChat(null);
+        return;
+      }
+
       const isExists = await checkExists('accounts', userId);
 
       if (!isExists) {
-        // create a new user in Firestore.
-        let userData = null;
-        const roleName = currentUser.roleName;
-        if (roleName === ROLES_NAME.JOB_SEEKER) {
-          userData = {
-            userId: userId,
-            name: currentUser?.fullName,
-            email: currentUser?.email,
-            avatarUrl: currentUser?.avatarUrl,
-            company: null,
-          };
-        } else {
-          userData = {
-            userId: userId,
-            name: currentUser?.fullName,
-            email: currentUser?.email,
-            avatarUrl: currentUser?.company?.imageUrl,
-            company: {
-              companyId: currentUser?.company?.id,
-              slug: currentUser?.company?.slug,
-              companyName: currentUser?.company?.companyName,
-              imageUrl: currentUser?.company?.imageUrl,
-            },
-          };
-        }
+        const isJobSeeker = currentUser?.roleName === ROLES_NAME.JOB_SEEKER;
+        const userData = isJobSeeker
+          ? {
+              userId,
+              name: currentUser?.fullName,
+              email: currentUser?.email,
+              avatarUrl: currentUser?.avatarUrl,
+              company: null,
+            }
+          : {
+              userId,
+              name: currentUser?.fullName,
+              email: currentUser?.email,
+              avatarUrl: currentUser?.company?.imageUrl,
+              company: {
+                companyId: currentUser?.company?.id,
+                slug: currentUser?.company?.slug,
+                companyName: currentUser?.company?.companyName,
+                imageUrl: currentUser?.company?.imageUrl,
+              },
+            };
 
         const createResult = await createUser('accounts', userData, userId);
-        console.log('CREATE USER ON FIRESTORE: ', createResult);
+        if (!createResult) {
+          throw new Error('Unable to create the chat profile.');
+        }
       }
 
-      // lay thong tin user hien tai
       const userChat = await getUserAccount('accounts', userId);
-      setCurrentUserChat(userChat);
-      console.log('userChat: ', userChat);
+      if (isActive) {
+        setCurrentUserChat(userChat);
+      }
     };
 
-    createUserChat();
+    createUserChat().catch((error) => {
+      if (isActive) {
+        setCurrentUserChat(null);
+      }
+      console.error('Failed to load chat account:', error);
+    });
+
+    return () => {
+      isActive = false;
+    };
   }, [currentUser, userId]);
 
   return (

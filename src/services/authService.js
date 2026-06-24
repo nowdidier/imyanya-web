@@ -16,20 +16,20 @@ const authService = {
 
     return httpRequest.post(url, data);
   },
-  convertToken: (clientId, clientSecrect, provider, token) => {
+  convertToken: (clientId, clientSecret, provider, token) => {
     const url = 'auth/convert-token/';
 
     const data = {
       grant_type: AUTH_CONFIG.CONVERT_TOKEN_KEY,
       client_id: clientId,
-      client_secret: clientSecrect,
+      client_secret: clientSecret,
       backend: provider,
       token: token,
     };
 
     return httpRequest.post(url, data);
   },
-  revokToken: (accessToken, backend) => {
+  revokeToken: (accessToken, backend) => {
     const url = 'auth/revoke-token/';
 
     const data = {

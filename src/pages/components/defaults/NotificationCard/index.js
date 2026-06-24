@@ -44,23 +44,29 @@ const PAGE_SIZE = 10;
 const NotificationCard = ({ title }) => {
   const nav = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
+  const currentUserId = currentUser?.id;
   const [count, setCount] = React.useState(0);
   const [isLoading, setIsLoading] = React.useState(false);
   const [notifications, setNotifications] = React.useState([]);
   const [lastKey, setLastKey] = React.useState(null);
 
   React.useEffect(() => {
+    if (!currentUserId) {
+      setCount(0);
+      return undefined;
+    }
+
     const notificationsRef = collection(
       db,
       "users",
-      `${currentUser.id}`,
+      `${currentUserId}`,
       "notifications"
     );
     const allQuery = query(notificationsRef, where("is_deleted", "==", false));
 
     const unsubscribe = onSnapshot(allQuery, (querySnapshot) => {
       let total = 0;
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach(() => {
         total = total + 1;
       });
       setCount(total);
@@ -69,14 +75,21 @@ const NotificationCard = ({ title }) => {
     return () => {
       unsubscribe();
     };
-  }, [currentUser.id]);
+  }, [currentUserId]);
 
   React.useEffect(() => {
+    if (!currentUserId) {
+      setIsLoading(false);
+      setNotifications([]);
+      setLastKey(null);
+      return undefined;
+    }
+
     setIsLoading(true);
     const notificationsRef = collection(
       db,
       "users",
-      `${currentUser.id}`,
+      `${currentUserId}`,
       "notifications"
     );
     const first = query(
@@ -96,20 +109,24 @@ const NotificationCard = ({ title }) => {
         });
       });
       setNotifications(notificationList);
-      setLastKey(querySnapshot.docs[querySnapshot.docs.length - 1]);
+      setLastKey(querySnapshot.docs[querySnapshot.docs.length - 1] || null);
       setIsLoading(false);
-
-      return () => {
-        unsubscribe();
-      };
     });
-  }, [currentUser.id]);
+
+    return () => {
+      unsubscribe();
+    };
+  }, [currentUserId]);
 
   const loadMore = async () => {
+    if (!currentUserId || !lastKey) {
+      return;
+    }
+
     const notificationsRef = collection(
       db,
       "users",
-      `${currentUser.id}`,
+      `${currentUserId}`,
       "notifications"
     );
     const nextQuery = query(
@@ -132,13 +149,20 @@ const NotificationCard = ({ title }) => {
       });
     });
 
-    setNotifications([...notifications, ...nextNotificationList]);
+    setNotifications((prevNotifications) => [
+      ...prevNotifications,
+      ...nextNotificationList,
+    ]);
     setLastKey(lastVisible);
   };
 
   const handleRead = (key) => {
-    updateDoc(doc(db, "users", `${currentUser.id}`, "notifications", key), {
-      is_read:true,
+    if (!currentUserId) {
+      return;
+    }
+
+    updateDoc(doc(db, "users", `${currentUserId}`, "notifications", key), {
+      is_read: true,
     })
       .then(() => {})
       .catch((error) => {
@@ -187,8 +211,12 @@ const NotificationCard = ({ title }) => {
   };
 
   const handleRemove = (key) => {
-    updateDoc(doc(db, "users", `${currentUser.id}`, "notifications", key), {
-      is_deleted:true,
+    if (!currentUserId) {
+      return;
+    }
+
+    updateDoc(doc(db, "users", `${currentUserId}`, "notifications", key), {
+      is_deleted: true,
     })
       .then(() => {
         const index = notifications.findIndex((value) => value.key === key);
@@ -204,11 +232,14 @@ const NotificationCard = ({ title }) => {
   };
 
   const handleRemoveAll = async () => {
-    // Get a reference to the notifications collection
+    if (!currentUserId) {
+      return;
+    }
+
     const notificationsRef = collection(
       db,
       "users",
-      `${currentUser.id}`,
+      `${currentUserId}`,
       "notifications"
     );
     const deleteQuery = query(
@@ -217,40 +248,37 @@ const NotificationCard = ({ title }) => {
     );
     const querySnapshot = await getDocs(deleteQuery);
 
-    // Create a batch write operation
     const batch = writeBatch(db);
 
-    // Iterate over all documents and add them to the batch
     querySnapshot.forEach((doc) => {
       const docRef = doc.ref;
-      batch.update(docRef, { is_deleted:true });
+      batch.update(docRef, { is_deleted: true });
     });
 
-    // Commit the batch write operation
     await batch.commit();
   };
 
   const handleMakeAllRead = async () => {
-    // Get a reference to the notifications collection
+    if (!currentUserId) {
+      return;
+    }
+
     const notificationsRef = collection(
       db,
       "users",
-      `${currentUser.id}`,
+      `${currentUserId}`,
       "notifications"
     );
     const readQuery = query(notificationsRef, where("is_read", "==", false));
     const querySnapshot = await getDocs(readQuery);
 
-    // Create a batch write operation
     const batch = writeBatch(db);
 
-    // Iterate over all documents and add them to the batch
     querySnapshot.forEach((doc) => {
       const docRef = doc.ref;
-      batch.update(docRef, { is_read:true });
+      batch.update(docRef, { is_read: true });
     });
 
-    // Commit the batch write operation
     await batch.commit();
   };
 
@@ -331,7 +359,7 @@ const NotificationCard = ({ title }) => {
             />
           ) : (
             <Stack spacing={2}>
-              {notifications.map((value, index) => (
+              {notifications.map((value) => (
                 <Box
                   key={value?.key}
                   sx={{

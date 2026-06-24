@@ -75,22 +75,16 @@ function App() {
   React.useEffect(() => {
     const initializeApp = async () => {
       try {
-        // Load public config first
         await dispatch(getAllConfig()).unwrap();
 
-        // Try to authenticate user
         try {
           await dispatch(getUserInfo()).unwrap();
-
-          console.log("User authenticated");
         } catch (authError) {
           console.warn(
             "User not authenticated",
             authError
           );
         }
-
-        console.log("App initialized");
       } catch (err) {
         console.error(
           "Initialization failed:",

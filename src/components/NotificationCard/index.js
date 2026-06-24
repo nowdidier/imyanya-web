@@ -38,6 +38,7 @@ const PAGE_SIZE = 5;
 const NotificationCard = () => {
   const nav = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
+  const currentUserId = currentUser?.id;
   const [count, setCount] = React.useState(0);
   const [badgeCount, setBadgeCount] = React.useState(0);
   const [notifications, setNotifications] = React.useState([]);
@@ -54,10 +55,15 @@ const NotificationCard = () => {
   };
 
   React.useEffect(() => {
+    if (!currentUserId) {
+      setBadgeCount(0);
+      return undefined;
+    }
+
     const notificationsRef = collection(
       db,
       'users',
-      `${currentUser.id}`,
+      `${currentUserId}`,
       'notifications'
     );
     const allQuery = query(
@@ -68,7 +74,7 @@ const NotificationCard = () => {
 
     const unsubscribe = onSnapshot(allQuery, (querySnapshot) => {
       let total = 0;
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach(() => {
         total = total + 1;
       });
       setBadgeCount(total);
@@ -77,20 +83,25 @@ const NotificationCard = () => {
     return () => {
       unsubscribe();
     };
-  }, [currentUser.id]);
+  }, [currentUserId]);
 
   React.useEffect(() => {
+    if (!currentUserId) {
+      setCount(0);
+      return undefined;
+    }
+
     const notificationsRef = collection(
       db,
       'users',
-      `${currentUser.id}`,
+      `${currentUserId}`,
       'notifications'
     );
     const allQuery = query(notificationsRef, where('is_deleted', '==', false));
 
     const unsubscribe = onSnapshot(allQuery, (querySnapshot) => {
       let total = 0;
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach(() => {
         total = total + 1;
       });
       setCount(total);
@@ -99,13 +110,19 @@ const NotificationCard = () => {
     return () => {
       unsubscribe();
     };
-  }, [currentUser.id]);
+  }, [currentUserId]);
 
   React.useEffect(() => {
+    if (!currentUserId) {
+      setNotifications([]);
+      setLastKey(null);
+      return undefined;
+    }
+
     const notificationsRef = collection(
       db,
       'users',
-      `${currentUser.id}`,
+      `${currentUserId}`,
       'notifications'
     );
     const first = query(
@@ -124,19 +141,23 @@ const NotificationCard = () => {
         });
       });
       setNotifications(notificationList);
-      setLastKey(querySnapshot.docs[querySnapshot.docs.length - 1]);
-
-      return () => {
-        unsubscribe();
-      };
+      setLastKey(querySnapshot.docs[querySnapshot.docs.length - 1] || null);
     });
-  }, [currentUser.id]);
+
+    return () => {
+      unsubscribe();
+    };
+  }, [currentUserId]);
 
   const loadMore = async () => {
+    if (!currentUserId || !lastKey) {
+      return;
+    }
+
     const notificationsRef = collection(
       db,
       'users',
-      `${currentUser.id}`,
+      `${currentUserId}`,
       'notifications'
     );
     const nextQuery = query(
@@ -159,13 +180,20 @@ const NotificationCard = () => {
       });
     });
 
-    setNotifications([...notifications, ...nextNotificationList]);
+    setNotifications((prevNotifications) => [
+      ...prevNotifications,
+      ...nextNotificationList,
+    ]);
     setLastKey(lastVisible);
   };
 
   const handleRemove = (key) => {
-    updateDoc(doc(db, 'users', `${currentUser.id}`, 'notifications', key), {
-      is_deleted:true,
+    if (!currentUserId) {
+      return;
+    }
+
+    updateDoc(doc(db, 'users', `${currentUserId}`, 'notifications', key), {
+      is_deleted: true,
     })
       .then(() => {
         const index = notifications.findIndex((value) => value.key === key);
@@ -181,8 +209,12 @@ const NotificationCard = () => {
   };
 
   const handleRead = (key) => {
-    updateDoc(doc(db, 'users', `${currentUser.id}`, 'notifications', key), {
-      is_read:true,
+    if (!currentUserId) {
+      return;
+    }
+
+    updateDoc(doc(db, 'users', `${currentUserId}`, 'notifications', key), {
+      is_read: true,
     })
       .then(() => {})
       .catch((error) => {
@@ -191,11 +223,14 @@ const NotificationCard = () => {
   };
 
   const handleRemoveAll = async () => {
-    // Get a reference to the notifications collection
+    if (!currentUserId) {
+      return;
+    }
+
     const notificationsRef = collection(
       db,
       'users',
-      `${currentUser.id}`,
+      `${currentUserId}`,
       'notifications'
     );
     const deleteQuery = query(
@@ -204,16 +239,13 @@ const NotificationCard = () => {
     );
     const querySnapshot = await getDocs(deleteQuery);
 
-    // Create a batch write operation
     const batch = writeBatch(db);
 
-    // Iterate over all documents and add them to the batch
     querySnapshot.forEach((doc) => {
       const docRef = doc.ref;
-      batch.update(docRef, { is_deleted:true });
+      batch.update(docRef, { is_deleted: true });
     });
 
-    // Commit the batch write operation
     await batch.commit();
   };
 
@@ -255,6 +287,10 @@ const NotificationCard = () => {
 
     handleClose();
   };
+
+  if (!currentUserId) {
+    return null;
+  }
 
   return (
     <React.Fragment>

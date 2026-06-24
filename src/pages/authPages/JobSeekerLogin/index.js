@@ -31,7 +31,7 @@ import JobSeekerLoginForm from '../../components/auths/JobSeekerLoginForm';
 import authService from '../../../services/authService';
 import tokenService from '../../../services/tokenService';
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(() => ({
   background: 'rgba(255, 255, 255, 0.9)',
   backdropFilter: 'blur(10px)',
   borderRadius: '16px',
@@ -156,7 +156,7 @@ const JobSeekerLogin = () => {
 
   const handleSocialLogin = async (
     clientId,
-    clientSecrect,
+    clientSecret,
     provider,
     token
   ) => {
@@ -166,7 +166,7 @@ const JobSeekerLogin = () => {
    try {
       const resData = await authService.convertToken(
         clientId,
-        clientSecrect,
+        clientSecret,
         provider,
         token
       );
@@ -351,7 +351,7 @@ const JobSeekerLogin = () => {
               }}
             >
               <StyledLink to={`/${ROUTES.AUTH.REGISTER}`}>
-                Don't have an account? Register
+                Don&apos;t have an account? Register
               </StyledLink>
             </Grid>
           </Grid>

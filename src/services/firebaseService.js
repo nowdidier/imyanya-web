@@ -1,5 +1,4 @@
 import {
-  getFirestore,
   collection,
   setDoc,
   doc,
@@ -14,36 +13,38 @@ import {
 import db, { serverTimestamp } from '../configs/firebase-config';
 
 export const addDocument = async (collectionName, data) => {
-  const query = collection(db, collectionName);
+  const collectionRef = collection(db, collectionName);
 
-  const docRef = await addDoc(query, {
+  const docRef = await addDoc(collectionRef, {
     ...data,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   });
 
-  console.log('Document written with ID: ', docRef.id);
   return docRef.id;
 };
 
-export const updateChatRoomByPartnerId = (partnerId, chatRoomId) => {
+export const updateChatRoomByPartnerId = async (partnerId, chatRoomId) => {
+  if (!partnerId || !chatRoomId) {
+    return false;
+  }
+
   const chatRoomDocRef = doc(db, 'chatRooms', `${chatRoomId}`);
-  updateDoc(chatRoomDocRef, {
-    recipientId: `${partnerId}`,
-    unreadCount: increment(1),
-    updatedAt: serverTimestamp(),
-  })
-    .then(() => {
-      console.log('update chatRoom success');
-    })
-    .catch((error) => {
-      console.log('update chatRoom failed: ', error);
+
+  try {
+    await updateDoc(chatRoomDocRef, {
+      recipientId: `${partnerId}`,
+      unreadCount: increment(1),
+      updatedAt: serverTimestamp(),
     });
+    return true;
+  } catch (error) {
+    return false;
+  }
 };
 
 export const checkExists = async (collectionName, docId) => {
-  const firestore = getFirestore();
-  const documentRef = doc(firestore, collectionName, `${docId}`);
+  const documentRef = doc(db, collectionName, `${docId}`);
 
   const documentSnapshot = await getDoc(documentRef);
 
@@ -51,7 +52,7 @@ export const checkExists = async (collectionName, docId) => {
 };
 
 export const createUser = async (collectionName, userData, userId) => {
- try {
+  try {
     const userRef = doc(db, collectionName, `${userId}`);
 
     await setDoc(userRef, {
@@ -65,8 +66,7 @@ export const createUser = async (collectionName, userData, userId) => {
 };
 
 export const checkChatRoomExists = async (collectionName, member1, member2) => {
-  const firestore = getFirestore();
-  const chatRoomsRef = collection(firestore, collectionName);
+  const chatRoomsRef = collection(db, collectionName);
 
   const q = query(
     chatRoomsRef,
@@ -77,10 +77,9 @@ export const checkChatRoomExists = async (collectionName, member1, member2) => {
   if (querySnapshot.size > 0) {
     const roomId = querySnapshot.docs[0].id;
     return roomId;
-  } else {
-    console.log('Room does not exist');
-    return null;
   }
+
+  return null;
 };
 
 export const getChatRoomById = async (chatRoomId, currentUserId) => {

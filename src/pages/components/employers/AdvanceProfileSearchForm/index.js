@@ -8,7 +8,7 @@ import {
   faMagicWandSparkles,
   faUsers,
   faGraduationCap,
-  faBuilding, 
+  faBuilding,
   faPersonDigging,
   faVenusMars,
   faPeopleRoof,
@@ -20,13 +20,11 @@ import MultiSelectCustom from '../../../../components/controls/MultiSelectCustom
 const AdvanceProfileSearchForm = () => {
   const { allConfig } = useSelector((state) => state.config);
 
-  const { control, watch, reset, handleSubmit } = useForm({
+  const { control, reset } = useForm({
     defaultValues: {
       name: '',
     },
   });
-  const a = watch();
-  console.log(a);
 
   return (
     <Stack spacing={2}>

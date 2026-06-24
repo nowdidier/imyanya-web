@@ -16,17 +16,22 @@ const chatRoomCollectionRef = collection(db, 'chatRooms');
 
 const ChatCard = () => {
   const { currentUser  } = useSelector((state) => state.user);
+  const currentUserId = currentUser?.id;
   const nav = useNavigate();
-  const [count, setCount] = React.useState(0)
+  const [count, setCount] = React.useState(0);
 
   const isEmployer = React.useMemo(() => {
     return currentUser?.roleName === ROLES_NAME.EMPLOYER;
   }, [currentUser]);
 
   React.useEffect(() => {
+    if (!currentUserId) {
+      return undefined;
+    }
+
     const q = query(
       chatRoomCollectionRef,
-      where('recipientId', '==', `${currentUser.id}`),
+      where('recipientId', '==', `${currentUserId}`),
       where('unreadCount', '>', 0)
     );
 
@@ -41,13 +46,16 @@ const ChatCard = () => {
       });
 
       setCount(total);
-      console.log("TOTAL: ", total)
     });
 
     return () => {
       unsubscribe();
     };
-  }, [currentUser]);
+  }, [currentUserId]);
+
+  if (!currentUserId) {
+    return null;
+  }
 
   const handleRedirect = () => {
     if (isEmployer) {

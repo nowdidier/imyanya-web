@@ -28,7 +28,14 @@ const removeUserInfo = createAsyncThunk(
      * Khong revoktoken
      * RevokToken -> token app -> chet theo
      */
-    await authService.revokeToken(data.accessToken, data.backend);
+    try {
+      if (data?.accessToken && data?.backend) {
+        await authService.revokeToken(data.accessToken, data.backend);
+      }
+    } catch (error) {
+      // Logout should still continue locally even if the token revoke call fails.
+      console.warn('Failed to revoke auth token during logout', error);
+    }
 
     const removeResult =
       tokenService.removeAccessTokenAndRefreshTokenFromCookie();

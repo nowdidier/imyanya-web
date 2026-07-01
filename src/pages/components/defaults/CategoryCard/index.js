@@ -61,12 +61,12 @@ const CategoryCard = ({ options, type }) => {
             mb: 1,
           }}
         >
-          <SearchIcon color="disabled" />
-          <InputBase
+              <SearchIcon color="disabled" />
+              <InputBase
             sx={{ ml: 1, flex: 1 }}
             inputProps={{ 'aria-label': 'search' }}
             defaultValue=""
-            placeholder="Search nhanh"
+            placeholder="Search job categories"
             onChange={(event) => handleFilterChange(event.target.value)}
           />
         </Paper>

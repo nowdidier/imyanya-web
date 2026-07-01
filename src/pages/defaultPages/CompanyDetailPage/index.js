@@ -41,6 +41,7 @@ import MuiImageCustom from "../../../components/MuiImageCustom";
 import NoDataCard from "../../../components/NoDataCard";
 import ImageGalleryCustom from "../../../components/ImageGalleryCustom";
 import companyService from "../../../services/companyService";
+import { buildCompanyShareData } from "../../../utils/shareUtils";
 
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 
@@ -151,10 +152,25 @@ const CompanyDetailPage = () => {
   const [isLoadingFollow, setIsLoadingFollow] = React.useState(false);
   const [companyDetail, setCompanyDetail] = React.useState(null);
   const [imageList, setImageList] = React.useState([]);
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const shareData = React.useMemo(
+    () =>
+      buildCompanyShareData({
+        url: shareUrl,
+        companyName: companyDetail?.companyName,
+        fieldOperation: companyDetail?.fieldOperation,
+        locationName:
+          companyDetail?.location?.address ||
+          allConfig?.cityDict[companyDetail?.location?.city] ||
+          "",
+        jobPostNumber: companyDetail?.jobPostNumber,
+      }),
+    [allConfig, companyDetail, shareUrl]
+  );
 
   React.useEffect(() => {
     const getCompanyDetail = async (companySlug) => {
-     try {
+      try {
         const resData = await companyService.getCompanyDetailById(companySlug);
         const data = resData.data;
         const companyImages = data?.companyImages || [];
@@ -171,6 +187,7 @@ const CompanyDetailPage = () => {
         }
         setImageList(imagelistNew);
       } catch (error) {
+        console.error(error);
       } finally {
         setIsLoading(false);
       }
@@ -196,6 +213,7 @@ const CompanyDetailPage = () => {
           isFollowed ? "Follow successfully." : "Cancel follow successfully."
         );
       } catch (error) {
+        console.error(error);
         errorHandling(error);
       } finally {
         setIsLoadingFollow(false);
@@ -327,7 +345,7 @@ const CompanyDetailPage = () => {
                 </Box>
                 <Box sx={{ pt: 1 }}>
                   <QRCode
-                    value={window.location.href || "-"}
+                    value={shareUrl || "-"}
                     size={75}
                     style={{
                       padding: "8px",
@@ -371,16 +389,24 @@ const CompanyDetailPage = () => {
                     )}
                   <Button
                     variant="contained"
-                    color="secondary"
+                    color="primary"
                     startIcon={<ShareIcon />}
                     onClick={() => setOpenSharePopup(true)}
                     sx={{
                       minWidth: 160,
-                      borderRadius: 2,
-                      boxShadow: "none",
+                      borderRadius: 999,
+                      px: 2.5,
+                      fontWeight: 700,
+                      background: "linear-gradient(45deg, #441da0 30%, #6b45c9 90%)",
+                      boxShadow: "0 12px 24px rgba(68,29,160,0.22)",
+                      "&:hover": {
+                        background: "linear-gradient(45deg, #2f1578 30%, #5a39b1 90%)",
+                        boxShadow: "0 14px 28px rgba(68,29,160,0.28)",
+                        transform: "translateY(-1px)",
+                      },
                     }}
                   >
-                    Share
+                    Share company
                   </Button>
                 </Stack>
               </Stack>
@@ -695,31 +721,8 @@ const CompanyDetailPage = () => {
       {/* Start: SocialNetworkSharingPopup */}
       <SocialNetworkSharingPopup
         open={openSharePopup}
-        setOpenPopup={setOpenSharePopup}
-        facebook={{
-          url: window.location.href,
-        }}
-        facebookMessenger={{
-          url: window.location.href,
-        }}
-        linkedin={{
-          url: window.location.href,
-          source: "",
-          title: "",
-          summary: "",
-        }}
-        twitter={{
-          url: window.location.href,
-          title: "",
-          via: "",
-          hashtags: [],
-          related: [],
-        }}
-        email={{
-          url: window.location.href,
-          subject: "",
-          body: "",
-        }}
+        onClose={() => setOpenSharePopup(false)}
+        shareData={shareData}
       />
       {/* End: SocialNetworkSharingPopup */}
     </>

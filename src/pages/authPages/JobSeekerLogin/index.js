@@ -30,6 +30,7 @@ import JobSeekerLoginForm from '../../components/auths/JobSeekerLoginForm';
 
 import authService from '../../../services/authService';
 import tokenService from '../../../services/tokenService';
+import { getSocialLoginToken } from '../../../utils/socialLogin';
 
 const StyledCard = styled(Card)(() => ({
   background: 'rgba(255, 255, 255, 0.9)',
@@ -205,7 +206,7 @@ const JobSeekerLogin = () => {
   };
 
   const handleFacebookLogin = (result) => {
-    const accessToken = result.data?.accessToken;
+    const accessToken = getSocialLoginToken(result);
     if (accessToken) {
       handleSocialLogin(
         AUTH_CONFIG.FACEBOOK_CLIENT_ID,
@@ -213,11 +214,16 @@ const JobSeekerLogin = () => {
         AUTH_PROVIDER.FACEBOOK,
         accessToken
       );
+      return;
     }
+
+    setErrorMessage(
+      'Facebook sign-in did not return a token. Please try again.'
+    );
   };
 
   const handleGoogleLogin = (result) => {
-    const accessToken = result.data?.access_token;
+    const accessToken = getSocialLoginToken(result);
     if (accessToken) {
       handleSocialLogin(
         AUTH_CONFIG.GOOGLE_CLIENT_ID,
@@ -225,7 +231,12 @@ const JobSeekerLogin = () => {
         AUTH_PROVIDER.GOOGLE,
         accessToken
       );
+      return;
     }
+
+    setErrorMessage(
+      'Google sign-in did not return a token. Please verify the Google OAuth redirect URI and try again.'
+    );
   };
 
   const handleSocialReject = (error) => {

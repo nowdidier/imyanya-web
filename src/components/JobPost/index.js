@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { Box, Card, Divider, Skeleton, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Card, Chip, Divider, Skeleton, Stack, Tooltip, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import Moment from 'react-moment';
 
@@ -20,44 +20,104 @@ import MuiImageCustom from '../MuiImageCustom';
 import { formatRoute } from '../../utils/funcUtils';
 import { ROUTES } from '../../configs/constants';
 
+const getCompanyInitials = (value = '') => {
+  const parts = String(value)
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (parts.length === 0) return 'JB';
+
+  return parts
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase();
+};
+
 const JobPost = ({
-  id,
   slug,
+  href,
+  target = '_blank',
+  rel = 'noopener noreferrer',
   companyImageUrl,
   companyName,
   jobName,
+  categoryLabel,
+  locationLabel,
   cityId,
   deadline,
+  dateLabel,
+  metaLabel,
+  salaryLabel,
   isUrgent,
   isHot,
   salaryMin,
   salaryMax,
 }) => {
   const myRef = React.useRef(null);
-  const [width, setWidth] = React.useState("95%")
+  const [width, setWidth] = React.useState('95%');
   const nav = useNavigate();
   const { allConfig } = useSelector((state) => state.config);
   const theme = useTheme();
+  const jobDetailPath = slug ? `/${formatRoute(ROUTES.JOB_SEEKER.JOB_DETAIL, slug)}` : null;
+  const hasExternalLink = Boolean(href);
+  const isInteractive = hasExternalLink || Boolean(jobDetailPath);
+  const deadlineText =
+    dateLabel ||
+    (deadline && dayjs(deadline).isValid()
+      ? dayjs(deadline).format('DD/MM/YYYY')
+      : 'Open now');
 
   React.useEffect(() => {
-    const elementWidth = myRef.current?.offsetWidth - 70;
-    setWidth(elementWidth);
+    const elementWidth = myRef.current?.offsetWidth;
+    setWidth(Math.max(0, (elementWidth || 0) - 70));
   }, []);
+
+  const handleCardClick = () => {
+    if (jobDetailPath) {
+      nav(jobDetailPath);
+    }
+  };
+
+  const handleCardKeyDown = (event) => {
+    if (!jobDetailPath) return;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      nav(jobDetailPath);
+    }
+  };
 
   return (
     <Card
       variant="outlined"
+      {...(hasExternalLink
+        ? {
+            component: 'a',
+            href,
+            target,
+            rel,
+          }
+        : {
+            role: isInteractive ? 'link' : undefined,
+            tabIndex: isInteractive ? 0 : undefined,
+            onClick: isInteractive ? handleCardClick : undefined,
+            onKeyDown: isInteractive ? handleCardKeyDown : undefined,
+          })}
       sx={{
         boxShadow: 0,
-        cursor: 'pointer',
+        cursor: isInteractive ? 'pointer' : 'default',
         px: 2,
         pt: 2,
         pb: 1,
-       transition: 'all 0.3s ease',
+        transition: 'all 0.3s ease',
         borderRadius: 2,
         border: `1px solid ${theme.palette.divider}`,
         position: 'relative',
         overflow: 'hidden',
+        textDecoration: 'none',
+        color: 'inherit',
         ...(isUrgent && {
           borderLeft: 'none',
           backgroundColor: theme.palette.secondary.background,
@@ -73,19 +133,22 @@ const JobPost = ({
             boxShadow: `0 0 8px ${theme.palette.secondary.main}40`,
           },
         }),
-        '&:hover': {
-         transform: 'translateY(-2px)',
-          boxShadow: theme.customShadows.large,
-          ...(isUrgent ? {
-            borderColor: theme.palette.secondary.main,
-            borderLeft: 'none',
-            backgroundColor: theme.palette.secondary.backgroundHover,
-          } : {
-            borderColor: theme.palette.primary.main,
-          }),
-        },
+        ...(isInteractive && {
+          '&:hover': {
+            transform: 'translateY(-2px)',
+            boxShadow: theme.customShadows.large,
+            ...(isUrgent
+              ? {
+                  borderColor: theme.palette.secondary.main,
+                  borderLeft: 'none',
+                  backgroundColor: theme.palette.secondary.backgroundHover,
+                }
+              : {
+                  borderColor: theme.palette.primary.main,
+                }),
+          },
+        }),
       }}
-      onClick={() => nav(`/${formatRoute(ROUTES.JOB_SEEKER.JOB_DETAIL, slug)}`)}
     >
       {isHot && (
         <Tooltip title="Hot" placement="top">
@@ -127,22 +190,48 @@ const JobPost = ({
       <Stack direction="row" spacing={2} alignItems="center" ref={myRef}>
         <Stack>
           <Box sx={{ position: 'relative' }}>
-            <MuiImageCustom
-              width={65}
-              height={65}
-              src={companyImageUrl}
-              sx={{
-                border: 1,
-                borderRadius: 2,
-                borderColor: theme.palette.grey[200],
-                p: 1,
-                backgroundColor: theme.palette.common.white,
-               transition: 'transform 0.2s ease',
-                '&:hover': {
-                 transform: 'scale(1.05)',
-                },
-              }}
-            />
+            {companyImageUrl ? (
+              <MuiImageCustom
+                width={65}
+                height={65}
+                src={companyImageUrl}
+                sx={{
+                  border: 1,
+                  borderRadius: 2,
+                  borderColor: theme.palette.grey[200],
+                  p: 1,
+                  backgroundColor: theme.palette.common.white,
+                  transition: 'transform 0.2s ease',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                  },
+                }}
+              />
+            ) : (
+              <Box
+                sx={{
+                  width: 65,
+                  height: 65,
+                  border: 1,
+                  borderRadius: 2,
+                  borderColor: theme.palette.grey[200],
+                  p: 1,
+                  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: theme.palette.common.white,
+                  fontWeight: 800,
+                  letterSpacing: 0.5,
+                  transition: 'transform 0.2s ease',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                  },
+                }}
+              >
+                {getCompanyInitials(companyName)}
+              </Box>
+            )}
             {isUrgent && (
               <Tooltip title="Urgent Hiring" placement="top">
                 <Box
@@ -217,6 +306,24 @@ const JobPost = ({
               {companyName}
             </Typography>
           </Tooltip>
+          {categoryLabel && (
+            <Chip
+              label={categoryLabel}
+              size="small"
+              variant="outlined"
+              color="primary"
+              sx={{
+                alignSelf: 'flex-start',
+                height: 22,
+                mt: 0.25,
+                '& .MuiChip-label': {
+                  px: 1,
+                  fontSize: 11,
+                  fontWeight: 600,
+                },
+              }}
+            />
+          )}
         </Stack>
       </Stack>
 
@@ -236,7 +343,7 @@ const JobPost = ({
         >
           <FontAwesomeIcon icon={faCircleDollarToSlot} color={theme.palette.primary.main} />
           <Typography sx={{ fontWeight: 500, fontSize: 13 }} variant="body2">
-            {salaryString(salaryMin, salaryMax)}
+            {salaryLabel || salaryString(salaryMin, salaryMax)}
           </Typography>
         </Box>
         <Box
@@ -249,7 +356,7 @@ const JobPost = ({
         >
           <FontAwesomeIcon icon={faLocationDot} color={theme.palette.primary.main} />
           <Typography sx={{ fontWeight: 500, fontSize: 13 }} variant="body2">
-            {allConfig?.cityDict[cityId] || (
+            {locationLabel || allConfig?.cityDict?.[cityId] || (
               <span style={{ fontStyle: 'italic', color: theme.palette.grey[500] }}>
                 Not updated
               </span>
@@ -266,7 +373,7 @@ const JobPost = ({
         >
           <FontAwesomeIcon icon={faCalendarDays} color={theme.palette.primary.main} />
           <Typography sx={{ fontWeight: 500, fontSize: 13 }} variant="body2">
-            {dayjs(deadline).format('DD/MM/YYYY')}
+            {deadlineText}
           </Typography>
         </Box>
       </Stack>
@@ -295,7 +402,11 @@ const JobPost = ({
             }} 
             variant="body2"
           >
-            Expires in <Moment fromNow ago>{deadline}</Moment>
+            {metaLabel || (deadline ? (
+              <>
+                Expires in <Moment fromNow ago>{deadline}</Moment>
+              </>
+            ) : 'Open now')}
           </Typography>
         </Box>
       </Box>

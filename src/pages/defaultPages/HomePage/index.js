@@ -15,10 +15,11 @@ import {
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import SearchIcon from "@mui/icons-material/Search";
+import WorkIcon from "@mui/icons-material/Work";
+import CategoryIcon from "@mui/icons-material/Category";
 
 import { TabTitle } from "../../../utils/generalFunction";
 import {
-  HOME_FILTER_CAREER,
   ROLES_NAME,
   ROUTES,
   APP_NAME,
@@ -29,18 +30,32 @@ import FeedbackCarousel from "../../../components/FeedbackCarousel";
 import JobByCategory from "../../components/defaults/JobByCategory";
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import SuggestedJobPostCard from "../../components/defaults/SuggestedJobPostCard";
+import StaticJobFeedSection from "../../components/defaults/StaticJobFeedSection";
+import {
+  featuredRwandaJobs,
+  normalizeCategoryFeed,
+  rwandaJobCategoryFeeds,
+  rwandaJobFeedSourceMeta,
+} from "../../../data/rwandaJobFeed";
 
 export default function HomePage() {
-  TabTitle(`Find jobs fast and recruit effectively at ${APP_NAME}`);
+  TabTitle(`Jobs in Rwanda | Kigali Vacancies, Job Categories & Employers | ${APP_NAME}`);
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
   const nav = useNavigate();
+  const categoryFeedJobs = React.useMemo(
+    () => rwandaJobCategoryFeeds.map(normalizeCategoryFeed),
+    []
+  );
 
   return (
     <>
       <Box sx={{ mt: 6 }}>
         {/* Start: Top companies */}
-        <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          Featured Companies
+        <Typography variant="h5" sx={{ mb: 1 }} gutterBottom>
+          Companies Hiring in Rwanda
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 3, color: "text.secondary" }}>
+          Explore employers posting jobs across Kigali and the rest of Rwanda.
         </Typography>
         <TopCompanyCarousel />
         {/* End: Top companies */}
@@ -57,7 +72,7 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: "white" }}>
-                Urgent Jobs
+                Urgent Jobs in Rwanda
               </Typography>
             }
             sx={{
@@ -80,8 +95,11 @@ export default function HomePage() {
 
       <Box sx={{ mt: 10 }}>
         {/* Start: Careers */}
-        <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          Key Careers
+        <Typography variant="h5" sx={{ mb: 1 }} gutterBottom>
+          Popular Job Categories in Rwanda
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 3, color: "text.secondary" }}>
+          Browse the most active career areas and jump straight into the jobs that fit your background.
         </Typography>
         <CareerCarousel />
         {/* End: Careers */}
@@ -98,9 +116,9 @@ export default function HomePage() {
                 </Avatar>
               }
               title={
-                <Typography variant="h5" sx={{ color: "#441da0" }}>
-                  Suggested Jobs
-                </Typography>
+                  <Typography variant="h5" sx={{ color: "#441da0" }}>
+                    Recommended Jobs for You
+                  </Typography>
               }
               sx={{
                 backgroundImage: `url('${require("../../../assets/images/banner-explore.png")}')`,
@@ -144,7 +162,7 @@ export default function HomePage() {
         >
           <Box>
             <Typography fontSize={32} fontWeight="bold" color="white">
-              Need jobs that match you?
+              Need jobs that match you in Rwanda?
             </Typography>
           </Box>
           <Box>
@@ -155,56 +173,24 @@ export default function HomePage() {
               startIcon={<SearchIcon />}
               onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS}`)}
             >
-              Start Exploring
+              Browse Jobs in Rwanda
             </Button>
           </Box>
         </Stack>
       </Box>
 
       <Box sx={{ mt: 6 }}>
-        {/* Start: Jobs by career */}
-        <Card variant="outlined" sx={{boxShadow: 0}}>
-          <CardHeader
-            avatar={
-              <Avatar sx={{ bgcolor: "white" }} aria-label="recipe">
-                {HOME_FILTER_CAREER[0].titleIcon}
-              </Avatar>
-            }
-            title={
-              <Typography variant="h5" sx={{ color: "white" }}>
-                {`Jobs in ${HOME_FILTER_CAREER[0].name}`}
-              </Typography>
-            }
-            sx={{
-              backgroundColor: "#441da0",
-              p: { xs: 0.75, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
-            }}
-          />
-          <CardContent>
-            <Box sx={{ p: { xs: 0, sm: 0, md: 0, lg: 2, xl: 2 } }}>
-              <FilterJobPostCard
-                params={{
-                  careerId: HOME_FILTER_CAREER[0].id,
-                }}
-              />
-            </Box>
-          </CardContent>
-        </Card>
-        {/* End: Jobs by career */}
-      </Box>
-
-      <Box sx={{ mt: 10 }}>
-        {/* Start: Jobs by career */}
+        {/* Start: Featured external jobs */}
         <Card variant="outlined" sx={{ boxShadow: 0 }}>
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: "white" }} aria-label="recipe">
-                {HOME_FILTER_CAREER[1].titleIcon}
+                <WorkIcon color="secondary" />
               </Avatar>
             }
             title={
               <Typography variant="h5" sx={{ color: "white" }}>
-                {`Jobs in ${HOME_FILTER_CAREER[1].name}`}
+                Featured Jobs Across Rwanda
               </Typography>
             }
             sx={{
@@ -214,15 +200,45 @@ export default function HomePage() {
           />
           <CardContent>
             <Box sx={{ p: { xs: 0, sm: 0, md: 0, lg: 2, xl: 2 } }}>
-              <FilterJobPostCard
-                params={{
-                  careerId: HOME_FILTER_CAREER[1].id,
-                }}
+              <StaticJobFeedSection
+                jobs={featuredRwandaJobs}
+                sourceNote={`${rwandaJobFeedSourceMeta.refreshedLabel}: software, accounting, sales, hospitality, HR, marketing, project, health, research, support, and logistics roles in Rwanda.`}
               />
             </Box>
           </CardContent>
         </Card>
-        {/* End: Jobs by career */}
+        {/* End: Featured external jobs */}
+      </Box>
+
+      <Box sx={{ mt: 10 }}>
+        {/* Start: Category source feeds */}
+        <Card variant="outlined" sx={{ boxShadow: 0 }}>
+          <CardHeader
+            avatar={
+              <Avatar sx={{ bgcolor: "white" }} aria-label="recipe">
+                <CategoryIcon color="secondary" />
+              </Avatar>
+            }
+            title={
+              <Typography variant="h5" sx={{ color: "white" }}>
+                Browse Rwanda Jobs by Category
+              </Typography>
+            }
+            sx={{
+              backgroundColor: "#441da0",
+              p: { xs: 0.75, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
+            }}
+          />
+          <CardContent>
+            <Box sx={{ p: { xs: 0, sm: 0, md: 0, lg: 2, xl: 2 } }}>
+              <StaticJobFeedSection
+                jobs={categoryFeedJobs}
+                sourceNote="Open all major job categories first: software, finance, admin, sales, customer service, engineering, HR, marketing, project management, education, health, and hospitality."
+              />
+            </Box>
+          </CardContent>
+        </Card>
+        {/* End: Category source feeds */}
       </Box>
 
       <Box sx={{ mt: 10 }}>

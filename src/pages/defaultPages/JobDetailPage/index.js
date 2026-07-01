@@ -38,6 +38,7 @@ import SocialNetworkSharingPopup from "../../../components/SocialNetworkSharingP
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import { ROLES_NAME, ROUTES } from "../../../configs/constants";
 import { formatRoute } from "../../../utils/funcUtils";
+import { buildJobShareData } from "../../../utils/shareUtils";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -247,8 +248,9 @@ const ActionComponent = ({
   setOpenSharePopup,
   isAuthenticated,
   currentUser,
+  shareLabel = "Share job",
 }) => (
-  <Stack direction="row" spacing={2}>
+  <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
     {isAuthenticated && currentUser?.roleName === ROLES_NAME.JOB_SEEKER && (
       <>
         <Button
@@ -298,21 +300,26 @@ const ActionComponent = ({
       </>
     )}
     <Button
-      variant="outlined"
+      variant="contained"
       size="large"
       startIcon={<ShareIcon />}
       sx={{
         textTransform: "none",
-        borderColor: "#9c27b0",
-        color: "#9c27b0",
+        borderRadius: 999,
+        px: 3,
+        fontWeight: 700,
+        background: "linear-gradient(45deg, #441da0 30%, #6b45c9 90%)",
+        color: "white",
+        boxShadow: "0 12px 24px rgba(68,29,160,0.22)",
         "&:hover": {
-          borderColor: "#7b1fa2",
-          backgroundColor: "rgba(156,39,176,0.04)",
+          background: "linear-gradient(45deg, #2f1578 30%, #5a39b1 90%)",
+          boxShadow: "0 14px 28px rgba(68,29,160,0.28)",
+          transform: "translateY(-1px)",
         },
       }}
       onClick={() => setOpenSharePopup(true)}
     >
-      Share
+      {shareLabel}
     </Button>
   </Stack>
 );
@@ -327,16 +334,37 @@ const JobDetailPage = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [isLoadingSave, setIsLoadingSave] = React.useState(false);
   const [jobPostDetail, setJobPostDetail] = React.useState(null);
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const shareData = React.useMemo(
+    () =>
+      buildJobShareData({
+        url: shareUrl,
+        jobName: jobPostDetail?.jobName,
+        companyName: jobPostDetail?.companyDict?.companyName,
+        locationName:
+          allConfig?.cityDict[jobPostDetail?.location?.city] ||
+          jobPostDetail?.location?.address ||
+          "",
+        deadline: jobPostDetail?.deadline,
+        salaryLabel: salaryString(
+          jobPostDetail?.salaryMin,
+          jobPostDetail?.salaryMax
+        ),
+        jobTypeLabel: allConfig?.jobTypeDict[jobPostDetail?.jobType],
+      }),
+    [allConfig, jobPostDetail, shareUrl]
+  );
 
   React.useEffect(() => {
     const getJobPostDetail = async (jobPostSlug) => {
-     try {
+      try {
         const resData = await jobService.getJobPostDetailById(jobPostSlug);
         const data = resData.data;
 
         setJobPostDetail(data);
         TabTitle(data?.jobName);
       } catch (error) {
+        console.error(error);
       } finally {
         setIsLoading(false);
       }
@@ -349,7 +377,6 @@ const JobDetailPage = () => {
     if (isApplySucces) {
       setJobPostDetail({ ...jobPostDetail, isApplied:true });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isApplySucces]);
 
   const handleSave = () => {
@@ -445,10 +472,7 @@ const JobDetailPage = () => {
                       </Box>
                       <Box>
                         <Space direction="vertical" align="center">
-                          <QRCode
-                            value={window.location.href || "-"}
-                            size={75}
-                          />
+                          <QRCode value={shareUrl || "-"} size={75} />
                         </Space>
                       </Box>
                     </Stack>
@@ -522,13 +546,14 @@ const JobDetailPage = () => {
                       isApplied={jobPostDetail.isApplied}
                       isSaved={jobPostDetail.isSaved}
                       isLoadingSave={isLoadingSave}
-                      handleSave={handleSave}
-                      handleShowApplyForm={handleShowApplyForm}
-                      setOpenSharePopup={setOpenSharePopup}
-                      isAuthenticated={isAuthenticated}
-                      currentUser={currentUser}
-                    />
-                  </Box>
+                    handleSave={handleSave}
+                    handleShowApplyForm={handleShowApplyForm}
+                    setOpenSharePopup={setOpenSharePopup}
+                    isAuthenticated={isAuthenticated}
+                    currentUser={currentUser}
+                    shareLabel="Share job"
+                  />
+                </Box>
 
                   <Divider sx={{ my: 2 }} />
 
@@ -923,31 +948,8 @@ const JobDetailPage = () => {
       {/* Start: SocialNetworkSharingPopup */}
       <SocialNetworkSharingPopup
         open={openSharePopup}
-        setOpenPopup={setOpenSharePopup}
-        facebook={{
-          url: window.location.href,
-        }}
-        facebookMessenger={{
-          url: window.location.href,
-        }}
-        linkedin={{
-          url: window.location.href,
-          source: "",
-          title: "",
-          summary: "",
-        }}
-        twitter={{
-          url: window.location.href,
-          title: "",
-          via: "",
-          hashtags: [],
-          related: [],
-        }}
-        email={{
-          url: window.location.href,
-          subject: "",
-          body: "",
-        }}
+        onClose={() => setOpenSharePopup(false)}
+        shareData={shareData}
       />
       {/* End: SocialNetworkSharingPopup */}
     </>

@@ -22,6 +22,7 @@ import {
 } from '../../../configs/constants';
 
 import { TabTitle } from '../../../utils/generalFunction';
+import getAuthErrorMessage from '../../../utils/authErrorMessage';
 import toastMessages from '../../../utils/toastMessages';
 import BackdropLoading from '../../../components/loading/BackdropLoading';
 import errorHandling from '../../../utils/errorHandling';
@@ -31,6 +32,7 @@ import tokenService from '../../../services/tokenService';
 import authService from '../../../services/authService';
 import { getUserInfo } from '../../../redux/userSlice';
 import { updateVerifyEmail } from '../../../redux/authSlice';
+import { getSocialLoginToken } from '../../../utils/socialLogin';
 
 const StyledCard = styled(Card)(() => ({
   background: 'rgba(255, 255, 255, 0.9)',
@@ -111,45 +113,57 @@ const JobSeekerSignUp = () => {
         provider,
         token
       );
-      const { access_token: accessToken, refresh_token: refreshToken } =
-        resData.data;
+      const {
+        access_token: accessToken,
+        refresh_token: refreshToken,
+        backend,
+      } = resData.data;
 
-      // save cookie
+      if (!accessToken || !refreshToken || !backend) {
+        throw new Error(
+          'The social sign-up response was incomplete. Please try again.'
+        );
+      }
+
       const isSaveTokenToCookie =
         tokenService.saveAccessTokenAndRefreshTokenToCookie(
           accessToken,
-          refreshToken
+          refreshToken,
+          backend
         );
+
       if (isSaveTokenToCookie) {
-        dispatch(getUserInfo())
-          .unwrap()
-          .then(() => {
-            nav('/');
-          })
-          .catch(() => {
-            toastMessages.error('An error occurred, please log in again!');
-          });
+        try {
+          await dispatch(getUserInfo()).unwrap();
+          nav('/');
+        } catch (error) {
+          setErrorMessage(getAuthErrorMessage(error));
+        }
       } else {
         toastMessages.error('An error occurred, please log in again!');
       }
     } catch (error) {
-      // 400 bad request
-      const res = error.response;
-      if (res.status === 400) {
-        const errors = res.data?.errors;
+      const res = error?.response;
+      const errors = res?.data?.errors;
+
+      if (res?.status === 400 && errors) {
         if ('errorMessage' in errors) {
           setErrorMessage(errors.errorMessage.join(' '));
-        } else {
-          toastMessages.error('An error occurred, please try again!');
+          return;
         }
+
+        toastMessages.error('An error occurred, please try again!');
+        return;
       }
+
+      setErrorMessage(getAuthErrorMessage(error));
     } finally {
       setIsFullScreenLoading(false);
     }
   };
 
   const handleFacebookRegister = (result) => {
-    const accessToken = result.data?.accessToken;
+    const accessToken = getSocialLoginToken(result);
     if (accessToken) {
       handleSocialRegister(
         AUTH_CONFIG.FACEBOOK_CLIENT_ID,
@@ -157,11 +171,16 @@ const JobSeekerSignUp = () => {
         AUTH_PROVIDER.FACEBOOK,
         accessToken
       );
+      return;
     }
+
+    setErrorMessage(
+      'Facebook sign-up did not return a token. Please try again.'
+    );
   };
 
   const handleGoogleRegister = (result) => {
-    const accessToken = result.data?.access_token;
+    const accessToken = getSocialLoginToken(result);
     if (accessToken) {
       handleSocialRegister(
         AUTH_CONFIG.GOOGLE_CLIENT_ID,
@@ -169,7 +188,22 @@ const JobSeekerSignUp = () => {
         AUTH_PROVIDER.GOOGLE,
         accessToken
       );
+      return;
     }
+
+    setErrorMessage(
+      'Google sign-up did not return a token. Please verify the Google OAuth redirect URI and try again.'
+    );
+  };
+
+  const handleSocialReject = (error) => {
+    const errorText =
+      error?.error_description ||
+      error?.error ||
+      error?.message ||
+      'Social sign-up was not completed. Please try again.';
+
+    setErrorMessage(errorText);
   };
 
   return (
@@ -244,6 +278,7 @@ const JobSeekerSignUp = () => {
               onRegister={handleRegister}
               onFacebookRegister={handleFacebookRegister}
               onGoogleRegister={handleGoogleRegister}
+              onSocialReject={handleSocialReject}
               serverErrors={serverErrors}
             />
           </Box>

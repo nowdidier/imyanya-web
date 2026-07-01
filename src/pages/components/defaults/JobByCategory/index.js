@@ -57,7 +57,7 @@ const JobByCategory = () => {
               pb: 1,
             }}
           >
-            Jobs theo career
+            Jobs by Career in Rwanda
           </Typography>
           <Stack spacing={1.5}>
             {careerOptions?.slice(0, maxItem).map((item) => (
@@ -99,7 +99,7 @@ const JobByCategory = () => {
                 component={Link}
                 to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER}`}
               >
-                View All career <FontAwesomeIcon icon={faChevronRight} />
+                View all careers <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}
           </Stack>
@@ -123,7 +123,7 @@ const JobByCategory = () => {
               pb: 1,
             }}
           >
-            Jobs by Region
+            Jobs by Location in Rwanda
           </Typography>
           <Stack spacing={1.5}>
             {cityOptions?.slice(0, maxItem).map((item) => (
@@ -165,7 +165,7 @@ const JobByCategory = () => {
                 component={Link}
                 to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CITY}`}
               >
-                View All Regions <FontAwesomeIcon icon={faChevronRight} />
+                View all locations <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}
           </Stack>
@@ -189,7 +189,7 @@ const JobByCategory = () => {
               pb: 1,
             }}
           >
-            Jobs by Job Type
+            Jobs by Job Type in Rwanda
           </Typography>
           <Stack spacing={1.5}>
             {jobTypeOptions?.slice(0, maxItem).map((item) => (
@@ -231,7 +231,7 @@ const JobByCategory = () => {
                 component={Link}
                 to={`/${ROUTES.JOB_SEEKER.JOBS_BY_TYPE}`}
               >
-                View All job type{" "}
+                View all job types{" "}
                 <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
             )}

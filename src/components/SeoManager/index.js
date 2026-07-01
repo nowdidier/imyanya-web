@@ -6,44 +6,64 @@ const EMPLOYER_ORIGIN = "https://employers.imyanya.rw";
 const SHARE_IMAGE = `${MAIN_ORIGIN}/logo512.png`;
 
 const MAIN_DEFAULT_SEO = {
-  title: "Imyanya | Jobs in Rwanda | Imyanya y'akazi",
+  title: "Jobs in Rwanda | Kigali Vacancies, Job Categories & Employers | Imyanya",
   description:
-    "Find jobs in Rwanda, Kigali vacancies, internships, NGO jobs, and connect with employers hiring qualified candidates on Imyanya.",
+    "Discover jobs in Rwanda by career, city, and job type. Find Kigali vacancies, internships, NGO jobs, remote roles, and employers hiring now on Imyanya.",
   keywords:
-    "jobs in Rwanda, imyanya, Imyanya y'akazi, Rwanda jobs, Kigali jobs, NGO jobs Rwanda, internships Rwanda, job vacancies Rwanda, recruitment Rwanda",
+    "jobs in Rwanda, Kigali jobs, job categories Rwanda, job vacancies Rwanda, career opportunities Rwanda, internships Rwanda, NGO jobs Rwanda, remote jobs Rwanda, recruitment Rwanda",
 };
 
 const EMPLOYER_DEFAULT_SEO = {
-  title: "Post Jobs in Rwanda | Employer Recruitment Portal | Imyanya",
+  title: "Post Jobs in Rwanda | Hire by Category, City & Role | Imyanya",
   description:
-    "Employers in Rwanda can post jobs, manage applications, search candidate profiles, and recruit qualified talent with Imyanya.",
+    "Employers in Rwanda can post jobs, manage applications, search candidate profiles, and recruit qualified talent across Kigali and the rest of Rwanda with Imyanya.",
   keywords:
-    "post jobs in Rwanda, recruitment Rwanda, hire in Rwanda, employers Rwanda, candidate search Rwanda, Kigali recruitment",
+    "post jobs in Rwanda, recruitment Rwanda, hire in Rwanda, employers Rwanda, candidate search Rwanda, Kigali recruitment, talent hiring Rwanda",
 };
+
+const AUTH_PATH_PREFIXES = [
+  "/dang-nhap",
+  "/dang-ky",
+  "/quen-mat-khau",
+  "/cap-nhat-mat-khau",
+  "/email-verification-required",
+];
+
+const PRIVATE_PATH_PREFIXES = [
+  "/bang-dieu-khien",
+  "/ho-so",
+  "/ho-so-tung-buoc",
+  "/ho-so-dinh-kem",
+  "/viec-lam-cua-toi",
+  "/cong-ty-cua-toi",
+  "/thong-bao",
+  "/tai-khoan",
+  "/ket-noi-voi-nha-tuyen-dung",
+];
 
 const SEO_BY_PATH = {
   "/": MAIN_DEFAULT_SEO,
   "/viec-lam": {
     title: "Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
     description:
-      "Search current jobs in Rwanda including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
+      "Search current jobs in Rwanda by category, including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/jobs": {
     title: "Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
     description:
-      "Search current jobs in Rwanda including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
+      "Search current jobs in Rwanda by category, including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/jobs-in-rwanda": {
     title: "Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
     description:
-      "Search current jobs in Rwanda including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
+      "Search current jobs in Rwanda by category, including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
   },
   "/job-vacancies-rwanda": {
     title: "Job Vacancies in Rwanda | Imyanya",
     description:
-      "Browse job vacancies in Rwanda from trusted employers and apply to opportunities that match your skills.",
+      "Browse job vacancies in Rwanda from trusted employers and apply to opportunities that match your skills and career goals.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/kigali-jobs": {
@@ -146,13 +166,29 @@ const getOrigin = () => (isEmployerHost() ? EMPLOYER_ORIGIN : MAIN_ORIGIN);
 
 const getSeoForPath = (pathname) => {
   const path = normalizePath(pathname);
+  const isAuthRoute = AUTH_PATH_PREFIXES.some((prefix) =>
+    path.startsWith(prefix)
+  );
+  const isPrivateRoute = PRIVATE_PATH_PREFIXES.some((prefix) =>
+    path.startsWith(prefix)
+  );
 
   if (isEmployerHost()) {
-    return EMPLOYER_DEFAULT_SEO;
+    return {
+      ...EMPLOYER_DEFAULT_SEO,
+      noindex: true,
+    };
   }
 
   if (SEO_BY_PATH[path]) {
-    return SEO_BY_PATH[path];
+    const seo = SEO_BY_PATH[path];
+
+    return isAuthRoute || isPrivateRoute
+      ? {
+          ...seo,
+          noindex: true,
+        }
+      : seo;
   }
 
   if (path.startsWith("/viec-lam/") || path.startsWith("/jobs/")) {
@@ -168,6 +204,24 @@ const getSeoForPath = (pathname) => {
       title: "Company Profile in Rwanda | Imyanya",
       description:
         "View company details, open vacancies, and hiring information from this Rwanda employer on Imyanya.",
+    };
+  }
+
+  if (isAuthRoute) {
+    return {
+      title: "Login | Imyanya",
+      description:
+        "Sign in to Imyanya to manage your job applications, post vacancies, and update your account.",
+      noindex: true,
+    };
+  }
+
+  if (isPrivateRoute) {
+    return {
+      title: "Dashboard | Imyanya",
+      description:
+        "Access your Imyanya dashboard to manage jobs, applications, profiles, notifications, and account settings.",
+      noindex: true,
     };
   }
 

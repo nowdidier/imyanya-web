@@ -11,8 +11,9 @@ import { LoginSocialFacebook, LoginSocialGoogle } from "reactjs-social-login";
 import TextFieldCustom from "../../../../components/controls/TextFieldCustom";
 import PasswordTextFieldCustom from "../../../../components/controls/PasswordTextFieldCustom";
 import { AUTH_CONFIG } from "../../../../configs/constants";
+import { getSocialLoginRedirectUri } from "../../../../utils/socialLogin";
 
-const StyledButton = styled(Button)(({ theme }) => ({
+const StyledButton = styled(Button)(() => ({
   padding: "8px 16px",
   borderRadius: "8px",
   fontSize: "14px",
@@ -26,7 +27,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const StyledSocialButton = styled(Button)(({ theme }) => ({
+const StyledSocialButton = styled(Button)(() => ({
   padding: "8px 16px",
   borderRadius: "8px",
   fontSize: "14px",
@@ -59,6 +60,8 @@ const JobSeekerLoginForm = ({
   onGoogleLogin,
   onSocialReject,
 }) => {
+  const socialRedirectUri = getSocialLoginRedirectUri();
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -142,6 +145,7 @@ const JobSeekerLoginForm = ({
           scope="email,public_profile"
           fieldsProfile={"id"}
           isOnlyGetToken={true}
+          redirect_uri={socialRedirectUri}
           ux_mode="popup"
           onResolve={onFacebookLogin}
           onReject={onSocialReject}
@@ -166,7 +170,9 @@ const JobSeekerLoginForm = ({
         <LoginSocialGoogle
           client_id={AUTH_CONFIG.GOOGLE_CLIENT_ID}
           isOnlyGetToken={true}
+          redirect_uri={socialRedirectUri}
           access_type="offline"
+          typeResponse="accessToken"
           scope="openid profile email"
           discoveryDocs="claims_supported"
           onResolve={onGoogleLogin}

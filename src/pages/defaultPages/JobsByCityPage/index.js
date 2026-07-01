@@ -6,12 +6,15 @@ import { TabTitle } from '../../../utils/generalFunction';
 import CategoryCard from '../../components/defaults/CategoryCard';
 
 const JobsByCityPage = () => {
-  TabTitle("Jobs by City")
+  TabTitle("Jobs by Location in Rwanda | Imyanya")
   const { allConfig } = useSelector((state) => state.config);
 
   return (
     <Container maxWidth="lg" sx={{ py: 2 }}>
-      <Typography variant="h4">Jobs by City</Typography>
+      <Typography variant="h4">Jobs by Location in Rwanda</Typography>
+      <Typography variant="body1" sx={{ mt: 1, color: 'text.secondary' }}>
+        Browse vacancies across Kigali and the rest of Rwanda by city or province.
+      </Typography>
       <Divider sx={{ mt: 1, mb: 4 }} />
       <CategoryCard options={allConfig?.cityOptions || []}  type={"CITY"}/>
     </Container>

@@ -28,8 +28,7 @@ const HomeSearch = () => {
 
   React.useEffect(() => {
     dispatch(resetSearchJobPostFilter());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   const handleSaveKeyworLocalStorage = (kw) => {
    try {
@@ -90,7 +89,7 @@ const HomeSearch = () => {
             <InputBaseSearchHomeCustom
               name="kw"
               control={control}
-              placeholder="Search job opportunities"
+              placeholder="Search jobs in Rwanda by title, company, or keyword"
               showSubmitButton={true}
               location='HOME'
             />
@@ -98,7 +97,7 @@ const HomeSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <SingleSelectSearchCustom
               name="careerId"
-              placeholder="All industries"
+              placeholder="All job categories"
               control={control}
               options={allConfig?.careerOptions || []}
             />
@@ -106,7 +105,7 @@ const HomeSearch = () => {
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <SingleSelectSearchCustom
               name="cityId"
-              placeholder="All provinces/cities"
+              placeholder="All locations in Rwanda"
               control={control}
               options={allConfig?.cityOptions || []}
             />

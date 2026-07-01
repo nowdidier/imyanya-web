@@ -86,6 +86,7 @@ const AUTH_CONFIG = {
   // Maps
   GOONGAPI_KEY: process.env.REACT_APP_GOONGAPI_KEY,
   GOONGAPI_ACCESS_TOKEN: process.env.REACT_APP_GOONGAPI_ACCESS_TOKEN,
+  GOONG_LANGUAGE: process.env.REACT_APP_GOONG_LANGUAGE || "en",
 
   // Dialogflow chatbots
   // REACT_APP_ prefix is required for CRA — fallback to old name during transition

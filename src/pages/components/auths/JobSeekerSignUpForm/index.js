@@ -11,9 +11,8 @@ import { LoginSocialFacebook, LoginSocialGoogle } from "reactjs-social-login";
 import TextFieldCustom from "../../../../components/controls/TextFieldCustom";
 import PasswordTextFieldCustom from "../../../../components/controls/PasswordTextFieldCustom";
 import { AUTH_CONFIG } from "../../../../configs/constants";
-import { getSocialLoginRedirectUri } from "../../../../utils/socialLogin";
 
-const StyledButton = styled(Button)(() => ({
+const StyledButton = styled(Button)(({ theme }) => ({
   padding: "8px 16px",
   borderRadius: "8px",
   fontSize: "14px",
@@ -27,7 +26,7 @@ const StyledButton = styled(Button)(() => ({
   },
 }));
 
-const StyledSocialButton = styled(Button)(() => ({
+const StyledSocialButton = styled(Button)(({ theme }) => ({
   padding: "8px 16px",
   borderRadius: "8px",
   fontSize: "14px",
@@ -57,11 +56,8 @@ const JobSeekerSignUpForm = ({
   onRegister,
   onFacebookRegister,
   onGoogleRegister,
-  onSocialReject,
   serverErrors = {},
 }) => {
-  const socialRedirectUri = getSocialLoginRedirectUri();
-
   const schema = yup.object().shape({
     fullName: yup.string().required("Full Name is required."),
     email: yup
@@ -75,7 +71,7 @@ const JobSeekerSignUpForm = ({
       .min(8, "Password must be at least 8 characters.")
       .max(128, "Password exceeds the maximum length.")
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
         "Must contain one uppercase letter, one lowercase letter, one number, and one special character"
       ),
     confirmPassword: yup
@@ -190,14 +186,16 @@ const JobSeekerSignUpForm = ({
           appId={AUTH_CONFIG.FACEBOOK_CLIENT_ID}
           fieldsProfile={"id"}
           isOnlyGetToken={true}
-          redirect_uri={socialRedirectUri}
           ux_mode="popup"
           onResolve={onFacebookRegister}
-          onReject={onSocialReject}
+          onReject={(err) => {
+            console.log(err);
+          }}
         >
           <StyledSocialButton
             fullWidth
             variant="outlined"
+            onClick={onFacebookRegister}
             startIcon={<FacebookIcon />}
             sx={{
               borderColor: "#4267B2",
@@ -215,18 +213,19 @@ const JobSeekerSignUpForm = ({
         <LoginSocialGoogle
           client_id={AUTH_CONFIG.GOOGLE_CLIENT_ID}
           isOnlyGetToken={true}
-          redirect_uri={socialRedirectUri}
           ux_mode="popup"
           access_type="offline"
-          typeResponse="accessToken"
           scope="openid profile email"
           discoveryDocs="claims_supported"
           onResolve={onGoogleRegister}
-          onReject={onSocialReject}
+          onReject={(err) => {
+            console.log(err);
+          }}
         >
           <StyledSocialButton
             fullWidth
             variant="outlined"
+            onClick={onGoogleRegister}
             startIcon={<GoogleIcon />}
             sx={{
               borderColor: "#DB4437",

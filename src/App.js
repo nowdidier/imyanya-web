@@ -21,7 +21,6 @@ import defaultTheme from "./themeConfigs/defaultTheme";
 import { ConfigProvider } from "antd";
 
 import AppRoutes from "./routes/AppRouter";
-import SeoManager from "./components/SeoManager";
 
 import { MyJobChatBot } from "./chatbot";
 import Feedback from "./components/Feedback";
@@ -132,7 +131,6 @@ function App() {
       >
         <ThemeProvider theme={theme}>
           <CssBaseline enableColorScheme />
-          <SeoManager />
 
           {/* Routes */}
           <AppRoutes settings={settings} />

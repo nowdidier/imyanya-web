@@ -90,7 +90,7 @@ const AppliedJobCard = () => {
                 }
                 companyName={value?.jobPostDict.companyDict.companyName}
                 jobName={value?.jobPostDict.jobName}
-                cityId={value?.jobPostDict.locationDict.city}
+                cityId={value?.jobPostDict?.locationDict?.city}
                 deadline={value?.jobPostDict.deadline}
                 isUrgent={value?.jobPostDict.isUrgent}
                 isHot={value?.jobPostDict.isHot}

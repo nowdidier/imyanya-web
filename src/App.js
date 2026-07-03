@@ -22,7 +22,7 @@ import { ConfigProvider } from "antd";
 
 import AppRoutes from "./routes/AppRouter";
 
-import { MyJobChatBot } from "./chatbot";
+import { WhatsAppContactButton } from "./whatsapp";
 import Feedback from "./components/Feedback";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -44,7 +44,7 @@ function App() {
     currentUser = null,
   } = useSelector((state) => state.user || {});
 
-  // Hide chatbot on chat pages
+  // Hide floating contact widgets on chat pages
   const hideChatFeatures =
     location.pathname.startsWith(
       `/${ROUTES.JOB_SEEKER.CHAT}`
@@ -138,14 +138,14 @@ function App() {
           {/* Toast */}
           <ToastContainer autoClose={1300} />
 
-          {/* Chatbot + Feedback */}
+          {/* Contact widgets + Feedback */}
           {!hideChatFeatures && (
             <>
               {isAuthenticated && (
                 <Feedback />
               )}
 
-              <MyJobChatBot />
+              <WhatsAppContactButton />
             </>
           )}
         </ThemeProvider>
@@ -157,4 +157,3 @@ function App() {
 }
 
 export default App;
-

@@ -102,7 +102,7 @@ const MainJobPostCard = () => {
                 companyImageUrl={value?.companyDict.companyImageUrl}
                 companyName={value?.companyDict.companyName}
                 jobName={value?.jobName}
-                cityId={value?.locationDict.city}
+                cityId={value?.locationDict?.city}
                 deadline={value?.deadline}
                 isUrgent={value?.isUrgent}
                 isHot={value?.isHot}

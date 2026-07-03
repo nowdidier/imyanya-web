@@ -29,6 +29,13 @@ const normalizeHostNameValue = (value = "") => {
     .replace(/\/.*$/, "");
 };
 
+const WHATSAPP_CONFIG = {
+  PHONE: process.env.REACT_APP_WHATSAPP_PHONE || "250789690247",
+  DEFAULT_MESSAGE:
+    process.env.REACT_APP_WHATSAPP_MESSAGE ||
+    "Hello Imyanya, I need help.",
+};
+
 const stripWwwPrefix = (value = "") => {
   return normalizeHostNameValue(value).replace(/^www\./, "");
 };
@@ -87,25 +94,6 @@ const AUTH_CONFIG = {
   GOONGAPI_KEY: process.env.REACT_APP_GOONGAPI_KEY,
   GOONGAPI_ACCESS_TOKEN: process.env.REACT_APP_GOONGAPI_ACCESS_TOKEN,
   GOONG_LANGUAGE: process.env.REACT_APP_GOONG_LANGUAGE || "en",
-
-  // Dialogflow chatbots
-  // REACT_APP_ prefix is required for CRA — fallback to old name during transition
-  JOB_SEEKER_BOT: {
-    AGENT_ID:
-      process.env.REACT_APP_JOB_SEEKER_BOT_AGENT_ID ||
-      process.env.JOB_SEEKER_BOT_AGENT_ID ||
-      "",
-    CHAT_TITLE: "MyJob AI",
-    CHAT_ICON: require("../assets/icons/job_seeker_chatbot_icon.gif"),
-  },
-  EMPLOYER_BOT: {
-    AGENT_ID:
-      process.env.REACT_APP_EMPLOYER_BOT_AGENT_ID ||
-      process.env.EMPLOYER_BOT_AGENT_ID ||
-      "",
-    CHAT_TITLE: "MyJob AI",
-    CHAT_ICON: require("../assets/icons/employer_chatbot_icon.gif"),
-  },
 };
 
 const ROLES_NAME = {
@@ -181,8 +169,6 @@ const ICONS = {
   TWITTER: require("../assets/icons/twitter-icon.png"),
   YOUTUBE: require("../assets/icons/youtube-icon.png"),
   LOCATION_MARKER: require("../assets/icons/location-marker.gif"),
-  JOB_SEEKER_CHATBOT_ICON: require("../assets/icons/job_seeker_chatbot_icon.gif"),
-  EMPLOYER_CHATBOT_ICON: require("../assets/icons/employer_chatbot_icon.gif"),
 };
 
 const LINKS = {
@@ -286,6 +272,7 @@ export {
   getCanonicalHostName,
   AUTH_PROVIDER,
   AUTH_CONFIG,
+  WHATSAPP_CONFIG,
   ROLES_NAME,
   HOME_FILTER_CAREER,
   REGEX_VATIDATE,

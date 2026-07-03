@@ -117,7 +117,7 @@ const Companies = () => {
                     companyName={value.companyName}
                     employeeSize={value.employeeSize}
                     fieldOperation={value.fieldOperation}
-                    city={value.locationDict.city}
+                    city={value.locationDict?.city}
                     followNumber={value.followNumber}
                     jobPostNumber={value.jobPostNumber}
                     isFollowed={value.isFollowed}

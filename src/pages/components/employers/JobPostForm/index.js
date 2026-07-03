@@ -3,9 +3,13 @@ import { useSelector } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Alert, Grid } from '@mui/material';
+import { Alert, AlertTitle, Grid, Link } from '@mui/material';
 
-import { DATE_OPTIONS, REGEX_VATIDATE } from '../../../../configs/constants';
+import {
+  DATE_OPTIONS,
+  REGEX_VATIDATE,
+  WHATSAPP_CONFIG,
+} from '../../../../configs/constants';
 import useDebounce from '../../../../hooks/useDebounce';
 import errorHandling from '../../../../utils/errorHandling';
 import TextFieldCustom from '../../../../components/controls/TextFieldCustom';
@@ -22,6 +26,12 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
   const { allConfig } = useSelector((state) => state.config);
   const [districtOptions, setDistrictOptions] = React.useState([]);
   const [locationOptions, setLocationOptions] = React.useState([]);
+  const supportWhatsAppUrl = `https://wa.me/${WHATSAPP_CONFIG.PHONE.replace(
+    /[^\d]/g,
+    ''
+  )}?text=${encodeURIComponent(
+    'Hello Imyanya, I need help with job post payment.'
+  )}`;
 
   const schema = yup.object().shape({
     jobName: yup
@@ -230,7 +240,22 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Alert severity="warning">
-            When you update this post, it will return to pending review.
+            <AlertTitle>Payment and review notice</AlertTitle>
+            When you submit or update this job post, it will return to pending
+            review. Please make the job post payment using the same number you
+            enter in <strong>Phone Number contact person</strong>. Admin uses
+            that number to match the payment to this job and approve it faster.
+            If payment is blocked or you need help,{' '}
+            <Link
+              href={supportWhatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="hover"
+              sx={{ fontWeight: 700 }}
+            >
+              contact us on WhatsApp
+            </Link>
+            .
           </Alert>
         </Grid>
 
@@ -445,6 +470,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             title="Phone Number contact person"
             showRequired={true}
             placeholder="Enter phone number contact person"
+            helperText="Use this same phone number when paying for this job post so admin can match your payment and approve faster."
             control={control}
           />
         </Grid>

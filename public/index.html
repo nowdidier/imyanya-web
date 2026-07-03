@@ -11,6 +11,7 @@
     />
     <meta name="application-name" content="Imyanya" />
     <meta name="author" content="Imyanya" />
+    <meta name="google-adsense-account" content="ca-pub-1257502818810103" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
     <meta name="keywords" content="jobs in Rwanda, imyanya, imyanya y'akazi, Rwanda jobs, Kigali jobs, NGO jobs Rwanda, internships Rwanda, job vacancies Rwanda, recruitment Rwanda" />
@@ -29,6 +30,12 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- Google AdSense Auto Ads: loaded once here so every React route can show ads. -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1257502818810103"
+      crossorigin="anonymous"
+    ></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -78,20 +85,6 @@
       }
     </script>
     <style>
-      df-messenger {
-        --df-messenger-bot-message: #9c8ebd;
-        --df-messenger-button-titlebar-color: #441da0;
-        --df-messenger-button-titlebar-font-color: #ffffff;
-        --df-messenger-chat-background-color: #f8f9fa;
-        --df-messenger-font-color: #ffffff;
-        --df-messenger-input-box-color: #ffffff;
-        --df-messenger-input-font-color: #333333;
-        --df-messenger-input-placeholder-font-color: #969db6;
-        --df-messenger-minimized-chat-close-icon-color: #441da0;
-        --df-messenger-send-icon: #441da0;
-        --df-messenger-user-message: #441da0;
-      }
-      
       @keyframes spin {
         from {
          transform: rotate(0deg);
@@ -142,7 +135,6 @@
         margin: 0 8px;
       }
     </style>
-     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

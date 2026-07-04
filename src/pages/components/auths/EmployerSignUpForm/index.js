@@ -27,13 +27,14 @@ import PasswordTextFieldCustom from '../../../../components/controls/PasswordTex
 import SingleSelectCustom from '../../../../components/controls/SingleSelectCustom';
 import DatePickerCustom from '../../../../components/controls/DatePickerCustom';
 import TextFieldAutoCompleteCustom from '../../../../components/controls/TextFieldAutoCompleteCustom';
+import Map from '../../../../components/Map';
 
 import commonService from '../../../../services/commonService';
 import goongService from '../../../../services/goongService';
 
 const steps = ['Account Information', 'Company Information'];
 
-const StyledButton = styled(Button)(({ theme }) => ({
+const StyledButton = styled(Button)(() => ({
   padding: '8px 16px',
   borderRadius: '8px',
   fontSize: '14px',
@@ -83,7 +84,7 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
       .min(8, 'Password must be at least 8 characters.')
       .max(128, 'Password exceeds the maximum length.')
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
         'Must contain one uppercase letter, one lowercase letter, one number, and one special character'
       ),
     confirmPassword: yup
@@ -133,6 +134,14 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
           .string()
           .required('Company Address is required!')
           .max(255, 'Company Address exceeds the maximum length.'),
+        lat: yup
+          .number()
+          .required('Company latitude is required.')
+          .typeError('Company map latitude is invalid.'),
+        lng: yup
+          .number()
+          .required('Company longitude is required.')
+          .typeError('Company map longitude is invalid.'),
       }),
     }),
   });
@@ -157,6 +166,8 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
             city: '',
             district: '',
             address: '',
+            lat: '',
+            lng: '',
           },
         },
       },
@@ -173,7 +184,58 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
     name: 'company.location.address',
   });
 
+  const latitude = useWatch({
+    control,
+    name: 'company.location.lat',
+  });
+
+  const longitude = useWatch({
+    control,
+    name: 'company.location.lng',
+  });
+
   const addressDebounce = useDebounce(address, 500);
+
+  const setCoordinates = (lat, lng) => {
+    setValue('company.location.lat', lat, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+    setValue('company.location.lng', lng, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+  };
+
+  const clearCoordinates = () => {
+    setValue('company.location.lat', '', {
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+    setValue('company.location.lng', '', {
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
+
+  const updateAddressFromCoordinates = async (lat, lng) => {
+    try {
+      const resData = await goongService.reverseGeocode(lat, lng);
+      const formattedAddress = resData?.results?.[0]?.formatted_address || '';
+
+      if (formattedAddress) {
+        setValue('company.location.address', formattedAddress, {
+          shouldDirty: true,
+          shouldTouch: true,
+          shouldValidate: true,
+        });
+      }
+    } catch (error) {
+      errorHandling(error);
+    }
+  };
 
   // show server errors
   React.useEffect(() => {
@@ -209,7 +271,9 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
         const resData = await goongService.getPlaces(input);
 
         if (resData.predictions) setLocationOptions(resData.predictions);
-      } catch (error) {}
+      } catch (error) {
+        errorHandling(error);
+      }
     };
 
     loadLocation(addressDebounce);
@@ -217,19 +281,32 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
 
   // select location lat, lng
   const handleSelectLocation = async (e, value) => {
-   try {
+    if (!value?.place_id) {
+      return;
+    }
+
+    try {
       const resData = await goongService.getPlaceDetailByPlaceId(
         value.place_id
       );
-      setValue(
-        'company.location.lat',
-        resData?.result?.geometry?.location?.lat || ''
+      setCoordinates(
+        resData?.result?.geometry?.location?.lat ?? '',
+        resData?.result?.geometry?.location?.lng ?? ''
       );
-      setValue(
-        'company.location.lng',
-        resData?.result?.geometry?.location?.lng || ''
-      );
-    } catch (error) {}
+    } catch (error) {
+      errorHandling(error);
+    }
+  };
+
+  const handleMapLocationChange = async ({ lat, lng }) => {
+    setCoordinates(lat, lng);
+    await updateAddressFromCoordinates(lat, lng);
+  };
+
+  const handleAddressInputChange = (event, newValue, reason) => {
+    if (reason === 'input' || reason === 'clear') {
+      clearCoordinates();
+    }
   };
 
   // fetch districts by city
@@ -243,21 +320,19 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
         setDistrictOptions(resData.data);
       } catch (error) {
         errorHandling(error);
-      } finally {
       }
     };
 
     if (cityId) {
       loadDistricts(cityId);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cityId, setValue]);
 
   const handleSubmtNextSuccess = (data) => {
     handleNext(data.email);
   };
 
-  const handleSubmitNextError = async (errors, e) => {
+  const handleSubmitNextError = async (errors) => {
     if (
       !('fullName' in errors) &&
       !('email' in errors) &&
@@ -502,7 +577,55 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
               options={locationOptions}
               loading={true}
               handleSelect={handleSelectLocation}
-              helperText="Select a suggested address to help us identify your company's exact location"
+              handleInputChange={handleAddressInputChange}
+              helperText="Search an address or click the map below. Latitude and longitude will fill automatically."
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '10px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                }
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Map
+              title="Company location"
+              subTitle={address || 'Search an address or click the map to set the coordinates.'}
+              latitude={latitude}
+              longitude={longitude}
+              editable={true}
+              onLocationChange={handleMapLocationChange}
+              height={320}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+            <TextFieldCustom
+              name="company.location.lat"
+              control={control}
+              title="Latitude"
+              placeholder="Auto-filled from the map"
+              helperText="Pick a point on the map or select a suggested address."
+              showRequired={true}
+              type="number"
+              readOnly={true}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '10px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                }
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+            <TextFieldCustom
+              name="company.location.lng"
+              control={control}
+              title="Longitude"
+              placeholder="Auto-filled from the map"
+              helperText="Pick a point on the map or select a suggested address."
+              showRequired={true}
+              type="number"
+              readOnly={true}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '10px',

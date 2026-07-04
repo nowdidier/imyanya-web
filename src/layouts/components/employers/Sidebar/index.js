@@ -68,11 +68,29 @@ const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   },
 }));
 
+const normalizePath = (pathname = '') => {
+  if (!pathname || pathname === '/') {
+    return '/';
+  }
+
+  const normalizedPath = pathname.replace(/\/+$/, '');
+  return normalizedPath === '' ? '/' : normalizedPath;
+};
+
 const MenuItem = ({ icon: Icon, text, to, onClick, isSelected, isExpanded, hasChildren, isChild }) => {
+  const linkProps = to
+    ? {
+        component: NavLink,
+        end: true,
+        to,
+      }
+    : {
+        component: 'div',
+      };
+
   return (
     <StyledListItemButton
-      component={to ? NavLink : 'div'}
-      to={to}
+      {...linkProps}
       onClick={onClick}
       selected={isSelected}
       sx={{ 
@@ -132,6 +150,9 @@ const DrawerContent = () => {
     }));
   };
 
+  const isSelectedPath = (path) =>
+    normalizePath(location.pathname) === normalizePath(path);
+
   return (
     <div>
       <Toolbar sx={{ px: 2, py: 1.5 }}>
@@ -166,7 +187,7 @@ const DrawerContent = () => {
               icon={GridViewIcon}
               text="Dashboard"
               to={`/${ROUTES.EMPLOYER.DASHBOARD}`}
-              isSelected={location.pathname === `/${ROUTES.EMPLOYER.DASHBOARD}`}
+              isSelected={isSelectedPath(`/${ROUTES.EMPLOYER.DASHBOARD}`)}
             />
           </ListItem>
 
@@ -176,7 +197,7 @@ const DrawerContent = () => {
               icon={ListAltOutlinedIcon}
               text="Job Postings"
               to={`/${ROUTES.EMPLOYER.JOB_POST}`}
-              isSelected={location.pathname === `/${ROUTES.EMPLOYER.JOB_POST}`}
+              isSelected={isSelectedPath(`/${ROUTES.EMPLOYER.JOB_POST}`)}
             />
           </ListItem>
 
@@ -195,19 +216,19 @@ const DrawerContent = () => {
               <MenuItem
                 text="Applied Profiles"
                 to={`/${ROUTES.EMPLOYER.APPLIED_PROFILE}`}
-                isSelected={location.pathname === `/${ROUTES.EMPLOYER.APPLIED_PROFILE}`}
+                isSelected={isSelectedPath(`/${ROUTES.EMPLOYER.APPLIED_PROFILE}`)}
                 isChild
               />
               <MenuItem
                 text="Saved Profiles"
                 to={`/${ROUTES.EMPLOYER.SAVED_PROFILE}`}
-                isSelected={location.pathname === `/${ROUTES.EMPLOYER.SAVED_PROFILE}`}
+                isSelected={isSelectedPath(`/${ROUTES.EMPLOYER.SAVED_PROFILE}`)}
                 isChild
               />
               <MenuItem
                 text="Find Candidates"
                 to={`/${ROUTES.EMPLOYER.PROFILE}`}
-                isSelected={location.pathname === `/${ROUTES.EMPLOYER.PROFILE}`}
+                isSelected={isSelectedPath(`/${ROUTES.EMPLOYER.PROFILE}`)}
                 isChild
               />
             </List>
@@ -219,7 +240,7 @@ const DrawerContent = () => {
               icon={NotificationsNoneOutlinedIcon}
               text={`${APP_NAME} Notifications`}
               to={`/${ROUTES.EMPLOYER.NOTIFICATION}`}
-              isSelected={location.pathname === `/${ROUTES.EMPLOYER.NOTIFICATION}`}
+              isSelected={isSelectedPath(`/${ROUTES.EMPLOYER.NOTIFICATION}`)}
             />
           </ListItem>
 
@@ -238,19 +259,19 @@ const DrawerContent = () => {
               <MenuItem
                 text="Company Information"
                 to={`/${ROUTES.EMPLOYER.COMPANY}`}
-                isSelected={location.pathname === `/${ROUTES.EMPLOYER.COMPANY}`}
+                isSelected={isSelectedPath(`/${ROUTES.EMPLOYER.COMPANY}`)}
                 isChild
               />
               <MenuItem
                 text="Account"
                 to={`/${ROUTES.EMPLOYER.ACCOUNT}`}
-                isSelected={location.pathname === `/${ROUTES.EMPLOYER.ACCOUNT}`}
+                isSelected={isSelectedPath(`/${ROUTES.EMPLOYER.ACCOUNT}`)}
                 isChild
               />
               <MenuItem
                 text="Settings"
                 to={`/${ROUTES.EMPLOYER.SETTING}`}
-                isSelected={location.pathname === `/${ROUTES.EMPLOYER.SETTING}`}
+                isSelected={isSelectedPath(`/${ROUTES.EMPLOYER.SETTING}`)}
                 isChild
               />
             </List>
@@ -262,7 +283,6 @@ const DrawerContent = () => {
 };
 
 const Sidebar = ({ drawerWidth }) => {
-  const location = useLocation();
   const theme = useTheme();
 
   return (

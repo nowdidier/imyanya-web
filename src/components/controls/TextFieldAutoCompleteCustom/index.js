@@ -15,6 +15,7 @@ const TextFieldAutoCompleteCustom = ({
   options,
   loading,
   handleSelect,
+  handleInputChange,
   helperText = '',
 }) => {
   const [open, setOpen] = React.useState(false);
@@ -44,13 +45,20 @@ const TextFieldAutoCompleteCustom = ({
                 setOpen(false);
               }}
               getOptionLabel={(option) =>
-                option?.description || field.value || ''
+                typeof option === 'string'
+                  ? option
+                  : option?.description || ''
               }
               options={options}
               loading={loading}
               onChange={handleSelect}
               inputValue={field.value}
-              onInputChange={(e, newValue) => field.onChange(newValue || '')}
+              onInputChange={(e, newValue, reason) => {
+                field.onChange(newValue || '');
+                if (handleInputChange) {
+                  handleInputChange(e, newValue, reason);
+                }
+              }}
               renderInput={(params) => (
                 <TextField
                 error={fieldState.invalid}

@@ -7,9 +7,9 @@ import CompanyImageCard from '../../components/employers/CompanyImageCard';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 const CompanyPage = () => {
-  TabTitle("Manage Company Information")
+  TabTitle('Manage Company Information');
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState('1');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -20,16 +20,16 @@ const CompanyPage = () => {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="company tabs">
-            <Tab label="Company Information" />
-            <Tab label="Media" />
+            <Tab label="Company Information" value="1" />
+            <Tab label="Media" value="2" />
           </TabList>
         </Box>
-        <TabPanel value={0} sx={{ px: 1 }}>
+        <TabPanel value="1" sx={{ px: 1 }}>
           {/* Start: Company card */}
           <CompanyCard />
           {/* End: Company card */}
         </TabPanel>
-        <TabPanel value={1} sx={{ px: 1 }}>
+        <TabPanel value="2" sx={{ px: 1 }}>
           {/* Start: Company image card */}
           <CompanyImageCard />
           {/* End: Company image card */}

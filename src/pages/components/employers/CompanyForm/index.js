@@ -16,11 +16,21 @@ import useDebounce from '../../../../hooks/useDebounce';
 import TextFieldAutoCompleteCustom from '../../../../components/controls/TextFieldAutoCompleteCustom';
 import goongService from '../../../../services/goongService';
 import RichTextEditorCustom from '../../../../components/controls/RichTextEditorCustom';
+import Map from '../../../../components/Map';
 
 const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
   const { allConfig } = useSelector((state) => state.config);
   const [districtOptions, setDistrictOptions] = React.useState([]);
   const [locationOptions, setLocationOptions] = React.useState([]);
+
+  const normalizeLocation = (location = {}) => ({
+    city: '',
+    district: '',
+    address: '',
+    lat: '',
+    lng: '',
+    ...(location || {}),
+  });
 
   const schema = yup.object().shape({
     companyName: yup
@@ -83,12 +93,65 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
     name: 'location.city',
   });
 
+  const latitude = useWatch({
+    control,
+    name: 'location.lat',
+  });
+
+  const longitude = useWatch({
+    control,
+    name: 'location.lng',
+  });
+
   const address = useWatch({
     control,
     name: 'location.address',
   });
 
   const addressDebounce = useDebounce(address, 500);
+
+  const setCoordinates = (lat, lng) => {
+    setValue('location.lat', lat, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+    setValue('location.lng', lng, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+  };
+
+  const clearCoordinates = () => {
+    setValue('location.lat', '', {
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+    setValue('location.lng', '', {
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
+
+  const applyLocationFromMap = async (lat, lng) => {
+    setCoordinates(lat, lng);
+
+    try {
+      const resData = await goongService.reverseGeocode(lat, lng);
+      const formattedAddress = resData?.results?.[0]?.formatted_address || '';
+
+      if (formattedAddress) {
+        setValue('location.address', formattedAddress, {
+          shouldDirty: true,
+          shouldTouch: true,
+          shouldValidate: true,
+        });
+      }
+    } catch (error) {
+      errorHandling(error);
+    }
+  };
 
   React.useEffect(() => {
     const loadDistricts = async (cityId) => {
@@ -99,14 +162,12 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
         setDistrictOptions(resData.data);
       } catch (error) {
         errorHandling(error);
-      } finally {
       }
     };
 
     if (cityId) {
       loadDistricts(cityId);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cityId, setValue]);
 
   React.useEffect(() => {
@@ -128,6 +189,10 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
       reset((formValues) => ({
         ...formValues,
         ...editData,
+        location: {
+          ...(formValues?.location || {}),
+          ...normalizeLocation(editData?.location),
+        },
       }));
     else reset();
   }, [editData, reset]);
@@ -147,14 +212,30 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
   }, [serverErrors, setError]);
 
   const handleSelectLocation = async (e, value) => {
-   try {
+    if (!value?.place_id) {
+      return;
+    }
+
+    try {
       const resData = await goongService.getPlaceDetailByPlaceId(
         value.place_id
       );
-      setValue('location.lat', resData?.result?.geometry?.location?.lat || '');
-      setValue('location.lng', resData?.result?.geometry?.location?.lng || '');
+      setCoordinates(
+        resData?.result?.geometry?.location?.lat ?? '',
+        resData?.result?.geometry?.location?.lng ?? ''
+      );
     } catch (error) {
       errorHandling(error);
+    }
+  };
+
+  const handleMapLocationChange = async ({ lat, lng }) => {
+    await applyLocationFromMap(lat, lng);
+  };
+
+  const handleAddressInputChange = (event, newValue, reason) => {
+    if (reason === 'input' || reason === 'clear') {
+      clearCoordinates();
     }
   };
 
@@ -286,6 +367,19 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 control={control}
                 options={locationOptions}
                 handleSelect={handleSelectLocation}
+                handleInputChange={handleAddressInputChange}
+                helperText="Search an address or click the map below. Latitude and longitude will fill automatically."
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Map
+                title={editData?.companyName || 'Company location'}
+                subTitle={address || 'Search an address or click the map to set the coordinates.'}
+                latitude={latitude}
+                longitude={longitude}
+                editable={true}
+                onLocationChange={handleMapLocationChange}
+                height={320}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -293,9 +387,11 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 name="location.lat"
                 title="Latitude"
                 showRequired={true}
-                placeholder="Enter the company's map latitude."
-                helperText="This is filled automatically when you select a suggested address."
+                placeholder="Auto-filled from the map"
+                helperText="Pick a point on the map or select a suggested address."
                 control={control}
+                type="number"
+                readOnly={true}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -303,9 +399,11 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 name="location.lng"
                 title="Longitude"
                 showRequired={true}
-                placeholder="Enter the company's map longitude."
-                helperText="This is filled automatically when you select a suggested address."
+                placeholder="Auto-filled from the map"
+                helperText="Pick a point on the map or select a suggested address."
                 control={control}
+                type="number"
+                readOnly={true}
               />
             </Grid>
             <Grid item xs={12}>

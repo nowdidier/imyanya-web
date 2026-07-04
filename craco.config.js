@@ -154,6 +154,8 @@ module.exports = {
     },
   },
   devServer: {
+    host: '0.0.0.0',
+    allowedHosts: 'all',
     hot: true,
     liveReload: false,
     proxy: {

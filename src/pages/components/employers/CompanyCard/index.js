@@ -29,13 +29,21 @@ const CompanyCard = () => {
   React.useEffect(() => {
     const loadCompany = async () => {
       setIsLoadingCompany(true);
-     try {
+      try {
         const resData = await companyService.getCompany();
         var data = resData.data;
 
         data = {
           ...data,
           description: createEditorStateFromHTMLString(data?.description || ""),
+          location: {
+            city: "",
+            district: "",
+            address: "",
+            lat: "",
+            lng: "",
+            ...(data?.location || {}),
+          },
         };
         setEditData(data);
 
@@ -53,7 +61,6 @@ const CompanyCard = () => {
     };
 
     loadCompany();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess]);
 
   const handleUpdate = (data) => {

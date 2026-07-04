@@ -34,6 +34,13 @@ const goongService = {
 
     return httpRequest.get(url);
   },
+  reverseGeocode: (lat, lng) => {
+    const url = buildGoongUrl('/Geocode', {
+      latlng: `${lat},${lng}`,
+    });
+
+    return httpRequest.get(url);
+  },
 };
 
 export default goongService;

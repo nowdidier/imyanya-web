@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Card, Typography, Container } from '@mui/material';
+import { Box, Card, CardContent, Grid, Typography, Container } from '@mui/material';
 
 import { TabTitle } from '../../../utils/generalFunction';
 import CompanySearch from '../../components/defaults/CompanySearch';
 import Companies from '../../../components/Companies';
+import { employerEvaluationGuide } from '../../../data/rwandaCareerContent';
 
 const CompanyPage = () => {
   TabTitle('Employer Search Results')
@@ -38,8 +39,26 @@ const CompanyPage = () => {
             mb: 4
           }}
         >
-          Learn about company culture and choose the workplace that fits you best
+          Learn about company culture, open roles, and hiring signals before you
+          decide where to apply in Rwanda.
         </Typography>
+
+        <Grid container spacing={2} sx={{ mb: 4 }}>
+          {employerEvaluationGuide.map((item) => (
+            <Grid item xs={12} md={4} key={item.title}>
+              <Card variant="outlined" sx={{ height: '100%', borderRadius: 1 }}>
+                <CardContent>
+                  <Typography variant="h6" fontWeight={700} gutterBottom>
+                    {item.title}
+                  </Typography>
+                  <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
+                    {item.body}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
 
         <Box sx={{ mt: 2, mb: 6 }}>
           <CompanySearch />

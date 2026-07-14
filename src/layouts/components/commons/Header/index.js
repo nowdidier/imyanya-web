@@ -53,17 +53,22 @@ const pages = {
     {
       id: 1,
       label: "Jobs",
-      path: `/${ROUTES.JOB_SEEKER.JOBS}`,
+      path: `/${ROUTES.JOB_SEEKER.JOBS_EN}`,
     },
     {
       id: 2,
       label: "Company",
-      path: `/${ROUTES.JOB_SEEKER.COMPANY}`,
+      path: `/${ROUTES.JOB_SEEKER.COMPANY_EN}`,
     },
     {
       id: 3,
+      label: "Career Guide",
+      path: `/${ROUTES.JOB_SEEKER.CAREER_GUIDE}`,
+    },
+    {
+      id: 4,
       label: "About Us",
-      path: `/${ROUTES.JOB_SEEKER.ABOUT_US}`,
+      path: `/${ROUTES.JOB_SEEKER.ABOUT_US_EN}`,
     },
   ],
 

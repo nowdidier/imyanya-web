@@ -122,6 +122,17 @@ const SEO_BY_PATH = {
     description:
       "Browse Rwanda jobs by work type, including full-time jobs, part-time roles, internships, and remote work.",
   },
+  "/rwanda-career-guide": {
+    title: "Rwanda Career Guide | CV, Job Search and Employer Advice | Imyanya",
+    description:
+      "Read practical Rwanda job-search guidance for CVs, applications, employer evaluation, location choices, internships, remote work, and career categories.",
+  },
+  "/career-guide": {
+    title: "Rwanda Career Guide | CV, Job Search and Employer Advice | Imyanya",
+    description:
+      "Read practical Rwanda job-search guidance for CVs, applications, employer evaluation, location choices, internships, remote work, and career categories.",
+    canonicalPath: "/rwanda-career-guide",
+  },
   "/ve-chung-toi": {
     title: "About Imyanya | Rwanda Jobs and Recruitment",
     description:
@@ -139,15 +150,37 @@ const SEO_BY_PATH = {
     description:
       "Learn how Imyanya helps job seekers find opportunities and helps employers recruit qualified talent across Rwanda.",
   },
+  "/contact": {
+    title: "Contact Imyanya | Rwanda Job Platform Support",
+    description:
+      "Contact Imyanya for job seeker support, employer recruitment support, account help, privacy requests, and suspicious job post reports.",
+  },
+  "/faq": {
+    title: "FAQ | Imyanya Rwanda Jobs Help",
+    description:
+      "Find answers about Rwanda job search, candidate profiles, employer job posts, suspicious listings, applications, and job-search guidance on Imyanya.",
+  },
   "/quy-dinh-bao-mat": {
     title: "Privacy Policy | Imyanya",
     description:
       "Read the Imyanya privacy policy for information about account data, job seeker profiles, employer recruitment data, and authentication.",
+    canonicalPath: "/privacy-policy",
+  },
+  "/privacy-policy": {
+    title: "Privacy Policy | Imyanya",
+    description:
+      "Read the Imyanya privacy policy for information about account data, recruitment data, advertising cookies, third-party ad serving, and authentication.",
   },
   "/thoa-thuan-su-dung": {
     title: "Terms of Use | Imyanya",
     description:
       "Read the Imyanya terms of use for job seekers and employers using the recruitment platform.",
+    canonicalPath: "/terms-of-use",
+  },
+  "/terms-of-use": {
+    title: "Terms of Use | Imyanya",
+    description:
+      "Read the Imyanya terms of use for job seekers, employers, recruitment content, third-party links, and advertising on public pages.",
   },
 };
 

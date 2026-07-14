@@ -60,7 +60,7 @@ const getCanonicalHostName = (hostname = "") => {
   if (hWithoutWww === employerHost) return HOST_NAME.EMPLOYER_MYJOB;
   if (hWithoutWww === jobSeekerHost) return HOST_NAME.MYJOB;
 
-  // Cloudflare Pages / Vercel preview URLs → default to job seeker
+  // Cloudflare Pages / Vercel preview URLs -> default to job seeker
   if (h.includes("pages.dev") || h.includes("vercel.app")) return HOST_NAME.MYJOB;
 
   return HOST_NAME.MYJOB;
@@ -225,15 +225,26 @@ const ROUTES = {
   JOB_SEEKER: {
     HOME: "",
     JOBS: "viec-lam",
+    JOBS_EN: "jobs-in-rwanda",
     JOB_DETAIL: "viec-lam/:slug",
     COMPANY: "cong-ty",
+    COMPANY_EN: "companies",
     COMPANY_DETAIL: "cong-ty/:slug",
     ABOUT_US: "ve-chung-toi",
+    ABOUT_US_EN: "about-us",
+    CAREER_GUIDE: "rwanda-career-guide",
+    CONTACT: "contact",
+    FAQ: "faq",
     PRIVACY_POLICY: "quy-dinh-bao-mat",
+    PRIVACY_POLICY_EN: "privacy-policy",
     TERMS_OF_USE: "thoa-thuan-su-dung",
+    TERMS_OF_USE_EN: "terms-of-use",
     JOBS_BY_CAREER: "viec-lam-theo-nganh-nghe",
+    JOBS_BY_CAREER_EN: "jobs-by-career",
     JOBS_BY_CITY: "viec-lam-theo-tinh-thanh",
+    JOBS_BY_CITY_EN: "jobs-by-location",
     JOBS_BY_TYPE: "viec-lam-theo-hinh-thuc-lam-viec",
+    JOBS_BY_TYPE_EN: "jobs-by-type",
     DASHBOARD: "bang-dieu-khien",
     PROFILE: "ho-so",
     STEP_PROFILE: "ho-so-tung-buoc/:slug",

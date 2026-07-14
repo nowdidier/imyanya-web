@@ -40,6 +40,24 @@ const AboutUsPage = () => {
     },
   ];
 
+  const contentStandards = [
+    {
+      title: "Rwanda-focused job information",
+      description:
+        "Our public pages are written for candidates comparing opportunities in Kigali and across Rwanda, with guidance on applications, locations, categories, and employer fit.",
+    },
+    {
+      title: "Clear employer and candidate workflows",
+      description:
+        "Job seekers can prepare profiles and applications, while employers can publish roles, review applicants, and manage recruitment conversations in one place.",
+    },
+    {
+      title: "Trust and safety awareness",
+      description:
+        "We encourage candidates to review job details carefully and report suspicious listings, especially requests for payment or unclear application processes.",
+    },
+  ];
+
   const sections = [
     {
       title: "Choose the Right Job - Move in the Right Direction",
@@ -107,9 +125,31 @@ const AboutUsPage = () => {
           }}
         >
           {APP_NAME} is a recruitment and job information channel for
-          businesses and candidates. We help employers find talent and help
-          candidates find meaningful career opportunities.
+          businesses and candidates in Rwanda. We help employers explain their
+          hiring needs clearly, and we help candidates compare opportunities,
+          prepare stronger applications, and choose roles that fit their skills,
+          location, and career stage.
         </Typography>
+      </Box>
+
+      <Box sx={{ mb: 8 }}>
+        <Typography variant="h4" component="h2" fontWeight={700} sx={{ mb: 3 }}>
+          What We Publish For
+        </Typography>
+        <Grid container spacing={3}>
+          {contentStandards.map((item) => (
+            <Grid item xs={12} md={4} key={item.title}>
+              <Card variant="outlined" sx={{ height: "100%", p: 3, borderRadius: 1 }}>
+                <Typography variant="h6" fontWeight={700} sx={{ mb: 1 }}>
+                  {item.title}
+                </Typography>
+                <Typography color="text.secondary" sx={{ lineHeight: 1.75 }}>
+                  {item.description}
+                </Typography>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       </Box>
 
       <Box sx={{ mb: 8 }}>

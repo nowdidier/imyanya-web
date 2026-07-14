@@ -22,11 +22,56 @@ import { ConfigProvider } from "antd";
 
 import AppRoutes from "./routes/AppRouter";
 
+import AdSenseLoader from "./components/AdSenseLoader";
+import SeoManager from "./components/SeoManager";
 import { WhatsAppContactButton } from "./whatsapp";
 import Feedback from "./components/Feedback";
 import ScrollToTop from "./components/ScrollToTop";
 
 import { ROLES_NAME, ROUTES } from "./configs/constants";
+
+const PUBLIC_BOOTSTRAP_TIMEOUT_MS = 2500;
+const PRIVATE_BOOTSTRAP_TIMEOUT_MS = 12000;
+
+const BLOCKING_ROUTE_PREFIXES = [
+  `/${ROUTES.JOB_SEEKER.DASHBOARD}`,
+  `/${ROUTES.JOB_SEEKER.PROFILE}`,
+  `/${ROUTES.JOB_SEEKER.STEP_PROFILE.split("/:")[0]}`,
+  `/${ROUTES.JOB_SEEKER.ATTACHED_PROFILE.split("/:")[0]}`,
+  `/${ROUTES.JOB_SEEKER.MY_JOB}`,
+  `/${ROUTES.JOB_SEEKER.MY_COMPANY}`,
+  `/${ROUTES.JOB_SEEKER.NOTIFICATION}`,
+  `/${ROUTES.JOB_SEEKER.ACCOUNT}`,
+  `/${ROUTES.JOB_SEEKER.CHAT}`,
+  `/${ROUTES.EMPLOYER.JOB_POST}`,
+  `/${ROUTES.EMPLOYER.APPLIED_PROFILE}`,
+  `/${ROUTES.EMPLOYER.SAVED_PROFILE}`,
+  `/${ROUTES.EMPLOYER.PROFILE}`,
+  `/${ROUTES.EMPLOYER.PROFILE_DETAIL.split("/:")[0]}`,
+  `/${ROUTES.EMPLOYER.NOTIFICATION}`,
+  `/${ROUTES.EMPLOYER.ACCOUNT}`,
+  `/${ROUTES.EMPLOYER.SETTING}`,
+  `/${ROUTES.EMPLOYER.CHAT}`,
+];
+
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const isBlockingRoute = (pathname = "") =>
+  BLOCKING_ROUTE_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+
+const removeInitialLoader = () => {
+  const loader = document.getElementById("initial-loader");
+
+  if (loader) {
+    requestAnimationFrame(() => {
+      loader.classList.add("fade-out");
+
+      setTimeout(() => {
+        loader.remove();
+      }, 500);
+    });
+  }
+};
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +79,8 @@ function App() {
 
   const [isInitializing, setIsInitializing] =
     React.useState(true);
+  const bootstrapStartedRef =
+    React.useRef(false);
 
   const { isAllowVerifyEmail } = useSelector(
     (state) => state.auth || {}
@@ -73,6 +120,19 @@ function App() {
   );
 
   React.useEffect(() => {
+    if (bootstrapStartedRef.current) {
+      return undefined;
+    }
+
+    bootstrapStartedRef.current = true;
+    let isMounted = true;
+
+    const finishInitializing = () => {
+      if (!isMounted) return;
+      setIsInitializing(false);
+      removeInitialLoader();
+    };
+
     const initializeApp = async () => {
       try {
         await dispatch(getAllConfig()).unwrap();
@@ -90,30 +150,21 @@ function App() {
           "Initialization failed:",
           err
         );
-      } finally {
-        setIsInitializing(false);
-
-        const loader =
-          document.getElementById(
-            "initial-loader"
-          );
-
-        if (loader) {
-          requestAnimationFrame(() => {
-            loader.classList.add(
-              "fade-out"
-            );
-
-            setTimeout(() => {
-              loader.remove();
-            }, 500);
-          });
-        }
       }
     };
 
-    initializeApp();
-  }, [dispatch]);
+    const bootstrapPromise = initializeApp();
+    const maxWait = isBlockingRoute(location.pathname)
+      ? PRIVATE_BOOTSTRAP_TIMEOUT_MS
+      : PUBLIC_BOOTSTRAP_TIMEOUT_MS;
+
+    Promise.race([bootstrapPromise, wait(maxWait)]).finally(finishInitializing);
+    bootstrapPromise.finally(finishInitializing);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [dispatch, location.pathname]);
 
   // Prevent white screen during initialization
   if (isInitializing) {
@@ -131,6 +182,9 @@ function App() {
       >
         <ThemeProvider theme={theme}>
           <CssBaseline enableColorScheme />
+
+          <SeoManager />
+          <AdSenseLoader />
 
           {/* Routes */}
           <AppRoutes settings={settings} />

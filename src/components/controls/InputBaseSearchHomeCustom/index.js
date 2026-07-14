@@ -97,7 +97,7 @@ const InputBaseSearchHomeCustom = ({
     dispatch(searchJobPostWithKeyword({ kw: kw }));
     switch (location) {
       case 'HOME':
-        nav(`/${ROUTES.JOB_SEEKER.JOBS}`);
+        nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`);
         break;
       default:
         break;

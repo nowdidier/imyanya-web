@@ -115,7 +115,7 @@ const CareerCarousel = () => {
 
   const handleFilter = (id) => {
     dispatch(searchJobPost({ ...jobPostFilter, careerId: id }));
-    nav(`/${ROUTES.JOB_SEEKER.JOBS}`);
+    nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`);
   };
 
   return (

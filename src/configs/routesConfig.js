@@ -19,8 +19,11 @@ import {
 import { ChatPage } from "../pages/chatPages";
 import {
   AboutUsPage,
+  CareerGuidePage,
   CompanyDetailPage,
   CompanyPage,
+  ContactPage,
+  FaqPage,
   HomePage,
   JobDetailPage,
   JobPage,
@@ -79,11 +82,35 @@ const routesConfig = {
               element: JobPage,
             },
             {
+              path: ROUTES.JOB_SEEKER.JOBS_EN,
+              element: JobPage,
+            },
+            {
+              path: "jobs",
+              element: JobPage,
+            },
+            {
+              path: "job-vacancies-rwanda",
+              element: JobPage,
+            },
+            {
+              path: "kigali-jobs",
+              element: JobPage,
+            },
+            {
               path: ROUTES.JOB_SEEKER.JOB_DETAIL,
               element: JobDetailPage,
             },
             {
               path: ROUTES.JOB_SEEKER.COMPANY,
+              element: CompanyPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.COMPANY_EN,
+              element: CompanyPage,
+            },
+            {
+              path: "employers",
               element: CompanyPage,
             },
             {
@@ -95,7 +122,35 @@ const routesConfig = {
               element: AboutUsPage,
             },
             {
+              path: ROUTES.JOB_SEEKER.ABOUT_US_EN,
+              element: AboutUsPage,
+            },
+            {
+              path: "about",
+              element: AboutUsPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.CAREER_GUIDE,
+              element: CareerGuidePage,
+            },
+            {
+              path: "career-guide",
+              element: CareerGuidePage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.CONTACT,
+              element: ContactPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.FAQ,
+              element: FaqPage,
+            },
+            {
               path: ROUTES.JOB_SEEKER.PRIVACY_POLICY,
+              element: PrivacyPolicyPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.PRIVACY_POLICY_EN,
               element: PrivacyPolicyPage,
             },
             {
@@ -103,7 +158,15 @@ const routesConfig = {
               element: TermsOfUsePage,
             },
             {
+              path: ROUTES.JOB_SEEKER.TERMS_OF_USE_EN,
+              element: TermsOfUsePage,
+            },
+            {
               path: ROUTES.JOB_SEEKER.JOBS_BY_CAREER,
+              element: JobsByCareerPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.JOBS_BY_CAREER_EN,
               element: JobsByCareerPage,
             },
             {
@@ -111,7 +174,15 @@ const routesConfig = {
               element: JobsByCityPage,
             },
             {
+              path: ROUTES.JOB_SEEKER.JOBS_BY_CITY_EN,
+              element: JobsByCityPage,
+            },
+            {
               path: ROUTES.JOB_SEEKER.JOBS_BY_TYPE,
+              element: JobsByJobTypePage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.JOBS_BY_TYPE_EN,
               element: JobsByJobTypePage,
             },
           ],

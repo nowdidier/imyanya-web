@@ -7,12 +7,14 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Grid,
   Stack,
   Typography,
   Button,
 } from "@mui/material";
 
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import SearchIcon from "@mui/icons-material/Search";
 import WorkIcon from "@mui/icons-material/Work";
@@ -37,6 +39,7 @@ import {
   rwandaJobCategoryFeeds,
   rwandaJobFeedSourceMeta,
 } from "../../../data/rwandaJobFeed";
+import { rwandaJobMarketHighlights } from "../../../data/rwandaCareerContent";
 
 export default function HomePage() {
   TabTitle(`Jobs in Rwanda | Kigali Vacancies, Job Categories & Employers | ${APP_NAME}`);
@@ -59,6 +62,51 @@ export default function HomePage() {
         </Typography>
         <TopCompanyCarousel />
         {/* End: Top companies */}
+      </Box>
+
+      <Box sx={{ mt: 10 }}>
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          justifyContent="space-between"
+          alignItems={{ xs: "flex-start", md: "center" }}
+          spacing={2}
+          sx={{ mb: 3 }}
+        >
+          <Box>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <ArticleOutlinedIcon color="primary" />
+              <Typography variant="h5" gutterBottom>
+                Rwanda Job Search Notes
+              </Typography>
+            </Stack>
+            <Typography variant="body1" color="text.secondary">
+              Original guidance for comparing roles, preparing applications, and
+              deciding where to focus your time.
+            </Typography>
+          </Box>
+          <Button
+            variant="outlined"
+            onClick={() => nav(`/${ROUTES.JOB_SEEKER.CAREER_GUIDE}`)}
+          >
+            Read the Career Guide
+          </Button>
+        </Stack>
+        <Grid container spacing={2}>
+          {rwandaJobMarketHighlights.map((item) => (
+            <Grid item xs={12} md={4} key={item.title}>
+              <Card variant="outlined" sx={{ height: "100%", borderRadius: 1 }}>
+                <CardContent>
+                  <Typography variant="h6" fontWeight={700} gutterBottom>
+                    {item.title}
+                  </Typography>
+                  <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
+                    {item.body}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       </Box>
 
       <Box sx={{ mt: 10 }}>
@@ -171,7 +219,7 @@ export default function HomePage() {
               color="primary"
               size="large"
               startIcon={<SearchIcon />}
-              onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS}`)}
+              onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`)}
             >
               Browse Jobs in Rwanda
             </Button>
@@ -180,7 +228,7 @@ export default function HomePage() {
       </Box>
 
       <Box sx={{ mt: 6 }}>
-        {/* Start: Featured external jobs */}
+        {/* Start: Featured job search guides */}
         <Card variant="outlined" sx={{ boxShadow: 0 }}>
           <CardHeader
             avatar={
@@ -190,7 +238,7 @@ export default function HomePage() {
             }
             title={
               <Typography variant="h5" sx={{ color: "white" }}>
-                Featured Jobs Across Rwanda
+                Featured Rwanda Job Search Guides
               </Typography>
             }
             sx={{
@@ -207,11 +255,11 @@ export default function HomePage() {
             </Box>
           </CardContent>
         </Card>
-        {/* End: Featured external jobs */}
+        {/* End: Featured job search guides */}
       </Box>
 
       <Box sx={{ mt: 10 }}>
-        {/* Start: Category source feeds */}
+        {/* Start: Category guide feeds */}
         <Card variant="outlined" sx={{ boxShadow: 0 }}>
           <CardHeader
             avatar={
@@ -238,7 +286,7 @@ export default function HomePage() {
             </Box>
           </CardContent>
         </Card>
-        {/* End: Category source feeds */}
+        {/* End: Category guide feeds */}
       </Box>
 
       <Box sx={{ mt: 10 }}>

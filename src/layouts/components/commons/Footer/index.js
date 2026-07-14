@@ -12,11 +12,12 @@ import {
   Container,
   Divider,
 } from '@mui/material';
-import { ICONS, IMAGES, LINKS, ROUTES, APP_NAME } from '../../../../configs/constants';
+import { ICONS, IMAGES, LINKS, ROUTES, APP_NAME, HOST_NAME } from '../../../../configs/constants';
 import MuiImageCustom from '../../../../components/MuiImageCustom';
 
 const Footer = () => {
   const nav = useNavigate();
+  const employerOrigin = `https://${HOST_NAME.EMPLOYER_MYJOB}`;
 
   return (
     <Box>
@@ -34,21 +35,28 @@ const Footer = () => {
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.ABOUT_US}`)}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.ABOUT_US_EN}`)}
                   primary={`About ${APP_NAME}`}
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/lien-he')}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.CAREER_GUIDE}`)}
+                  primary="Rwanda Career Guide"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.CONTACT}`)}
                   primary="Contact"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav('/hoi-dap')}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.FAQ}`)}
                   primary="FAQ"
                 />
               </ListItem>
@@ -57,7 +65,7 @@ const Footer = () => {
                   sx={{ cursor: 'pointer' }}
                   primary={
                     <Link
-                      href={`/${ROUTES.JOB_SEEKER.TERMS_OF_USE}`}
+                      href={`/${ROUTES.JOB_SEEKER.TERMS_OF_USE_EN}`}
                       color="inherit"
                       underline="hover"
                     >
@@ -71,7 +79,7 @@ const Footer = () => {
                   sx={{ cursor: 'pointer' }}
                   primary={
                     <Link
-                      href={`/${ROUTES.JOB_SEEKER.PRIVACY_POLICY}`}
+                      href={`/${ROUTES.JOB_SEEKER.PRIVACY_POLICY_EN}`}
                       color="inherit"
                       underline="hover"
                     >
@@ -97,37 +105,63 @@ const Footer = () => {
               </ListItem>
               <ListItem>
                 <ListItemText
-                  sx={{ cursor: 'pointer' }}
-                  onClick={() => nav(`/${ROUTES.EMPLOYER.JOB_POST}`)}
-                  primary="Post a Job"
+                  primary={
+                    <Link
+                      href={`${employerOrigin}/${ROUTES.EMPLOYER.JOB_POST}`}
+                      color="inherit"
+                      underline="hover"
+                    >
+                      Post a Job
+                    </Link>
+                  }
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
-                  sx={{ cursor: 'pointer' }}
-                  onClick={() => nav(`/${ROUTES.EMPLOYER.PROFILE}`)}
-                  primary="Search Resumes"
+                  primary={
+                    <Link
+                      href={`${employerOrigin}/${ROUTES.EMPLOYER.PROFILE}`}
+                      color="inherit"
+                      underline="hover"
+                    >
+                      Search Resumes
+                    </Link>
+                  }
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
-                  sx={{ cursor: 'pointer' }}
-                  onClick={() => nav(`/${ROUTES.EMPLOYER.DASHBOARD}`)}
-                  primary="Employer Management"
+                  primary={
+                    <Link href={employerOrigin} color="inherit" underline="hover">
+                      Employer Management
+                    </Link>
+                  }
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
-                  sx={{ cursor: 'pointer' }}
-                  onClick={() => nav(`/${ROUTES.EMPLOYER.CHAT}`)}
-                  primary="Messages"
+                  primary={
+                    <Link
+                      href={`${employerOrigin}/${ROUTES.EMPLOYER.CHAT}`}
+                      color="inherit"
+                      underline="hover"
+                    >
+                      Messages
+                    </Link>
+                  }
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
-                  sx={{ cursor: 'pointer' }}
-                  onClick={() => nav(`/${ROUTES.EMPLOYER.NOTIFICATION}`)}
-                  primary="Notifications"
+                  primary={
+                    <Link
+                      href={`${employerOrigin}/${ROUTES.EMPLOYER.NOTIFICATION}`}
+                      color="inherit"
+                      underline="hover"
+                    >
+                      Notifications
+                    </Link>
+                  }
                 />
               </ListItem>
             </List>
@@ -148,14 +182,14 @@ const Footer = () => {
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS}`)}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`)}
                   primary="Jobs"
                 />
               </ListItem>
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.COMPANY}`)}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.COMPANY_EN}`)}
                   primary="Company"
                 />
               </ListItem>
@@ -267,7 +301,7 @@ const Footer = () => {
           align="center"
           sx={{ pt: 2 }}
         >
-          © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
+          Copyright {new Date().getFullYear()} {APP_NAME}. All rights reserved.
         </Typography>
       </Container>
     </Box>

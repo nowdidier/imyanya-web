@@ -35,7 +35,7 @@ const JobByCategory = () => {
       default:
         break;
     }
-    nav(`/${ROUTES.JOB_SEEKER.JOBS}`);
+    nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`);
   };
 
   return (
@@ -97,7 +97,7 @@ const JobByCategory = () => {
                   },
                 }}
                 component={Link}
-                to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER}`}
+                to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER_EN}`}
               >
                 View all careers <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
@@ -163,7 +163,7 @@ const JobByCategory = () => {
                   },
                 }}
                 component={Link}
-                to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CITY}`}
+                to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CITY_EN}`}
               >
                 View all locations <FontAwesomeIcon icon={faChevronRight} />
               </Typography>
@@ -229,7 +229,7 @@ const JobByCategory = () => {
                   },
                 }}
                 component={Link}
-                to={`/${ROUTES.JOB_SEEKER.JOBS_BY_TYPE}`}
+                to={`/${ROUTES.JOB_SEEKER.JOBS_BY_TYPE_EN}`}
               >
                 View all job types{" "}
                 <FontAwesomeIcon icon={faChevronRight} />

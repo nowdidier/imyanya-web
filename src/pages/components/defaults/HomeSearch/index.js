@@ -71,7 +71,7 @@ const HomeSearch = () => {
     handleSaveKeyworLocalStorage(data?.kw);
 
     dispatch(searchJobPost(data));
-    nav(`/${ROUTES.JOB_SEEKER.JOBS}`);
+    nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`);
   };
 
   return (

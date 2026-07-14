@@ -34,7 +34,7 @@ const CategoryCard = ({ options, type }) => {
       default:
         break;
     }
-    nav(`/${ROUTES.JOB_SEEKER.JOBS}`);
+    nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`);
   };
 
   return (

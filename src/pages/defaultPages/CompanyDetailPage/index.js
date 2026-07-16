@@ -42,6 +42,7 @@ import NoDataCard from "../../../components/NoDataCard";
 import ImageGalleryCustom from "../../../components/ImageGalleryCustom";
 import companyService from "../../../services/companyService";
 import { buildCompanyShareData } from "../../../utils/shareUtils";
+import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
 
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 
@@ -177,6 +178,7 @@ const CompanyDetailPage = () => {
 
         setCompanyDetail(data);
         TabTitle(data?.companyName);
+        setContentNoindex(data ? null : "not-found");
 
         var imagelistNew = [];
         for (let i = 0; i < companyImages.length; i++) {
@@ -188,6 +190,7 @@ const CompanyDetailPage = () => {
         setImageList(imagelistNew);
       } catch (error) {
         console.error(error);
+        setContentNoindex("not-found");
       } finally {
         setIsLoading(false);
       }

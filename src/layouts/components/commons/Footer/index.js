@@ -49,6 +49,13 @@ const Footer = () => {
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.CAREER_ADVICE}`)}
+                  primary="Career Advice Articles"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.CONTACT}`)}
                   primary="Contact"
                 />
@@ -58,6 +65,27 @@ const Footer = () => {
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.FAQ}`)}
                   primary="FAQ"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.EDITORIAL_POLICY}`)}
+                  primary="Editorial Policy"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.CORRECTION_POLICY}`)}
+                  primary="Correction Policy"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.VERIFICATION_POLICY}`)}
+                  primary="Verification Policy"
                 />
               </ListItem>
               <ListItem>

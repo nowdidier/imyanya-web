@@ -19,10 +19,14 @@ import {
 import { ChatPage } from "../pages/chatPages";
 import {
   AboutUsPage,
+  CareerAdvicePage,
+  CareerArticlePage,
   CareerGuidePage,
   CompanyDetailPage,
   CompanyPage,
   ContactPage,
+  CorrectionPolicyPage,
+  EditorialPolicyPage,
   FaqPage,
   HomePage,
   JobDetailPage,
@@ -33,6 +37,7 @@ import {
   NotificationPage,
   PrivacyPolicyPage,
   TermsOfUsePage,
+  VerificationPolicyPage,
 } from "../pages/defaultPages";
 import {
   AccountPage,
@@ -138,12 +143,36 @@ const routesConfig = {
               element: CareerGuidePage,
             },
             {
+              path: ROUTES.JOB_SEEKER.CAREER_ADVICE,
+              element: CareerAdvicePage,
+            },
+            {
+              path: "career-advice",
+              element: CareerAdvicePage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.CAREER_ARTICLE,
+              element: CareerArticlePage,
+            },
+            {
               path: ROUTES.JOB_SEEKER.CONTACT,
               element: ContactPage,
             },
             {
               path: ROUTES.JOB_SEEKER.FAQ,
               element: FaqPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.EDITORIAL_POLICY,
+              element: EditorialPolicyPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.CORRECTION_POLICY,
+              element: CorrectionPolicyPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.VERIFICATION_POLICY,
+              element: VerificationPolicyPage,
             },
             {
               path: ROUTES.JOB_SEEKER.PRIVACY_POLICY,

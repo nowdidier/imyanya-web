@@ -67,6 +67,11 @@ const pages = {
     },
     {
       id: 4,
+      label: "Career Advice",
+      path: `/${ROUTES.JOB_SEEKER.CAREER_ADVICE}`,
+    },
+    {
+      id: 5,
       label: "About Us",
       path: `/${ROUTES.JOB_SEEKER.ABOUT_US_EN}`,
     },

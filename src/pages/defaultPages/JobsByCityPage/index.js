@@ -13,20 +13,36 @@ const JobsByCityPage = () => {
 
   return (
     <Container maxWidth="lg" sx={{ py: 2 }}>
-      <Typography variant="h4">Jobs by Location in Rwanda</Typography>
-      <Typography variant="body1" sx={{ mt: 1, color: 'text.secondary' }}>
-        Browse vacancies across Kigali and the rest of Rwanda by city or
-        province, and compare how location affects commute, field work, and
-        employer expectations.
+      <Typography variant="h3" component="h1" fontWeight={800} sx={{ mb: 0.5 }}>
+        Jobs by Location in Rwanda
       </Typography>
-      <Divider sx={{ mt: 1, mb: 4 }} />
+      <Typography variant="h6" color="text.secondary" sx={{ lineHeight: 1.7, maxWidth: 860, mb: 1 }}>
+        Search job vacancies across Rwanda's cities and districts. While Kigali
+        has the highest concentration of office and professional roles,
+        opportunities exist in every province for candidates with the right
+        skills and flexibility. Your location preference and willingness to
+        travel or relocate can significantly expand your options.
+      </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+        Choose a city or district below to see active listings, or read the
+        location search notes for advice on how to present your availability and
+        location preferences to employers.
+      </Typography>
+      <Divider sx={{ mb: 4 }} />
       {cityOptions.length > 0 ? (
         <CategoryCard options={cityOptions} type={'CITY'} />
       ) : (
-        <Typography color="text.secondary" sx={{ mb: 3 }}>
-          Live location filters are loading. The guide below remains available
-          while job-location data is being refreshed.
-        </Typography>
+        <Box sx={{ mb: 4, p: 3, bgcolor: 'grey.50', borderRadius: 1, border: '1px solid', borderColor: 'grey.200' }}>
+          <Typography variant="h6" fontWeight={700} gutterBottom>
+            No location filters available right now
+          </Typography>
+          <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
+            We are updating our location data. The location search notes below
+            can still help you decide how to present your location preference,
+            commute readiness, and flexibility to employers. Check back soon for
+            the latest listings filtered by city and district.
+          </Typography>
+        </Box>
       )}
 
       <Box sx={{ mt: 5 }}>

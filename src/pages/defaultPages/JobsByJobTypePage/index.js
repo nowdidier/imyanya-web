@@ -13,20 +13,36 @@ const JobsByJobTypePage = () => {
 
   return (
     <Container maxWidth="lg" sx={{ py: 2 }}>
-      <Typography variant="h4">Jobs by Job Type in Rwanda</Typography>
-      <Typography variant="body1" sx={{ mt: 1, color: 'text.secondary' }}>
-        Search full-time, part-time, internship, contract, and remote jobs
-        across Rwanda. Work format matters, so prepare your profile around the
-        expectations that fit each role type.
+      <Typography variant="h3" component="h1" fontWeight={800} sx={{ mb: 0.5 }}>
+        Jobs by Job Type in Rwanda
       </Typography>
-      <Divider sx={{ mt: 1, mb: 4 }} />
+      <Typography variant="h6" color="text.secondary" sx={{ lineHeight: 1.7, maxWidth: 860, mb: 1 }}>
+        Find full-time roles, part-time positions, internships, contract work,
+        and remote opportunities across Rwanda. Each work type comes with
+        different employer expectations around availability, commitment, and
+        deliverables. Matching your profile to the right format helps you get
+        noticed faster.
+      </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+        Select a work type below to browse matching listings, or read the work
+        type notes for advice on how to present your availability and experience
+        for each category.
+      </Typography>
+      <Divider sx={{ mb: 4 }} />
       {jobTypeOptions.length > 0 ? (
         <CategoryCard options={jobTypeOptions} type={'JOB_TYPE'} />
       ) : (
-        <Typography color="text.secondary" sx={{ mb: 3 }}>
-          Live work-type filters are loading. The guide below explains how to
-          compare opportunities while job data is being refreshed.
-        </Typography>
+        <Box sx={{ mb: 4, p: 3, bgcolor: 'grey.50', borderRadius: 1, border: '1px solid', borderColor: 'grey.200' }}>
+          <Typography variant="h6" fontWeight={700} gutterBottom>
+            No work type filters available right now
+          </Typography>
+          <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
+            We are refreshing our job type data. The work type notes below can
+            still guide you on how different employment formats are evaluated by
+            employers in Rwanda. Check back soon for updated listings organised
+            by work type.
+          </Typography>
+        </Box>
       )}
 
       <Box sx={{ mt: 5 }}>

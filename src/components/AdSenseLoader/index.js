@@ -22,6 +22,8 @@ const AD_ELIGIBLE_PATHS = new Set([
   "/jobs-by-type",
   "/rwanda-career-guide",
   "/career-guide",
+  "/rwanda-career-advice",
+  "/career-advice",
   "/ve-chung-toi",
   "/about",
   "/about-us",
@@ -32,6 +34,8 @@ const AD_ELIGIBLE_PATHS = new Set([
 const AD_ELIGIBLE_PREFIXES = [
   "/viec-lam/",
   "/cong-ty/",
+  "/rwanda-career-advice/",
+  "/career-advice/",
 ];
 
 const AD_BLOCKED_PREFIXES = [
@@ -53,6 +57,9 @@ const AD_BLOCKED_PREFIXES = [
   "/privacy-policy",
   "/thoa-thuan-su-dung",
   "/terms-of-use",
+  "/editorial-policy",
+  "/correction-policy",
+  "/verification-policy",
   "/forbidden",
 ];
 

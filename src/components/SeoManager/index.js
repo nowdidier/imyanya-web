@@ -1,5 +1,12 @@
 import React from "react";
+import { useSyncExternalStore } from "react";
 import { useLocation } from "react-router-dom";
+import {
+  getContentNoindex,
+  setContentNoindex,
+  subscribeContentNoindex,
+} from "./contentFlag";
+import careerArticles from "../../data/rwandaCareerArticles";
 
 const MAIN_ORIGIN = "https://imyanya.rw";
 const EMPLOYER_ORIGIN = "https://employers.imyanya.rw";
@@ -133,6 +140,17 @@ const SEO_BY_PATH = {
       "Read practical Rwanda job-search guidance for CVs, applications, employer evaluation, location choices, internships, remote work, and career categories.",
     canonicalPath: "/rwanda-career-guide",
   },
+  "/rwanda-career-advice": {
+    title: "Career Advice Rwanda | Articles on CVs, Interviews, Salary & More | Imyanya",
+    description:
+      "Original career advice articles for Rwandan job seekers, covering CV writing, interview preparation, salary negotiation, remote work, certifications, and more.",
+  },
+  "/career-advice": {
+    title: "Career Advice Rwanda | Articles on CVs, Interviews, Salary & More | Imyanya",
+    description:
+      "Original career advice articles for Rwandan job seekers, covering CV writing, interview preparation, salary negotiation, remote work, certifications, and more.",
+    canonicalPath: "/rwanda-career-advice",
+  },
   "/ve-chung-toi": {
     title: "About Imyanya | Rwanda Jobs and Recruitment",
     description:
@@ -154,6 +172,21 @@ const SEO_BY_PATH = {
     title: "Contact Imyanya | Rwanda Job Platform Support",
     description:
       "Contact Imyanya for job seeker support, employer recruitment support, account help, privacy requests, and suspicious job post reports.",
+  },
+  "/editorial-policy": {
+    title: "Editorial Policy | Imyanya",
+    description:
+      "Learn how Imyanya creates, reviews, and maintains original career content for Rwandan job seekers.",
+  },
+  "/correction-policy": {
+    title: "Correction Policy | Imyanya",
+    description:
+      "Learn how Imyanya handles errors, corrections, and updates in its editorial content and job listings.",
+  },
+  "/verification-policy": {
+    title: "Content Verification Policy | Imyanya",
+    description:
+      "Learn how Imyanya approaches the accuracy and reliability of job listings and platform content.",
   },
   "/faq": {
     title: "FAQ | Imyanya Rwanda Jobs Help",
@@ -232,6 +265,22 @@ const getSeoForPath = (pathname) => {
     };
   }
 
+  if (path.startsWith("/rwanda-career-advice/") || path.startsWith("/career-advice/")) {
+    const slug = path.split("/").pop();
+    const article = careerArticles.find((a) => a.slug === slug);
+    if (article) {
+      return {
+        title: `${article.title} | Imyanya`,
+        description: article.excerpt,
+      };
+    }
+    return {
+      title: "Career Advice Rwanda | Imyanya",
+      description:
+        "Original career advice articles for Rwandan job seekers.",
+    };
+  }
+
   if (path.startsWith("/cong-ty/") || path.startsWith("/companies/")) {
     return {
       title: "Company Profile in Rwanda | Imyanya",
@@ -302,15 +351,26 @@ const upsertJsonLd = (id, data) => {
 
 const SeoManager = () => {
   const location = useLocation();
+  const contentNoindex = useSyncExternalStore(
+    subscribeContentNoindex,
+    getContentNoindex
+  );
+
+  // Reset the content flag on navigation so a new page starts as indexable.
+  // Data-fetching components re-assert noindex if their results are empty.
+  React.useEffect(() => {
+    setContentNoindex(null);
+  }, [location.pathname]);
 
   React.useEffect(() => {
     const seo = getSeoForPath(location.pathname);
     const origin = getOrigin();
     const canonicalPath = seo.canonicalPath || normalizePath(location.pathname);
     const canonicalUrl = `${origin}${canonicalPath === "/" ? "/" : canonicalPath}`;
-    const robots = seo.noindex
-      ? "noindex, follow"
-      : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+    const robots =
+      seo.noindex || contentNoindex
+        ? "noindex, follow"
+        : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 
     document.documentElement.lang = "en-RW";
     document.title = seo.title;
@@ -426,7 +486,7 @@ const SeoManager = () => {
         "query-input": "required name=search_term_string",
       },
     });
-  }, [location.pathname]);
+  }, [location.pathname, contentNoindex]);
 
   return null;
 };

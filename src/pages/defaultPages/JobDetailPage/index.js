@@ -39,6 +39,8 @@ import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import { ROLES_NAME, ROUTES } from "../../../configs/constants";
 import { formatRoute } from "../../../utils/funcUtils";
 import { buildJobShareData } from "../../../utils/shareUtils";
+import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
+import { rwandaCareerCategoryGuides } from "../../../data/rwandaCareerContent";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -363,8 +365,10 @@ const JobDetailPage = () => {
 
         setJobPostDetail(data);
         TabTitle(data?.jobName);
+        setContentNoindex(data ? null : "not-found");
       } catch (error) {
         console.error(error);
+        setContentNoindex("not-found");
       } finally {
         setIsLoading(false);
       }
@@ -590,6 +594,60 @@ const JobDetailPage = () => {
               </Card>
               {/* End: thong tin chung */}
 
+              {/* Start: Editorial Note */}
+              {(() => {
+                const careerName = allConfig?.careerDict[jobPostDetail?.career];
+                const guide = careerName
+                  ? rwandaCareerCategoryGuides.find((g) =>
+                      g.title.toLowerCase().includes(careerName.toLowerCase()) ||
+                      careerName.toLowerCase().includes(g.title.split(",")[0]?.toLowerCase())
+                    )
+                  : null;
+                if (!guide && !careerName) return null;
+                return (
+                  <Card
+                    sx={{
+                      mt: 3,
+                      p: 3,
+                      border: "1px solid",
+                      borderColor: "primary.light",
+                      borderRadius: 1,
+                      bgcolor: "rgba(156,39,176,0.03)",
+                    }}
+                  >
+                    <Stack spacing={1.5}>
+                      <Typography variant="h6" fontWeight={700}>
+                        Editorial Note
+                      </Typography>
+                      {careerName && (
+                        <Typography variant="body2" color="primary" fontWeight={600}>
+                          Career field: {careerName}
+                        </Typography>
+                      )}
+                      {guide ? (
+                        <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
+                          {guide.body}
+                        </Typography>
+                      ) : (
+                        <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
+                          This role is in the {careerName} field. Before
+                          applying, review the job requirements carefully and
+                          tailor your CV to highlight the specific skills and
+                          experience mentioned in the description. Research the
+                          employer and prepare questions that show your
+                          understanding of the role and sector.
+                        </Typography>
+                      )}
+                      <Typography variant="body2" color="text.secondary" sx={{ fontStyle: "italic" }}>
+                        This note is provided by our editorial team to help you
+                        evaluate this opportunity.
+                      </Typography>
+                    </Stack>
+                  </Card>
+                );
+              })()}
+              {/* End: Editorial Note */}
+
               {/* Start: mo ta chi tiet */}
               <Card
                 sx={{
@@ -729,6 +787,114 @@ const JobDetailPage = () => {
                 </Stack>
               </Card>
               {/* End: mo ta chi tiet */}
+
+              {/* Start: Application Tips */}
+              <Card
+                sx={{
+                  p: 4,
+                  mt: 3,
+                  px: { xs: 1.5, sm: 1.5, md: 2, lg: 4, xl: 4 },
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontSize: "1.3rem",
+                    fontWeight: 700,
+                    mb: 2,
+                    "&::after": {
+                      content: '""',
+                      display: "block",
+                      width: "50px",
+                      height: "3px",
+                      background: "#9c27b0",
+                      borderRadius: "2px",
+                      mt: 1,
+                    },
+                  }}
+                >
+                  Application Tips
+                </Typography>
+                <Stack spacing={2}>
+                  <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+                    Before applying, read the requirements carefully and tailor
+                    your CV to highlight the skills and experience mentioned in
+                    the job description. Use the same role title from the listing
+                    in your application so the recruiter can match your profile
+                    quickly.
+                  </Typography>
+                  <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+                    If the listing includes a deadline, submit your application
+                    before the closing date. Late applications are rarely
+                    considered. Prepare your documents in advance so you are not
+                    rushing at the last minute.
+                  </Typography>
+                  <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+                    After submitting, consider following up with the employer
+                    within a few business days if a contact is provided. A brief,
+                    professional email confirming your application shows
+                    initiative and attention to detail.
+                  </Typography>
+                </Stack>
+              </Card>
+              {/* End: Application Tips */}
+
+              {/* Start: Career Context */}
+              <Card
+                sx={{
+                  p: 4,
+                  mt: 3,
+                  px: { xs: 1.5, sm: 1.5, md: 2, lg: 4, xl: 4 },
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontSize: "1.3rem",
+                    fontWeight: 700,
+                    mb: 2,
+                    "&::after": {
+                      content: '""',
+                      display: "block",
+                      width: "50px",
+                      height: "3px",
+                      background: "#9c27b0",
+                      borderRadius: "2px",
+                      mt: 1,
+                    },
+                  }}
+                >
+                  Salary and Career Context
+                </Typography>
+                <Stack spacing={2}>
+                  {jobPostDetail?.salaryMin || jobPostDetail?.salaryMax ? (
+                    <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+                      The salary range shown is based on information provided by
+                      the employer. Compare it with similar roles in the same
+                      sector and location to assess whether it aligns with your
+                      expectations. Remember that total compensation may include
+                      benefits such as health insurance, transport allowance, or
+                      professional development support.
+                    </Typography>
+                  ) : (
+                    <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+                      This listing does not include a specific salary figure.
+                      Consider researching typical pay ranges for similar roles
+                      in Rwanda before your interview, so you can negotiate from
+                      an informed position if you receive an offer.
+                    </Typography>
+                  )}
+                  <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+                    If you are early in your career, focus on roles that offer
+                    growth opportunities, mentorship, and skill development
+                    rather than salary alone. A role with strong learning
+                    potential can lead to better opportunities in the long term.
+                  </Typography>
+                </Stack>
+              </Card>
+              {/* End: Career Context */}
 
               {/* Start: thong tin lien he */}
               <Card
@@ -913,7 +1079,10 @@ const JobDetailPage = () => {
             <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
               <Card sx={{ p: { xs: 1.5, sm: 1.5, md: 2, lg: 2, xl: 2 } }}>
                 <Stack spacing={2}>
-                  <Typography variant="h5">Similar Jobs</Typography>
+                  <Typography variant="h5">Similar Jobs in Rwanda</Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                    Explore related roles from other employers hiring in similar fields.
+                  </Typography>
                   <Box
                     sx={{ width: 120, height: 5, backgroundColor: "#441da0" }}
                   ></Box>
@@ -928,6 +1097,17 @@ const JobDetailPage = () => {
                       fullWidth={true}
                     />
                     {/* End: FilterJobPostCard */}
+                  </Box>
+                  <Box sx={{ mt: 3 }}>
+                    <Button
+                      component={Link}
+                      to={`/${ROUTES.JOB_SEEKER.CAREER_ADVICE}`}
+                      variant="outlined"
+                      fullWidth
+                      sx={{ textTransform: "none" }}
+                    >
+                      Browse Career Advice Articles
+                    </Button>
                   </Box>
                 </Stack>
               </Card>

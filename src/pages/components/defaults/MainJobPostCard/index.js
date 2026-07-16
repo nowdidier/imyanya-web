@@ -6,6 +6,7 @@ import { ImageSvg3 } from '../../../../configs/constants';
 import JobPostLarge from '../../../../components/JobPostLarge';
 import NoDataCard from '../../../../components/NoDataCard';
 import jobService from '../../../../services/jobService';
+import { setContentNoindex } from '../../../../components/SeoManager/contentFlag';
 
 const MainJobPostCard = () => {
   const { jobPostFilter } = useSelector((state) => state.filter);
@@ -28,6 +29,9 @@ const MainJobPostCard = () => {
 
         setCount(data.count);
         setJobPosts(data?.results || []);
+        setContentNoindex(
+          (data?.results || []).length === 0 ? "empty-jobs" : null
+        );
       } catch (error) {
         console.error(error);
       } finally {
@@ -97,6 +101,7 @@ const MainJobPostCard = () => {
           <>
             {jobPosts.map((value) => (
               <JobPostLarge
+                key={value.id}
                 id={value.id}
                 slug={value.slug}
                 companyImageUrl={value?.companyDict.companyImageUrl}

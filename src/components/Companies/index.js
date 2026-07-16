@@ -6,6 +6,7 @@ import { ImageSvg4 } from "../../configs/constants";
 import NoDataCard from "../NoDataCard";
 import Company from "../Company";
 import companyService from "../../services/companyService";
+import { setContentNoindex } from "../SeoManager/contentFlag";
 
 const Companies = () => {
   const { companyFilter } = useSelector((state) => state.filter);
@@ -28,6 +29,9 @@ const Companies = () => {
 
         setCount(data.count);
         setCompanies(data?.results || []);
+        setContentNoindex(
+          (data?.results || []).length === 0 ? "empty-companies" : null
+        );
       } catch (error) {
         console.error(error);
       } finally {

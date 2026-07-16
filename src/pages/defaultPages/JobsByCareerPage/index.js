@@ -12,19 +12,36 @@ const JobsByCareerPage = () => {
 
   return (
     <Container maxWidth="lg" sx={{ py: 2 }}>
-      <Typography variant="h4">Jobs by Career in Rwanda</Typography>
-      <Typography variant="body1" sx={{ mt: 1, color: 'text.secondary' }}>
-        Explore active job categories and learn what employers usually compare
-        inside each field before you choose where to apply.
+      <Typography variant="h3" component="h1" fontWeight={800} sx={{ mb: 0.5 }}>
+        Jobs by Career in Rwanda
       </Typography>
-      <Divider sx={{ mt: 1, mb: 4 }} />
+      <Typography variant="h6" color="text.secondary" sx={{ lineHeight: 1.7, maxWidth: 860, mb: 1 }}>
+        Browse open positions across Rwanda by career field. Each sector has
+        different hiring patterns, required qualifications, and application
+        expectations. Understanding these differences helps you focus your job
+        search on roles where your background is strongest and tailor your
+        application to what employers in that field actually look for.
+      </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+        Select a career category below to filter active listings, or read the
+        career field notes for guidance on how to prepare a competitive
+        application in your chosen area.
+      </Typography>
+      <Divider sx={{ mb: 4 }} />
       {careerOptions.length > 0 ? (
         <CategoryCard options={careerOptions} type={'CARRER'} />
       ) : (
-        <Typography color="text.secondary" sx={{ mb: 3 }}>
-          Live category filters are loading. The guide below can still help you
-          choose a field and prepare a stronger application.
-        </Typography>
+        <Box sx={{ mb: 4, p: 3, bgcolor: 'grey.50', borderRadius: 1, border: '1px solid', borderColor: 'grey.200' }}>
+          <Typography variant="h6" fontWeight={700} gutterBottom>
+            No job listings available right now
+          </Typography>
+          <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
+            We are refreshing our job listings. In the meantime, the career field
+            notes below can help you understand what each sector expects, how to
+            tailor your CV, and where to focus your search when new opportunities
+            are posted. Check back soon for the latest vacancies.
+          </Typography>
+        </Box>
       )}
 
       <Box sx={{ mt: 5 }}>

@@ -38,6 +38,7 @@ import {
   PrivacyPolicyPage,
   TermsOfUsePage,
   VerificationPolicyPage,
+  YouTubeVideosPage,
 } from "../pages/defaultPages";
 import {
   AccountPage,
@@ -213,6 +214,14 @@ const routesConfig = {
             {
               path: ROUTES.JOB_SEEKER.JOBS_BY_TYPE_EN,
               element: JobsByJobTypePage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.PLACES_FOR_SALE,
+              element: YouTubeVideosPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.YOUTUBE_VIDEOS,
+              element: YouTubeVideosPage,
             },
           ],
         },

@@ -156,6 +156,7 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     allowedHosts: 'all',
+    historyApiFallback: true,
     hot: true,
     liveReload: false,
     proxy: {

@@ -215,6 +215,17 @@ const SEO_BY_PATH = {
     description:
       "Read the Imyanya terms of use for job seekers, employers, recruitment content, third-party links, and advertising on public pages.",
   },
+  "/places-for-sale": {
+    title: "Places and Plots for Sale in Rwanda | Imyanya",
+    description:
+      "Watch Imyanya property videos for plots, houses, land, and places for sale in Rwanda. Contact Imyanya for buyer introductions and commission details.",
+  },
+  "/youtube-videos": {
+    title: "Places and Plots for Sale Videos | Imyanya",
+    description:
+      "Watch Imyanya YouTube property videos for places and plots for sale in Rwanda, with social sharing and direct contact options.",
+    canonicalPath: "/places-for-sale",
+  },
 };
 
 const normalizePath = (pathname) => {

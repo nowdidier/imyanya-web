@@ -250,6 +250,8 @@ const ROUTES = {
     JOBS_BY_CITY_EN: "jobs-by-location",
     JOBS_BY_TYPE: "viec-lam-theo-hinh-thuc-lam-viec",
     JOBS_BY_TYPE_EN: "jobs-by-type",
+    PLACES_FOR_SALE: "places-for-sale",
+    YOUTUBE_VIDEOS: "youtube-videos",
     DASHBOARD: "bang-dieu-khien",
     PROFILE: "ho-so",
     STEP_PROFILE: "ho-so-tung-buoc/:slug",

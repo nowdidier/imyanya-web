@@ -1,4 +1,4 @@
-﻿import * as React from "react";
+import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
@@ -33,6 +33,7 @@ import JobByCategory from "../../components/defaults/JobByCategory";
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import SuggestedJobPostCard from "../../components/defaults/SuggestedJobPostCard";
 import StaticJobFeedSection from "../../components/defaults/StaticJobFeedSection";
+import YouTubeVideoSection from "../../../components/YouTubeVideoSection";
 import {
   featuredRwandaJobs,
   normalizeCategoryFeed,
@@ -287,6 +288,19 @@ export default function HomePage() {
           </CardContent>
         </Card>
         {/* End: Category guide feeds */}
+      </Box>
+
+      <Box sx={{ mt: 10 }}>
+        {/* Start: YouTube videos */}
+        <YouTubeVideoSection
+          title="Places for sale on video"
+          subtitle="Watch recent Imyanya videos for plots, houses, land, and places for sale in Rwanda."
+          maxVideos={6}
+          contactLabel="Ask about this place"
+          contactMessagePrefix="Hello Imyanya, I am interested in this plot/place for sale."
+          tagLabel="Place for sale"
+        />
+        {/* End: YouTube videos */}
       </Box>
 
       <Box sx={{ mt: 10 }}>

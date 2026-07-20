@@ -27,6 +27,13 @@ const categoryColors = {
   "Industry Insights": "default",
   "Scholarships & Study": "default",
   "Internships & Entry Level": "default",
+  "Job Search Strategies": "primary",
+  "Professional Development": "secondary",
+  "Remote Work": "success",
+  "Career Transitions": "warning",
+  "Workplace Skills": "info",
+  "Leadership & Management": "secondary",
+  "Entrepreneurship": "success",
 };
 
 const CareerAdvicePage = () => {

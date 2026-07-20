@@ -1,4 +1,20 @@
-const careerArticles = [
+import cvCoverLetters from "./content/articles/cv-cover-letters";
+import interviewPreparation from "./content/articles/interview-preparation";
+import salaryBenefits from "./content/articles/salary-benefits";
+import careerAdvice from "./content/articles/career-advice";
+import industryInsights from "./content/articles/industry-insights";
+import governmentNgo from "./content/articles/government-ngo";
+import scholarshipsStudy from "./content/articles/scholarships-study";
+import internshipsEntry from "./content/articles/internships-entry";
+import professionalDevelopment from "./content/articles/professional-development";
+import jobSearchStrategies from "./content/articles/job-search-strategies";
+import remoteWork from "./content/articles/remote-work";
+import careerTransitions from "./content/articles/career-transitions";
+import workplaceSkills from "./content/articles/workplace-skills";
+import leadershipManagement from "./content/articles/leadership-management";
+import entrepreneurship from "./content/articles/entrepreneurship";
+
+const activeArticles = [
   {
     slug: "how-to-write-a-winning-cv-for-rwanda-jobs",
     category: "CV & Cover Letters",
@@ -763,5 +779,38 @@ const careerArticles = [
     ],
   },
 ];
+
+const orphanedArticles = [
+  ...cvCoverLetters,
+  ...interviewPreparation,
+  ...salaryBenefits,
+  ...careerAdvice,
+  ...industryInsights,
+  ...governmentNgo,
+  ...scholarshipsStudy,
+  ...internshipsEntry,
+  ...professionalDevelopment,
+  ...jobSearchStrategies,
+  ...remoteWork,
+  ...careerTransitions,
+  ...workplaceSkills,
+  ...leadershipManagement,
+  ...entrepreneurship,
+];
+
+const seen = new Set();
+const careerArticles = [];
+
+for (const article of activeArticles) {
+  seen.add(article.slug);
+  careerArticles.push(article);
+}
+
+for (const article of orphanedArticles) {
+  if (!seen.has(article.slug)) {
+    seen.add(article.slug);
+    careerArticles.push(article);
+  }
+}
 
 export default careerArticles;

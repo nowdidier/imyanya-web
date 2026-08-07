@@ -19,6 +19,9 @@
 # Production build
 /build
 
+# Local build artifacts
+/.tmp
+
 # Logs
 yarn-error.log
 yarn-debug.log*

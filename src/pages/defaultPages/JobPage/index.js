@@ -19,6 +19,7 @@ import MainJobPostCard from "../../components/defaults/MainJobPostCard";
 import AppIntroductionCard from "../../../components/AppIntroductionCard";
 import MainJobRightBanner from "../../../components/MainJobRightBanner";
 import StaticJobFeedSection from "../../components/defaults/StaticJobFeedSection";
+import { AdUnit } from "../../../components/Ads";
 import {
   featuredRwandaJobs,
   rwandaJobFeedSourceMeta,
@@ -85,6 +86,15 @@ const JobPage = () => {
               {/* Start: SuggestedJobPostCard */}
               <SuggestedJobPostCard fullWidth={true} />
               {/* End: SuggestedJobPostCard */}
+              <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+                <AdUnit size="300x250" />
+              </Box>
+              <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+                <AdUnit size="160x600" />
+              </Box>
+              <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+                <AdUnit size="160x300" />
+              </Box>
               <Box>
                 {/* Start: MainJobRightBanner */}
                 <MainJobRightBanner />

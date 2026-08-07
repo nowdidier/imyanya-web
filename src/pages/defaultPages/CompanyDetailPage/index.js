@@ -38,6 +38,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import MuiImageCustom from "../../../components/MuiImageCustom";
+import RichHtmlContent from "../../../components/controls/RichHtmlContent";
 import NoDataCard from "../../../components/NoDataCard";
 import ImageGalleryCustom from "../../../components/ImageGalleryCustom";
 import companyService from "../../../services/companyService";
@@ -45,6 +46,7 @@ import { buildCompanyShareData } from "../../../utils/shareUtils";
 import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
 
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
+import { AdUnit } from "../../../components/Ads";
 
 const LoadingComponent = () => {
   return (
@@ -453,11 +455,7 @@ const CompanyDetailPage = () => {
                           }}
                         >
                           {companyDetail?.description ? (
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: companyDetail?.description,
-                              }}
-                            ></div>
+                            <RichHtmlContent html={companyDetail?.description} />
                           ) : (
                             <span
                               style={{
@@ -496,6 +494,9 @@ const CompanyDetailPage = () => {
               </Grid>
 
               <Grid item xs={12} md={4}>
+                <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center' }}>
+                  <AdUnit size="300x250" />
+                </Box>
                 <Card
                   sx={{
                     p: 3,

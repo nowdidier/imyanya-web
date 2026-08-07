@@ -1,0 +1,120 @@
+import React from 'react';
+import { Box } from '@mui/material';
+
+const RichHtmlContent = ({ html, sx = {} }) => {
+  return (
+    <Box
+      component="div"
+      dangerouslySetInnerHTML={{ __html: html }}
+      sx={{
+        fontSize: 15,
+        lineHeight: 1.7,
+        color: 'text.primary',
+        wordBreak: 'break-word',
+        '& p': {
+          mb: 1.5,
+        },
+        '& h1, & h2, & h3, & h4, & h5, & h6': {
+          mt: 2.5,
+          mb: 1,
+          fontWeight: 700,
+          lineHeight: 1.3,
+        },
+        '& h1': { fontSize: '1.75rem' },
+        '& h2': { fontSize: '1.5rem' },
+        '& h3': { fontSize: '1.3rem' },
+        '& h4': { fontSize: '1.15rem' },
+        '& h5': { fontSize: '1.05rem' },
+        '& h6': { fontSize: '1rem' },
+        '& ul, & ol': {
+          pl: 3,
+          mb: 1.5,
+          listStylePosition: 'outside',
+        },
+        '& li': {
+          mb: 0.5,
+        },
+        '& img': {
+          maxWidth: '100%',
+          height: 'auto',
+          borderRadius: 1,
+          my: 1,
+        },
+        '& a': {
+          color: 'primary.main',
+        },
+        '& blockquote': {
+          borderLeft: '4px solid',
+          borderColor: 'primary.light',
+          bgcolor: 'rgba(156,39,176,0.04)',
+          px: 2,
+          py: 1,
+          my: 1.5,
+          fontStyle: 'italic',
+          color: 'text.secondary',
+        },
+        '& pre': {
+          bgcolor: 'grey.100',
+          p: 2,
+          borderRadius: 1.5,
+          overflowX: 'auto',
+          my: 1.5,
+          whiteSpace: 'pre-wrap',
+          wordBreak: 'break-word',
+        },
+        '& code': {
+          bgcolor: 'grey.100',
+          px: 0.5,
+          py: 0.25,
+          borderRadius: 0.5,
+          fontFamily: 'Consolas, Monaco, monospace',
+          fontSize: '0.92em',
+        },
+        '& pre code': {
+          bgcolor: 'transparent',
+          p: 0,
+          fontSize: '0.92em',
+        },
+        '& table': {
+          width: '100%',
+          maxWidth: '100%',
+          borderCollapse: 'collapse',
+          my: 1.5,
+          overflowX: 'auto',
+          display: 'block',
+        },
+        '& th, & td': {
+          border: '1px solid',
+          borderColor: 'grey.300',
+          p: 1,
+          textAlign: 'left',
+        },
+        '& th': {
+          bgcolor: 'grey.100',
+          fontWeight: 700,
+        },
+        '& iframe': {
+          maxWidth: '100%',
+          border: 0,
+          borderRadius: 1,
+          my: 1,
+        },
+        '& video': {
+          maxWidth: '100%',
+          height: 'auto',
+          borderRadius: 1,
+          my: 1,
+        },
+        '& hr': {
+          border: 0,
+          borderTop: '1px solid',
+          borderColor: 'grey.300',
+          my: 2,
+        },
+        ...sx,
+      }}
+    />
+  );
+};
+
+export default RichHtmlContent;

@@ -1,14 +1,27 @@
 import * as React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Box, Container } from '@mui/material';
+import { Box, Container, useMediaQuery, useTheme } from '@mui/material';
 
 import Header from '../components/commons/Header';
 import Footer from '../components/commons/Footer';
+import { AdUnit, MobileStickyBar, Smartlink } from '../../components/Ads';
+import { isEmployerHost } from '../../configs/constants';
 
 const DefaultLayout = () => {
+  const showAds = !isEmployerHost();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <Box>
       <Header />
+
+      {showAds && (
+        <Box sx={{ mt: 1, mb: 1, display: 'flex', justifyContent: 'center' }}>
+          <AdUnit size="728x90" />
+        </Box>
+      )}
+
       <Container
         maxWidth="lg"
         sx={{
@@ -20,6 +33,9 @@ const DefaultLayout = () => {
           <Outlet />
         </section>
       </Container>
+
+      {showAds && <Smartlink sx={{ mb: 2 }}>Sponsored</Smartlink>}
+
       <Box
         sx={{
           mt: {
@@ -49,6 +65,8 @@ const DefaultLayout = () => {
       >
         <Footer />
       </Box>
+
+      {showAds && isMobile && <MobileStickyBar />}
     </Box>
   );
 };

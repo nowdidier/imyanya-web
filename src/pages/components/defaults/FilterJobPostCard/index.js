@@ -99,6 +99,7 @@ const FilterJobPostCard = ({ params = {}}) => {
                     isHot={value?.isHot}
                     salaryMin={value.salaryMin}
                     salaryMax={value.salaryMax}
+                    imageUrl={value?.imageUrl}
                   />
                   {/* End: Job post */}
                 </Grid>

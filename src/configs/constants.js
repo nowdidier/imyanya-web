@@ -66,6 +66,12 @@ const getCanonicalHostName = (hostname = "") => {
   return HOST_NAME.MYJOB;
 };
 
+// True when running on the employer subdomain (employers.imyanya.rw).
+const isEmployerHost = () =>
+  getCanonicalHostName(
+    typeof window !== "undefined" ? window.location.hostname : ""
+  ) === HOST_NAME.EMPLOYER_MYJOB;
+
 const AUTH_PROVIDER = {
   FACEBOOK: "facebook",
   GOOGLE: "google-oauth2",
@@ -288,6 +294,7 @@ export {
   APP_NAME,
   HOST_NAME,
   getCanonicalHostName,
+  isEmployerHost,
   AUTH_PROVIDER,
   AUTH_CONFIG,
   WHATSAPP_CONFIG,

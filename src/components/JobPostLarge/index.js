@@ -39,6 +39,7 @@ const JobPostLarge = ({
   isHot,
   salaryMin,
   salaryMax,
+  imageUrl,
 }) => {
   const theme = useTheme();
   const nav = useNavigate();
@@ -92,23 +93,43 @@ const JobPostLarge = ({
       <Stack spacing={1.5}>
         <Stack direction="row" spacing={2} alignItems="flex-start">
           <Box sx={{ position: "relative" }}>
-            <MuiImageCustom
-              width={100}
-              height={100}
-              src={companyImageUrl}
-              sx={{
-                border: 1,
-                borderRadius: 2.5,
-                borderColor: theme.palette.grey[200],
-                p: 1,
-                backgroundColor: theme.palette.common.white,
-               transition: "all 0.2s ease",
-                "&:hover": {
-                 transform: "scale(1.05)",
-                  boxShadow: theme.customShadows.medium,
-                },
-              }}
-            />
+            {imageUrl ? (
+              <MuiImageCustom
+                width={100}
+                height={100}
+                src={imageUrl}
+                sx={{
+                  border: 1,
+                  borderRadius: 2.5,
+                  borderColor: theme.palette.grey[200],
+                  p: 1,
+                  backgroundColor: theme.palette.common.white,
+                  transition: "all 0.2s ease",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    boxShadow: theme.customShadows.medium,
+                  },
+                }}
+              />
+            ) : (
+              <MuiImageCustom
+                width={100}
+                height={100}
+                src={companyImageUrl}
+                sx={{
+                  border: 1,
+                  borderRadius: 2.5,
+                  borderColor: theme.palette.grey[200],
+                  p: 1,
+                  backgroundColor: theme.palette.common.white,
+                  transition: "all 0.2s ease",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    boxShadow: theme.customShadows.medium,
+                  },
+                }}
+              />
+            )}
             {isUrgent && (
               <Tooltip title="Urgent Hiring" placement="top">
                 <Box

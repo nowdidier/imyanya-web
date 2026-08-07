@@ -179,11 +179,14 @@ const JobPostCard = () => {
   };
 
   const handleAddOrUpdate = (data) => {
+    const toHtml = (value) =>
+      typeof value === 'string' ? value : convertEditorStateToHTMLString(value);
+
     const dataCustom = {
       ...data,
-      jobDescription: convertEditorStateToHTMLString(data.jobDescription),
-      jobRequirement: convertEditorStateToHTMLString(data.jobRequirement),
-      benefitsEnjoyed: convertEditorStateToHTMLString(data.benefitsEnjoyed),
+      jobDescription: toHtml(data.jobDescription),
+      jobRequirement: toHtml(data.jobRequirement),
+      benefitsEnjoyed: toHtml(data.benefitsEnjoyed),
     };
 
     const create = async (data) => {

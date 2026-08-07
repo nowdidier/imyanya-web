@@ -6,6 +6,11 @@ import {
   setContentNoindex,
   subscribeContentNoindex,
 } from "./contentFlag";
+import {
+  getJobSeo,
+  setJobSeo,
+  subscribeJobSeo,
+} from "./jobSeoFlag";
 import careerArticles from "../../data/rwandaCareerArticles";
 
 const MAIN_ORIGIN = "https://imyanya.rw";
@@ -269,6 +274,20 @@ const getSeoForPath = (pathname) => {
   }
 
   if (path.startsWith("/viec-lam/") || path.startsWith("/jobs/")) {
+    const jobSeoData = getJobSeo();
+
+    if (jobSeoData) {
+      return {
+        title: `${jobSeoData.jobName} at ${jobSeoData.companyName} | Imyanya`,
+        description: jobSeoData.description
+          ? jobSeoData.description.slice(0, 160)
+          : `Apply for ${jobSeoData.jobName} at ${jobSeoData.companyName} in ${jobSeoData.location || "Rwanda"}. ${jobSeoData.salaryLabel || ""}`,
+        canonicalPath: path,
+        noindex: false,
+        jobSeo: jobSeoData,
+      };
+    }
+
     return {
       title: "Job Details in Rwanda | Imyanya",
       description:
@@ -366,6 +385,10 @@ const SeoManager = () => {
     subscribeContentNoindex,
     getContentNoindex
   );
+  const jobSeoData = useSyncExternalStore(
+    subscribeJobSeo,
+    getJobSeo
+  );
 
   // Reset the content flag on navigation so a new page starts as indexable.
   // Data-fetching components re-assert noindex if their results are empty.
@@ -383,16 +406,36 @@ const SeoManager = () => {
         ? "noindex, follow"
         : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 
+    const isJobDetail =
+      location.pathname.startsWith("/viec-lam/") ||
+      location.pathname.startsWith("/jobs/");
+
+    const ogImage =
+      isJobDetail && jobSeoData?.imageUrl ? jobSeoData.imageUrl : SHARE_IMAGE;
+
+    const ogTitle =
+      isJobDetail && jobSeoData?.jobName
+        ? `${jobSeoData.jobName} at ${jobSeoData.companyName} | Imyanya`
+        : seo.title;
+
+    const ogDescription =
+      isJobDetail && jobSeoData?.description
+        ? jobSeoData.description.slice(0, 200)
+        : seo.description;
+
     document.documentElement.lang = "en-RW";
-    document.title = seo.title;
+    document.title = ogTitle;
 
     upsertMeta('meta[name="description"]', {
       name: "description",
-      content: seo.description,
+      content: ogDescription,
     });
     upsertMeta('meta[name="keywords"]', {
       name: "keywords",
-      content: seo.keywords || MAIN_DEFAULT_SEO.keywords,
+      content:
+        isJobDetail && jobSeoData?.jobName
+          ? `${jobSeoData.jobName}, ${jobSeoData.companyName}, jobs in Rwanda, ${jobSeoData.location || "Rwanda"}`
+          : seo.keywords || MAIN_DEFAULT_SEO.keywords,
     });
     upsertMeta('meta[name="robots"]', { name: "robots", content: robots });
     upsertMeta('meta[name="googlebot"]', {
@@ -427,7 +470,7 @@ const SeoManager = () => {
 
     upsertMeta('meta[property="og:type"]', {
       property: "og:type",
-      content: "website",
+      content: isJobDetail ? "job posting" : "website",
     });
     upsertMeta('meta[property="og:site_name"]', {
       property: "og:site_name",
@@ -435,11 +478,11 @@ const SeoManager = () => {
     });
     upsertMeta('meta[property="og:title"]', {
       property: "og:title",
-      content: seo.title,
+      content: ogTitle,
     });
     upsertMeta('meta[property="og:description"]', {
       property: "og:description",
-      content: seo.description,
+      content: ogDescription,
     });
     upsertMeta('meta[property="og:url"]', {
       property: "og:url",
@@ -447,7 +490,11 @@ const SeoManager = () => {
     });
     upsertMeta('meta[property="og:image"]', {
       property: "og:image",
-      content: SHARE_IMAGE,
+      content: ogImage,
+    });
+    upsertMeta('meta[property="og:locale"]', {
+      property: "og:locale",
+      content: "en_RW",
     });
     upsertMeta('meta[name="twitter:card"]', {
       name: "twitter:card",
@@ -455,15 +502,15 @@ const SeoManager = () => {
     });
     upsertMeta('meta[name="twitter:title"]', {
       name: "twitter:title",
-      content: seo.title,
+      content: ogTitle,
     });
     upsertMeta('meta[name="twitter:description"]', {
       name: "twitter:description",
-      content: seo.description,
+      content: ogDescription,
     });
     upsertMeta('meta[name="twitter:image"]', {
       name: "twitter:image",
-      content: SHARE_IMAGE,
+      content: ogImage,
     });
 
     upsertJsonLd("imyanya-organization-schema", {
@@ -497,7 +544,7 @@ const SeoManager = () => {
         "query-input": "required name=search_term_string",
       },
     });
-  }, [location.pathname, contentNoindex]);
+  }, [location.pathname, contentNoindex, jobSeoData]);
 
   return null;
 };

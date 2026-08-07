@@ -29,6 +29,7 @@ import { TabTitle } from "../../../utils/generalFunction";
 import toastMessages from "../../../utils/toastMessages";
 import errorHandling from "../../../utils/errorHandling";
 import MuiImageCustom from "../../../components/MuiImageCustom";
+import RichHtmlContent from "../../../components/controls/RichHtmlContent";
 import { salaryString } from "../../../utils/customData";
 import NoDataCard from "../../../components/NoDataCard";
 import Map from "../../../components/Map";
@@ -38,8 +39,10 @@ import SocialNetworkSharingPopup from "../../../components/SocialNetworkSharingP
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import { ROLES_NAME, ROUTES } from "../../../configs/constants";
 import { formatRoute } from "../../../utils/funcUtils";
+import { AdUnit } from "../../../components/Ads";
 import { buildJobShareData } from "../../../utils/shareUtils";
 import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
+import { setJobSeo } from "../../../components/SeoManager/jobSeoFlag";
 import { rwandaCareerCategoryGuides } from "../../../data/rwandaCareerContent";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
@@ -366,22 +369,187 @@ const JobDetailPage = () => {
         setJobPostDetail(data);
         TabTitle(data?.jobName);
         setContentNoindex(data ? null : "not-found");
+
+        const cityName =
+          allConfig?.cityDict[data?.location?.city] ||
+          data?.location?.address ||
+          "Rwanda";
+
+        setJobSeo({
+          jobName: data?.jobName || "",
+          companyName: data?.companyDict?.companyName || "",
+          description:
+            (data?.jobDescription
+              ?.replace(/<[^>]*>/g, " ")
+              .replace(/\s+/g, " ")
+              .trim() || "") +
+            " " +
+            (data?.jobRequirement
+              ?.replace(/<[^>]*>/g, " ")
+              .replace(/\s+/g, " ")
+              .trim() || ""),
+          location: cityName,
+          salaryLabel: salaryString(data?.salaryMin, data?.salaryMax),
+          imageUrl: data?.imageUrl || data?.companyDict?.companyImageUrl || "",
+          deadline: data?.deadline || "",
+          jobType: allConfig?.jobTypeDict[data?.jobType] || "",
+          experience: allConfig?.experienceDict[data?.experience] || "",
+          academicLevel: allConfig?.academicLevelDict[data?.academicLevel] || "",
+          career: allConfig?.careerDict[data?.career] || "",
+        });
       } catch (error) {
         console.error(error);
         setContentNoindex("not-found");
+        setJobSeo(null);
       } finally {
         setIsLoading(false);
       }
     };
 
     getJobPostDetail(slug);
-  }, [slug]);
+  }, [slug, allConfig]);
 
   React.useEffect(() => {
     if (isApplySucces) {
       setJobPostDetail({ ...jobPostDetail, isApplied:true });
     }
   }, [isApplySucces]);
+
+  React.useEffect(() => {
+    return () => {
+      setJobSeo(null);
+    };
+  }, []);
+
+  // Google Jobs structured data. Emitted for every job post so all listings
+  // are eligible for rich Google Jobs results.
+  React.useEffect(() => {
+    if (!jobPostDetail) return undefined;
+
+    const stripHtml = (html = "") =>
+      String(html || "")
+        .replace(/<[^>]*>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const cityName =
+      allConfig?.cityDict[jobPostDetail?.location?.city] ||
+      jobPostDetail?.location?.address ||
+      "Rwanda";
+
+    const jobLocation = {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: cityName,
+        streetAddress: jobPostDetail?.location?.address,
+        addressCountry: "RW",
+      },
+      ...(jobPostDetail?.location?.lat
+        ? {
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: jobPostDetail?.location?.lat,
+              longitude: jobPostDetail?.location?.lng,
+            },
+          }
+        : {}),
+    };
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "JobPosting",
+      title: jobPostDetail?.jobName,
+      description: stripHtml(jobPostDetail?.jobDescription),
+      datePosted: jobPostDetail?.createAt
+        ? dayjs(jobPostDetail.createAt).toISOString()
+        : undefined,
+      ...(jobPostDetail?.deadline
+        ? { validThrough: dayjs(jobPostDetail.deadline).toISOString() }
+        : {}),
+      employmentType:
+        allConfig?.jobTypeDict[jobPostDetail?.jobType] || undefined,
+      hiringOrganization: {
+        "@type": "Organization",
+        name: jobPostDetail?.companyDict?.companyName,
+        ...(jobPostDetail?.companyDict?.companyImageUrl
+          ? { logo: jobPostDetail.companyDict.companyImageUrl }
+          : {}),
+        ...(jobPostDetail?.companyDict?.slug
+          ? { sameAs: `https://imyanya.rw/companies/${jobPostDetail.companyDict.slug}` }
+          : {}),
+      },
+      jobLocation: {
+        ...jobLocation,
+        ...(jobPostDetail?.location?.address
+          ? { address: { "@type": "PostalAddress", streetAddress: jobPostDetail.location.address } }
+          : {}),
+      },
+      applicantLocationRequirements: {
+        "@type": "Country",
+        name: "Rwanda",
+      },
+      ...(jobPostDetail?.salaryMin
+        ? {
+            baseSalary: {
+              "@type": "MonetaryAmount",
+              currency: "RWF",
+              value: {
+                "@type": "QuantitativeValue",
+                ...(jobPostDetail?.salaryMin
+                  ? { minValue: jobPostDetail.salaryMin }
+                  : {}),
+                ...(jobPostDetail?.salaryMax
+                  ? { maxValue: jobPostDetail.salaryMax }
+                  : {}),
+                unitText: "MONTH",
+              },
+            },
+          }
+        : {}),
+      ...(jobPostDetail?.imageUrl || jobPostDetail?.companyDict?.companyImageUrl
+        ? {
+            image:
+              jobPostDetail?.imageUrl ||
+              jobPostDetail?.companyDict?.companyImageUrl,
+          }
+        : {}),
+      ...(stripHtml(jobPostDetail?.jobRequirement)
+        ? { qualifications: stripHtml(jobPostDetail.jobRequirement) }
+        : {}),
+      ...(stripHtml(jobPostDetail?.benefitsEnjoyed)
+        ? { benefits: stripHtml(jobPostDetail.benefitsEnjoyed) }
+        : {}),
+      ...(jobPostDetail?.experience
+        ? { experienceRequirements: allConfig?.experienceDict[jobPostDetail.experience] || undefined }
+        : {}),
+      ...(jobPostDetail?.academicLevel
+        ? { educationRequirements: allConfig?.academicLevelDict[jobPostDetail.academicLevel] || undefined }
+        : {}),
+      ...(jobPostDetail?.career
+        ? { occupationalCategory: allConfig?.careerDict[jobPostDetail.career] || undefined }
+        : {}),
+      ...(jobPostDetail?.quantity
+        ? { numberOfPositions: jobPostDetail.quantity }
+        : {}),
+    };
+
+    const scriptId = "imyanya-jobposting-schema";
+    let el = document.getElementById(scriptId);
+
+    if (!el) {
+      el = document.createElement("script");
+      el.type = "application/ld+json";
+      el.id = scriptId;
+      document.head.appendChild(el);
+    }
+
+    el.textContent = JSON.stringify(schema);
+
+    return () => {
+      document.getElementById(scriptId)?.remove();
+    };
+  }, [jobPostDetail, allConfig]);
 
   const handleSave = () => {
     const saveJobPost = async () => {
@@ -481,6 +649,21 @@ const JobDetailPage = () => {
                       </Box>
                     </Stack>
                   </Box>
+                  {jobPostDetail?.imageUrl && (
+                    <Box
+                      component="img"
+                      src={jobPostDetail.imageUrl}
+                      alt={jobPostDetail?.jobName}
+                      sx={{
+                        width: '100%',
+                        maxHeight: 320,
+                        objectFit: 'cover',
+                        borderRadius: 2,
+                        mt: 2,
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                      }}
+                    />
+                  )}
                   <Divider sx={{ my: 2 }} />
                   <Box>
                     <Typography variant="h5" sx={{ fontSize: 26, mb: 2 }}>
@@ -679,11 +862,7 @@ const JobDetailPage = () => {
                     >
                       Job Description
                     </Typography>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: jobPostDetail?.jobDescription,
-                      }}
-                    />
+                    <RichHtmlContent html={jobPostDetail?.jobDescription} />
                   </Box>
 
                   {/* Job Requirements */}
@@ -707,11 +886,7 @@ const JobDetailPage = () => {
                     >
                       Job Requirements
                     </Typography>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: jobPostDetail?.jobRequirement,
-                      }}
-                    />
+                    <RichHtmlContent html={jobPostDetail?.jobRequirement} />
                   </Box>
 
                   {/* Benefits */}
@@ -735,11 +910,7 @@ const JobDetailPage = () => {
                     >
                       Benefits
                     </Typography>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: jobPostDetail?.benefitsEnjoyed,
-                      }}
-                    />
+                    <RichHtmlContent html={jobPostDetail?.benefitsEnjoyed} />
                   </Box>
 
                   {/* Additional Information */}
@@ -957,7 +1128,7 @@ const JobDetailPage = () => {
 
                         <Box
                           sx={{
-                            display: "flex", 
+                            display: "flex",
                             alignItems: "center",
                             gap: 2,
                             p: 2,
@@ -1011,7 +1182,7 @@ const JobDetailPage = () => {
                           sx={{
                             display: "flex",
                             alignItems: "center",
-                            gap: 2, 
+                            gap: 2,
                             p: 2,
                             borderRadius: 2,
                             bgcolor: "rgba(156,39,176,0.04)",
@@ -1077,6 +1248,9 @@ const JobDetailPage = () => {
             </Grid>
 
             <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+              <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center' }}>
+                <AdUnit size="300x250" />
+              </Box>
               <Card sx={{ p: { xs: 1.5, sm: 1.5, md: 2, lg: 2, xl: 2 } }}>
                 <Stack spacing={2}>
                   <Typography variant="h5">Similar Jobs in Rwanda</Typography>
@@ -1091,12 +1265,13 @@ const JobDetailPage = () => {
                     <FilterJobPostCard
                       params={{
                         excludeSlug: jobPostDetail?.slug,
-                        // cityId: jobPostDetail?.location?.city,
-                        // careerId: jobPostDetail?.career
                       }}
                       fullWidth={true}
                     />
                     {/* End: FilterJobPostCard */}
+                  </Box>
+                  <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
+                    <AdUnit size="160x600" />
                   </Box>
                   <Box sx={{ mt: 3 }}>
                     <Button

@@ -54,6 +54,7 @@ const JobPost = ({
   isHot,
   salaryMin,
   salaryMax,
+  imageUrl,
 }) => {
   const myRef = React.useRef(null);
   const [width, setWidth] = React.useState('95%');
@@ -190,11 +191,11 @@ const JobPost = ({
       <Stack direction="row" spacing={2} alignItems="center" ref={myRef}>
         <Stack>
           <Box sx={{ position: 'relative' }}>
-            {companyImageUrl ? (
+            {(imageUrl || companyImageUrl) ? (
               <MuiImageCustom
                 width={65}
                 height={65}
-                src={companyImageUrl}
+                src={imageUrl || companyImageUrl}
                 sx={{
                   border: 1,
                   borderRadius: 2,

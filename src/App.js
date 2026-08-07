@@ -23,12 +23,14 @@ import { ConfigProvider } from "antd";
 import AppRoutes from "./routes/AppRouter";
 
 import AdSenseLoader from "./components/AdSenseLoader";
+import { Popunder, SocialBar } from "./components/Ads";
 import SeoManager from "./components/SeoManager";
 import { WhatsAppContactButton } from "./whatsapp";
 import Feedback from "./components/Feedback";
 import ScrollToTop from "./components/ScrollToTop";
 
 import { ROLES_NAME, ROUTES } from "./configs/constants";
+import { isEmployerHost } from "./configs/constants";
 
 const PUBLIC_BOOTSTRAP_TIMEOUT_MS = 2500;
 const PRIVATE_BOOTSTRAP_TIMEOUT_MS = 12000;
@@ -184,7 +186,13 @@ function App() {
           <CssBaseline enableColorScheme />
 
           <SeoManager />
-          <AdSenseLoader />
+          {!isEmployerHost() && (
+            <>
+              <AdSenseLoader />
+              <Popunder />
+              <SocialBar />
+            </>
+          )}
 
           {/* Routes */}
           <AppRoutes settings={settings} />

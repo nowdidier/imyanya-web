@@ -41,6 +41,7 @@ import {
   rwandaJobFeedSourceMeta,
 } from "../../../data/rwandaJobFeed";
 import { rwandaJobMarketHighlights } from "../../../data/rwandaCareerContent";
+import { AdUnit, NativeBanner } from "../../../components/Ads";
 
 export default function HomePage() {
   TabTitle(`Jobs in Rwanda | Kigali Vacancies, Job Categories & Employers | ${APP_NAME}`);
@@ -63,6 +64,10 @@ export default function HomePage() {
         </Typography>
         <TopCompanyCarousel />
         {/* End: Top companies */}
+      </Box>
+
+      <Box sx={{ mt: 6, display: 'flex', justifyContent: 'center' }}>
+        <AdUnit size="300x250" />
       </Box>
 
       <Box sx={{ mt: 10 }}>
@@ -140,6 +145,10 @@ export default function HomePage() {
           </CardContent>
         </Card>
         {/* End: Urgent jobs */}
+      </Box>
+
+      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+        <NativeBanner />
       </Box>
 
       <Box sx={{ mt: 10 }}>

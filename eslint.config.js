@@ -1,6 +1,7 @@
 const js = require('@eslint/js');
 const globals = require('globals');
 const react = require('eslint-plugin-react');
+const reactHooks = require('eslint-plugin-react-hooks');
 
 const cleanGlobals = (...globalSets) =>
   Object.fromEntries(
@@ -36,6 +37,7 @@ module.exports = [
     },
     plugins: {
       react,
+      'react-hooks': reactHooks,
     },
     settings: {
       react: {
@@ -44,6 +46,7 @@ module.exports = [
     },
     rules: {
       ...react.configs.flat.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
     },

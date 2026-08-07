@@ -32,9 +32,17 @@ const SendMailCard = ({
       .max(200, 'Email subject exceeds the maximum length.'),
     content: yup
       .mixed()
-      .test('content', 'Email content is required.', (value) =>
-        value.getCurrentContent().hasText()
-      ),
+      .test('content', 'Email content is required.', (value) => {
+        if (value && typeof value.getCurrentContent === 'function') {
+          return value.getCurrentContent().hasText();
+        }
+
+        if (typeof value === 'string') {
+          return value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().length > 0;
+        }
+
+        return false;
+      }),
     isSendMe: yup.boolean().default(false),
   });
 

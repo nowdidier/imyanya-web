@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Alert, AlertTitle, Grid, Link } from '@mui/material';
+import { Alert, AlertTitle, Box, Button, Grid, Link, Typography } from '@mui/material';
+import { Upload } from 'antd';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 import {
   DATE_OPTIONS,
@@ -27,12 +29,25 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
   const { allConfig } = useSelector((state) => state.config);
   const [districtOptions, setDistrictOptions] = React.useState([]);
   const [locationOptions, setLocationOptions] = React.useState([]);
+  const [coverImage, setCoverImage] = React.useState(null);
   const supportWhatsAppUrl = `https://wa.me/${WHATSAPP_CONFIG.PHONE.replace(
     /[^\d]/g,
     ''
   )}?text=${encodeURIComponent(
     'Hello Imyanya, I need help with job post payment.'
   )}`;
+
+  const editorHasContent = (value) => {
+    if (value && typeof value.getCurrentContent === 'function') {
+      return value.getCurrentContent().hasText();
+    }
+
+    if (typeof value === 'string') {
+      return value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().length > 0;
+    }
+
+    return false;
+  };
 
   const normalizeLocation = (location = {}) => ({
     city: '',
@@ -109,22 +124,19 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
       .date()
       .required('Application Deadline is required.')
       .typeError('Application Deadline is invalid.')
-      .min(new Date() + 1, 'Application deadline must be later than today.'),
+      .min(
+        DATE_OPTIONS.tomorrow,
+        'Application deadline must be later than today.'
+      ),
     jobDescription: yup
       .mixed()
-      .test('editorContent', 'Job Description is required.', (value) =>
-        value.getCurrentContent().hasText()
-      ),
+      .test('editorContent', 'Job Description is required.', editorHasContent),
     jobRequirement: yup
       .mixed()
-      .test('editorContent', 'Job Requirements is required.', (value) =>
-        value.getCurrentContent().hasText()
-      ),
+      .test('editorContent', 'Job Requirements is required.', editorHasContent),
     benefitsEnjoyed: yup
       .mixed()
-      .test('editorContent', 'Benefits is required.', (value) =>
-        value.getCurrentContent().hasText()
-      ),
+      .test('editorContent', 'Benefits is required.', editorHasContent),
     location: yup.object().shape({
       city: yup
         .number()
@@ -274,8 +286,12 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           ...normalizeLocation(editData?.location),
         },
       }));
+      if (editData?.imageUrl) {
+        setCoverImage({ url: editData.imageUrl });
+      }
     } else {
       reset();
+      setCoverImage(null);
     }
   }, [editData, reset]);
 
@@ -320,8 +336,32 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
     }
   };
 
+  const readFileAsDataUrl = (file) =>
+    new Promise((resolve) => {
+      const reader = new FileReader();
+
+      reader.onload = (e) => resolve(e.target.result);
+      reader.readAsDataURL(file);
+    });
+
+  const handleCoverImageBeforeUpload = async (file) => {
+    const url = await readFileAsDataUrl(file);
+
+    setCoverImage({ file, url });
+    return false;
+  };
+
+  const handleSubmitData = (values) => {
+    const imagePayload = coverImage?.url ? { imageUrl: coverImage.url } : {};
+
+    handleAddOrUpdate({
+      ...values,
+      ...imagePayload,
+    });
+  };
+
   return (
-    <form id="modal-form" onSubmit={handleSubmit(handleAddOrUpdate)}>
+    <form id="modal-form" onSubmit={handleSubmit(handleSubmitData)}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Alert severity="warning">
@@ -468,6 +508,8 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             control={control}
             title="Job Description"
             showRequired={true}
+            withLinks
+            withImages
           />
         </Grid>
         <Grid item xs={12}>
@@ -476,6 +518,8 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             control={control}
             title="Job Requirements"
             showRequired={true}
+            withLinks
+            withImages
           />
         </Grid>
         <Grid item xs={12}>
@@ -484,7 +528,60 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
             control={control}
             title="Benefits"
             showRequired={true}
+            withLinks
+            withImages
           />
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="subtitle2" gutterBottom>
+            Job Post Preview Image
+          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+            <Upload
+              listType="picture-card"
+              maxCount={1}
+              accept="image/*"
+              showUploadList={false}
+              beforeUpload={handleCoverImageBeforeUpload}
+            >
+              {coverImage?.url ? (
+                <img
+                  src={coverImage.url}
+                  alt="Job post preview"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+              ) : (
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5 }}>
+                  <AddPhotoAlternateIcon color="primary" />
+                  <Typography variant="caption" color="text.secondary">
+                    Upload
+                  </Typography>
+                </Box>
+              )}
+            </Upload>
+            {coverImage?.url && (
+              <Button
+                size="small"
+                variant="outlined"
+                color="error"
+                onClick={() => setCoverImage(null)}
+              >
+                Remove
+              </Button>
+            )}
+          </Box>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ display: 'block', mt: 1 }}
+          >
+            Add a cover image to make your job post stand out and get a rich
+            preview on Google Jobs.
+          </Typography>
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
           <SingleSelectCustom

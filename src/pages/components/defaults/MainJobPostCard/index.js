@@ -1,10 +1,11 @@
 ﻿import React from 'react';
 import { useSelector } from 'react-redux';
-import { Box, Pagination, Stack, Typography } from '@mui/material';
+import { Box, Divider, Pagination, Stack, Typography } from '@mui/material';
 
 import { ImageSvg3 } from '../../../../configs/constants';
 import JobPostLarge from '../../../../components/JobPostLarge';
 import NoDataCard from '../../../../components/NoDataCard';
+import AdUnit from '../../../../components/Ads/AdUnit';
 import jobService from '../../../../services/jobService';
 import { setContentNoindex } from '../../../../components/SeoManager/contentFlag';
 
@@ -99,21 +100,37 @@ const MainJobPostCard = () => {
           />
         ) : (
           <>
-            {jobPosts.map((value) => (
-              <JobPostLarge
-                key={value.id}
-                id={value.id}
-                slug={value.slug}
-                companyImageUrl={value?.companyDict.companyImageUrl}
-                companyName={value?.companyDict.companyName}
-                jobName={value?.jobName}
-                cityId={value?.locationDict?.city}
-                deadline={value?.deadline}
-                isUrgent={value?.isUrgent}
-                isHot={value?.isHot}
-                salaryMin={value.salaryMin}
-                salaryMax={value.salaryMax}
-              />
+            {jobPosts.map((value, index) => (
+              <React.Fragment key={value.id}>
+                <JobPostLarge
+                  id={value.id}
+                  slug={value.slug}
+                  companyImageUrl={value?.companyDict.companyImageUrl}
+                  companyName={value?.companyDict.companyName}
+                  jobName={value?.jobName}
+                  cityId={value?.locationDict?.city}
+                  deadline={value?.deadline}
+                  isUrgent={value?.isUrgent}
+                  isHot={value?.isHot}
+                  salaryMin={value.salaryMin}
+                  salaryMax={value.salaryMax}
+                  imageUrl={value?.imageUrl}
+                />
+                {(index + 1) % 5 === 0 && (
+                  <Box
+                    role="separator"
+                    aria-label="Sponsored"
+                    sx={{ my: 1, textAlign: 'center' }}
+                  >
+                    <Divider sx={{ mb: 1.5 }}>
+                      <Typography variant="caption" color="text.secondary">
+                        Sponsored
+                      </Typography>
+                    </Divider>
+                    <AdUnit size={index % 10 === 4 ? "300x250" : "728x90"} />
+                  </Box>
+                )}
+              </React.Fragment>
             ))}
             <Stack sx={{ pt: 2 }}>
               {Math.ceil(count / pageSize) > 1 && (

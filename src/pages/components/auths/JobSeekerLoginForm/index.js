@@ -170,11 +170,8 @@ const JobSeekerLoginForm = ({
         <LoginSocialGoogle
           client_id={AUTH_CONFIG.GOOGLE_CLIENT_ID}
           isOnlyGetToken={true}
-          redirect_uri={socialRedirectUri}
-          access_type="offline"
           typeResponse="accessToken"
           scope="openid profile email"
-          discoveryDocs="claims_supported"
           onResolve={onGoogleLogin}
           onReject={onSocialReject}
           ux_mode="popup"

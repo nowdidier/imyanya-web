@@ -1,15 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import { AD_UNITS } from './adConfig';
+import useShouldShowAds from '../../hooks/useShouldShowAds';
 
 const SCRIPT_CLOSE = '<' + '/script>';
 
 const AdUnit = ({ size, sx }) => {
   const iframeRef = useRef(null);
   const config = AD_UNITS[size];
+  const shouldShowAds = useShouldShowAds();
 
   useEffect(() => {
-    if (!config) return;
+    if (!config || !shouldShowAds) return;
     const iframe = iframeRef.current;
     if (!iframe) return;
 
@@ -25,9 +27,9 @@ const AdUnit = ({ size, sx }) => {
       '</head><body style="margin:0;padding:0;overflow:hidden;"></body></html>',
     ].join(''));
     doc.close();
-  }, [config]);
+  }, [config, shouldShowAds]);
 
-  if (!config) return null;
+  if (!config || !shouldShowAds) return null;
 
   return (
     <Box

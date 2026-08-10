@@ -12,7 +12,7 @@ import TextFieldCustom from "../../../../components/controls/TextFieldCustom";
 import PasswordTextFieldCustom from "../../../../components/controls/PasswordTextFieldCustom";
 import { AUTH_CONFIG } from "../../../../configs/constants";
 
-const StyledButton = styled(Button)(({ theme }) => ({
+const StyledButton = styled(Button)(() => ({
   padding: "8px 16px",
   borderRadius: "8px",
   fontSize: "14px",
@@ -26,7 +26,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const StyledSocialButton = styled(Button)(({ theme }) => ({
+const StyledSocialButton = styled(Button)(() => ({
   padding: "8px 16px",
   borderRadius: "8px",
   fontSize: "14px",
@@ -71,7 +71,7 @@ const JobSeekerSignUpForm = ({
       .min(8, "Password must be at least 8 characters.")
       .max(128, "Password exceeds the maximum length.")
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
         "Must contain one uppercase letter, one lowercase letter, one number, and one special character"
       ),
     confirmPassword: yup
@@ -195,7 +195,6 @@ const JobSeekerSignUpForm = ({
           <StyledSocialButton
             fullWidth
             variant="outlined"
-            onClick={onFacebookRegister}
             startIcon={<FacebookIcon />}
             sx={{
               borderColor: "#4267B2",
@@ -213,19 +212,17 @@ const JobSeekerSignUpForm = ({
         <LoginSocialGoogle
           client_id={AUTH_CONFIG.GOOGLE_CLIENT_ID}
           isOnlyGetToken={true}
-          ux_mode="popup"
-          access_type="offline"
+          typeResponse="accessToken"
           scope="openid profile email"
-          discoveryDocs="claims_supported"
           onResolve={onGoogleRegister}
           onReject={(err) => {
             console.log(err);
           }}
+          ux_mode="popup"
         >
           <StyledSocialButton
             fullWidth
             variant="outlined"
-            onClick={onGoogleRegister}
             startIcon={<GoogleIcon />}
             sx={{
               borderColor: "#DB4437",

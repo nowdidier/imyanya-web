@@ -8,7 +8,6 @@ import {
   ListItemButton,
   ListItemText,
   Stack,
-  useTheme,
   Button,
 } from '@mui/material';
 import React from 'react';
@@ -33,7 +32,6 @@ const drawerWidth = 240;
 const LeftDrawer = ({ window, pages, mobileOpen, handleDrawerToggle }) => {
   const dispatch = useDispatch();
   const nav = useNavigate();
-  const theme = useTheme();
 
   const { isAuthenticated } = useSelector((state) => state.user);
 
@@ -89,8 +87,11 @@ const LeftDrawer = ({ window, pages, mobileOpen, handleDrawerToggle }) => {
         {pages.map((page) => (
           <ListItem
             key={page.id}
-            component={NavLink}
-            to={page.path}
+            component={page.href ? "a" : NavLink}
+            href={page.href}
+            to={page.href ? undefined : page.path}
+            target={page.href ? "_blank" : undefined}
+            rel={page.href ? "noopener noreferrer" : undefined}
             disablePadding
             sx={{
               mb: 1,

@@ -23,7 +23,7 @@ import { ConfigProvider } from "antd";
 import AppRoutes from "./routes/AppRouter";
 
 import AdSenseLoader from "./components/AdSenseLoader";
-import { Popunder, SocialBar } from "./components/Ads";
+import { Popunder, SocialBar, AdsRemovalAlert } from "./components/Ads";
 import SeoManager from "./components/SeoManager";
 import { WhatsAppContactButton } from "./whatsapp";
 import Feedback from "./components/Feedback";
@@ -186,6 +186,7 @@ function App() {
           <CssBaseline enableColorScheme />
 
           <SeoManager />
+          <AdsRemovalAlert />
           {!isEmployerHost() && (
             <>
               <AdSenseLoader />

@@ -1,11 +1,13 @@
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 import AdUnit from './AdUnit';
+import useShouldShowAds from '../../hooks/useShouldShowAds';
 
 const MobileStickyBar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const shouldShowAds = useShouldShowAds();
 
-  if (!isMobile) return null;
+  if (!isMobile || !shouldShowAds) return null;
 
   return (
     <Box

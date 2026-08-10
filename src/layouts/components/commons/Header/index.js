@@ -75,6 +75,11 @@ const pages = {
       label: "About Us",
       path: `/${ROUTES.JOB_SEEKER.ABOUT_US_EN}`,
     },
+    {
+      id: 6,
+      label: "Book",
+      href: "https://tickets.imyanya.rw",
+    },
   ],
 
   [HOST_NAME.EMPLOYER_MYJOB]: [
@@ -106,7 +111,7 @@ const pages = {
   ],
 };
 
-const Header = (props) => {
+const Header = () => {
   const theme = useTheme();
 
   const isSmall = useMediaQuery(
@@ -373,20 +378,34 @@ const Header = (props) => {
                 }}
               >
                 {pages[hostName]?.map(
-                  (page) => (
-                    <MenuItem
-                      key={page.id}
-                      onClick={
-                        handleCloseNavMenu
-                      }
-                      component={NavLink}
-                      to={page.path}
-                    >
-                      <Typography textAlign="center">
-                        {page.label}
-                      </Typography>
-                    </MenuItem>
-                  )
+                  (page) =>
+                    page.href ? (
+                      <MenuItem
+                        key={page.id}
+                        onClick={handleCloseNavMenu}
+                        component="a"
+                        href={page.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Typography textAlign="center">
+                          {page.label}
+                        </Typography>
+                      </MenuItem>
+                    ) : (
+                      <MenuItem
+                        key={page.id}
+                        onClick={
+                          handleCloseNavMenu
+                        }
+                        component={NavLink}
+                        to={page.path}
+                      >
+                        <Typography textAlign="center">
+                          {page.label}
+                        </Typography>
+                      </MenuItem>
+                    )
                 )}
               </Menu>
             </Box>
@@ -402,33 +421,54 @@ const Header = (props) => {
               }}
             >
               {pages[hostName]?.map(
-                (page) => (
-                  <Link
-                    to={page.path}
-                    key={page.id}
-                    onClick={
-                      handleCloseNavMenu
-                    }
-                  >
-                    <Button
-                      color="primary"
-                      sx={{
-                        my: 2,
-                        mr: 1,
-                        color: "white",
-                        display: "block",
-                        backgroundColor:
-                          location?.pathname?.startsWith(
-                            page.path
-                          )
-                            ? "rgba(255, 255, 255, 0.1)"
-                            : null,
-                      }}
+                (page) =>
+                  page.href ? (
+                    <a
+                      href={page.href}
+                      key={page.id}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={handleCloseNavMenu}
                     >
-                      {page.label}
-                    </Button>
-                  </Link>
-                )
+                      <Button
+                        color="primary"
+                        sx={{
+                          my: 2,
+                          mr: 1,
+                          color: "white",
+                          display: "block",
+                        }}
+                      >
+                        {page.label}
+                      </Button>
+                    </a>
+                  ) : (
+                    <Link
+                      to={page.path}
+                      key={page.id}
+                      onClick={
+                        handleCloseNavMenu
+                      }
+                    >
+                      <Button
+                        color="primary"
+                        sx={{
+                          my: 2,
+                          mr: 1,
+                          color: "white",
+                          display: "block",
+                          backgroundColor:
+                            location?.pathname?.startsWith(
+                              page.path
+                            )
+                              ? "rgba(255, 255, 255, 0.1)"
+                              : null,
+                        }}
+                      >
+                        {page.label}
+                      </Button>
+                    </Link>
+                  )
               )}
             </Box>
 

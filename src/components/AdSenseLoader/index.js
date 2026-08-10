@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ADSENSE_CLIENT_ID = "ca-pub-1257502818810103";
 const ADSENSE_SCRIPT_ID = "imyanya-adsense-script";
@@ -83,9 +84,11 @@ const canLoadAds = (pathname) => {
 
 const AdSenseLoader = () => {
   const location = useLocation();
+  const { isAuthenticated = false } = useSelector((state) => state.user || {});
 
   React.useEffect(() => {
     if (!canLoadAds(location.pathname)) return;
+    if (isAuthenticated) return;
     if (document.getElementById(ADSENSE_SCRIPT_ID)) return;
 
     const script = document.createElement("script");
@@ -94,7 +97,7 @@ const AdSenseLoader = () => {
     script.crossOrigin = "anonymous";
     script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`;
     document.head.appendChild(script);
-  }, [location.pathname]);
+  }, [location.pathname, isAuthenticated]);
 
   return null;
 };

@@ -8,7 +8,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  Stack,
   Typography,
 } from "@mui/material";
 
@@ -26,7 +25,6 @@ import {
 } from "../../../data/rwandaJobFeed";
 import {
   rwandaApplicationChecklist,
-  rwandaJobSearchSteps,
 } from "../../../data/rwandaCareerContent";
 
 const JobPage = () => {
@@ -35,44 +33,12 @@ const JobPage = () => {
   return (
     <>
       <Box sx={{ mt: 2 }}>
-        <Stack spacing={1.5} sx={{ mb: 4 }}>
-          <Typography variant="h3" component="h1" fontWeight={800}>
-            Jobs in Rwanda
-          </Typography>
-          <Typography color="text.secondary" sx={{ maxWidth: 900, lineHeight: 1.75 }}>
-            Search current roles, compare employers, and use the guidance below
-            to prepare stronger applications for Kigali and Rwanda-wide vacancies.
-            This page combines platform listings with editorial notes that help
-            candidates avoid generic applications.
-          </Typography>
-        </Stack>
-
         <Box>
           {/* Start: JobPostSearch */}
           <JobPostSearch />
           {/* End: JobPostSearch */}
         </Box>
         <Box sx={{ mt: 4 }}>
-          <Card variant="outlined" sx={{ borderRadius: 1, mb: 4 }}>
-            <CardContent>
-              <Typography variant="h5" component="h2" fontWeight={700} gutterBottom>
-                How to Use This Search Well
-              </Typography>
-              <Grid container spacing={2}>
-                {rwandaJobSearchSteps.map((step) => (
-                  <Grid item xs={12} md={6} key={step.title}>
-                    <Typography variant="h6" fontWeight={700}>
-                      {step.title}
-                    </Typography>
-                    <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
-                      {step.body}
-                    </Typography>
-                  </Grid>
-                ))}
-              </Grid>
-            </CardContent>
-          </Card>
-
           <Grid container spacing={3}>
             <Grid item xs={12} sm={12} md={12} lg={8} xl={8}>
               {/* Start: MainJobPostCard */}

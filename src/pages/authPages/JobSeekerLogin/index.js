@@ -229,13 +229,15 @@ const JobSeekerLogin = () => {
   };
 
   const handleSocialReject = (error) => {
+    const detail = error?.data || error?.error || error;
     const errorText =
-      error?.error_description ||
-      error?.error ||
-      error?.message ||
+      detail?.error_description ||
+      detail?.error ||
+      detail?.message ||
+      detail ||
       'Social login was not completed. Please try again.';
 
-    setErrorMessage(errorText);
+    setErrorMessage(typeof errorText === 'string' ? errorText : 'Social login was not completed. Please try again.');
   };
 
   return (

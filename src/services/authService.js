@@ -1,6 +1,8 @@
 import httpRequest from '../utils/httpRequest';
 import { AUTH_CONFIG } from '../configs/constants';
 
+const normalizeEmail = (email = '') => String(email).trim().toLowerCase();
+
 const authService = {
   getToken: (email, password, role_name) => {
     const url = 'auth/token/';
@@ -9,7 +11,7 @@ const authService = {
       grant_type: AUTH_CONFIG.PASSWORD_KEY,
       client_id: AUTH_CONFIG.CLIENT_ID,
       client_secret: AUTH_CONFIG.CLIENT_SECRET,
-      username: email,
+      username: normalizeEmail(email),
       password: password,
       role_name: role_name,
     };
@@ -45,7 +47,7 @@ const authService = {
     const url = 'auth/check-creds/';
 
     const data = {
-      email: email,
+      email: normalizeEmail(email),
       roleName: roleName,
     };
 
@@ -54,17 +56,26 @@ const authService = {
   jobSeekerRegister: (data) => {
     const url = 'auth/job-seeker/register/';
 
-    return httpRequest.post(url, data);
+    return httpRequest.post(url, {
+      ...data,
+      email: normalizeEmail(data.email),
+    });
   },
   employerRegister: (data) => {
     const url = 'auth/employer/register/';
 
-    return httpRequest.post(url, data);
+    return httpRequest.post(url, {
+      ...data,
+      email: normalizeEmail(data.email),
+    });
   },
   resendVerificationEmail: (data) => {
     const url = 'auth/resend-verification-email/';
 
-    return httpRequest.post(url, data);
+    return httpRequest.post(url, {
+      ...data,
+      email: normalizeEmail(data.email),
+    });
   },
   getUserInfo: () => {
     const url = 'auth/user-info/';
@@ -98,7 +109,10 @@ const authService = {
   forgotPassword: (data) => {
     const url = 'auth/forgot-password/';
 
-    return httpRequest.post(url, data);
+    return httpRequest.post(url, {
+      ...data,
+      email: normalizeEmail(data.email),
+    });
   },
   resetPassword: (data) => {
     const url = 'auth/reset-password/';

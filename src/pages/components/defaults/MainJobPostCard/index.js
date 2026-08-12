@@ -115,6 +115,7 @@ const MainJobPostCard = () => {
                   salaryMin={value.salaryMin}
                   salaryMax={value.salaryMax}
                   imageUrl={value?.imageUrl}
+                  jobDescription={value?.jobDescription}
                 />
                 {(index + 1) % 5 === 0 && (
                   <Box

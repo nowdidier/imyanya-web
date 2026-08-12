@@ -111,14 +111,15 @@ const JobSeekerSignUp = () => {
         provider,
         token
       );
-      const { access_token: accessToken, refresh_token: refreshToken } =
+      const { access_token: accessToken, refresh_token: refreshToken, backend } =
         resData.data;
 
       // save cookie
       const isSaveTokenToCookie =
         tokenService.saveAccessTokenAndRefreshTokenToCookie(
           accessToken,
-          refreshToken
+          refreshToken,
+          backend
         );
       if (isSaveTokenToCookie) {
         dispatch(getUserInfo())

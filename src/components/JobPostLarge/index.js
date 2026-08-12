@@ -24,11 +24,11 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { salaryString } from "../../utils/customData";
 import MuiImageCustom from "../MuiImageCustom";
+import RichHtmlContent from "../controls/RichHtmlContent";
 import { formatRoute } from "../../utils/funcUtils";
 import { ROUTES } from "../../configs/constants";
 
 const JobPostLarge = ({
-  id,
   slug,
   companyImageUrl,
   companyName,
@@ -40,6 +40,7 @@ const JobPostLarge = ({
   salaryMin,
   salaryMax,
   imageUrl,
+  jobDescription,
 }) => {
   const theme = useTheme();
   const nav = useNavigate();
@@ -349,6 +350,16 @@ const JobPostLarge = ({
           </Stack>
         </Stack>
       </Stack>
+
+      {jobDescription && (
+        <Box sx={{ mt: 1.5 }}>
+          <Divider sx={{ mb: 1.5, borderColor: theme.palette.grey[300] }} />
+          <RichHtmlContent
+            html={jobDescription}
+            sx={{ fontSize: 14 }}
+          />
+        </Box>
+      )}
 
       <Divider sx={{ mt: 1, mb: 0.75, borderColor: theme.palette.grey[400] }} />
 

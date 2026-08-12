@@ -8,6 +8,7 @@ import { Box, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { createEditorStateFromHTMLString } from '../../../utils/customData';
+import httpRequest from '../../../utils/httpRequest';
 
 const isEditorState = (value) =>
   !!value && typeof value.getCurrentContent === 'function';
@@ -22,18 +23,24 @@ const RichTextEditorField = ({
 }) => {
   const emptyState = React.useMemo(() => EditorState.createEmpty(), []);
 
-  const readFileAsDataUrl = (file) =>
-    new Promise((resolve) => {
-      const reader = new FileReader();
-
-      reader.onload = (e) => resolve(e.target.result);
-      reader.readAsDataURL(file);
-    });
-
   const uploadCallback = React.useCallback(async (file) => {
-    const url = await readFileAsDataUrl(file);
+    const formData = new FormData();
+    formData.append('upload', file);
 
-    return { data: { link: url } };
+    try {
+      const res = await httpRequest.post('ckeditor/upload/', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        timeout: 30000,
+      });
+
+      if (res && res.url) {
+        return { data: { link: res.url } };
+      }
+    } catch (error) {
+      console.error('Editor image upload failed:', error);
+    }
+
+    return { data: { link: '' } };
   }, []);
 
   const normalized = React.useMemo(() => {

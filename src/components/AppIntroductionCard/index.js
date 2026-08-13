@@ -31,7 +31,7 @@ const AppIntroductionCard = () => {
         toastMessages.success('Sent successfully. Please check your messages');
         setValue('');
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setIsFullScreenLoading(false);
       }

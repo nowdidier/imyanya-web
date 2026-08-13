@@ -204,7 +204,7 @@ const NotificationCard = () => {
         }
       })
       .catch((error) => {
-        console.log('deleted noti failed: ', error);
+        console.error('deleted noti failed: ', error);
       });
   };
 
@@ -218,7 +218,7 @@ const NotificationCard = () => {
     })
       .then(() => {})
       .catch((error) => {
-        console.log('read noti failed: ', error);
+        console.error('read noti failed: ', error);
       });
   };
 

@@ -50,8 +50,8 @@ const InputBaseSearchHomeCustom = ({
    try {
       const keywordListStr = localStorage.getItem('myjob_search_history');
       if (
-        keywordListStr !== null ||
-        keywordListStr !== undefined ||
+        keywordListStr !== null &&
+        keywordListStr !== undefined &&
         keywordListStr !== ''
       ) {
         setRecentSearch(JSON.parse(keywordListStr));
@@ -263,6 +263,7 @@ const InputBaseSearchHomeCustom = ({
                   >
                     <IconButton
                       size="small"
+                      aria-label="Clear search"
                       onClick={() => {
                         field.onChange('');
                         setSearchValue('');

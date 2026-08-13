@@ -24,13 +24,19 @@ const createEditorStateFromHTMLString = (htmlString) => {
   return EditorState.createWithContent(content);
 };
 
-const convertMoney = n => {
-  if (n >= 1000000000) {
-    return `${Math.trunc(n / 1000000000)}B`;
-  } else if (n >= 1000000) {
-    return `${Math.trunc(n / 1000000)}M`;
+const convertMoney = (n) => {
+  if (n === null || n === undefined || Number.isNaN(Number(n))) return null;
+
+  const abs = Math.abs(n);
+
+  if (abs >= 1000000000) {
+    return `${parseFloat((n / 1000000000).toFixed(1))}B`;
+  } else if (abs >= 1000000) {
+    return `${parseFloat((n / 1000000).toFixed(1))}M`;
+  } else if (abs >= 1000) {
+    return `${parseFloat((n / 1000).toFixed(1))}K`;
   } else {
-    return `${Math.trunc(n)}`;
+    return `${n}`;
   }
 };
 
@@ -39,7 +45,7 @@ const salaryString = (salaryFrom, salaryTo) => {
   else
     return `${!salaryFrom ? '?' : convertMoney(salaryFrom)} - ${
       !salaryTo ? '?' : convertMoney(salaryTo)
-    }`;
+    } RWF`;
 };
 
 const toSlug = (str) => {

@@ -164,7 +164,7 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             showRequired={true}
             placeholder="Enter minimum desired salary"
             control={control}
-            icon={'VND'}
+            icon={'RWF'}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -174,7 +174,7 @@ const GeneralInfoForm = ({ handleUpdate, editData }) => {
             showRequired={true}
             placeholder="Enter maximum desired salary"
             control={control}
-            icon={'VND'}
+            icon={'RWF'}
           />
         </Grid>
         <Grid item xs={12} sm={6}>

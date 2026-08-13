@@ -15,6 +15,7 @@ const SwitchModeButton = () => {
       sx={{ ml: 1 }}
       onClick={colorMode.toggleColorMode}
       color="inherit"
+      aria-label="Toggle dark mode"
     >
       {theme.palette.mode === 'dark' ? (
         <Brightness7Icon />

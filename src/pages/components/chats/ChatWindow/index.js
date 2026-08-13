@@ -66,11 +66,9 @@ const ChatWindow = () => {
           updateDoc(chatRoomDocRef, {
             unreadCount: 0,
           })
-            .then(() => {
-              console.log('update chatRoom success -> unreadCount=0');
-            })
+            .then(() => {})
             .catch((error) => {
-              console.log(
+              console.error(
                 'update chatRoom failed: -> unreadCount: Notchange',
                 error
               );

@@ -17,7 +17,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { TabTitle } from '../../../utils/generalFunction';
 import getAuthErrorMessage from '../../../utils/authErrorMessage';
 import {
-  AUTH_CONFIG,
   AUTH_PROVIDER,
   ROLES_NAME,
   ROUTES,
@@ -154,19 +153,12 @@ const JobSeekerLogin = () => {
     checkCreds(data.email, data.password, ROLES_NAME.JOB_SEEKER);
   };
 
-  const handleSocialLogin = async (
-    clientId,
-    clientSecret,
-    provider,
-    token
-  ) => {
+  const handleSocialLogin = async (provider, token) => {
     setIsFullScreenLoading(true);
     setErrorMessage(null);
 
    try {
       const resData = await authService.convertToken(
-        clientId,
-        clientSecret,
         provider,
         token
       );
@@ -208,8 +200,6 @@ const JobSeekerLogin = () => {
     const accessToken = result.data?.accessToken;
     if (accessToken) {
       handleSocialLogin(
-        AUTH_CONFIG.FACEBOOK_CLIENT_ID,
-        AUTH_CONFIG.FACEBOOK_CLIENT_SECRET,
         AUTH_PROVIDER.FACEBOOK,
         accessToken
       );
@@ -220,8 +210,6 @@ const JobSeekerLogin = () => {
     const accessToken = result.data?.access_token;
     if (accessToken) {
       handleSocialLogin(
-        AUTH_CONFIG.GOOGLE_CLIENT_ID,
-        AUTH_CONFIG.GOOGLE_CLIENT_SECRET,
         AUTH_PROVIDER.GOOGLE,
         accessToken
       );

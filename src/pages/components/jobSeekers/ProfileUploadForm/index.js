@@ -169,7 +169,7 @@ const ProfileUploadForm = ({ handleAdd }) => {
             showRequired={true}
             placeholder="Enter minimum desired salary"
             control={control}
-            icon={'VND'}
+            icon={'RWF'}
             type='number'
           />
         </Grid>
@@ -180,7 +180,7 @@ const ProfileUploadForm = ({ handleAdd }) => {
             showRequired={true}
             placeholder="Enter maximum desired salary"
             control={control}
-            icon={'VND'}
+            icon={'RWF'}
             type='number'
           />
         </Grid>

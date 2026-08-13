@@ -358,6 +358,7 @@ const SocialNetworkSharingPopup = (props) => {
             <IconButton
               onClick={closePopup}
               size="small"
+              aria-label="Close share popup"
               sx={{
                 color: "common.white",
                 bgcolor: "rgba(255,255,255,0.12)",

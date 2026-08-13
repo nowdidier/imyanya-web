@@ -58,13 +58,9 @@ const LeftSidebar = () => {
   const [page, setPage] = React.useState(0);
   const [count, setCount] = React.useState(0);
 
-  const handleSelectRoom = (chatRoom) => {
+const handleSelectRoom = (chatRoom) => {
     setSelectedRoomId(chatRoom?.id);
   };
-
-  React.useEffect(() => {
-    console.log('==> Firing API Search: ', deboundedTextValue);
-  }, [deboundedTextValue]);
 
   // listen to total chat rooms
   React.useEffect(() => {
@@ -322,13 +318,9 @@ const EmployerSidebar = () => {
   const [page, setPage] = React.useState(0);
   const [count, setCount] = React.useState(0);
 
-  const handleSelectRoom = (chatRoom) => {
+const handleSelectRoom = (chatRoom) => {
     setSelectedRoomId(chatRoom?.id);
   };
-
-  React.useEffect(() => {
-    console.log('==> Firing API Search: ', deboundedTextValue);
-  }, [deboundedTextValue]);
 
   // listen to total chat rooms
   React.useEffect(() => {

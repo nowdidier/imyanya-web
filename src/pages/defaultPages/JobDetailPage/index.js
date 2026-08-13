@@ -221,6 +221,43 @@ const Loading = (
   </>
 );
 
+const daysUntil = (deadline) => {
+  if (!deadline) return null;
+  return dayjs(deadline).startOf('day').diff(dayjs().startOf('day'), 'day');
+};
+
+const DeadlineBadge = ({ deadline }) => {
+  const days = daysUntil(deadline);
+  if (days === null || days < 0) return null;
+
+  const bgcolor =
+    days === 0 ? 'error.main' : days <= 3 ? 'warning.main' : 'success.main';
+  const label =
+    days === 0
+      ? 'Closes today'
+      : days === 1
+        ? 'Closes tomorrow'
+        : `Closes in ${days} days`;
+
+  return (
+    <Box
+      component="span"
+      sx={{
+        ml: 1,
+        px: 1.25,
+        py: 0.4,
+        borderRadius: '12px',
+        fontSize: 12,
+        fontWeight: 700,
+        color: '#fff',
+        bgcolor: bgcolor,
+      }}
+    >
+      {label}
+    </Box>
+  );
+};
+
 const item = (title, value) => {
   return (
     <Box>
@@ -689,6 +726,7 @@ const JobDetailPage = () => {
                         />
                         Deadline:{" "}
                         {dayjs(jobPostDetail?.deadline).format("DD/MM/YYYY")}
+                        <DeadlineBadge deadline={jobPostDetail?.deadline} />
                       </Typography>
                       <Typography
                         variant="subtitle2"

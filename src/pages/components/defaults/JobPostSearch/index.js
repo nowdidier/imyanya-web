@@ -17,6 +17,10 @@ import ClearIcon from '@mui/icons-material/Clear';
 
 import InputBaseSearchHomeCustom from '../../../../components/controls/InputBaseSearchHomeCustom';
 import SingleSelectSearchCustom from '../../../../components/controls/SingleSelectSearchCustom';
+import TextFieldCustom from '../../../../components/controls/TextFieldCustom';
+import Chip from '@mui/material/Chip';
+import HistoryIcon from '@mui/icons-material/History';
+import CloseIcon from '@mui/icons-material/Close';
 
 import {
   resetSearchJobPostFilter,
@@ -28,6 +32,40 @@ const JobPostSearch = () => {
   const { allConfig } = useSelector((state) => state.config);
   const { jobPostFilter } = useSelector((state) => state.filter);
   const [showAdvanceFilter, setShowAdvanceFilter] = React.useState(false);
+  const [recentKeywords, setRecentKeywords] = React.useState([]);
+
+  const loadRecentKeywords = () => {
+    try {
+      const keywordListStr = localStorage.getItem('myjob_search_history');
+
+      if (
+        keywordListStr !== null &&
+        keywordListStr !== undefined &&
+        keywordListStr !== ''
+      ) {
+        const parsed = JSON.parse(keywordListStr);
+        setRecentKeywords(Array.isArray(parsed) ? parsed : []);
+      } else {
+        setRecentKeywords([]);
+      }
+    } catch (error) {
+      setRecentKeywords([]);
+      console.error('Error reading search keywords from local storage: ', error);
+    }
+  };
+
+  React.useEffect(() => {
+    loadRecentKeywords();
+  }, []);
+
+  const handleClearRecentKeywords = () => {
+    try {
+      localStorage.removeItem('myjob_search_history');
+      setRecentKeywords([]);
+    } catch (error) {
+      console.error('Error clearing search keywords: ', error);
+    }
+  };
 
   const { control, handleSubmit, reset } = useForm();
 
@@ -81,8 +119,19 @@ const JobPostSearch = () => {
 
   const handleFilter = (data) => {
     handleSaveKeyworLocalStorage(data?.kw);
+    loadRecentKeywords();
 
     dispatch(searchJobPost(data));
+  };
+
+  const handleQuickSearch = (kw) => {
+    dispatch(
+      searchJobPost({
+        ...jobPostFilter,
+        kw: kw,
+        page: 1,
+      })
+    );
   };
 
   const handleReset = () => {
@@ -151,6 +200,37 @@ const JobPostSearch = () => {
           </Grid>
         </Grid>
       </Card>
+      {recentKeywords.length > 0 && (
+        <Card sx={{ p: 1.5, boxShadow: 0, mt: 1.5, backgroundColor: 'background.paper' }}>
+          <Stack direction="row" spacing={1} alignItems="center" sx={{ flexWrap: 'wrap', gap: 1 }}>
+            <Stack direction="row" spacing={0.5} alignItems="center">
+              <HistoryIcon fontSize="small" color="disabled" />
+              <Typography variant="caption" color="text.secondary" fontWeight={600}>
+                Recent searches:
+              </Typography>
+            </Stack>
+            {recentKeywords.map((kw) => (
+              <Chip
+                key={kw}
+                label={kw}
+                size="small"
+                variant="outlined"
+                onClick={() => handleQuickSearch(kw)}
+                sx={{ cursor: 'pointer' }}
+              />
+            ))}
+            <Chip
+              icon={<CloseIcon fontSize="small" />}
+              label="Clear"
+              size="small"
+              variant="text"
+              color="default"
+              onClick={handleClearRecentKeywords}
+              sx={{ cursor: 'pointer', '& .MuiChip-icon': { fontSize: 16 } }}
+            />
+          </Stack>
+        </Card>
+      )}
       <Card
         sx={{
           p: 2,
@@ -202,6 +282,26 @@ const JobPostSearch = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
+            <TextFieldCustom
+              name="salaryMin"
+              title="Min Salary (RWF)"
+              placeholder="Min salary"
+              control={control}
+              icon={'RWF'}
+              type='number'
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
+            <TextFieldCustom
+              name="salaryMax"
+              title="Max Salary (RWF)"
+              placeholder="Max salary"
+              control={control}
+              icon={'RWF'}
+              type='number'
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="genderId"
               placeholder="All genders"
@@ -216,14 +316,14 @@ const JobPostSearch = () => {
             >
               <IconButton
                 color="primary"
-                aria-label="add to shopping cart"
+                aria-label="Reset filters"
                 onClick={handleReset}
               >
                 <DeleteForeverIcon color="secondary" />
               </IconButton>
               <IconButton
                 color="primary"
-                aria-label="add to shopping cart"
+                aria-label="Hide filters"
                 onClick={handleChangeShowFilter}
               >
                 <ClearIcon color="error" />

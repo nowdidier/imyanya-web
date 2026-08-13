@@ -18,13 +18,13 @@ const authService = {
 
     return httpRequest.post(url, data);
   },
-  convertToken: (clientId, clientSecret, provider, token) => {
+  convertToken: (provider, token) => {
     const url = 'auth/convert-token/';
 
     const data = {
       grant_type: AUTH_CONFIG.CONVERT_TOKEN_KEY,
-      client_id: clientId,
-      client_secret: clientSecret,
+      client_id: AUTH_CONFIG.CLIENT_ID,
+      client_secret: AUTH_CONFIG.CLIENT_SECRET,
       backend: provider,
       token: token,
     };

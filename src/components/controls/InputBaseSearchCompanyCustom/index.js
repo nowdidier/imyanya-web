@@ -59,6 +59,7 @@ const InputBaseSearchCompanyCustom = ({
                 >
                   <IconButton
                     size="small"
+                    aria-label="Clear search"
                     onClick={() => {
                       field.onChange('');
                     }}

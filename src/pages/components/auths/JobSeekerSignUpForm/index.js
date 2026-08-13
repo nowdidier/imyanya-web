@@ -189,7 +189,7 @@ const JobSeekerSignUpForm = ({
           ux_mode="popup"
           onResolve={onFacebookRegister}
           onReject={(err) => {
-            console.log(err);
+            console.error(err);
           }}
         >
           <StyledSocialButton
@@ -216,7 +216,7 @@ const JobSeekerSignUpForm = ({
           scope="openid profile email"
           onResolve={onGoogleRegister}
           onReject={(err) => {
-            console.log(err);
+            console.error(err);
           }}
           ux_mode="popup"
         >

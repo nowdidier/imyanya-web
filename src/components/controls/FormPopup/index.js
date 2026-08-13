@@ -68,6 +68,7 @@ const Popup = ({
             </Typography>
             <IconButton
               onClick={() => setOpenPopup(false)}
+              aria-label="Close dialog"
               sx={{
                 color: theme.palette.grey[500],
                 '&:hover': {

@@ -123,6 +123,7 @@ const ChatPage = () => {
                   {isMobile && (
                     <IconButton 
                       onClick={() => setOpenLeftDrawer(true)}
+                      aria-label="Open chat list"
                       sx={{ 
                         bgcolor: 'primary.background',
                         '&:hover': { bgcolor: 'primary.background' }
@@ -134,6 +135,7 @@ const ChatPage = () => {
                   {(isMobile || isMedium) && (
                     <IconButton 
                       onClick={() => setOpenRightDrawer(true)}
+                      aria-label="Open chat details"
                       sx={{ 
                         bgcolor: 'primary.background',
                         '&:hover': { bgcolor: 'primary.background' }

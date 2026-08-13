@@ -181,6 +181,7 @@ const Feedback = () => {
             </Typography>
             <IconButton 
               onClick={handleClose}
+              aria-label="Close feedback dialog"
               sx={{
                 color: 'grey.500',
                 '&:hover': {

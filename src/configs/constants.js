@@ -180,7 +180,7 @@ const ICONS = {
 const LINKS = {
   CHPLAY_LINK: "https://play.google.com/store/",
   APPSTORE_LINK: "https://www.apple.com/app-store/",
-  CERTIFICATE_LINK: "http://online.gov.vn/",
+  CERTIFICATE_LINK: "https://rdb.rw/",
   INSTAGRAM_LINK: "https://www.instagram.com/imyanya.rw/",
   FACEBOOK_LINK: "https://www.facebook.com/profile.php?id=61560204704738",
   FACEBOOK_MESSENGER_LINK: "https://www.facebook.com/profile.php?id=61560204704738",

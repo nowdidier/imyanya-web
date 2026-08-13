@@ -99,6 +99,7 @@ const JobPostLarge = ({
                 width={100}
                 height={100}
                 src={imageUrl}
+                loading="lazy"
                 sx={{
                   border: 1,
                   borderRadius: 2.5,
@@ -117,6 +118,7 @@ const JobPostLarge = ({
                 width={100}
                 height={100}
                 src={companyImageUrl}
+                loading="lazy"
                 sx={{
                   border: 1,
                   borderRadius: 2.5,

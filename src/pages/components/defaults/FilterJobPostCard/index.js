@@ -41,6 +41,8 @@ const FilterJobPostCard = ({ params = {}}) => {
     }
   }, [parentWidth]);
 
+  const paramsKey = JSON.stringify(params);
+
   React.useEffect(() => {
     const getJobPosts = async (params) => {
       setIsLoading(true);
@@ -55,6 +57,7 @@ const FilterJobPostCard = ({ params = {}}) => {
         setCount(data.count);
         setJobPosts(data.results);
       } catch (error) {
+        console.error(error);
       } finally {
         setIsLoading(false);
       }
@@ -62,7 +65,7 @@ const FilterJobPostCard = ({ params = {}}) => {
 
     getJobPosts(params);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page, paramsKey]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

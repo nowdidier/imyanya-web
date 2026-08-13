@@ -14,7 +14,6 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
-  AUTH_CONFIG,
   AUTH_PROVIDER,
   PLATFORM,
   ROLES_NAME,
@@ -96,18 +95,11 @@ const JobSeekerSignUp = () => {
     register({ ...data, platform: PLATFORM }, ROLES_NAME.JOB_SEEKER);
   };
 
-  const handleSocialRegister = async (
-    clientId,
-    clientSecret,
-    provider,
-    token
-  ) => {
+  const handleSocialRegister = async (provider, token) => {
     setIsFullScreenLoading(true);
 
    try {
       const resData = await authService.convertToken(
-        clientId,
-        clientSecret,
         provider,
         token
       );
@@ -153,8 +145,6 @@ const JobSeekerSignUp = () => {
     const accessToken = result.data?.accessToken;
     if (accessToken) {
       handleSocialRegister(
-        AUTH_CONFIG.FACEBOOK_CLIENT_ID,
-        AUTH_CONFIG.FACEBOOK_CLIENT_SECRET,
         AUTH_PROVIDER.FACEBOOK,
         accessToken
       );
@@ -165,8 +155,6 @@ const JobSeekerSignUp = () => {
     const accessToken = result.data?.access_token;
     if (accessToken) {
       handleSocialRegister(
-        AUTH_CONFIG.GOOGLE_CLIENT_ID,
-        AUTH_CONFIG.GOOGLE_CLIENT_SECRET,
         AUTH_PROVIDER.GOOGLE,
         accessToken
       );

@@ -298,7 +298,7 @@ const Header = () => {
                   pb: 0.5,
                 }}
                 variant="square"
-                alt="LOGO"
+                alt="Imyanya logo"
               />
             </Stack>
 
@@ -353,7 +353,7 @@ const Header = () => {
                   height: 40,
                 }}
                 variant="square"
-                alt="LOGO"
+                alt="Imyanya logo"
               />
 
               {/* Mobile Navigation */}

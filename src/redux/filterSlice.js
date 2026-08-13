@@ -12,6 +12,8 @@ export const userSlice = createSlice({
       typeOfWorkplaceId: '',
       jobTypeId: '',
       genderId: '',
+      salaryMin: '',
+      salaryMax: '',
       page: 1,
       pageSize: 30,
     },
@@ -50,6 +52,8 @@ export const userSlice = createSlice({
         typeOfWorkplaceId: '',
         jobTypeId: '',
         genderId: '',
+        salaryMin: '',
+        salaryMax: '',
         page: 1,
         pageSize: 30,
       };
@@ -64,6 +68,8 @@ export const userSlice = createSlice({
         typeOfWorkplaceId: '',
         jobTypeId: '',
         genderId: '',
+        salaryMin: '',
+        salaryMax: '',
         page: 1,
         pageSize: 30,
       };

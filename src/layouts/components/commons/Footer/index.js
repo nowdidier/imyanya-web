@@ -242,6 +242,38 @@ const Footer = () => {
                   primary="Notifications"
                 />
               </ListItem>
+              <ListItem sx={{ mt: 2 }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    fontWeight: 600,
+                    mb: 1,
+                  }}
+                >
+                  Popular Searches
+                </Typography>
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_BY_CITY_EN}`)}
+                  primary="Jobs by Location"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_BY_TYPE_EN}`)}
+                  primary="Jobs by Employment Type"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER_EN}`)}
+                  primary="Jobs by Career"
+                />
+              </ListItem>
             </List>
           </Grid>
           <Grid xs={12} sm={6} md={3} item>
@@ -296,23 +328,25 @@ const Footer = () => {
               <ListItem>
                 <Stack direction="row" spacing={0} sx={{ flexWrap: 'wrap', gap: 0.5 }}>
                   {[
-                    { icon: ICONS.FACEBOOK, link: LINKS.FACEBOOK_LINK },
-                    { icon: ICONS.FACEBOOK_MESSENGER, link: LINKS.FACEBOOK_MESSENGER_LINK },
-                    { icon: ICONS.INSTAGRAM, link: LINKS.INSTAGRAM_LINK },
-                    { icon: ICONS.LINKEDIN, link: LINKS.LINKEDIN_LINK },
-                    { icon: ICONS.YOUTUBE, link: LINKS.YOUTUBE_LINK },
-                    { icon: ICONS.TWITTER, link: LINKS.TWITTER_LINK },
-                  ].map((social, index) => (
+                    { name: 'Facebook', icon: ICONS.FACEBOOK, link: LINKS.FACEBOOK_LINK },
+                    { name: 'Facebook Messenger', icon: ICONS.FACEBOOK_MESSENGER, link: LINKS.FACEBOOK_MESSENGER_LINK },
+                    { name: 'Instagram', icon: ICONS.INSTAGRAM, link: LINKS.INSTAGRAM_LINK },
+                    { name: 'LinkedIn', icon: ICONS.LINKEDIN, link: LINKS.LINKEDIN_LINK },
+                    { name: 'YouTube', icon: ICONS.YOUTUBE, link: LINKS.YOUTUBE_LINK },
+                    { name: 'Twitter', icon: ICONS.TWITTER, link: LINKS.TWITTER_LINK },
+                  ].map((social) => (
                     <Link 
-                      key={index} 
+                      key={social.link} 
                       href={social.link} 
                       target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.name}
                       sx={{
                        transition: 'transform 0.2s',
                         '&:hover': {transform: 'scale(1.1)' }
                       }}
                     >
-                      <img height="35" width="35" src={social.icon} alt="" />
+                      <img height="35" width="35" src={social.icon} alt="" loading="lazy" />
                     </Link>
                   ))}
                 </Stack>

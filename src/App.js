@@ -12,7 +12,7 @@ import { getAllConfig } from "./redux/configSlice";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import { viVN } from "@mui/material/locale";
+import { enUS } from "@mui/material/locale";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -117,7 +117,7 @@ function App() {
   };
 
   const theme = React.useMemo(
-    () => createTheme(defaultTheme, viVN),
+    () => createTheme(defaultTheme, enUS),
     []
   );
 

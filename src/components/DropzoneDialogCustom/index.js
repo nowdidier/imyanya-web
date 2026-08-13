@@ -14,7 +14,7 @@ const DropzoneDialogCustom = (props) => {
     <>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Typography variant="h5">{title}</Typography>
-        <IconButton color="error" onClick={() => setOpen(false)}>
+        <IconButton color="error" onClick={() => setOpen(false)} aria-label="Close upload dialog">
           <CloseIcon />
         </IconButton>
       </Stack>

@@ -178,6 +178,7 @@ const TopCompanyCarousel = () => {
                         width={120}
                         height={120}
                         src={value?.companyImageUrl}
+                        loading="lazy"
                         duration={1500}
                         sx={{ 
                           margin: '0 auto',

@@ -35,7 +35,7 @@ const Message = ({ userId, text, avatarUrl, createdAt }) => {
           </div>
           <img
             src={avatarUrl}
-            alt="avatar 1"
+            alt={currentUserChat?.name || "User avatar"}
             style={{
               width: "50px",
               height: "50px",
@@ -53,7 +53,7 @@ const Message = ({ userId, text, avatarUrl, createdAt }) => {
         >
           <img
             src={avatarUrl}
-            alt="avatar 1"
+            alt={currentUserChat?.name || "User avatar"}
             style={{
               width: "50px",
               height: "50px",

@@ -229,6 +229,7 @@ const VideoCard = ({
           height="200"
           image={video.thumbnail}
           alt={video.title}
+          loading="lazy"
           sx={{ objectFit: "cover" }}
         />
         <Box

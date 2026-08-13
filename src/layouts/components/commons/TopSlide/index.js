@@ -103,7 +103,7 @@ const TopSlide = () => {
 
         setBanners(data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 

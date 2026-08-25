@@ -1,12 +1,12 @@
 ﻿import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Chip, Divider, Pagination, Stack, Typography } from '@mui/material';
+import { Box, Chip, Pagination, Stack, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 import { ImageSvg3 } from '../../../../configs/constants';
 import JobPostLarge from '../../../../components/JobPostLarge';
 import NoDataCard from '../../../../components/NoDataCard';
-import AdUnit from '../../../../components/Ads/AdUnit';
+import HiringCTA from '../../../../components/HiringCTA';
 import jobService from '../../../../services/jobService';
 import { setContentNoindex } from '../../../../components/SeoManager/contentFlag';
 import { searchJobPost } from '../../../../redux/filterSlice';
@@ -163,20 +163,7 @@ const MainJobPostCard = () => {
                   imageUrl={value?.imageUrl}
                   jobDescription={value?.jobDescription}
                 />
-                {(index + 1) % 5 === 0 && (
-                  <Box
-                    role="separator"
-                    aria-label="Sponsored"
-                    sx={{ my: 1, textAlign: 'center' }}
-                  >
-                    <Divider sx={{ mb: 1.5 }}>
-                      <Typography variant="caption" color="text.secondary">
-                        Sponsored
-                      </Typography>
-                    </Divider>
-                    <AdUnit size={index % 10 === 4 ? "300x250" : "728x90"} />
-                  </Box>
-                )}
+                {(index + 1) % 5 === 0 && <HiringCTA variant="inline" />}
               </React.Fragment>
             ))}
             <Stack sx={{ pt: 2 }}>

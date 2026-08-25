@@ -18,6 +18,7 @@ import MuiImageCustom from '../../../../components/MuiImageCustom';
 const Footer = () => {
   const nav = useNavigate();
   const employerOrigin = `https://${HOST_NAME.EMPLOYER_MYJOB}`;
+  const ticketsUrl = `https://tickets.${HOST_NAME.MYJOB}`;
 
   return (
     <Box>
@@ -219,6 +220,21 @@ const Footer = () => {
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.COMPANY_EN}`)}
                   primary="Company"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={
+                    <Link
+                      href={ticketsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      color="inherit"
+                      underline="hover"
+                    >
+                      Events &amp; Tickets
+                    </Link>
+                  }
                 />
               </ListItem>
               <ListItem>

@@ -1,26 +1,15 @@
 import * as React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Box, Container, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
 import Header from '../components/commons/Header';
 import Footer from '../components/commons/Footer';
-import { AdUnit, MobileStickyBar, Smartlink } from '../../components/Ads';
-import { isEmployerHost } from '../../configs/constants';
+import HiringCTA from '../../components/HiringCTA';
 
 const DefaultLayout = () => {
-  const showAds = !isEmployerHost();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
   return (
     <Box>
       <Header />
-
-      {showAds && (
-        <Box sx={{ mt: 1, mb: 1, display: 'flex', justifyContent: 'center' }}>
-          <AdUnit size="728x90" />
-        </Box>
-      )}
 
       <Container
         maxWidth="lg"
@@ -34,7 +23,16 @@ const DefaultLayout = () => {
         </section>
       </Container>
 
-      {showAds && <Smartlink sx={{ mb: 2 }}>Sponsored</Smartlink>}
+      <Container
+        maxWidth="lg"
+        sx={{
+          mt: 4,
+          paddingLeft: { xs: 1, sm: 4, md: 6, lg: 8, xl: 0 },
+          paddingRight: { xs: 1, sm: 4, md: 6, lg: 8, xl: 0 },
+        }}
+      >
+        <HiringCTA variant="banner" />
+      </Container>
 
       <Box
         sx={{
@@ -65,8 +63,6 @@ const DefaultLayout = () => {
       >
         <Footer />
       </Box>
-
-      {showAds && isMobile && <MobileStickyBar />}
     </Box>
   );
 };

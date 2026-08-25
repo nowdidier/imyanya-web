@@ -39,8 +39,8 @@ import SocialNetworkSharingPopup from "../../../components/SocialNetworkSharingP
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import { ROLES_NAME, ROUTES } from "../../../configs/constants";
 import { formatRoute } from "../../../utils/funcUtils";
-import { AdUnit } from "../../../components/Ads";
 import { buildJobShareData } from "../../../utils/shareUtils";
+import HiringCTA from "../../../components/HiringCTA";
 import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
 import { setJobSeo } from "../../../components/SeoManager/jobSeoFlag";
 import { rwandaCareerCategoryGuides } from "../../../data/rwandaCareerContent";
@@ -1286,8 +1286,8 @@ const JobDetailPage = () => {
             </Grid>
 
             <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-              <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center' }}>
-                <AdUnit size="300x250" />
+              <Box sx={{ mb: 2 }}>
+                <HiringCTA variant="card" />
               </Box>
               <Card sx={{ p: { xs: 1.5, sm: 1.5, md: 2, lg: 2, xl: 2 } }}>
                 <Stack spacing={2}>
@@ -1307,9 +1307,6 @@ const JobDetailPage = () => {
                       fullWidth={true}
                     />
                     {/* End: FilterJobPostCard */}
-                  </Box>
-                  <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
-                    <AdUnit size="160x600" />
                   </Box>
                   <Box sx={{ mt: 3 }}>
                     <Button

@@ -5,7 +5,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Box, Card, Skeleton, Stack, Typography } from '@mui/material';
+import { Box, Card, IconButton, Skeleton, Stack, Typography } from '@mui/material';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import MuiImageCustom from '../MuiImageCustom';
 import companyService from '../../services/companyService';
@@ -32,6 +34,24 @@ const styles = {
     height: 12,
     opacity: 1,
     borderRadius: "6px",
+  },
+};
+
+const NAV_BUTTON_STYLES = {
+  position: "absolute",
+  top: "38%",
+  zIndex: 10,
+  width: { xs: 34, md: 42 },
+  height: { xs: 34, md: 42 },
+  color: "#441da0",
+  bgcolor: "background.paper",
+  boxShadow: (theme) => theme.customShadows.small,
+  border: "1px solid",
+  borderColor: "divider",
+  transition: "all 0.2s ease",
+  "&:hover": {
+    bgcolor: "#441da0",
+    color: "white",
   },
 };
 
@@ -79,34 +99,7 @@ const TopCompanyCarousel = () => {
   const nav = useNavigate();
   const [isLoading, setIsLoading] = React.useState(true);
   const [companies, setCompanies] = React.useState([]);
-  const [parentWidth, setParentWidth] = React.useState(0);
-  const [col, setCol] = React.useState(5);
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      const newWidth = document.getElementById(
-        'top-company-carousel'
-      ).offsetWidth;
-      setParentWidth(newWidth);
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  React.useEffect(() => {
-    if (parentWidth < 600) {
-      setCol(2);
-    } else if (parentWidth < 900) {
-      setCol(3);
-    } else if (parentWidth < 1200) {
-      setCol(4);
-    } else {
-      setCol(5);
-    }
-  }, [parentWidth]);
+  const [swiperInstance, setSwiperInstance] = React.useState(null);
 
   React.useEffect(() => {
     const getTopCompanies = async () => {
@@ -126,92 +119,120 @@ const TopCompanyCarousel = () => {
   }, []);
 
   return (
-    <div id="top-company-carousel">
-      <Box sx={styles}>
-        <Swiper
-          slidesPerView={col}
-          spaceBetween={15}
-          pagination={{
-            clickable:true,
-          }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction:true,
-          }}
-          modules={[Pagination, Autoplay]}
-        >
-          {isLoading
-            ? Array.from(Array(10).keys()).map((value) => (
-                <SwiperSlide key={value}>
-                  <Loading />
-                </SwiperSlide>
-              ))
-            : companies.map((value) => (
-                <SwiperSlide key={value.id}>
-                  <Card
-                    sx={{
-                      boxShadow: 0,
-                      alignItems: 'center',
-                      p: 2,
-                      mb: 0.5,
-                      mt: 1,
-                      cursor: 'pointer',
-                      minHeight: 165,
-                      borderRadius: 3,
-                     transition: 'all 0.3s ease',
-                      border: '1px solid',
-                      borderColor: 'grey.200',
-                      bgcolor: 'background.paper',
-                      '&:hover': {
-                       transform: 'translateY(-4px)',
-                        boxShadow: (theme) => theme.customShadows.medium,
-                        borderColor: 'primary.main',
-                        '& .company-name': {
-                          color: 'primary.main',
-                        }
-                      },
-                    }}
-                    onClick={() => nav(`/${formatRoute(ROUTES.JOB_SEEKER.COMPANY_DETAIL, value.slug)}`)}
-                  >
-                    <Stack direction="row" justifyContent="center">
-                      <MuiImageCustom
-                        width={120}
-                        height={120}
-                        src={value?.companyImageUrl}
-                        loading="lazy"
-                        duration={1500}
-                        sx={{ 
-                          margin: '0 auto',
-                          borderRadius: 2,
-                          p: 1,
-                          bgcolor: 'grey.50'
-                        }}
-                      />
-                    </Stack>
-                    <Typography
-                      variant="h6"
-                      component="h6"
-                      className="company-name"
+    <Box sx={{ position: 'relative', ...styles }}>
+      <IconButton
+        aria-label="Previous companies"
+        onClick={() => swiperInstance?.slidePrev()}
+        sx={{ ...NAV_BUTTON_STYLES, left: { xs: -8, sm: -14, md: -20 } }}
+      >
+        <ArrowBackIosNewIcon sx={{ fontSize: { xs: 14, md: 18 }, ml: 0.5 }} />
+      </IconButton>
+
+      <IconButton
+        aria-label="Next companies"
+        onClick={() => swiperInstance?.slideNext()}
+        sx={{ ...NAV_BUTTON_STYLES, right: { xs: -8, sm: -14, md: -20 } }}
+      >
+        <ArrowForwardIosIcon sx={{ fontSize: { xs: 14, md: 18 } }} />
+      </IconButton>
+
+      <Swiper
+        onSwiper={setSwiperInstance}
+        slidesPerView={2}
+        spaceBetween={15}
+        rewind={true}
+        pagination={{
+          clickable:true,
+        }}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        breakpoints={{
+          600: {
+            slidesPerView: 3,
+          },
+          900: {
+            slidesPerView: 4,
+          },
+          1200: {
+            slidesPerView: 5,
+          },
+        }}
+        modules={[Pagination, Autoplay]}
+      >
+        {isLoading
+          ? Array.from(Array(10).keys()).map((value) => (
+              <SwiperSlide key={value}>
+                <Loading />
+              </SwiperSlide>
+            ))
+          : companies.map((value) => (
+              <SwiperSlide key={value.id}>
+                <Card
+                  sx={{
+                    boxShadow: 0,
+                    alignItems: 'center',
+                    p: 2,
+                    mb: 0.5,
+                    mt: 1,
+                    cursor: 'pointer',
+                    minHeight: 165,
+                    borderRadius: 3,
+                   transition: 'all 0.3s ease',
+                    border: '1px solid',
+                    borderColor: 'grey.200',
+                    bgcolor: 'background.paper',
+                    '&:hover': {
+                     transform: 'translateY(-4px)',
+                      boxShadow: (theme) => theme.customShadows.medium,
+                      borderColor: 'primary.main',
+                      '& .company-name': {
+                        color: 'primary.main',
+                      }
+                    },
+                  }}
+                  onClick={() => nav(`/${formatRoute(ROUTES.JOB_SEEKER.COMPANY_DETAIL, value.slug)}`)}
+                >
+                  <Stack direction="row" justifyContent="center">
+                    <MuiImageCustom
+                      width={120}
+                      height={120}
+                      src={value?.companyImageUrl}
+                      loading="lazy"
+                      duration={1500}
                       sx={{
-                        textAlign: 'center',
-                        fontWeight: 600,
-                        fontSize: 16,
-                        mt: 2,
-                        color: 'grey.800',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                       transition: 'color 0.3s ease',
+                        margin: '0 auto',
+                        borderRadius: 2,
+                        p: 1,
+                        bgcolor: 'grey.50'
                       }}
-                    >
-                      {value?.companyName}
-                    </Typography>
-                  </Card>
-                </SwiperSlide>
-              ))}
-        </Swiper>
-      </Box>
-    </div>
+                    />
+                  </Stack>
+                  <Typography
+                    variant="h6"
+                    component="h6"
+                    className="company-name"
+                    sx={{
+                      textAlign: 'center',
+                      fontWeight: 600,
+                      fontSize: 16,
+                      mt: 2,
+                      color: 'grey.800',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                     transition: 'color 0.3s ease',
+                    }}
+                  >
+                    {value?.companyName}
+                  </Typography>
+                </Card>
+              </SwiperSlide>
+            ))}
+      </Swiper>
+    </Box>
   );
 };
 

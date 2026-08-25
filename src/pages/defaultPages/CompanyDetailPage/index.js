@@ -46,7 +46,7 @@ import { buildCompanyShareData } from "../../../utils/shareUtils";
 import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
 
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
-import { AdUnit } from "../../../components/Ads";
+import HiringCTA from "../../../components/HiringCTA";
 
 const LoadingComponent = () => {
   return (
@@ -494,8 +494,8 @@ const CompanyDetailPage = () => {
               </Grid>
 
               <Grid item xs={12} md={4}>
-                <Box sx={{ mb: 2, display: 'flex', justifyContent: 'center' }}>
-                  <AdUnit size="300x250" />
+                <Box sx={{ mb: 2 }}>
+                  <HiringCTA variant="card" />
                 </Box>
                 <Card
                   sx={{

@@ -6,7 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Pagination, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Box, Card, Skeleton, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  IconButton,
+  Skeleton,
+  Stack,
+  Typography,
+} from "@mui/material";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
 import commonService from "../../services/commonService";
 import MuiImageCustom from "../MuiImageCustom";
 import { searchJobPost } from "../../redux/filterSlice";
@@ -63,38 +73,31 @@ const Loading = (
   </Card>
 );
 
+const NAV_BUTTON_STYLES = {
+  position: "absolute",
+  top: "38%",
+  zIndex: 10,
+  width: { xs: 34, md: 42 },
+  height: { xs: 34, md: 42 },
+  color: "#441da0",
+  bgcolor: "background.paper",
+  boxShadow: (theme) => theme.customShadows.small,
+  border: "1px solid",
+  borderColor: "divider",
+  transition: "all 0.2s ease",
+  "&:hover": {
+    bgcolor: "#441da0",
+    color: "white",
+  },
+};
+
 const CareerCarousel = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { jobPostFilter } = useSelector((state) => state.filter);
   const [isLoading, setIsLoading] = React.useState(true);
   const [topCareers, setTopCareers] = React.useState([]);
-  const [parentWidth, setParentWidth] = React.useState(0);
-  const [col, setCol] = React.useState(5);
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      const newWidth = document.getElementById("career-carousel").offsetWidth;
-      setParentWidth(newWidth);
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  React.useEffect(() => {
-    if (parentWidth < 600) {
-      setCol(2);
-    } else if (parentWidth < 900) {
-      setCol(3);
-    } else if (parentWidth < 1200) {
-      setCol(4);
-    } else {
-      setCol(5);
-    }
-  }, [parentWidth]);
+  const [swiperInstance, setSwiperInstance] = React.useState(null);
 
   React.useEffect(() => {
     const getTopCarreers = async () => {
@@ -105,6 +108,7 @@ const CareerCarousel = () => {
 
         setTopCareers(resData.data);
       } catch (error) {
+        console.error("Failed to load top careers:", error);
       } finally {
         setIsLoading(false);
       }
@@ -119,111 +123,139 @@ const CareerCarousel = () => {
   };
 
   return (
-    <div id="career-carousel">
-      <Box sx={styles}>
-        <Swiper
-          slidesPerView={col}
-          spaceBetween={15}
-          pagination={{
-            clickable:true,
-          }}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction:true,
-          }}
-          modules={[Pagination, Autoplay]}
-        >
-          {isLoading
-            ? Array.from(Array(10).keys()).map((value) => (
-                <SwiperSlide key={value}>{Loading}</SwiperSlide>
-              ))
-            : topCareers.map((value) => (
-                <SwiperSlide key={value.id}>
-                  <Card
+    <Box sx={{ position: "relative", ...styles }}>
+      <IconButton
+        aria-label="Previous categories"
+        onClick={() => swiperInstance?.slidePrev()}
+        sx={{ ...NAV_BUTTON_STYLES, left: { xs: -8, sm: -14, md: -20 } }}
+      >
+        <ArrowBackIosNewIcon sx={{ fontSize: { xs: 14, md: 18 }, ml: 0.5 }} />
+      </IconButton>
+
+      <IconButton
+        aria-label="Next categories"
+        onClick={() => swiperInstance?.slideNext()}
+        sx={{ ...NAV_BUTTON_STYLES, right: { xs: -8, sm: -14, md: -20 } }}
+      >
+        <ArrowForwardIosIcon sx={{ fontSize: { xs: 14, md: 18 } }} />
+      </IconButton>
+
+      <Swiper
+        onSwiper={setSwiperInstance}
+        slidesPerView={2}
+        spaceBetween={15}
+        rewind={true}
+        pagination={{
+          clickable: true,
+        }}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        breakpoints={{
+          600: {
+            slidesPerView: 3,
+          },
+          900: {
+            slidesPerView: 4,
+          },
+          1200: {
+            slidesPerView: 5,
+          },
+        }}
+        modules={[Pagination, Autoplay]}
+      >
+        {isLoading
+          ? Array.from(Array(10).keys()).map((value) => (
+              <SwiperSlide key={value}>{Loading}</SwiperSlide>
+            ))
+          : topCareers.map((value) => (
+              <SwiperSlide key={value.id}>
+                <Card
+                  sx={{
+                    alignItems: "center",
+                    p: 2,
+                    mb: 0.5,
+                    cursor: "pointer",
+                    boxShadow: 0,
+                    backgroundColor: (theme) => theme.palette.background.paper,
+                    borderRadius: "16px",
+                   transition: "all 0.3s ease",
+                    "&:hover": {
+                     transform: "translateY(-4px)",
+                      boxShadow: (theme) => theme.customShadows.medium,
+                      "& .career-icon": {
+                       transform: "scale(1.05)",
+                      },
+                      "& .career-name": {
+                        color: (theme) => theme.palette.primary.main,
+                      },
+                    },
+                  }}
+                  onClick={() => handleFilter(value.id)}
+                >
+                  <Stack
+                    direction="row"
+                    justifyContent="center"
                     sx={{
-                      alignItems: "center",
                       p: 2,
-                      mb: 0.5,
-                      cursor: "pointer",
-                      boxShadow: 0,
-                      backgroundColor: (theme) => theme.palette.background.paper,
-                      borderRadius: "16px",
-                     transition: "all 0.3s ease",
-                      "&:hover": {
-                       transform: "translateY(-4px)",
-                        boxShadow: (theme) => theme.customShadows.medium,
-                        "& .career-icon": {
-                         transform: "scale(1.05)",
-                        },
-                        "& .career-name": {
-                          color: (theme) => theme.palette.primary.main,
-                        },
+                      "& .career-icon": {
+                       transition: "transform 0.3s ease",
                       },
                     }}
-                    onClick={() => handleFilter(value.id)}
                   >
-                    <Stack
-                      direction="row"
-                      justifyContent="center"
+                    <MuiImageCustom
+                      width={72}
+                      height={72}
+                      src={value?.iconUrl}
+                      className="career-icon"
                       sx={{
-                        p: 2,
-                        "& .career-icon": {
-                         transition: "transform 0.3s ease",
-                        },
-                      }}
-                    >
-                      <MuiImageCustom
-                        width={72}
-                        height={72}
-                        src={value?.iconUrl}
-                        className="career-icon"
-                        sx={{
-                          borderRadius: "12px",
-                          p: 1,
-                          backgroundColor: (theme) => theme.palette.primary.background,
-                        }}
-                      />
-                    </Stack>
-                    <Typography
-                      className="career-name"
-                      variant="h6"
-                      component="h6"
-                      gutterBottom={true}
-                      sx={{
-                        textAlign: "center",
-                        fontWeight: "bold",
-                        fontSize: "1rem",
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                       transition: "color 0.3s ease",
-                        px: 1,
-                      }}
-                    >
-                      {value?.name}
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      display="block"
-                      gutterBottom
-                      sx={{
-                        textAlign: "center",
-                        color: (theme) => theme.palette.text.secondary,
+                        borderRadius: "12px",
+                        p: 1,
                         backgroundColor: (theme) => theme.palette.primary.background,
-                        px: 2,
-                        py: 0.5,
-                        borderRadius: "20px",
-                        fontSize: "0.75rem",
                       }}
-                    >
-                      {value.jobPostTotal} Jobs
-                    </Typography>
-                  </Card>
-                </SwiperSlide>
-              ))}
-        </Swiper>
-      </Box>
-    </div>
+                    />
+                  </Stack>
+                  <Typography
+                    className="career-name"
+                    variant="h6"
+                    component="h6"
+                    gutterBottom={true}
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1rem",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                     transition: "color 0.3s ease",
+                      px: 1,
+                    }}
+                  >
+                    {value?.name}
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    display="block"
+                    gutterBottom
+                    sx={{
+                      textAlign: "center",
+                      color: (theme) => theme.palette.text.secondary,
+                      backgroundColor: (theme) => theme.palette.primary.background,
+                      px: 2,
+                      py: 0.5,
+                      borderRadius: "20px",
+                      fontSize: "0.75rem",
+                    }}
+                  >
+                    {value.jobPostTotal} Jobs
+                  </Typography>
+                </Card>
+              </SwiperSlide>
+            ))}
+      </Swiper>
+    </Box>
   );
 };
 

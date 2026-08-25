@@ -1,13 +1,7 @@
 import React from "react";
 import {
   Box,
-  Card,
-  CardContent,
-  Divider,
   Grid,
-  List,
-  ListItem,
-  ListItemText,
   Typography,
 } from "@mui/material";
 
@@ -17,15 +11,8 @@ import SuggestedJobPostCard from "../../components/defaults/SuggestedJobPostCard
 import MainJobPostCard from "../../components/defaults/MainJobPostCard";
 import AppIntroductionCard from "../../../components/AppIntroductionCard";
 import MainJobRightBanner from "../../../components/MainJobRightBanner";
-import StaticJobFeedSection from "../../components/defaults/StaticJobFeedSection";
-import { AdUnit } from "../../../components/Ads";
-import {
-  featuredRwandaJobs,
-  rwandaJobFeedSourceMeta,
-} from "../../../data/rwandaJobFeed";
-import {
-  rwandaApplicationChecklist,
-} from "../../../data/rwandaCareerContent";
+import HiringCTA from "../../../components/HiringCTA";
+import LiveStats from "../../../components/LiveStats";
 
 const JobPage = () => {
   TabTitle("Job Search Results");
@@ -52,15 +39,7 @@ const JobPage = () => {
               {/* Start: SuggestedJobPostCard */}
               <SuggestedJobPostCard fullWidth={true} />
               {/* End: SuggestedJobPostCard */}
-              <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
-                <AdUnit size="300x250" />
-              </Box>
-              <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
-                <AdUnit size="160x600" />
-              </Box>
-              <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
-                <AdUnit size="160x300" />
-              </Box>
+              <HiringCTA variant="card" />
               <Box>
                 {/* Start: MainJobRightBanner */}
                 <MainJobRightBanner />
@@ -71,36 +50,9 @@ const JobPage = () => {
         </Box>
 
         <Box sx={{ mt: 4 }}>
-          <Card variant="outlined" sx={{ borderRadius: 1 }}>
-            <CardContent>
-              <Typography variant="h5" component="h2" fontWeight={700} gutterBottom>
-                Application Quality Checklist
-              </Typography>
-              <List dense>
-                {rwandaApplicationChecklist.map((item, index) => (
-                  <React.Fragment key={item}>
-                    <ListItem disableGutters>
-                      <ListItemText
-                        primary={item}
-                        primaryTypographyProps={{ sx: { lineHeight: 1.6 } }}
-                      />
-                    </ListItem>
-                    {index < rwandaApplicationChecklist.length - 1 && <Divider />}
-                  </React.Fragment>
-                ))}
-              </List>
-            </CardContent>
-          </Card>
-        </Box>
-
-        <Box sx={{ mt: 4 }}>
-          <Typography variant="h5" component="h2" fontWeight={700} gutterBottom>
-            Featured Rwanda Job Search Guides
-          </Typography>
-          <StaticJobFeedSection
-            jobs={featuredRwandaJobs}
-            sourceNote={`${rwandaJobFeedSourceMeta.refreshedLabel}: use these guides alongside live search results to compare fields, locations, and work types.`}
-          />
+          {/* Start: Live stats */}
+          <LiveStats />
+          {/* End: Live stats */}
         </Box>
 
         <Box sx={{ mt: 4 }}>

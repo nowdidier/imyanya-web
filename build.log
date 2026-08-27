@@ -1,0 +1,4 @@
+
+> my-job-web-app@0.1.0 build
+> cross-env CI=false GENERATE_SOURCEMAP=false craco build
+

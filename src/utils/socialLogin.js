@@ -3,7 +3,9 @@ const getSocialLoginRedirectUri = () => {
     return "/";
   }
 
-  return `${window.location.origin}${window.location.pathname}`;
+  // Keep a single stable URL per host so providers only need one
+  // whitelisted redirect/origin entry (no per-route paths).
+  return `${window.location.origin}/`;
 };
 
 const getSocialLoginToken = (result) => {

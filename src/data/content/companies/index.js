@@ -1,4 +1,4 @@
-﻿// Company Profiles Data Structure
+// Company Profiles Data Structure
 export const companyProfileSchema = {
   id: "string",
   companyName: "string",

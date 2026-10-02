@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import { ImageSvg1 } from '../../configs/constants';
 
@@ -6,7 +6,6 @@ const NoDataCard = ({
   children,
   title = 'No data found',
   imgComponentSgv = <ImageSvg1 />,
-  childrend,
 }) => {
   return (
     <Stack

@@ -11,6 +11,8 @@ import { LoginSocialFacebook, LoginSocialGoogle } from "reactjs-social-login";
 import TextFieldCustom from "../../../../components/controls/TextFieldCustom";
 import PasswordTextFieldCustom from "../../../../components/controls/PasswordTextFieldCustom";
 import { AUTH_CONFIG } from "../../../../configs/constants";
+import { getSocialAuthConfigIssue } from "../../../../utils/authErrorMessage";
+import toastMessages from "../../../../utils/toastMessages";
 import { getSocialLoginRedirectUri } from "../../../../utils/socialLogin";
 
 const StyledButton = styled(Button)(() => ({
@@ -61,6 +63,24 @@ const JobSeekerLoginForm = ({
   onSocialReject,
 }) => {
   const socialRedirectUri = getSocialLoginRedirectUri();
+
+  const facebookIssue = getSocialAuthConfigIssue('facebook', {
+    facebookAppId: AUTH_CONFIG.FACEBOOK_CLIENT_ID,
+  });
+  const googleIssue = getSocialAuthConfigIssue('google', {
+    googleClientId: AUTH_CONFIG.GOOGLE_CLIENT_ID,
+  });
+
+  const guardClick = (issue) => (event) => {
+    if (issue) {
+      event.stopPropagation();
+      if (onSocialReject) {
+        onSocialReject({ data: issue });
+      } else {
+        toastMessages.error(issue);
+      }
+    }
+  };
 
   const schema = yup.object().shape({
     email: yup
@@ -128,7 +148,7 @@ const JobSeekerLoginForm = ({
         Login
       </StyledButton>
 
-      <StyledDivider>Or sign in with</StyledDivider>
+      <StyledDivider>Fastest: sign in with Google or Facebook — no password needed</StyledDivider>
 
       <Stack 
         direction="row" 
@@ -154,6 +174,7 @@ const JobSeekerLoginForm = ({
             fullWidth
             variant="outlined"
             startIcon={<FacebookIcon />}
+            onClick={guardClick(facebookIssue)}
             sx={{
               borderColor: "#4267B2",
               color: "#4267B2",
@@ -180,6 +201,7 @@ const JobSeekerLoginForm = ({
             fullWidth
             variant="outlined"
             startIcon={<GoogleIcon />}
+            onClick={guardClick(googleIssue)}
             sx={{
               borderColor: "#DB4437",
               color: "#DB4437",

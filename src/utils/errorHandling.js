@@ -8,7 +8,7 @@ const errorHandling = (error, setError = null) => {
   }
 
   switch (res.status) {
-    case 400:
+    case 400: {
       const errors = res.data?.errors || {};
       if ('errorMessage' in errors) {
         toastMessages.error(errors.errorMessage.join(' '));
@@ -16,6 +16,7 @@ const errorHandling = (error, setError = null) => {
         setError && setError(errors);
       }
       break;
+    }
     case 403:
       toastMessages.error('You do not have permission. Please go back!');
       break;

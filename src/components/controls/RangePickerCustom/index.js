@@ -56,7 +56,7 @@ const RangePickerCustom = ({
     setSelectedDateRange(dates);
   };
 
-  function handleCalendarChange(dates, dateStrings) {
+  function handleCalendarChange(dates) {
     if (
       dates !== null &&
       Array.isArray(dates) &&

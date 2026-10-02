@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faListUl } from '@fortawesome/free-solid-svg-icons';
 import SubHeaderDialog from '../SubHeaderDialog';
 import commonService from '../../../../services/commonService';
+import errorHandling from '../../../../utils/errorHandling';
 import { useTheme } from '@mui/material/styles';
 
 import { searchJobPost } from '../../../../redux/filterSlice';
@@ -67,7 +68,7 @@ const SubHeader = () => {
 
         setTopCareers(resData.data);
       } catch (error) {
-      } finally {
+        errorHandling(error);
       }
     };
 

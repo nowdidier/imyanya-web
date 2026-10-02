@@ -88,6 +88,7 @@
     "start": "cross-env HOST=0.0.0.0 CHOKIDAR_USEPOLLING=true FAST_REFRESH=true craco start",
     "build": "cross-env CI=false GENERATE_SOURCEMAP=false craco build",
     "build:fast": "cross-env NODE_ENV=production CI=false GENERATE_SOURCEMAP=false NODE_OPTIONS=--max-old-space-size=4096 craco build",
+    "lint": "eslint . --max-warnings=0",
     "test": "craco test",
     "eject": "react-scripts eject"
   },

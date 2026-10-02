@@ -1,11 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Chip, IconButton, TableBody, TableCell, Tooltip } from '@mui/material';
+import {
+  Box,
+  Chip,
+  IconButton,
+  Stack,
+  TableBody,
+  TableCell,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import dayjs from 'dayjs';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 import DataTableCustom from '../../../../components/DataTableCustom';
+import MuiImageCustom from '../../../../components/MuiImageCustom';
 import NoDataCard from '../../../../components/NoDataCard';
 import { JOB_POST_STATUS_BG_COLOR } from '../../../../configs/constants';
 
@@ -22,19 +32,42 @@ const JobPostsTable = (props) => {
           </TableCell>
         </TableBody>
       ) : (
-        rows.map((row, index) => {
+        rows.map((row) => {
           return (
             <TableBody key={row.id}>
               <TableCell component="th" scope="row" padding="none">
-                {row.jobName}{' '}
-                {row.isUrgent && (
-                  <Chip
-                    label="Urgent Hiring"
-                    color="error"
-                    variant="outlined"
-                    size="small"
-                  />
-                )}
+                <Stack direction="row" spacing={1.5} alignItems="center">
+                  {(row.imageUrl || row.companyDict?.companyImageUrl) && (
+                    <MuiImageCustom
+                      width={44}
+                      height={44}
+                      src={row.imageUrl || row.companyDict?.companyImageUrl}
+                      sx={{
+                        borderRadius: 1.5,
+                        border: '1px solid',
+                        borderColor: 'grey.200',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  )}
+                  <Box sx={{ overflow: 'hidden' }}>
+                    <Typography
+                      variant="body2"
+                      sx={{ fontWeight: 600, lineHeight: 1.3 }}
+                    >
+                      {row.jobName}
+                    </Typography>
+                    {row.isUrgent && (
+                      <Chip
+                        label="Urgent Hiring"
+                        color="error"
+                        variant="outlined"
+                        size="small"
+                        sx={{ mt: 0.5, height: 20, fontSize: '0.7rem' }}
+                      />
+                    )}
+                  </Box>
+                </Stack>
               </TableCell>
               <TableCell align="left">
                 {dayjs(row.createAt).format('DD/MM/YYYY')}

@@ -23,7 +23,7 @@ import authService from '../../../services/authService';
 
 import EmployerSignUpForm from '../../components/auths/EmployerSignUpForm';
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(() => ({
   background: 'rgba(255, 255, 255, 0.9)',
   backdropFilter: 'blur(10px)',
   borderRadius: '16px',

@@ -180,7 +180,7 @@ const AppliedResumeTable = (props) => {
           </TableCell>
         </TableBody>
       ) : (
-        rows.map((row, index) => {
+        rows.map((row) => {
           return (
             <TableBody key={row.id}>
               <TableCell component="th" scope="row" padding="none">

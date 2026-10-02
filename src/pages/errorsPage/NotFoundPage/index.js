@@ -6,7 +6,7 @@ import { Result } from 'antd';
 import { TabTitle } from '../../../utils/generalFunction';
 
 const NotFoundPage = () => {
-  TabTitle("Not foundtrang")
+  TabTitle("Page not found")
   const nav = useNavigate();
 
   return (

@@ -8,7 +8,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import TextFieldCustom from '../../../../components/controls/TextFieldCustom';
 import PasswordTextFieldCustom from '../../../../components/controls/PasswordTextFieldCustom';
 
-const StyledButton = styled(Button)(({ theme }) => ({
+const StyledButton = styled(Button)(() => ({
   padding: '8px 16px',
   borderRadius: '8px',
   fontSize: '14px',

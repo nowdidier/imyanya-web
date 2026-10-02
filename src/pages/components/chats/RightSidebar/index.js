@@ -51,7 +51,7 @@ const RightSidebar = () => {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
-    const getJobPosts = async (params) => {
+    const getJobPosts = async () => {
       setIsLoading(true);
      try {
         const resData = await jobPostActivityService.getJobPostChatActivity({

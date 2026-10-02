@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -38,7 +38,7 @@ const SavedResumeTable = (props) => {
           </TableCell>
         </TableBody>
       ) : (
-        rows.map((row, index) => {
+        rows.map((row) => {
           return (
             <TableBody key={row.id}>
               <TableCell component="th" scope="row" padding="none">

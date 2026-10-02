@@ -18,3 +18,4 @@ Disallow: /ket-noi-voi-ung-vien
 Disallow: /forbidden
 
 Sitemap: https://imyanya.rw/sitemap.xml
+Sitemap: https://imyanya.rw/sitemap-jobs.xml

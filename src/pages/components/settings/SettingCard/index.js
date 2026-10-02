@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import {
   Box,
@@ -12,6 +12,7 @@ import {
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import SettingForm from "../SettingForm";
 import authService from "../../../../services/authService";
+import errorHandling from "../../../../utils/errorHandling";
 import toastMessages from "../../../../utils/toastMessages";
 
 const Loading = (
@@ -47,6 +48,7 @@ const SettingCard = ({ title, sx }) => {
 
         setEditData(resData.data);
       } catch (error) {
+        errorHandling(error);
       } finally {
         setIsLoadingSettings(false);
       }

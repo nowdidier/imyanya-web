@@ -1,8 +1,11 @@
-﻿import React from 'react';
+import React from 'react';
 import { Stack } from '@mui/material';
 import { Result } from 'antd';
 
+import { TabTitle } from '../../../utils/generalFunction';
+
 const SystemErrorPage = () => {
+  TabTitle("System error");
   return (
     <Stack
       direction="column"

@@ -1,7 +1,7 @@
-﻿import React from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
-import { Avatar, Box, Chip, Stack, Typography } from "@mui/material";
+import { Box, Chip, Stack, Typography } from "@mui/material";
 
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";

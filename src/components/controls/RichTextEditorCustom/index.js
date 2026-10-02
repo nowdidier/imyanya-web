@@ -8,7 +8,6 @@ import { Box, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { createEditorStateFromHTMLString } from '../../../utils/customData';
-import httpRequest from '../../../utils/httpRequest';
 
 const isEditorState = (value) =>
   !!value && typeof value.getCurrentContent === 'function';
@@ -22,35 +21,6 @@ const RichTextEditorField = ({
   minHeight,
 }) => {
   const emptyState = React.useMemo(() => EditorState.createEmpty(), []);
-
-  const uploadCallback = React.useCallback(async (file) => {
-    const formData = new FormData();
-    formData.append('upload', file);
-
-    try {
-      const res = await httpRequest.post('ckeditor/upload/', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        timeout: 30000,
-      });
-
-      if (res && res.url) {
-        return { data: { link: res.url } };
-      }
-    } catch (error) {
-      console.error('Editor image upload failed:', error);
-    }
-
-    // Fall back to embedding the file as a data URL so the image still
-    // renders even when the upload endpoint is unavailable.
-    const dataUrl = await new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onload = (e) => resolve(e.target.result);
-      reader.onerror = () => resolve('');
-      reader.readAsDataURL(file);
-    });
-
-    return { data: { link: dataUrl } };
-  }, []);
 
   const normalized = React.useMemo(() => {
     if (isEditorState(field.value)) return field.value;
@@ -218,8 +188,7 @@ const RichTextEditorField = ({
         component: undefined,
         popupClassName: undefined,
         urlEnabled: true,
-        uploadEnabled: true,
-        uploadCallback,
+        uploadEnabled: false,
         previewImage: true,
         alignmentEnabled: true,
         alt: { present: true, mandatory: false },
@@ -231,7 +200,7 @@ const RichTextEditorField = ({
     }
 
     return config;
-  }, [toolbarOptions, withLinks, withImages, uploadCallback]);
+  }, [toolbarOptions, withLinks, withImages]);
 
   return (
     <Box

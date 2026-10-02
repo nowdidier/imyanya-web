@@ -7,7 +7,6 @@ import {
   Drawer,
   useTheme,
   Toolbar,
-  Typography,
   List,
   ListItem,
   ListItemIcon,
@@ -15,19 +14,14 @@ import {
   ListItemButton,
   Collapse,
 } from '@mui/material';
-import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import GridViewIcon from '@mui/icons-material/GridView';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
-import BookmarkAddedOutlinedIcon from '@mui/icons-material/BookmarkAddedOutlined';
-import ContentPasteSearchOutlinedIcon from '@mui/icons-material/ContentPasteSearchOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
 import { IMAGES, ROUTES, APP_NAME } from '../../../../configs/constants';
 

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import {
   Routes,
   Route,
@@ -9,6 +10,7 @@ import {
   getCanonicalHostName,
 } from "../configs/constants";
 
+import PageLoading from "../components/PageLoading";
 import routesConfig from "../configs/routesConfig";
 
 // ==============================
@@ -59,12 +61,18 @@ const renderRoutes = (
 
     // Route with component
     if (Element) {
+      const content = (
+        <Suspense fallback={<PageLoading />}>
+          <Element />
+        </Suspense>
+      );
+
       routeElement = Layout ? (
         <Layout>
-          <Element />
+          {content}
         </Layout>
       ) : (
-        <Element />
+        content
       );
     }
     // Route with layout only

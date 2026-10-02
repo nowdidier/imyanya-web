@@ -65,6 +65,8 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const { allConfig } = useSelector((state) => state.config);
   const [districtOptions, setDistrictOptions] = React.useState([]);
+  const districtOptionsRef = React.useRef(districtOptions);
+  districtOptionsRef.current = districtOptions;
   const [locationOptions, setLocationOptions] = React.useState([]);
 
   // schema
@@ -315,7 +317,7 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
      try {
         const resData = await commonService.getDistrictsByCityId(cityId);
 
-        if (districtOptions.length > 0)
+        if (districtOptionsRef.current.length > 0)
           setValue('company.location.district', '');
         setDistrictOptions(resData.data);
       } catch (error) {

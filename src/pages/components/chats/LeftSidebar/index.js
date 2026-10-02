@@ -58,6 +58,26 @@ const LeftSidebar = () => {
   const [page, setPage] = React.useState(0);
   const [count, setCount] = React.useState(0);
 
+  const filteredChatRooms = React.useMemo(() => {
+    const keyword = deboundedTextValue.trim().toLowerCase();
+
+    if (!keyword) {
+      return chatRooms;
+    }
+
+    return chatRooms.filter((room) => {
+      const name = `${room?.user?.name || ''}`.toLowerCase();
+      const company = `${room?.user?.company?.companyName || ''}`.toLowerCase();
+      const email = `${room?.user?.email || ''}`.toLowerCase();
+
+      return (
+        name.includes(keyword) ||
+        company.includes(keyword) ||
+        email.includes(keyword)
+      );
+    });
+  }, [chatRooms, deboundedTextValue]);
+
 const handleSelectRoom = (chatRoom) => {
     setSelectedRoomId(chatRoom?.id);
   };
@@ -208,7 +228,7 @@ const handleSelectRoom = (chatRoom) => {
                 <LoadingComponentItem key={value} />
               ))}
             </Stack>
-          ) : chatRooms.length === 0 ? (
+          ) : filteredChatRooms.length === 0 ? (
             <NoDataCard
               title="Not found conversation any..."
               imgComponentSgv={<ImageSvg15 />}
@@ -220,7 +240,7 @@ const handleSelectRoom = (chatRoom) => {
                 style={{
                   overflowY: 'auto',
                 }}
-                dataLength={chatRooms.length}
+                dataLength={filteredChatRooms.length}
                 next={handleLoadMore}
                 hasMore={hasMore}
                 loader={
@@ -232,7 +252,7 @@ const handleSelectRoom = (chatRoom) => {
                   </Stack>
                 }
               >
-                {chatRooms.map((value) => (
+                  {filteredChatRooms.map((value) => (
                   <Stack
                     onClick={() => handleSelectRoom(value)}
                     direction="row"
@@ -317,6 +337,26 @@ const EmployerSidebar = () => {
   const [chatRooms, setChatRooms] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [count, setCount] = React.useState(0);
+
+  const filteredChatRooms = React.useMemo(() => {
+    const keyword = deboundedTextValue.trim().toLowerCase();
+
+    if (!keyword) {
+      return chatRooms;
+    }
+
+    return chatRooms.filter((room) => {
+      const name = `${room?.user?.name || ''}`.toLowerCase();
+      const company = `${room?.user?.company?.companyName || ''}`.toLowerCase();
+      const email = `${room?.user?.email || ''}`.toLowerCase();
+
+      return (
+        name.includes(keyword) ||
+        company.includes(keyword) ||
+        email.includes(keyword)
+      );
+    });
+  }, [chatRooms, deboundedTextValue]);
 
 const handleSelectRoom = (chatRoom) => {
     setSelectedRoomId(chatRoom?.id);
@@ -464,7 +504,7 @@ const handleSelectRoom = (chatRoom) => {
                 <LoadingComponentItem key={value} />
               ))}
             </Stack>
-          ) : chatRooms.length === 0 ? (
+          ) : filteredChatRooms.length === 0 ? (
             <NoDataCard
               title="Not found conversation any..."
               imgComponentSgv={<ImageSvg15 />}
@@ -477,7 +517,7 @@ const handleSelectRoom = (chatRoom) => {
                   style={{
                     overflowY: 'auto',
                   }}
-                  dataLength={chatRooms.length}
+                  dataLength={filteredChatRooms.length}
                   next={handleLoadMore}
                   hasMore={hasMore}
                   loader={
@@ -489,7 +529,7 @@ const handleSelectRoom = (chatRoom) => {
                     </Stack>
                   }
                 >
-                  {chatRooms.map((value) => (
+                {filteredChatRooms.map((value) => (
                     <Stack
                       onClick={() => handleSelectRoom(value)}
                       direction="row"

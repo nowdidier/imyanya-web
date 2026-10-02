@@ -132,6 +132,8 @@ const defaultTheme = {
     MuiCssBaseline: {
       styleOverrides: {
         body: {
+          background:
+            "radial-gradient(1200px 600px at 100% -10%, rgba(107, 69, 201, 0.07), transparent 60%), radial-gradient(1000px 500px at -10% 30%, rgba(255, 152, 0, 0.05), transparent 55%), #f8f9fa",
           scrollbarColor: `${colors.primary.main} ${colors.grey[200]}`,
           "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
             width: "6px",
@@ -157,8 +159,17 @@ const defaultTheme = {
           borderRadius: "12px",
           fontWeight: 600,
           boxShadow: "none",
+          transition:
+            "transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease",
           "&:hover": {
             boxShadow: "none",
+          },
+          "&.MuiButton-contained": {
+            boxShadow: "0 4px 14px -4px rgba(68, 29, 160, 0.35)",
+            "&:hover": {
+              transform: "translateY(-1px)",
+              boxShadow: "0 8px 20px -6px rgba(68, 29, 160, 0.45)",
+            },
           },
         },
       },
@@ -166,9 +177,10 @@ const defaultTheme = {
     MuiChip: {
       styleOverrides: {
         root: {
-          borderRadius: '8px',
+          borderRadius: '999px',
           padding: '3px 0',
           height: 'auto',
+          fontWeight: 500,
           '&.MuiChip-outlined': {
             borderWidth: '1.5px',
           },
@@ -216,15 +228,23 @@ const defaultTheme = {
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: "10px",
-          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.05), 0px 1px 16px rgba(0, 0, 0, 0.03)",
+          borderRadius: "16px",
+          border: "1px solid rgba(68, 29, 160, 0.06)",
+          boxShadow:
+            "0 1px 3px rgba(31, 38, 135, 0.04), 0 8px 24px -8px rgba(68, 29, 160, 0.10)",
+          transition: "transform 0.2s ease, box-shadow 0.2s ease",
+          "&:hover": {
+            transform: "translateY(-2px)",
+            boxShadow:
+              "0 2px 6px rgba(31, 38, 135, 0.06), 0 16px 40px -12px rgba(68, 29, 160, 0.18)",
+          },
         },
       },
     },
     MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: "10px",
+          borderRadius: "16px",
         },
       },
     },
@@ -446,7 +466,7 @@ const defaultTheme = {
     "0px 23px 25px rgba(0, 0, 0, 0.54)",
   ],
 
-  // Modern typography
+  // Modern typography — Inter for body, Plus Jakarta Sans for headings
   typography: {
     fontFamily: [
       "Inter",
@@ -459,36 +479,46 @@ const defaultTheme = {
       "sans-serif",
     ].join(","),
     h1: {
-      fontSize: "2.5rem",
-      fontWeight: 700,
-      lineHeight: 1.2,
-      letterSpacing: "-0.01em",
+      fontFamily: '"Plus Jakarta Sans", Inter, sans-serif',
+      fontSize: "2.75rem",
+      fontWeight: 800,
+      lineHeight: 1.15,
+      letterSpacing: "-0.025em",
     },
     h2: {
-      fontSize: "2rem",
+      fontFamily: '"Plus Jakarta Sans", Inter, sans-serif',
+      fontSize: "2.125rem",
+      fontWeight: 800,
+      lineHeight: 1.2,
+      letterSpacing: "-0.02em",
+    },
+    h3: {
+      fontFamily: '"Plus Jakarta Sans", Inter, sans-serif',
+      fontSize: "1.75rem",
+      fontWeight: 700,
+      lineHeight: 1.25,
+      letterSpacing: "-0.015em",
+    },
+    h4: {
+      fontFamily: '"Plus Jakarta Sans", Inter, sans-serif',
+      fontSize: "1.5rem",
       fontWeight: 700,
       lineHeight: 1.3,
       letterSpacing: "-0.01em",
     },
-    h3: {
-      fontSize: "1.75rem",
-      fontWeight: 600,
-      lineHeight: 1.3,
-    },
-    h4: {
-      fontSize: "1.5rem",
-      fontWeight: 600,
-      lineHeight: 1.4,
-    },
     h5: {
+      fontFamily: '"Plus Jakarta Sans", Inter, sans-serif',
       fontSize: "1.25rem",
-      fontWeight: 600,
-      lineHeight: 1.4,
+      fontWeight: 700,
+      lineHeight: 1.35,
+      letterSpacing: "-0.01em",
     },
     h6: {
+      fontFamily: '"Plus Jakarta Sans", Inter, sans-serif',
       fontSize: "1.125rem",
-      fontWeight: 600,
+      fontWeight: 700,
       lineHeight: 1.4,
+      letterSpacing: "-0.01em",
     },
     subtitle1: {
       fontSize: "1rem",
@@ -519,9 +549,9 @@ const defaultTheme = {
     },
   },
 
-  // Consistent border radius
+  // Consistent border radius — larger, modern radii
   shape: {
-    borderRadius: 6,
+    borderRadius: 10,
   },
 
   zIndex: {

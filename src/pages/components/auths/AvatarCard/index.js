@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Stack, IconButton, Typography } from '@mui/material';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
@@ -45,7 +45,7 @@ const AvatarCard = () => {
         .then(() => {
           toastMessages.success('Avatar deleted successfully.');
         })
-        .catch((err) => {
+        .catch(() => {
           toastMessages.error();
         })
         .finally(() => setIsFullScreenLoading(false));

@@ -47,12 +47,12 @@ const CompanyCard = () => {
         };
         setEditData(data);
 
-        if (companyImageUrl === null) {
-          setCompanyImageUrl(data?.companyImageUrl);
-        }
-        if (companyCoverImageUrl === null) {
-          setCompanyCoverImageUrl(data?.companyCoverImageUrl);
-        }
+        setCompanyImageUrl((prev) =>
+          prev === null ? data?.companyImageUrl : prev
+        );
+        setCompanyCoverImageUrl((prev) =>
+          prev === null ? data?.companyCoverImageUrl : prev
+        );
       } catch (error) {
         errorHandling(error);
       } finally {

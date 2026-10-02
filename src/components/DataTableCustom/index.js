@@ -55,7 +55,6 @@ EnhancedTableHead.propTypes = {
 
 const DataTableCustom = ({
   headCells,
-  rows,
   order,
   orderBy,
   page,
@@ -64,8 +63,6 @@ const DataTableCustom = ({
   handleRequestSort,
   handleChangePage,
   handleChangeRowsPerPage,
-  handleDelete,
-  handleUpdate,
   children,
 }) => {
   return (

@@ -16,7 +16,7 @@ import toSlug from '../../utils/customData';
 const Pdf = ({ fileUrl, title = '' }) => {
   const zoomPluginInstance = zoomPlugin();
   const getFilePluginInstance = getFilePlugin({
-    fileNameGenerator: (file) => {
+    fileNameGenerator: () => {
       return `MyJob_CV-${toSlug(title)}`;
     },
   });

@@ -11,6 +11,8 @@ import { LoginSocialFacebook, LoginSocialGoogle } from "reactjs-social-login";
 import TextFieldCustom from "../../../../components/controls/TextFieldCustom";
 import PasswordTextFieldCustom from "../../../../components/controls/PasswordTextFieldCustom";
 import { AUTH_CONFIG } from "../../../../configs/constants";
+import { getSocialAuthConfigIssue } from "../../../../utils/authErrorMessage";
+import toastMessages from "../../../../utils/toastMessages";
 
 const StyledButton = styled(Button)(() => ({
   padding: "8px 16px",
@@ -56,8 +58,26 @@ const JobSeekerSignUpForm = ({
   onRegister,
   onFacebookRegister,
   onGoogleRegister,
+  onSocialReject,
   serverErrors = {},
 }) => {
+  const facebookIssue = getSocialAuthConfigIssue('facebook', {
+    facebookAppId: AUTH_CONFIG.FACEBOOK_CLIENT_ID,
+  });
+  const googleIssue = getSocialAuthConfigIssue('google', {
+    googleClientId: AUTH_CONFIG.GOOGLE_CLIENT_ID,
+  });
+
+  const guardClick = (issue) => (event) => {
+    if (issue) {
+      event.stopPropagation();
+      if (onSocialReject) {
+        onSocialReject({ data: issue });
+      } else {
+        toastMessages.error(issue);
+      }
+    }
+  };
   const schema = yup.object().shape({
     fullName: yup.string().required("Full Name is required."),
     email: yup
@@ -170,7 +190,7 @@ const JobSeekerSignUpForm = ({
         Register
       </StyledButton>
 
-      <StyledDivider>Or sign up with</StyledDivider>
+      <StyledDivider>Create your account in one click with Google or Facebook</StyledDivider>
 
       <Stack 
         direction="row" 
@@ -189,13 +209,15 @@ const JobSeekerSignUpForm = ({
           ux_mode="popup"
           onResolve={onFacebookRegister}
           onReject={(err) => {
-            console.error(err);
+            if (onSocialReject) onSocialReject(err);
+            else console.error(err);
           }}
         >
           <StyledSocialButton
             fullWidth
             variant="outlined"
             startIcon={<FacebookIcon />}
+            onClick={guardClick(facebookIssue)}
             sx={{
               borderColor: "#4267B2",
               color: "#4267B2",
@@ -216,7 +238,8 @@ const JobSeekerSignUpForm = ({
           scope="openid profile email"
           onResolve={onGoogleRegister}
           onReject={(err) => {
-            console.error(err);
+            if (onSocialReject) onSocialReject(err);
+            else console.error(err);
           }}
           ux_mode="popup"
         >
@@ -224,6 +247,7 @@ const JobSeekerSignUpForm = ({
             fullWidth
             variant="outlined"
             startIcon={<GoogleIcon />}
+            onClick={guardClick(googleIssue)}
             sx={{
               borderColor: "#DB4437",
               color: "#DB4437",

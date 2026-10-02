@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
@@ -149,6 +149,7 @@ const InputBaseSearchHomeCustom = ({
                     <List>
                       {searchResult.map((value) => (
                         <ListItem
+                          key={value}
                           sx={{
                             '&:hover': {
                               backgroundColor: '#E9F4FF',

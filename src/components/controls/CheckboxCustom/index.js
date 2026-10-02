@@ -15,7 +15,12 @@ const CheckboxCustom = ({ name, control, title = '', disabled = false }) => {
           <>
             <FormControlLabel
               control={
-                <Checkbox checked={Boolean(field.value)} value={true} onChange={field.onChange} />
+                <Checkbox
+                  checked={Boolean(field.value)}
+                  value={true}
+                  disabled={disabled}
+                  onChange={field.onChange}
+                />
               }
               label={title}
             />

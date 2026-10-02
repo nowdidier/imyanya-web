@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Stack, Button, Pagination } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -20,7 +20,7 @@ const SavedJobCard = () => {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
-    const getJobPosts = async (params) => {
+    const getJobPosts = async () => {
       setIsLoading(true);
      try {
         const resData = await jobService.getJobPostsSaved({
@@ -32,6 +32,7 @@ const SavedJobCard = () => {
         setCount(data.count);
         setJobPosts(data.results);
       } catch (error) {
+        errorHandling(error);
       } finally {
         setIsLoading(false);
       }
@@ -91,6 +92,7 @@ const SavedJobCard = () => {
                 key={value.id}
                 id={value.id}
                 slug={value.slug}
+                imageUrl={value?.imageUrl}
                 companyImageUrl={value?.companyDict.companyImageUrl}
                 companyName={value?.companyDict.companyName}
                 jobName={value?.jobName}

@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import dayjs from "dayjs";
@@ -6,12 +6,16 @@ import {
   Box,
   Button,
   Card,
+  Dialog,
+  DialogContent,
   Divider,
   Grid,
+  IconButton,
   Skeleton,
   Stack,
   Typography,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import { LoadingButton } from "@mui/lab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -371,6 +375,7 @@ const JobDetailPage = () => {
   const { allConfig } = useSelector((state) => state.config);
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
   const [openSharePopup, setOpenSharePopup] = React.useState(false);
+  const [openCoverLightbox, setOpenCoverLightbox] = React.useState(false);
   const [openPopup, setOpenPopup] = React.useState(false);
   const [isApplySucces, setIsApplySuccess] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -448,7 +453,9 @@ const JobDetailPage = () => {
 
   React.useEffect(() => {
     if (isApplySucces) {
-      setJobPostDetail({ ...jobPostDetail, isApplied:true });
+      setJobPostDetail((prev) =>
+        prev ? { ...prev, isApplied: true } : prev
+      );
     }
   }, [isApplySucces]);
 
@@ -468,6 +475,24 @@ const JobDetailPage = () => {
         .replace(/<[^>]*>/g, " ")
         .replace(/\s+/g, " ")
         .trim();
+
+    // Google Jobs accepts only these employmentType values.
+    const mapJobTypeToGoogleSchema = (label = "") => {
+      const normalized = String(label).toUpperCase().replace(/[\s-]+/g, "_");
+
+      if (normalized.includes("FULL") || normalized.includes("PERMANENT"))
+        return "FULL_TIME";
+      if (normalized.includes("PART")) return "PART_TIME";
+      if (normalized.includes("CONTRACT") || normalized.includes("FREELANCE"))
+        return "CONTRACTOR";
+      if (normalized.includes("TEMP")) return "TEMPORARY";
+      if (normalized.includes("INTERN")) return "INTERN";
+      if (normalized.includes("VOLUNT")) return "VOLUNTEER";
+      if (normalized.includes("PER_DIEM") || normalized.includes("PERDIEM") || normalized.includes("CASUAL"))
+        return "PER_DIEM";
+
+      return "FULL_TIME";
+    };
 
     const cityName =
       allConfig?.cityDict[jobPostDetail?.location?.city] ||
@@ -498,14 +523,22 @@ const JobDetailPage = () => {
       "@type": "JobPosting",
       title: jobPostDetail?.jobName,
       description: stripHtml(jobPostDetail?.jobDescription),
+      inLanguage: "en",
+      identifier: {
+        "@type": "PropertyValue",
+        name: "Imyanya",
+        value: `https://imyanya.rw/viec-lam/${jobPostDetail?.slug || slug}`,
+      },
       datePosted: jobPostDetail?.createAt
         ? dayjs(jobPostDetail.createAt).toISOString()
         : undefined,
       ...(jobPostDetail?.deadline
         ? { validThrough: dayjs(jobPostDetail.deadline).toISOString() }
         : {}),
-      employmentType:
-        allConfig?.jobTypeDict[jobPostDetail?.jobType] || undefined,
+      employmentType: mapJobTypeToGoogleSchema(
+        allConfig?.jobTypeDict[jobPostDetail?.jobType]
+      ),
+      directApply: true,
       hiringOrganization: {
         "@type": "Organization",
         name: jobPostDetail?.companyDict?.companyName,
@@ -586,7 +619,7 @@ const JobDetailPage = () => {
     return () => {
       document.getElementById(scriptId)?.remove();
     };
-  }, [jobPostDetail, allConfig]);
+  }, [jobPostDetail, allConfig, slug]);
 
   const handleSave = () => {
     const saveJobPost = async () => {
@@ -688,19 +721,71 @@ const JobDetailPage = () => {
                   </Box>
                   {jobPostDetail?.imageUrl && (
                     <Box
-                      component="img"
-                      src={jobPostDetail.imageUrl}
-                      alt={jobPostDetail?.jobName}
+                      onClick={() => setOpenCoverLightbox(true)}
                       sx={{
-                        width: '100%',
-                        maxHeight: 320,
-                        objectFit: 'cover',
+                        cursor: "zoom-in",
                         borderRadius: 2,
+                        overflow: "hidden",
                         mt: 2,
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                        "& img": {
+                          width: "100%",
+                          maxHeight: 320,
+                          objectFit: "cover",
+                          transition: "transform 0.35s ease",
+                        },
+                        "&:hover img": {
+                          transform: "scale(1.04)",
+                        },
                       }}
-                    />
+                    >
+                      <Box
+                        component="img"
+                        src={jobPostDetail.imageUrl}
+                        alt={jobPostDetail?.jobName}
+                      />
+                    </Box>
                   )}
+                  <Dialog
+                    open={openCoverLightbox}
+                    onClose={() => setOpenCoverLightbox(false)}
+                    maxWidth="lg"
+                    fullWidth
+                    PaperProps={{
+                      sx: {
+                        bgcolor: "transparent",
+                        boxShadow: "none",
+                        overflow: "visible",
+                      },
+                    }}
+                  >
+                    <IconButton
+                      onClick={() => setOpenCoverLightbox(false)}
+                      sx={{
+                        position: "absolute",
+                        top: 8,
+                        right: 8,
+                        bgcolor: "rgba(0,0,0,0.55)",
+                        color: "white",
+                        "&:hover": { bgcolor: "rgba(0,0,0,0.75)" },
+                      }}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                    <DialogContent sx={{ p: 0 }}>
+                      <Box
+                        component="img"
+                        src={jobPostDetail?.imageUrl}
+                        alt={jobPostDetail?.jobName}
+                        sx={{
+                          width: "100%",
+                          maxHeight: "85vh",
+                          objectFit: "contain",
+                          borderRadius: 2,
+                        }}
+                      />
+                    </DialogContent>
+                  </Dialog>
                   <Divider sx={{ my: 2 }} />
                   <Box>
                     <Typography variant="h5" sx={{ fontSize: 26, mb: 2 }}>

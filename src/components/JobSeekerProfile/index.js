@@ -28,7 +28,6 @@ import { formatRoute } from '../../utils/funcUtils';
 import defaultTheme from '../../themeConfigs/defaultTheme';
 
 const JobSeekerProfile = ({
-  id,
   slug,
   title,
   salaryMin,

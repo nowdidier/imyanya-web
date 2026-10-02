@@ -52,7 +52,7 @@ const AccountCard = ({ title, sx }) => {
           .then(() => {
             nav(path);
           })
-          .catch((err) => {
+          .catch(() => {
             toastMessages.error("An error occurred!");
           });
       } catch (error) {

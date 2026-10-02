@@ -1,10 +1,11 @@
-﻿import React from 'react';
+import React from 'react';
 import { Grid, Pagination, Stack } from '@mui/material';
 
 import { ImageSvg8, ROLES_NAME } from '../../../../configs/constants';
 import NoDataCard from '../../../../components/NoDataCard';
 import jobService from '../../../../services/jobService';
 import JobPost from '../../../../components/JobPost';
+import errorHandling from '../../../../utils/errorHandling';
 import { useSelector } from 'react-redux';
 
 const SuggestedJobPostCard = ({ pageSize = 12, fullWidth = false }) => {
@@ -31,7 +32,9 @@ const SuggestedJobPostCard = ({ pageSize = 12, fullWidth = false }) => {
   }, []);
 
   React.useEffect(() => {
-    if (parentWidth < 600) {
+    if (fullWidth) {
+      setCol(12);
+    } else if (parentWidth < 600) {
       setCol(12);
     } else if (parentWidth < 900) {
       setCol(6);
@@ -40,7 +43,7 @@ const SuggestedJobPostCard = ({ pageSize = 12, fullWidth = false }) => {
     } else {
       setCol(4);
     }
-  }, [parentWidth]);
+  }, [parentWidth, fullWidth]);
 
   React.useEffect(() => {
     const getJobPosts = async () => {
@@ -55,6 +58,7 @@ const SuggestedJobPostCard = ({ pageSize = 12, fullWidth = false }) => {
         setCount(data.count);
         setJobPosts(data.results);
       } catch (error) {
+        errorHandling(error);
       } finally {
         setIsLoading(false);
       }

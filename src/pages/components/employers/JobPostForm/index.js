@@ -4,9 +4,6 @@ import { useForm, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Alert, AlertTitle, Box, Button, Grid, Link, TextField, Typography } from '@mui/material';
-import { Upload } from 'antd';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-
 import {
   DATE_OPTIONS,
   REGEX_VATIDATE,
@@ -28,8 +25,9 @@ import goongService from '../../../../services/goongService';
 const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
   const { allConfig } = useSelector((state) => state.config);
   const [districtOptions, setDistrictOptions] = React.useState([]);
+  const districtOptionsRef = React.useRef(districtOptions);
+  districtOptionsRef.current = districtOptions;
   const [locationOptions, setLocationOptions] = React.useState([]);
-  const [coverImage, setCoverImage] = React.useState(null);
   const [imageUrlInput, setImageUrlInput] = React.useState('');
   const supportWhatsAppUrl = getWhatsAppContactUrl();
 
@@ -246,7 +244,8 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
      try {
         const resData = await commonService.getDistrictsByCityId(cityId);
 
-        if (districtOptions.length > 0) setValue('location.district', '');
+        if (districtOptionsRef.current.length > 0)
+          setValue('location.district', '');
         setDistrictOptions(resData.data);
       } catch (error) {
         errorHandling(error);
@@ -283,14 +282,12 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
         },
       }));
       if (editData?.imageUrl) {
-        setCoverImage({ url: editData.imageUrl });
         setImageUrlInput(
           editData.imageUrl.startsWith('data:') ? '' : editData.imageUrl
         );
       }
     } else {
       reset();
-      setCoverImage(null);
       setImageUrlInput('');
     }
   }, [editData, reset]);
@@ -336,23 +333,8 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
     }
   };
 
-  const readFileAsDataUrl = (file) =>
-    new Promise((resolve) => {
-      const reader = new FileReader();
-
-      reader.onload = (e) => resolve(e.target.result);
-      reader.readAsDataURL(file);
-    });
-
-  const handleCoverImageBeforeUpload = async (file) => {
-    const url = await readFileAsDataUrl(file);
-
-    setCoverImage({ file, url });
-    return false;
-  };
-
   const handleSubmitData = (values) => {
-    const finalImageUrl = imageUrlInput.trim() || coverImage?.url || '';
+    const finalImageUrl = imageUrlInput.trim();
     const imagePayload = finalImageUrl ? { imageUrl: finalImageUrl } : {};
 
     handleAddOrUpdate({
@@ -537,51 +519,35 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           <Typography variant="subtitle2" gutterBottom>
             Job Post Preview Image
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, mb: 1.5 }}>
-            <Upload
-              listType="picture-card"
-              maxCount={1}
-              accept="image/*"
-              showUploadList={false}
-              beforeUpload={handleCoverImageBeforeUpload}
-            >
-              {imageUrlInput.trim() || coverImage?.url ? (
-                <img
-                  src={imageUrlInput.trim() || coverImage.url}
-                  alt="Job post preview"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              ) : (
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5 }}>
-                  <AddPhotoAlternateIcon color="primary" />
-                  <Typography variant="caption" color="text.secondary">
-                    Upload
-                  </Typography>
-                </Box>
-              )}
-            </Upload>
-            {(coverImage?.url || imageUrlInput) && (
-              <Button
-                size="small"
-                variant="outlined"
-                color="error"
-                onClick={() => {
-                  setCoverImage(null);
-                  setImageUrlInput('');
+          {imageUrlInput.trim() && (
+            <Box sx={{ mb: 1.5 }}>
+              <img
+                src={imageUrlInput.trim()}
+                alt="Job post preview"
+                style={{
+                  maxWidth: 320,
+                  maxHeight: 180,
+                  objectFit: 'cover',
+                  borderRadius: 8,
                 }}
-              >
-                Remove
-              </Button>
-            )}
-          </Box>
+              />
+            </Box>
+          )}
+          {imageUrlInput && (
+            <Button
+              size="small"
+              variant="outlined"
+              color="error"
+              sx={{ mb: 1.5 }}
+              onClick={() => setImageUrlInput('')}
+            >
+              Remove
+            </Button>
+          )}
           <TextField
             fullWidth
             size="small"
-            label="Or paste an image URL"
+            label="Paste an image URL"
             placeholder="https://i.postimg.cc/..."
             value={imageUrlInput}
             onChange={(e) => setImageUrlInput(e.target.value)}

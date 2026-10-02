@@ -17,8 +17,8 @@ const JobsByCityPage = () => {
         Jobs by Location in Rwanda
       </Typography>
       <Typography variant="h6" color="text.secondary" sx={{ lineHeight: 1.7, maxWidth: 860, mb: 1 }}>
-        Search job vacancies across Rwanda's cities and districts. While Kigali
-        has the highest concentration of office and professional roles,
+        Search job vacancies across Rwanda&apos;s cities and districts. While
+        Kigali has the highest concentration of office and professional roles,
         opportunities exist in every province for candidates with the right
         skills and flexibility. Your location preference and willingness to
         travel or relocate can significantly expand your options.

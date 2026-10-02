@@ -31,7 +31,7 @@ const ResetPasswordPage = () => {
      try {
         const resData = await authService.resetPassword(data);
 
-        const redirectLoginUrl = resData.data?.redirectLoginUrl;
+        const redirectLoginUrl = resData.data?.redirectLoginUrl || '/';
 
         nav(
           `${redirectLoginUrl}/?successMessage=Reset Password successfully.`
@@ -39,17 +39,24 @@ const ResetPasswordPage = () => {
       } catch (error) {
         const res = error.response;
 
-        switch (res.status) {
-          case 400:
-            const errors = res.data?.errors;
-            if ('errorMessage' in errors) {
-              setErrorMessage(errors['errorMessage']);
-            } else {
-              setServerErrors(errors);
+        if (!res) {
+          toastMessages.error(
+            'Unable to reach the server. Please check your connection and try again.'
+          );
+        } else {
+          switch (res.status) {
+            case 400: {
+              const errors = res.data?.errors || {};
+              if ('errorMessage' in errors) {
+                setErrorMessage(errors['errorMessage']);
+              } else {
+                setServerErrors(errors);
+              }
+              break;
             }
-            break;
-          default:
-            toastMessages.error('An error occurred, please try again!');
+            default:
+              toastMessages.error('An error occurred, please try again!');
+          }
         }
       } finally {
         setIsFullScreenLoading(false);

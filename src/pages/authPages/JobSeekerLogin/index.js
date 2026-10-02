@@ -15,7 +15,9 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { TabTitle } from '../../../utils/generalFunction';
-import getAuthErrorMessage from '../../../utils/authErrorMessage';
+import getAuthErrorMessage, {
+  getSocialLoginErrorMessage,
+} from '../../../utils/authErrorMessage';
 import {
   AUTH_PROVIDER,
   ROLES_NAME,
@@ -203,6 +205,10 @@ const JobSeekerLogin = () => {
         AUTH_PROVIDER.FACEBOOK,
         accessToken
       );
+    } else {
+      setErrorMessage(
+        'Facebook did not return an access token. Please try again.'
+      );
     }
   };
 
@@ -213,19 +219,15 @@ const JobSeekerLogin = () => {
         AUTH_PROVIDER.GOOGLE,
         accessToken
       );
+    } else {
+      setErrorMessage(
+        'Google did not return an access token. Please try again.'
+      );
     }
   };
 
   const handleSocialReject = (error) => {
-    const detail = error?.data || error?.error || error;
-    const errorText =
-      detail?.error_description ||
-      detail?.error ||
-      detail?.message ||
-      detail ||
-      'Social login was not completed. Please try again.';
-
-    setErrorMessage(typeof errorText === 'string' ? errorText : 'Social login was not completed. Please try again.');
+    setErrorMessage(getSocialLoginErrorMessage(error));
   };
 
   return (

@@ -15,7 +15,7 @@ import {
 import { formatRoute } from '../../utils/funcUtils';
 import { ROUTES } from '../../configs/constants';
 
-const CompanyAction = ({ id, views, createAt, resume, company, children }) => {
+const CompanyAction = ({ views, createAt, resume, company, children }) => {
   const nav = useNavigate();
   const [parentWidth, setParentWidth] = React.useState(0);
   const [stackDirection, setStackDirection] = React.useState('column');
@@ -138,7 +138,7 @@ const CompanyAction = ({ id, views, createAt, resume, company, children }) => {
   );
 };
 
-const CompanyActionFollow = ({ id, company, children }) => {
+const CompanyActionFollow = ({ company, children }) => {
   const nav = useNavigate();
   const [parentWidth, setParentWidth] = React.useState(0);
   const [stackDirection, setStackDirection] = React.useState('column');

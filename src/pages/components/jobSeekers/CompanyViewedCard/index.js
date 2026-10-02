@@ -6,6 +6,7 @@ import { ImageSvg6 } from '../../../../configs/constants';
 import NoDataCard from '../../../../components/NoDataCard';
 import CompanyAction from '../../../../components/CompanyAction';
 import resumeViewedService from '../../../../services/resumeViewedService';
+import errorHandling from '../../../../utils/errorHandling';
 
 const pageSize = 10;
 
@@ -25,6 +26,7 @@ const CompanyViewedCard = () => {
         setCount(data.count);
         setResumesViewed(data.results);
       } catch (error) {
+        errorHandling(error);
       } finally {
         setIsLoading(false);
       }

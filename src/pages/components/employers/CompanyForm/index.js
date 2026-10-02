@@ -21,6 +21,8 @@ import Map from '../../../../components/Map';
 const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
   const { allConfig } = useSelector((state) => state.config);
   const [districtOptions, setDistrictOptions] = React.useState([]);
+  const districtOptionsRef = React.useRef(districtOptions);
+  districtOptionsRef.current = districtOptions;
   const [locationOptions, setLocationOptions] = React.useState([]);
 
   const normalizeLocation = (location = {}) => ({
@@ -158,7 +160,8 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
      try {
         const resData = await commonService.getDistrictsByCityId(cityId);
 
-        if (districtOptions.length > 0) setValue('location.district', '');
+        if (districtOptionsRef.current.length > 0)
+          setValue('location.district', '');
         setDistrictOptions(resData.data);
       } catch (error) {
         errorHandling(error);

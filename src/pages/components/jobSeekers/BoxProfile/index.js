@@ -129,6 +129,7 @@ const BoxProfile = ({ title }) => {
 
         setResume(resData.data);
       } catch (error) {
+        errorHandling(error);
       } finally {
         setIsLoadingResume(false);
       }

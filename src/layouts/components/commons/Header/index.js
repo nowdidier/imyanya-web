@@ -270,7 +270,14 @@ const Header = () => {
     <>
       <AppBar
         position="sticky"
-        sx={{ boxShadow: 0 }}
+        sx={{
+          boxShadow: "0 4px 24px -8px rgba(68, 29, 160, 0.35)",
+          backgroundColor: "rgba(68, 29, 160, 0.85)",
+          backgroundImage: "none",
+          backdropFilter: "blur(14px) saturate(160%)",
+          WebkitBackdropFilter: "blur(14px) saturate(160%)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
+        }}
         id="common-header"
       >
         <Container maxWidth="lg">

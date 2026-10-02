@@ -1,8 +1,9 @@
-﻿import React from "react";
+import React from "react";
 import { Box, Button, Stack, styled, useTheme } from "@mui/material";
 
 import { BANNER_TYPES } from "../../configs/constants";
 import myjobService from "../../services/myjobService";
+import errorHandling from "../../utils/errorHandling";
 
 const StyledBannerImage = styled("img")({
   width: "100%",
@@ -32,7 +33,9 @@ const MainJobRightBanner = () => {
         const data = resData?.data || [];
 
         setRightBanners(data);
-      } catch (error) {}
+      } catch (error) {
+        errorHandling(error);
+      }
     };
 
     getRightBanners();

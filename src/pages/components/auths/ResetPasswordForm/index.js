@@ -14,7 +14,7 @@ const ResetPasswordForm = ({ handleResetPassword, serverErrors = {} }) => {
       .min(8, 'Password must be at least 8 characters.')
       .max(128, 'New Password exceeds the maximum length.')
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
         'Must contain one uppercase letter, one lowercase letter, one number, and one special character'
       ),
     confirmPassword: yup

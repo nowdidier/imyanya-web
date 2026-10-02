@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Link,
   Stack,
   Typography,
   Button,
@@ -21,6 +22,7 @@ import {
   ROLES_NAME,
   ROUTES,
   APP_NAME,
+  LINKS,
 } from "../../../configs/constants";
 import TopCompanyCarousel from "../../../components/TopCompanyCarousel";
 import CareerCarousel from "../../../components/CareerCarousel";
@@ -41,6 +43,39 @@ export default function HomePage() {
   return (
     <>
       <Box sx={{ mt: 6 }}>
+        <Box
+          sx={{
+            mb: 4,
+            p: { xs: 2, sm: 3 },
+            borderRadius: 3,
+            background: "linear-gradient(135deg, #441da0 0%, #6d28d9 100%)",
+            color: "white",
+          }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
+            Find jobs, hire talent, and grow with {APP_NAME}
+          </Typography>
+          <Typography variant="body2" sx={{ opacity: 0.9, mb: 1.5 }}>
+            Create a free account in one click with Google or Facebook. We help
+            you find jobs, connect with employers, and support you every step
+            of the way — from making your CV to landing the interview. Follow
+            us on{" "}
+            <Link href={LINKS.FACEBOOK_LINK} target="_blank" underline="always" sx={{ color: "#ffd54f" }}>
+              Facebook
+            </Link>
+            ,{" "}
+            <Link href={LINKS.INSTAGRAM_LINK} target="_blank" underline="always" sx={{ color: "#ffd54f" }}>
+              Instagram
+            </Link>{" "}
+            and{" "}
+            <Link href={LINKS.YOUTUBE_LINK} target="_blank" underline="always" sx={{ color: "#ffd54f" }}>
+              YouTube
+            </Link>{" "}
+            for daily openings and career tips. Our jobs are also listed on{" "}
+            <strong>Google Jobs</strong>, so your next opportunity is always
+            one search away.
+          </Typography>
+        </Box>
         {/* Start: Top companies */}
         <Typography variant="h5" sx={{ mb: 1 }} gutterBottom>
           Companies Hiring in Rwanda

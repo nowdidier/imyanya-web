@@ -22,7 +22,9 @@ const saveVerifyEmailState = (state) => {
 
   try {
     window.sessionStorage.setItem(VERIFY_EMAIL_STORAGE_KEY, JSON.stringify(state));
-  } catch (error) {}
+  } catch (error) {
+    // Storage may be unavailable (private mode) — state stays in memory.
+  }
 };
 
 const clearVerifyEmailState = () => {
@@ -32,7 +34,9 @@ const clearVerifyEmailState = () => {
 
   try {
     window.sessionStorage.removeItem(VERIFY_EMAIL_STORAGE_KEY);
-  } catch (error) {}
+  } catch (error) {
+    // Storage may be unavailable (private mode) — nothing to clear.
+  }
 };
 
 const storedVerifyEmailState = getStoredVerifyEmailState();

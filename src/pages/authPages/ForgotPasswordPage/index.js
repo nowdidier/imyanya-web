@@ -91,7 +91,8 @@ const ForgotPasswordPage = () => {
                   {messageSuccess}
                 </Alert>
                 <Typography variant="caption">
-                  If the email doesn't appear soon, please check your spam folder.
+                  If the email doesn&apos;t appear soon, please check your
+                  spam folder.
                   
                 </Typography>
                 <Typography variant="caption">

@@ -22,6 +22,9 @@ import {
 
 import { TabTitle } from '../../../utils/generalFunction';
 import toastMessages from '../../../utils/toastMessages';
+import getAuthErrorMessage, {
+  getSocialLoginErrorMessage,
+} from '../../../utils/authErrorMessage';
 import BackdropLoading from '../../../components/loading/BackdropLoading';
 import errorHandling from '../../../utils/errorHandling';
 import JobSeekerSignUpForm from '../../components/auths/JobSeekerSignUpForm';
@@ -126,15 +129,15 @@ const JobSeekerSignUp = () => {
         toastMessages.error('An error occurred, please log in again!');
       }
     } catch (error) {
-      // 400 bad request
-      const res = error.response;
-      if (res.status === 400) {
-        const errors = res.data?.errors;
-        if ('errorMessage' in errors) {
-          setErrorMessage(errors.errorMessage.join(' '));
-        } else {
-          toastMessages.error('An error occurred, please try again!');
-        }
+      const res = error?.response;
+      const apiMessage = res?.data?.errors?.errorMessage;
+
+      if (Array.isArray(apiMessage) && apiMessage.length > 0) {
+        setErrorMessage(apiMessage.join(' '));
+      } else if (typeof apiMessage === 'string' && apiMessage) {
+        setErrorMessage(apiMessage);
+      } else {
+        setErrorMessage(getAuthErrorMessage(error));
       }
     } finally {
       setIsFullScreenLoading(false);
@@ -148,6 +151,10 @@ const JobSeekerSignUp = () => {
         AUTH_PROVIDER.FACEBOOK,
         accessToken
       );
+    } else {
+      setErrorMessage(
+        'Facebook did not return an access token. Please try again.'
+      );
     }
   };
 
@@ -158,7 +165,15 @@ const JobSeekerSignUp = () => {
         AUTH_PROVIDER.GOOGLE,
         accessToken
       );
+    } else {
+      setErrorMessage(
+        'Google did not return an access token. Please try again.'
+      );
     }
+  };
+
+  const handleSocialReject = (error) => {
+    setErrorMessage(getSocialLoginErrorMessage(error));
   };
 
   return (
@@ -233,6 +248,7 @@ const JobSeekerSignUp = () => {
               onRegister={handleRegister}
               onFacebookRegister={handleFacebookRegister}
               onGoogleRegister={handleGoogleRegister}
+              onSocialReject={handleSocialReject}
               serverErrors={serverErrors}
             />
           </Box>

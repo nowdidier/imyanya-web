@@ -1,4 +1,4 @@
-﻿import 'swiper/css';
+import 'swiper/css';
 import 'swiper/css/pagination';
 
 import React from 'react';
@@ -8,6 +8,7 @@ import { Box } from '@mui/material';
 
 import FeedbackCard from '../FeedbackCard';
 import myjobService from '../../services/myjobService';
+import errorHandling from '../../utils/errorHandling';
 import NoDataCard from '../NoDataCard';
 
 const styles = {
@@ -64,11 +65,12 @@ const FeedbackCarousel = () => {
   React.useEffect(() => {
     const getFeedbacks = async () => {
       setIsLoading(true);
-      const resData = await myjobService.getFeedbacks();
+      try {
+        const resData = await myjobService.getFeedbacks();
 
-      setFeedbacks(resData.data);
-     try {
+        setFeedbacks(resData.data);
       } catch (error) {
+        errorHandling(error);
       } finally {
         setIsLoading(false);
       }

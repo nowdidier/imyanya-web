@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { Outlet } from "react-router-dom";
 import { HOST_NAME, ROUTES } from "./constants";
 import {
@@ -7,63 +8,138 @@ import {
   EmployerLayout,
   ChatLayout,
 } from "../layouts";
-import {
-  EmailVerificationRequiredPage,
-  EmployerLogin,
-  EmployerSignUp,
-  ForgotPasswordPage,
-  JobSeekerLogin,
-  JobSeekerSignUp,
-  ResetPasswordPage,
-} from "../pages/authPages";
-import { ChatPage } from "../pages/chatPages";
-import {
-  AboutUsPage,
-  CareerAdvicePage,
-  CareerArticlePage,
-  CareerGuidePage,
-  CompanyDetailPage,
-  CompanyPage,
-  ContactPage,
-  CorrectionPolicyPage,
-  EditorialPolicyPage,
-  FaqPage,
-  HomePage,
-  JobDetailPage,
-  JobPage,
-  JobsByCareerPage,
-  JobsByCityPage,
-  JobsByJobTypePage,
-  NotificationPage,
-  PrivacyPolicyPage,
-  TermsOfUsePage,
-  VerificationPolicyPage,
-  YouTubeVideosPage,
-} from "../pages/defaultPages";
-import {
-  AccountPage,
-  AttachedProfilePage,
-  DashboardPage,
-  MyCompanyPage,
-  MyJobPage,
-  OnlineProfilePage,
-  ProfilePage,
-} from "../pages/jobSeekerPages";
-import {
-  AccountPage as EmployerAccountPage,
-  CompanyPage as EmployerCompanyPage,
-  DashboardPage as EmployerDashboardPage,
-  JobPostPage as EmployerJobPostPage,
-  ProfileAppliedPage as EmployerProfileAppliedPage,
-  ProfileDetailPage as EmployerProfileDetailPage,
-  ProfilePage as EmployerProfilePage,
-  SavedProfilePage as EmployerSavedProfilePage,
-  SettingPage as EmployerSettingPage,
-} from "../pages/employerPages";
-import {
-  ForbiddenPage,
-  NotFoundPage,
-} from "../pages/errorsPage";
+
+// Pages are code-split per route so the initial bundle stays small.
+const EmailVerificationRequiredPage = lazy(() =>
+  import("../pages/authPages/EmailVerificationRequiredPage")
+);
+const EmployerLogin = lazy(() =>
+  import("../pages/authPages/EmployerLogin")
+);
+const EmployerSignUp = lazy(() =>
+  import("../pages/authPages/EmployerSignUp")
+);
+const ForgotPasswordPage = lazy(() =>
+  import("../pages/authPages/ForgotPasswordPage")
+);
+const JobSeekerLogin = lazy(() =>
+  import("../pages/authPages/JobSeekerLogin")
+);
+const JobSeekerSignUp = lazy(() =>
+  import("../pages/authPages/JobSeekerSignUp")
+);
+const ResetPasswordPage = lazy(() =>
+  import("../pages/authPages/ResetPasswordPage")
+);
+const ChatPage = lazy(() => import("../pages/chatPages/ChatPage"));
+
+const AboutUsPage = lazy(() => import("../pages/defaultPages/AboutUsPage"));
+const CareerAdvicePage = lazy(() =>
+  import("../pages/defaultPages/CareerAdvicePage")
+);
+const CareerArticlePage = lazy(() =>
+  import("../pages/defaultPages/CareerArticlePage")
+);
+const CareerGuidePage = lazy(() =>
+  import("../pages/defaultPages/CareerGuidePage")
+);
+const CompanyDetailPage = lazy(() =>
+  import("../pages/defaultPages/CompanyDetailPage")
+);
+const CompanyPage = lazy(() => import("../pages/defaultPages/CompanyPage"));
+const ContactPage = lazy(() => import("../pages/defaultPages/ContactPage"));
+const CorrectionPolicyPage = lazy(() =>
+  import("../pages/defaultPages/CorrectionPolicyPage")
+);
+const EditorialPolicyPage = lazy(() =>
+  import("../pages/defaultPages/EditorialPolicyPage")
+);
+const FaqPage = lazy(() => import("../pages/defaultPages/FaqPage"));
+const HomePage = lazy(() => import("../pages/defaultPages/HomePage"));
+const JobDetailPage = lazy(() =>
+  import("../pages/defaultPages/JobDetailPage")
+);
+const JobPage = lazy(() => import("../pages/defaultPages/JobPage"));
+const JobsByCareerPage = lazy(() =>
+  import("../pages/defaultPages/JobsByCareerPage")
+);
+const JobsByCityPage = lazy(() =>
+  import("../pages/defaultPages/JobsByCityPage")
+);
+const JobsByJobTypePage = lazy(() =>
+  import("../pages/defaultPages/JobsByJobTypePage")
+);
+const NotificationPage = lazy(() =>
+  import("../pages/defaultPages/NotificationPage")
+);
+const PrivacyPolicyPage = lazy(() =>
+  import("../pages/defaultPages/PrivacyPolicyPage")
+);
+const TermsOfUsePage = lazy(() =>
+  import("../pages/defaultPages/TermsOfUsePage")
+);
+const VerificationPolicyPage = lazy(() =>
+  import("../pages/defaultPages/VerificationPolicyPage")
+);
+const YouTubeVideosPage = lazy(() =>
+  import("../pages/defaultPages/YouTubeVideosPage")
+);
+
+const AccountPage = lazy(() =>
+  import("../pages/jobSeekerPages/AccountPage")
+);
+const AttachedProfilePage = lazy(() =>
+  import("../pages/jobSeekerPages/AttachedProfilePage")
+);
+const DashboardPage = lazy(() =>
+  import("../pages/jobSeekerPages/DashboardPage")
+);
+const MyCompanyPage = lazy(() =>
+  import("../pages/jobSeekerPages/MyCompanyPage")
+);
+const MyJobPage = lazy(() => import("../pages/jobSeekerPages/MyJobPage"));
+const OnlineProfilePage = lazy(() =>
+  import("../pages/jobSeekerPages/OnlineProfilePage")
+);
+const ProfilePage = lazy(() =>
+  import("../pages/jobSeekerPages/ProfilePage")
+);
+
+const EmployerAccountPage = lazy(() =>
+  import("../pages/employerPages/AccountPage")
+);
+const EmployerCompanyPage = lazy(() =>
+  import("../pages/employerPages/CompanyPage")
+);
+const EmployerDashboardPage = lazy(() =>
+  import("../pages/employerPages/DashboardPage")
+);
+const EmployerJobPostPage = lazy(() =>
+  import("../pages/employerPages/JobPostPage")
+);
+const EmployerProfileAppliedPage = lazy(() =>
+  import("../pages/employerPages/ProfileAppliedPage")
+);
+const EmployerProfileDetailPage = lazy(() =>
+  import("../pages/employerPages/ProfileDetailPage")
+);
+const EmployerProfilePage = lazy(() =>
+  import("../pages/employerPages/ProfilePage")
+);
+const EmployerSavedProfilePage = lazy(() =>
+  import("../pages/employerPages/SavedProfilePage")
+);
+const EmployerSettingPage = lazy(() =>
+  import("../pages/employerPages/SettingPage")
+);
+const EmployerInfoPage = lazy(() =>
+  import("../pages/employerPages/InfoPage")
+);
+
+const ForbiddenPage = lazy(() =>
+  import("../pages/errorsPage/ForbiddenPage")
+);
+const NotFoundPage = lazy(() => import("../pages/errorsPage/NotFoundPage"));
 
 const routesConfig = {
   [HOST_NAME.MYJOB]: [
@@ -395,6 +471,33 @@ const routesConfig = {
         {
           path: ROUTES.AUTH.REGISTER,
           element: EmployerSignUp,
+        },
+      ],
+    },
+    {
+      // Public employer information pages — reachable whether or not the
+      // employer is signed in, so the header links never dead-end.
+      layouts: DefaultLayout,
+      children: [
+        {
+          path: ROUTES.EMPLOYER.INTRODUCE,
+          element: EmployerInfoPage,
+        },
+        {
+          path: ROUTES.EMPLOYER.SERVICE,
+          element: EmployerInfoPage,
+        },
+        {
+          path: ROUTES.EMPLOYER.PRICING,
+          element: EmployerInfoPage,
+        },
+        {
+          path: ROUTES.EMPLOYER.SUPPORT,
+          element: EmployerInfoPage,
+        },
+        {
+          path: ROUTES.EMPLOYER.BLOG,
+          element: EmployerInfoPage,
         },
       ],
     },

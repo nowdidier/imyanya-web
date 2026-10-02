@@ -12,11 +12,36 @@ const cleanGlobals = (...globalSets) =>
 
 module.exports = [
   {
-    ignores: ['build/**', 'coverage/**', 'node_modules/**'],
+    ignores: [
+      'build/**',
+      'coverage/**',
+      'node_modules/**',
+      '.tmp/**',
+    ],
   },
   js.configs.recommended,
   {
     files: ['*.config.js', 'eslint.config.js', 'craco.config.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'commonjs',
+      globals: cleanGlobals(globals.node),
+    },
+  },
+  {
+    files: ['public/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: cleanGlobals(
+        globals.browser,
+        globals.serviceworker,
+        globals.node
+      ),
+    },
+  },
+  {
+    files: ['roundtrip-test.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'commonjs',

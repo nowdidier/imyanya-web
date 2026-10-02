@@ -29,6 +29,7 @@ const CompanyFollowedCard = () => {
         setCount(data.count);
         setResumesViewed(data.results);
       } catch (error) {
+        errorHandling(error);
       } finally {
         setIsLoading(false);
       }

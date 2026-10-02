@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Box, Card, Typography } from '@mui/material';
 
 const NumberCard = ({ color, backgroundColor }) => {

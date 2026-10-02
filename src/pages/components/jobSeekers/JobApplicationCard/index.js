@@ -75,7 +75,7 @@ const JobApplicationCard = () => {
           itemLayout="horizontal"
           dataSource={data}
           loading={isLoading}
-          renderItem={(item, index) => (
+          renderItem={(item) => (
             <List.Item
               style={{
                 padding: "16px",

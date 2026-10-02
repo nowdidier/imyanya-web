@@ -27,7 +27,6 @@ const ProfileUploadCard = ({
   title,
   updateAt,
   slug,
-  id,
   isActive,
   handleDelete,
   handleActive,

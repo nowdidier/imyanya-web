@@ -10,7 +10,7 @@ import TextFieldCustom from '../../../../components/controls/TextFieldCustom';
 const BasicProfileSearchForm = () => {
   const { allConfig } = useSelector((state) => state.config);
 
-  const { control, reset, handleSubmit } = useForm({
+  const { control } = useForm({
     defaultValues: {
       name: '',
     },

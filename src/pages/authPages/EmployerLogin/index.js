@@ -27,7 +27,7 @@ import tokenService from '../../../services/tokenService';
 
 import EmployerLoginForm from '../../components/auths/EmployerLoginForm';
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(() => ({
   background: 'rgba(255, 255, 255, 0.9)',
   backdropFilter: 'blur(10px)',
   borderRadius: '16px',
@@ -262,7 +262,7 @@ const EmployerLogin = () => {
               }}
             >
               <StyledLink to={`/${ROUTES.AUTH.REGISTER}`}>
-                Don't have an account? Register
+                Don&apos;t have an account? Register
               </StyledLink>
             </Grid>
           </Grid>

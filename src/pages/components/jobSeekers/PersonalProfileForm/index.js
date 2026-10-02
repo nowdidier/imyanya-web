@@ -93,7 +93,6 @@ const PersonalProfileForm = ({ handleUpdateProfile, editData }) => {
         setDistrictOptions(resData.data); 
       } catch (error) {
         errorHandling(error);
-      } finally {
       }
     };
 

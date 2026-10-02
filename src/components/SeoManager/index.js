@@ -8,7 +8,6 @@ import {
 } from "./contentFlag";
 import {
   getJobSeo,
-  setJobSeo,
   subscribeJobSeo,
 } from "./jobSeoFlag";
 import careerArticles from "../../data/rwandaCareerArticles";

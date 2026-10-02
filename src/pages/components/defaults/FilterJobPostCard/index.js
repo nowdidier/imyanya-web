@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Grid, Pagination, Stack } from '@mui/material';
 
 import jobService from '../../../../services/jobService';

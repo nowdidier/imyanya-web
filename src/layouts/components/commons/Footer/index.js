@@ -247,7 +247,7 @@ const Footer = () => {
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
-                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.DASHBOARD}/${ROUTES.JOB_SEEKER.CHAT}`)}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.CHAT}`)}
                   primary="Messages"
                 />
               </ListItem>
@@ -339,6 +339,12 @@ const Footer = () => {
                   }}
                 >
                   Connect with {APP_NAME}
+                </Typography>
+              </ListItem>
+              <ListItem sx={{ pt: 0 }}>
+                <Typography variant="body2" color="text.secondary">
+                  Follow us for daily jobs, CV tips, and interview advice — and
+                  tell a friend: good jobs deserve good sharing.
                 </Typography>
               </ListItem>
               <ListItem>

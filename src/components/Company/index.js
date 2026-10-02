@@ -83,7 +83,6 @@ const FollowComponent = ({ slug, isFollowed }) => {
 };
 
 const Company = ({
-  id,
   slug,
   companyImageUrl,
   companyCoverImageUrl,

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 

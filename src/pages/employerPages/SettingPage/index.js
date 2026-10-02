@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { Card, Grid, Stack, Typography } from "@mui/material";
 import SettingCard from "../../components/settings/SettingCard";
 

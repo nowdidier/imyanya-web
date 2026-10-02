@@ -4,14 +4,10 @@ import commonService from '../services/commonService';
 
 const getAllConfig = createAsyncThunk(
   'config/getAllConfig',
-  async (_, thunkAPI) => {
-   try {
-      const resData = await commonService.getConfigs();
+  async () => {
+    const resData = await commonService.getConfigs();
 
-      return resData.data;
-    } catch (error) {
-      throw error;
-    }
+    return resData.data;
   },
 );
 

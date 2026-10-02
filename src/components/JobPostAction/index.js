@@ -17,15 +17,13 @@ import { ROUTES } from '../../configs/constants';
 import { formatRoute } from '../../utils/funcUtils';
 
 const JobPostAction = ({
-  id,
   slug,
+  imageUrl,
   companyImageUrl,
   companyName,
   jobName,
   cityId,
   deadline,
-  isUrgent,
-  isHot,
   salaryMin,
   salaryMax,
   children,
@@ -79,7 +77,7 @@ const JobPostAction = ({
                 <MuiImageCustom
                   width={70}
                   height={70}
-                  src={companyImageUrl}
+                  src={imageUrl || companyImageUrl}
                   sx={{
                     borderRadius: 2,
                     border: `1px solid ${theme.palette.grey[200]}`,

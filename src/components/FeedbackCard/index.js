@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import MuiImageCustom from '../MuiImageCustom';
 
-const FeedbackCard = ({ id, avatarUrl, fullName, content }) => {
+const FeedbackCard = ({ avatarUrl, fullName, content }) => {
   return (
     <Card
       sx={{

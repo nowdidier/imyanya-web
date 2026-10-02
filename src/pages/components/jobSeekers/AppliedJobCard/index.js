@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box,
@@ -28,7 +28,7 @@ const AppliedJobCard = () => {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
-    const getJobPosts = async (params) => {
+    const getJobPosts = async () => {
       setIsLoading(true);
      try {
         const resData = await jobPostActivityService.getJobPostActivity({
@@ -85,6 +85,7 @@ const AppliedJobCard = () => {
                 key={value.id}
                 id={value?.jobPostDict.id}
                 slug={value?.jobPostDict.slug}
+                imageUrl={value?.jobPostDict.imageUrl}
                 companyImageUrl={
                   value?.jobPostDict.companyDict.companyImageUrl
                 }

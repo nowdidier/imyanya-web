@@ -190,7 +190,7 @@ export const careerAssessment = {
       actionSteps: ["Build a portfolio of your creative work", "Get certified in Google Ads and Meta Ads", "Start a blog or YouTube channel", "Join creative collectives in Kigali"],
     },
     {
-      id: entrepreneurship",
+      id: "entrepreneurship",
       minScore: { entrepreneurial: 15 },
       title: "Entrepreneur & Business Owner",
       description: "You have the drive and mindset to build your own business. Consider entrepreneurship, business development, or joining early-stage startups. Rwanda's business-friendly environment supports new ventures.",

@@ -1,0 +1,117 @@
+Creating an optimized production build...
+Compiled successfully.
+
+File sizes after gzip:
+
+  853.21 kB (-1 B)  build\static\js\main.52e524c2.js
+  467.17 kB         build\static\js\3028.c2687063.chunk.js
+  121.37 kB         build\static\js\2096.d1c18d3b.chunk.js
+  100.92 kB         build\static\js\1248.f1237979.chunk.js
+  48.75 kB          build\static\js\3527.04ebe811.chunk.js
+  48.7 kB           build\static\js\3171.22d01e87.chunk.js
+  48.16 kB          build\static\js\6789.c34b5afc.chunk.js
+  47.42 kB          build\static\css\9811.3c3d70b3.chunk.css
+  46.52 kB          build\static\js\7056.2be319ff.chunk.js
+  42.36 kB          build\static\js\9811.b64002db.chunk.js
+  40.69 kB          build\static\js\697.d87b38a9.chunk.js
+  34.44 kB          build\static\js\5252.5c738936.chunk.js
+  32.48 kB          build\static\js\7000.f82f8bf7.chunk.js
+  31.84 kB          build\static\js\416.404f2751.chunk.js
+  19.62 kB          build\static\js\4135.dfd8ac5b.chunk.js
+  17.32 kB          build\static\js\9464.ea1b29d6.chunk.js
+  16.83 kB          build\static\js\7607.7373c917.chunk.js
+  16.6 kB           build\static\js\9492.368c600d.chunk.js
+  15.03 kB          build\static\js\9195.45e2b665.chunk.js
+  13.19 kB          build\static\js\2228.ef96c837.chunk.js
+  13.05 kB          build\static\js\1442.e040195c.chunk.js
+  11.2 kB           build\static\js\2504.06254ace.chunk.js
+  11.03 kB          build\static\css\main.9c32f98e.css
+  10.85 kB          build\static\js\6517.f3b211bf.chunk.js
+  10.26 kB          build\static\js\9028.d9bbc086.chunk.js
+  9.89 kB           build\static\js\5485.f805279b.chunk.js
+  9.48 kB           build\static\js\1865.d9c07e74.chunk.js
+  9.31 kB           build\static\js\1389.38515c73.chunk.js
+  9.26 kB           build\static\js\679.38b20eab.chunk.js
+  8.79 kB           build\static\js\6585.8fec0cf1.chunk.js
+  8.78 kB           build\static\css\9195.73a53f8d.chunk.css
+  8.69 kB           build\static\js\6922.a34bc475.chunk.js
+  8.15 kB           build\static\js\2871.cf91954f.chunk.js
+  8.09 kB           build\static\js\972.b899bcc4.chunk.js
+  7.92 kB           build\static\js\722.be86db3c.chunk.js
+  7.89 kB           build\static\js\8409.cadf5251.chunk.js
+  7.26 kB           build\static\css\1442.ddb245f5.chunk.css
+  7.26 kB           build\static\css\1865.ddb245f5.chunk.css
+  7.26 kB           build\static\css\2228.ddb245f5.chunk.css
+  7.26 kB           build\static\css\6517.ddb245f5.chunk.css
+  6.9 kB            build\static\js\8337.f31028af.chunk.js
+  6.79 kB           build\static\js\259.363a0239.chunk.js
+  6.63 kB           build\static\js\3576.9f66d7ab.chunk.js
+  6.51 kB           build\static\js\6835.49a1c4b9.chunk.js
+  6.31 kB           build\static\js\3571.7b5029a2.chunk.js
+  6.02 kB           build\static\js\2861.ca9f3b5b.chunk.js
+  5.88 kB           build\static\js\2090.3a5f0b8a.chunk.js
+  5.82 kB           build\static\js\2463.23251465.chunk.js
+  5.73 kB           build\static\js\8701.ac577af0.chunk.js
+  5.56 kB           build\static\js\3049.d91a341c.chunk.js
+  5.45 kB           build\static\js\1828.b61d8bbd.chunk.js
+  5.28 kB           build\static\js\433.dd854806.chunk.js
+  5.27 kB           build\static\js\4759.1ab2a084.chunk.js
+  4.96 kB           build\static\js\1901.f8f50cd1.chunk.js
+  4.73 kB           build\static\js\7812.2ab1d328.chunk.js
+  4.64 kB           build\static\js\9661.be5362d4.chunk.js
+  4.39 kB           build\static\js\5523.864c6cd8.chunk.js
+  4.29 kB           build\static\js\7290.d87266f8.chunk.js
+  4.28 kB           build\static\js\9892.381a475c.chunk.js
+  4.24 kB           build\static\js\3501.1614a590.chunk.js
+  4.24 kB           build\static\js\5599.9dd98b75.chunk.js
+  4.2 kB            build\static\js\1526.5d5808d1.chunk.js
+  3.88 kB           build\static\js\645.9a8a1455.chunk.js
+  3.88 kB           build\static\js\1195.8425a70c.chunk.js
+  3.67 kB           build\static\js\4406.7d26ef17.chunk.js
+  3.64 kB           build\static\js\5463.f2d71ab4.chunk.js
+  3.38 kB           build\static\js\5429.2bbc5c36.chunk.js
+  3.37 kB           build\static\css\3527.a694f54e.chunk.css
+  3.36 kB           build\static\js\8070.982f237c.chunk.js
+  3.34 kB           build\static\js\3691.e7c7f8f8.chunk.js
+  3.05 kB           build\static\js\7111.0f10a9da.chunk.js
+  2.93 kB           build\static\css\7607.c6b5ff95.chunk.css
+  2.93 kB           build\static\css\8070.c6b5ff95.chunk.css
+  2.93 kB           build\static\js\6168.77507055.chunk.js
+  2.73 kB           build\static\js\1259.82876055.chunk.js
+  2.58 kB           build\static\js\6790.4ff912e1.chunk.js
+  2.56 kB           build\static\js\9980.8501a6ab.chunk.js
+  2.34 kB           build\static\js\3078.db260d01.chunk.js
+  2.31 kB           build\static\js\8185.b9a9535a.chunk.js
+  1.92 kB           build\static\js\271.3493604c.chunk.js
+  1.92 kB           build\static\js\813.5feb6f2f.chunk.js
+  1.9 kB            build\static\js\4726.c66b5e9e.chunk.js
+  1.88 kB           build\static\js\608.ae7f2d26.chunk.js
+  1.84 kB           build\static\js\6615.7043976b.chunk.js
+  1.82 kB           build\static\js\4731.882d4791.chunk.js
+  1.78 kB           build\static\js\6453.885e3c31.chunk.js
+  1.73 kB           build\static\js\7437.cc48bb39.chunk.js
+  1.65 kB           build\static\js\9759.6ec875cf.chunk.js
+  1.59 kB           build\static\js\5235.44693bc3.chunk.js
+  1.58 kB           build\static\js\866.ff859221.chunk.js
+  1.03 kB           build\static\js\2916.51ef9a18.chunk.js
+  503 B             build\static\js\6537.7cea06d6.chunk.js
+  500 B             build\static\js\5325.5f8cfa9a.chunk.js
+  486 B             build\static\js\8432.a682d71d.chunk.js
+
+The bundle size is significantly larger than recommended.
+Consider reducing it with code splitting: https://goo.gl/9VhYWB
+You can also analyze the project dependencies: https://goo.gl/LeUzfb
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+

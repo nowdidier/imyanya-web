@@ -40,7 +40,16 @@ const RichTextEditorField = ({
       console.error('Editor image upload failed:', error);
     }
 
-    return { data: { link: '' } };
+    // Fall back to embedding the file as a data URL so the image still
+    // renders even when the upload endpoint is unavailable.
+    const dataUrl = await new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result);
+      reader.onerror = () => resolve('');
+      reader.readAsDataURL(file);
+    });
+
+    return { data: { link: dataUrl } };
   }, []);
 
   const normalized = React.useMemo(() => {

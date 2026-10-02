@@ -18,11 +18,12 @@ import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 import { TabTitle } from "../../../utils/generalFunction";
-import { APP_NAME, LINKS, WHATSAPP_CONFIG } from "../../../configs/constants";
+import {
+  APP_NAME,
+  LINKS,
+  getWhatsAppContactUrl,
+} from "../../../configs/constants";
 import YouTubeVideoSection from "../../../components/YouTubeVideoSection";
-
-const buildWhatsAppUrl = (message) =>
-  `https://wa.me/${WHATSAPP_CONFIG.PHONE}?text=${encodeURIComponent(message)}`;
 
 const commissionHighlights = [
   {
@@ -113,9 +114,7 @@ const CommissionTab = () => (
                 </Typography>
                 <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
                   <Button
-                    href={buildWhatsAppUrl(
-                      "Hello Imyanya, I want commission details for a plot/place for sale."
-                    )}
+                    href={getWhatsAppContactUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="contained"

@@ -5,6 +5,7 @@ import {
   EditorState,
 } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 
 const convertEditorStateToHTMLString = (editorState) => {
   const rawContentState = convertToRaw(editorState.getCurrentContent());
@@ -14,11 +15,24 @@ const convertEditorStateToHTMLString = (editorState) => {
 };
 
 const createEditorStateFromHTMLString = (htmlString) => {
-  const blocksFromHTML = convertFromHTML(htmlString);
+  // html-to-draftjs preserves <img>, <video> and <iframe> embeds as atomic
+  // blocks, whereas plain draft-js convertFromHTML silently drops them.
+  const blocksFromHTML = htmlToDraft(htmlString);
+
+  if (blocksFromHTML && blocksFromHTML.contentBlocks?.length) {
+    const content = ContentState.createFromBlockArray(
+      blocksFromHTML.contentBlocks,
+      blocksFromHTML.entityMap
+    );
+
+    return EditorState.createWithContent(content);
+  }
+
+  const blocksFromLegacyHTML = convertFromHTML(htmlString);
 
   const content = ContentState.createFromBlockArray(
-    blocksFromHTML.contentBlocks,
-    blocksFromHTML.entityMap
+    blocksFromLegacyHTML.contentBlocks,
+    blocksFromLegacyHTML.entityMap
   );
 
   return EditorState.createWithContent(content);

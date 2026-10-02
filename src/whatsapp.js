@@ -2,35 +2,23 @@ import React from "react";
 import { Fab, Tooltip } from "@mui/material";
 import { FaWhatsapp } from "react-icons/fa";
 
-import { WHATSAPP_CONFIG } from "./configs/constants";
-
-const getWhatsAppUrl = () => {
-  const phone = WHATSAPP_CONFIG.PHONE.replace(/[^\d]/g, "");
-
-  if (!phone) {
-    return "";
-  }
-
-  const message = encodeURIComponent(WHATSAPP_CONFIG.DEFAULT_MESSAGE);
-
-  return `https://wa.me/${phone}?text=${message}`;
-};
+import { getWhatsAppContactUrl } from "./configs/constants";
 
 export const WhatsAppContactButton = () => {
-  const href = getWhatsAppUrl();
+  const href = getWhatsAppContactUrl();
 
   if (!href) {
     return null;
   }
 
   return (
-    <Tooltip title="Chat on WhatsApp" placement="left" arrow>
+    <Tooltip title="Join our WhatsApp group" placement="left" arrow>
       <Fab
         component="a"
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp"
+        aria-label="Join our WhatsApp group"
         sx={{
           position: "fixed",
           right: { xs: 16, md: 24 },

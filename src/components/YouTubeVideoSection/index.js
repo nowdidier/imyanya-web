@@ -28,7 +28,7 @@ import {
   fetchYouTubeVideos,
   UPLOADS_PLAYLIST_ID,
 } from "../../services/youtubeService";
-import { LINKS, WHATSAPP_CONFIG } from "../../configs/constants";
+import { LINKS, getWhatsAppContactUrl } from "../../configs/constants";
 import toastMessages from "../../utils/toastMessages";
 
 const formatViews = (count) => {
@@ -56,11 +56,6 @@ const copyToClipboard = async (url) => {
     toastMessages.error("Unable to copy link.");
     return false;
   }
-};
-
-const buildWhatsAppContactUrl = (video, contactMessagePrefix) => {
-  const message = `${contactMessagePrefix}\n\n${video.title}\n${video.shareUrl}`;
-  return `https://wa.me/${WHATSAPP_CONFIG.PHONE}?text=${encodeURIComponent(message)}`;
 };
 
 const FeaturedPlayer = ({ video, isPlaying }) => {
@@ -238,8 +233,7 @@ const YouTubeVideoSection = ({
   subtitle = "",
   maxVideos = 6,
   showContainer = true,
-  contactLabel = "Contact Imyanya",
-  contactMessagePrefix = "Hello Imyanya, I would like more information about this video.",
+  contactLabel = "Join our WhatsApp group",
   tagLabel = "YouTube",
 }) => {
   const [videos, setVideos] = React.useState([]);
@@ -397,7 +391,7 @@ const YouTubeVideoSection = ({
                 sx={{ p: 2 }}
               >
                 <Button
-                  href={buildWhatsAppContactUrl(activeVideo, contactMessagePrefix)}
+                  href={getWhatsAppContactUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="contained"
@@ -493,7 +487,6 @@ YouTubeVideoSection.propTypes = {
   maxVideos: PropTypes.number,
   showContainer: PropTypes.bool,
   contactLabel: PropTypes.string,
-  contactMessagePrefix: PropTypes.string,
   tagLabel: PropTypes.string,
 };
 

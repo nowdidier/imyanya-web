@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 import { useForm, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Alert, AlertTitle, Box, Button, Grid, Link, Typography } from '@mui/material';
+import { Alert, AlertTitle, Box, Button, Grid, Link, TextField, Typography } from '@mui/material';
 import { Upload } from 'antd';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 import {
   DATE_OPTIONS,
   REGEX_VATIDATE,
-  WHATSAPP_CONFIG,
+  getWhatsAppContactUrl,
 } from '../../../../configs/constants';
 import useDebounce from '../../../../hooks/useDebounce';
 import errorHandling from '../../../../utils/errorHandling';
@@ -30,12 +30,8 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
   const [districtOptions, setDistrictOptions] = React.useState([]);
   const [locationOptions, setLocationOptions] = React.useState([]);
   const [coverImage, setCoverImage] = React.useState(null);
-  const supportWhatsAppUrl = `https://wa.me/${WHATSAPP_CONFIG.PHONE.replace(
-    /[^\d]/g,
-    ''
-  )}?text=${encodeURIComponent(
-    'Hello Imyanya, I need help with job post payment.'
-  )}`;
+  const [imageUrlInput, setImageUrlInput] = React.useState('');
+  const supportWhatsAppUrl = getWhatsAppContactUrl();
 
   const editorHasContent = (value) => {
     if (value && typeof value.getCurrentContent === 'function') {
@@ -288,10 +284,14 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
       }));
       if (editData?.imageUrl) {
         setCoverImage({ url: editData.imageUrl });
+        setImageUrlInput(
+          editData.imageUrl.startsWith('data:') ? '' : editData.imageUrl
+        );
       }
     } else {
       reset();
       setCoverImage(null);
+      setImageUrlInput('');
     }
   }, [editData, reset]);
 
@@ -352,7 +352,8 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
   };
 
   const handleSubmitData = (values) => {
-    const imagePayload = coverImage?.url ? { imageUrl: coverImage.url } : {};
+    const finalImageUrl = imageUrlInput.trim() || coverImage?.url || '';
+    const imagePayload = finalImageUrl ? { imageUrl: finalImageUrl } : {};
 
     handleAddOrUpdate({
       ...values,
@@ -378,9 +379,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
               underline="hover"
               sx={{ fontWeight: 700 }}
             >
-              contact us on WhatsApp
-            </Link>
-            .
+              join our WhatsApp group
+            </Link>{' '}
+            to ask how to post a job or how to view images in a job post.
           </Alert>
         </Grid>
 
@@ -536,7 +537,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           <Typography variant="subtitle2" gutterBottom>
             Job Post Preview Image
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, mb: 1.5 }}>
             <Upload
               listType="picture-card"
               maxCount={1}
@@ -544,9 +545,9 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
               showUploadList={false}
               beforeUpload={handleCoverImageBeforeUpload}
             >
-              {coverImage?.url ? (
+              {imageUrlInput.trim() || coverImage?.url ? (
                 <img
-                  src={coverImage.url}
+                  src={imageUrlInput.trim() || coverImage.url}
                   alt="Job post preview"
                   style={{
                     width: '100%',
@@ -563,17 +564,30 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
                 </Box>
               )}
             </Upload>
-            {coverImage?.url && (
+            {(coverImage?.url || imageUrlInput) && (
               <Button
                 size="small"
                 variant="outlined"
                 color="error"
-                onClick={() => setCoverImage(null)}
+                onClick={() => {
+                  setCoverImage(null);
+                  setImageUrlInput('');
+                }}
               >
                 Remove
               </Button>
             )}
           </Box>
+          <TextField
+            fullWidth
+            size="small"
+            label="Or paste an image URL"
+            placeholder="https://i.postimg.cc/..."
+            value={imageUrlInput}
+            onChange={(e) => setImageUrlInput(e.target.value)}
+            helperText="Upload your image to a free host like postimages.org and paste the direct link here so it displays on your job post."
+            sx={{ mb: 1 }}
+          />
           <Typography
             variant="caption"
             color="text.secondary"

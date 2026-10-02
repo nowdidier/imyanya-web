@@ -14,7 +14,10 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 
 import { TabTitle } from "../../../utils/generalFunction";
-import { APP_NAME, WHATSAPP_CONFIG } from "../../../configs/constants";
+import {
+  APP_NAME,
+  getWhatsAppContactUrl,
+} from "../../../configs/constants";
 
 const supportAreas = [
   {
@@ -70,12 +73,12 @@ const ContactPage = () => {
                   <Box>
                     <Typography fontWeight={700}>WhatsApp</Typography>
                     <Link
-                      href={`https://wa.me/${WHATSAPP_CONFIG.PHONE}`}
+                      href={getWhatsAppContactUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                       underline="hover"
                     >
-                      +{WHATSAPP_CONFIG.PHONE}
+                      Join our WhatsApp group
                     </Link>
                   </Box>
                   <Typography color="text.secondary" sx={{ lineHeight: 1.75 }}>

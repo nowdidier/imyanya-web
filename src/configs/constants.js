@@ -29,11 +29,37 @@ const normalizeHostNameValue = (value = "") => {
     .replace(/\/.*$/, "");
 };
 
+const WHATSAPP_GROUP_INVITE_LINK =
+  process.env.REACT_APP_WHATSAPP_GROUP_LINK ||
+  "https://chat.whatsapp.com/L801wcjSyA7IJvIe38o8Pa";
+
 const WHATSAPP_CONFIG = {
   PHONE: process.env.REACT_APP_WHATSAPP_PHONE || "250789690247",
   DEFAULT_MESSAGE:
     process.env.REACT_APP_WHATSAPP_MESSAGE ||
     "Hello Imyanya, I need help.",
+  GROUP_INVITE_LINK: WHATSAPP_GROUP_INVITE_LINK,
+};
+
+/**
+ * Every "contact us on WhatsApp" entry point resolves through here so they all
+ * land on the same support group invite, where members are guided on posting a
+ * job, applying, and viewing images inside job posts.
+ */
+const getWhatsAppContactUrl = () => {
+  if (WHATSAPP_CONFIG.GROUP_INVITE_LINK) {
+    return WHATSAPP_CONFIG.GROUP_INVITE_LINK;
+  }
+
+  const phone = WHATSAPP_CONFIG.PHONE.replace(/[^\d]/g, "");
+
+  if (!phone) {
+    return "";
+  }
+
+  return `https://wa.me/${phone}?text=${encodeURIComponent(
+    WHATSAPP_CONFIG.DEFAULT_MESSAGE
+  )}`;
 };
 
 const stripWwwPrefix = (value = "") => {
@@ -298,6 +324,7 @@ export {
   AUTH_PROVIDER,
   AUTH_CONFIG,
   WHATSAPP_CONFIG,
+  getWhatsAppContactUrl,
   ROLES_NAME,
   HOME_FILTER_CAREER,
   REGEX_VATIDATE,

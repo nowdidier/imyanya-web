@@ -25,6 +25,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { salaryString } from "../../utils/customData";
 import MuiImageCustom from "../MuiImageCustom";
 import RichHtmlContent from "../controls/RichHtmlContent";
+import useJobImage from "../../hooks/useJobImage";
 import { formatRoute } from "../../utils/funcUtils";
 import { ROUTES } from "../../configs/constants";
 
@@ -45,6 +46,12 @@ const JobPostLarge = ({
   const theme = useTheme();
   const nav = useNavigate();
   const { allConfig } = useSelector((state) => state.config);
+  const thumbSrc =
+    useJobImage({
+      title: jobName,
+      coverImageUrl: imageUrl,
+      description: jobDescription,
+    }) || companyImageUrl;
 
   return (
     <Card
@@ -94,45 +101,24 @@ const JobPostLarge = ({
       <Stack spacing={1.5}>
         <Stack direction="row" spacing={2} alignItems="flex-start">
           <Box sx={{ position: "relative" }}>
-            {imageUrl ? (
-              <MuiImageCustom
-                width={100}
-                height={100}
-                src={imageUrl}
-                loading="lazy"
-                sx={{
-                  border: 1,
-                  borderRadius: 2.5,
-                  borderColor: theme.palette.grey[200],
-                  p: 1,
-                  backgroundColor: theme.palette.common.white,
-                  transition: "all 0.2s ease",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                    boxShadow: theme.customShadows.medium,
-                  },
-                }}
-              />
-            ) : (
-              <MuiImageCustom
-                width={100}
-                height={100}
-                src={companyImageUrl}
-                loading="lazy"
-                sx={{
-                  border: 1,
-                  borderRadius: 2.5,
-                  borderColor: theme.palette.grey[200],
-                  p: 1,
-                  backgroundColor: theme.palette.common.white,
-                  transition: "all 0.2s ease",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                    boxShadow: theme.customShadows.medium,
-                  },
-                }}
-              />
-            )}
+            <MuiImageCustom
+              width={100}
+              height={100}
+              src={thumbSrc}
+              loading="lazy"
+              sx={{
+                border: 1,
+                borderRadius: 2.5,
+                borderColor: theme.palette.grey[200],
+                p: 1,
+                backgroundColor: theme.palette.common.white,
+                transition: "all 0.2s ease",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: theme.customShadows.medium,
+                },
+              }}
+            />
             {isUrgent && (
               <Tooltip title="Urgent Hiring" placement="top">
                 <Box

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Alert,
   AlertTitle,
@@ -31,6 +31,7 @@ import JobSeekerSignUpForm from '../../components/auths/JobSeekerSignUpForm';
 
 import tokenService from '../../../services/tokenService';
 import authService from '../../../services/authService';
+import { getRedirectParam, getSafeRedirectPath } from '../../../utils/funcUtils';
 import { getUserInfo } from '../../../redux/userSlice';
 import { updateVerifyEmail } from '../../../redux/authSlice';
 
@@ -66,6 +67,15 @@ const JobSeekerSignUp = () => {
 
   const dispatch = useDispatch();
   const nav = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectPath = React.useMemo(
+    () => getSafeRedirectPath(searchParams.get('redirect')),
+    [searchParams]
+  );
+  const redirectParam = React.useMemo(
+    () => getRedirectParam(redirectPath === '/' ? '' : redirectPath),
+    [redirectPath]
+  );
   const [errorMessage, setErrorMessage] = React.useState(null);
   const [isFullScreenLoading, setIsFullScreenLoading] = React.useState(false);
   const [serverErrors, setServerErrors] = React.useState({});
@@ -87,7 +97,7 @@ const JobSeekerSignUp = () => {
         if (registeredUser.emailSent === false) {
           toastMessages.warn('Account created, but the verification email was not sent. Please use Resend email.');
         }
-        nav(`/${ROUTES.AUTH.EMAIL_VERIFICATION}`);
+        nav(`/${ROUTES.AUTH.EMAIL_VERIFICATION}${redirectParam}`);
       } catch (error) {
         errorHandling(error, setServerErrors);
       } finally {
@@ -120,7 +130,7 @@ const JobSeekerSignUp = () => {
         dispatch(getUserInfo())
           .unwrap()
           .then(() => {
-            nav('/');
+            nav(redirectPath);
           })
           .catch(() => {
             toastMessages.error('An error occurred, please log in again!');
@@ -262,7 +272,7 @@ const JobSeekerSignUp = () => {
             }}
           >
             <Grid item>
-              <StyledLink to={`/${ROUTES.AUTH.LOGIN}`}>
+              <StyledLink to={`/${ROUTES.AUTH.LOGIN}${redirectParam}`}>
                 Already have an account? Log in
               </StyledLink>
             </Grid>

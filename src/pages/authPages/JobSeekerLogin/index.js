@@ -24,6 +24,7 @@ import {
   ROUTES,
 } from '../../../configs/constants';
 import BackdropLoading from '../../../components/loading/BackdropLoading';
+import { getRedirectParam, getSafeRedirectPath } from '../../../utils/funcUtils';
 
 import { updateVerifyEmail } from '../../../redux/authSlice';
 import { getUserInfo } from '../../../redux/userSlice';
@@ -65,6 +66,14 @@ const JobSeekerLogin = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
   const [searchParams] = useSearchParams();
+  const redirectPath = React.useMemo(
+    () => getSafeRedirectPath(searchParams.get('redirect')),
+    [searchParams]
+  );
+  const redirectParam = React.useMemo(
+    () => getRedirectParam(redirectPath === '/' ? '' : redirectPath),
+    [redirectPath]
+  );
   const [isFullScreenLoading, setIsFullScreenLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState(null);
   const [successMessage, setSuccessMessage] = React.useState(null);
@@ -103,7 +112,7 @@ const JobSeekerLogin = () => {
         if (isSaveTokenToCookie) {
           try {
             await dispatch(getUserInfo()).unwrap();
-            nav('/');
+            nav(redirectPath);
           } catch (error) {
             setErrorMessage(getAuthErrorMessage(error));
           }
@@ -133,7 +142,7 @@ const JobSeekerLogin = () => {
               roleName: roleName,
             })
           );
-          nav(`/${ROUTES.AUTH.EMAIL_VERIFICATION}`);
+          nav(`/${ROUTES.AUTH.EMAIL_VERIFICATION}${redirectParam}`);
 
           return;
         } else if (exists === false) {
@@ -180,7 +189,7 @@ const JobSeekerLogin = () => {
       if (isSaveTokenToCookie) {
         try {
           await dispatch(getUserInfo()).unwrap();
-          nav('/');
+          nav(redirectPath);
         } catch (error) {
           setErrorMessage(getAuthErrorMessage(error));
         }
@@ -342,7 +351,7 @@ const JobSeekerLogin = () => {
                 textAlign: { xs: 'left', sm: 'right' }
               }}
             >
-              <StyledLink to={`/${ROUTES.AUTH.REGISTER}`}>
+              <StyledLink to={`/${ROUTES.AUTH.REGISTER}${redirectParam}`}>
                 Don&apos;t have an account? Register
               </StyledLink>
             </Grid>

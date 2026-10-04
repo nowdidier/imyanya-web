@@ -13,10 +13,11 @@ import {
 import MarkEmailUnreadOutlinedIcon from '@mui/icons-material/MarkEmailUnreadOutlined';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelopeCircleCheck } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { TabTitle } from '../../../utils/generalFunction';
 import getAuthErrorMessage from '../../../utils/authErrorMessage';
+import { getRedirectParam } from '../../../utils/funcUtils';
 import { APP_NAME, PLATFORM, ROUTES } from '../../../configs/constants';
 import authService from '../../../services/authService';
 
@@ -24,6 +25,8 @@ const EmailVerificationRequiredPage = () => {
   TabTitle("Email Verification")
 
   const nav = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectParam = getRedirectParam(searchParams.get('redirect'));
   const { email, roleName } = useSelector((state) => state.auth);
   const [isSending, setIsSending] = React.useState(false);
   const [successMessage, setSuccessMessage] = React.useState('');
@@ -136,7 +139,7 @@ const EmailVerificationRequiredPage = () => {
           {!canResend && (
             <Button
               variant="text"
-              onClick={() => nav(`/${ROUTES.AUTH.LOGIN}`)}
+              onClick={() => nav(`/${ROUTES.AUTH.LOGIN}${redirectParam}`)}
             >
               Back to login
             </Button>

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {
+  Button,
   Card,
   CircularProgress,
   FormControlLabel,
@@ -14,6 +15,8 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import EmailIcon from '@mui/icons-material/Email';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faFile, faFilePdf } from '@fortawesome/free-regular-svg-icons';
@@ -24,7 +27,13 @@ import TextFieldCustom from '../controls/TextFieldCustom';
 import jobSeekerProfileService from '../../services/jobSeekerProfileService';
 import { formatRoute } from '../../utils/funcUtils';
 
-const ApplyForm = ({ handleApplyJob }) => {
+const ApplyForm = ({
+  handleApplyJob,
+  onWhatsAppApply,
+  onEmailApply,
+  showWhatsApp = false,
+  showEmail = false,
+}) => {
   const { currentUser } = useSelector((state) => state.user);
   const [isLoadingResumes, setIsLoadingResumes] = React.useState(false);
 
@@ -56,6 +65,17 @@ const ApplyForm = ({ handleApplyJob }) => {
     },
     resolver: yupResolver(schema),
   });
+
+  const submitVia = (handler) =>
+    handleSubmit((data) => {
+      if (typeof handler !== 'function') return;
+
+      const resume = resumes.find(
+        (value) => String(value.id) === String(data.resume)
+      );
+
+      handler(data, resume);
+    });
 
   React.useEffect(() => {
     const getOnlineProfile = async (jobSeekerProfileId, params) => {
@@ -204,6 +224,40 @@ const ApplyForm = ({ handleApplyJob }) => {
             <Typography color="GrayText" variant="caption">
               Note: Full name, email, and phone number must be accurate so employers can contact you.</Typography>
           </Grid>
+          {(showWhatsApp || showEmail) && (
+            <Grid item xs={12}>
+              <Typography color="GrayText" variant="caption">
+                Or send this application straight to the employer:
+              </Typography>
+              <Stack
+                direction="row"
+                spacing={1.5}
+                sx={{ mt: 1, flexWrap: 'wrap', rowGap: 1 }}
+              >
+                {showWhatsApp && (
+                  <Button
+                    type="button"
+                    variant="outlined"
+                    color="success"
+                    startIcon={<WhatsAppIcon />}
+                    onClick={submitVia(onWhatsAppApply)}
+                  >
+                    Apply via WhatsApp
+                  </Button>
+                )}
+                {showEmail && (
+                  <Button
+                    type="button"
+                    variant="outlined"
+                    startIcon={<EmailIcon />}
+                    onClick={submitVia(onEmailApply)}
+                  >
+                    Apply via Contact Email
+                  </Button>
+                )}
+              </Stack>
+            </Grid>
+          )}
         </Grid>
       </form>
     </>

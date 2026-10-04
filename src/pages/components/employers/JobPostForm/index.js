@@ -16,7 +16,7 @@ import SingleSelectCustom from '../../../../components/controls/SingleSelectCust
 import DatePickerCustom from '../../../../components/controls/DatePickerCustom';
 import CheckboxCustom from '../../../../components/controls/CheckboxCustom';
 import commonService from '../../../../services/commonService';
-import RichTextEditorCustom from '../../../../components/controls/RichTextEditorCustom';
+import RichTextEditorWithPreview from '../../../../components/controls/RichTextEditorWithPreview';
 import TextFieldAutoCompleteCustom from '../../../../components/controls/TextFieldAutoCompleteCustom';
 import Map from '../../../../components/Map';
 
@@ -486,7 +486,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <RichTextEditorCustom
+          <RichTextEditorWithPreview
             name="jobDescription"
             control={control}
             title="Job Description"
@@ -496,7 +496,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <RichTextEditorCustom
+          <RichTextEditorWithPreview
             name="jobRequirement"
             control={control}
             title="Job Requirements"
@@ -506,7 +506,7 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <RichTextEditorCustom
+          <RichTextEditorWithPreview
             name="benefitsEnjoyed"
             control={control}
             title="Benefits"

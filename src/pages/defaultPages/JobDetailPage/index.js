@@ -1,8 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -26,6 +27,10 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
+import LoginIcon from "@mui/icons-material/Login";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 import { QRCode, Space } from "antd";
 
@@ -38,12 +43,21 @@ import { salaryString } from "../../../utils/customData";
 import NoDataCard from "../../../components/NoDataCard";
 import Map from "../../../components/Map";
 import jobService from "../../../services/jobService";
+import companyService from "../../../services/companyService";
 import ApplyCard from "../../../components/ApplyCard";
 import SocialNetworkSharingPopup from "../../../components/SocialNetworkSharingPopup/SocialNetworkSharingPopup";
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import { ROLES_NAME, ROUTES } from "../../../configs/constants";
-import { formatRoute } from "../../../utils/funcUtils";
+import {
+  formatRoute,
+  getRedirectParam,
+  normalizeExternalUrl,
+  buildJobApplicationMessage,
+  buildMailtoUrl,
+  buildWhatsAppUrl,
+} from "../../../utils/funcUtils";
 import { buildJobShareData } from "../../../utils/shareUtils";
+import useJobImage from "../../../hooks/useJobImage";
 import HiringCTA from "../../../components/HiringCTA";
 import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
 import { setJobSeo } from "../../../components/SeoManager/jobSeoFlag";
@@ -291,87 +305,162 @@ const ActionComponent = ({
   isLoadingSave,
   handleSave,
   handleShowApplyForm,
+  handleSignIn,
+  companyWebsiteUrl,
   setOpenSharePopup,
   isAuthenticated,
   currentUser,
   shareLabel = "Share job",
-}) => (
-  <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
-    {isAuthenticated && currentUser?.roleName === ROLES_NAME.JOB_SEEKER && (
-      <>
+}) => {
+  const isJobSeeker =
+    isAuthenticated && currentUser?.roleName === ROLES_NAME.JOB_SEEKER;
+
+  return (
+    <Stack spacing={1.5}>
+      {!isJobSeeker && (
+        <Alert
+          severity="info"
+          variant="outlined"
+          icon={<InfoOutlinedIcon fontSize="inherit" />}
+          sx={{ alignItems: "center", fontSize: 14 }}
+        >
+          {!isAuthenticated
+            ? "You need to sign in to your Imyanya account before you can apply for this job."
+            : "Jobs can only be applied for by job seeker accounts. Sign in with a job seeker account to apply."}
+        </Alert>
+      )}
+
+      <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
+        {isJobSeeker ? (
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              textTransform: "none",
+              background: "linear-gradient(45deg, #FF9800 30%, #FF5722 90%)",
+              color: "white",
+              fontWeight: 600,
+              "&:hover": {
+                background: "linear-gradient(45deg, #FB8C00 30%, #F4511E 90%)",
+              },
+            }}
+            disabled={isApplied}
+            onClick={handleShowApplyForm}
+          >
+            {isApplied ? "Applied" : "Apply Now"}
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            size="large"
+            startIcon={<LoginIcon />}
+            sx={{
+              textTransform: "none",
+              background: "linear-gradient(45deg, #FF9800 30%, #FF5722 90%)",
+              color: "white",
+              fontWeight: 600,
+              "&:hover": {
+                background: "linear-gradient(45deg, #FB8C00 30%, #F4511E 90%)",
+              },
+            }}
+            onClick={handleSignIn}
+          >
+            Sign in to apply
+          </Button>
+        )}
+
+        {isJobSeeker && (
+          <LoadingButton
+            onClick={handleSave}
+            startIcon={isSaved ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            loading={isLoadingSave}
+            loadingPosition="start"
+            variant={isSaved ? "contained" : "outlined"}
+            sx={{
+              textTransform: "none",
+              ...(isSaved
+                ? {
+                    backgroundColor: "#9c27b0",
+                    "&:hover": {
+                      backgroundColor: "#7b1fa2",
+                    },
+                  }
+                : {
+                    borderColor: "#9c27b0",
+                    color: "#9c27b0",
+                    "&:hover": {
+                      borderColor: "#7b1fa2",
+                      backgroundColor: "rgba(156,39,176,0.04)",
+                    },
+                  }),
+            }}
+          >
+            <span>{isSaved ? "Saved" : "Save Job"}</span>
+          </LoadingButton>
+        )}
+
+        {companyWebsiteUrl && (
+          <Button
+            variant="outlined"
+            size="large"
+            component="a"
+            href={companyWebsiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            endIcon={<OpenInNewIcon />}
+            sx={{ textTransform: "none", fontWeight: 600 }}
+          >
+            Apply on company website
+          </Button>
+        )}
+
         <Button
           variant="contained"
           size="large"
+          startIcon={<ShareIcon />}
           sx={{
             textTransform: "none",
-            background: "linear-gradient(45deg, #FF9800 30%, #FF5722 90%)",
+            borderRadius: 999,
+            px: 3,
+            fontWeight: 700,
+            background: "linear-gradient(45deg, #441da0 30%, #6b45c9 90%)",
             color: "white",
-            fontWeight: 600,
+            boxShadow: "0 12px 24px rgba(68,29,160,0.22)",
             "&:hover": {
-              background: "linear-gradient(45deg, #FB8C00 30%, #F4511E 90%)",
+              background: "linear-gradient(45deg, #2f1578 30%, #5a39b1 90%)",
+              boxShadow: "0 14px 28px rgba(68,29,160,0.28)",
+              transform: "translateY(-1px)",
             },
           }}
-          disabled={isApplied}
-          onClick={handleShowApplyForm}
+          onClick={() => setOpenSharePopup(true)}
         >
-          {isApplied ? "Applied" : "Apply Now"}
+          {shareLabel}
         </Button>
-        <LoadingButton
-          onClick={handleSave}
-          startIcon={isSaved ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-          loading={isLoadingSave}
-          loadingPosition="start"
-          variant={isSaved ? "contained" : "outlined"}
-          sx={{
-            textTransform: "none",
-            ...(isSaved
-              ? {
-                  backgroundColor: "#9c27b0",
-                  "&:hover": {
-                    backgroundColor: "#7b1fa2",
-                  },
-                }
-              : {
-                  borderColor: "#9c27b0",
-                  color: "#9c27b0",
-                  "&:hover": {
-                    borderColor: "#7b1fa2",
-                    backgroundColor: "rgba(156,39,176,0.04)",
-                  },
-                }),
-          }}
-        >
-          <span>{isSaved ? "Saved" : "Save Job"}</span>
-        </LoadingButton>
-      </>
-    )}
-    <Button
-      variant="contained"
-      size="large"
-      startIcon={<ShareIcon />}
-      sx={{
-        textTransform: "none",
-        borderRadius: 999,
-        px: 3,
-        fontWeight: 700,
-        background: "linear-gradient(45deg, #441da0 30%, #6b45c9 90%)",
-        color: "white",
-        boxShadow: "0 12px 24px rgba(68,29,160,0.22)",
-        "&:hover": {
-          background: "linear-gradient(45deg, #2f1578 30%, #5a39b1 90%)",
-          boxShadow: "0 14px 28px rgba(68,29,160,0.28)",
-          transform: "translateY(-1px)",
-        },
-      }}
-      onClick={() => setOpenSharePopup(true)}
-    >
-      {shareLabel}
-    </Button>
-  </Stack>
-);
+      </Stack>
+    </Stack>
+  );
+};
+
+const fetchCompanyWebsiteUrl = async (companyDict) => {
+  const directUrl = normalizeExternalUrl(companyDict?.websiteUrl);
+  if (directUrl) return directUrl;
+
+  if (!companyDict?.slug) return null;
+
+  try {
+    const resData = await companyService.getCompanyDetailById(
+      companyDict.slug
+    );
+    return normalizeExternalUrl(resData.data?.websiteUrl);
+  } catch (error) {
+    return null;
+  }
+};
 
 const JobDetailPage = () => {
   const { slug } = useParams();
+  const nav = useNavigate();
+  const location = useLocation();
   const { allConfig } = useSelector((state) => state.config);
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
   const [openSharePopup, setOpenSharePopup] = React.useState(false);
@@ -381,6 +470,12 @@ const JobDetailPage = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [isLoadingSave, setIsLoadingSave] = React.useState(false);
   const [jobPostDetail, setJobPostDetail] = React.useState(null);
+  const [companyWebsiteUrl, setCompanyWebsiteUrl] = React.useState(null);
+  const coverSrc = useJobImage({
+    title: jobPostDetail?.jobName,
+    coverImageUrl: jobPostDetail?.imageUrl,
+    description: jobPostDetail?.jobDescription,
+  });
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
   const shareData = React.useMemo(
     () =>
@@ -411,6 +506,10 @@ const JobDetailPage = () => {
         setJobPostDetail(data);
         TabTitle(data?.jobName);
         setContentNoindex(data ? null : "not-found");
+
+        fetchCompanyWebsiteUrl(data?.companyDict).then((websiteUrl) => {
+          if (websiteUrl) setCompanyWebsiteUrl(websiteUrl);
+        });
 
         const cityName =
           allConfig?.cityDict[data?.location?.city] ||
@@ -646,6 +745,57 @@ const JobDetailPage = () => {
     setOpenPopup(true);
   };
 
+  const handleSignIn = () => {
+    nav(`/${ROUTES.AUTH.LOGIN}${getRedirectParam(location.pathname)}`);
+  };
+
+  const isJobSeekerUser =
+    isAuthenticated && currentUser?.roleName === ROLES_NAME.JOB_SEEKER;
+
+  const applicationMessage = buildJobApplicationMessage({
+    jobTitle: jobPostDetail?.jobName,
+    jobUrl: shareUrl,
+    fullName: isJobSeekerUser ? currentUser?.fullName : "",
+    email: isJobSeekerUser ? currentUser?.email : "",
+    phone: isJobSeekerUser ? currentUser?.jobSeekerProfile?.phone : "",
+  });
+
+  const handleSendApplicationToEmail = () => {
+    const url = buildMailtoUrl(
+      jobPostDetail?.contactPersonEmail,
+      `Job application: ${jobPostDetail?.jobName || "this job"}`,
+      applicationMessage
+    );
+
+    if (!url) {
+      toastMessages.warn(
+        "This job has no contact email address for email applications."
+      );
+      return;
+    }
+
+    window.location.href = url;
+  };
+
+  const handleSendApplicationToWhatsApp = () => {
+    const url = buildWhatsAppUrl(
+      jobPostDetail?.contactPersonPhone,
+      applicationMessage
+    );
+
+    if (!url) {
+      toastMessages.warn(
+        "This job has no contact phone number for WhatsApp applications."
+      );
+      return;
+    }
+
+    window.open(url, "_blank", "noopener,noreferrer");
+    toastMessages.info(
+      "WhatsApp opened with your application details. Press send to finish."
+    );
+  };
+
   return (
     <>
       {isLoading ? (
@@ -719,7 +869,7 @@ const JobDetailPage = () => {
                       </Box>
                     </Stack>
                   </Box>
-                  {jobPostDetail?.imageUrl && (
+                  {coverSrc && (
                     <Box
                       onClick={() => setOpenCoverLightbox(true)}
                       sx={{
@@ -741,7 +891,7 @@ const JobDetailPage = () => {
                     >
                       <Box
                         component="img"
-                        src={jobPostDetail.imageUrl}
+                        src={coverSrc}
                         alt={jobPostDetail?.jobName}
                       />
                     </Box>
@@ -775,7 +925,7 @@ const JobDetailPage = () => {
                     <DialogContent sx={{ p: 0 }}>
                       <Box
                         component="img"
-                        src={jobPostDetail?.imageUrl}
+                        src={coverSrc}
                         alt={jobPostDetail?.jobName}
                         sx={{
                           width: "100%",
@@ -858,6 +1008,8 @@ const JobDetailPage = () => {
                       isLoadingSave={isLoadingSave}
                     handleSave={handleSave}
                     handleShowApplyForm={handleShowApplyForm}
+                    handleSignIn={handleSignIn}
+                    companyWebsiteUrl={companyWebsiteUrl}
                     setOpenSharePopup={setOpenSharePopup}
                     isAuthenticated={isAuthenticated}
                     currentUser={currentUser}
@@ -1256,6 +1408,7 @@ const JobDetailPage = () => {
                             gap: 2,
                             p: 2,
                             borderRadius: 2,
+                            flexWrap: "wrap",
                             bgcolor: "rgba(156,39,176,0.04)",
                            transition: "all 0.2s",
                             "&:hover": {
@@ -1265,7 +1418,7 @@ const JobDetailPage = () => {
                           }}
                         >
                           <EmailIcon sx={{ color: "#9c27b0", fontSize: 24 }} />
-                          <Box>
+                          <Box sx={{ flex: 1, minWidth: 150 }}>
                             <Typography variant="body2" color="text.secondary" gutterBottom>
                               Contact Email
                             </Typography>
@@ -1273,6 +1426,14 @@ const JobDetailPage = () => {
                               {jobPostDetail?.contactPersonEmail || "Not updated"}
                             </Typography>
                           </Box>
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            onClick={handleSendApplicationToEmail}
+                            sx={{ textTransform: "none", fontWeight: 600 }}
+                          >
+                            Send application
+                          </Button>
                         </Box>
 
                         <Box
@@ -1282,6 +1443,7 @@ const JobDetailPage = () => {
                             gap: 2,
                             p: 2,
                             borderRadius: 2,
+                            flexWrap: "wrap",
                             bgcolor: "rgba(156,39,176,0.04)",
                            transition: "all 0.2s",
                             "&:hover": {
@@ -1291,7 +1453,7 @@ const JobDetailPage = () => {
                           }}
                         >
                           <PhoneIcon sx={{ color: "#9c27b0", fontSize: 24 }} />
-                          <Box>
+                          <Box sx={{ flex: 1, minWidth: 150 }}>
                             <Typography variant="body2" color="text.secondary" gutterBottom>
                               Phone Number
                             </Typography>
@@ -1299,6 +1461,16 @@ const JobDetailPage = () => {
                               {jobPostDetail?.contactPersonPhone || "Not updated"}
                             </Typography>
                           </Box>
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            color="success"
+                            startIcon={<WhatsAppIcon sx={{ fontSize: 16 }} />}
+                            onClick={handleSendApplicationToWhatsApp}
+                            sx={{ textTransform: "none", fontWeight: 600 }}
+                          >
+                            Apply via WhatsApp
+                          </Button>
                         </Box>
 
                         <Box
@@ -1417,6 +1589,9 @@ const JobDetailPage = () => {
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
         setIsApplySuccess={setIsApplySuccess}
+        contactPhone={jobPostDetail?.contactPersonPhone}
+        contactEmail={jobPostDetail?.contactPersonEmail}
+        jobUrl={shareUrl}
       />
       {/* End: ApplyCard */}
 

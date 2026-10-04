@@ -1,10 +1,52 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Dialog, DialogContent, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const RichHtmlContent = ({ html, sx = {} }) => {
+  const rootRef = React.useRef(null);
+  const [previewImage, setPreviewImage] = React.useState(null);
+
+  React.useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return undefined;
+
+    const images = root.querySelectorAll('img');
+
+    images.forEach((img) => {
+      const src = img.getAttribute('src') || '';
+
+      // Browsers block http:// images on https pages, so upgrade the scheme.
+      if (window.location.protocol === 'https:' && /^http:\/\//i.test(src)) {
+        img.setAttribute('src', src.replace(/^http:\/\//i, 'https://'));
+      }
+
+      if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+      if (!img.hasAttribute('alt')) img.setAttribute('alt', '');
+    });
+
+    // View linked images in an in-page lightbox so readers never leave
+    // the website while browsing related images.
+    const handleImageClick = (event) => {
+      const target = event.target;
+      if (!(target instanceof window.HTMLImageElement)) return;
+
+      event.preventDefault();
+
+      const src = target.currentSrc || target.src;
+      if (src) setPreviewImage({ src, alt: target.alt || '' });
+    };
+
+    root.addEventListener('click', handleImageClick);
+
+    return () => root.removeEventListener('click', handleImageClick);
+  }, [html]);
+
   return (
+    <>
     <Box
       component="div"
+      ref={rootRef}
       dangerouslySetInnerHTML={{ __html: html }}
       sx={{
         fontSize: 15,
@@ -39,6 +81,7 @@ const RichHtmlContent = ({ html, sx = {} }) => {
           height: 'auto',
           borderRadius: 1,
           my: 1,
+          cursor: 'zoom-in',
         },
         '& a': {
           color: 'primary.main',
@@ -114,6 +157,51 @@ const RichHtmlContent = ({ html, sx = {} }) => {
         ...sx,
       }}
     />
+
+      <Dialog
+        open={Boolean(previewImage)}
+        onClose={() => setPreviewImage(null)}
+        maxWidth="lg"
+        fullWidth
+        PaperProps={{
+          sx: {
+            bgcolor: 'transparent',
+            boxShadow: 'none',
+            overflow: 'visible',
+          },
+        }}
+      >
+        <IconButton
+          onClick={() => setPreviewImage(null)}
+          aria-label="Close image preview"
+          sx={{
+            position: 'absolute',
+            top: 8,
+            right: 8,
+            zIndex: 1,
+            bgcolor: 'rgba(0,0,0,0.55)',
+            color: 'white',
+            '&:hover': { bgcolor: 'rgba(0,0,0,0.75)' },
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent sx={{ p: 0 }}>
+          <Box
+            component="img"
+            src={previewImage?.src}
+            alt={previewImage?.alt}
+            sx={{
+              display: 'block',
+              width: '100%',
+              maxHeight: '85vh',
+              objectFit: 'contain',
+              borderRadius: 2,
+            }}
+          />
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 

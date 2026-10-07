@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
+  Button,
   Card,
   CardContent,
   CardActionArea,
@@ -54,6 +55,63 @@ const CareerAdvicePage = () => {
             negotiation, and career development for the Rwandan job market. New
             articles published regularly.
           </Typography>
+          <Card
+            variant="outlined"
+            sx={{
+              borderRadius: 3,
+              borderColor: "#dadce0",
+              bgcolor: "#f6fafe",
+              mt: 1,
+            }}
+          >
+            <CardContent sx={{ p: { xs: 2, md: 2.5 } }}>
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                spacing={2}
+                alignItems={{ xs: "flex-start", sm: "center" }}
+                justifyContent="space-between"
+              >
+                <Box>
+                  <Typography variant="h6" fontWeight={700}>
+                    Don&apos;t just read — build it
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Create your CV or cover letter now and download it as a Word
+                    (.docx) file. Free, no account needed.
+                  </Typography>
+                </Box>
+                <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
+                  <Button
+                    variant="contained"
+                    onClick={() => nav(`/${ROUTES.JOB_SEEKER.CV_BUILDER}`)}
+                    sx={{
+                      textTransform: "none",
+                      fontWeight: 700,
+                      borderRadius: "20px",
+                      backgroundColor: "#1a73e8",
+                      boxShadow: "none",
+                      whiteSpace: "nowrap",
+                      "&:hover": { backgroundColor: "#1b66c9", boxShadow: "none" },
+                    }}
+                  >
+                    CV yo mu Rwanda
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    onClick={() => nav(`/${ROUTES.JOB_SEEKER.COVER_LETTER_BUILDER}`)}
+                    sx={{
+                      textTransform: "none",
+                      fontWeight: 600,
+                      borderRadius: "20px",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Cover Letter Builder
+                  </Button>
+                </Stack>
+              </Stack>
+            </CardContent>
+          </Card>
         </Stack>
 
         {categories.map((category) => {

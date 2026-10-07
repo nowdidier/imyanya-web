@@ -51,7 +51,7 @@ const NotificationCard = ({ title }) => {
   const [lastKey, setLastKey] = React.useState(null);
 
   React.useEffect(() => {
-    if (!currentUserId) {
+    if (!db || !currentUserId) {
       setCount(0);
       return undefined;
     }
@@ -78,7 +78,7 @@ const NotificationCard = ({ title }) => {
   }, [currentUserId]);
 
   React.useEffect(() => {
-    if (!currentUserId) {
+    if (!db || !currentUserId) {
       setIsLoading(false);
       setNotifications([]);
       setLastKey(null);
@@ -119,7 +119,7 @@ const NotificationCard = ({ title }) => {
   }, [currentUserId]);
 
   const loadMore = async () => {
-    if (!currentUserId || !lastKey) {
+    if (!db || !currentUserId || !lastKey) {
       return;
     }
 
@@ -157,7 +157,7 @@ const NotificationCard = ({ title }) => {
   };
 
   const handleRead = (key) => {
-    if (!currentUserId) {
+    if (!db || !currentUserId) {
       return;
     }
 
@@ -211,7 +211,7 @@ const NotificationCard = ({ title }) => {
   };
 
   const handleRemove = (key) => {
-    if (!currentUserId) {
+    if (!db || !currentUserId) {
       return;
     }
 
@@ -232,7 +232,7 @@ const NotificationCard = ({ title }) => {
   };
 
   const handleRemoveAll = async () => {
-    if (!currentUserId) {
+    if (!db || !currentUserId) {
       return;
     }
 
@@ -259,7 +259,7 @@ const NotificationCard = ({ title }) => {
   };
 
   const handleMakeAllRead = async () => {
-    if (!currentUserId) {
+    if (!db || !currentUserId) {
       return;
     }
 

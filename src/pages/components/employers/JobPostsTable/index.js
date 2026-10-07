@@ -13,6 +13,7 @@ import {
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import dayjs from 'dayjs';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
 import DataTableCustom from '../../../../components/DataTableCustom';
 import MuiImageCustom from '../../../../components/MuiImageCustom';
@@ -33,71 +34,128 @@ const JobPostsTable = (props) => {
         </TableBody>
       ) : (
         rows.map((row) => {
+          const daysLeft =
+            row?.deadline && dayjs(row.deadline).isValid()
+              ? dayjs(row.deadline).endOf('day').diff(dayjs().startOf('day'), 'day')
+              : null;
+          const expired = Boolean(row?.isExpired) || (daysLeft !== null && daysLeft < 0);
+
           return (
             <TableBody key={row.id}>
               <TableCell component="th" scope="row" padding="none">
                 <Stack direction="row" spacing={1.5} alignItems="center">
                   {(row.imageUrl || row.companyDict?.companyImageUrl) && (
                     <MuiImageCustom
-                      width={44}
-                      height={44}
+                      width={48}
+                      height={48}
                       src={row.imageUrl || row.companyDict?.companyImageUrl}
                       sx={{
-                        borderRadius: 1.5,
+                        borderRadius: 2,
                         border: '1px solid',
-                        borderColor: 'grey.200',
+                        borderColor: '#dadce0',
+                        bgcolor: 'white',
                         objectFit: 'cover',
+                        flexShrink: 0,
                       }}
                     />
                   )}
                   <Box sx={{ overflow: 'hidden' }}>
                     <Typography
                       variant="body2"
-                      sx={{ fontWeight: 600, lineHeight: 1.3 }}
+                      sx={{ fontWeight: 700, lineHeight: 1.35, color: '#202124' }}
                     >
                       {row.jobName}
                     </Typography>
-                    {row.isUrgent && (
-                      <Chip
-                        label="Urgent Hiring"
-                        color="error"
-                        variant="outlined"
-                        size="small"
-                        sx={{ mt: 0.5, height: 20, fontSize: '0.7rem' }}
-                      />
-                    )}
+                    <Stack direction="row" spacing={0.75} sx={{ mt: 0.5, flexWrap: 'wrap', rowGap: 0.5 }}>
+                      {row.isUrgent && (
+                        <Chip
+                          label="Urgent Hiring"
+                          color="error"
+                          variant="outlined"
+                          size="small"
+                          sx={{ height: 20, fontSize: '0.7rem', fontWeight: 600 }}
+                        />
+                      )}
+                      {expired && (
+                        <Chip
+                          label="Expired"
+                          color="default"
+                          size="small"
+                          sx={{ height: 20, fontSize: '0.7rem', fontWeight: 600 }}
+                        />
+                      )}
+                    </Stack>
                   </Box>
                 </Stack>
               </TableCell>
               <TableCell align="left">
-                {dayjs(row.createAt).format('DD/MM/YYYY')}
+                <Typography variant="body2" fontWeight={500}>
+                  {dayjs(row.createAt).format('DD/MM/YYYY')}
+                </Typography>
               </TableCell>
               <TableCell align="left">
-                {row?.isExpired ? (
-                  <span style={{ color: 'red' }}>
-                    {dayjs(row.deadline).format('DD/MM/YYYY')}
-                  </span>
+                {expired ? (
+                  <>
+                    <Typography variant="body2" fontWeight={700} sx={{ color: '#d32f2f' }}>
+                      {dayjs(row.deadline).format('DD/MM/YYYY')}
+                    </Typography>
+                    <Typography variant="caption" display="block" color="error">
+                      Expired — update the deadline to relist
+                    </Typography>
+                  </>
                 ) : (
-                  <span style={{ color: '#2a3eb1' }}>
-                    {dayjs(row.deadline).format('DD/MM/YYYY')}
-                  </span>
+                  <>
+                    <Typography variant="body2" fontWeight={700} sx={{ color: '#1a73e8' }}>
+                      {dayjs(row.deadline).format('DD/MM/YYYY')}
+                    </Typography>
+                    {daysLeft !== null && (
+                      <Typography variant="caption" display="block" color="text.secondary">
+                        {daysLeft === 0
+                          ? 'Closes today'
+                          : `in ${daysLeft} day${daysLeft === 1 ? '' : 's'}`}
+                      </Typography>
+                    )}
+                  </>
                 )}
               </TableCell>
-              <TableCell align="left">{row.appliedNumber}</TableCell>
-              <TableCell align="left">{row.views}</TableCell>
+              <TableCell align="left">
+                <Typography variant="body2" fontWeight={700}>
+                  {row.appliedNumber ?? '—'}
+                </Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography variant="body2" fontWeight={500} color="text.secondary">
+                  {row.views ?? '—'}
+                </Typography>
+              </TableCell>
               <TableCell align="left">
                 <Chip
                   label={allConfig?.jobPostStatusDict[row?.status] || '---'}
                   color={JOB_POST_STATUS_BG_COLOR[row?.status] || 'default'}
                   size="small"
+                  sx={{ fontWeight: 600 }}
                 />
               </TableCell>
               <TableCell align="right">
+                {row.slug && (
+                  <Tooltip title="View public post" arrow>
+                    <IconButton
+                      aria-label="view public post"
+                      component="a"
+                      href={`/viec-lam/${row.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{ color: '#1a73e8' }}
+                    >
+                      <VisibilityOutlinedIcon />
+                    </IconButton>
+                  </Tooltip>
+                )}
                 <Tooltip title="Update" arrow>
                   <IconButton
-                    color="secondary"
                     aria-label="edit"
                     onClick={() => handleUpdate(row.id)}
+                    sx={{ color: '#1a73e8' }}
                   >
                     <EditOutlinedIcon />
                   </IconButton>

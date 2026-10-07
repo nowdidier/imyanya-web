@@ -12,8 +12,18 @@ import {
 } from 'firebase/firestore';
 import db, { serverTimestamp } from '../configs/firebase-config';
 
+const requireDb = () => {
+  if (!db) {
+    throw new Error(
+      'Firebase is not configured (missing REACT_APP_FIREBASE_* env vars at build time).'
+    );
+  }
+  return db;
+};
+
 export const addDocument = async (collectionName, data) => {
-  const collectionRef = collection(db, collectionName);
+  const firestore = requireDb();
+  const collectionRef = collection(firestore, collectionName);
 
   const docRef = await addDoc(collectionRef, {
     ...data,
@@ -29,7 +39,7 @@ export const updateChatRoomByPartnerId = async (partnerId, chatRoomId) => {
     return false;
   }
 
-  const chatRoomDocRef = doc(db, 'chatRooms', `${chatRoomId}`);
+  const chatRoomDocRef = doc(requireDb(), 'chatRooms', `${chatRoomId}`);
 
   try {
     await updateDoc(chatRoomDocRef, {
@@ -44,7 +54,7 @@ export const updateChatRoomByPartnerId = async (partnerId, chatRoomId) => {
 };
 
 export const checkExists = async (collectionName, docId) => {
-  const documentRef = doc(db, collectionName, `${docId}`);
+  const documentRef = doc(requireDb(), collectionName, `${docId}`);
 
   const documentSnapshot = await getDoc(documentRef);
 
@@ -53,7 +63,7 @@ export const checkExists = async (collectionName, docId) => {
 
 export const createUser = async (collectionName, userData, userId) => {
   try {
-    const userRef = doc(db, collectionName, `${userId}`);
+    const userRef = doc(requireDb(), collectionName, `${userId}`);
 
     await setDoc(userRef, {
       ...userData,
@@ -66,7 +76,7 @@ export const createUser = async (collectionName, userData, userId) => {
 };
 
 export const checkChatRoomExists = async (collectionName, member1, member2) => {
-  const chatRoomsRef = collection(db, collectionName);
+  const chatRoomsRef = collection(requireDb(), collectionName);
 
   const q = query(
     chatRoomsRef,
@@ -83,7 +93,7 @@ export const checkChatRoomExists = async (collectionName, member1, member2) => {
 };
 
 export const getChatRoomById = async (chatRoomId, currentUserId) => {
-  const chatRoomRef = doc(db, 'chatRooms', `${chatRoomId}`);
+  const chatRoomRef = doc(requireDb(), 'chatRooms', `${chatRoomId}`);
   const docSnap = await getDoc(chatRoomRef);
 
   if (docSnap.exists()) {
@@ -108,7 +118,7 @@ export const getChatRoomById = async (chatRoomId, currentUserId) => {
 };
 
 export const getUserAccount = async (collectionName, userId) => {
-  const userRef = doc(db, collectionName, `${userId}`);
+  const userRef = doc(requireDb(), collectionName, `${userId}`);
   const docSnap = await getDoc(userRef);
 
   if (docSnap.exists()) {

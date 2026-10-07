@@ -9,10 +9,8 @@ import {
   query,
   where,
 } from 'firebase/firestore';
-import db from '../../configs/firebase-config'; 
+import db from '../../configs/firebase-config';
 import { ROLES_NAME, ROUTES } from '../../configs/constants';
-
-const chatRoomCollectionRef = collection(db, 'chatRooms');
 
 const ChatCard = () => {
   const { currentUser  } = useSelector((state) => state.user);
@@ -25,12 +23,12 @@ const ChatCard = () => {
   }, [currentUser]);
 
   React.useEffect(() => {
-    if (!currentUserId) {
+    if (!db || !currentUserId) {
       return undefined;
     }
 
+    const chatRoomCollectionRef = collection(db, 'chatRooms');
     const q = query(
-      chatRoomCollectionRef,
       where('recipientId', '==', `${currentUserId}`),
       where('unreadCount', '>', 0)
     );

@@ -72,6 +72,27 @@ export const buildJobApplicationMessage = ({
   return lines.join('\n');
 };
 
+// Normalizes a website address to a full https URL with a www. host, e.g.
+// "imyanya.rw" -> "https://www.imyanya.rw/".
+export const toWwwUrl = (url) => {
+  const normalized = normalizeExternalUrl(url);
+  if (!normalized) return '';
+
+  try {
+    const parsed = new URL(normalized);
+    const isIp = /^\d{1,3}(\.\d{1,3}){3}$/.test(parsed.hostname);
+    const isLocalhost = parsed.hostname === 'localhost';
+
+    if (!isIp && !isLocalhost && !parsed.hostname.startsWith('www.')) {
+      parsed.hostname = `www.${parsed.hostname}`;
+    }
+
+    return parsed.href;
+  } catch (error) {
+    return normalized;
+  }
+};
+
 export const normalizePhoneForWhatsApp = (phone) => {
   const digits = String(phone || '').replace(/\D/g, '');
   if (!digits) return '';

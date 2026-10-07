@@ -40,6 +40,18 @@ const CareerAdvicePage = lazy(() =>
 const CareerArticlePage = lazy(() =>
   import("../pages/defaultPages/CareerArticlePage")
 );
+const CareerToolsPage = lazy(() =>
+  import("../pages/defaultPages/CareerToolsPage")
+);
+const CvBuilderPage = lazy(() =>
+  import("../pages/defaultPages/CvBuilderPage")
+);
+const CoverLetterBuilderPage = lazy(() =>
+  import("../pages/defaultPages/CoverLetterBuilderPage")
+);
+const ToolRunnerPage = lazy(() =>
+  import("../pages/defaultPages/ToolRunnerPage")
+);
 const CareerGuidePage = lazy(() =>
   import("../pages/defaultPages/CareerGuidePage")
 );
@@ -230,6 +242,22 @@ const routesConfig = {
             {
               path: ROUTES.JOB_SEEKER.CAREER_ARTICLE,
               element: CareerArticlePage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.CAREER_TOOLS,
+              element: CareerToolsPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.CV_BUILDER,
+              element: CvBuilderPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.COVER_LETTER_BUILDER,
+              element: CoverLetterBuilderPage,
+            },
+            {
+              path: ROUTES.JOB_SEEKER.CAREER_TOOL_DETAIL,
+              element: ToolRunnerPage,
             },
             {
               path: ROUTES.JOB_SEEKER.CONTACT,

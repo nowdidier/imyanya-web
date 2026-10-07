@@ -11,6 +11,7 @@ import {
   subscribeJobSeo,
 } from "./jobSeoFlag";
 import careerArticles from "../../data/rwandaCareerArticles";
+import { getToolBySlug } from "../../data/content/tools";
 
 const MAIN_ORIGIN = "https://imyanya.rw";
 const EMPLOYER_ORIGIN = "https://employers.imyanya.rw";
@@ -154,6 +155,21 @@ const SEO_BY_PATH = {
     description:
       "Original career advice articles for Rwandan job seekers, covering CV writing, interview preparation, salary negotiation, remote work, certifications, and more.",
     canonicalPath: "/rwanda-career-advice",
+  },
+  "/career-tools": {
+    title: "CV yo mu Rwanda — Free CV & Cover Letter Builders (Word & PDF) | Imyanya",
+    description:
+      "Build a professional CV or cover letter online and download it as Word (.docx) or PDF. Free career tools for Rwandan job seekers.",
+  },
+  "/career-tools/cv-builder": {
+    title: "CV yo mu Rwanda — Free CV Builder (Word & PDF Download) | Imyanya",
+    description:
+      "Load your Imyanya profile and download a clean, recruiter-ready CV as Word or PDF. Free, no account needed to build.",
+  },
+  "/career-tools/cover-letter-builder": {
+    title: "Free Cover Letter Builder — Download as Word (.docx) | Imyanya",
+    description:
+      "Write a tailored cover letter and download it as a Word file. Free, no account needed.",
   },
   "/ve-chung-toi": {
     title: "About Imyanya | Rwanda Jobs and Recruitment",
@@ -307,6 +323,22 @@ const getSeoForPath = (pathname) => {
       title: "Career Advice Rwanda | Imyanya",
       description:
         "Original career advice articles for Rwandan job seekers.",
+    };
+  }
+
+  if (path.startsWith("/career-tools/")) {
+    const slug = path.split("/").pop();
+    const tool = getToolBySlug(slug);
+    if (tool) {
+      return {
+        title: tool.metaTitle || `${tool.name} | Imyanya`,
+        description: tool.metaDescription || tool.description,
+      };
+    }
+    return {
+      title: "Career Tools Rwanda | Imyanya",
+      description:
+        "Free career tools for Rwandan job seekers: calculators, checklists, planners and CV builders.",
     };
   }
 

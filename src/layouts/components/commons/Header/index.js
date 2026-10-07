@@ -67,8 +67,8 @@ const pages = {
     },
     {
       id: 4,
-      label: "Career Advice",
-      path: `/${ROUTES.JOB_SEEKER.CAREER_ADVICE}`,
+      label: "Make CV & CL",
+      path: `/${ROUTES.JOB_SEEKER.CAREER_TOOLS}`,
     },
     {
       id: 5,
@@ -77,8 +77,8 @@ const pages = {
     },
     {
       id: 6,
-      label: "Book",
-      href: "https://tickets.imyanya.rw",
+      label: "Book Events",
+      href: "https://tickets.imyanya.rw/",
     },
   ],
 

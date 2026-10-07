@@ -88,27 +88,56 @@ const Popup = ({
         </DialogContent>
 
         {showDialogAction && (
-          <DialogActions 
-            sx={{ 
-              py: 2.5,
+          <DialogActions
+            sx={{
+              py: 2,
               px: 3,
-              background: theme.palette.grey[50]
+              background: 'white',
+              borderTop: '1px solid #dadce0',
+              boxShadow: '0 -2px 12px rgba(0,0,0,0.06)',
+              gap: 1.5,
+              flexWrap: 'wrap',
+              position: 'sticky',
+              bottom: 0,
+              zIndex: 1,
             }}
           >
+            <LoadingButton
+              variant="outlined"
+              size="large"
+              onClick={() => setOpenPopup(false)}
+              sx={{
+                textTransform: 'none',
+                borderRadius: '20px',
+                px: 3,
+                fontWeight: 600,
+                borderColor: '#dadce0',
+                color: '#3c4043',
+                '&:hover': { borderColor: '#1a73e8', backgroundColor: '#f6fafe' },
+                flex: { xs: 1, sm: 'none' },
+              }}
+            >
+              Cancel
+            </LoadingButton>
             <LoadingButton
               loading={false}
               loadingPosition="start"
               startIcon={buttonIcon}
               variant="contained"
+              size="large"
               sx={{
-                margin: '0 auto',
-                minWidth: 120,
-                background: theme.palette.primary.gradient,
+                textTransform: 'none',
+                borderRadius: '20px',
+                px: 4,
+                minWidth: 160,
+                fontWeight: 700,
+                backgroundColor: '#1a73e8',
+                boxShadow: 'none',
                 '&:hover': {
-                  background: theme.palette.primary.gradient,
-                  opacity: 0.9,
-                  boxShadow: theme.customShadows.medium
-                }
+                  backgroundColor: '#1b66c9',
+                  boxShadow: 'none',
+                },
+                flex: { xs: 2, sm: 'none' },
               }}
               type="submit"
               form="modal-form"

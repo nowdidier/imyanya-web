@@ -1,14 +1,19 @@
 import React from 'react';
 import {
+  Alert,
+  AlertTitle,
   Box,
   Button,
+  Chip,
   Divider,
   LinearProgress,
+  Link,
   Stack,
   Typography,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
+import { getWhatsAppContactUrl } from '../../../../configs/constants';
 
 import {
   convertEditorStateToHTMLString,
@@ -282,73 +287,112 @@ const JobPostCard = () => {
     });
   };
 
+  const supportWhatsAppUrl = getWhatsAppContactUrl();
+
   return (
-    <Box sx={{ 
-      px: { xs: 1, sm: 2 }, 
-      py: { xs: 2, sm: 2 }, 
-      backgroundColor: 'background.paper', 
-      borderRadius: 2 
+    <Box sx={{
+      p: { xs: 2, md: 3 },
+      backgroundColor: 'background.paper',
+      border: '1px solid #dadce0',
+      borderRadius: 3,
+      boxShadow: 'none',
     }}>
       {/* Header Section - Responsive */}
-      <Stack 
+      <Stack
         direction={{ xs: 'column', sm: 'row' }}
         alignItems={{ xs: 'flex-start', sm: 'center' }}
-        justifyContent="space-between" 
+        justifyContent="space-between"
         spacing={{ xs: 2, sm: 0 }}
-        mb={4}
+        mb={1}
       >
-        <Typography 
-          variant="h5" 
-          sx={{ 
-            fontWeight: 600,
-            background: 'primary.gradient',
-            WebkitBackgroundClip: 'text',
-            fontSize: { xs: '1.25rem', sm: '1.5rem' }
-          }}
-        >
-          Manage Job Postings
-        </Typography>
-        <Stack 
-          direction={{ xs: 'column', sm: 'row' }} 
-          spacing={2}
+        <Box>
+          <Stack direction="row" spacing={1.5} alignItems="center">
+            <Typography
+              variant="h1"
+              sx={{
+                fontWeight: 700,
+                color: '#202124',
+                fontSize: { xs: '1.35rem', sm: '1.6rem' },
+              }}
+            >
+              Manage Job Postings
+            </Typography>
+            <Chip
+              size="small"
+              label={`${count} post${count === 1 ? '' : 's'}`}
+              sx={{ bgcolor: '#e8f0fe', color: '#1a73e8', fontWeight: 700 }}
+            />
+          </Stack>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+            Create postings, track review status and deadlines, and follow applications.
+          </Typography>
+        </Box>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={1.5}
           width={{ xs: '100%', sm: 'auto' }}
         >
           <Button
             variant="outlined"
-            color="secondary"
-            startIcon={<FileDownloadOutlinedIcon />}
+            startIcon={<FileDownloadOutlinedIcon sx={{ fontSize: 18 }} />}
             onClick={handleExport}
             fullWidth={false}
             sx={{
-              borderRadius: 2,
+              textTransform: 'none',
+              fontWeight: 600,
+              borderRadius: '20px',
               px: 3,
+              borderColor: '#dadce0',
+              color: '#3c4043',
               '&:hover': {
-                backgroundColor: 'secondary.backgroundHover'
-              }
+                borderColor: '#1a73e8',
+                backgroundColor: '#f6fafe',
+              },
             }}
           >
             Export List
           </Button>
           <Button
             variant="contained"
-            color="primary"
             startIcon={<AddIcon />}
             onClick={handleShowAdd}
             fullWidth={false}
             sx={{
-              borderRadius: 2,
+              textTransform: 'none',
+              fontWeight: 700,
+              borderRadius: '20px',
               px: 3,
-              background: 'primary.gradient',
-              boxShadow: 'custom.small',
+              backgroundColor: '#1a73e8',
+              boxShadow: 'none',
               '&:hover': {
-                boxShadow: 'custom.medium'
-              }
+                backgroundColor: '#1b66c9',
+                boxShadow: 'none',
+              },
             }}
           >
             Create New Posting
           </Button>
         </Stack>
       </Stack>
+
+      {/* Payment + review reminder, right where employers land */}
+      <Alert severity="warning" sx={{ borderRadius: 2, mt: 2 }}>
+        <AlertTitle>Payment and review notice</AlertTitle>
+        New or updated postings return to <strong>pending review</strong>. Pay
+        with the same phone number you enter as <strong>Phone Number contact
+        person</strong> so admin matches your payment and approves faster. Need
+        help?{' '}
+        <Link
+          href={supportWhatsAppUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          underline="hover"
+          sx={{ fontWeight: 700 }}
+        >
+          Join our WhatsApp group
+        </Link>
+        .
+      </Alert>
 
       {/* Filter Section - Responsive */}
       <Stack
@@ -393,8 +437,9 @@ const JobPostCard = () => {
       {/* Table Section */}
       <Box sx={{
         backgroundColor: 'background.paper',
-        borderRadius: 2,
-        boxShadow: 'custom.card',
+        border: '1px solid #dadce0',
+        borderRadius: 3,
+        boxShadow: 'none',
         overflow: 'hidden',
         width: '100%',
         '& .MuiTableContainer-root': {
@@ -419,7 +464,8 @@ const JobPostCard = () => {
       </Box>
 
       <FormPopup
-        title="Job Posts"
+        title={editData ? 'Update Job Post' : 'Create Job Post'}
+        buttonText={editData ? 'Update' : 'Submit for Review'}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >

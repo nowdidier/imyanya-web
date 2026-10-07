@@ -4,17 +4,25 @@ import { Box, Card, CardContent, Container, Divider, Grid, Typography } from '@m
 
 import { TabTitle } from '../../../utils/generalFunction';
 import CategoryCard from '../../components/defaults/CategoryCard';
+import SeoBreadcrumbs from '../../../components/SeoBreadcrumbs';
 import { rwandaWorkTypeGuides } from '../../../data/rwandaCareerContent';
 
 const JobsByJobTypePage = () => {
-  TabTitle('Jobs by Job Type in Rwanda | Imyanya');
+  TabTitle('Full-time, Part-time and Remote Jobs in Rwanda | Imyanya');
   const { allConfig } = useSelector((state) => state.config);
   const jobTypeOptions = allConfig?.jobTypeOptions || [];
 
   return (
     <Container maxWidth="lg" sx={{ py: 2 }}>
+      <SeoBreadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Jobs in Rwanda", href: "/jobs-in-rwanda" },
+          { label: "Jobs by Type" },
+        ]}
+      />
       <Typography variant="h3" component="h1" fontWeight={800} sx={{ mb: 0.5 }}>
-        Jobs by Job Type in Rwanda
+        Full-time, Part-time and Remote Jobs in Rwanda
       </Typography>
       <Typography variant="h6" color="text.secondary" sx={{ lineHeight: 1.7, maxWidth: 860, mb: 1 }}>
         Find full-time roles, part-time positions, internships, contract work,

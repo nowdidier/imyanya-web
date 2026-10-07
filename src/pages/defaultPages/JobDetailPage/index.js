@@ -56,7 +56,6 @@ import SocialNetworkSharingPopup from "../../../components/SocialNetworkSharingP
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import { ROLES_NAME, ROUTES } from "../../../configs/constants";
 import {
-  formatRoute,
   getRedirectParam,
   toWwwUrl,
   buildJobApplicationMessage,
@@ -938,7 +937,7 @@ const JobDetailPage = () => {
           "@type": "ListItem",
           position: 2,
           name: "Jobs in Rwanda",
-          item: "https://imyanya.rw/viec-lam",
+          item: "https://imyanya.rw/jobs-in-rwanda",
         },
         {
           "@type": "ListItem",
@@ -1106,7 +1105,7 @@ const JobDetailPage = () => {
                 </Typography>
                 <Typography
                   component={Link}
-                  to={`/${ROUTES.JOB_SEEKER.JOBS}`}
+                  to={`/${ROUTES.JOB_SEEKER.JOBS_EN}`}
                   sx={{ color: "#1a73e8", textDecoration: "none", fontSize: 13 }}
                 >
                   Jobs in Rwanda
@@ -1165,10 +1164,7 @@ const JobDetailPage = () => {
                         >
                           <Box
                             component={Link}
-                            to={`/${formatRoute(
-                              ROUTES.JOB_SEEKER.COMPANY_DETAIL,
-                              jobPostDetail?.companyDict.slug
-                            )}`}
+                            to={`/companies/${jobPostDetail?.companyDict.slug}`}
                             sx={{
                               color: "#1a73e8",
                               textDecoration: "none",
@@ -1179,9 +1175,19 @@ const JobDetailPage = () => {
                             {jobPostDetail?.companyDict.companyName}
                           </Box>
                           {" · "}
-                          {allConfig?.cityDict?.[jobPostDetail?.location?.city] ||
-                            jobPostDetail?.location?.address ||
-                            "Rwanda"}
+                          <Box
+                            component={Link}
+                            to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CITY_EN}`}
+                            sx={{
+                              color: "#1a73e8",
+                              textDecoration: "none",
+                              "&:hover": { textDecoration: "underline" },
+                            }}
+                          >
+                            {allConfig?.cityDict?.[jobPostDetail?.location?.city] ||
+                              jobPostDetail?.location?.address ||
+                              "Rwanda"}
+                          </Box>
                         </Typography>
                         <Typography variant="body2" sx={{ color: "#5f6368", fontSize: 13 }}>
                           {allConfig?.employeeSizeDict?.[jobPostDetail?.companyDict.employeeSize]
@@ -1321,10 +1327,17 @@ const JobDetailPage = () => {
                       )}
                       {allConfig?.careerDict?.[jobPostDetail?.career] && (
                         <Chip
+                          component={Link}
+                          to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER_EN}`}
+                          clickable
                           label={allConfig.careerDict[jobPostDetail.career]}
                           size="small"
                           variant="outlined"
-                          sx={{ borderColor: "#dadce0", color: "#3c4043" }}
+                          sx={{
+                            borderColor: "#dadce0",
+                            color: "#3c4043",
+                            "&:hover": { borderColor: "#1a73e8", color: "#1a73e8" },
+                          }}
                         />
                       )}
                       <Chip
@@ -1507,7 +1520,20 @@ const JobDetailPage = () => {
                       <Grid item xs={12} sm={6}>
                         {item(
                           "Occupation",
-                          allConfig.careerDict[jobPostDetail?.career]
+                          allConfig.careerDict[jobPostDetail?.career] ? (
+                            <Typography
+                              component={Link}
+                              to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER_EN}`}
+                              sx={{
+                                fontWeight: "bold",
+                                color: "primary.main",
+                                textDecoration: "none",
+                                "&:hover": { textDecoration: "underline" },
+                              }}
+                            >
+                              {allConfig.careerDict[jobPostDetail?.career]}
+                            </Typography>
+                          ) : null
                         )}
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -1532,7 +1558,20 @@ const JobDetailPage = () => {
                       <Grid item xs={12} sm={6}>
                         {item(
                           "Hiring Area",
-                          allConfig.cityDict[jobPostDetail?.location?.city]
+                          allConfig.cityDict[jobPostDetail?.location?.city] ? (
+                            <Typography
+                              component={Link}
+                              to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CITY_EN}`}
+                              sx={{
+                                fontWeight: "bold",
+                                color: "primary.main",
+                                textDecoration: "none",
+                                "&:hover": { textDecoration: "underline" },
+                              }}
+                            >
+                              {allConfig.cityDict[jobPostDetail?.location?.city]}
+                            </Typography>
+                          ) : null
                         )}
                       </Grid>
                       <Grid item xs={12} sm={6}>
@@ -2056,11 +2095,36 @@ const JobDetailPage = () => {
                     <FilterJobPostCard
                       params={{
                         excludeSlug: jobPostDetail?.slug,
+                        careerId: jobPostDetail?.career,
+                        cityId: jobPostDetail?.location?.city,
                       }}
                       fullWidth={true}
                     />
                     {/* End: FilterJobPostCard */}
                   </Box>
+                  <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                    <Typography
+                      component={Link}
+                      to={`/${ROUTES.JOB_SEEKER.JOBS_EN}`}
+                      sx={{ fontSize: 13, fontWeight: 600 }}
+                    >
+                      All jobs in Rwanda
+                    </Typography>
+                    <Typography
+                      component={Link}
+                      to={`/${ROUTES.JOB_SEEKER.COMPANY_EN}`}
+                      sx={{ fontSize: 13, fontWeight: 600 }}
+                    >
+                      Companies hiring
+                    </Typography>
+                    <Typography
+                      component={Link}
+                      to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER_EN}`}
+                      sx={{ fontSize: 13, fontWeight: 600 }}
+                    >
+                      Jobs by career
+                    </Typography>
+                  </Stack>
                   <Box sx={{ mt: 3 }}>
                     <Button
                       component={Link}

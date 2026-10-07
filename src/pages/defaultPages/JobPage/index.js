@@ -6,6 +6,7 @@ import {
 } from "@mui/material";
 
 import { TabTitle } from "../../../utils/generalFunction";
+import SeoBreadcrumbs from "../../../components/SeoBreadcrumbs";
 import JobPostSearch from "../../components/defaults/JobPostSearch";
 import SuggestedJobPostCard from "../../components/defaults/SuggestedJobPostCard";
 import MainJobPostCard from "../../components/defaults/MainJobPostCard";
@@ -20,6 +21,49 @@ const JobPage = () => {
   return (
     <>
       <Box sx={{ mt: 2 }}>
+        <SeoBreadcrumbs
+          items={[{ label: "Home", href: "/" }, { label: "Jobs in Rwanda" }]}
+        />
+        <Typography
+          variant="h3"
+          component="h1"
+          fontWeight={800}
+          sx={{ mb: 0.5 }}
+        >
+          Jobs in Rwanda
+        </Typography>
+        <Typography
+          color="text.secondary"
+          sx={{ lineHeight: 1.7, maxWidth: 860, mb: 3 }}
+        >
+          Browse the latest job vacancies in Rwanda — Kigali jobs, NGO roles,
+          internships, and remote opportunities. Filter by career, location,
+          and employment type, or explore{" "}
+          <Typography
+            component="a"
+            href="/jobs-by-career"
+            sx={{ color: "primary.main", textDecoration: "none", fontWeight: 600 }}
+          >
+            jobs by career
+          </Typography>
+          {", "}
+          <Typography
+            component="a"
+            href="/jobs-by-location"
+            sx={{ color: "primary.main", textDecoration: "none", fontWeight: 600 }}
+          >
+            jobs by location
+          </Typography>
+          {" and "}
+          <Typography
+            component="a"
+            href="/jobs-by-type"
+            sx={{ color: "primary.main", textDecoration: "none", fontWeight: 600 }}
+          >
+            jobs by type
+          </Typography>
+          .
+        </Typography>
         <Box>
           {/* Start: JobPostSearch */}
           <JobPostSearch />

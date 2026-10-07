@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Card, CardContent, Container, Divider, Grid, Typography } from '@mui/material';
 import CategoryCard from '../../components/defaults/CategoryCard';
+import SeoBreadcrumbs from '../../../components/SeoBreadcrumbs';
 import { TabTitle } from '../../../utils/generalFunction';
 import { rwandaCareerCategoryGuides } from '../../../data/rwandaCareerContent';
 
@@ -12,6 +13,13 @@ const JobsByCareerPage = () => {
 
   return (
     <Container maxWidth="lg" sx={{ py: 2 }}>
+      <SeoBreadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Jobs in Rwanda", href: "/jobs-in-rwanda" },
+          { label: "Jobs by Career" },
+        ]}
+      />
       <Typography variant="h3" component="h1" fontWeight={800} sx={{ mb: 0.5 }}>
         Jobs by Career in Rwanda
       </Typography>

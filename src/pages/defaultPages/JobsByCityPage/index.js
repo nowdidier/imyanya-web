@@ -4,6 +4,7 @@ import { Box, Card, CardContent, Container, Divider, Grid, Typography } from '@m
 
 import { TabTitle } from '../../../utils/generalFunction';
 import CategoryCard from '../../components/defaults/CategoryCard';
+import SeoBreadcrumbs from '../../../components/SeoBreadcrumbs';
 import { rwandaLocationGuides } from '../../../data/rwandaCareerContent';
 
 const JobsByCityPage = () => {
@@ -13,15 +14,30 @@ const JobsByCityPage = () => {
 
   return (
     <Container maxWidth="lg" sx={{ py: 2 }}>
+      <SeoBreadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Jobs in Rwanda", href: "/jobs-in-rwanda" },
+          { label: "Jobs by Location" },
+        ]}
+      />
       <Typography variant="h3" component="h1" fontWeight={800} sx={{ mb: 0.5 }}>
         Jobs by Location in Rwanda
       </Typography>
       <Typography variant="h6" color="text.secondary" sx={{ lineHeight: 1.7, maxWidth: 860, mb: 1 }}>
         Search job vacancies across Rwanda&apos;s cities and districts. While
-        Kigali has the highest concentration of office and professional roles,
-        opportunities exist in every province for candidates with the right
-        skills and flexibility. Your location preference and willingness to
-        travel or relocate can significantly expand your options.
+        Kigali has the highest concentration of office and professional roles —
+        see dedicated{" "}
+        <Typography
+          component="a"
+          href="/kigali-jobs"
+          sx={{ color: "primary.main", textDecoration: "none", fontWeight: 600 }}
+        >
+          Kigali jobs
+        </Typography>{" "}
+        listings — opportunities exist in every province for candidates with
+        the right skills and flexibility. Your location preference and
+        willingness to travel or relocate can significantly expand your options.
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
         Choose a city or district below to see active listings, or read the

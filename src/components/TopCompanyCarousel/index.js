@@ -11,8 +11,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import MuiImageCustom from '../MuiImageCustom';
 import companyService from '../../services/companyService';
-import { ROUTES } from '../../configs/constants';
-import { formatRoute } from '../../utils/funcUtils';
 
 const styles = {
   ".swiper-pagination": {
@@ -193,7 +191,7 @@ const TopCompanyCarousel = () => {
                       }
                     },
                   }}
-                  onClick={() => nav(`/${formatRoute(ROUTES.JOB_SEEKER.COMPANY_DETAIL, value.slug)}`)}
+                  onClick={() => nav(`/companies/${value.slug}`)}
                 >
                   <Stack direction="row" justifyContent="center">
                     <MuiImageCustom

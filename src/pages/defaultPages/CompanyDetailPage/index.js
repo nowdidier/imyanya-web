@@ -44,6 +44,8 @@ import ImageGalleryCustom from "../../../components/ImageGalleryCustom";
 import companyService from "../../../services/companyService";
 import { buildCompanyShareData } from "../../../utils/shareUtils";
 import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
+import { setCompanySeo } from "../../../components/SeoManager/companySeoFlag";
+import CompanyOpenInfo from "../../../components/CompanyOpenInfo";
 
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import HiringCTA from "../../../components/HiringCTA";
@@ -146,6 +148,39 @@ const LoadingComponent = () => {
   );
 };
 
+const stripHtml = (html = "") =>
+  String(html || "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const toDateOnly = (value) => {
+  if (!value) return null;
+  const date = dayjs(value);
+  if (!date.isValid()) return null;
+  return date.format("YYYY-MM-DD");
+};
+
+const upsertSchema = (id, data) => {
+  let element = document.getElementById(id);
+
+  if (!element) {
+    element = document.createElement("script");
+    element.id = id;
+    element.type = "application/ld+json";
+    document.head.appendChild(element);
+  }
+
+  element.textContent = JSON.stringify(data);
+};
+
+const removeSchema = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.remove();
+  }
+};
+
 const CompanyDetailPage = () => {
   const { slug } = useParams();
   const { allConfig } = useSelector((state) => state.config);
@@ -180,7 +215,33 @@ const CompanyDetailPage = () => {
 
         setCompanyDetail(data);
         TabTitle(data?.companyName);
-        setContentNoindex(data ? null : "not-found");
+
+        if (!data) {
+          setContentNoindex("not-found");
+          setCompanySeo(null);
+        } else {
+          const plainDescription = stripHtml(data.description);
+          const hasDescription = plainDescription.length > 0;
+          const hasJobs = Number(data.jobPostNumber || 0) > 0;
+
+          // Thin profiles (no description + no open jobs) stay out of Google.
+          setContentNoindex(!hasDescription && !hasJobs ? "thin-company" : null);
+
+          const cityName =
+            data.location?.address ||
+            allConfig?.cityDict?.[data.location?.city] ||
+            "Rwanda";
+
+          setCompanySeo({
+            companyName: data.companyName,
+            slug: companySlug,
+            description: plainDescription,
+            location: cityName,
+            imageUrl:
+              data.companyImageUrl || data.companyCoverImageUrl || null,
+            websiteUrl: data.websiteUrl || null,
+          });
+        }
 
         var imagelistNew = [];
         for (let i = 0; i < companyImages.length; i++) {
@@ -193,13 +254,104 @@ const CompanyDetailPage = () => {
       } catch (error) {
         console.error(error);
         setContentNoindex("not-found");
+        setCompanySeo(null);
       } finally {
         setIsLoading(false);
       }
     };
 
     getCompanyDetail(slug);
+
+    return () => {
+      setCompanySeo(null);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
+
+  // Organization + breadcrumb structured data so Google understands
+  // this page as an employer offering jobs on Imyanya.
+  React.useEffect(() => {
+    if (!companyDetail) {
+      return undefined;
+    }
+
+    const canonicalUrl = `https://imyanya.rw/companies/${slug}`;
+    const cityName =
+      companyDetail.location?.address ||
+      allConfig?.cityDict?.[companyDetail.location?.city] ||
+      "Rwanda";
+    const plainDescription = stripHtml(companyDetail.description);
+    const sameAs = [
+      companyDetail.websiteUrl,
+      companyDetail.facebookUrl,
+      companyDetail.youtubeUrl,
+      companyDetail.linkedinUrl,
+    ].filter(Boolean);
+
+    upsertSchema("imyanya-company-schema", {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": canonicalUrl,
+      name: companyDetail.companyName,
+      url: canonicalUrl,
+      ...(companyDetail.companyImageUrl
+        ? { logo: companyDetail.companyImageUrl }
+        : {}),
+      ...(companyDetail.companyCoverImageUrl || companyDetail.companyImageUrl
+        ? {
+            image:
+              companyDetail.companyCoverImageUrl ||
+              companyDetail.companyImageUrl,
+          }
+        : {}),
+      ...(plainDescription
+        ? { description: plainDescription.slice(0, 500) }
+        : {}),
+      ...(sameAs.length > 0 ? { sameAs } : {}),
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: cityName,
+        addressCountry: "RW",
+        ...(companyDetail.location?.address
+          ? { streetAddress: companyDetail.location.address }
+          : {}),
+      },
+      ...(toDateOnly(companyDetail.since)
+        ? { foundingDate: toDateOnly(companyDetail.since) }
+        : {}),
+    });
+
+    upsertSchema("imyanya-company-breadcrumb-schema", {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://imyanya.rw/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Companies in Rwanda",
+          item: "https://imyanya.rw/companies",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: companyDetail.companyName,
+          item: canonicalUrl,
+        },
+      ],
+    });
+
+    return () => {
+      removeSchema("imyanya-company-schema");
+      removeSchema("imyanya-company-breadcrumb-schema");
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [companyDetail, slug]);
 
   const handleFollow = () => {
     const follow = async () => {
@@ -470,6 +622,16 @@ const CompanyDetailPage = () => {
                         </Typography>
                       </Box>
                     </Box>
+
+                    <CompanyOpenInfo
+                      companyName={companyDetail?.companyName}
+                      websiteUrl={companyDetail?.websiteUrl}
+                      locationName={
+                        companyDetail?.location?.address ||
+                        allConfig?.cityDict?.[companyDetail?.location?.city] ||
+                        ""
+                      }
+                    />
 
                     <Box>
                       <Typography

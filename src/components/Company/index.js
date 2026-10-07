@@ -14,13 +14,12 @@ import {
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
-import { IMAGES, ROLES_NAME, ROUTES } from '../../configs/constants';
+import { IMAGES, ROLES_NAME } from '../../configs/constants';
 import MuiImageCustom from '../MuiImageCustom';
 
 import companyService from '../../services/companyService';
 import toastMessages from '../../utils/toastMessages';
 import errorHandling from '../../utils/errorHandling';
-import { formatRoute } from '../../utils/funcUtils';
 
 const FollowComponent = ({ slug, isFollowed }) => {
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
@@ -146,7 +145,7 @@ const Company = ({
                 },
               }}
               component={Link}
-              to={`/${formatRoute(ROUTES.JOB_SEEKER.COMPANY_DETAIL, slug)}`}
+              to={`/companies/${slug}`}
             >
               <MuiImageCustom
                 width={80}
@@ -187,7 +186,7 @@ const Company = ({
               <Typography
                 variant="h6"
                 component={Link}
-                to={`/${formatRoute(ROUTES.JOB_SEEKER.COMPANY_DETAIL, slug)}`}
+                to={`/companies/${slug}`}
                 sx={{
                   textDecoration: 'none',
                   color: 'inherit',

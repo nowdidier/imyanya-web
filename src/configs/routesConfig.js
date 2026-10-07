@@ -212,6 +212,13 @@ const routesConfig = {
               element: CompanyDetailPage,
             },
             {
+              // Canonical company URL (matches sitemap + JobPosting sameAs).
+              // The legacy cong-ty/:slug route above keeps working; the
+              // canonical tag consolidates them for Google.
+              path: "companies/:slug",
+              element: CompanyDetailPage,
+            },
+            {
               path: ROUTES.JOB_SEEKER.ABOUT_US,
               element: AboutUsPage,
             },

@@ -10,6 +10,10 @@ import {
   getJobSeo,
   subscribeJobSeo,
 } from "./jobSeoFlag";
+import {
+  getCompanySeo,
+  subscribeCompanySeo,
+} from "./companySeoFlag";
 import careerArticles from "../../data/rwandaCareerArticles";
 import { getToolBySlug } from "../../data/content/tools";
 
@@ -343,6 +347,26 @@ const getSeoForPath = (pathname) => {
   }
 
   if (path.startsWith("/cong-ty/") || path.startsWith("/companies/")) {
+    // List pages keep the generic SEO defined in SEO_BY_PATH above.
+    const segments = path.split("/").filter(Boolean);
+    if (segments.length < 2 || !segments[1]) {
+      return MAIN_DEFAULT_SEO;
+    }
+
+    const companySeoData = getCompanySeo();
+
+    if (companySeoData) {
+      return {
+        title: `${companySeoData.companyName} Jobs & Company Profile in Rwanda | Imyanya`,
+        description: companySeoData.description
+          ? companySeoData.description.slice(0, 160)
+          : `Explore ${companySeoData.companyName} jobs, vacancies, company profile and hiring information in Rwanda on Imyanya.`,
+        canonicalPath: `/companies/${companySeoData.slug}`,
+        noindex: false,
+        companySeo: companySeoData,
+      };
+    }
+
     return {
       title: "Company Profile in Rwanda | Imyanya",
       description:
@@ -420,6 +444,10 @@ const SeoManager = () => {
     subscribeJobSeo,
     getJobSeo
   );
+  const companySeoData = useSyncExternalStore(
+    subscribeCompanySeo,
+    getCompanySeo
+  );
 
   // Reset the content flag on navigation so a new page starts as indexable.
   // Data-fetching components re-assert noindex if their results are empty.
@@ -441,8 +469,17 @@ const SeoManager = () => {
       location.pathname.startsWith("/viec-lam/") ||
       location.pathname.startsWith("/jobs/");
 
+    const isCompanyDetail =
+      (location.pathname.startsWith("/cong-ty/") ||
+        location.pathname.startsWith("/companies/")) &&
+      location.pathname.split("/").filter(Boolean).length >= 2;
+
     const ogImage =
-      isJobDetail && jobSeoData?.imageUrl ? jobSeoData.imageUrl : SHARE_IMAGE;
+      isJobDetail && jobSeoData?.imageUrl
+        ? jobSeoData.imageUrl
+        : isCompanyDetail && companySeoData?.imageUrl
+          ? companySeoData.imageUrl
+          : SHARE_IMAGE;
 
     const ogTitle =
       isJobDetail && jobSeoData?.jobName
@@ -466,7 +503,9 @@ const SeoManager = () => {
       content:
         isJobDetail && jobSeoData?.jobName
           ? `${jobSeoData.jobName}, ${jobSeoData.companyName}, jobs in Rwanda, ${jobSeoData.location || "Rwanda"}`
-          : seo.keywords || MAIN_DEFAULT_SEO.keywords,
+          : isCompanyDetail && companySeoData?.companyName
+            ? `${companySeoData.companyName}, ${companySeoData.companyName} jobs, ${companySeoData.companyName} vacancies Rwanda, ${companySeoData.location || "Rwanda"} jobs, hiring in Rwanda`
+            : seo.keywords || MAIN_DEFAULT_SEO.keywords,
     });
     upsertMeta('meta[name="robots"]', { name: "robots", content: robots });
     upsertMeta('meta[name="googlebot"]', {
@@ -575,7 +614,7 @@ const SeoManager = () => {
         "query-input": "required name=search_term_string",
       },
     });
-  }, [location.pathname, contentNoindex, jobSeoData]);
+  }, [location.pathname, contentNoindex, jobSeoData, companySeoData]);
 
   return null;
 };

@@ -44,7 +44,16 @@ const LoadingComponentItem = () => {
 };
 
 const LIMIT = 20;
-const chatRoomCollectionRef = collection(db, 'chatRooms');
+// Lazy: module-level collection(db, ...) would throw at import time when
+// Firebase env vars are missing, crashing the whole app. Resolve on use.
+const getChatRoomCollectionRef = () => {
+  if (!db) {
+    throw new Error(
+      'Firebase is not configured (missing REACT_APP_FIREBASE_* env vars at build time).'
+    );
+  }
+  return collection(db, 'chatRooms');
+};
 
 const LeftSidebar = () => {
   const { currentUserChat, setSelectedRoomId } = React.useContext(ChatContext);
@@ -86,7 +95,7 @@ const handleSelectRoom = (chatRoom) => {
   React.useEffect(() => {
     if (currentUserChat) {
       const q = query(
-        chatRoomCollectionRef,
+        getChatRoomCollectionRef(),
         where('members', 'array-contains', `${currentUserChat.userId}`)
       );
 
@@ -106,7 +115,7 @@ const handleSelectRoom = (chatRoom) => {
       setIsLoading(true);
 
       let q = query(
-        chatRoomCollectionRef,
+        getChatRoomCollectionRef(),
         where('members', 'array-contains', `${currentUserChat.userId}`),
         orderBy('updatedAt', 'desc'),
         limit(LIMIT)
@@ -162,7 +171,7 @@ const handleSelectRoom = (chatRoom) => {
     const getMoreData = async () => {
       if (lastDocument !== null) {
         const q = query(
-          chatRoomCollectionRef,
+          getChatRoomCollectionRef(),
           where('members', 'array-contains', `${currentUserChat.userId}`),
           orderBy('updatedAt', 'desc'),
           startAfter(lastDocument),
@@ -366,7 +375,7 @@ const handleSelectRoom = (chatRoom) => {
   React.useEffect(() => {
     if (currentUserChat) {
       const q = query(
-        chatRoomCollectionRef,
+        getChatRoomCollectionRef(),
         where('members', 'array-contains', `${currentUserChat.userId}`)
       );
 
@@ -386,7 +395,7 @@ const handleSelectRoom = (chatRoom) => {
       setIsLoading(true);
 
       let q = query(
-        chatRoomCollectionRef,
+        getChatRoomCollectionRef(),
         where('members', 'array-contains', `${currentUserChat.userId}`),
         orderBy('updatedAt', 'desc'),
         limit(LIMIT)
@@ -442,7 +451,7 @@ const handleSelectRoom = (chatRoom) => {
     const getMoreData = async () => {
       if (lastDocument !== null) {
         const q = query(
-          chatRoomCollectionRef,
+          getChatRoomCollectionRef(),
           where('members', 'array-contains', `${currentUserChat.userId}`),
           orderBy('updatedAt', 'desc'),
           startAfter(lastDocument),

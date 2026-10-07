@@ -29,6 +29,7 @@ const ChatCard = () => {
 
     const chatRoomCollectionRef = collection(db, 'chatRooms');
     const q = query(
+      chatRoomCollectionRef,
       where('recipientId', '==', `${currentUserId}`),
       where('unreadCount', '>', 0)
     );

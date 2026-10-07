@@ -36,7 +36,16 @@ import ChatInfo from '../../../../components/chats/ChatInfo';
 import { Empty } from 'antd';
 
 const LIMIT = 20;
-const messageCollectionRef = collection(db, 'messages');
+// Lazy: module-level collection(db, ...) would throw at import time when
+// Firebase env vars are missing, crashing the whole app. Resolve on use.
+const getMessageCollectionRef = () => {
+  if (!db) {
+    throw new Error(
+      'Firebase is not configured (missing REACT_APP_FIREBASE_* env vars at build time).'
+    );
+  }
+  return collection(db, 'messages');
+};
 
 const ChatWindow = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -97,7 +106,7 @@ const ChatWindow = () => {
   React.useEffect(() => {
     if (selectedRoomId) {
       const q = query(
-        messageCollectionRef,
+        getMessageCollectionRef(),
         where('roomId', '==', `${selectedRoomId}`)
       );
 
@@ -118,7 +127,7 @@ const ChatWindow = () => {
     setIsLoading(true);
 
     let q = query(
-      messageCollectionRef,
+      getMessageCollectionRef(),
       where('roomId', '==', `${selectedRoomId}`),
       orderBy('createdAt', 'desc'),
       limit(LIMIT)
@@ -150,7 +159,7 @@ const ChatWindow = () => {
     const getMoreData = async () => {
       if (lastDocument !== null) {
         const q = query(
-          messageCollectionRef,
+          getMessageCollectionRef(),
           where('roomId', '==', `${selectedRoomId}`),
           orderBy('createdAt', 'desc'),
           startAfter(lastDocument),

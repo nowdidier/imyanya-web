@@ -37,7 +37,9 @@ const fetchJobUrls = async (backend, request) => {
     if (!upstream.ok) break;
 
     const data = await upstream.json();
-    const results = Array.isArray(data?.results) ? data.results : [];
+    // Tolerate both {results,count} and {data:{results,count}} shapes.
+    const payload = data?.results ? data : data?.data || {};
+    const results = Array.isArray(payload?.results) ? payload.results : [];
 
     for (const job of results) {
       if (!job?.slug) continue;
@@ -50,7 +52,7 @@ const fetchJobUrls = async (backend, request) => {
       urls.push({ slug: job.slug, lastmod });
     }
 
-    const count = Number(data?.count) || 0;
+    const count = Number(payload?.count) || 0;
     if (results.length === 0 || page * PAGE_SIZE >= count) break;
   }
 

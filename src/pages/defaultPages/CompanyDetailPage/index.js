@@ -1,10 +1,12 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import {
+  Avatar,
   Box,
   Card,
+  Chip,
   Grid,
   IconButton,
   Link,
@@ -29,7 +31,8 @@ import {
 import { QRCode } from "antd";
 
 import { TabTitle } from "../../../utils/generalFunction";
-import { ICONS, IMAGES, ROLES_NAME } from "../../../configs/constants";
+import { ICONS, IMAGES, ROLES_NAME, ROUTES } from "../../../configs/constants";
+import { sampleCompanies } from "../../../data/content/companies";
 import errorHandling from "../../../utils/errorHandling";
 import toastMessages from "../../../utils/toastMessages";
 import Map from "../../../components/Map";
@@ -39,6 +42,8 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import MuiImageCustom from "../../../components/MuiImageCustom";
 import RichHtmlContent from "../../../components/controls/RichHtmlContent";
+import SeoBreadcrumbs from "../../../components/SeoBreadcrumbs";
+import ClaimOrganisationButton from "../../../components/ClaimOrganisationButton";
 import NoDataCard from "../../../components/NoDataCard";
 import ImageGalleryCustom from "../../../components/ImageGalleryCustom";
 import companyService from "../../../services/companyService";
@@ -181,6 +186,264 @@ const removeSchema = (id) => {
   }
 };
 
+const normalizeSlug = (value) => String(value || "").trim().toLowerCase();
+
+const findDirectoryCompany = (companySlug) => {
+  const needle = normalizeSlug(companySlug);
+  if (!needle) return null;
+  return (
+    (sampleCompanies || []).find(
+      (c) =>
+        normalizeSlug(c.slug) === needle || normalizeSlug(c.id) === needle
+    ) || null
+  );
+};
+
+// Profile for organisations found on the map that haven't created an
+// Imyanya profile yet: shows the curated culture snapshot, but the jobs
+// section tells the visitor to come back soon. Related places link back to
+// /companies and the career-guide map so every page meets.
+const DirectoryCompanyView = ({ company }) => {
+  const nav = useNavigate();
+  const hq = company.headquarters || {};
+  const reviews = company.employeeReviews || {};
+  const initials = String(company.companyName || "")
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+  const related = React.useMemo(() => {
+    const district = hq.district || hq.city || "";
+    const industry = company.industry || "";
+    return (sampleCompanies || [])
+      .filter((c) => c.slug !== company.slug)
+      .filter(
+        (c) =>
+          (industry && c.industry === industry) ||
+          (district &&
+            (c.headquarters?.district === district ||
+              c.headquarters?.city === district))
+      )
+      .slice(0, 3);
+  }, [company, hq.district, hq.city]);
+
+  return (
+    <Box>
+      <SeoBreadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Companies in Rwanda", href: "/companies" },
+          { label: company.companyName },
+        ]}
+      />
+      <Stack spacing={2}>
+        <Card sx={{ overflow: "visible", boxShadow: (theme) => theme.customShadows.medium }}>
+          <Box>
+            <MuiImageCustom
+              src={IMAGES.coverImageDefault}
+              sx={{ maxHeight: 250, minHeight: 200 }}
+              duration={1500}
+              width="100%"
+              fit="cover"
+            />
+          </Box>
+          <Box sx={{ p: 3, pt: 1 }}>
+            <Stack direction={{ xs: "column", md: "row" }} spacing={3} alignItems="center">
+              <Avatar
+                sx={{
+                  width: 120,
+                  height: 120,
+                  mt: -7,
+                  bgcolor: "primary.main",
+                  color: "white",
+                  fontWeight: 800,
+                  fontSize: 40,
+                  border: "4px solid #fff",
+                  boxShadow: (theme) => theme.customShadows.small,
+                }}
+                variant="rounded"
+              >
+                {initials || "?"}
+              </Avatar>
+              <Stack flex={1} spacing={1}>
+                <Typography variant="h4" fontWeight={800}>
+                  {company.companyName}
+                </Typography>
+                {company.tagline && (
+                  <Typography color="text.secondary">{company.tagline}</Typography>
+                )}
+                <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
+                  {company.industry && <Chip label={company.industry} color="primary" size="small" />}
+                  <Chip label="No Imyanya profile yet" size="small" sx={{ bgcolor: "#441da0", color: "white", fontWeight: 700 }} />
+                </Stack>
+                <Typography variant="body2" color="text.secondary">
+                  {[hq.address, hq.city, "Rwanda"].filter(Boolean).join(", ")}
+                  {company.companySize ? ` • ${company.companySize} employees` : ""}
+                  {company.foundedYear ? ` • Founded ${company.foundedYear}` : ""}
+                </Typography>
+              </Stack>
+            </Stack>
+          </Box>
+        </Card>
+
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={8}>
+            <Card sx={{ p: { xs: 2, md: 3 } }}>
+              <Stack spacing={3}>
+                {company.description && (
+                  <Box>
+                    <Typography variant="h5" gutterBottom sx={{ color: "primary.main", fontWeight: 600 }}>
+                      About
+                    </Typography>
+                    <Typography sx={{ textAlign: "justify", color: "text.secondary", lineHeight: 1.8 }}>
+                      <RichHtmlContent html={company.description} />
+                    </Typography>
+                  </Box>
+                )}
+                {company.cultureDescription && (
+                  <Box>
+                    <Typography variant="h5" gutterBottom sx={{ color: "primary.main", fontWeight: 600 }}>
+                      Company culture
+                    </Typography>
+                    <Typography sx={{ textAlign: "justify", color: "text.secondary", lineHeight: 1.8 }}>
+                      <RichHtmlContent html={company.cultureDescription} />
+                    </Typography>
+                  </Box>
+                )}
+                {reviews.overallRating && (
+                  <Box>
+                    <Typography variant="h5" gutterBottom sx={{ color: "primary.main", fontWeight: 600 }}>
+                      Employee snapshot
+                    </Typography>
+                    <Typography color="text.secondary" sx={{ mb: 1 }}>
+                      Rated {reviews.overallRating}/5 from {reviews.reviewCount || "—"} reviews.
+                    </Typography>
+                    {(reviews.pros || []).length > 0 && (
+                      <Stack spacing={0.5}>
+                        {(reviews.pros || []).slice(0, 4).map((pro) => (
+                          <Typography key={pro} variant="body2" color="text.secondary">
+                            • {pro}
+                          </Typography>
+                        ))}
+                      </Stack>
+                    )}
+                  </Box>
+                )}
+                <Box
+                  sx={{
+                    p: 3,
+                    borderRadius: 2,
+                    bgcolor: "#faf9ff",
+                    border: "1px solid #e6defc",
+                    textAlign: "center",
+                  }}
+                >
+                  <Typography variant="h5" fontWeight={800} gutterBottom>
+                    Come back soon
+                  </Typography>
+                  <Typography color="text.secondary" sx={{ lineHeight: 1.75, mb: 2 }}>
+                    {company.companyName} hasn&apos;t created its Imyanya profile yet,
+                    so there are no positions to show right now. When this organisation
+                    posts a job, its open roles will appear here.
+                  </Typography>
+                  <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} justifyContent="center">
+                    <Button
+                      variant="contained"
+                      onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`)}
+                    >
+                      Browse open jobs
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      onClick={() => nav(`/${ROUTES.JOB_SEEKER.COMPANY_EN}`)}
+                    >
+                      View all companies
+                    </Button>
+                  </Stack>
+                  <Box sx={{ mt: 2, display: "flex", justifyContent: "center" }}>
+                    <ClaimOrganisationButton
+                      companyName={company.companyName}
+                      address={hq.address}
+                      lat={hq.latitude}
+                      lng={hq.longitude}
+                      variant="outlined"
+                    />
+                  </Box>
+                </Box>
+              </Stack>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card sx={{ p: 3, boxShadow: (theme) => theme.customShadows.small, mb: 2 }}>
+              <Typography variant="h6" sx={{ color: "primary.main", mb: 2 }}>
+                Location
+              </Typography>
+              <Map
+                title={company.companyName}
+                subTitle={[hq.address, hq.city].filter(Boolean).join(", ")}
+                latitude={hq.latitude}
+                longitude={hq.longitude}
+                fallbackQuery={[hq.address, hq.district, hq.city]
+                  .filter(Boolean)
+                  .join(" ")}
+                height={220}
+              />
+            </Card>
+            {company.website && (
+              <Card sx={{ p: 3, boxShadow: (theme) => theme.customShadows.small, mb: 2 }}>
+                <Typography variant="h6" sx={{ color: "primary.main", mb: 1 }}>
+                  Website
+                </Typography>
+                <Link href={company.website} target="_blank" rel="noopener noreferrer">
+                  {company.website}
+                </Link>
+              </Card>
+            )}
+            <Card sx={{ p: 3, boxShadow: (theme) => theme.customShadows.small }}>
+              <Typography variant="h6" sx={{ color: "primary.main", mb: 1 }}>
+                Explore more
+              </Typography>
+              <Stack spacing={1}>
+                <Button
+                  variant="text"
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.COMPANY_EN}`)}
+                  sx={{ textTransform: "none", fontWeight: 700, justifyContent: "flex-start", p: 0 }}
+                >
+                  View all companies hiring in Rwanda →
+                </Button>
+                <Button
+                  variant="text"
+                  onClick={() =>
+                    nav(
+                      `/${ROUTES.JOB_SEEKER.CAREER_GUIDE}?q=${encodeURIComponent(company.companyName || "")}`
+                    )
+                  }
+                  sx={{ textTransform: "none", fontWeight: 700, justifyContent: "flex-start", p: 0 }}
+                >
+                  Find {company.companyName} on the career map →
+                </Button>
+                {related.map((rel) => (
+                  <Typography
+                    key={rel.slug}
+                    component={Link}
+                    onClick={() => nav(`/companies/${rel.slug}`)}
+                    variant="body2"
+                    sx={{ color: "primary.main", cursor: "pointer", textDecoration: "none" }}
+                  >
+                    • {rel.companyName}
+                  </Typography>
+                ))}
+              </Stack>
+            </Card>
+          </Grid>
+        </Grid>
+      </Stack>
+    </Box>
+  );
+};
+
 const CompanyDetailPage = () => {
   const { slug } = useParams();
   const { allConfig } = useSelector((state) => state.config);
@@ -189,6 +452,7 @@ const CompanyDetailPage = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [isLoadingFollow, setIsLoadingFollow] = React.useState(false);
   const [companyDetail, setCompanyDetail] = React.useState(null);
+  const [directoryCompany, setDirectoryCompany] = React.useState(null);
   const [imageList, setImageList] = React.useState([]);
   const shareUrl = typeof window !== "undefined" ? window.location.href : "";
   const shareData = React.useMemo(
@@ -217,8 +481,38 @@ const CompanyDetailPage = () => {
         TabTitle(data?.companyName);
 
         if (!data) {
-          setContentNoindex("not-found");
-          setCompanySeo(null);
+          // Fall back to the curated map directory so pinned organisations
+          // without an Imyanya profile still get a culture page.
+          // Directory pages carry a curated description/culture snapshot, so
+          // they stay indexable; only truly unknown slugs are noindexed.
+          const directory = findDirectoryCompany(companySlug);
+          setDirectoryCompany(directory);
+          if (directory) {
+            TabTitle(directory.companyName);
+            setContentNoindex(null);
+            // Full SEO so Google indexes the directory culture page:
+            // title, meta description, keywords and canonical come from
+            // this, and the JSON-LD below adds Organization + breadcrumbs.
+            const dirHq = directory.headquarters || {};
+            setCompanySeo({
+              companyName: directory.companyName,
+              slug: directory.slug,
+              description: stripHtml(
+                directory.description ||
+                  directory.cultureDescription ||
+                  directory.tagline ||
+                  ""
+              ),
+              location:
+                [dirHq.address, dirHq.city].filter(Boolean).join(", ") ||
+                "Rwanda",
+              imageUrl: null,
+              websiteUrl: directory.website || null,
+            });
+          } else {
+            setContentNoindex("not-found");
+            setCompanySeo(null);
+          }
         } else {
           const plainDescription = stripHtml(data.description);
           const hasDescription = plainDescription.length > 0;
@@ -253,8 +547,31 @@ const CompanyDetailPage = () => {
         setImageList(imagelistNew);
       } catch (error) {
         console.error(error);
-        setContentNoindex("not-found");
-        setCompanySeo(null);
+        const directory = findDirectoryCompany(slug);
+        setDirectoryCompany(directory);
+        if (directory) {
+          TabTitle(directory.companyName);
+          setContentNoindex(null);
+          const dirHq = directory.headquarters || {};
+          setCompanySeo({
+            companyName: directory.companyName,
+            slug: directory.slug,
+            description: stripHtml(
+              directory.description ||
+                directory.cultureDescription ||
+                directory.tagline ||
+                ""
+            ),
+            location:
+              [dirHq.address, dirHq.city].filter(Boolean).join(", ") ||
+              "Rwanda",
+            imageUrl: null,
+            websiteUrl: directory.website || null,
+          });
+        } else {
+          setContentNoindex("not-found");
+          setCompanySeo(null);
+        }
       } finally {
         setIsLoading(false);
       }
@@ -353,6 +670,79 @@ const CompanyDetailPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [companyDetail, slug]);
 
+  // Organization + breadcrumb structured data for directory-only
+  // organisations, so Google indexes them as real employer entities
+  // (name, location, website) even before they claim a profile.
+  React.useEffect(() => {
+    if (!directoryCompany) {
+      return undefined;
+    }
+
+    const hq = directoryCompany.headquarters || {};
+    const canonicalUrl = `https://imyanya.rw/companies/${directoryCompany.slug}`;
+    const locality =
+      [hq.address, hq.city].filter(Boolean).join(", ") || "Rwanda";
+    const plainDescription = stripHtml(
+      directoryCompany.description ||
+        directoryCompany.cultureDescription ||
+        directoryCompany.tagline ||
+        ""
+    );
+
+    upsertSchema("imyanya-directory-company-schema", {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": canonicalUrl,
+      name: directoryCompany.companyName,
+      url: canonicalUrl,
+      ...(plainDescription
+        ? { description: plainDescription.slice(0, 500) }
+        : {}),
+      ...(directoryCompany.website
+        ? { sameAs: [directoryCompany.website] }
+        : {}),
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: locality,
+        addressCountry: "RW",
+        ...(hq.address ? { streetAddress: hq.address } : {}),
+      },
+      ...(directoryCompany.foundedYear
+        ? { foundingDate: String(directoryCompany.foundedYear) }
+        : {}),
+    });
+
+    upsertSchema("imyanya-directory-company-breadcrumb-schema", {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://imyanya.rw/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Companies in Rwanda",
+          item: "https://imyanya.rw/companies",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: directoryCompany.companyName,
+          item: canonicalUrl,
+        },
+      ],
+    });
+
+    return () => {
+      removeSchema("imyanya-directory-company-schema");
+      removeSchema("imyanya-directory-company-breadcrumb-schema");
+    };
+  }, [directoryCompany]);
+
   const handleFollow = () => {
     const follow = async () => {
       setIsLoadingFollow(true);
@@ -383,18 +773,30 @@ const CompanyDetailPage = () => {
   return isLoading ? (
     <LoadingComponent />
   ) : companyDetail === null ? (
-    <NoDataCard />
+    directoryCompany ? (
+      <DirectoryCompanyView company={directoryCompany} />
+    ) : (
+      <NoDataCard />
+    )
   ) : (
     <>
+      <SeoBreadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Companies in Rwanda", href: "/companies" },
+          { label: companyDetail?.companyName || "Company profile" },
+        ]}
+      />
       <Box>
         <Stack spacing={2}>
           <Card
             sx={{
-              overflow: "visible",
-              boxShadow: (theme) => theme.customShadows.medium,
+              overflow: "hidden",
+              boxShadow: (theme) => theme.customShadows.glow,
+              border: "1px solid rgba(109, 40, 217, 0.16)",
             }}
           >
-            <Box>
+            <Box sx={{ position: "relative" }}>
               <MuiImageCustom
                 src={
                   companyDetail?.companyCoverImageUrl ||
@@ -407,6 +809,15 @@ const CompanyDetailPage = () => {
                 duration={1500}
                 width="100%"
                 fit="cover"
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(180deg, rgba(47,21,120,0) 40%, rgba(47,21,120,0.45) 100%)",
+                  pointerEvents: "none",
+                }}
               />
             </Box>
             <Box sx={{ p: 3, pt: 1 }}>
@@ -421,16 +832,18 @@ const CompanyDetailPage = () => {
                 spacing={3}
                 alignItems="center"
               >
-                <Box>
+                <Box sx={{ position: "relative", zIndex: 1 }}>
                   <MuiImageCustom
                     src={companyDetail.companyImageUrl}
                     sx={{
-                      borderRadius: 2,
+                      borderRadius: 3,
                       mt: -7,
-                      p: 1,
+                      p: 0.5,
                       bgcolor: "white",
-                      boxShadow: (theme) => theme.customShadows.small,
-                      border: "2px solid #fff",
+                      background:
+                        "linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #441da0, #8b5cf6, #ff9800) border-box",
+                      border: "3px solid transparent",
+                      boxShadow: (theme) => theme.customShadows.glow,
                     }}
                     duration={1500}
                     width={120}
@@ -848,6 +1261,13 @@ const CompanyDetailPage = () => {
                           subTitle={companyDetail?.location?.address}
                           latitude={companyDetail?.location?.lat}
                           longitude={companyDetail?.location?.lng}
+                          addressForGeocode={companyDetail?.location?.address || ""}
+                          fallbackQuery={[
+                            companyDetail?.location?.address,
+                            allConfig?.cityDict?.[companyDetail?.location?.city],
+                          ]
+                            .filter(Boolean)
+                            .join(" ")}
                         />
                       </Box>
                     </Box>

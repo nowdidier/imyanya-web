@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -29,6 +29,8 @@ import {
   rwandaLocationGuides,
   rwandaWorkTypeGuides,
 } from "../../../data/rwandaCareerContent";
+import OrganisationsMap from "../../../components/OrganisationsMap";
+import SeoBreadcrumbs from "../../../components/SeoBreadcrumbs";
 
 const GuideCard = ({ title, body }) => (
   <Card variant="outlined" sx={{ height: "100%", borderRadius: 1 }}>
@@ -67,18 +69,28 @@ const Section = ({ icon, title, intro, items }) => (
 const CareerGuidePage = () => {
   TabTitle(`Rwanda Career Guide | Job Search Advice | ${APP_NAME}`);
   const nav = useNavigate();
+  const location = useLocation();
+  // Preserve shared ?q=&sector=&district=&hiring=&view= when jumping to
+  // /companies so the list there meets the filtered map here.
+  const preservedSearch = location.search || "";
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{ py: { xs: 4, md: 7 } }}>
+      <SeoBreadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Rwanda Career Guide" },
+        ]}
+      />
+      <Box sx={{ py: { xs: 2, md: 4 } }}>
         <Stack spacing={2} sx={{ maxWidth: 920 }}>
           <Typography variant="h3" component="h1" fontWeight={800}>
             Rwanda Career Guide
           </Typography>
           <Typography variant="h6" color="text.secondary" sx={{ lineHeight: 1.75 }}>
             Practical job-search guidance for candidates comparing opportunities in
-            Kigali and across Rwanda. Use this guide to improve your CV, focus your
-            applications, and evaluate employers before you apply.
+            Kigali and across Rwanda — plus a live map of hiring organisations.
+            Filter by sector or district and click any pin to see open roles.
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
             <Button
@@ -89,13 +101,22 @@ const CareerGuidePage = () => {
             </Button>
             <Button
               variant="outlined"
-              onClick={() => nav(`/${ROUTES.JOB_SEEKER.COMPANY_EN}`)}
+              onClick={() => nav(`/${ROUTES.JOB_SEEKER.COMPANY_EN}${preservedSearch}`)}
             >
               Explore Employers
             </Button>
           </Stack>
         </Stack>
 
+        <Box sx={{ mt: 5 }}>
+          <OrganisationsMap
+            title="Where Organisations Are Hiring"
+            subtitle="Every pin is an employer place in Rwanda. Filter by sector, spot who is hiring now, and click a pin to see open roles."
+          />
+        </Box>
+
+        {/* SEO guide content — kept below the interactive map so search
+            engines and readers still get the full career advice. */}
         <Section
           icon={<ArticleOutlinedIcon color="primary" />}
           title="Rwanda Job Market Notes"
@@ -141,9 +162,19 @@ const CareerGuidePage = () => {
         <Section
           icon={<WorkOutlineIcon color="primary" />}
           title="Career Field Advice"
-          intro="Different roles need different evidence. Use these notes to decide what to place near the top of your profile."
+          intro="Different roles need different evidence. Use these notes to decide what to place near the top of your profile — then browse matching roles by career field."
           items={rwandaCareerCategoryGuides}
         />
+        <Box sx={{ mt: 2 }}>
+          <Button
+            component={RouterLink}
+            to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER_EN}`}
+            variant="outlined"
+            sx={{ textTransform: "none", fontWeight: 700 }}
+          >
+            Browse jobs by career →
+          </Button>
+        </Box>
 
         <Section
           icon={<LocationOnOutlinedIcon color="primary" />}
@@ -151,6 +182,24 @@ const CareerGuidePage = () => {
           intro="Location, travel, and work format affect hiring decisions. State your availability clearly so employers can compare you fairly."
           items={[...rwandaLocationGuides, ...rwandaWorkTypeGuides]}
         />
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} sx={{ mt: 3 }}>
+          <Button
+            component={RouterLink}
+            to={`/${ROUTES.JOB_SEEKER.JOBS_BY_CITY_EN}`}
+            variant="outlined"
+            sx={{ textTransform: "none", fontWeight: 700 }}
+          >
+            Browse jobs by location →
+          </Button>
+          <Button
+            component={RouterLink}
+            to={`/${ROUTES.JOB_SEEKER.JOBS_BY_TYPE_EN}`}
+            variant="outlined"
+            sx={{ textTransform: "none", fontWeight: 700 }}
+          >
+            Browse jobs by work type →
+          </Button>
+        </Stack>
       </Box>
     </Container>
   );

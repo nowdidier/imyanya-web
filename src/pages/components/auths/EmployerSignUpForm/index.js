@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { useForm, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -64,6 +65,7 @@ const StyledStepper = styled(Stepper)(({ theme }) => ({
 const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const { allConfig } = useSelector((state) => state.config);
+  const [searchParams] = useSearchParams();
   const [districtOptions, setDistrictOptions] = React.useState([]);
   const districtOptionsRef = React.useRef(districtOptions);
   districtOptionsRef.current = districtOptions;
@@ -197,6 +199,35 @@ const EmployerSignUpForm = ({ onSignUp, serverErrors = {}, checkCreds }) => {
   });
 
   const addressDebounce = useDebounce(address, 500);
+
+  // When someone clicks "create it" on an organisation without a profile,
+  // the map address arrives as ?orgName=&orgAddress=&orgLat=&orgLng= and is
+  // shown pre-filled in the company profile settings below.
+  const prefilledRef = React.useRef(false);
+  React.useEffect(() => {
+    if (prefilledRef.current) return;
+    prefilledRef.current = true;
+
+    const orgName = searchParams.get('orgName');
+    const orgAddress = searchParams.get('orgAddress');
+    const rawLat = searchParams.get('orgLat');
+    const rawLng = searchParams.get('orgLng');
+    const orgLat = rawLat === null ? NaN : Number(rawLat);
+    const orgLng = rawLng === null ? NaN : Number(rawLng);
+
+    if (orgName) {
+      setValue('company.companyName', orgName, { shouldDirty: true });
+    }
+    if (orgAddress) {
+      setValue('company.location.address', orgAddress, { shouldDirty: true });
+    }
+    if (Number.isFinite(orgLat)) {
+      setValue('company.location.lat', orgLat, { shouldDirty: true });
+    }
+    if (Number.isFinite(orgLng)) {
+      setValue('company.location.lng', orgLng, { shouldDirty: true });
+    }
+  }, [searchParams, setValue]);
 
   const setCoordinates = (lat, lng) => {
     setValue('company.location.lat', lat, {

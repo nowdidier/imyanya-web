@@ -7,9 +7,7 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Chip,
   Grid,
-  Link,
   Stack,
   Typography,
   Button,
@@ -24,18 +22,16 @@ import {
   ROLES_NAME,
   ROUTES,
   APP_NAME,
-  LINKS,
 } from "../../../configs/constants";
 import { rwandaJobSearchSteps } from "../../../data/rwandaCareerContent";
-import HomeSearch from "../../components/defaults/HomeSearch";
-import TopCompanyCarousel from "../../../components/TopCompanyCarousel";
+import AllCompaniesCarousel from "../../../components/AllCompaniesCarousel";
+import SectionHeader from "../../../components/SectionHeader";
 import CareerCarousel from "../../../components/CareerCarousel";
 import FeedbackCarousel from "../../../components/FeedbackCarousel";
 import JobByCategory from "../../components/defaults/JobByCategory";
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import SuggestedJobPostCard from "../../components/defaults/SuggestedJobPostCard";
 import YouTubeVideoSection from "../../../components/YouTubeVideoSection";
-import HiringCTA from "../../../components/HiringCTA";
 import TicketsPromo from "../../../components/TicketsPromo";
 import LiveStats from "../../../components/LiveStats";
 
@@ -47,94 +43,32 @@ export default function HomePage() {
   return (
     <>
       <Box sx={{ mt: 6 }}>
-        <Box
-          sx={{
-            mb: 4,
-            p: { xs: 2, sm: 3, md: 4 },
-            borderRadius: 3,
-            background: "linear-gradient(135deg, #441da0 0%, #6d28d9 100%)",
-            color: "white",
-          }}
-        >
-          <Typography
-            variant="h3"
-            component="h1"
-            sx={{ fontWeight: 800, mb: 1, fontSize: { xs: 28, sm: 34, md: 40 } }}
-          >
-            Find Jobs in Rwanda
-          </Typography>
-          <Typography variant="body1" sx={{ opacity: 0.92, mb: 2.5, maxWidth: 760 }}>
-            Search the latest vacancies across Kigali and every province —
-            NGO jobs, internships, remote roles, and full-time positions from
-            employers hiring now on {APP_NAME}. Create a free account in one
-            click with Google or Facebook, build your CV, and apply in minutes.
-            Follow us on{" "}
-            <Link href={LINKS.FACEBOOK_LINK} target="_blank" underline="always" sx={{ color: "#ffd54f" }}>
-              Facebook
-            </Link>
-            ,{" "}
-            <Link href={LINKS.INSTAGRAM_LINK} target="_blank" underline="always" sx={{ color: "#ffd54f" }}>
-              Instagram
-            </Link>{" "}
-            and{" "}
-            <Link href={LINKS.YOUTUBE_LINK} target="_blank" underline="always" sx={{ color: "#ffd54f" }}>
-              YouTube
-            </Link>{" "}
-            for daily openings and career tips.
-          </Typography>
-
-          {/* Instant job search */}
-          <HomeSearch />
-
-          {/* Popular searches */}
-          <Stack
-            direction="row"
-            spacing={1}
-            alignItems="center"
-            sx={{ mt: 2.5, flexWrap: "wrap", rowGap: 1 }}
-          >
-            <Typography variant="body2" sx={{ opacity: 0.85, mr: 0.5 }}>
-              Popular:
-            </Typography>
-            {[
-              { label: "Kigali jobs", to: "/kigali-jobs" },
-              { label: "Jobs by career", to: `/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER_EN}` },
-              { label: "Jobs by location", to: `/${ROUTES.JOB_SEEKER.JOBS_BY_CITY_EN}` },
-              { label: "Remote & part-time", to: `/${ROUTES.JOB_SEEKER.JOBS_BY_TYPE_EN}` },
-              { label: "Companies hiring", to: `/${ROUTES.JOB_SEEKER.COMPANY_EN}` },
-              { label: "Career advice", to: `/${ROUTES.JOB_SEEKER.CAREER_ADVICE}` },
-            ].map((item) => (
-              <Chip
-                key={item.label}
+        {/* Start: All companies slides — top employers mixed with every company */}
+        <SectionHeader
+          eyebrow="Employers"
+          title="Explore All Companies"
+          subtitle={
+            <>
+              Top employers first, then every employer on {APP_NAME} in one place —
+              click any logo to open its profile and see all its open roles, or{" "}
+              <Typography
                 component={RouterLink}
-                to={item.to}
-                label={item.label}
-                clickable
-                size="small"
-                sx={{
-                  color: "white",
-                  borderColor: "rgba(255,255,255,0.5)",
-                  "&:hover": { borderColor: "#ffd54f", color: "#ffd54f" },
-                }}
-                variant="outlined"
-              />
-            ))}
-          </Stack>
-        </Box>
-        {/* Start: Top companies */}
-        <Typography variant="h5" sx={{ mb: 1 }} gutterBottom>
-          Companies Hiring in Rwanda
-        </Typography>
-        <Typography variant="body1" sx={{ mb: 3, color: "text.secondary" }}>
-          Explore employers posting jobs across Kigali and the rest of Rwanda.
-        </Typography>
-        <TopCompanyCarousel />
-        {/* End: Top companies */}
+                to={`/${ROUTES.JOB_SEEKER.COMPANY_EN}`}
+                sx={{ color: "primary.main", fontWeight: 600, textDecoration: "none" }}
+              >
+                view all companies hiring in Rwanda
+              </Typography>
+              .
+            </>
+          }
+        />
+        <AllCompaniesCarousel />
+        {/* End: All companies slides */}
       </Box>
 
       <Box sx={{ mt: 10 }}>
         {/* Start: Urgent jobs */}
-        <Card variant="outlined" sx={{ boxShadow: 0 }}>
+        <Card variant="outlined" sx={{ boxShadow: 0, overflow: "hidden" }}>
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: "white" }} aria-label="recipe">
@@ -142,12 +76,18 @@ export default function HomePage() {
               </Avatar>
             }
             title={
-              <Typography variant="h5" sx={{ color: "white" }}>
+              <Typography variant="h5" sx={{ color: "white", fontWeight: 800 }}>
                 Urgent Jobs in Rwanda
               </Typography>
             }
+            subheader={
+              <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.85)" }}>
+                Employers hiring right now — apply before deadlines pass
+              </Typography>
+            }
             sx={{
-              backgroundColor: "#441da0",
+              backgroundImage:
+                "linear-gradient(120deg, #2f1578 0%, #441da0 45%, #6d28d9 100%)",
               p: { xs: 0.75, sm: 1, md: 1.5, lg: 1.5, xl: 1.5 },
             }}
           />
@@ -164,39 +104,50 @@ export default function HomePage() {
         {/* End: Urgent jobs */}
       </Box>
 
-      <Box sx={{ mt: 4 }}>
-        <HiringCTA variant="banner" />
-      </Box>
-
       <Box sx={{ mt: 10 }}>
         {/* Start: Careers */}
-        <Typography variant="h5" sx={{ mb: 1 }} gutterBottom>
-          Popular Job Categories in Rwanda
-        </Typography>
-        <Typography variant="body1" sx={{ mb: 3, color: "text.secondary" }}>
-          Browse the most active career areas and jump straight into the jobs that fit your background.
-        </Typography>
+        <SectionHeader
+          eyebrow="Careers"
+          title="Popular Job Categories in Rwanda"
+          subtitle={
+            <>
+              Browse the most active career areas and jump straight into the jobs that fit your background.
+              You can also see{" "}
+              <Typography
+                component={RouterLink}
+                to={`/${ROUTES.JOB_SEEKER.COMPANY_EN}`}
+                sx={{ color: "primary.main", fontWeight: 600, textDecoration: "none" }}
+              >
+                which companies are hiring
+              </Typography>
+              .
+            </>
+          }
+        />
         <CareerCarousel />
         {/* End: Careers */}
       </Box>
 
       <Box sx={{ mt: 10 }}>
         {/* Start: How it works */}
-        <Typography variant="h5" sx={{ mb: 1 }} gutterBottom>
-          How Imyanya Works
-        </Typography>
-        <Typography variant="body1" sx={{ mb: 3, color: "text.secondary" }}>
-          From search to signed offer — follow these four steps, then read the
-          full{" "}
-          <Typography
-            component={RouterLink}
-            to={`/${ROUTES.JOB_SEEKER.CAREER_GUIDE}`}
-            sx={{ color: "primary.main", fontWeight: 600, textDecoration: "none" }}
-          >
-            Rwanda Career Guide
-          </Typography>{" "}
-          for CV templates, interview preparation, and salary advice.
-        </Typography>
+        <SectionHeader
+          eyebrow="How it works"
+          title="How Imyanya Works"
+          subtitle={
+            <>
+              From search to signed offer — follow these four steps, then read the
+              full{" "}
+              <Typography
+                component={RouterLink}
+                to={`/${ROUTES.JOB_SEEKER.CAREER_GUIDE}`}
+                sx={{ color: "primary.main", fontWeight: 600, textDecoration: "none" }}
+              >
+                Rwanda Career Guide
+              </Typography>{" "}
+              for CV templates, interview preparation, and salary advice.
+            </>
+          }
+        />
         <Grid container spacing={2}>
           {rwandaJobSearchSteps.map((step, index) => (
             <Grid item xs={12} sm={6} md={3} key={step.title}>
@@ -215,10 +166,12 @@ export default function HomePage() {
                 <CardContent>
                   <Avatar
                     sx={{
-                      bgcolor: "primary.main",
+                      backgroundImage:
+                        "linear-gradient(135deg, #441da0 0%, #6d28d9 60%, #8b5cf6 100%)",
                       color: "white",
                       fontWeight: 800,
                       mb: 1.5,
+                      boxShadow: "0 6px 16px -6px rgba(109, 40, 217, 0.55)",
                     }}
                   >
                     {index + 1}
@@ -294,12 +247,14 @@ export default function HomePage() {
 
       <Box
         sx={{
-          borderRadius: 1,
+          borderRadius: 4,
           p: 4,
           mt: 6,
           backgroundImage: `url('${require("../../../assets/images/banner-explore-pc.png")}')`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
+          boxShadow: (theme) => theme.customShadows.glow,
+          border: "1px solid rgba(109, 40, 217, 0.2)",
         }}
       >
         <Stack
@@ -357,9 +312,11 @@ export default function HomePage() {
 
       <Box sx={{ mt: 10 }}>
         {/* Start: Feedback */}
-        <Typography variant="h5" sx={{ mb: 3 }} gutterBottom>
-          User Ratings
-        </Typography>
+        <SectionHeader
+          eyebrow="Community"
+          title="User Ratings"
+          subtitle="Real feedback from job seekers and employers using Imyanya across Rwanda."
+        />
         <FeedbackCarousel />
         {/* End: Feedback */}
       </Box>

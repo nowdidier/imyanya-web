@@ -24,6 +24,9 @@ import RichTextEditorWithPreview from '../../../../components/controls/RichTextE
 import TextFieldAutoCompleteCustom from '../../../../components/controls/TextFieldAutoCompleteCustom';
 import Map from '../../../../components/Map';
 
+import MyLocationIcon from '@mui/icons-material/MyLocation';
+import { geocodeAddress } from '../../../../utils/geocodeAddress';
+
 import goongService from '../../../../services/goongService';
 
 const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
@@ -379,7 +382,54 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
     }
   };
 
-  const handleSubmitData = (values) => {
+  const [isPinningAddress, setIsPinningAddress] = React.useState(false);
+  const [pinAddressError, setPinAddressError] = React.useState('');
+
+  // One-click pin: resolve the typed address into map coordinates, so the
+  // post always carries a pin for the detail map, the jobs map and Google
+  // Jobs — even when the employer never clicks a suggestion or the map.
+  const pinAddressOnMap = async () => {
+    const typedAddress = String(getValues('location.address') || '').trim();
+    if (typedAddress.length < 6) {
+      setPinAddressError('Type a full address first (street, district, city).');
+      return false;
+    }
+    setPinAddressError('');
+    setIsPinningAddress(true);
+    try {
+      const point = await geocodeAddress(typedAddress);
+      if (point) {
+        setCoordinates(point.lat, point.lng);
+        return true;
+      }
+      setPinAddressError('Could not find that address — click the map to drop the pin manually.');
+      return false;
+    } finally {
+      setIsPinningAddress(false);
+    }
+  };
+
+  const handleSubmitData = async (values) => {
+    // Last safety net: typed address but no pin (e.g. suggestion never
+    // clicked) — resolve it now instead of blocking the submit, so every
+    // published post is visible on the maps exactly like /viec-lam shows.
+    const loc = values?.location || {};
+    const latMissing = loc.lat === '' || loc.lat === undefined || loc.lat === null;
+    const lngMissing = loc.lng === '' || loc.lng === undefined || loc.lng === null;
+    if (String(loc.address || '').trim().length >= 6 && (latMissing || lngMissing)) {
+      try {
+        const point = await geocodeAddress(loc.address);
+        if (point) {
+          values = {
+            ...values,
+            location: { ...loc, lat: point.lat, lng: point.lng },
+          };
+        }
+      } catch (error) {
+        // Never block submit on geocoding — validation errors surface as usual.
+      }
+    }
+
     const finalImageUrl = imageUrlInput.trim();
     const imagePayload = finalImageUrl ? { imageUrl: finalImageUrl } : {};
 
@@ -1038,6 +1088,34 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
                   handleInputChange={handleAddressInputChange}
                   helperText="Search an address or click the map below. Latitude and longitude will fill automatically."
                 />
+              </Grid>
+              <Grid item xs={12}>
+                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems={{ xs: 'stretch', sm: 'center' }}>
+                  <Button
+                    variant={latOk && lngOk ? 'outlined' : 'contained'}
+                    color={latOk && lngOk ? 'success' : 'primary'}
+                    size="small"
+                    startIcon={<MyLocationIcon />}
+                    onClick={pinAddressOnMap}
+                    disabled={isPinningAddress || String(address || '').trim().length < 6}
+                    sx={{ textTransform: 'none', fontWeight: 700, alignSelf: 'flex-start' }}
+                  >
+                    {isPinningAddress
+                      ? 'Pinning address…'
+                      : latOk && lngOk
+                        ? 'Re-pin this address'
+                        : 'Pin this address on the map'}
+                  </Button>
+                  {pinAddressError ? (
+                    <Typography variant="caption" color="error">
+                      {pinAddressError}
+                    </Typography>
+                  ) : (
+                    <Typography variant="caption" color="text.secondary">
+                      No suggestion clicked? This drops the pin for you — it powers the job map and Google Jobs.
+                    </Typography>
+                  )}
+                </Stack>
               </Grid>
               <Grid item xs={12}>
                 <Map

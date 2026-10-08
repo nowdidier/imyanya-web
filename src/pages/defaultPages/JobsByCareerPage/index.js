@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Box, Card, CardContent, Container, Divider, Grid, Typography } from '@mui/material';
 import CategoryCard from '../../components/defaults/CategoryCard';
 import SeoBreadcrumbs from '../../../components/SeoBreadcrumbs';
+import OrganisationsMap from '../../../components/OrganisationsMap';
 import { TabTitle } from '../../../utils/generalFunction';
 import { rwandaCareerCategoryGuides } from '../../../data/rwandaCareerContent';
 
@@ -31,9 +32,9 @@ const JobsByCareerPage = () => {
         application to what employers in that field actually look for.
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-        Select a career category below to filter active listings, or read the
-        career field notes for guidance on how to prepare a competitive
-        application in your chosen area.
+        Select a career category below to filter active listings, read the
+        career field notes for guidance, then explore every hiring organisation
+        pinned on the map — click a pin to see its open roles.
       </Typography>
       <Divider sx={{ mb: 4 }} />
       {careerOptions.length > 0 ? (
@@ -56,12 +57,16 @@ const JobsByCareerPage = () => {
         <Typography variant="h5" component="h2" fontWeight={700} gutterBottom>
           Career Field Notes
         </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, maxWidth: 760 }}>
+          Match your CV to what each field screens for — then use the map below
+          to find which organisations in that sector are hiring now.
+        </Typography>
         <Grid container spacing={2}>
           {rwandaCareerCategoryGuides.map((item) => (
             <Grid item xs={12} md={6} key={item.title}>
               <Card variant="outlined" sx={{ height: '100%', borderRadius: 1 }}>
                 <CardContent>
-                  <Typography variant="h6" fontWeight={700} gutterBottom>
+                  <Typography variant="h6" component="h3" fontWeight={700} gutterBottom>
                     {item.title}
                   </Typography>
                   <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
@@ -72,6 +77,13 @@ const JobsByCareerPage = () => {
             </Grid>
           ))}
         </Grid>
+      </Box>
+
+      <Box sx={{ mt: 5 }}>
+        <OrganisationsMap
+          title="All Organisations Pinned"
+          subtitle="Browse employers by place as well as by career field. Filter by sector to match the notes above, search a company name, and open any pin to view its active jobs and profile."
+        />
       </Box>
     </Container>
   );

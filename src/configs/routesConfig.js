@@ -429,6 +429,12 @@ const routesConfig = {
       path: ROUTES.ERROR.NOT_FOUND,
       element: NotFoundPage,
     },
+    {
+      // Keep malformed, stale, and retired links inside the application
+      // instead of leaving visitors with an empty route.
+      path: "*",
+      element: NotFoundPage,
+    },
   ],
   [HOST_NAME.EMPLOYER_MYJOB]: [
     {
@@ -555,6 +561,10 @@ const routesConfig = {
     },
     {
       path: ROUTES.ERROR.NOT_FOUND,
+      element: NotFoundPage,
+    },
+    {
+      path: "*",
       element: NotFoundPage,
     },
   ],

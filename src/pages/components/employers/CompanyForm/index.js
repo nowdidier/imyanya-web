@@ -414,6 +414,7 @@ const CompanyForm = ({ handleUpdate, editData, serverErrors = null }) => {
                 name="description"
                 control={control}
                 title="Additional Description"
+                withLinks
               />
               {/* <MultilineTextFieldCustom
                 name="description"

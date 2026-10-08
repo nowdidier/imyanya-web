@@ -115,6 +115,7 @@ const SendMailCard = ({
                 control={control}
                 title="Email Content"
                 showRequired={true}
+                withLinks
               />
             </Grid>
             <Grid item xs={12}>

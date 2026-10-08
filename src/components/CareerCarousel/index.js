@@ -173,6 +173,7 @@ const CareerCarousel = () => {
           : topCareers.map((value) => (
               <SwiperSlide key={value.id}>
                 <Card
+                  variant="outlined"
                   sx={{
                     alignItems: "center",
                     p: 2,
@@ -181,12 +182,14 @@ const CareerCarousel = () => {
                     boxShadow: 0,
                     backgroundColor: (theme) => theme.palette.background.paper,
                     borderRadius: "16px",
-                   transition: "all 0.3s ease",
+                    borderColor: "grey.200",
+                    transition: "all 0.3s ease",
                     "&:hover": {
                      transform: "translateY(-4px)",
-                      boxShadow: (theme) => theme.customShadows.medium,
+                      boxShadow: (theme) => theme.customShadows.glow,
+                      borderColor: "rgba(109, 40, 217, 0.35)",
                       "& .career-icon": {
-                       transform: "scale(1.05)",
+                        transform: "scale(1.05)",
                       },
                       "& .career-name": {
                         color: (theme) => theme.palette.primary.main,

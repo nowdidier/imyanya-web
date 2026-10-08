@@ -22,7 +22,14 @@ const Footer = () => {
 
   return (
     <Box>
-      <Container maxWidth="lg">
+      <Box
+        sx={{
+          height: 4,
+          background:
+            'linear-gradient(90deg, #441da0 0%, #6d28d9 40%, #ff9800 75%, #ffb74d 100%)',
+        }}
+      />
+      <Container maxWidth="lg" sx={{ pt: 5 }}>
         <Grid container spacing={4}>
           <Grid xs={12} sm={6} md={3} item>
             <List disablePadding>
@@ -125,8 +132,19 @@ const Footer = () => {
                 <Typography
                   variant="subtitle1"
                   sx={{
-                    fontWeight: 600,
+                    fontWeight: 800,
                     mb: 1,
+                    letterSpacing: '0.01em',
+                    '&:after': {
+                      content: '""',
+                      display: 'block',
+                      width: 36,
+                      height: 3,
+                      mt: 0.75,
+                      borderRadius: 999,
+                      background:
+                        'linear-gradient(90deg, #6d28d9 0%, #ff9800 100%)',
+                    },
                   }}
                 >
                   For Employers
@@ -201,8 +219,19 @@ const Footer = () => {
                 <Typography
                   variant="subtitle1"
                   sx={{
-                    fontWeight: 600,
+                    fontWeight: 800,
                     mb: 1,
+                    letterSpacing: '0.01em',
+                    '&:after': {
+                      content: '""',
+                      display: 'block',
+                      width: 36,
+                      height: 3,
+                      mt: 0.75,
+                      borderRadius: 999,
+                      background:
+                        'linear-gradient(90deg, #6d28d9 0%, #ff9800 100%)',
+                    },
                   }}
                 >
                   For Job Seekers
@@ -262,8 +291,19 @@ const Footer = () => {
                 <Typography
                   variant="subtitle1"
                   sx={{
-                    fontWeight: 600,
+                    fontWeight: 800,
                     mb: 1,
+                    letterSpacing: '0.01em',
+                    '&:after': {
+                      content: '""',
+                      display: 'block',
+                      width: 36,
+                      height: 3,
+                      mt: 0.75,
+                      borderRadius: 999,
+                      background:
+                        'linear-gradient(90deg, #6d28d9 0%, #ff9800 100%)',
+                    },
                   }}
                 >
                   Popular Searches
@@ -298,8 +338,19 @@ const Footer = () => {
                 <Typography
                   variant="subtitle1"
                   sx={{
-                    fontWeight: 600,
+                    fontWeight: 800,
                     mb: 1,
+                    letterSpacing: '0.01em',
+                    '&:after': {
+                      content: '""',
+                      display: 'block',
+                      width: 36,
+                      height: 3,
+                      mt: 0.75,
+                      borderRadius: 999,
+                      background:
+                        'linear-gradient(90deg, #6d28d9 0%, #ff9800 100%)',
+                    },
                   }}
                 >
                   Mobile App
@@ -334,8 +385,19 @@ const Footer = () => {
                 <Typography
                   variant="subtitle1"
                   sx={{
-                    fontWeight: 600,
+                    fontWeight: 800,
                     mb: 1,
+                    letterSpacing: '0.01em',
+                    '&:after': {
+                      content: '""',
+                      display: 'block',
+                      width: 36,
+                      height: 3,
+                      mt: 0.75,
+                      borderRadius: 999,
+                      background:
+                        'linear-gradient(90deg, #6d28d9 0%, #ff9800 100%)',
+                    },
                   }}
                 >
                   Connect with {APP_NAME}
@@ -364,8 +426,12 @@ const Footer = () => {
                       rel="noopener noreferrer"
                       aria-label={social.name}
                       sx={{
-                       transition: 'transform 0.2s',
-                        '&:hover': {transform: 'scale(1.1)' }
+                        borderRadius: '50%',
+                        transition: 'transform 0.2s, box-shadow 0.2s',
+                        '&:hover': {
+                          transform: 'scale(1.12)',
+                          boxShadow: '0 6px 18px -4px rgba(109, 40, 217, 0.55)',
+                        }
                       }}
                     >
                       <img height="35" width="35" src={social.icon} alt="" loading="lazy" />

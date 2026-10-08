@@ -6,7 +6,7 @@ import NotificationCard from "../../components/defaults/NotificationCard";
 import { APP_NAME } from "../../../configs/constants";
 
 const NotificationPage = () => {
-  TabTitle(`${APP_NAME} notifications`);
+  TabTitle(`Notifications | ${APP_NAME}`);
 
   return (
     <Card sx={{ p: { xs: 2, sm: 2, md: 2, lg: 3, xl: 3 } }}>
@@ -16,9 +16,12 @@ const NotificationPage = () => {
           <Typography
             variant="h5"
             sx={{
-              fontWeight: 600,
-              background: "primary.gradient",
+              fontWeight: 800,
+              background:
+                "linear-gradient(120deg, #2f1578 20%, #6d28d9 60%, #b45309 110%)",
+              backgroundClip: "text",
               WebkitBackgroundClip: "text",
+              color: "transparent",
               fontSize: { xs: "1.25rem", sm: "1.5rem" },
             }}
           >

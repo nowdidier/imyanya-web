@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -94,24 +93,34 @@ const AppIntroductionCard = () => {
           </Box>
           <Box>
             <Stack direction="row" spacing={2}>
-              <Link href={LINKS.CHPLAY_LINK} target="_blank">
+              <a
+                href={LINKS.CHPLAY_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Get Imyanya on Google Play"
+              >
                 <CardMedia
                   height="50"
                   width="150"
                   component="img"
                   image={IMAGES.chPlayDownload}
-                  alt="Paella dish"
+                  alt="Get it on Google Play"
                 />
-              </Link>
-              <Link href={LINKS.APPSTORE_LINK} target="_blank">
+              </a>
+              <a
+                href={LINKS.APPSTORE_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download Imyanya on the App Store"
+              >
                 <CardMedia
                   height="50"
                   width="150"
                   component="img"
                   image={IMAGES.appStoreDownload}
-                  alt="Paella dish"
+                  alt="Download on the App Store"
                 />
-              </Link>
+              </a>
             </Stack>
           </Box>
         </Stack>

@@ -17,6 +17,7 @@ import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 
 import { TabTitle } from "../../../utils/generalFunction";
 import { APP_NAME, ROUTES } from "../../../configs/constants";
+import SeoBreadcrumbs from "../../../components/SeoBreadcrumbs";
 import careerArticles from "../../../data/rwandaCareerArticles";
 
 const categoryColors = {
@@ -45,7 +46,13 @@ const CareerAdvicePage = () => {
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{ py: { xs: 4, md: 7 } }}>
+      <SeoBreadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Career Advice" },
+        ]}
+      />
+      <Box sx={{ py: { xs: 2, md: 4 } }}>
         <Stack spacing={2} sx={{ maxWidth: 920, mb: 5 }}>
           <Typography variant="h3" component="h1" fontWeight={800}>
             Career Advice Rwanda

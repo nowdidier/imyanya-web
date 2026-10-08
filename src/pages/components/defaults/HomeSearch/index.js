@@ -77,8 +77,12 @@ const HomeSearch = () => {
   return (
     <Card
       sx={{
-        backgroundColor: 'rgba(0,0,0,.35)',
+        backgroundColor: 'rgba(20, 8, 50, 0.55)',
+        backdropFilter: 'blur(12px) saturate(140%)',
+        WebkitBackdropFilter: 'blur(12px) saturate(140%)',
+        border: '1px solid rgba(255, 255, 255, 0.18)',
         borderRadius: 3.5,
+        boxShadow: '0 18px 50px -12px rgba(0, 0, 0, 0.55)',
         p: 4,
         pt: 5,
       }}

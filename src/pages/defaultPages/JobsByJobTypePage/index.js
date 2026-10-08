@@ -5,6 +5,7 @@ import { Box, Card, CardContent, Container, Divider, Grid, Typography } from '@m
 import { TabTitle } from '../../../utils/generalFunction';
 import CategoryCard from '../../components/defaults/CategoryCard';
 import SeoBreadcrumbs from '../../../components/SeoBreadcrumbs';
+import OrganisationsMap from '../../../components/OrganisationsMap';
 import { rwandaWorkTypeGuides } from '../../../data/rwandaCareerContent';
 
 const JobsByJobTypePage = () => {
@@ -73,6 +74,14 @@ const JobsByJobTypePage = () => {
             </Grid>
           ))}
         </Grid>
+      </Box>
+
+      <Box sx={{ mt: 5 }}>
+        <OrganisationsMap
+          compact
+          title="Where Flexible Work Is Pinned"
+          subtitle="Remote, part-time and contract roles come from real places too. Toggle Hiring only and click any pin to see that employer's open roles."
+        />
       </Box>
     </Container>
   );

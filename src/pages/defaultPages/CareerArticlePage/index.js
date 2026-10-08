@@ -25,6 +25,7 @@ const CareerArticlePage = () => {
   const article = careerArticles.find((a) => a.slug === slug);
 
   if (!article) {
+    TabTitle(`Article Not Found | ${APP_NAME}`);
     return (
       <Container maxWidth="md">
         <Box sx={{ py: 10, textAlign: "center" }}>

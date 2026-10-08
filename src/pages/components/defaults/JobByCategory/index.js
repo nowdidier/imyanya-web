@@ -51,10 +51,23 @@ const JobByCategory = () => {
           <Typography
             variant="h6"
             sx={{
-              color: "primary.main",
-              borderBottom: "2px solid",
-              borderColor: "primary.main",
+              fontWeight: 800,
               pb: 1,
+              background:
+                "linear-gradient(120deg, #2f1578 20%, #6d28d9 60%, #b45309 110%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+              "&:after": {
+                content: '""',
+                display: "block",
+                width: 44,
+                height: 3,
+                mt: 0.75,
+                borderRadius: 999,
+                background:
+                  "linear-gradient(90deg, #6d28d9 0%, #ff9800 100%)",
+              },
             }}
           >
             Jobs by Career in Rwanda
@@ -66,12 +79,17 @@ const JobByCategory = () => {
                   cursor: "pointer",
                   py: 0.5,
                   px: 1.5,
-                  borderRadius: 1,
-                 transition: "all 0.2s ease-in-out",
+                  borderRadius: 2,
+                  border: "1px solid transparent",
+                  transition: "all 0.2s ease-in-out",
                   "&:hover": {
-                    backgroundColor: "primary.background",
+                    background:
+                      "linear-gradient(90deg, rgba(68,29,160,0.07) 0%, rgba(139,92,246,0.07) 100%)",
+                    borderColor: "rgba(109, 40, 217, 0.25)",
                     color: "primary.main",
-                   transform: "translateX(8px)",
+                    fontWeight: 600,
+                    transform: "translateX(8px)",
+                    boxShadow: "0 4px 12px -6px rgba(109, 40, 217, 0.4)",
                   },
                 }}
                 key={item.id}
@@ -117,10 +135,23 @@ const JobByCategory = () => {
           <Typography
             variant="h6"
             sx={{
-              color: "primary.main",
-              borderBottom: "2px solid",
-              borderColor: "primary.main",
+              fontWeight: 800,
               pb: 1,
+              background:
+                "linear-gradient(120deg, #2f1578 20%, #6d28d9 60%, #b45309 110%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+              "&:after": {
+                content: '""',
+                display: "block",
+                width: 44,
+                height: 3,
+                mt: 0.75,
+                borderRadius: 999,
+                background:
+                  "linear-gradient(90deg, #6d28d9 0%, #ff9800 100%)",
+              },
             }}
           >
             Jobs by Location in Rwanda
@@ -132,12 +163,17 @@ const JobByCategory = () => {
                   cursor: "pointer",
                   py: 0.5,
                   px: 1.5,
-                  borderRadius: 1,
-                 transition: "all 0.2s ease-in-out",
+                  borderRadius: 2,
+                  border: "1px solid transparent",
+                  transition: "all 0.2s ease-in-out",
                   "&:hover": {
-                    backgroundColor: "primary.background",
+                    background:
+                      "linear-gradient(90deg, rgba(68,29,160,0.07) 0%, rgba(139,92,246,0.07) 100%)",
+                    borderColor: "rgba(109, 40, 217, 0.25)",
                     color: "primary.main",
-                   transform: "translateX(8px)",
+                    fontWeight: 600,
+                    transform: "translateX(8px)",
+                    boxShadow: "0 4px 12px -6px rgba(109, 40, 217, 0.4)",
                   },
                 }}
                 key={item.id}
@@ -183,10 +219,23 @@ const JobByCategory = () => {
           <Typography
             variant="h6"
             sx={{
-              color: "primary.main",
-              borderBottom: "2px solid",
-              borderColor: "primary.main",
+              fontWeight: 800,
               pb: 1,
+              background:
+                "linear-gradient(120deg, #2f1578 20%, #6d28d9 60%, #b45309 110%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+              "&:after": {
+                content: '""',
+                display: "block",
+                width: 44,
+                height: 3,
+                mt: 0.75,
+                borderRadius: 999,
+                background:
+                  "linear-gradient(90deg, #6d28d9 0%, #ff9800 100%)",
+              },
             }}
           >
             Jobs by Job Type in Rwanda
@@ -198,12 +247,17 @@ const JobByCategory = () => {
                   cursor: "pointer",
                   py: 0.5,
                   px: 1.5,
-                  borderRadius: 1,
-                 transition: "all 0.2s ease-in-out",
+                  borderRadius: 2,
+                  border: "1px solid transparent",
+                  transition: "all 0.2s ease-in-out",
                   "&:hover": {
-                    backgroundColor: "primary.background",
+                    background:
+                      "linear-gradient(90deg, rgba(68,29,160,0.07) 0%, rgba(139,92,246,0.07) 100%)",
+                    borderColor: "rgba(109, 40, 217, 0.25)",
                     color: "primary.main",
-                   transform: "translateX(8px)",
+                    fontWeight: 600,
+                    transform: "translateX(8px)",
+                    boxShadow: "0 4px 12px -6px rgba(109, 40, 217, 0.4)",
                   },
                 }}
                 key={item.id}

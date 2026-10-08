@@ -10,6 +10,7 @@ import SeoBreadcrumbs from "../../../components/SeoBreadcrumbs";
 import JobPostSearch from "../../components/defaults/JobPostSearch";
 import SuggestedJobPostCard from "../../components/defaults/SuggestedJobPostCard";
 import MainJobPostCard from "../../components/defaults/MainJobPostCard";
+import OrganisationsMap from "../../../components/OrganisationsMap";
 import AppIntroductionCard from "../../../components/AppIntroductionCard";
 import MainJobRightBanner from "../../../components/MainJobRightBanner";
 import HiringCTA from "../../../components/HiringCTA";
@@ -92,6 +93,17 @@ const JobPage = () => {
             </Grid>
           </Grid>
         </Box>
+
+        {/* Start: Jobs map — every posted job pinned at its location */}
+        <Box sx={{ mt: 6 }}>
+          <OrganisationsMap
+            compact
+            defaultShow="jobs"
+            title="Jobs Pinned on the Map"
+            subtitle="Every green pin is a real job location posted on Imyanya — organisations, shops and self-employers included. Click a pin to see the open roles at that address."
+          />
+        </Box>
+        {/* End: Jobs map */}
 
         <Box sx={{ mt: 4 }}>
           {/* Start: Live stats */}

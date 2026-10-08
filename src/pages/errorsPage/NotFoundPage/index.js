@@ -11,16 +11,17 @@ const NotFoundPage = () => {
 
   return (
     <Stack
+      component="main"
       direction="column"
       alignItems="center"
       justifyContent="center"
-      justifyItems="center"
+      sx={{ minHeight: "55vh", px: 2 }}
     >
       <Result
         style={{ marginTop: '15vh' }}
         status="404"
         title="404"
-        subTitle="Sorry, the page you visited does not exist."
+        subTitle="The link may be outdated or the page may have moved. Use the button below to continue browsing jobs and employers."
         extra={
           <Button type="primary" variant="contained" onClick={() => nav('/')}>
             Back to Home

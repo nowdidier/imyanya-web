@@ -20,7 +20,6 @@ import errorHandling from '../../../../utils/errorHandling';
 import { IMAGES, ROUTES } from '../../../../configs/constants';
 import { removeUserInfo } from '../../../../redux/userSlice';
 import tokenService from '../../../../services/tokenService';
-import AccountSwitchMenu from '../AccountSwitchMenu';
 import {
   resetSearchCompany,
   resetSearchJobPostFilter,
@@ -125,10 +124,6 @@ const LeftDrawer = ({ window, pages, mobileOpen, handleDrawerToggle }) => {
           </ListItem>
         ))}
       </List>
-
-      {/* Start: Account switch menu */}
-      <AccountSwitchMenu isShowButton={true} />
-      {/* Start: Account switch menu */}
 
       <Divider
         variant="middle"

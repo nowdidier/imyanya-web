@@ -6,7 +6,6 @@ import {
   Alert,
   AlertTitle,
   Box,
-  Breadcrumbs,
   Button,
   Card,
   Chip,
@@ -66,6 +65,7 @@ import { buildJobShareData } from "../../../utils/shareUtils";
 import useJobImage from "../../../hooks/useJobImage";
 import { searchImagesMulti } from "../../../utils/jobImageSearch";
 import HiringCTA from "../../../components/HiringCTA";
+import SeoBreadcrumbs from "../../../components/SeoBreadcrumbs";
 import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
 import { setJobSeo } from "../../../components/SeoManager/jobSeoFlag";
 import { rwandaCareerCategoryGuides } from "../../../data/rwandaCareerContent";
@@ -1092,28 +1092,13 @@ const JobDetailPage = () => {
           <Grid container spacing={3}>
             <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
               {/* Breadcrumb: helps users + Google understand hierarchy */}
-              <Breadcrumbs
-                aria-label="breadcrumb"
-                sx={{ mb: 1.5, fontSize: 13, color: "#5f6368" }}
-              >
-                <Typography
-                  component={Link}
-                  to="/"
-                  sx={{ color: "#1a73e8", textDecoration: "none", fontSize: 13 }}
-                >
-                  Home
-                </Typography>
-                <Typography
-                  component={Link}
-                  to={`/${ROUTES.JOB_SEEKER.JOBS_EN}`}
-                  sx={{ color: "#1a73e8", textDecoration: "none", fontSize: 13 }}
-                >
-                  Jobs in Rwanda
-                </Typography>
-                <Typography sx={{ fontSize: 13, color: "#5f6368" }} noWrap>
-                  {jobPostDetail?.jobName}
-                </Typography>
-              </Breadcrumbs>
+              <SeoBreadcrumbs
+                items={[
+                  { label: "Home", href: "/" },
+                  { label: "Jobs in Rwanda", href: `/${ROUTES.JOB_SEEKER.JOBS_EN}` },
+                  { label: jobPostDetail?.jobName || "Job details" },
+                ]}
+              />
               {/* Expiry / closing banner: frontend-only miss, no backend change */}
               {isExpired && (
                 <Alert severity="error" sx={{ mb: 1.5, borderRadius: 2 }}>
@@ -1730,6 +1715,14 @@ const JobDetailPage = () => {
                           subTitle={jobPostDetail?.location?.address}
                           latitude={jobPostDetail?.location?.lat}
                           longitude={jobPostDetail?.location?.lng}
+                          addressForGeocode={jobPostDetail?.location?.address || ""}
+                          fallbackQuery={[
+                            jobPostDetail?.location?.address,
+                            jobPostDetail?.location?.district,
+                            allConfig?.cityDict?.[jobPostDetail?.location?.city],
+                          ]
+                            .filter(Boolean)
+                            .join(" ")}
                           height={420}
                         />
                       </Box>

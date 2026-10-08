@@ -9,8 +9,6 @@ import {
 
 import { useSelector } from "react-redux";
 
-import { useTheme } from "@mui/material/styles";
-
 import {
   AppBar,
   Avatar,
@@ -25,7 +23,6 @@ import {
   Stack,
   Toolbar,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -39,7 +36,6 @@ import {
 
 import UserMenu from "../UserMenu";
 import LeftDrawer from "../LeftDrawer";
-import AccountSwitchMenu from "../AccountSwitchMenu";
 
 import NotificationCard from "../../../../components/NotificationCard";
 import ChatCard from "../../../../components/ChatCard";
@@ -112,12 +108,6 @@ const pages = {
 };
 
 const Header = () => {
-  const theme = useTheme();
-
-  const isSmall = useMediaQuery(
-    theme.breakpoints.down("md")
-  );
-
   const location = useLocation();
 
   // Normalize hostname
@@ -273,10 +263,22 @@ const Header = () => {
         sx={{
           boxShadow: "0 4px 24px -8px rgba(68, 29, 160, 0.35)",
           backgroundColor: "rgba(68, 29, 160, 0.85)",
-          backgroundImage: "none",
+          backgroundImage:
+            "linear-gradient(120deg, rgba(47,21,120,0.9) 0%, rgba(68,29,160,0.85) 50%, rgba(109,40,217,0.85) 100%)",
           backdropFilter: "blur(14px) saturate(160%)",
           WebkitBackdropFilter: "blur(14px) saturate(160%)",
           borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
+          "&:before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 3,
+            background:
+              "linear-gradient(90deg, #ff9800 0%, #6d28d9 50%, #8b5cf6 100%)",
+            zIndex: 1301,
+          },
         }}
         id="common-header"
       >
@@ -303,6 +305,13 @@ const Header = () => {
                   width: "100%",
                   height: 42,
                   pb: 0.5,
+                  filter:
+                    "drop-shadow(0 2px 10px rgba(255, 255, 255, 0.35))",
+                  transition: "filter 0.2s ease",
+                  "&:hover": {
+                    filter:
+                      "drop-shadow(0 2px 16px rgba(255, 213, 79, 0.55))",
+                  },
                 }}
                 variant="square"
                 alt="Imyanya logo"
@@ -444,6 +453,13 @@ const Header = () => {
                           mr: 1,
                           color: "white",
                           display: "block",
+                          borderRadius: "999px",
+                          px: 2,
+                          transition: "all 0.2s ease",
+                          "&:hover": {
+                            backgroundColor: "rgba(255, 255, 255, 0.16)",
+                            boxShadow: "0 4px 14px -4px rgba(0, 0, 0, 0.4)",
+                          },
                         }}
                       >
                         {page.label}
@@ -462,14 +478,28 @@ const Header = () => {
                         sx={{
                           my: 2,
                           mr: 1,
-                          color: "white",
                           display: "block",
-                          backgroundColor:
-                            location?.pathname?.startsWith(
-                              page.path
-                            )
-                              ? "rgba(255, 255, 255, 0.1)"
-                              : null,
+                          borderRadius: "999px",
+                          px: 2,
+                          fontWeight: location?.pathname?.startsWith(page.path)
+                            ? 800
+                            : 600,
+                          color: location?.pathname?.startsWith(page.path)
+                            ? "#441da0"
+                            : "white",
+                          backgroundColor: "transparent",
+                          backgroundImage: location?.pathname?.startsWith(
+                            page.path
+                          )
+                            ? "linear-gradient(135deg, #ffffff 0%, #ede9fe 100%)"
+                            : "none",
+                          boxShadow: location?.pathname?.startsWith(page.path)
+                            ? "0 4px 14px -4px rgba(0, 0, 0, 0.45)"
+                            : "none",
+                          transition: "all 0.2s ease",
+                          "&:hover": {
+                            backgroundColor: "rgba(255, 255, 255, 0.16)",
+                          },
                         }}
                       >
                         {page.label}
@@ -491,24 +521,6 @@ const Header = () => {
 
             {/* Auth Area */}
             {authArea}
-
-            {/* Account Switch */}
-            {!isSmall && (
-              <>
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  variant="middle"
-                  sx={{
-                    mx: 2,
-                    borderColor:
-                      "lightgray",
-                  }}
-                />
-
-                <AccountSwitchMenu />
-              </>
-            )}
           </Toolbar>
         </Container>
       </AppBar>

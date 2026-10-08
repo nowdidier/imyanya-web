@@ -10,6 +10,17 @@ const RichHtmlContent = ({ html, sx = {} }) => {
     const root = rootRef.current;
     if (!root) return undefined;
 
+    // Links: open externally in a new tab so readers never lose the job
+    // page, with rel protection on every outbound link.
+    const anchors = root.querySelectorAll('a[href]');
+    anchors.forEach((anchor) => {
+      const href = anchor.getAttribute('href') || '';
+      if (/^(https?:)?\/\//i.test(href) || /^mailto:/i.test(href)) {
+        anchor.setAttribute('target', '_blank');
+        anchor.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+
     const images = root.querySelectorAll('img');
 
     images.forEach((img) => {
@@ -22,14 +33,24 @@ const RichHtmlContent = ({ html, sx = {} }) => {
 
       if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
       if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
-      if (!img.hasAttribute('alt')) img.setAttribute('alt', '');
+      // The HTML exporter writes alt="undefined" when the author skips it.
+      if (!img.hasAttribute('alt') || img.getAttribute('alt') === 'undefined') {
+        img.setAttribute('alt', '');
+      }
+
+      // Broken embeds degrade to nothing instead of a broken-image icon.
+      img.addEventListener('error', () => {
+        img.style.display = 'none';
+      });
     });
 
-    // View linked images in an in-page lightbox so readers never leave
-    // the website while browsing related images.
+    // View images in an in-page lightbox so readers never leave
+    // the website while browsing related images. Images wrapped in an
+    // explicit link keep the author's intent instead (open in a new tab).
     const handleImageClick = (event) => {
       const target = event.target;
       if (!(target instanceof window.HTMLImageElement)) return;
+      if (target.closest('a[href]')) return;
 
       event.preventDefault();
 
@@ -85,6 +106,14 @@ const RichHtmlContent = ({ html, sx = {} }) => {
         },
         '& a': {
           color: 'primary.main',
+          fontWeight: 600,
+          textDecoration: 'underline',
+          textUnderlineOffset: '2px',
+          textDecorationColor: 'rgba(68, 29, 160, 0.4)',
+          transition: 'text-decoration-color 0.2s ease',
+          '&:hover': {
+            textDecorationColor: 'primary.main',
+          },
         },
         '& blockquote': {
           borderLeft: '4px solid',

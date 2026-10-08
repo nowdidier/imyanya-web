@@ -192,7 +192,8 @@ const ToolRunnerPage = () => {
     setValues(stored.values || {});
     setChecked(stored.checked || []);
     setAnswers(stored.answers || {});
-    setEntries(stored.entries || {});
+    // entries is always an array — a stored object would crash .map/.length.
+    setEntries(Array.isArray(stored.entries) ? stored.entries : []);
     setDraft({});
   }, [slug]);
 

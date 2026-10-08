@@ -5,6 +5,7 @@ import { Box, Card, CardContent, Container, Divider, Grid, Typography } from '@m
 import { TabTitle } from '../../../utils/generalFunction';
 import CategoryCard from '../../components/defaults/CategoryCard';
 import SeoBreadcrumbs from '../../../components/SeoBreadcrumbs';
+import OrganisationsMap from '../../../components/OrganisationsMap';
 import { rwandaLocationGuides } from '../../../data/rwandaCareerContent';
 
 const JobsByCityPage = () => {
@@ -81,6 +82,13 @@ const JobsByCityPage = () => {
             </Grid>
           ))}
         </Grid>
+      </Box>
+
+      <Box sx={{ mt: 5 }}>
+        <OrganisationsMap
+          title="Organisations by District"
+          subtitle="Prefer browsing by place? Filter the map by district or city, then click any pin to see that employer's open roles."
+        />
       </Box>
     </Container>
   );

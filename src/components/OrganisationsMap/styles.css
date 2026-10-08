@@ -1,0 +1,136 @@
+/* Pro organisation pins: logo circle + sector ring + tail + count badge */
+.org-pin {
+  background: transparent;
+  border: none;
+  position: relative;
+}
+
+.org-pin-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  border: 3px solid var(--pin, #441da0);
+  box-shadow: 0 6px 16px rgba(20, 10, 60, 0.35), 0 0 0 4px rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.15s ease;
+}
+
+.org-pin:hover .org-pin-circle {
+  transform: scale(1.08);
+}
+
+.org-pin-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: #fff;
+}
+
+.org-pin-initials {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--pin, #441da0);
+  letter-spacing: 0.5px;
+}
+
+.org-pin-tail {
+  width: 12px;
+  height: 12px;
+  background: var(--pin, #441da0);
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(45deg);
+  margin: -7px auto 0;
+  border-bottom-right-radius: 3px;
+  box-shadow: 2px 4px 8px rgba(20, 10, 60, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.org-pin-badge {
+  position: absolute;
+  top: -6px;
+  right: -2px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #137333;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 20px;
+  text-align: center;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+/* Green check = employer with an Imyanya profile (mirrors the count badge) */
+.org-pin-profile {
+  position: absolute;
+  top: -6px;
+  left: -2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #137333;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 20px;
+  text-align: center;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+/* Green briefcase pin for individual job opportunities */
+.job-pin-circle {
+  --pin: #137333;
+  background: #137333;
+  border-color: #137333;
+  box-shadow: 0 6px 16px rgba(19, 115, 51, 0.4), 0 0 0 4px rgba(255, 255, 255, 0.9);
+}
+
+/* Leaflet polish to match MUI cards */
+.leaflet-container {
+  font-family: inherit;
+  background: #eef1f6;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 16px;
+  box-shadow: 0 16px 40px -8px rgba(68, 29, 160, 0.35);
+  border: 1px solid rgba(109, 40, 217, 0.18);
+  overflow: hidden;
+}
+
+.leaflet-popup-content-wrapper:before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #441da0 0%, #6d28d9 50%, #ff9800 100%);
+}
+
+.leaflet-popup-content {
+  margin: 14px 16px;
+  line-height: 1.5;
+}
+
+.leaflet-popup-tip {
+  box-shadow: 0 8px 20px rgba(68, 29, 160, 0.25);
+}
+
+.leaflet-control-zoom a {
+  border-radius: 8px !important;
+}

@@ -5,20 +5,23 @@ import { Box, Container } from '@mui/material';
 import Header from '../components/commons/Header';
 import Footer from '../components/commons/Footer';
 import HiringCTA from '../../components/HiringCTA';
+import InstallAppBanner from '../../components/InstallAppBanner';
 
 const DefaultLayout = () => {
   return (
     <Box>
       <Header />
+      <InstallAppBanner />
 
       <Container
+        component="main"
         maxWidth="lg"
         sx={{
           paddingLeft: { xs: 1, sm: 4, md: 6, lg: 8, xl: 0 },
           paddingRight: { xs: 1, sm: 4, md: 6, lg: 8, xl: 0 },
         }}
       >
-        <section>
+        <section aria-label="Page content">
           <Outlet />
         </section>
       </Container>
@@ -35,6 +38,7 @@ const DefaultLayout = () => {
       </Container>
 
       <Box
+        component="footer"
         sx={{
           mt: {
             xs: 2,
@@ -58,7 +62,9 @@ const DefaultLayout = () => {
             xl: 5,
           },
           color: 'white',
-          bgcolor: '#441da0',
+          backgroundImage:
+            'linear-gradient(180deg, #3a1890 0%, #2f1578 60%, #241058 100%)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
         }}
       >
         <Footer />

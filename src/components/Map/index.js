@@ -15,6 +15,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Box, Paper, Typography } from '@mui/material';
 
 import { ICONS } from '../../configs/constants';
+import { getRwandaCoords } from '../../data/rwandaDistricts';
+import { geocodeAddress } from '../../utils/geocodeAddress';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -66,10 +68,18 @@ const Map = ({
   subTitle,
   latitude,
   longitude,
+  // Free-text fallback (address / city / district) resolved offline against
+  // Rwanda district centers, so an address without pinned coordinates still
+  // renders an area-level map instead of the empty state.
+  fallbackQuery = '',
+  // When set (non-editable mode only), the address is forward-geocoded into
+  // an exact rooftop pin; the district fallback only shows while resolving.
+  addressForGeocode = '',
   editable = false,
   onLocationChange,
   height = 250,
   zoom = 15,
+  fallbackZoom = 12,
   defaultCenter = DEFAULT_CENTER,
   emptyStateMessage = 'Unable to determine location on map',
 }) => {
@@ -78,7 +88,37 @@ const Map = ({
   const hasCoordinates =
     normalizedLatitude !== null && normalizedLongitude !== null;
 
-  if (!editable && !hasCoordinates) {
+  const fallbackCoords = !hasCoordinates
+    ? getRwandaCoords(fallbackQuery)
+    : null;
+
+  // Rooftop pin resolved from the written address (cached — quota-safe).
+  const geocodeTarget =
+    !editable && !hasCoordinates ? String(addressForGeocode || "") : "";
+  const [geocoded, setGeocoded] = React.useState(null);
+  React.useEffect(() => {
+    let active = true;
+    setGeocoded(null);
+    if (geocodeTarget.trim().length < 6) return undefined;
+    geocodeAddress(geocodeTarget).then((point) => {
+      if (active && point) setGeocoded(point);
+    });
+    return () => {
+      active = false;
+    };
+  }, [geocodeTarget]);
+
+  const effectiveLatitude = hasCoordinates
+    ? normalizedLatitude
+    : geocoded?.lat ?? fallbackCoords?.lat ?? null;
+  const effectiveLongitude = hasCoordinates
+    ? normalizedLongitude
+    : geocoded?.lng ?? fallbackCoords?.lng ?? null;
+  const hasPosition =
+    effectiveLatitude !== null && effectiveLongitude !== null;
+  const usedGeocoded = !hasCoordinates && geocoded !== null;
+
+  if (!editable && !hasPosition) {
     return (
       <Box
         sx={{
@@ -108,12 +148,14 @@ const Map = ({
     );
   }
 
-  const viewLatitude = hasCoordinates ? normalizedLatitude : defaultCenter[0];
-  const viewLongitude = hasCoordinates ? normalizedLongitude : defaultCenter[1];
-  const markerPosition = hasCoordinates
-    ? [normalizedLatitude, normalizedLongitude]
+  const viewLatitude = hasPosition ? effectiveLatitude : defaultCenter[0];
+  const viewLongitude = hasPosition ? effectiveLongitude : defaultCenter[1];
+  const markerPosition = hasPosition
+    ? [effectiveLatitude, effectiveLongitude]
     : null;
-  const mapZoom = hasCoordinates ? zoom : 12;
+  // Area-level fallback zooms out so the marker reads as approximate;
+  // geocoded rooftop pins zoom like exact ones.
+  const mapZoom = hasCoordinates || usedGeocoded ? zoom : fallbackZoom;
 
   return (
     <Paper
@@ -166,6 +208,14 @@ const Map = ({
                 )}
                 {subTitle && (
                   <Typography variant="body2">{subTitle}</Typography>
+                )}
+                {!hasCoordinates && !usedGeocoded && fallbackCoords && (
+                  <Typography
+                    variant="caption"
+                    sx={{ display: "block", mt: 0.5, color: "#5f6368", fontStyle: "italic" }}
+                  >
+                    Approximate area — exact pin not set
+                  </Typography>
                 )}
               </Popup>
             )}

@@ -17,12 +17,16 @@ const styles = {
     width: 10,
     height: 10,
     opacity: 0.5,
-    backgroundColor: "#8b6bd4",
+    backgroundColor: "#c4b5fd",
   },
   ".swiper-pagination-bullet-active": {
-    width: 10,
+    width: 28,
     height: 10,
     opacity: 1,
+    borderRadius: 999,
+    backgroundImage:
+      "linear-gradient(90deg, #ff9800 0%, #8b5cf6 100%)",
+    boxShadow: "0 2px 10px rgba(139, 92, 246, 0.7)",
   },
 };
 
@@ -32,9 +36,6 @@ const RenderItem = ({ item }) => {
       width="100%"
       height={320}
       src={item.imageUrl}
-      sx={{
-        borderRadius: 1.5,
-      }}
       fit="cover"
     />
   );
@@ -63,6 +64,16 @@ const TopSlide = () => {
     <Box
       className="justify-content-center"
       style={{ height: 320, position: 'relative' }}
+      sx={{
+        borderRadius: 4,
+        overflow: "hidden",
+        // Gradient fallback so the hero always looks finished,
+        // even before banners load or if none are published.
+        backgroundImage:
+          "linear-gradient(120deg, #2f1578 0%, #441da0 45%, #6d28d9 75%, #b45309 130%)",
+        boxShadow: "0 18px 50px -16px rgba(47, 21, 120, 0.55)",
+        border: "1px solid rgba(255, 255, 255, 0.14)",
+      }}
     >
       <Box sx={styles}>
         <Swiper
@@ -90,9 +101,25 @@ const TopSlide = () => {
           ))}
         </Swiper>
       </Box>
+      {/* Legibility gradient under the search + pagination */}
       <Box
         sx={{
           position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 120,
+          background:
+            'linear-gradient(180deg, rgba(47,21,120,0) 0%, rgba(47,21,120,0.45) 100%)',
+          pointerEvents: 'none',
+          zIndex: 5,
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
           top: {
             xs: 0,
             sm: '20%',
@@ -100,15 +127,17 @@ const TopSlide = () => {
             lg: '20%',
             xl: '20%',
           },
+          display: 'flex',
+          justifyContent: 'center',
           paddingLeft: {
-            xs: 0,
+            xs: 2,
             sm: '5%',
             md: '5%',
             lg: '5%',
             xl: '5%',
           },
           paddingRight: {
-            xs: 0,
+            xs: 2,
             sm: '5%',
             md: '5%',
             lg: '5%',
@@ -117,7 +146,9 @@ const TopSlide = () => {
           zIndex: 10,
         }}
       >
-        <HomeSearch />
+        <Box sx={{ width: '100%', maxWidth: 760 }}>
+          <HomeSearch />
+        </Box>
       </Box>
     </Box>
   );

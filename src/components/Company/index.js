@@ -13,9 +13,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import VerifiedIcon from '@mui/icons-material/Verified';
 
 import { IMAGES, ROLES_NAME } from '../../configs/constants';
 import MuiImageCustom from '../MuiImageCustom';
+import ClaimOrganisationButton from '../ClaimOrganisationButton';
 
 import companyService from '../../services/companyService';
 import toastMessages from '../../utils/toastMessages';
@@ -89,22 +91,51 @@ const Company = ({
   employeeSize,
   fieldOperation,
   city,
+  cityName,
+  sizeName,
+  claimAddress,
+  claimLat,
+  claimLng,
   followNumber,
   jobPostNumber,
   isFollowed,
+  isDirectory = false,
 }) => {
   const { allConfig } = useSelector((state) => state.config);
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
+  const initials = String(companyName || "")
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
 
   return (
     <Card
       sx={{
         p: 2,
-       transition: 'all 0.3s ease-in-out',
+        position: 'relative',
+        overflow: 'hidden',
+        transition: 'all 0.3s ease-in-out',
+        '&:before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 4,
+          background: 'linear-gradient(90deg, #441da0 0%, #6d28d9 50%, #ff9800 100%)',
+          opacity: 0,
+          transition: 'opacity 0.3s ease',
+        },
         '&:hover': {
           borderColor: (theme) => theme.palette.primary.main,
-         transform: 'translateY(-4px)',
-          boxShadow: (theme) => theme.customShadows.large,
+          transform: 'translateY(-4px)',
+          boxShadow: (theme) => theme.customShadows.glow,
+          '&:before': {
+            opacity: 1,
+          },
         },
       }}
       variant="outlined"
@@ -147,6 +178,7 @@ const Company = ({
               component={Link}
               to={`/companies/${slug}`}
             >
+              {companyImageUrl ? (
               <MuiImageCustom
                 width={80}
                 height={80}
@@ -158,7 +190,25 @@ const Company = ({
                   borderRadius: 3,
                 }}
               />
+              ) : (
+                <Avatar
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    bgcolor: 'primary.main',
+                    color: 'white',
+                    fontWeight: 700,
+                    fontSize: 28,
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                    borderRadius: 3,
+                  }}
+                  variant="rounded"
+                >
+                  {initials || '?'}
+                </Avatar>
+              )}
             </Box>
+            {!isDirectory && (
             <Box 
               sx={{ 
                 position: 'absolute', 
@@ -179,6 +229,25 @@ const Company = ({
                 {followNumber} followers
               </Typography>
             </Box>
+            )}
+            {isDirectory && (
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: 12,
+                  right: 12,
+                  bgcolor: 'rgba(68,29,160,0.9)',
+                  color: 'white',
+                  borderRadius: 2,
+                  px: 1.5,
+                  py: 0.5,
+                }}
+              >
+                <Typography variant="caption" sx={{ fontWeight: 600 }}>
+                  No Imyanya profile yet
+                </Typography>
+              </Box>
+            )}
           </Box>
 
           <Box sx={{ p: 2, pt: 5, width: '100%' }}>
@@ -199,6 +268,17 @@ const Company = ({
               >
                 {companyName.substr(0, 55)}
                 {companyName.length > 55 && '...'}
+                {!isDirectory && (
+                  <VerifiedIcon
+                    sx={{
+                      fontSize: 20,
+                      color: 'success.main',
+                      ml: 0.75,
+                      verticalAlign: 'text-bottom',
+                    }}
+                    titleAccess="Verified employer with an Imyanya profile"
+                  />
+                )}
               </Typography>
             </Box>
 
@@ -222,7 +302,7 @@ const Company = ({
                   style={{ width: 16 }}
                   sx={{ color: 'grey.600' }}
                 />
-                {allConfig?.cityDict[city] || (
+                {allConfig?.cityDict[city] || cityName || (
                   <span style={{ color: '#9e9e9e', fontStyle: 'italic', fontSize: 13 }}>
                     Not updated
                   </span>
@@ -235,13 +315,32 @@ const Company = ({
                   style={{ width: 16 }}
                   sx={{ color: 'grey.600' }}
                 />
-                {allConfig?.employeeSizeDict[employeeSize] || (
+                {allConfig?.employeeSizeDict[employeeSize] || sizeName || (
                   <span style={{ color: '#9e9e9e', fontStyle: 'italic', fontSize: 13 }}>
                     Not updated
                   </span>
                 )}
               </Typography>
 
+              {isDirectory ? (
+                <Typography
+                  variant="body2"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    color: 'text.secondary',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faBriefcase}
+                    style={{ width: 16 }}
+                    sx={{ color: 'grey.500' }}
+                  />
+                  No jobs posted yet — come back soon
+                </Typography>
+              ) : (
               <Typography 
                 variant="body2" 
                 sx={{ 
@@ -259,11 +358,38 @@ const Company = ({
                 />
                 {jobPostNumber} jobs
               </Typography>
+              )}
             </Stack>
           </Box>
         </Box>
 
-        <FollowComponent slug={slug} isFollowed={isFollowed} />
+        {isDirectory ? (
+          <Stack justifyContent="flex-end" spacing={1} sx={{ py: 1, px: 2, height: '100%' }}>
+            <Typography
+              variant="caption"
+              sx={{
+                textAlign: 'center',
+                color: 'text.secondary',
+                bgcolor: 'grey.100',
+                borderRadius: 2,
+                p: 1.5,
+                lineHeight: 1.6,
+              }}
+            >
+              This organisation hasn&apos;t created its Imyanya profile yet.
+              Come back soon — its jobs will appear here once posted.
+            </Typography>
+            <ClaimOrganisationButton
+              companyName={companyName}
+              address={claimAddress}
+              lat={claimLat}
+              lng={claimLng}
+              fullWidth
+            />
+          </Stack>
+        ) : (
+          <FollowComponent slug={slug} isFollowed={isFollowed} />
+        )}
       </Stack>
     </Card>
   );

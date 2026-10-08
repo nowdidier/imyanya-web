@@ -134,10 +134,27 @@ const JobPost = ({
             boxShadow: `0 0 8px ${theme.palette.secondary.main}40`,
           },
         }),
+        ...(!isUrgent && {
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: '4px',
+            background: 'linear-gradient(180deg, #441da0 0%, #8b5cf6 100%)',
+            borderRadius: '4px',
+            opacity: 0.3,
+            transition: 'opacity 0.3s ease',
+          },
+        }),
         ...(isInteractive && {
           '&:hover': {
             transform: 'translateY(-2px)',
-            boxShadow: theme.customShadows.large,
+            boxShadow: theme.customShadows.glow,
+            '&::before': {
+              opacity: 1,
+            },
             ...(isUrgent
               ? {
                   borderColor: theme.palette.secondary.main,
@@ -161,24 +178,26 @@ const JobPost = ({
               display: 'flex',
               alignItems: 'center',
               gap: '4px',
-              backgroundColor: theme.palette.hot.background,
+              backgroundImage:
+                'linear-gradient(135deg, #ff3b3b 0%, #ff6b6b 60%, #ff9800 100%)',
               padding: '4px 8px',
-              borderRadius: '4px',
+              borderRadius: '999px',
+              boxShadow: '0 4px 12px -4px rgba(255, 59, 59, 0.55)',
               zIndex: 1,
             }}
           >
-            <FontAwesomeIcon 
-              icon={faFire} 
-              style={{ 
+            <FontAwesomeIcon
+              icon={faFire}
+              style={{
                 fontSize: '14px',
-                color: theme.palette.hot.main,
+                color: '#ffffff',
               }}
             />
             <Typography
               sx={{
                 fontSize: '12px',
-                fontWeight: 'bold',
-                color: theme.palette.hot.main,
+                color: '#ffffff',
+                fontWeight: 700,
                 lineHeight: 1,
               }}
             >

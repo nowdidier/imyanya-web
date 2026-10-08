@@ -7,13 +7,16 @@ import SubHeader from '../components/commons/SubHeader';
 import TopSlide from '../components/commons/TopSlide';
 import Footer from '../components/commons/Footer';
 import HiringCTA from '../../components/HiringCTA';
+import InstallAppBanner from '../../components/InstallAppBanner';
 
 const HomeLayout = () => {
   return (
     <Box>
       <Header />
+      <InstallAppBanner />
       <SubHeader />
       <Container
+        component="main"
         maxWidth="xl"
         sx={{
           paddingLeft: 0,
@@ -32,7 +35,7 @@ const HomeLayout = () => {
           paddingRight: { xs: 1, sm: 4, md: 6, lg: 8, xl: 8 },
         }}
       >
-        <section>
+        <section aria-label="Home page content">
           <Outlet />
         </section>
       </Container>
@@ -42,6 +45,7 @@ const HomeLayout = () => {
       </Box>
 
       <Box
+        component="footer"
         sx={{
           mt: 10,
           px: {
@@ -59,7 +63,9 @@ const HomeLayout = () => {
             xl: 5
           },
           color: 'white',
-          bgcolor: '#441da0',
+          backgroundImage:
+            'linear-gradient(180deg, #3a1890 0%, #2f1578 60%, #241058 100%)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
         }}
       >
         <Footer />

@@ -20,3 +20,4 @@ Disallow: /forbidden
 Sitemap: https://imyanya.rw/sitemap.xml
 Sitemap: https://imyanya.rw/sitemap-jobs.xml
 Sitemap: https://imyanya.rw/sitemap-companies.xml
+Sitemap: https://employers.imyanya.rw/sitemap-employers.xml

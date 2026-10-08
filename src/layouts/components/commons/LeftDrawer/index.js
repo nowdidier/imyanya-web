@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { confirmModal } from '../../../../utils/sweetalert2Modal';
@@ -28,7 +29,13 @@ import {
 
 const drawerWidth = 240;
 
-const LeftDrawer = ({ window, pages, mobileOpen, handleDrawerToggle }) => {
+const LeftDrawer = ({
+  window,
+  pages,
+  postJobUrl,
+  mobileOpen,
+  handleDrawerToggle,
+}) => {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
@@ -124,6 +131,26 @@ const LeftDrawer = ({ window, pages, mobileOpen, handleDrawerToggle }) => {
           </ListItem>
         ))}
       </List>
+
+      <Box sx={{ px: 2, pb: 1 }}>
+        <Button
+          component="a"
+          href={postJobUrl}
+          variant="contained"
+          color="warning"
+          fullWidth
+          startIcon={<PostAddIcon />}
+          sx={{
+            py: 1.15,
+            color: '#2f1578',
+            fontWeight: 800,
+            borderRadius: 2,
+            boxShadow: (theme) => theme.customShadows.small,
+          }}
+        >
+          Post a Job
+        </Button>
+      </Box>
 
       <Divider
         variant="middle"

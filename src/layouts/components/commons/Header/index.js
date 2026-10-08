@@ -26,6 +26,7 @@ import {
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 
 import {
   HOST_NAME,
@@ -117,6 +118,11 @@ const Header = () => {
     );
 
   const nav = useNavigate();
+
+  const employerJobPostUrl =
+    hostName === HOST_NAME.EMPLOYER_MYJOB
+      ? `/${ROUTES.EMPLOYER.JOB_POST}`
+      : `https://${HOST_NAME.EMPLOYER_MYJOB}/${ROUTES.EMPLOYER.JOB_POST}`;
 
   const {
     currentUser,
@@ -510,6 +516,38 @@ const Header = () => {
             </Box>
 
             {/* Notification */}
+            <Button
+              component="a"
+              href={employerJobPostUrl}
+              variant="contained"
+              color="warning"
+              aria-label="Post a job and reach qualified candidates"
+              title="Post a job and reach qualified candidates"
+              sx={{
+                mr: { md: 0.5, lg: 1 },
+                minWidth: { md: 44, lg: "auto" },
+                px: { md: 1.1, lg: 2 },
+                py: 1,
+                borderRadius: "999px",
+                color: "#2f1578",
+                fontWeight: 800,
+                whiteSpace: "nowrap",
+                boxShadow: "0 5px 14px -5px rgba(0, 0, 0, 0.55)",
+                display: { xs: "none", md: "inline-flex" },
+                "&:hover": {
+                  backgroundColor: "#ffb300",
+                  transform: "translateY(-1px)",
+                  boxShadow: "0 8px 18px -6px rgba(0, 0, 0, 0.6)",
+                },
+              }}
+            >
+              <PostAddIcon fontSize="small" />
+              <Box component="span" sx={{ display: { md: "none", lg: "inline" }, ml: 0.75 }}>
+                Post a Job
+              </Box>
+            </Button>
+
+            {/* Notification */}
             {isAuthenticated && (
               <NotificationCard />
             )}
@@ -529,6 +567,7 @@ const Header = () => {
       <Box component="nav">
         <LeftDrawer
           pages={pages[hostName] || []}
+          postJobUrl={employerJobPostUrl}
           mobileOpen={mobileOpen}
           handleDrawerToggle={
             handleDrawerToggle

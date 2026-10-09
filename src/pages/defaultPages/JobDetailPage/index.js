@@ -66,6 +66,8 @@ import useJobImage from "../../../hooks/useJobImage";
 import { searchImagesMulti } from "../../../utils/jobImageSearch";
 import HiringCTA from "../../../components/HiringCTA";
 import SeoBreadcrumbs from "../../../components/SeoBreadcrumbs";
+import ShareToUnlock from "../../../components/ShareToUnlock";
+import SignupNudge from "../../../components/SignupNudge";
 import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
 import { setJobSeo } from "../../../components/SeoManager/jobSeoFlag";
 import { rwandaCareerCategoryGuides } from "../../../data/rwandaCareerContent";
@@ -2150,6 +2152,19 @@ const JobDetailPage = () => {
               </Card>
             </Grid>
           </Grid>
+          {/* Viral + signup: share this job to redeem unlocks; guests nudged to join */}
+          <Box sx={{ mt: 3 }}>
+            <ShareToUnlock
+              pageTitle={`${jobPostDetail?.jobName || "This job"} at ${jobPostDetail?.companyDict?.companyName || "Rwanda"}`}
+              shareUrl={shareUrl}
+              compact={false}
+            />
+          </Box>
+          {!isAuthenticated && (
+            <Box sx={{ mt: 2.5 }}>
+              <SignupNudge variant="banner" />
+            </Box>
+          )}
         </Box>
       )}
       {/* Start: ApplyCard */}

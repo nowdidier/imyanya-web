@@ -22,11 +22,11 @@ const EMPLOYER_ORIGIN = "https://employers.imyanya.rw";
 const SHARE_IMAGE = `${MAIN_ORIGIN}/logo512.png`;
 
 const MAIN_DEFAULT_SEO = {
-  title: "Jobs in Rwanda | Kigali Vacancies, Job Categories & Employers | Imyanya",
+  title: "#1 Jobs in Rwanda | Kigali Vacancies, NGOs, Internships | Imyanya",
   description:
-    "Discover jobs in Rwanda by career, city, and job type. Find Kigali vacancies, internships, NGO jobs, remote roles, and employers hiring now on Imyanya.",
+    "Imyanya (Imyanya y'akazi) — Rwanda's #1 job portal. Daily jobs in Rwanda by career, city & type: Kigali vacancies, NGO jobs, internships, remote & government roles. Free CV builder.",
   keywords:
-    "jobs in Rwanda, Kigali jobs, job categories Rwanda, job vacancies Rwanda, career opportunities Rwanda, internships Rwanda, NGO jobs Rwanda, remote jobs Rwanda, recruitment Rwanda",
+    "jobs in Rwanda, #1 jobs Rwanda, Kigali jobs, imyanya, imyanya y'akazi, job vacancies Rwanda, NGO jobs Rwanda, internships Rwanda, remote jobs Rwanda, government jobs Rwanda, recruitment Rwanda",
 };
 
 const EMPLOYER_DEFAULT_SEO = {
@@ -60,32 +60,32 @@ const PRIVATE_PATH_PREFIXES = [
 const SEO_BY_PATH = {
   "/": MAIN_DEFAULT_SEO,
   "/viec-lam": {
-    title: "Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
+    title: "#1 Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
     description:
-      "Search current jobs in Rwanda by category, including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
+      "Search Rwanda's #1 job board: current jobs in Rwanda by category — Kigali jobs, NGO vacancies, internships, remote jobs & full-time opportunities. Free apply.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/jobs": {
-    title: "Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
+    title: "#1 Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
     description:
-      "Search current jobs in Rwanda by category, including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
+      "Search Rwanda's #1 job board: current jobs in Rwanda by category — Kigali jobs, NGO vacancies, internships, remote jobs & full-time opportunities. Free apply.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/jobs-in-rwanda": {
-    title: "Jobs in Rwanda | Kigali Jobs and Vacancies | Imyanya",
+    title: "#1 Jobs in Rwanda | Kigali Jobs, NGO Vacancies & Internships | Imyanya",
     description:
-      "Search current jobs in Rwanda by category, including Kigali jobs, NGO vacancies, internships, remote jobs, and full-time opportunities.",
+      "Rwanda's #1 job portal — search current jobs in Rwanda: Kigali jobs, NGO vacancies, internships, remote & full-time roles. New vacancies daily. Apply free.",
   },
   "/job-vacancies-rwanda": {
-    title: "Job Vacancies in Rwanda | Imyanya",
+    title: "Job Vacancies in Rwanda | #1 Portal Imyanya",
     description:
-      "Browse job vacancies in Rwanda from trusted employers and apply to opportunities that match your skills and career goals.",
+      "Browse verified job vacancies in Rwanda from trusted employers. Kigali & nationwide roles — apply free to opportunities matching your skills.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/kigali-jobs": {
-    title: "Kigali Jobs and Rwanda Vacancies | Imyanya",
+    title: "Kigali Jobs & Rwanda Vacancies | #1 Portal Imyanya",
     description:
-      "Find Kigali jobs and job vacancies across Rwanda from companies, NGOs, and organizations hiring now.",
+      "Find Kigali jobs and vacancies across Rwanda from companies, NGOs & government hiring now. Daily updates, free CV builder, 1-click apply.",
     canonicalPath: "/jobs-in-rwanda",
   },
   "/cong-ty": {
@@ -587,20 +587,25 @@ const SeoManager = () => {
       "@context": "https://schema.org",
       "@type": "Organization",
       name: "Imyanya",
+      alternateName: "Imyanya y'akazi",
       url: MAIN_ORIGIN,
       logo: SHARE_IMAGE,
+      description: MAIN_DEFAULT_SEO.description,
+      areaServed: { "@type": "Country", name: "Rwanda" },
       sameAs: [
         "https://www.facebook.com/profile.php?id=61560204704738",
         "https://www.linkedin.com/company/imyanya/",
         "https://x.com/imyanya_rw",
         "https://www.instagram.com/imyanya.rw/",
+        "https://www.youtube.com/@imyanyarw",
       ],
     });
 
     upsertJsonLd("imyanya-website-schema", {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      name: "Imyanya",
+      name: "Imyanya — #1 Jobs in Rwanda",
+      alternateName: "Imyanya y'akazi",
       url: MAIN_ORIGIN,
       description: MAIN_DEFAULT_SEO.description,
       inLanguage: ["en-RW", "rw-RW"],
@@ -614,6 +619,44 @@ const SeoManager = () => {
         "query-input": "required name=search_term_string",
       },
     });
+
+    // Homepage FAQ rich-result: targets "best job portal in Rwanda" featured snippets.
+    // Canonical intentionally ignores ?ref= / utm_* so referral shares never
+    // create duplicate-content URLs for Google.
+    if (normalizePath(location.pathname) === "/") {
+      upsertJsonLd("imyanya-home-faq-schema", {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "What is the #1 job portal in Rwanda?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Imyanya (Imyanya y'akazi) is Rwanda's #1 job portal — daily Kigali vacancies, NGO jobs, internships, remote and government roles with a free CV builder.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Is Imyanya free for job seekers?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes — creating an account, building a CV, getting job alerts and applying on Imyanya is 100% free.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How do I unlock features by sharing?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Share your Imyanya referral link: 1 share unlocks job alerts, 3 unlock salary insights, 5 unlock CV Spotlight. No money needed.",
+            },
+          },
+        ],
+      });
+    } else {
+      document.getElementById("imyanya-home-faq-schema")?.remove();
+    }
   }, [location.pathname, contentNoindex, jobSeoData, companySeoData]);
 
   return null;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Same-host only: a sitemap index MUST NOT reference other hostnames.
+     employers.imyanya.rw has its own Search Console property and submits
+     sitemap-employers.xml there. Including it here made Google reject this
+     entire index as "Invalid sitemap address". -->
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://imyanya.rw/sitemap.xml</loc>
+    <lastmod>2026-10-09</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://imyanya.rw/sitemap-jobs.xml</loc>
+    <lastmod>2026-10-09</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://imyanya.rw/sitemap-companies.xml</loc>
+    <lastmod>2026-10-09</lastmod>
+  </sitemap>
+</sitemapindex>

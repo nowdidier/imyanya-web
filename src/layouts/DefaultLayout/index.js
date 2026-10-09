@@ -5,6 +5,7 @@ import { Box, Container } from '@mui/material';
 import Header from '../components/commons/Header';
 import Footer from '../components/commons/Footer';
 import HiringCTA from '../../components/HiringCTA';
+import FindJobsStrip from '../../components/FindJobsStrip';
 import InstallAppBanner from '../../components/InstallAppBanner';
 
 const DefaultLayout = () => {
@@ -24,6 +25,18 @@ const DefaultLayout = () => {
         <section aria-label="Page content">
           <Outlet />
         </section>
+      </Container>
+
+      <Container
+        maxWidth="lg"
+        sx={{
+          mt: 4,
+          paddingLeft: { xs: 1, sm: 4, md: 6, lg: 8, xl: 0 },
+          paddingRight: { xs: 1, sm: 4, md: 6, lg: 8, xl: 0 },
+        }}
+      >
+        {/* Every page helps visitors find a job + links the 3 focus routes */}
+        <FindJobsStrip />
       </Container>
 
       <Container

@@ -27,6 +27,8 @@ import LiveActivityToast from "./components/LiveActivityToast";
 import { WhatsAppContactButton } from "./whatsapp";
 import Feedback from "./components/Feedback";
 import ScrollToTop from "./components/ScrollToTop";
+import SignupNudge from "./components/SignupNudge";
+import { captureInboundReferral } from "./utils/referral";
 
 import { ROLES_NAME, ROUTES, isEmployerHost } from "./configs/constants";
 
@@ -119,6 +121,11 @@ function App() {
     []
   );
 
+  // Capture inbound ?ref= viral visits once (share-to-redeem loop).
+  React.useEffect(() => {
+    captureInboundReferral();
+  }, []);
+
   React.useEffect(() => {
     if (bootstrapStartedRef.current) {
       return undefined;
@@ -201,6 +208,11 @@ function App() {
               {!isEmployerHost() && <LiveActivityToast />}
 
               <WhatsAppContactButton />
+
+              {/* Sticky guest signup bar — always visible until dismissed */}
+              {!isAuthenticated && !isEmployerHost() && (
+                <SignupNudge variant="sticky" />
+              )}
             </>
           )}
         </ThemeProvider>

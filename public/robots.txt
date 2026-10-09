@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
+Allow: /jobs-in-rwanda
+Allow: /companies
+Allow: /rwanda-career-guide
+Allow: /rwanda-career-advice
+Allow: /career-tools
 Disallow: /dang-nhap
 Disallow: /dang-ky
 Disallow: /quen-mat-khau
@@ -16,7 +21,12 @@ Disallow: /tai-khoan
 Disallow: /ket-noi-voi-nha-tuyen-dung
 Disallow: /ket-noi-voi-ung-vien
 Disallow: /forbidden
+# Keep referral/UTM shares crawlable but canonical consolidates them.
+# Do not disallow ?ref= — shares drive traffic; canonical ignores query.
+Disallow: /*?*utm_*preview*
+Disallow: /api/
 
+Sitemap: https://imyanya.rw/sitemap-index.xml
 Sitemap: https://imyanya.rw/sitemap.xml
 Sitemap: https://imyanya.rw/sitemap-jobs.xml
 Sitemap: https://imyanya.rw/sitemap-companies.xml

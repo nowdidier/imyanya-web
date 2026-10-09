@@ -312,6 +312,41 @@ const Footer = () => {
               <ListItem>
                 <ListItemText
                   sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`)}
+                  primary="Jobs in Rwanda — #1 Portal"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`)}
+                  primary="Kigali Jobs & Vacancies"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`)}
+                  primary="NGO Jobs in Rwanda"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_BY_TYPE_EN}`)}
+                  primary="Internships in Rwanda"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_BY_TYPE_EN}`)}
+                  primary="Remote Jobs Rwanda"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_BY_CITY_EN}`)}
                   primary="Jobs by Location"
                 />
@@ -328,6 +363,13 @@ const Footer = () => {
                   sx={{ cursor: 'pointer' }}
                   onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_BY_CAREER_EN}`)}
                   primary="Jobs by Career"
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => nav(`/${ROUTES.JOB_SEEKER.CAREER_TOOLS}`)}
+                  primary="Free CV Builder Rwanda"
                 />
               </ListItem>
             </List>
@@ -444,6 +486,12 @@ const Footer = () => {
         </Grid>
 
         <Divider sx={{ my: 4 }} />
+
+        <Typography variant="body2" color="grey.300" align="center" sx={{ maxWidth: 900, mx: "auto", lineHeight: 1.8, px: 2 }}>
+          {APP_NAME} (Imyanya y&apos;akazi) — Rwanda&apos;s #1 job portal for jobs in Rwanda: Kigali vacancies,
+          NGO jobs, internships, remote & government roles. Free CV builder, job alerts & 1-click apply.
+          Share Imyanya with friends to unlock free career boosts — no money needed.
+        </Typography>
         
         <Typography 
           variant="body2" 

@@ -33,15 +33,23 @@ import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import SuggestedJobPostCard from "../../components/defaults/SuggestedJobPostCard";
 import YouTubeVideoSection from "../../../components/YouTubeVideoSection";
 import TicketsPromo from "../../../components/TicketsPromo";
-import LiveStats from "../../../components/LiveStats";
+import SignupNudge from "../../../components/SignupNudge";
+import ShareToUnlock from "../../../components/ShareToUnlock";
+import SeoContent from "../../../components/SeoContent";
 
 export default function HomePage() {
-  TabTitle(`Jobs in Rwanda | Kigali Vacancies, Job Categories & Employers | ${APP_NAME}`);
+  TabTitle(`#1 Jobs in Rwanda | Kigali Vacancies, NGOs & Internships | ${APP_NAME}`);
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
   const nav = useNavigate();
+  const isGuest = !isAuthenticated;
 
   return (
     <>
+      {isGuest && (
+        <Box sx={{ mt: 3 }}>
+          <SignupNudge variant="banner" />
+        </Box>
+      )}
       <Box sx={{ mt: 6 }}>
         {/* Start: All companies slides — top employers mixed with every company */}
         <SectionHeader
@@ -287,11 +295,16 @@ export default function HomePage() {
         </Stack>
       </Box>
 
+      {/* Viral loop: share to redeem free features (no money) — drives traffic */}
       <Box sx={{ mt: 6 }}>
-        {/* Start: Live stats */}
-        <LiveStats />
-        {/* End: Live stats */}
+        <ShareToUnlock pageTitle="Jobs in Rwanda — Imyanya" />
       </Box>
+
+      {isGuest && (
+        <Box sx={{ mt: 6 }}>
+          <SignupNudge variant="banner" />
+        </Box>
+      )}
 
       <Box sx={{ mt: 6 }}>
         <TicketsPromo variant="banner" />
@@ -332,6 +345,11 @@ export default function HomePage() {
           <JobByCategory />
         </Box>
         {/* End: Job by category */}
+      </Box>
+
+      {/* SEO: crawlable Rwanda keyword content + internal links for #1 ranking */}
+      <Box sx={{ mt: 6 }}>
+        <SeoContent />
       </Box>
     </>
   );

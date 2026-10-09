@@ -1,1 +1,12 @@
+# Static + SEO files must never fall through to the SPA shell.
+# Rules run top-down, first match wins — keep these above the catch-all.
+/sitemap-index.xml      /sitemap-index.xml                                                  200
+/sitemap.xml            /sitemap.xml                                                        200
+/sitemap-jobs.xml       /sitemap-jobs.xml                                                   200
+/sitemap-companies.xml  /sitemap-companies.xml                                              200
+/sitemap-employers.xml  /sitemap-employers.xml                                              200
+/robots.txt             /robots.txt                                                         200
+/manifest.json          /manifest.json                                                      200
+/favicon.png            /favicon.png                                                        200
+/favicon.ico            /favicon.ico                                                        200
 /*      /index.html                                                         200

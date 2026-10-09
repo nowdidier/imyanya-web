@@ -14,7 +14,6 @@ import OrganisationsMap from "../../../components/OrganisationsMap";
 import AppIntroductionCard from "../../../components/AppIntroductionCard";
 import MainJobRightBanner from "../../../components/MainJobRightBanner";
 import HiringCTA from "../../../components/HiringCTA";
-import LiveStats from "../../../components/LiveStats";
 
 const JobPage = () => {
   TabTitle("Job Search Results");
@@ -39,7 +38,7 @@ const JobPage = () => {
         >
           Browse the latest job vacancies in Rwanda — Kigali jobs, NGO roles,
           internships, and remote opportunities. Filter by career, location,
-          and employment type, or explore{" "}
+          and employment type, explore{" "}
           <Typography
             component="a"
             href="/jobs-by-career"
@@ -62,6 +61,14 @@ const JobPage = () => {
             sx={{ color: "primary.main", textDecoration: "none", fontWeight: 600 }}
           >
             jobs by type
+          </Typography>
+          {", or browse "}
+          <Typography
+            component="a"
+            href="/companies"
+            sx={{ color: "primary.main", textDecoration: "none", fontWeight: 600 }}
+          >
+            companies hiring in Rwanda
           </Typography>
           .
         </Typography>
@@ -104,12 +111,6 @@ const JobPage = () => {
           />
         </Box>
         {/* End: Jobs map */}
-
-        <Box sx={{ mt: 4 }}>
-          {/* Start: Live stats */}
-          <LiveStats />
-          {/* End: Live stats */}
-        </Box>
 
         <Box sx={{ mt: 4 }}>
           {/* Start: AppIntroductionCard */}

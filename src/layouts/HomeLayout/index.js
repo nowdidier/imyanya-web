@@ -7,6 +7,7 @@ import SubHeader from '../components/commons/SubHeader';
 import TopSlide from '../components/commons/TopSlide';
 import Footer from '../components/commons/Footer';
 import HiringCTA from '../../components/HiringCTA';
+import FindJobsStrip from '../../components/FindJobsStrip';
 import InstallAppBanner from '../../components/InstallAppBanner';
 
 const HomeLayout = () => {
@@ -39,6 +40,10 @@ const HomeLayout = () => {
           <Outlet />
         </section>
       </Container>
+
+      <Box sx={{ mt: 6, px: { xs: 1, sm: 4, md: 8, lg: 8, xl: 8 } }}>
+        <FindJobsStrip />
+      </Box>
 
       <Box sx={{ mt: 6, px: { xs: 1, sm: 4, md: 8, lg: 8, xl: 8 } }}>
         <HiringCTA variant="banner" />

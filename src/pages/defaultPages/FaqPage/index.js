@@ -4,16 +4,34 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
+  Button,
   Container,
   Stack,
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 import { TabTitle } from "../../../utils/generalFunction";
-import { APP_NAME } from "../../../configs/constants";
+import { APP_NAME, HELP_TO_APPLY_CONFIG } from "../../../configs/constants";
+import { useHelpToApply } from "../../../components/HelpToApply";
+
+const services = Object.values(HELP_TO_APPLY_CONFIG.SERVICES);
+
+const helpPriceLabel = (value) =>
+  `${Number(value || 0).toLocaleString("en-US")} RWF`;
+
+const servicesText = services
+  .map((service) => `${service.label} (${helpPriceLabel(service.price)})`)
+  .join(", ");
 
 const faqs = [
+  {
+    question:
+      "How do I apply for a job? (Nkeneye ubufasha bwo gusaba — can someone apply for me?)",
+    answer: `Yes. Imyanya offers a paid help-to-apply service: ${servicesText}. Send the fee to our MoMo number, then send the payment screenshot on WhatsApp; our team prepares or submits your documents and sends you proof of submission. The fee covers our service only — it is not a guarantee that you will get the job.`,
+    helpCta: true,
+  },
   {
     question: "What kind of jobs can I find on Imyanya?",
     answer:
@@ -48,6 +66,12 @@ const faqs = [
 
 const FaqPage = () => {
   TabTitle(`FAQ | ${APP_NAME} Rwanda Jobs Help`);
+  const { openHelp } = useHelpToApply();
+
+  const handleOpenHelp = () =>
+    openHelp({
+      source: "faq",
+    });
 
   return (
     <Container maxWidth="md">
@@ -71,6 +95,24 @@ const FaqPage = () => {
               <Typography color="text.secondary" sx={{ lineHeight: 1.75 }}>
                 {item.answer}
               </Typography>
+              {item.helpCta && (
+                <Button
+                  variant="contained"
+                  size="small"
+                  startIcon={<WhatsAppIcon />}
+                  onClick={handleOpenHelp}
+                  sx={{
+                    mt: 1.5,
+                    textTransform: "none",
+                    fontWeight: 700,
+                    color: "#fff",
+                    backgroundColor: "#25D366",
+                    "&:hover": { backgroundColor: "#1ebe5d" },
+                  }}
+                >
+                  Nkeneye ubufasha bwo gusaba
+                </Button>
+              )}
             </AccordionDetails>
           </Accordion>
         ))}

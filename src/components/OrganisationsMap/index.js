@@ -328,7 +328,7 @@ const OrgPinPopup = ({ org }) => {
   );
 };
 
-const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false, defaultShow = "all" }) => {
+const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false, hideFilters = false, defaultShow = "all" }) => {
   const { orgs, jobSpots, isLoading, isLoadingJobs } = useOrganisations();
   // Shared URL-synced filters so /companies and /rwanda-career-guide
   // always meet on the same query/sector/district/hiring state.
@@ -464,6 +464,7 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
       </Stack>
       )}
 
+      {!hideFilters && (
       <Card
         variant="outlined"
         sx={{
@@ -536,6 +537,7 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
           </Grid>
         </Grid>
       </Card>
+      )}
 
       <Card
         ref={mapCardRef}

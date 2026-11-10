@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import {
   Box,
+  Button,
   Chip,
   IconButton,
   Stack,
@@ -18,11 +19,17 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import DataTableCustom from '../../../../components/DataTableCustom';
 import MuiImageCustom from '../../../../components/MuiImageCustom';
 import NoDataCard from '../../../../components/NoDataCard';
-import { JOB_POST_STATUS_BG_COLOR } from '../../../../configs/constants';
+import {
+  HOST_NAME,
+  JOB_POST_STATUS_BG_COLOR,
+  ROUTES,
+} from '../../../../configs/constants';
+import { useEmployerHelp } from '../../../../components/HelpToApply';
 
 const JobPostsTable = (props) => {
   const { rows, isLoading, handleDelete, handleUpdate } = props;
   const { allConfig } = useSelector((state) => state.config);
+  const { openEmployerHelp } = useEmployerHelp();
 
   return (
     <DataTableCustom {...props}>
@@ -39,6 +46,12 @@ const JobPostsTable = (props) => {
               ? dayjs(row.deadline).endOf('day').diff(dayjs().startOf('day'), 'day')
               : null;
           const expired = Boolean(row?.isExpired) || (daysLeft !== null && daysLeft < 0);
+          const jobUrl = row.slug
+            ? `https://${HOST_NAME.MYJOB}/${ROUTES.JOB_SEEKER.JOB_DETAIL.replace(
+                ':slug',
+                row.slug
+              )}`
+            : '';
 
           return (
             <TableBody key={row.id}>
@@ -135,6 +148,32 @@ const JobPostsTable = (props) => {
                   size="small"
                   sx={{ fontWeight: 600 }}
                 />
+                {[1, 2].includes(row?.status) && (
+                  <Button
+                    size="small"
+                    variant="text"
+                    onClick={() =>
+                      openEmployerHelp({
+                        source: 'rejected-job-post',
+                        jobTitle: row.jobName,
+                        jobUrl,
+                      })
+                    }
+                    sx={{
+                      display: 'block',
+                      mt: 0.5,
+                      px: 0,
+                      minWidth: 0,
+                      textTransform: 'none',
+                      fontSize: '0.72rem',
+                      fontWeight: 600,
+                    }}
+                  >
+                    {row.status === 2
+                      ? 'Get help to fix this post'
+                      : 'Need help getting approved?'}
+                  </Button>
+                )}
               </TableCell>
               <TableCell align="right">
                 {row.slug && (

@@ -64,6 +64,8 @@ const employerInfoPages = {
 
   [ROUTES.EMPLOYER.SERVICE]: {
     tabTitle: "Recruitment Services for Employers in Rwanda | Imyanya",
+    showEmployerHelp: true,
+    helpSource: "services",
     hero: {
       title: "Recruitment Services",
       subtitle:
@@ -114,12 +116,26 @@ const employerInfoPages = {
 
   [ROUTES.EMPLOYER.PRICING]: {
     tabTitle: "Pricing for Employers | Imyanya",
+    showEmployerHelp: true,
+    helpSource: "pricing",
     hero: {
       title: "Simple, transparent pricing",
       subtitle:
         "Start free, upgrade when you need more reach. No hidden fees and no per-application charges.",
     },
     sections: [
+      {
+        heading: "Managed recruitment services",
+        paragraphs: [
+          "If you would rather not post or screen candidates yourself, we can do it for a fixed price. Pay by MoMo and send the payment screenshot on WhatsApp — we reply only after the screenshot and confirm the payment in our MoMo history.",
+        ],
+        bullets: [
+          "We post your job for you (you send the details) — 5,000 RWF",
+          "We write the job description and post it — 10,000 RWF",
+          "Post + shortlist up to 5 CVs from Imyanya — 25,000 RWF",
+          "Full recruitment: post, screen, shortlist, arrange interviews — negotiated (e.g. 10% of the first month's salary, 50% deposit before we start)",
+        ],
+      },
       {
         heading: "How billing works",
         paragraphs: [

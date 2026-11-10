@@ -21,6 +21,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 import { TabTitle } from "../../../utils/generalFunction";
 import NotFoundPage from "../../errorsPage/NotFoundPage";
+import { EmployerHelpCard } from "../../../components/EmployerHelp";
 import employerInfoPages from "../../../data/employerInfo";
 
 const BRAND = "#441da0";
@@ -228,6 +229,16 @@ const EmployerInfoPage = () => {
   return (
     <Box sx={{ pb: 6 }}>
       <Hero {...page.hero} />
+
+      {page.showEmployerHelp && (
+        <Box sx={{ mb: 5 }}>
+          <EmployerHelpCard
+            source={page.helpSource || "pricing"}
+            title="Dukeneye gufashwa gushaka umukozi?"
+            description="Let us post the job, write the description, shortlist 5 CVs, or run the full recruitment. Pay by MoMo and send the screenshot on WhatsApp."
+          />
+        </Box>
+      )}
 
       {(page.sections || []).map((section) => (
         <Section key={section.heading} {...section} />

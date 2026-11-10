@@ -81,37 +81,17 @@ const JobPostSearch = () => {
   };
 
   const handleSaveKeyworLocalStorage = (kw) => {
-   try {
-      if (kw) {
-        const keywordListStr = localStorage.getItem('myjob_search_history');
-
-        if (
-          keywordListStr !== null &&
-          keywordListStr !== undefined &&
-          keywordListStr !== ''
-        ) {
-          const keywordList = JSON.parse(keywordListStr);
-
-          if (!keywordList.includes(kw)) {
-            if (keywordList.length >= 5) {
-              localStorage.setItem(
-                'myjob_search_history',
-                JSON.stringify([
-                  kw,
-                  ...keywordList.slice(0, keywordList.length - 1),
-                ])
-              );
-            } else {
-              localStorage.setItem(
-                'myjob_search_history',
-                JSON.stringify([kw, ...keywordList])
-              );
-            }
-          }
-        } else {
-          localStorage.setItem('myjob_search_history', JSON.stringify([kw]));
-        }
+    try {
+      const term = String(kw || '').trim();
+      if (!term) return;
+      const keywordListStr = localStorage.getItem('myjob_search_history');
+      let keywordList = [];
+      if (keywordListStr) {
+        const parsed = JSON.parse(keywordListStr);
+        keywordList = Array.isArray(parsed) ? parsed : [];
       }
+      const next = [term, ...keywordList.filter((k) => k !== term)].slice(0, 5);
+      localStorage.setItem('myjob_search_history', JSON.stringify(next));
     } catch (error) {
       console.error('Error saving search keyword to local storage: ', error);
     }
@@ -120,15 +100,16 @@ const JobPostSearch = () => {
   const handleFilter = (data) => {
     handleSaveKeyworLocalStorage(data?.kw);
     loadRecentKeywords();
-
-    dispatch(searchJobPost(data));
+    dispatch(searchJobPost({ ...data, page: 1 }));
   };
 
   const handleQuickSearch = (kw) => {
+    handleSaveKeyworLocalStorage(kw);
+    loadRecentKeywords();
     dispatch(
       searchJobPost({
         ...jobPostFilter,
-        kw: kw,
+        kw,
         page: 1,
       })
     );
@@ -167,46 +148,51 @@ const JobPostSearch = () => {
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={3} xl={3}>
             <Stack
-              spacing={2}
-              direction={{
-                xs: 'column',
-                sm: 'row',
-                md: 'row',
-                lg: 'row',
-                xl: 'row',
-              }}
-              justifyContent={{ sm: 'flex-end', lg: 'center' }}
+              spacing={1.5}
+              direction={{ xs: 'column', sm: 'row' }}
+              justifyContent={{ sm: 'flex-end', lg: 'stretch' }}
             >
               <Button
                 variant="contained"
-                color="info"
-                sx={{ py: 1 }}
+                sx={{
+                  py: 1,
+                  px: 3,
+                  textTransform: 'none',
+                  fontWeight: 700,
+                  backgroundColor: '#ffffff',
+                  color: '#441da0',
+                  '&:hover': { backgroundColor: '#f3efff' },
+                }}
                 type="submit"
               >
-                Search
+                Search jobs
               </Button>
               <Button
-                variant="contained"
-                sx={{ py: 1, color: 'white' }}
-                startIcon={
-                  showAdvanceFilter ? <FilterAltOffIcon /> : <FilterAltIcon />
-                }
-                color="secondary"
+                variant="outlined"
+                sx={{
+                  py: 1,
+                  textTransform: 'none',
+                  fontWeight: 600,
+                  color: 'white',
+                  borderColor: 'rgba(255,255,255,0.6)',
+                  '&:hover': { borderColor: 'white', backgroundColor: 'rgba(255,255,255,0.08)' },
+                }}
+                startIcon={showAdvanceFilter ? <FilterAltOffIcon /> : <FilterAltIcon />}
                 onClick={handleChangeShowFilter}
               >
-                Advanced Filters
+                {showAdvanceFilter ? 'Hide filters' : 'More filters'}
               </Button>
             </Stack>
           </Grid>
         </Grid>
       </Card>
       {recentKeywords.length > 0 && (
-        <Card sx={{ p: 1.5, boxShadow: 0, mt: 1.5, backgroundColor: 'background.paper' }}>
+        <Card variant="outlined" sx={{ p: 1.5, mt: 1.5, backgroundColor: 'background.paper' }}>
           <Stack direction="row" spacing={1} alignItems="center" sx={{ flexWrap: 'wrap', gap: 1 }}>
             <Stack direction="row" spacing={0.5} alignItems="center">
               <HistoryIcon fontSize="small" color="disabled" />
               <Typography variant="caption" color="text.secondary" fontWeight={600}>
-                Recent searches:
+                Recent searches
               </Typography>
             </Stack>
             {recentKeywords.map((kw) => (
@@ -221,10 +207,9 @@ const JobPostSearch = () => {
             ))}
             <Chip
               icon={<CloseIcon fontSize="small" />}
-              label="Clear"
+              label="Clear history"
               size="small"
-              variant="text"
-              color="default"
+              variant="outlined"
               onClick={handleClearRecentKeywords}
               sx={{ cursor: 'pointer', '& .MuiChip-icon': { fontSize: 16 } }}
             />
@@ -304,7 +289,7 @@ const JobPostSearch = () => {
           <Grid item xs={12} sm={6} md={4} lg={2} xl={2}>
             <SingleSelectSearchCustom
               name="genderId"
-              placeholder="All genders"
+              placeholder="All gender requirements"
               control={control}
               options={allConfig?.genderOptions || []}
             />

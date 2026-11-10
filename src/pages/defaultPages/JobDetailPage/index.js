@@ -33,7 +33,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import LoginIcon from "@mui/icons-material/Login";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import SearchIcon from "@mui/icons-material/Search";
 import MapIcon from "@mui/icons-material/Map";
 
@@ -59,15 +58,14 @@ import {
   toWwwUrl,
   buildJobApplicationMessage,
   buildMailtoUrl,
-  buildWhatsAppUrl,
 } from "../../../utils/funcUtils";
 import { buildJobShareData } from "../../../utils/shareUtils";
 import useJobImage from "../../../hooks/useJobImage";
 import { searchImagesMulti } from "../../../utils/jobImageSearch";
 import HiringCTA from "../../../components/HiringCTA";
 import SeoBreadcrumbs from "../../../components/SeoBreadcrumbs";
-import ShareToUnlock from "../../../components/ShareToUnlock";
 import SignupNudge from "../../../components/SignupNudge";
+import { useHelpToApply } from "../../../components/HelpToApply";
 import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
 import { setJobSeo } from "../../../components/SeoManager/jobSeoFlag";
 import { rwandaCareerCategoryGuides } from "../../../data/rwandaCareerContent";
@@ -402,6 +400,7 @@ const ActionComponent = ({
   handleSave,
   handleShowApplyForm,
   handleSignIn,
+  handleOpenHelp,
   companyWebsiteUrl,
   imageSearchName,
   companyName = "",
@@ -450,23 +449,46 @@ const ActionComponent = ({
             {isApplied ? "Applied" : "Apply on Imyanya"}
           </Button>
         ) : (
-          <Button
-            variant="contained"
-            size="large"
-            startIcon={<LoginIcon />}
-            sx={{
-              textTransform: "none",
-              borderRadius: "20px",
-              px: 3,
-              fontWeight: 600,
-              backgroundColor: "#1a73e8",
-              boxShadow: "none",
-              "&:hover": { backgroundColor: "#1b66c9", boxShadow: "none" },
-            }}
-            onClick={handleSignIn}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={1.5}
+            sx={{ width: { xs: "100%", sm: "auto" }, flexWrap: "wrap" }}
+            useFlexGap
           >
-            Sign in to apply
-          </Button>
+            <Button
+              variant="contained"
+              size="large"
+              startIcon={<LoginIcon />}
+              sx={{
+                textTransform: "none",
+                borderRadius: "20px",
+                px: 3,
+                fontWeight: 600,
+                backgroundColor: "#1a73e8",
+                boxShadow: "none",
+                "&:hover": { backgroundColor: "#1b66c9", boxShadow: "none" },
+              }}
+              onClick={handleSignIn}
+            >
+              Sign in to apply
+            </Button>
+            <Button
+              variant="outlined"
+              size="large"
+              sx={{
+                textTransform: "none",
+                borderRadius: "20px",
+                px: 3,
+                fontWeight: 600,
+                borderColor: "#1a73e8",
+                color: "#1a73e8",
+                "&:hover": { borderColor: "#1b66c9", backgroundColor: "#f6fafe" },
+              }}
+              onClick={handleOpenHelp}
+            >
+              Help to apply
+            </Button>
+          </Stack>
         )}
 
         {isJobSeeker && (
@@ -511,7 +533,7 @@ const ActionComponent = ({
               "&:hover": { borderColor: "#1a73e8", backgroundColor: "#f6fafe" },
             }}
           >
-            Apply on company site
+            Apply via official link
           </Button>
         )}
 
@@ -562,6 +584,7 @@ const JobDetailPage = () => {
   const location = useLocation();
   const { allConfig } = useSelector((state) => state.config);
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
+  const { openHelp } = useHelpToApply();
   const [openSharePopup, setOpenSharePopup] = React.useState(false);
   const [openCoverLightbox, setOpenCoverLightbox] = React.useState(false);
   const [openPopup, setOpenPopup] = React.useState(false);
@@ -985,6 +1008,14 @@ const JobDetailPage = () => {
     nav(`/${ROUTES.AUTH.LOGIN}${getRedirectParam(location.pathname)}`);
   };
 
+  const handleOpenHelpToApply = () => {
+    openHelp({
+      source: "job-detail",
+      jobTitle: jobPostDetail?.jobName || "",
+      jobUrl: shareUrl,
+    });
+  };
+
   const isJobSeekerUser =
     isAuthenticated && currentUser?.roleName === ROLES_NAME.JOB_SEEKER;
 
@@ -1011,25 +1042,6 @@ const JobDetailPage = () => {
     }
 
     window.location.href = url;
-  };
-
-  const handleSendApplicationToWhatsApp = () => {
-    const url = buildWhatsAppUrl(
-      jobPostDetail?.contactPersonPhone,
-      applicationMessage
-    );
-
-    if (!url) {
-      toastMessages.warn(
-        "This job has no contact phone number for WhatsApp applications."
-      );
-      return;
-    }
-
-    window.open(url, "_blank", "noopener,noreferrer");
-    toastMessages.info(
-      "WhatsApp opened with your application details. Press send to finish."
-    );
   };
 
   // Searches the job title on Google (google.com), without restricting the
@@ -1366,6 +1378,7 @@ const JobDetailPage = () => {
                     handleSave={handleSave}
                     handleShowApplyForm={handleShowApplyForm}
                     handleSignIn={handleSignIn}
+                    handleOpenHelp={handleOpenHelpToApply}
                     companyWebsiteUrl={companyWebsiteUrl}
                     imageSearchName={jobPostDetail?.jobName || ""}
                     companyName={
@@ -1587,47 +1600,56 @@ const JobDetailPage = () => {
                   <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Box>
                       <SectionTitle>Contact Information</SectionTitle>
-                      <Typography variant="body2" color="text.secondary" sx={{ mt: -1, mb: 2 }}>
-                        Direct channels to ask about this role or send your application.
+                      <Typography variant="body2" color="text.secondary" sx={{ mt: -1, mb: 2.5 }}>
+                        Use these details to contact the employer or submit your application.
                       </Typography>
 
                       <Stack spacing={1.5}>
                         <ContactRow
                           icon={<PersonIcon sx={{ color: "#1a73e8", fontSize: 22 }} />}
                           label="Contact Person"
-                          value={
-                            <>
-                              {jobPostDetail?.contactPersonName || "Not updated"}
-                              {companyWebsiteUrl && (
-                                <>
-                                  {" — "}
-                                  <Box
-                                    component="a"
-                                    href={companyWebsiteUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    sx={{
-                                      color: "#1a73e8",
-                                      fontWeight: 500,
-                                      textDecoration: "none",
-                                      "&:hover": { textDecoration: "underline" },
-                                    }}
-                                  >
-                                    {companyWebsiteUrl.replace(
-                                      /^https?:\/\//i,
-                                      ""
-                                    )}
-                                  </Box>
-                                </>
-                              )}
-                            </>
+                          value={jobPostDetail?.contactPersonName || "Not updated"}
+                          actions={
+                            companyWebsiteUrl ? (
+                              <Button
+                                size="small"
+                                variant="contained"
+                                component="a"
+                                href={companyWebsiteUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                endIcon={<OpenInNewIcon sx={{ fontSize: 16 }} />}
+                                sx={{
+                                  textTransform: "none",
+                                  fontWeight: 700,
+                                  borderRadius: 999,
+                                  boxShadow: "none",
+                                  backgroundColor: "#1a73e8",
+                                  "&:hover": { backgroundColor: "#1b66c9", boxShadow: "none" },
+                                }}
+                              >
+                                Apply on official website
+                              </Button>
+                            ) : null
                           }
                         />
 
                         <ContactRow
                           icon={<EmailIcon sx={{ color: "#1a73e8", fontSize: 22 }} />}
                           label="Contact Email"
-                          value={jobPostDetail?.contactPersonEmail}
+                          value={
+                            jobPostDetail?.contactPersonEmail ? (
+                              <Box
+                                component="a"
+                                href={`mailto:${jobPostDetail.contactPersonEmail}`}
+                                sx={{ color: "#1a73e8", fontWeight: 600, textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
+                              >
+                                {jobPostDetail.contactPersonEmail}
+                              </Box>
+                            ) : (
+                              "Not updated"
+                            )
+                          }
                           actions={
                             <>
                               {jobPostDetail?.contactPersonEmail && (
@@ -1646,7 +1668,7 @@ const JobDetailPage = () => {
                                 onClick={handleSendApplicationToEmail}
                                 sx={{ textTransform: "none", fontWeight: 600, borderRadius: 999 }}
                               >
-                                Send application
+                                Email application
                               </Button>
                             </>
                           }
@@ -1655,7 +1677,19 @@ const JobDetailPage = () => {
                         <ContactRow
                           icon={<PhoneIcon sx={{ color: "#1a73e8", fontSize: 22 }} />}
                           label="Phone Number"
-                          value={jobPostDetail?.contactPersonPhone}
+                          value={
+                            jobPostDetail?.contactPersonPhone ? (
+                              <Box
+                                component="a"
+                                href={`tel:${String(jobPostDetail.contactPersonPhone).replace(/\s+/g, "")}`}
+                                sx={{ color: "#1a73e8", fontWeight: 600, textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
+                              >
+                                {jobPostDetail.contactPersonPhone}
+                              </Box>
+                            ) : (
+                              "Not updated"
+                            )
+                          }
                           actions={
                             <>
                               {jobPostDetail?.contactPersonPhone && (
@@ -1668,16 +1702,17 @@ const JobDetailPage = () => {
                                   <ContentCopyIcon sx={{ fontSize: 16 }} />
                                 </IconButton>
                               )}
-                              <Button
-                                size="small"
-                                variant="outlined"
-                                color="success"
-                                startIcon={<WhatsAppIcon sx={{ fontSize: 16 }} />}
-                                onClick={handleSendApplicationToWhatsApp}
-                                sx={{ textTransform: "none", fontWeight: 600, borderRadius: 999 }}
-                              >
-                                Apply via WhatsApp
-                              </Button>
+                              {jobPostDetail?.contactPersonPhone && (
+                                <Button
+                                  size="small"
+                                  variant="outlined"
+                                  component="a"
+                                  href={`tel:${String(jobPostDetail.contactPersonPhone).replace(/\s+/g, "")}`}
+                                  sx={{ textTransform: "none", fontWeight: 600, borderRadius: 999 }}
+                                >
+                                  Call
+                                </Button>
+                              )}
                             </>
                           }
                         />
@@ -1685,7 +1720,7 @@ const JobDetailPage = () => {
                         <ContactRow
                           icon={<LocationOnIcon sx={{ color: "#1a73e8", fontSize: 22 }} />}
                           label="Address"
-                          value={jobPostDetail?.location?.address}
+                          value={jobPostDetail?.location?.address || "Not updated"}
                           actions={
                             jobPostDetail?.location?.address && (
                               <IconButton
@@ -1699,7 +1734,44 @@ const JobDetailPage = () => {
                             )
                           }
                         />
+                      </Stack>
 
+                      <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} sx={{ mt: 2.5 }}>
+                        {companyWebsiteUrl && (
+                          <Button
+                            variant="outlined"
+                            startIcon={<OpenInNewIcon />}
+                            component="a"
+                            href={companyWebsiteUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{
+                              textTransform: "none",
+                              borderRadius: "20px",
+                              fontWeight: 700,
+                              borderColor: "#1a73e8",
+                              color: "#1a73e8",
+                              "&:hover": { backgroundColor: "#f6fafe", borderColor: "#1b66c9" },
+                            }}
+                          >
+                            Apply on official website
+                          </Button>
+                        )}
+                        <Button
+                          variant="outlined"
+                          onClick={handleOpenHelpToApply}
+                          sx={{
+                            textTransform: "none",
+                            borderRadius: "20px",
+                            fontWeight: 600,
+                            borderColor: "#441da0",
+                            color: "#441da0",
+                            backgroundColor: "white",
+                            "&:hover": { backgroundColor: "#f3efff", borderColor: "#35177d" },
+                          }}
+                        >
+                          Get help applying
+                        </Button>
                       </Stack>
                     </Box>
                   </Grid>
@@ -2152,16 +2224,8 @@ const JobDetailPage = () => {
               </Card>
             </Grid>
           </Grid>
-          {/* Viral + signup: share this job to redeem unlocks; guests nudged to join */}
-          <Box sx={{ mt: 3 }}>
-            <ShareToUnlock
-              pageTitle={`${jobPostDetail?.jobName || "This job"} at ${jobPostDetail?.companyDict?.companyName || "Rwanda"}`}
-              shareUrl={shareUrl}
-              compact={false}
-            />
-          </Box>
           {!isAuthenticated && (
-            <Box sx={{ mt: 2.5 }}>
+            <Box sx={{ mt: 3 }}>
               <SignupNudge variant="banner" />
             </Box>
           )}

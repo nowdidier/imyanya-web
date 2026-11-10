@@ -7,6 +7,7 @@ import {
   Button,
   Card,
   CircularProgress,
+  Divider,
   FormControlLabel,
   Grid,
   Link,
@@ -33,6 +34,7 @@ const ApplyForm = ({
   onEmailApply,
   showWhatsApp = false,
   showEmail = false,
+  onOpenHelp,
 }) => {
   const { currentUser } = useSelector((state) => state.user);
   const [isLoadingResumes, setIsLoadingResumes] = React.useState(false);
@@ -101,6 +103,32 @@ const ApplyForm = ({
     <>
       <form id="modal-form" onSubmit={handleSubmit(handleApplyJob)}>
         <Grid container spacing={2}>
+          {onOpenHelp && (
+            <Grid item xs={12}>
+              <Divider sx={{ mb: 1 }} />
+              <Stack
+                direction="row"
+                spacing={1}
+                alignItems="center"
+                sx={{ flexWrap: 'wrap', rowGap: 0.5 }}
+              >
+                <Typography color="GrayText" variant="caption" sx={{ flex: 1, minWidth: 200 }}>
+                  No CV, letter or time to apply yourself?
+                </Typography>
+                <Button
+                  type="button"
+                  variant="text"
+                  size="small"
+                  color="success"
+                  startIcon={<WhatsAppIcon />}
+                  onClick={onOpenHelp}
+                  sx={{ textTransform: 'none', fontWeight: 700 }}
+                >
+                  Nkeneye ubufasha bwo gusaba
+                </Button>
+              </Stack>
+            </Grid>
+          )}
           <Grid item xs={12}>
             <Stack spacing={1} justifyContent="center">
               {isLoadingResumes ? (

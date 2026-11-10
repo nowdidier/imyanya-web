@@ -25,11 +25,17 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 import { TabTitle } from "../../../utils/generalFunction";
 import toastMessages from "../../../utils/toastMessages";
 import errorHandling from "../../../utils/errorHandling";
-import { APP_NAME, ROUTES } from "../../../configs/constants";
+import {
+  APP_NAME,
+  ROUTES,
+  HELP_TO_APPLY_CONFIG,
+} from "../../../configs/constants";
+import { useHelpToApply, helpPriceLabel } from "../../../components/HelpToApply";
 import CvBuilderPdf from "../../../components/CvBuilderPdf";
 import jobSeekerProfileService from "../../../services/jobSeekerProfileService";
 import resumeService from "../../../services/resumeService";
@@ -81,6 +87,12 @@ const toYear = (value) => {
 const CvBuilderPage = () => {
   TabTitle(`CV yo mu Rwanda — Free CV Builder (Word & PDF Download) | ${APP_NAME}`);
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
+  const { openHelp } = useHelpToApply();
+
+  const cvService = HELP_TO_APPLY_CONFIG.SERVICES.CV_LETTER_SUBMIT;
+
+  const handleOpenHelp = () =>
+    openHelp({ source: "cv-builder", preselectService: cvService.id });
 
   const [form, setForm] = React.useState({
     fullName: "",
@@ -786,6 +798,33 @@ const CvBuilderPage = () => {
                   </Stack>
                   <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 1, textAlign: "center" }}>
                     Free download — Word opens in Word, WPS and Google Docs; PDF prints anywhere.
+                  </Typography>
+                  <Divider sx={{ mt: 2, mb: 1.5 }} />
+                  <Typography variant="subtitle2" fontWeight={700} gutterBottom>
+                    Turagonza kubyandika? (Too busy to write it?)
+                  </Typography>
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    startIcon={<WhatsAppIcon />}
+                    onClick={handleOpenHelp}
+                    sx={{
+                      textTransform: "none",
+                      fontWeight: 700,
+                      borderRadius: "20px",
+                      borderColor: "#25D366",
+                      color: "#1d9e4f",
+                      backgroundColor: "white",
+                      "&:hover": {
+                        borderColor: "#1ebe5d",
+                        backgroundColor: "#e9fbef",
+                      },
+                    }}
+                  >
+                    Let us write it for you — {helpPriceLabel(cvService.price)}
+                  </Button>
+                  <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 1, textAlign: "center" }}>
+                    Our team writes a professional CV + application letter ({cvService.label}) via MoMo payment — delivered on WhatsApp.
                   </Typography>
                 </CardContent>
               </Card>

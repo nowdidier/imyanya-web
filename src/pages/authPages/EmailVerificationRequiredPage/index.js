@@ -18,8 +18,14 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { TabTitle } from '../../../utils/generalFunction';
 import getAuthErrorMessage from '../../../utils/authErrorMessage';
 import { getRedirectParam } from '../../../utils/funcUtils';
-import { APP_NAME, PLATFORM, ROUTES } from '../../../configs/constants';
+import {
+  APP_NAME,
+  PLATFORM,
+  ROLES_NAME,
+  ROUTES,
+} from '../../../configs/constants';
 import authService from '../../../services/authService';
+import { EmployerHelpCard } from '../../../components/EmployerHelp';
 
 const EmailVerificationRequiredPage = () => {
   TabTitle("Email Verification")
@@ -146,6 +152,15 @@ const EmailVerificationRequiredPage = () => {
           )}
         </Stack>
       </Card>
+      {roleName === ROLES_NAME.EMPLOYER && (
+        <Box sx={{ mt: 3 }}>
+          <EmployerHelpCard
+            source="employer-onboarding"
+            title="Need help posting your first job?"
+            description="Once your email is confirmed, we can post the vacancy for you, write the description, or send you a shortlist. Fixed prices start at 5,000 RWF."
+          />
+        </Box>
+      )}
     </Container>
   );
 };

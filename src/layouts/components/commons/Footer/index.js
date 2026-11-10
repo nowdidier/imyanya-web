@@ -14,9 +14,11 @@ import {
 } from '@mui/material';
 import { ICONS, IMAGES, LINKS, ROUTES, APP_NAME, HOST_NAME } from '../../../../configs/constants';
 import MuiImageCustom from '../../../../components/MuiImageCustom';
+import { useEmployerHelp } from '../../../../components/HelpToApply';
 
 const Footer = () => {
   const nav = useNavigate();
+  const { openEmployerHelp } = useEmployerHelp();
   const employerOrigin = `https://${HOST_NAME.EMPLOYER_MYJOB}`;
   const ticketsUrl = `https://tickets.${HOST_NAME.MYJOB}`;
 
@@ -207,6 +209,22 @@ const Footer = () => {
                       underline="hover"
                     >
                       Notifications
+                    </Link>
+                  }
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary={
+                    <Link
+                      component="button"
+                      type="button"
+                      color="inherit"
+                      underline="hover"
+                      onClick={() => openEmployerHelp({ source: "footer" })}
+                      sx={{ textAlign: "left" }}
+                    >
+                      Recruitment help — Dukeneye gufashwa gushaka umukozi
                     </Link>
                   }
                 />

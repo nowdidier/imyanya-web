@@ -25,6 +25,7 @@ import xlsxUtils from '../../../../utils/xlsxUtils';
 import toastMessages from '../../../../utils/toastMessages';
 import { confirmModal } from '../../../../utils/sweetalert2Modal';
 import FormPopup from '../../../../components/controls/FormPopup';
+import { EmployerHelpCard } from '../../../../components/EmployerHelp';
 import AppliedResumeFilterForm from '../AppliedResumeFilterForm';
 import AppliedResumeTable from '../AppliedResumeTable';
 import jobPostActivityService from '../../../../services/jobPostActivityService';
@@ -427,6 +428,15 @@ const AppliedResumeCard = ({ title }) => {
         </Box>
       ) : (
         <Divider sx={{ mb: 2 }} />
+      )}
+
+      {!isLoading && resumes.length === 0 && (
+        <EmployerHelpCard
+          source="no-applicants"
+          title="Ntabasabye? Tugufashe gushaka abakandida."
+          description="No applications yet? We can post the vacancy and send you a shortlist of up to 5 CVs from Imyanya — 25,000 RWF."
+          sx={{ mb: 3 }}
+        />
       )}
 
       {/* Table Section */}

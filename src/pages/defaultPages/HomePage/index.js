@@ -16,6 +16,7 @@ import {
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import SearchIcon from "@mui/icons-material/Search";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 
 import { TabTitle } from "../../../utils/generalFunction";
 import {
@@ -34,8 +35,8 @@ import SuggestedJobPostCard from "../../components/defaults/SuggestedJobPostCard
 import YouTubeVideoSection from "../../../components/YouTubeVideoSection";
 import TicketsPromo from "../../../components/TicketsPromo";
 import SignupNudge from "../../../components/SignupNudge";
-import ShareToUnlock from "../../../components/ShareToUnlock";
 import SeoContent from "../../../components/SeoContent";
+import NeedHelpSubscribe from "../../../components/NeedHelpSubscribe";
 
 export default function HomePage() {
   TabTitle(`#1 Jobs in Rwanda | Kigali Vacancies, NGOs & Internships | ${APP_NAME}`);
@@ -221,7 +222,6 @@ export default function HomePage() {
 
       {isAuthenticated && currentUser?.roleName === ROLES_NAME.JOB_SEEKER && (
         <Box sx={{ mt: 10 }}>
-          {/* Start: Suggested jobs */}
           <Card variant="outlined">
             <CardHeader
               avatar={
@@ -230,9 +230,9 @@ export default function HomePage() {
                 </Avatar>
               }
               title={
-                  <Typography variant="h5" sx={{ color: "#441da0" }}>
-                    Recommended Jobs for You
-                  </Typography>
+                <Typography variant="h5" sx={{ color: "#441da0" }}>
+                  Recommended jobs for you
+                </Typography>
               }
               sx={{
                 backgroundImage: `url('${require("../../../assets/images/banner-explore.png")}')`,
@@ -243,21 +243,60 @@ export default function HomePage() {
             />
             <CardContent sx={{ backgroundColor: "#e0f0ff" }}>
               <Box sx={{ p: { xs: 0, sm: 0, md: 0, lg: 2, xl: 2 } }}>
-                {/* Start: SuggestedJobPostCard */}
                 <SuggestedJobPostCard />
-                {/* End: SuggestedJobPostCard */}
               </Box>
             </CardContent>
           </Card>
-          {/* End: Suggested jobs */}
         </Box>
       )}
+
+      <Box sx={{ mt: 10 }}>
+        <SectionHeader
+          eyebrow="All jobs"
+          title="Latest jobs in Rwanda"
+          subtitle={
+            <>
+              Browse all available opportunities across Rwanda. Use filters and search on the{" "}
+              <Typography
+                component={RouterLink}
+                to={`/${ROUTES.JOB_SEEKER.JOBS_EN}`}
+                sx={{ color: "primary.main", fontWeight: 600, textDecoration: "none" }}
+              >
+                jobs in Rwanda
+              </Typography>{" "}
+              page to find the right match.
+            </>
+          }
+          action={
+            <Button
+              component={RouterLink}
+              to={`/${ROUTES.JOB_SEEKER.JOBS_EN}`}
+              variant="contained"
+              startIcon={<SearchIcon />}
+              sx={{ textTransform: "none", fontWeight: 700, borderRadius: "20px", boxShadow: "none" }}
+            >
+              View all jobs
+            </Button>
+          }
+        />
+        <Card variant="outlined" sx={{ p: { xs: 1.5, sm: 2, md: 3 }, borderRadius: 3 }}>
+          <FilterJobPostCard params={{}} />
+        </Card>
+      </Box>
+
+      <Box sx={{ mt: 8 }}>
+        <NeedHelpSubscribe
+          title="Need help with anything?"
+          subtitle="Subscribe for help about jobs, applications, CVs, interviews, or posting and hiring. Tell us what you need and we’ll assist you."
+          source="home"
+        />
+      </Box>
 
       <Box
         sx={{
           borderRadius: 4,
           p: 4,
-          mt: 6,
+          mt: 8,
           backgroundImage: `url('${require("../../../assets/images/banner-explore-pc.png")}')`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -266,22 +305,20 @@ export default function HomePage() {
         }}
       >
         <Stack
-          direction={{
-            xs: "column",
-            sm: "row",
-            md: "row",
-            lg: "row",
-            xl: "row",
-          }}
+          direction={{ xs: "column", sm: "row" }}
           justifyContent="space-between"
           spacing={2}
+          alignItems={{ sm: "center" }}
         >
           <Box>
-            <Typography fontSize={32} fontWeight="bold" color="white">
-              Need jobs that match you in Rwanda?
+            <Typography fontSize={{ xs: 24, sm: 32 }} fontWeight="bold" color="white">
+              Looking for the right opportunity in Rwanda?
+            </Typography>
+            <Typography sx={{ color: "rgba(255,255,255,0.9)", mt: 0.5 }}>
+              Search all jobs, explore companies, and get help whenever you need it.
             </Typography>
           </Box>
-          <Box>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
             <Button
               variant="contained"
               color="primary"
@@ -289,15 +326,19 @@ export default function HomePage() {
               startIcon={<SearchIcon />}
               onClick={() => nav(`/${ROUTES.JOB_SEEKER.JOBS_EN}`)}
             >
-              Browse Jobs in Rwanda
+              Browse all jobs
             </Button>
-          </Box>
+            <Button
+              variant="outlined"
+              size="large"
+              startIcon={<WorkOutlineIcon />}
+              onClick={() => nav(`/${ROUTES.JOB_SEEKER.COMPANY_EN}`)}
+              sx={{ color: "white", borderColor: "rgba(255,255,255,0.7)", "&:hover": { borderColor: "white" } }}
+            >
+              Explore companies
+            </Button>
+          </Stack>
         </Stack>
-      </Box>
-
-      {/* Viral loop: share to redeem free features (no money) — drives traffic */}
-      <Box sx={{ mt: 6 }}>
-        <ShareToUnlock pageTitle="Jobs in Rwanda — Imyanya" />
       </Box>
 
       {isGuest && (

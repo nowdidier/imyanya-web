@@ -25,6 +25,7 @@ import AppRoutes from "./routes/AppRouter";
 import SeoManager from "./components/SeoManager";
 import LiveActivityToast from "./components/LiveActivityToast";
 import { WhatsAppContactButton } from "./whatsapp";
+import HelpToApplyProvider from "./components/HelpToApply";
 import Feedback from "./components/Feedback";
 import ScrollToTop from "./components/ScrollToTop";
 import SignupNudge from "./components/SignupNudge";
@@ -190,31 +191,33 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline enableColorScheme />
 
-          <SeoManager />
+          <HelpToApplyProvider>
+            <SeoManager />
 
-          {/* Routes */}
-          <AppRoutes settings={settings} />
+            {/* Routes */}
+            <AppRoutes settings={settings} />
 
-          {/* Toast */}
-          <ToastContainer autoClose={1300} />
+            {/* Toast */}
+            <ToastContainer autoClose={1300} />
 
-          {/* Contact widgets + Feedback */}
-          {!hideChatFeatures && (
-            <>
-              {isAuthenticated && (
-                <Feedback />
-              )}
+            {/* Contact widgets + Feedback */}
+            {!hideChatFeatures && (
+              <>
+                {isAuthenticated && (
+                  <Feedback />
+                )}
 
-              {!isEmployerHost() && <LiveActivityToast />}
+                {!isEmployerHost() && <LiveActivityToast />}
 
-              <WhatsAppContactButton />
+                <WhatsAppContactButton />
 
-              {/* Sticky guest signup bar — always visible until dismissed */}
-              {!isAuthenticated && !isEmployerHost() && (
-                <SignupNudge variant="sticky" />
-              )}
-            </>
-          )}
+                {/* Sticky guest signup bar — always visible until dismissed */}
+                {!isAuthenticated && !isEmployerHost() && (
+                  <SignupNudge variant="sticky" />
+                )}
+              </>
+            )}
+          </HelpToApplyProvider>
         </ThemeProvider>
       </ConfigProvider>
 

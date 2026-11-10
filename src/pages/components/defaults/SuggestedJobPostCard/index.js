@@ -88,7 +88,14 @@ const SuggestedJobPostCard = ({ pageSize = 12, fullWidth = false }) => {
             ))}
           </Grid>
         ) : jobPosts.length === 0 ? (
-          <NoDataCard imgComponentSgv={<ImageSvg8 />} />
+          <NoDataCard
+            title={
+              isAuthenticated && currentUser?.roleName === ROLES_NAME.JOB_SEEKER
+                ? 'No suggested jobs yet. Update your profile to get better matches.'
+                : 'Sign in as a job seeker to see suggested jobs.'
+            }
+            imgComponentSgv={<ImageSvg8 />}
+          />
         ) : (
           <>
             <Grid container spacing={2}>

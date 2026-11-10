@@ -31,6 +31,7 @@ import {
 } from "../../../data/rwandaCareerContent";
 import OrganisationsMap from "../../../components/OrganisationsMap";
 import SeoBreadcrumbs from "../../../components/SeoBreadcrumbs";
+import NeedHelpSubscribe from "../../../components/NeedHelpSubscribe";
 
 const GuideCard = ({ title, body }) => (
   <Card variant="outlined" sx={{ height: "100%", borderRadius: 1 }}>
@@ -199,7 +200,23 @@ const CareerGuidePage = () => {
           >
             Browse jobs by work type →
           </Button>
+          <Button
+            component={RouterLink}
+            to={`/${ROUTES.JOB_SEEKER.JOBS_EN}`}
+            variant="contained"
+            sx={{ textTransform: "none", fontWeight: 700, boxShadow: "none" }}
+          >
+            Browse all jobs in Rwanda
+          </Button>
         </Stack>
+
+        <Box sx={{ mt: 5 }}>
+          <NeedHelpSubscribe
+            title="Need help with your career journey?"
+            subtitle="Subscribe for help with job search, CVs, applications, interviews, or anything else you need. We’re here to support you."
+            source="rwanda-career-guide"
+          />
+        </Box>
       </Box>
     </Container>
   );

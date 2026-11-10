@@ -23,6 +23,7 @@ import companyService from '../../../../services/companyService';
 import RichTextEditorWithPreview from '../../../../components/controls/RichTextEditorWithPreview';
 import TextFieldAutoCompleteCustom from '../../../../components/controls/TextFieldAutoCompleteCustom';
 import Map from '../../../../components/Map';
+import { EmployerHelpCard } from '../../../../components/EmployerHelp';
 
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import { geocodeAddress } from '../../../../utils/geocodeAddress';
@@ -628,6 +629,13 @@ const JobPostForm = ({ handleAddOrUpdate, editData, serverErrors }) => {
   return (
     <form id="modal-form" onSubmit={handleSubmit(handleSubmitData)}>
       <Stack spacing={2}>
+        <EmployerHelpCard
+          source="job-post-form"
+          title="Ntushobora kuyuzuza? Tuyigufashemo."
+          description="Send us the job details and we post it for you. We can also write the description or send you a shortlist."
+          company={companyName}
+          jobTitle={jobTitle}
+        />
         {/* Readiness: visualize what's missing for a pro + Google Jobs post */}
         <Card sx={{ border: '1px solid #dadce0', borderRadius: 2, boxShadow: 'none' }}>
           <CardContent>

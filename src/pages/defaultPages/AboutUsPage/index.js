@@ -1,42 +1,43 @@
 import React from "react";
-import { Box, Card, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Card, Grid, Stack, Typography } from "@mui/material";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import { Link as RouterLink } from "react-router-dom";
 
 import { TabTitle } from "../../../utils/generalFunction";
 import AppIntroductionCard from "../../../components/AppIntroductionCard";
-import MuiImageCustom from "../../../components/MuiImageCustom";
-import { ABOUT_IMAGES, APP_NAME } from "../../../configs/constants";
+import SeoBreadcrumbs from "../../../components/SeoBreadcrumbs";
+import { APP_NAME, ROUTES } from "../../../configs/constants";
 
 const AboutUsPage = () => {
-  TabTitle(`About Us - Job referral system ${APP_NAME}`);
+  TabTitle(`About ${APP_NAME} | Jobs and Career Opportunities in Rwanda`);
 
   const features = [
     {
-      title: "Choose the Right Job - Move in the Right Direction",
+      title: "Find the right opportunities",
       icon: WorkOutlineIcon,
       description:
-        "Discover jobs that match your career direction, with clear information about requirements, work environment, and growth opportunities.",
+        "Search jobs in Rwanda by career, location, and work type with clear information to help you apply confidently.",
     },
     {
-      title: "Create CV & Profile",
+      title: "Build a strong profile",
       icon: PersonOutlineIcon,
       description:
-        "Build a professional application profile with smart CV tools and polished templates for each career field.",
+        "Create and improve your CV/profile so employers can quickly understand your skills and experience.",
     },
     {
-      title: "Jobs Near You",
+      title: "Explore jobs near you",
       icon: LocationOnOutlinedIcon,
       description:
-        "Search for ideal job opportunities in your area and find matching roles near where you live.",
+        "Discover opportunities across Kigali and other regions in Rwanda that match your goals and availability.",
     },
     {
-      title: "Job Notifications Anytime",
+      title: "Stay updated",
       icon: NotificationsNoneIcon,
       description:
-        "Get instant updates about new job positions that match your skills, goals, and preferred criteria.",
+        "Get timely updates and keep track of relevant opportunities, companies, and career resources.",
     },
   ];
 
@@ -44,102 +45,63 @@ const AboutUsPage = () => {
     {
       title: "Rwanda-focused job information",
       description:
-        "Our public pages are written for candidates comparing opportunities in Kigali and across Rwanda, with guidance on applications, locations, categories, and employer fit.",
+        "We help candidates compare opportunities across Rwanda with practical guidance on applications, locations, categories, and employers.",
     },
     {
-      title: "Clear employer and candidate workflows",
+      title: "Clear tools for job seekers and employers",
       description:
-        "Job seekers can prepare profiles and applications, while employers can publish roles, review applicants, and manage recruitment conversations in one place.",
+        "Job seekers can prepare profiles and apply, while employers can publish roles, review applicants, and connect with talent.",
     },
     {
-      title: "Trust and safety awareness",
+      title: "Trust and safety",
       description:
-        "We encourage candidates to review job details carefully and report suspicious listings, especially requests for payment or unclear application processes.",
-    },
-  ];
-
-  const sections = [
-    {
-      title: "Choose the Right Job - Move in the Right Direction",
-      image: ABOUT_IMAGES.JOB_POST,
-      reverse: false,
-      lines: [
-        "Discover jobs that match your career direction.",
-        "We provide clear information about job requirements, work environment, and growth opportunities at each company.",
-        "Authentic employee ratings help you make confident career decisions.",
-      ],
-    },
-    {
-      title: "Create CV & Profile",
-      image: ABOUT_IMAGES.PROFILE,
-      reverse: true,
-      lines: [
-        "Build a professional application profile with smart CV tools.",
-        "Optimize your profile with polished CV templates for each career field.",
-        "Easily update your CV for employer requirements and increase your chance of being noticed.",
-      ],
-    },
-    {
-      title: "Jobs Near You",
-      image: ABOUT_IMAGES.AROUND_JOB_POST,
-      reverse: false,
-      lines: [
-        "Search for ideal job opportunities in your area.",
-        "With smart location features, we suggest matching jobs near where you live.",
-        "Save commuting time and find opportunities inside your preferred radius.",
-      ],
-    },
-    {
-      title: "Job Notifications Anytime",
-      image: ABOUT_IMAGES.JOB_POST_NOTIFICATION,
-      reverse: true,
-      lines: [
-        "Never miss an opportunity with smart notifications.",
-        "Receive instant updates about new job positions that match your skills and goals.",
-        "Customize criteria such as salary, location, and career field to stay updated on the best opportunities.",
-      ],
+        "We encourage users to review job details carefully and report suspicious listings or unclear requests.",
     },
   ];
 
   return (
-    <Box sx={{ maxWidth: "1200px", margin: "0 auto", py: 5, px: 3 }}>
-      <Box sx={{ mb: 6, textAlign: "center" }}>
-        <Typography
-          variant="h3"
-          sx={{
-            mb: 2,
-            background: (theme) => theme.palette.primary.gradient,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontWeight: 700,
-          }}
-        >
-          About Us
+    <Box sx={{ maxWidth: "1100px", margin: "0 auto", py: 5, px: 3 }}>
+      <SeoBreadcrumbs
+        items={[{ label: "Home", href: "/" }, { label: "About us" }]}
+      />
+
+      <Box sx={{ mb: 5 }}>
+        <Typography variant="h3" component="h1" fontWeight={800} sx={{ mb: 1.5, color: "#202124" }}>
+          About {APP_NAME}
         </Typography>
-        <Typography
-          sx={{
-            maxWidth: "800px",
-            margin: "0 auto",
-            color: "text.secondary",
-            lineHeight: 1.8,
-          }}
-        >
-          {APP_NAME} is a recruitment and job information channel for
-          businesses and candidates in Rwanda. We help employers explain their
-          hiring needs clearly, and we help candidates compare opportunities,
-          prepare stronger applications, and choose roles that fit their skills,
-          location, and career stage.
+        <Typography sx={{ maxWidth: 860, color: "text.secondary", lineHeight: 1.8 }}>
+          {APP_NAME} helps people find jobs and career opportunities in Rwanda while enabling
+          employers to reach qualified candidates. Our goal is to make job search, applications,
+          and hiring simpler, faster, and more accessible.
         </Typography>
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} sx={{ mt: 2.5 }}>
+          <Button
+            component={RouterLink}
+            to={`/${ROUTES.JOB_SEEKER.JOBS_EN}`}
+            variant="contained"
+            sx={{ textTransform: "none", fontWeight: 700, borderRadius: "20px", boxShadow: "none" }}
+          >
+            Browse jobs in Rwanda
+          </Button>
+          <Button
+            component={RouterLink}
+            to={`/${ROUTES.JOB_SEEKER.COMPANY_EN}`}
+            variant="outlined"
+            sx={{ textTransform: "none", fontWeight: 700, borderRadius: "20px" }}
+          >
+            Explore companies
+          </Button>
+        </Stack>
       </Box>
 
-      <Box sx={{ mb: 8 }}>
-        <Typography variant="h4" component="h2" fontWeight={700} sx={{ mb: 3 }}>
-          What We Publish For
+      <Box sx={{ mb: 6 }}>
+        <Typography variant="h4" component="h2" fontWeight={700} sx={{ mb: 2.5 }}>
+          What we do
         </Typography>
         <Grid container spacing={3}>
           {contentStandards.map((item) => (
             <Grid item xs={12} md={4} key={item.title}>
-              <Card variant="outlined" sx={{ height: "100%", p: 3, borderRadius: 1 }}>
+              <Card variant="outlined" sx={{ height: "100%", p: 3, borderRadius: 2 }}>
                 <Typography variant="h6" fontWeight={700} sx={{ mb: 1 }}>
                   {item.title}
                 </Typography>
@@ -152,144 +114,62 @@ const AboutUsPage = () => {
         </Grid>
       </Box>
 
-      <Box sx={{ mb: 8 }}>
-        <Grid container spacing={4}>
-          {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card
-                sx={{
-                  height: "100%",
-                  p: 3,
-                  position: "relative",
-                  overflow: "visible",
-                  transition: "all 0.3s ease-in-out",
-                  backgroundColor: "background.paper",
-                  border: "1px solid",
-                  borderColor: "grey.100",
-                  "&:hover": {
-                    transform: "translateY(-8px)",
-                    boxShadow: (theme) => theme.customShadows.card,
-                    borderColor: "primary.light",
-                    backgroundColor: (theme) =>
-                      `${theme.palette.primary.background}`,
-                    "& .feature-icon": {
-                      color: "primary.light",
-                      transform: "scale(1.1)",
-                    },
-                  },
-                }}
-              >
+      <Box sx={{ mb: 6 }}>
+        <Typography variant="h4" component="h2" fontWeight={700} sx={{ mb: 2.5 }}>
+          How {APP_NAME} helps
+        </Typography>
+        <Grid container spacing={3}>
+          {features.map((feature) => (
+            <Grid item xs={12} sm={6} md={3} key={feature.title}>
+              <Card variant="outlined" sx={{ height: "100%", p: 2.5, borderRadius: 2 }}>
                 <Box
                   sx={{
-                    position: "absolute",
-                    top: -20,
-                    left: 20,
-                    backgroundColor: "background.paper",
-                    borderRadius: "12px",
-                    p: 1.5,
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                    width: 44,
+                    height: 44,
+                    borderRadius: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    bgcolor: "primary.background",
+                    color: "primary.main",
+                    mb: 1.5,
                   }}
                 >
-                  <feature.icon
-                    className="feature-icon"
-                    sx={{
-                      fontSize: 32,
-                      transition: "all 0.3s ease-in-out",
-                      color: "grey.500",
-                    }}
-                  />
+                  <feature.icon />
                 </Box>
-                <Box sx={{ mt: 2 }}>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      mb: 2,
-                      color: "grey.700",
-                      fontWeight: 600,
-                    }}
-                  >
-                    {feature.title}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      lineHeight: 1.7,
-                      fontSize: "0.95rem",
-                      color: "grey.600",
-                    }}
-                  >
-                    {feature.description}
-                  </Typography>
-                </Box>
+                <Typography variant="h6" sx={{ mb: 1, fontSize: "1.05rem", fontWeight: 700 }}>
+                  {feature.title}
+                </Typography>
+                <Typography color="text.secondary" sx={{ lineHeight: 1.7, fontSize: "0.95rem" }}>
+                  {feature.description}
+                </Typography>
               </Card>
             </Grid>
           ))}
         </Grid>
       </Box>
 
-      <Typography
-        variant="h4"
-        sx={{
-          mb: 4,
-          textAlign: "center",
-          background: (theme) => theme.palette.primary.gradient,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          fontWeight: 700,
-        }}
-      >
-        Mobile App {APP_NAME}
-      </Typography>
+      <Card variant="outlined" sx={{ p: 3, borderRadius: 2, mb: 4, bgcolor: "#f8fbff", borderColor: "#d2e3fc" }}>
+        <Typography variant="h5" fontWeight={700} sx={{ mb: 1 }}>
+          Get started
+        </Typography>
+        <Typography color="text.secondary" sx={{ mb: 2, lineHeight: 1.7 }}>
+          Browse current opportunities, explore companies hiring in Rwanda, and use our career tools to prepare strong applications.
+        </Typography>
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
+          <Button component={RouterLink} to={`/${ROUTES.JOB_SEEKER.JOBS_EN}`} variant="contained" sx={{ textTransform: "none", fontWeight: 700, borderRadius: "20px", boxShadow: "none" }}>
+            Find jobs
+          </Button>
+          <Button component={RouterLink} to={`/${ROUTES.JOB_SEEKER.CAREER_GUIDE}`} variant="outlined" sx={{ textTransform: "none", fontWeight: 700, borderRadius: "20px" }}>
+            Career guide
+          </Button>
+          <Button component={RouterLink} to={`/${ROUTES.JOB_SEEKER.CAREER_TOOLS}`} variant="outlined" sx={{ textTransform: "none", fontWeight: 700, borderRadius: "20px" }}>
+            Career tools
+          </Button>
+        </Stack>
+      </Card>
 
-      {sections.map((section) => (
-        <Box sx={{ mt: 5 }} key={section.title}>
-          <Card sx={{ p: 5 }}>
-            <Stack
-              direction={{
-                xs: section.reverse ? "column-reverse" : "column",
-                sm: section.reverse ? "column-reverse" : "column",
-                md: section.reverse ? "row" : "row",
-              }}
-              spacing={2}
-            >
-              {!section.reverse && (
-                <Box width="100%">
-                  <Box sx={{ height: 600 }}>
-                    <MuiImageCustom src={section.image} />
-                  </Box>
-                </Box>
-              )}
-              <Box>
-                <Stack spacing={2}>
-                  <Typography
-                    variant="h4"
-                    style={{ color: "warning.main", fontSize: 30 }}
-                  >
-                    {section.title}
-                  </Typography>
-                  {section.lines.map((line) => (
-                    <Typography
-                      key={line}
-                      textAlign="justify"
-                      color="text.secondary"
-                    >
-                      {line}
-                    </Typography>
-                  ))}
-                </Stack>
-              </Box>
-              {section.reverse && (
-                <Box width="100%">
-                  <Box sx={{ height: 600 }}>
-                    <MuiImageCustom src={section.image} />
-                  </Box>
-                </Box>
-              )}
-            </Stack>
-          </Card>
-        </Box>
-      ))}
-
-      <Box sx={{ mt: 5 }}>
+      <Box sx={{ mt: 2 }}>
         <AppIntroductionCard />
       </Box>
     </Box>

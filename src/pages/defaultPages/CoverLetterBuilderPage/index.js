@@ -6,16 +6,19 @@ import {
   Card,
   CardContent,
   Container,
+  Divider,
   Grid,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 import { TabTitle } from "../../../utils/generalFunction";
 import toastMessages from "../../../utils/toastMessages";
-import { APP_NAME } from "../../../configs/constants";
+import { APP_NAME, HELP_TO_APPLY_CONFIG } from "../../../configs/constants";
+import { useHelpToApply, helpPriceLabel } from "../../../components/HelpToApply";
 import {
   buildCoverLetterDocument,
   downloadDocx,
@@ -26,6 +29,16 @@ const fieldProps = { fullWidth: true, size: "small", variant: "outlined" };
 
 const CoverLetterBuilderPage = () => {
   TabTitle(`Free Cover Letter Builder (Download Word .docx) | ${APP_NAME}`);
+
+  const { openHelp } = useHelpToApply();
+
+  const letterService = HELP_TO_APPLY_CONFIG.SERVICES.LETTER_SUBMIT;
+
+  const handleOpenHelp = () =>
+    openHelp({
+      source: "cover-letter-builder",
+      preselectService: letterService.id,
+    });
 
   const [form, setForm] = React.useState({
     fullName: "",
@@ -230,6 +243,30 @@ const CoverLetterBuilderPage = () => {
                   </Button>
                   <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 1, textAlign: "center" }}>
                     Free download — the file opens in Word, WPS and Google Docs.
+                  </Typography>
+                  <Divider sx={{ mt: 2, mb: 1.5 }} />
+                  <Button
+                    fullWidth
+                    variant="outlined"
+                    startIcon={<WhatsAppIcon />}
+                    onClick={handleOpenHelp}
+                    sx={{
+                      textTransform: "none",
+                      fontWeight: 700,
+                      borderRadius: "20px",
+                      borderColor: "#25D366",
+                      color: "#1d9e4f",
+                      backgroundColor: "white",
+                      "&:hover": {
+                        borderColor: "#1ebe5d",
+                        backgroundColor: "#e9fbef",
+                      },
+                    }}
+                  >
+                    Let us write it for you — {helpPriceLabel(letterService.price)}
+                  </Button>
+                  <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 1, textAlign: "center" }}>
+                    Our team writes your application letter ({letterService.label}) via MoMo payment — delivered on WhatsApp.
                   </Typography>
                 </CardContent>
               </Card>

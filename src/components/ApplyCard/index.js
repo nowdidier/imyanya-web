@@ -12,6 +12,7 @@ import {
 import BackdropLoading from '../loading/BackdropLoading';
 import FormPopup from '../controls/FormPopup';
 import ApplyForm from '../ApplyForm';
+import { useHelpToApply } from '../HelpToApply';
 import jobPostActivityService from '../../services/jobPostActivityService';
 
 const ApplyCard = ({
@@ -25,6 +26,14 @@ const ApplyCard = ({
   jobUrl = '',
 }) => {
   const [isFullScreenLoading, setIsFullScreenLoading] = React.useState(false);
+  const { openHelp } = useHelpToApply();
+
+  const handleOpenHelp = () =>
+    openHelp({
+      source: 'apply-form',
+      jobTitle: title,
+      jobUrl,
+    });
 
   const handleApplyJob = (data) => {
     const applyJob = async (data) => {
@@ -111,6 +120,7 @@ const ApplyCard = ({
           onEmailApply={handleApplyViaEmail}
           showWhatsApp={Boolean(contactPhone)}
           showEmail={Boolean(contactEmail)}
+          onOpenHelp={handleOpenHelp}
         />
       </FormPopup>
 

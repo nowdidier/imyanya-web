@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Box,
+  Button,
   Card,
   CardContent,
   Container,
@@ -12,12 +13,19 @@ import {
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 import { TabTitle } from "../../../utils/generalFunction";
 import {
   APP_NAME,
+  HOST_NAME,
+  ROUTES,
   getWhatsAppContactUrl,
 } from "../../../configs/constants";
+import {
+  useEmployerHelp,
+  useHelpToApply,
+} from "../../../components/HelpToApply";
 
 const supportAreas = [
   {
@@ -42,6 +50,19 @@ const supportAreas = [
 
 const ContactPage = () => {
   TabTitle(`Contact ${APP_NAME} | Rwanda Job Platform Support`);
+  const { openHelp } = useHelpToApply();
+  const { openEmployerHelp } = useEmployerHelp();
+  const employerOrigin = `https://${HOST_NAME.EMPLOYER_MYJOB}`;
+
+  const handleOpenHelp = () =>
+    openHelp({
+      source: "contact",
+    });
+
+  const handleOpenEmployerHelp = () =>
+    openEmployerHelp({
+      source: "contact",
+    });
 
   return (
     <Container maxWidth="lg">
@@ -85,6 +106,57 @@ const ContactPage = () => {
                     Include your account email, the job or company name, and a
                     short description of the issue so we can route the request.
                   </Typography>
+                  <Box>
+                    <Typography fontWeight={700}>
+                      Need help applying? (Nkeneye ubufasha bwo gusaba)
+                    </Typography>
+                    <Typography color="text.secondary" sx={{ lineHeight: 1.75, mb: 1 }}>
+                      We can write your CV or letter and submit your application
+                      for any job on Imyanya — Submit only (1,000 RWF), Letter +
+                      submit (2,000 RWF) or CV + letter + submit (3,000 RWF).
+                    </Typography>
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      color="success"
+                      startIcon={<WhatsAppIcon />}
+                      onClick={handleOpenHelp}
+                      sx={{ textTransform: "none", fontWeight: 700 }}
+                    >
+                      Nkeneye ubufasha bwo gusaba
+                    </Button>
+                  </Box>
+                  <Box>
+                    <Typography fontWeight={700}>
+                      Need help hiring? (Dukeneye gufashwa gushaka umukozi)
+                    </Typography>
+                    <Typography color="text.secondary" sx={{ lineHeight: 1.75, mb: 1 }}>
+                      We post your job for you (5,000 RWF), write the job
+                      description and post it (10,000 RWF), send up to 5
+                      shortlisted CVs (25,000 RWF), or run full recruitment
+                      (negotiated, 50% deposit before we start).
+                    </Typography>
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      color="primary"
+                      startIcon={<WhatsAppIcon />}
+                      onClick={handleOpenEmployerHelp}
+                      sx={{ textTransform: "none", fontWeight: 700 }}
+                    >
+                      Dukeneye gufashwa gushaka umukozi
+                    </Button>
+                    <Typography variant="caption" display="block" sx={{ mt: 1 }}>
+                      <Link
+                        href={`${employerOrigin}/${ROUTES.EMPLOYER.PRICING}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        underline="hover"
+                      >
+                        For employers — pricing and services
+                      </Link>
+                    </Typography>
+                  </Box>
                 </Stack>
               </CardContent>
             </Card>

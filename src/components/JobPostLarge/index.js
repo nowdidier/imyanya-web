@@ -3,30 +3,28 @@ import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
-import Moment from "react-moment";
 import {
   Box,
+  Button,
   Card,
+  Chip,
   Skeleton,
   Stack,
   Typography,
-  Tooltip,
-  Divider,
 } from "@mui/material";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import {
+  faBolt,
   faCalendarDays,
   faCircleDollarToSlot,
-  faLocationDot,
-  faBolt,
   faFire,
-  faClock,
+  faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { salaryString } from "../../utils/customData";
 import MuiImageCustom from "../MuiImageCustom";
-import RichHtmlContent from "../controls/RichHtmlContent";
-import useJobImage from "../../hooks/useJobImage";
-import { formatRoute } from "../../utils/funcUtils";
+import { formatRoute, normalizeExternalUrl } from "../../utils/funcUtils";
 import { ROUTES } from "../../configs/constants";
 
 const JobPostLarge = ({
@@ -41,372 +39,269 @@ const JobPostLarge = ({
   salaryMin,
   salaryMax,
   imageUrl,
-  jobDescription,
+  applyUrl,
 }) => {
   const theme = useTheme();
   const nav = useNavigate();
   const { allConfig } = useSelector((state) => state.config);
-  const thumbSrc =
-    useJobImage({
-      title: jobName,
-      coverImageUrl: imageUrl,
-      description: jobDescription,
-    }) || companyImageUrl;
+  const thumbSrc = imageUrl || companyImageUrl;
+  const location = allConfig?.cityDict?.[cityId];
+  const officialApplyUrl = normalizeExternalUrl(applyUrl);
+  const deadlineDate = deadline && dayjs(deadline).isValid() ? dayjs(deadline) : null;
+  const daysLeft = deadlineDate ? deadlineDate.diff(dayjs(), "day") : null;
+  const deadlineLabel = deadlineDate
+    ? daysLeft < 0
+      ? "Expired"
+      : daysLeft === 0
+        ? "Closes today"
+        : `Closes ${deadlineDate.format("DD MMM YYYY")}`
+    : "Open";
+
+  const handleOpen = () => {
+    if (!slug) return;
+    nav(`/${formatRoute(ROUTES.JOB_SEEKER.JOB_DETAIL, slug)}`);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleOpen();
+    }
+  };
 
   return (
     <Card
       variant="outlined"
+      role="link"
+      tabIndex={0}
+      onClick={handleOpen}
+      onKeyDown={handleKeyDown}
       sx={{
         boxShadow: 0,
-        cursor: "pointer",
-        px: 2,
-        pt: 2,
-        pb: 1,
-       transition: "all 0.3s ease",
+        cursor: slug ? "pointer" : "default",
+        p: 2,
         borderRadius: 2.5,
         border: `1px solid ${theme.palette.divider}`,
         position: "relative",
         overflow: "hidden",
-        backgroundColor:
-          theme.palette.mode === "light"
-            ? theme.palette.common.white
-            : theme.palette.grey[900],
-        ...(isUrgent && {
-          "&::after": {
-            content: '""',
-            position: "absolute",
-            top: 0,
-            right: 0,
-            width: "100%",
-            height: "4px",
-            background: `linear-gradient(90deg, ${theme.palette.secondary.main}, ${theme.palette.secondary.light})`,
-          },
-        }),
+        transition: "all 0.2s ease",
         "&:hover": {
-         transform: "translateY(-3px)",
-          boxShadow: theme.customShadows.large,
-          borderColor: isUrgent
-            ? theme.palette.secondary.main
-            : theme.palette.primary.main,
-          backgroundColor:
-            theme.palette.mode === "light"
-              ? isUrgent
-                ? theme.palette.secondary.backgroundHover
-                : "rgba(68, 29, 160, 0.02)"
-              : theme.palette.grey[800],
+          transform: "translateY(-2px)",
+          boxShadow: theme.customShadows?.medium || "0 8px 24px rgba(0,0,0,0.08)",
+          borderColor: isUrgent ? theme.palette.secondary.main : theme.palette.primary.main,
+        },
+        "&:focus-visible": {
+          outline: `2px solid ${theme.palette.primary.main}`,
+          outlineOffset: 2,
         },
       }}
-      onClick={() => nav(`/${formatRoute(ROUTES.JOB_SEEKER.JOB_DETAIL, slug)}`)}
     >
-      <Stack spacing={1.5}>
-        <Stack direction="row" spacing={2} alignItems="flex-start">
-          <Box sx={{ position: "relative" }}>
-            <MuiImageCustom
-              width={100}
-              height={100}
-              src={thumbSrc}
-              loading="lazy"
+      <Stack direction={{ xs: "column", sm: "row" }} spacing={2} alignItems="flex-start">
+        <Box sx={{ position: "relative", flexShrink: 0 }}>
+          <MuiImageCustom
+            width={88}
+            height={88}
+            src={thumbSrc}
+            loading="lazy"
+            sx={{
+              border: 1,
+              borderRadius: 2,
+              borderColor: theme.palette.grey[200],
+              p: 0.75,
+              backgroundColor: theme.palette.common.white,
+              objectFit: "cover",
+            }}
+          />
+          {isUrgent && (
+            <Box
+              title="Urgent hiring"
               sx={{
-                border: 1,
-                borderRadius: 2.5,
-                borderColor: theme.palette.grey[200],
-                p: 1,
-                backgroundColor: theme.palette.common.white,
-                transition: "all 0.2s ease",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  boxShadow: theme.customShadows.medium,
-                },
+                position: "absolute",
+                top: -6,
+                right: -6,
+                width: 24,
+                height: 24,
+                borderRadius: "50%",
+                bgcolor: "warning.main",
+                color: "#fff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: 1,
               }}
-            />
-            {isUrgent && (
-              <Tooltip title="Urgent Hiring" placement="top">
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: -6,
-                    right: -6,
-                    backgroundColor: theme.palette.warning.main,
-                    borderRadius: "50%",
-                    width: 28,
-                    height: 28,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: `0 0 12px ${theme.palette.warning.main}80`,
-                    animation: "pulse 2s infinite",
-                    "@keyframes pulse": {
-                      "0%": {
-                       transform: "scale(1)",
-                        boxShadow: `0 0 0 0 ${theme.palette.warning.main}80`,
-                      },
-                      "70%": {
-                       transform: "scale(1.05)",
-                        boxShadow: `0 0 0 10px ${theme.palette.warning.main}00`,
-                      },
-                      "100%": {
-                       transform: "scale(1)",
-                        boxShadow: `0 0 0 0 ${theme.palette.warning.main}00`,
-                      },
-                    },
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faBolt}
-                    style={{
-                      fontSize: "14px",
-                      color: theme.palette.common.white,
-                    }}
-                  />
-                </Box>
-              </Tooltip>
-            )}
-          </Box>
-
-          <Stack flex={1} spacing={0.75}>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              alignItems="flex-start"
             >
-              <Box flex={1}>
-                <Typography
-                  sx={{
-                    fontSize: 18,
-                    fontWeight: 700,
-                    color: theme.palette.grey[900],
-                    lineHeight: 1.3,
-                    mb: 0.5,
-                  }}
-                >
-                  {jobName}
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    color: theme.palette.primary.main,
-                    fontSize: 14,
-                    fontWeight: 600,
-                  }}
-                >
-                  {companyName}
-                </Typography>
-              </Box>
+              <FontAwesomeIcon icon={faBolt} style={{ fontSize: 12 }} />
+            </Box>
+          )}
+        </Box>
 
+        <Stack flex={1} spacing={0.75} minWidth={0}>
+          <Stack direction="row" justifyContent="space-between" alignItems="flex-start" spacing={1}>
+            <Box minWidth={0}>
+              <Typography
+                component="h3"
+                sx={{
+                  fontSize: { xs: 16, sm: 18 },
+                  fontWeight: 700,
+                  color: theme.palette.grey[900],
+                  lineHeight: 1.35,
+                  mb: 0.25,
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                {jobName || "Untitled job"}
+              </Typography>
+              <Typography
+                sx={{
+                  color: theme.palette.primary.main,
+                  fontSize: 14,
+                  fontWeight: 600,
+                }}
+                noWrap
+              >
+                {companyName || "Company"}
+              </Typography>
+            </Box>
+            <Stack direction="row" spacing={0.75} flexShrink={0}>
               {isHot && (
-                <Box
+                <Chip
+                  icon={<FontAwesomeIcon icon={faFire} />}
+                  label="Hot"
+                  size="small"
                   sx={{
-                    backgroundColor: theme.palette.hot.background,
-                    padding: "4px 10px",
-                    borderRadius: "16px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    boxShadow: `0 0 12px ${theme.palette.hot.main}40`,
-                    animation: "pulse 2s infinite",
-                    "@keyframes pulse": {
-                      "0%": {
-                       transform: "scale(1)",
-                        boxShadow: `0 0 0 0 ${theme.palette.hot.main}40`,
-                      },
-                      "70%": {
-                       transform: "scale(1.05)",
-                        boxShadow: `0 0 0 10px ${theme.palette.hot.main}00`,
-                      },
-                      "100%": {
-                       transform: "scale(1)",
-                        boxShadow: `0 0 0 0 ${theme.palette.hot.main}00`,
-                      },
-                    },
+                    height: 24,
+                    fontWeight: 700,
+                    color: "#b54708",
+                    bgcolor: "#fffaeb",
+                    border: "1px solid #fedf89",
+                    "& .MuiChip-icon": { color: "#f79009", fontSize: 12, ml: 0.75 },
                   }}
-                >
-                  <FontAwesomeIcon
-                    icon={faFire}
-                    style={{
-                      fontSize: "14px",
-                      color: theme.palette.hot.main,
-                    }}
-                  />
-                  <Typography
-                    sx={{
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      color: theme.palette.hot.main,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.5px",
-                    }}
-                  >
-                    Hot
-                  </Typography>
-                </Box>
+                />
+              )}
+              {isUrgent && (
+                <Chip
+                  label="Urgent"
+                  size="small"
+                  color="warning"
+                  variant="outlined"
+                  sx={{ height: 24, fontWeight: 700 }}
+                />
               )}
             </Stack>
+          </Stack>
 
-            {/* Info Cards Section */}
-            <Stack direction="row" spacing={1.5} sx={{ mt: 0.75 }}>
-              <Box
+          <Stack
+            direction="row"
+            spacing={1}
+            useFlexGap
+            flexWrap="wrap"
+            alignItems="center"
+            sx={{ mt: 0.5 }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 0.75,
+                px: 1.25,
+                py: 0.5,
+                borderRadius: 1.5,
+                bgcolor: "primary.background",
+                color: "primary.main",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              <FontAwesomeIcon icon={faCircleDollarToSlot} />
+              <span>{salaryString(salaryMin, salaryMax)}</span>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 0.75,
+                px: 1.25,
+                py: 0.5,
+                borderRadius: 1.5,
+                bgcolor: "info.background",
+                color: "info.main",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              <FontAwesomeIcon icon={faLocationDot} />
+              <span>{location || "Location not specified"}</span>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 0.75,
+                px: 1.25,
+                py: 0.5,
+                borderRadius: 1.5,
+                bgcolor: daysLeft !== null && daysLeft < 0 ? "error.lighter" : "success.background",
+                color: daysLeft !== null && daysLeft < 0 ? "error.main" : "success.main",
+                fontSize: 13,
+                fontWeight: 600,
+              }}
+            >
+              <FontAwesomeIcon icon={faCalendarDays} />
+              <span>{deadlineLabel}</span>
+            </Box>
+            {officialApplyUrl && (
+              <Button
+                component="a"
+                href={officialApplyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                size="small"
+                variant="contained"
+                endIcon={<OpenInNewIcon sx={{ fontSize: 14 }} />}
+                onClick={(e) => e.stopPropagation()}
                 sx={{
-                  backgroundColor: theme.palette.primary.background,
-                  borderRadius: 1.5,
+                  textTransform: "none",
+                  fontWeight: 700,
+                  borderRadius: "16px",
                   px: 1.5,
-                  py: 0.75,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 0.75,
+                  py: 0.25,
+                  minHeight: 30,
+                  boxShadow: "none",
+                  backgroundColor: "#1a73e8",
+                  "&:hover": { backgroundColor: "#1b66c9", boxShadow: "none" },
                 }}
               >
-                <FontAwesomeIcon
-                  icon={faCircleDollarToSlot}
-                  style={{
-                    fontSize: "16px",
-                    color: theme.palette.primary.main,
-                  }}
-                />
-                <Typography
-                  sx={{
-                    fontWeight: 600,
-                    fontSize: 13,
-                    color: theme.palette.primary.main,
-                  }}
-                >
-                  {salaryString(salaryMin, salaryMax)}
-                </Typography>
-              </Box>
-
-              <Box
-                sx={{
-                  backgroundColor: theme.palette.info.background,
-                  borderRadius: 1.5,
-                  px: 1.5,
-                  py: 0.75,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 0.75,
-                }}
-              >
-                <FontAwesomeIcon
-                  icon={faLocationDot}
-                  style={{
-                    fontSize: "16px",
-                    color: theme.palette.info.main,
-                  }}
-                />
-                <Typography
-                  sx={{
-                    fontWeight: 600,
-                    fontSize: 13,
-                    color: theme.palette.info.main,
-                  }}
-                >
-                  {allConfig?.cityDict[cityId] || (
-                    <span style={{ fontStyle: "italic", opacity: 0.7 }}>
-                      Not updated
-                    </span>
-                  )}
-                </Typography>
-              </Box>
-
-              <Box
-                sx={{
-                  backgroundColor: theme.palette.success.background,
-                  borderRadius: 1.5,
-                  px: 1.5,
-                  py: 0.75,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 0.75,
-                }}
-              >
-                <FontAwesomeIcon
-                  icon={faCalendarDays}
-                  style={{
-                    fontSize: "16px",
-                    color: theme.palette.success.main,
-                  }}
-                />
-                <Typography
-                  sx={{
-                    fontWeight: 600,
-                    fontSize: 13,
-                    color: theme.palette.success.main,
-                  }}
-                >
-                  {dayjs(deadline).format("DD/MM/YYYY")}
-                </Typography>
-              </Box>
-            </Stack>
+                Apply on official website
+              </Button>
+            )}
           </Stack>
         </Stack>
       </Stack>
-
-      {jobDescription && (
-        <Box sx={{ mt: 1.5 }}>
-          <Divider sx={{ mb: 1.5, borderColor: theme.palette.grey[300] }} />
-          <RichHtmlContent
-            html={jobDescription}
-            sx={{ fontSize: 14 }}
-          />
-        </Box>
-      )}
-
-      <Divider sx={{ mt: 1, mb: 0.75, borderColor: theme.palette.grey[400] }} />
-
-      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 0.8,
-            color: theme.palette.grey[600],
-          }}
-        >
-          <FontAwesomeIcon
-            icon={faClock}
-            style={{ fontSize: "14px" }}
-            color={theme.palette.grey[400]}
-          />
-          <Typography
-            sx={{
-              fontWeight: 500,
-              fontSize: 13,
-              color: theme.palette.grey[600],
-            }}
-            variant="body2"
-          >
-            Expires in{" "}
-            <Moment fromNow ago>
-              {deadline}
-            </Moment>
-          </Typography>
-        </Box>
-      </Box>
     </Card>
   );
 };
 
 const Loading = () => (
-  <>
-    <Card sx={{ p: 1, boxShadow: 0 }}>
-      <Stack direction="row" spacing={2}>
-        <Box>
-          <Skeleton variant="rounded" width={100} height={100} />
-        </Box>
-        <Box flex={1} justifyContent="center" spacing={0.8}>
-          <Typography variant="subtitle2">
-            <Skeleton height={40} />
-          </Typography>
-          <Typography variant="subtitle2">
-            <Skeleton height={30} />
-          </Typography>
-          <Typography variant="body1">
-            <Skeleton height={25} />
-          </Typography>
-        </Box>
-      </Stack>
-    </Card>
-  </>
+  <Card variant="outlined" sx={{ p: 2, boxShadow: 0, borderRadius: 2.5 }}>
+    <Stack direction="row" spacing={2}>
+      <Skeleton variant="rounded" width={88} height={88} />
+      <Box flex={1}>
+        <Skeleton height={28} width="70%" />
+        <Skeleton height={22} width="40%" />
+        <Stack direction="row" spacing={1} sx={{ mt: 1 }}>
+          <Skeleton height={28} width={110} />
+          <Skeleton height={28} width={110} />
+          <Skeleton height={28} width={120} />
+        </Stack>
+      </Box>
+    </Stack>
+  </Card>
 );
 
-JobPostLarge.Loading = Loading;
+const MemoizedJobPostLarge = React.memo(JobPostLarge);
+MemoizedJobPostLarge.Loading = Loading;
 
-export default JobPostLarge;
+export default MemoizedJobPostLarge;

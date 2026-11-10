@@ -62,6 +62,145 @@ const getWhatsAppContactUrl = () => {
   )}`;
 };
 
+/**
+ * Paid "Help to apply" (Nkeneye ubufasha bwo gusaba) service.
+ * Applicants pick a service, pay the exact amount to the MoMo number, then
+ * open WhatsApp with a pre-filled message (job title, link, service + price,
+ * plus the source placement so we know which pages convert).
+ * Delivery only happens after payment is confirmed on MoMo.
+ */
+const HELP_TO_APPLY_CONFIG = {
+  // WhatsApp Business number that receives the applicant's payment screenshot.
+  SUPPORT_WHATSAPP_PHONE:
+    process.env.REACT_APP_HELP_WHATSAPP_PHONE ||
+    process.env.REACT_APP_WHATSAPP_PHONE ||
+    "250789690247",
+  // MTN MoMo number applicants send money to (display format).
+  MOMO_NUMBER_DISPLAY: process.env.REACT_APP_MOMO_NUMBER || "0789 690 247",
+  MOMO_OWNER: process.env.REACT_APP_MOMO_OWNER || "Imyanya",
+  SERVICES: {
+    SUBMIT_ONLY: {
+      id: "submit-only",
+      label: "Submit only",
+      price: 1000,
+      description:
+        "We submit your documents (CV, letter, certificates, ID) for you.",
+    },
+    LETTER_SUBMIT: {
+      id: "letter-submit",
+      label: "Letter + submit",
+      price: 2000,
+      description:
+        "We write your application letter from your details and CV, you approve it, then we submit everything.",
+    },
+    CV_LETTER_SUBMIT: {
+      id: "cv-letter-submit",
+      label: "CV + letter + submit",
+      price: 3000,
+      description:
+        "We collect your education, experience and referees, write a professional CV + letter, you approve both, then we submit.",
+    },
+  },
+  // Which service is pre-selected per placement (placement = `source`).
+  DEFAULT_SERVICE_BY_SOURCE: {
+    "job-detail": "submit-only",
+    "apply-form": "submit-only",
+    "cv-builder": "cv-letter-submit",
+    "cover-letter-builder": "letter-submit",
+    faq: "submit-only",
+    contact: "submit-only",
+  },
+  // Human labels for the source line in the WhatsApp message, so each
+  // placement can be tracked against requests received.
+  SOURCE_LABELS: {
+    "job-detail": "Job page",
+    "apply-form": "Apply form",
+    "cv-builder": "CV builder",
+    "cover-letter-builder": "Cover letter builder",
+    faq: "FAQ",
+    contact: "Contact page",
+  },
+  RULES: [
+    "The fee covers our service only — it is not a guarantee that you will get the job.",
+    "We reply only to applicants who send the payment screenshot on WhatsApp, and we confirm the payment in our MoMo history (screenshots can be faked).",
+    "One free correction round on your CV or letter is included.",
+  ],
+};
+
+/**
+ * Paid "Help to hire" (Dukeneye gufashwa gushaka umukozi) service for employers.
+ * Employers pick a service, pay the fixed amount to the same MoMo number, then
+ * open WhatsApp with a pre-filled message (company, service, price + source).
+ * Full recruitment has no fixed price: the employer opens WhatsApp first so the
+ * price can be agreed, then a deposit is taken before the search starts.
+ */
+const EMPLOYER_HELP_CONFIG = {
+  SUPPORT_WHATSAPP_PHONE: HELP_TO_APPLY_CONFIG.SUPPORT_WHATSAPP_PHONE,
+  MOMO_NUMBER_DISPLAY: HELP_TO_APPLY_CONFIG.MOMO_NUMBER_DISPLAY,
+  MOMO_OWNER: HELP_TO_APPLY_CONFIG.MOMO_OWNER,
+  SERVICES: {
+    POST_JOB: {
+      id: "post-job",
+      label:
+        "Mutugirire gushyira akazi kuri Imyanya (mutwoherereje amakuru)",
+      price: 5000,
+      description:
+        "You send the job details — we post the vacancy on Imyanya for you.",
+    },
+    WRITE_AND_POST: {
+      id: "write-and-post",
+      label: "Mutwandikire ibisobanuro by'akazi + muyishyireho",
+      price: 10000,
+      description:
+        "We write a clear job description from your details, then post the vacancy.",
+    },
+    POST_AND_SHORTLIST: {
+      id: "post-and-shortlist",
+      label: "Gushyiraho akazi + gutoranya abakandida 5 beza",
+      price: 25000,
+      description:
+        "We post the vacancy and send you up to 5 shortlisted CVs from Imyanya.",
+    },
+    FULL_RECRUITMENT: {
+      id: "full-recruitment",
+      label: "Recruitment yuzuye (tuvugane ku giciro)",
+      price: null,
+      description:
+        "Post, screen, shortlist and arrange interviews. We agree the price first, e.g. 10% of the first month's salary.",
+    },
+  },
+  DEFAULT_SERVICE_BY_SOURCE: {
+    "employer-dashboard": "post-job",
+    "job-post-form": "write-and-post",
+    "employer-onboarding": "post-job",
+    "candidate-search": "post-and-shortlist",
+    "no-applicants": "post-and-shortlist",
+    "rejected-job-post": "write-and-post",
+    pricing: "post-job",
+    services: "post-job",
+    contact: "post-job",
+    footer: "post-job",
+  },
+  SOURCE_LABELS: {
+    "employer-dashboard": "Employer dashboard",
+    "job-post-form": "Post a job form",
+    "employer-onboarding": "Employer onboarding",
+    "candidate-search": "Candidate search",
+    "no-applicants": "No applicants empty state",
+    "rejected-job-post": "Rejected job post",
+    pricing: "Pricing page",
+    services: "Services page",
+    contact: "Contact page",
+    footer: "Footer",
+  },
+  RULES: [
+    "We verify each employer (business name, RDB certificate or a phone call) before posting or searching on your behalf.",
+    "We reply only after you send the payment screenshot on WhatsApp, and we confirm the payment in our MoMo history.",
+    "For full recruitment we take a 50% deposit before we start; the balance is agreed on WhatsApp.",
+    "The fee covers our service only — it does not guarantee that a candidate will accept your offer.",
+  ],
+};
+
 const stripWwwPrefix = (value = "") => {
   return normalizeHostNameValue(value).replace(/^www\./, "");
 };
@@ -329,6 +468,8 @@ export {
   AUTH_CONFIG,
   WHATSAPP_CONFIG,
   getWhatsAppContactUrl,
+  HELP_TO_APPLY_CONFIG,
+  EMPLOYER_HELP_CONFIG,
   ROLES_NAME,
   HOME_FILTER_CAREER,
   REGEX_VATIDATE,

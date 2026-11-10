@@ -4,6 +4,37 @@ const webpack = require('webpack');
 
 const isEnabled = (value) => ['1', 'true', 'yes'].includes(String(value).toLowerCase());
 
+const isDependencyBabelRule = (rule) =>
+  rule &&
+  typeof rule.loader === 'string' &&
+  rule.loader.includes('babel-loader') &&
+  Array.isArray(rule.options?.presets) &&
+  rule.options.presets.some((preset) =>
+    /babel-preset-react-app.*dependencies/.test(JSON.stringify(preset))
+  );
+
+const addDocxClassTransform = (webpackConfig) => {
+  webpackConfig.module.rules.forEach((rule) => {
+    if (!Array.isArray(rule.oneOf)) {
+      return;
+    }
+
+    rule.oneOf.forEach((child) => {
+      if (!isDependencyBabelRule(child)) {
+        return;
+      }
+
+      child.options.overrides = [
+        ...(child.options.overrides || []),
+        {
+          test: /node_modules[\\/]docx[\\/]/,
+          plugins: [require.resolve('@babel/plugin-transform-classes')],
+        },
+      ];
+    });
+  });
+};
+
 class ProcessAssetsTracePlugin {
   apply(compiler) {
     compiler.hooks.emit.tap('ProcessAssetsTracePlugin', () => {
@@ -99,6 +130,7 @@ module.exports = {
   webpack: {
     configure: (webpackConfig) => {
       webpackConfig.parallelism = 4;
+      addDocxClassTransform(webpackConfig);
 
       if (isEnabled(process.env.BUILD_PROGRESS)) {
         webpackConfig.plugins.push(

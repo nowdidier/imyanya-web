@@ -1,7 +1,19 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Avatar, Box, Card, Skeleton, Stack, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Skeleton,
+  Stack,
+  Typography,
+} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -14,10 +26,18 @@ import {
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import CloseIcon from '@mui/icons-material/Close';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
 import { IMAGES, ROLES_NAME } from '../../configs/constants';
 import MuiImageCustom from '../MuiImageCustom';
 import ClaimOrganisationButton from '../ClaimOrganisationButton';
+import CompanyGoogleProfileCard from '../CompanyGoogleProfileCard';
+import {
+  normalizeCompanyForGoogleProfile,
+  sanitizeCoverImageUrl,
+} from '../CompanyGoogleProfileCard/googleProfileUtils';
+import { sanitizeEmployerLogoUrl } from '../JobsInRwandaExplorer/jobsExplorerUtils';
 
 import companyService from '../../services/companyService';
 import toastMessages from '../../utils/toastMessages';
@@ -103,6 +123,59 @@ const Company = ({
 }) => {
   const { allConfig } = useSelector((state) => state.config);
   const { isAuthenticated, currentUser } = useSelector((state) => state.user);
+  const [openGoogleProfile, setOpenGoogleProfile] = React.useState(false);
+  const resolvedCity = allConfig?.cityDict?.[city] || cityName || '';
+  const resolvedSize = allConfig?.employeeSizeDict?.[employeeSize] || sizeName || '';
+  const googleProfileData = React.useMemo(
+    () =>
+      normalizeCompanyForGoogleProfile({
+        companyDetail: isDirectory
+          ? null
+          : {
+              slug,
+              companyName,
+              fieldOperation,
+              companyImageUrl,
+              companyCoverImageUrl,
+              jobPostNumber,
+              location: {
+                address: claimAddress || '',
+                lat: claimLat ?? null,
+                lng: claimLng ?? null,
+              },
+            },
+        directoryCompany: isDirectory
+          ? {
+              slug,
+              companyName,
+              industry: fieldOperation,
+              companySize: resolvedSize,
+              headquarters: {
+                city: resolvedCity,
+                address: claimAddress || '',
+                latitude: claimLat ?? null,
+                longitude: claimLng ?? null,
+              },
+            }
+          : null,
+        cityName: resolvedCity,
+        employeeSizeLabel: resolvedSize,
+      }),
+    [
+      isDirectory,
+      slug,
+      companyName,
+      fieldOperation,
+      companyImageUrl,
+      companyCoverImageUrl,
+      jobPostNumber,
+      claimAddress,
+      claimLat,
+      claimLng,
+      resolvedCity,
+      resolvedSize,
+    ]
+  );
   const initials = String(companyName || "")
     .split(" ")
     .filter(Boolean)
@@ -115,6 +188,7 @@ const Company = ({
     <Card
       sx={{
         p: 2,
+        height: '100%',
         position: 'relative',
         overflow: 'hidden',
         transition: 'all 0.3s ease-in-out',
@@ -141,11 +215,12 @@ const Company = ({
       variant="outlined"
     >
       <Stack
-        style={{
-          height:
+        sx={{
+          minHeight:
             isAuthenticated && currentUser?.roleName === ROLES_NAME.JOB_SEEKER
               ? 480
               : 420,
+          height: '100%',
         }}
         direction="column"
         justifyContent={'space-between'}
@@ -156,7 +231,7 @@ const Company = ({
               width="100%"
               height={180}
               fit="cover"
-              src={companyCoverImageUrl || IMAGES.coverImageDefault}
+              src={sanitizeCoverImageUrl(companyCoverImageUrl) || IMAGES.coverImageDefault}
               sx={{ 
                 borderRadius: 2,
                 filter: 'brightness(0.9)',
@@ -178,11 +253,11 @@ const Company = ({
               component={Link}
               to={`/companies/${slug}`}
             >
-              {companyImageUrl ? (
+              {sanitizeEmployerLogoUrl(companyImageUrl) ? (
               <MuiImageCustom
                 width={80}
                 height={80}
-                src={companyImageUrl}
+                src={sanitizeEmployerLogoUrl(companyImageUrl)}
                 sx={{
                   bgcolor: 'white',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
@@ -363,34 +438,97 @@ const Company = ({
           </Box>
         </Box>
 
-        {isDirectory ? (
-          <Stack justifyContent="flex-end" spacing={1} sx={{ py: 1, px: 2, height: '100%' }}>
-            <Typography
-              variant="caption"
-              sx={{
-                textAlign: 'center',
-                color: 'text.secondary',
-                bgcolor: 'grey.100',
-                borderRadius: 2,
-                p: 1.5,
-                lineHeight: 1.6,
-              }}
-            >
-              This organisation hasn&apos;t created its Imyanya profile yet.
-              Come back soon — its jobs will appear here once posted.
-            </Typography>
-            <ClaimOrganisationButton
-              companyName={companyName}
-              address={claimAddress}
-              lat={claimLat}
-              lng={claimLng}
-              fullWidth
-            />
-          </Stack>
-        ) : (
-          <FollowComponent slug={slug} isFollowed={isFollowed} />
-        )}
+        <Stack justifyContent="flex-end" spacing={1} sx={{ py: 1, px: 2 }}>
+          <Button
+            type="button"
+            fullWidth
+            variant="outlined"
+            size="small"
+            startIcon={<TravelExploreIcon sx={{ fontSize: 17 }} />}
+            onClick={() => setOpenGoogleProfile(true)}
+            sx={{
+              textTransform: 'none',
+              fontWeight: 700,
+              borderRadius: 2,
+              borderColor: '#dadce0',
+              color: '#1a73e8',
+              background: '#ffffff',
+              backgroundImage: 'none',
+              '&:hover': {
+                borderColor: '#1a73e8',
+                background: '#f4f8fe',
+                backgroundImage: 'none',
+              },
+            }}
+          >
+            View Google profile
+          </Button>
+          {isDirectory ? (
+            <>
+              <Typography
+                variant="caption"
+                sx={{
+                  textAlign: 'center',
+                  color: 'text.secondary',
+                  bgcolor: 'grey.100',
+                  borderRadius: 2,
+                  p: 1.5,
+                  lineHeight: 1.6,
+                }}
+              >
+                This organisation hasn&apos;t created its Imyanya profile yet.
+                Come back soon — its jobs will appear here once posted.
+              </Typography>
+              <ClaimOrganisationButton
+                companyName={companyName}
+                address={claimAddress}
+                lat={claimLat}
+                lng={claimLng}
+                fullWidth
+              />
+            </>
+          ) : (
+            <FollowComponent slug={slug} isFollowed={isFollowed} />
+          )}
+        </Stack>
       </Stack>
+
+      <Dialog
+        open={openGoogleProfile}
+        onClose={() => setOpenGoogleProfile(false)}
+        maxWidth="sm"
+        fullWidth
+        aria-labelledby={`google-profile-dialog-${slug}`}
+      >
+        <DialogTitle
+          id={`google-profile-dialog-${slug}`}
+          component="div"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            pb: 1,
+          }}
+        >
+          <Typography component="h3" variant="subtitle1" fontWeight={700}>
+            {companyName} — Google Profile
+          </Typography>
+          <IconButton
+            aria-label="Close Google profile"
+            onClick={() => setOpenGoogleProfile(false)}
+            size="small"
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ pt: 1 }}>
+          <CompanyGoogleProfileCard
+            profile={googleProfileData}
+            compact
+            showImyanyaLink
+          />
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 };

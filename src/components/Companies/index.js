@@ -8,6 +8,10 @@ import Company from "../Company";
 import companyService from "../../services/companyService";
 import useOrganisations from "../OrganisationsMap/useOrganisations";
 import useOrgFilters from "../OrganisationsMap/useOrgFilters";
+import {
+  classifyOrgCategories,
+  matchesJobCategories,
+} from "../OrganisationsMap/categoryFilterUtils";
 import { setContentNoindex } from "../SeoManager/contentFlag";
 
 const isUsableImage = (url) =>
@@ -31,6 +35,7 @@ const Companies = ({ setNoindex = true, showDirectoryExtras = true }) => {
   const sharedDistrict = shared.district;
   const sharedHiringOnly = shared.hiringOnly;
   const sharedShow = shared.show;
+  const sharedCategories = shared.categories;
 
   // Always update: refetch when the tab regains focus so newly
   // registered companies appear without a manual reload.
@@ -110,13 +115,18 @@ const Companies = ({ setNoindex = true, showDirectoryExtras = true }) => {
         o.district !== sharedDistrict
       )
         return false;
+      if (
+        sharedCategories.length > 0 &&
+        !matchesJobCategories(classifyOrgCategories(o), sharedCategories)
+      )
+        return false;
       if (!kw) return true;
       return [o.companyName, o.sector, o.cityName, o.district, o.address]
         .join(" ")
         .toLowerCase()
         .includes(kw);
     });
-  }, [mapOrgs, companies, page, companyFilter, sharedQuery, sharedSector, sharedDistrict, sharedHiringOnly, sharedShow, showDirectoryExtras]);
+  }, [mapOrgs, companies, page, companyFilter, sharedQuery, sharedSector, sharedDistrict, sharedHiringOnly, sharedShow, sharedCategories, showDirectoryExtras]);
 
   const hasResults = companies.length > 0 || directoryExtras.length > 0;
   const listTopRef = React.useRef(null);

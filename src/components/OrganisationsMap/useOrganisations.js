@@ -6,6 +6,10 @@ import jobService from "../../services/jobService";
 import { getRwandaCoords } from "../../data/rwandaDistricts";
 import { sampleCompanies } from "../../data/content/companies";
 import { IMAGES } from "../../configs/constants";
+import {
+  classifyJobCategories,
+  classifyOrgCategories,
+} from "./categoryFilterUtils";
 
 // Per-job exact positions hydrated from the detail endpoint (the list
 // endpoint omits coordinates). Cached persistently — each job's detail is
@@ -181,12 +185,24 @@ export const toOrgsFromSamples = () =>
     .filter((c) => c?.headquarters?.latitude && c?.headquarters?.longitude)
     .map((c) => {
       const sector = sectorOf(c);
+      const categories = classifyOrgCategories({
+        companyName: c.companyName,
+        sector,
+        rawIndustry: c.industry,
+        rawSector: c.sector,
+        tagline: c.tagline,
+        description: c.description,
+        cultureDescription: c.cultureDescription,
+      });
       return {
         key: `sample-${c.slug || c.id}`,
         id: null,
         slug: c.slug || c.id,
         companyName: c.companyName,
         sector,
+        rawIndustry: c.industry || "",
+        rawSector: c.sector || "",
+        categories,
         hasProfile: false,
         cityName: c.headquarters.city,
         district: c.headquarters.district,
@@ -318,12 +334,20 @@ const useOrganisations = () => {
             lat = coords.lat + Math.sin(angle) * radius;
             lng = coords.lng + Math.cos(angle) * radius;
           }
+          const orgSector = sectorOf(company);
+          const orgCategories = classifyOrgCategories({
+            companyName: company.companyName || "Employer",
+            sector: orgSector,
+            fieldOperation: company.fieldOperation || "",
+          });
           live.push({
             key: `live-${company.slug}`,
             id: company.id,
             slug: company.slug,
             companyName: company.companyName || "Employer",
-            sector: sectorOf(company),
+            sector: orgSector,
+            fieldOperation: company.fieldOperation || "",
+            categories: orgCategories,
             hasProfile: true,
             cityName: cityName || "Kigali",
             district: districtName || cityName || "Kigali",
@@ -516,12 +540,23 @@ const useOrganisations = () => {
           }
           const spot = groups.get(key);
           if (!spot.address && address) spot.address = address;
+          const jobName = job.jobName || "Job opportunity";
+          const companyName = job?.companyDict?.companyName || "Employer";
+          const fieldOperation = job?.companyDict?.fieldOperation || "";
+          const jobCategories = classifyJobCategories({
+            jobName,
+            jobDescription: job.jobDescription,
+            companyName,
+            fieldOperation,
+            jobType: job.jobType,
+          });
           spot.jobs.push({
             slug: job.slug,
-            jobName: job.jobName || "Job opportunity",
-            companyName: job?.companyDict?.companyName || "Employer",
+            jobName,
+            companyName,
             companySlug: job?.companyDict?.slug || null,
             logo: job?.companyDict?.companyImageUrl || null,
+            categories: jobCategories,
           });
         }
         if (mounted) {

@@ -29,6 +29,16 @@ import L from "leaflet";
 import jobService from "../../services/jobService";
 import { IMAGES } from "../../configs/constants";
 import ClaimOrganisationButton, { buildClaimUrl } from "../ClaimOrganisationButton";
+import MarkerClusterGroup from "./MarkerClusterGroup";
+import JobCategoryFilter from "./JobCategoryFilter";
+import MapLocationSearchOverlay from "./MapLocationSearchOverlay";
+import {
+  classifyJobCategories,
+  classifyOrgCategories,
+  computeCategoryCounts,
+  filterJobSpotByCategories,
+  matchesJobCategories,
+} from "./categoryFilterUtils";
 import useOrganisations, { colorFor } from "./useOrganisations";
 import useOrgFilters from "./useOrgFilters";
 
@@ -152,26 +162,98 @@ const JobSpotPopup = ({ spot }) => (
   </Box>
 );
 
-const FitPins = ({ pins, resetKey }) => {
+const OrgPinMarker = React.memo(function OrgPinMarker({ org, onRegisterMarker }) {
+  const position = React.useMemo(() => [org.lat, org.lng], [org.lat, org.lng]);
+  const icon = React.useMemo(
+    () => orgPin(org),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [org.key, org.companyName, org.sector, org.logo, org.jobPostNumber, org.hasProfile]
+  );
+  const pinMeta = React.useMemo(
+    () => ({
+      kind: "org",
+      openRoles: org.jobPostNumber || 0,
+      color: colorFor(org.sector),
+    }),
+    [org.jobPostNumber, org.sector]
+  );
+
+  const setMarkerRef = React.useCallback(
+    (instance) => {
+      onRegisterMarker?.(org.key, instance);
+    },
+    [onRegisterMarker, org.key]
+  );
+
+  return (
+    <Marker ref={setMarkerRef} position={position} icon={icon} pinMeta={pinMeta}>
+      <Popup>
+        <OrgPinPopup org={org} />
+      </Popup>
+    </Marker>
+  );
+});
+
+const JobSpotPinMarker = React.memo(function JobSpotPinMarker({ spot, onRegisterMarker }) {
+  const position = React.useMemo(() => [spot.lat, spot.lng], [spot.lat, spot.lng]);
+  const jobCount = spot.jobs?.length || 0;
+  const icon = React.useMemo(
+    () => jobSpotPin(spot),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [spot.key, jobCount]
+  );
+  const pinMeta = React.useMemo(
+    () => ({
+      kind: "job",
+      openRoles: jobCount,
+      color: "#137333",
+    }),
+    [jobCount]
+  );
+
+  const setMarkerRef = React.useCallback(
+    (instance) => {
+      onRegisterMarker?.(spot.key, instance);
+    },
+    [onRegisterMarker, spot.key]
+  );
+
+  return (
+    <Marker ref={setMarkerRef} position={position} icon={icon} pinMeta={pinMeta}>
+      <Popup>
+        <JobSpotPopup spot={spot} />
+      </Popup>
+    </Marker>
+  );
+});
+
+const FitPins = ({ pins, filterKey, resetKey }) => {
   const map = useMap();
   const flyingRef = React.useRef(null);
+  const latestPinsRef = React.useRef(pins);
+  latestPinsRef.current = pins;
+  const lastFitTriggerRef = React.useRef(null);
 
   const fitAll = React.useCallback(() => {
-    if (pins.length === 0) {
+    const currentPins = latestPinsRef.current;
+    if (currentPins.length === 0) {
       map.setView(RWANDA_CENTER, 8, { animate: true });
       return;
     }
-    if (pins.length === 1) {
-      map.flyTo([pins[0].lat, pins[0].lng], 13, { duration: 0.8 });
+    if (currentPins.length === 1) {
+      map.flyTo([currentPins[0].lat, currentPins[0].lng], 13, { duration: 0.8 });
       return;
     }
-    const bounds = L.latLngBounds(pins.map((p) => [p.lat, p.lng]));
+    const bounds = L.latLngBounds(currentPins.map((p) => [p.lat, p.lng]));
     map.flyToBounds(bounds.pad(0.22), { duration: 0.8 });
-  }, [map, pins]);
+  }, [map]);
 
   React.useEffect(() => {
+    const trigger = `${filterKey}::${resetKey}`;
+    if (lastFitTriggerRef.current === trigger) return;
+    lastFitTriggerRef.current = trigger;
     fitAll();
-  }, [fitAll, resetKey]);
+  }, [fitAll, filterKey, resetKey]);
 
   React.useEffect(() => {
     flyingRef.current = fitAll;
@@ -184,11 +266,63 @@ const FitPins = ({ pins, resetKey }) => {
   return null;
 };
 
-const FlyController = ({ target }) => {
+const FlyController = ({ target, clusterGroupRef, markersByKeyRef }) => {
   const map = useMap();
   React.useEffect(() => {
-    if (target) map.flyTo([target.lat, target.lng], 13, { duration: 0.8 });
-  }, [map, target]);
+    if (!target) return;
+    const marker = target.key ? markersByKeyRef.current?.get(target.key) : null;
+    const clusterGroup = clusterGroupRef.current;
+    if (clusterGroup && marker && typeof clusterGroup.zoomToShowLayer === "function") {
+      clusterGroup.zoomToShowLayer(marker, () => {
+        if (typeof marker.openPopup === "function") {
+          marker.openPopup();
+        }
+      });
+      return;
+    }
+    map.flyTo([target.lat, target.lng], 15, { duration: 0.8 });
+  }, [map, target, clusterGroupRef, markersByKeyRef]);
+  return null;
+};
+
+const searchedLocationPin = L.divIcon({
+  className: "map-focus-pin",
+  html: '<div class="map-focus-pin-wrap"><span class="map-focus-pin-ring"></span><span class="map-focus-pin-dot"></span></div>',
+  iconSize: [34, 34],
+  iconAnchor: [17, 17],
+  popupAnchor: [0, -18],
+});
+
+const LocationFocusController = ({ location }) => {
+  const map = useMap();
+  const lastTsRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!location) {
+      if (lastTsRef.current !== null) {
+        lastTsRef.current = null;
+        if (typeof map.fitAllPins === "function") {
+          map.fitAllPins();
+        }
+      }
+      return;
+    }
+    if (lastTsRef.current === location.ts) return;
+    lastTsRef.current = location.ts;
+
+    const vp = location.viewport;
+    if (vp?.low && vp?.high) {
+      const bounds = L.latLngBounds(
+        [vp.low.latitude, vp.low.longitude],
+        [vp.high.latitude, vp.high.longitude]
+      );
+      map.flyToBounds(bounds, { padding: [36, 36], maxZoom: 13, duration: 0.9 });
+      return;
+    }
+
+    map.flyTo([location.lat, location.lng], location.zoom || 12, { duration: 0.9 });
+  }, [map, location]);
+
   return null;
 };
 
@@ -329,7 +463,7 @@ const OrgPinPopup = ({ org }) => {
 };
 
 const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false, hideFilters = false, defaultShow = "all" }) => {
-  const { orgs, jobSpots, isLoading, isLoadingJobs } = useOrganisations();
+  const { orgs, jobSpots } = useOrganisations();
   // Shared URL-synced filters so /companies and /rwanda-career-guide
   // always meet on the same query/sector/district/hiring state.
   const {
@@ -345,11 +479,26 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
     setHiringOnly,
     show,
     setShow,
+    categories,
+    setCategories,
+    toggleCategory,
     reset: resetSharedFilters,
   } = useOrgFilters({ defaultShow });
   const [flyTarget, setFlyTarget] = React.useState(null);
+  const [searchedLocation, setSearchedLocation] = React.useState(null);
   const [resetKey, setResetKey] = React.useState(0);
   const mapCardRef = React.useRef(null);
+  const clusterGroupRef = React.useRef(null);
+  const markersByKeyRef = React.useRef(new Map());
+
+  const handleRegisterMarker = React.useCallback((key, instance) => {
+    if (!key) return;
+    if (instance) {
+      markersByKeyRef.current.set(key, instance);
+    } else {
+      markersByKeyRef.current.delete(key);
+    }
+  }, []);
 
   // Debounce typing -> URL so both pages stay in sync without
   // pushing a history entry per keystroke.
@@ -370,6 +519,7 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
     if (commitTimer.current) clearTimeout(commitTimer.current);
     resetSharedFilters();
     setFlyTarget(null);
+    setSearchedLocation(null);
     setResetKey((k) => k + 1);
   };
 
@@ -388,7 +538,27 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
     return ["All", ...Array.from(set).sort()];
   }, [orgs]);
 
-  const filtered = React.useMemo(() => {
+  const orgCategoriesByKey = React.useMemo(() => {
+    const linkedBySlug = new Map();
+    for (const spot of jobSpots) {
+      for (const job of spot.jobs || []) {
+        if (!job?.companySlug) continue;
+        const list = linkedBySlug.get(job.companySlug) || [];
+        for (const cat of classifyJobCategories(job)) {
+          if (!list.includes(cat)) list.push(cat);
+        }
+        linkedBySlug.set(job.companySlug, list);
+      }
+    }
+    const map = new Map();
+    for (const org of orgs) {
+      const linked = org.slug ? linkedBySlug.get(org.slug) || [] : [];
+      map.set(org.key, classifyOrgCategories(org, linked));
+    }
+    return map;
+  }, [orgs, jobSpots]);
+
+  const baseFilteredOrgs = React.useMemo(() => {
     const q = query.trim().toLowerCase();
     return orgs.filter((o) => {
       if (sector !== "All" && o.sector !== sector) return false;
@@ -404,7 +574,7 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
 
   const jobCount = React.useMemo(() => jobSpots.reduce((sum, s) => sum + s.jobs.length, 0), [jobSpots]);
 
-  const filteredJobs = React.useMemo(() => {
+  const baseFilteredJobs = React.useMemo(() => {
     const q = query.trim().toLowerCase();
     return jobSpots.filter((spot) => {
       if (district !== "All" && (spot.cityName !== district && spot.district !== district)) return false;
@@ -421,12 +591,47 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
     });
   }, [jobSpots, query, district]);
 
-  const visibleOrgs = show === "jobs" ? [] : filtered;
-  const visibleJobs = show === "orgs" ? [] : filteredJobs;
-  const visiblePins = [
-    ...visibleOrgs.map((o) => ({ lat: o.lat, lng: o.lng })),
-    ...visibleJobs.map((s) => ({ lat: s.lat, lng: s.lng })),
-  ];
+  const categoryCounts = React.useMemo(
+    () =>
+      computeCategoryCounts({
+        orgs: baseFilteredOrgs,
+        jobSpots: baseFilteredJobs,
+        show,
+        orgCategoriesByKey,
+      }),
+    [baseFilteredOrgs, baseFilteredJobs, show, orgCategoriesByKey]
+  );
+
+  const filtered = React.useMemo(() => {
+    if (categories.length === 0) return baseFilteredOrgs;
+    return baseFilteredOrgs.filter((o) =>
+      matchesJobCategories(orgCategoriesByKey.get(o.key), categories)
+    );
+  }, [baseFilteredOrgs, orgCategoriesByKey, categories]);
+
+  const filteredJobs = React.useMemo(() => {
+    if (categories.length === 0) return baseFilteredJobs;
+    return baseFilteredJobs
+      .map((spot) => filterJobSpotByCategories(spot, categories))
+      .filter(Boolean);
+  }, [baseFilteredJobs, categories]);
+
+  const visibleOrgs = React.useMemo(
+    () => (show === "jobs" ? [] : filtered),
+    [show, filtered]
+  );
+  const visibleJobs = React.useMemo(
+    () => (show === "orgs" ? [] : filteredJobs),
+    [show, filteredJobs]
+  );
+  const visiblePins = React.useMemo(
+    () => [
+      ...visibleOrgs.map((o) => ({ lat: o.lat, lng: o.lng })),
+      ...visibleJobs.map((s) => ({ lat: s.lat, lng: s.lng })),
+    ],
+    [visibleOrgs, visibleJobs]
+  );
+  const filterKey = `${query}|${sector}|${district}|${hiringOnly}|${show}|${categories.join(",")}`;
   const showingJobs = show !== "orgs";
 
   return (
@@ -477,7 +682,7 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
         }}
       >
         <Grid container spacing={1.5} alignItems="center">
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={2.5}>
             <TextField
               fullWidth
               size="small"
@@ -500,7 +705,7 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
               <MenuItem value="jobs">Jobs</MenuItem>
             </TextField>
           </Grid>
-          <Grid item xs={6} md={2.5}>
+          <Grid item xs={6} md={2}>
             <TextField fullWidth size="small" select label="Sector" value={sector} onChange={(e) => setSector(e.target.value)} disabled={show === "jobs"}>
               {sectors.map((s) => (
                 <MenuItem key={s} value={s}>
@@ -509,7 +714,7 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
               ))}
             </TextField>
           </Grid>
-          <Grid item xs={6} md={2.5}>
+          <Grid item xs={6} md={2}>
             <TextField fullWidth size="small" select label="District / City" value={district} onChange={(e) => setDistrict(e.target.value)}>
               {districts.map((d) => (
                 <MenuItem key={d} value={d}>
@@ -524,7 +729,7 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
               label="Hiring only"
             />
           </Grid>
-          <Grid item xs={6} md={1}>
+          <Grid item xs={6} md={1.5}>
             <Button
               fullWidth
               variant="outlined"
@@ -536,6 +741,13 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
             </Button>
           </Grid>
         </Grid>
+        <Divider sx={{ my: 1.5, borderColor: "rgba(109, 40, 217, 0.14)" }} />
+        <JobCategoryFilter
+          selectedCategories={categories}
+          onToggleCategory={toggleCategory}
+          onClear={() => setCategories([])}
+          counts={categoryCounts}
+        />
       </Card>
       )}
 
@@ -543,6 +755,7 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
         ref={mapCardRef}
         variant="outlined"
         sx={{
+          position: "relative",
           borderRadius: 4,
           overflow: "hidden",
           height: compact ? 480 : 620,
@@ -551,32 +764,65 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
           scrollMarginTop: 80,
         }}
       >
-        {(isLoading || isLoadingJobs) && visiblePins.length === 0 ? (
-          <Skeleton variant="rectangular" width="100%" height="100%" />
-        ) : (
-          <MapContainer center={RWANDA_CENTER} zoom={8} scrollWheelZoom={false} style={{ height: "100%", width: "100%" }}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <FitPins pins={visiblePins} resetKey={resetKey} />
-            <FlyController target={flyTarget} />
+        <MapLocationSearchOverlay
+          activeLocation={searchedLocation}
+          onLocate={setSearchedLocation}
+          onClear={() => setSearchedLocation(null)}
+        />
+        <MapContainer
+          center={RWANDA_CENTER}
+          zoom={8}
+          scrollWheelZoom={false}
+          zoomAnimation
+          markerZoomAnimation
+          fadeAnimation
+          style={{ height: "100%", width: "100%" }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <FitPins pins={visiblePins} filterKey={filterKey} resetKey={resetKey} />
+          <FlyController
+            target={flyTarget}
+            clusterGroupRef={clusterGroupRef}
+            markersByKeyRef={markersByKeyRef}
+          />
+          <LocationFocusController location={searchedLocation} />
+          {searchedLocation && (
+            <Marker
+              position={[searchedLocation.lat, searchedLocation.lng]}
+              icon={searchedLocationPin}
+            >
+              <Popup>
+                <Box sx={{ minWidth: 160 }}>
+                  <Typography variant="subtitle2" fontWeight={800} sx={{ color: "#441da0" }}>
+                    {searchedLocation.formattedAddress}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    Centered via location search
+                  </Typography>
+                </Box>
+              </Popup>
+            </Marker>
+          )}
+          <MarkerClusterGroup ref={clusterGroupRef}>
             {visibleOrgs.map((org) => (
-              <Marker key={org.key} position={[org.lat, org.lng]} icon={orgPin(org)}>
-                <Popup>
-                  <OrgPinPopup org={org} />
-                </Popup>
-              </Marker>
+              <OrgPinMarker
+                key={org.key}
+                org={org}
+                onRegisterMarker={handleRegisterMarker}
+              />
             ))}
             {visibleJobs.map((spot) => (
-              <Marker key={spot.key} position={[spot.lat, spot.lng]} icon={jobSpotPin(spot)}>
-                <Popup>
-                  <JobSpotPopup spot={spot} />
-                </Popup>
-              </Marker>
+              <JobSpotPinMarker
+                key={spot.key}
+                spot={spot}
+                onRegisterMarker={handleRegisterMarker}
+              />
             ))}
-          </MapContainer>
-        )}
+          </MarkerClusterGroup>
+        </MapContainer>
       </Card>
       <Stack direction="row" spacing={1} sx={{ mt: 1.5, flexWrap: "wrap" }} alignItems="center">
         <Typography variant="caption" color="text.secondary" fontWeight={700}>
@@ -613,7 +859,7 @@ const OrganisationsMap = ({ title, subtitle, compact = false, hideHeader = false
         />
         <Typography variant="caption" color="text.secondary" sx={{ ml: "auto" }}>
           Showing {visibleOrgs.length} places + {visibleJobs.length} job spots
-          {(visibleOrgs.length !== orgs.length || visibleJobs.length !== jobSpots.length) ? " — zoom auto-fits your filter" : ""}
+          {(visibleOrgs.length !== orgs.length || visibleJobs.length !== jobSpots.length || categories.length > 0) ? " — zoom auto-fits your filter" : ""}
         </Typography>
       </Stack>
 

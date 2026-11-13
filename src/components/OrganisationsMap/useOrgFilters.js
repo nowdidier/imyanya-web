@@ -1,10 +1,15 @@
 import * as React from "react";
 import { useSearchParams } from "react-router-dom";
 
+import {
+  parseCategoriesParam,
+  serializeCategoriesParam,
+} from "./categoryFilterUtils";
+
 // Shared filter state for /companies <-> career-guide ("meets data").
 // Both pages read/write the same URL params (?q=, ?sector=, ?district=,
-// ?hiring=, ?view=) so a search on one page is preserved when the user
-// navigates to the other, and both sections on the same page stay in sync.
+// ?hiring=, ?view=, ?categories=) so a search on one page is preserved when
+// the user navigates to the other, and both sections on the same page stay in sync.
 //
 // URL is the source of truth; local state mirrors it for responsive typing.
 const PARAM_KEYS = {
@@ -13,6 +18,7 @@ const PARAM_KEYS = {
   district: "district",
   hiring: "hiring",
   show: "view",
+  categories: "categories",
 };
 
 export const parseHiringParam = (value) =>
@@ -24,6 +30,7 @@ export const buildOrgSearchParams = ({
   district = "All",
   hiringOnly = false,
   show = "all",
+  categories = [],
 } = {}) => {
   const params = new URLSearchParams();
   if (query.trim()) params.set(PARAM_KEYS.query, query.trim());
@@ -31,6 +38,8 @@ export const buildOrgSearchParams = ({
   if (district && district !== "All") params.set(PARAM_KEYS.district, district);
   if (hiringOnly) params.set(PARAM_KEYS.hiring, "1");
   if (show && show !== "all") params.set(PARAM_KEYS.show, show);
+  const serializedCategories = serializeCategoriesParam(categories);
+  if (serializedCategories) params.set(PARAM_KEYS.categories, serializedCategories);
   return params;
 };
 
@@ -46,6 +55,11 @@ const useOrgFilters = ({ defaultShow = "all" } = {}) => {
   const district = searchParams.get(PARAM_KEYS.district) || "All";
   const hiringOnly = parseHiringParam(searchParams.get(PARAM_KEYS.hiring));
   const show = searchParams.get(PARAM_KEYS.show) || defaultShow;
+  const rawCategories = searchParams.get(PARAM_KEYS.categories) || "";
+  const categories = React.useMemo(
+    () => parseCategoriesParam(rawCategories),
+    [rawCategories]
+  );
 
   // Local draft for the text input so typing doesn't push a history
   // entry per keystroke; committed on change (debounced in caller).
@@ -70,6 +84,11 @@ const useOrgFilters = ({ defaultShow = "all" } = {}) => {
       if ("district" in patch) apply(PARAM_KEYS.district, patch.district, { removeWhen: "All" });
       if ("hiringOnly" in patch) apply(PARAM_KEYS.hiring, patch.hiringOnly ? "1" : "", { removeWhen: "" });
       if ("show" in patch) apply(PARAM_KEYS.show, patch.show, { removeWhen: "all" });
+      if ("categories" in patch) {
+        apply(PARAM_KEYS.categories, serializeCategoriesParam(patch.categories), {
+          removeWhen: "",
+        });
+      }
       setSearchParams(next, { replace: true });
     },
     [searchParams, setSearchParams]
@@ -99,6 +118,22 @@ const useOrgFilters = ({ defaultShow = "all" } = {}) => {
     (value) => patchParams({ show: value }),
     [patchParams]
   );
+  const setCategories = React.useCallback(
+    (value) => patchParams({ categories: parseCategoriesParam(value) }),
+    [patchParams]
+  );
+  const toggleCategory = React.useCallback(
+    (categoryId) => {
+      const nextSet = new Set(categories);
+      if (nextSet.has(categoryId)) {
+        nextSet.delete(categoryId);
+      } else {
+        nextSet.add(categoryId);
+      }
+      patchParams({ categories: Array.from(nextSet) });
+    },
+    [categories, patchParams]
+  );
 
   const reset = React.useCallback(() => {
     setDraftQuery("");
@@ -118,6 +153,9 @@ const useOrgFilters = ({ defaultShow = "all" } = {}) => {
     setHiringOnly,
     show,
     setShow,
+    categories,
+    setCategories,
+    toggleCategory,
     reset,
   };
 };

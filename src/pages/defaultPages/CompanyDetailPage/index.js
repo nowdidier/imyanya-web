@@ -51,6 +51,12 @@ import { buildCompanyShareData } from "../../../utils/shareUtils";
 import { setContentNoindex } from "../../../components/SeoManager/contentFlag";
 import { setCompanySeo } from "../../../components/SeoManager/companySeoFlag";
 import CompanyOpenInfo from "../../../components/CompanyOpenInfo";
+import CompanyGoogleProfileCard from "../../../components/CompanyGoogleProfileCard";
+import {
+  normalizeCompanyForGoogleProfile,
+  sanitizeCoverImageUrl,
+} from "../../../components/CompanyGoogleProfileCard/googleProfileUtils";
+import { sanitizeEmployerLogoUrl } from "../../../components/JobsInRwandaExplorer/jobsExplorerUtils";
 
 import FilterJobPostCard from "../../components/defaults/FilterJobPostCard";
 import HiringCTA from "../../../components/HiringCTA";
@@ -287,6 +293,12 @@ const DirectoryCompanyView = ({ company }) => {
             </Stack>
           </Box>
         </Card>
+
+        <CompanyGoogleProfileCard
+          profile={normalizeCompanyForGoogleProfile({
+            directoryCompany: company,
+          })}
+        />
 
         <Grid container spacing={2}>
           <Grid item xs={12} md={8}>
@@ -799,7 +811,7 @@ const CompanyDetailPage = () => {
             <Box sx={{ position: "relative" }}>
               <MuiImageCustom
                 src={
-                  companyDetail?.companyCoverImageUrl ||
+                  sanitizeCoverImageUrl(companyDetail?.companyCoverImageUrl) ||
                   IMAGES.coverImageDefault
                 }
                 sx={{
@@ -833,22 +845,47 @@ const CompanyDetailPage = () => {
                 alignItems="center"
               >
                 <Box sx={{ position: "relative", zIndex: 1 }}>
-                  <MuiImageCustom
-                    src={companyDetail.companyImageUrl}
-                    sx={{
-                      borderRadius: 3,
-                      mt: -7,
-                      p: 0.5,
-                      bgcolor: "white",
-                      background:
-                        "linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #441da0, #8b5cf6, #ff9800) border-box",
-                      border: "3px solid transparent",
-                      boxShadow: (theme) => theme.customShadows.glow,
-                    }}
-                    duration={1500}
-                    width={120}
-                    height={120}
-                  />
+                  {sanitizeEmployerLogoUrl(companyDetail.companyImageUrl) ? (
+                    <MuiImageCustom
+                      src={sanitizeEmployerLogoUrl(companyDetail.companyImageUrl)}
+                      sx={{
+                        borderRadius: 3,
+                        mt: -7,
+                        p: 0.5,
+                        bgcolor: "white",
+                        background:
+                          "linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #441da0, #8b5cf6, #ff9800) border-box",
+                        border: "3px solid transparent",
+                        boxShadow: (theme) => theme.customShadows.glow,
+                      }}
+                      duration={1500}
+                      width={120}
+                      height={120}
+                    />
+                  ) : (
+                    <Avatar
+                      variant="rounded"
+                      sx={{
+                        width: 120,
+                        height: 120,
+                        mt: -7,
+                        bgcolor: "primary.main",
+                        color: "white",
+                        fontWeight: 800,
+                        fontSize: 40,
+                        border: "4px solid #fff",
+                        boxShadow: (theme) => theme.customShadows.glow,
+                      }}
+                    >
+                      {String(companyDetail.companyName || "")
+                        .split(" ")
+                        .filter(Boolean)
+                        .slice(0, 2)
+                        .map((w) => w[0])
+                        .join("")
+                        .toUpperCase() || "?"}
+                    </Avatar>
+                  )}
                 </Box>
                 <Box flex={1}>
                   <Box>
@@ -982,6 +1019,16 @@ const CompanyDetailPage = () => {
               </Stack>
             </Box>
           </Card>
+
+          <CompanyGoogleProfileCard
+            profile={normalizeCompanyForGoogleProfile({
+              companyDetail,
+              cityName:
+                allConfig?.cityDict?.[companyDetail?.location?.city] || "",
+              employeeSizeLabel:
+                allConfig?.employeeSizeDict?.[companyDetail?.employeeSize] || "",
+            })}
+          />
 
           <Box>
             <Grid container spacing={3}>

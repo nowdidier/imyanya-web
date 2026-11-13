@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "/",
   "dependencies": {
-    "@cloudflare/kv-asset-handler": "^0.5.0",
     "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -46,6 +45,7 @@
     "html-to-draftjs": "^1.5.0",
     "js-cookie": "^3.0.1",
     "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
     "material-ui-popup-state": "^5.0.5",
     "mdb-react-ui-kit": "^6.1.0",
     "moment": "^2.29.4",
@@ -86,9 +86,10 @@
     "yup": "^1.0.2"
   },
   "scripts": {
-    "start": "cross-env HOST=0.0.0.0 CHOKIDAR_USEPOLLING=true FAST_REFRESH=true craco start",
-    "build": "cross-env CI=false GENERATE_SOURCEMAP=false craco build",
-    "build:fast": "cross-env NODE_ENV=production CI=false GENERATE_SOURCEMAP=false NODE_OPTIONS=--max-old-space-size=4096 craco build",
+    "dev": "cross-env PORT=3000 HOST=0.0.0.0 CHOKIDAR_USEPOLLING=true FAST_REFRESH=true DISABLE_ESLINT_PLUGIN=true craco start",
+    "start": "cross-env PORT=3000 HOST=0.0.0.0 CHOKIDAR_USEPOLLING=true FAST_REFRESH=true DISABLE_ESLINT_PLUGIN=true craco start",
+    "build": "cross-env CI=false GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true craco build",
+    "build:fast": "cross-env NODE_ENV=production CI=false GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true NODE_OPTIONS=--max-old-space-size=4096 craco build",
     "lint": "eslint . --max-warnings=0",
     "test": "craco test",
     "eject": "react-scripts eject"
